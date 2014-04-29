@@ -1,10 +1,17 @@
 doctype html
 html
     head
+        title MultiVision
         link(href="/favicon.ico", rel="shortcut icon", type="image/x-icon")
-
-    body
-        h1 Hello World
+        link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet", href="/vendor/toastr/toastr.css")
+        link(rel="stylesheet", href="/css/site.css")
+    body(ng-app='app')
+        //include currentUser file
+        include currentUser
+        block main-content
+        //include scripts file
+        include scripts
 
 
 

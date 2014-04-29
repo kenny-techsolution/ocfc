@@ -1,36 +1,17 @@
-var express=require('express'),
-    stylus=require('stylus');
-
+//Bring in express module to start creating express app
+var express=require('express');
+//Set environment mode
 var env=process.env.NODE_ENV=process.env.NODE_ENV || 'development';
-
+//Create actual express app
 var app=express();
+var config=require('./server/config/config')[env];
 
-function compile(str,path){
-    return stylus(str).set('filename',path);
-}
+require('./server/config/express')(app,config);
+require('./server/config/mongoose')(config);
+require('./server/config/passport')();
+require('./server/config/routes')(app);
 
-app.configure(function(){
-    app.set('views',__dirname+'/server/views');
-    app.set('view engine','jade');
-    app.use(express.logger('dev'));
-    app.use(express.bodyParser());
-    app.use(stylus.middleware(
-        {
-        src:__dirname+'/public',
-        compile:compile
-        }
-    ));
-    app.use(express.static(__dirname+'/public'));
-});
-
-app.get('*',function(req,res){
-    res.render('index');
-});
-var port=3030;
-app.listen(port);
-
-console.log('Listening on port' + port +'...');
-
-
+app.listen(config.port);
+console.log('Listening on port' + config.port +'...');
 
 
