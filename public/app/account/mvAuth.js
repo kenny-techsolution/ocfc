@@ -79,15 +79,17 @@ angular.module('app').factory('mvAuth',function($http,mvIdentity,$q,mvUser){
                                 console.log(role);
                             if(mvIdentity.isAuthorized(role)){
                                                 return true;
+                                                console.log("mvIdentity.isAuthorized(role) returned as TRUE");
                                                     }else{
                                                     return $q.reject('not authorized');
                                                 }
         },
         authorizedAuthenticatedUserForRoute: function(){
-                                    console.log("test mvIdentity.isAuthorized()");
+                                    console.log("test mvIdentity.isAuthenticated()");
                                     console.log(mvIdentity.isAuthenticated());
                                     if(mvIdentity.isAuthenticated()){
                                                         return true;
+                                                        console.log("mvIdentity.isAuthenticated() returned as TRUE");
                                                             }else{
                                                             return $q.reject('not authenticated');
                                                         }

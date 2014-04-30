@@ -18,11 +18,13 @@ angular.module('app').factory('mvNotifier',function(mvToastr){
     return{
         notify: function(msg){
             mvToastr.success(msg);
-            console.log(msg);
+            console.log("Test mvToastr.success(msg)");
+            console.log(mvToastr.success(msg));
         },
         error: function(msg){
             mvToastr.error(msg);
-            console.log(msg);
+            console.log("Test mvToastr.error(msg)");
+            console.log(mvToastr.error(msg));
         }
     }
 });
