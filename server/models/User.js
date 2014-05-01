@@ -15,20 +15,6 @@
 var mongoose=require('mongoose'),
     encrypt=require('../utilities/encryption');
 
-//create schema from mongoose
-//Table Structure
-//var messageSchema = mongoose.Schema({message: String});
-//Stored in Message table
-//var Message = mongoose.model('Message',messageSchema);
-
-//var mongoMessage;
-//Message.findOne().exec(function(err,messageDoc){
-//    //return record from message column of Message table
-//    console.log("This is a test to show 1st record from message collector:")
-//    console.log(messageDoc);
-//    mongoMessage=messageDoc.message;
-//});
-
 var userSchema = mongoose.Schema({
     firstName: {type:String, required:'(PATH) is required!'},
     lastName: {type:String, required:'(PATH) is required!'},

@@ -2,29 +2,15 @@
 //4.29.2014, added sidebar navigator
 
 .container
+    .jumbotron
+        h1 One Church for Christ
+            p Welcome to OCFC
     .row
-        .col-sm-3(id="leftCol")
-            .well.bs-sidebar.affix
-                ul.nav.nav-pills.nav-stacked(id="sidebar")
-                    li
-                        a(href="/personalGrowth") Personal Growth
-                    li
-                        a(href="/fellowship") Fellowship
-                    li
-                        a(href="/church") Church
-                    li
-                        a(href="/world") World
-        .col-sm-9(id="rightCol")
-            .container
-                .jumbotron
-                    h1 One Church for Christ
-                        p Welcome to OCFC
-                .row
-                    .col-md-6
-                        //Inside ng-include directive or function will grab path from featured-courses.jade
-                            reside on the server
-                        div(ng-include="'/partials/main/featured-courses'")
-                    .col-md-6
-                        //Inside ng-include directive or function will grab path from new-courses.jade
-                            reside on the server
-                        div(ng-include="'/partials/main/new-courses'")
+        .col-md-6
+            //Inside ng-include directive or function will grab path from featured-courses.jade
+                reside on the server
+            div(ng-include="'/partials/main/featured-courses'")
+        .col-md-6
+            //Inside ng-include directive or function will grab path from new-courses.jade
+                reside on the server
+            div(ng-include="'/partials/main/new-courses'")

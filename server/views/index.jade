@@ -3,21 +3,57 @@
 extends ../includes/layout
 
 block main-content
-    .navbar.navbar-inverse.navbar-fixed-top
-        .container
-            .navbar-header
-                a.navbar-brand(href="/") OCFC
-                    h6 -Extreme Tech Training
-            .navbar-collapse.collapse
-                ul.nav.navbar-nav
-                    li
-                        a(href="/") Home
-                    li
-                        a(href="/courses") Courses
-                div(ng-include="'/partials/account/navbar-login'")
+    //4.29.2014 adding header nav bar
+    #header.navbar.navbar-default.navbar-fixed-top
+        .navbar-header
+                        a.navbar-brand(href="/") OCFC
+                            h6 -Extreme Tech Training
+                    .navbar-collapse.collapse
+                        ul.nav.navbar-nav
+                            li
+                                a(href="/") Home
+                            li
+                                a(href="/courses") Courses
+                        div(ng-include="'/partials/account/navbar-login'")
+    //4.29.2014 adding header nav bar ends
 
-    section.content
-        div(ng-view)
 
-    footer.container.text-center
-        p &copy; 2014 One Church for Christ Corp International Ltd.
+    //.navbar.navbar-inverse.navbar-fixed-top
+    //    .container
+    #wrapper
+        #sidebar-wrapper.col-md-1
+            #sidebar
+                ul.nav.list-group
+                  li
+                    a.list-group-item(href='/personalGrowth')
+                      i.icon-home.icon-1x
+                      | Personal Growth
+                  li
+                    a.list-group-item(href='/fellowship')
+                      i.icon-home.icon-1x
+                      | Fellowship
+
+                  li.sub-menu
+
+                    a.list-group-item(href='/joinFellow')
+                      i.icon-home.icon-1x
+                      span.glyphicon.glyphicon-plus
+                      | Join
+
+                  li
+                    a.list-group-item(href='/church')
+                      i.icon-home.icon-1x
+                      | Church
+                  li
+                    a.list-group-item(href='/world')
+                      i.icon-home.icon-1x
+                      | World
+        #main-wrapper.col-md-11.pull-right
+            #main(ng-view)
+
+
+    //section.content
+    //    div(ng-view)
+
+    //footer.container.text-center
+    //    p &copy; 2014 One Church for Christ Corp International Ltd.

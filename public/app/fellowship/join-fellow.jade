@@ -1,0 +1,13 @@
+//4.29.2014, created a join fellowship page that includes zipcode and fellowshp name input boxes
+//which will dynamically generate data stored in Mongodb
+#joinFellow
+    .filter-bar
+        .col-sm-6
+            input.form-control(ng-change='updateFellowList()',ng-model='zipcode', type='text', placeholder='ZipCode')
+        .col-sm-6
+            input.form-control(type='text', placeholder='Type Fellowship Name')
+    .list-page
+        .fellowships-wrapper(ng-repeat='fellowship in fellowships')
+            .well.well-lg.fellowship {{fellowship.name}} {{fellowship.zipcode}}
+                .btn-group
+                     button.btn.btn-default(type='button') Join Fellowship

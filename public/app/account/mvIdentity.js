@@ -12,25 +12,26 @@
     currentUser: equals mvUser() function in mvUser.js
     isAuthenticated: returns currentUser info
     isAuthorized: returns currentUser and checks for 'admin' role access
+
+ factory or service are used as single copy known as singleton
+ factory returns objects
  ***************************************************************************************/
 angular.module('app').factory('mvIdentity',function($window, mvUser){
     var currentUser;
     if(!!$window.bootstrappedUserObject){
         currentUser=new mvUser();
+
         angular.extend(currentUser,$window.bootstrappedUserObject);
     }
     return{
         currentUser:currentUser,
         isAuthenticated: function(){
             return !!this.currentUser;
-            console.log("checks !!this.currentUser isAuthenticated");
-            console.log(!!this.currentUser);
+
         },
         isAuthorized: function(role){
             return !!this.currentUser && this.currentUser.roles.indexOf(role)>-1;
-            console.log("checks !!this.currentUser && this.currentUser.roles.indexOf(role)>-1 isAuthorized");
-            console.log(this.currentUser);
-            console.log(this.currentUser.roles.indexOf(role));
+
         }
     }
 });
