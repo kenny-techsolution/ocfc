@@ -10,4 +10,4 @@
         .fellowships-wrapper(ng-repeat='fellowship in fellowships')
             .well.well-lg.fellowship {{fellowship.name}} {{fellowship.zipcode}}
                 .btn-group
-                     button.btn.btn-default(type='button') Join Fellowship
+                     button.btn.btn-default(type='button',ng-click='joinFellowship(fellowship._id)') Join Fellowship

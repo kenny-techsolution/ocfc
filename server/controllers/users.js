@@ -12,8 +12,8 @@ exports.createUser=function(req,res,next){
     userData.userName=userData.userName.toLowerCase();
     userData.salt=encrypt.createSalt();
     userData.hashed_pwd=encrypt.hashPwd(userData.salt,userData.password);
-    console.log("test userData");
-    console.log(userData);
+//    console.log("test userData");
+//    console.log(userData);
     User.create(userData, function(err,user){
         if(err){
             console.log("this is error log");

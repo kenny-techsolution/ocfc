@@ -6,6 +6,7 @@ var auth=require('./auth'),
     users=require('../controllers/users'),
     courses=require('../controllers/courses'),
     fellows=require('../controllers/fellowships'),
+    fellowMems=require('../controllers/fellowMems'),
     mongoose=require('mongoose'),
     User=mongoose.model('User');
 
@@ -28,6 +29,10 @@ module.exports=function(app){
 
     //4.29.2014, retrieve data from fellows controller
     app.get('/api/fellows',fellows.getFellowByZip);
+
+    //4.30.2014 create route for handling user joining fellowship
+    app.post('/api/fellowMems',fellowMems.createFellowMem);
+    app.get('/api/fellowMems',fellowMems.getFellowsByUser);
 
     //Define a new route for Jade
     app.get('/partials/*', function(req, res){

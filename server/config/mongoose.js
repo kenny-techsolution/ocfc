@@ -2,9 +2,8 @@ var mongoose = require('mongoose'),
     userModel=require('../models/User'),
     courseModel=require('../models/Course'),
     //4.30.2014, added new model for members who joined a fellowship
-    joinedFellowModel=require('../models/JoinedFellow');
     FellowModel=require('../models/Fellowship');
-
+    FellowMemModel=require('../models/FellowMem');
 module.exports = function(config){
 
     mongoose.connect(config.db);
@@ -15,7 +14,6 @@ module.exports = function(config){
     });
     userModel.createDefaultUsers();
     courseModel.createDefaultCourses();
-    joinedFellowModel.createDefaultJoinedFellows();
     FellowModel.createDefaultFellows();
 };
 

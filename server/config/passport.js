@@ -7,8 +7,8 @@ module.exports=function(){
     passport.use(new LocalStrategy(
         function(username,password,done){
             User.findOne({userName:username}).exec(function(err,user){
-                console.log("below is password");
-                console.log(password);
+//                console.log("below is password");
+//                console.log(password);
                 if(user && user.authenticate(password)){
                     return done(null,user);
                 }
@@ -27,7 +27,7 @@ module.exports=function(){
 
     passport.deserializeUser(function(id, done){
         User.findOne({_id:id}).exec(function(err,user){
-            console.log(user);
+            //console.log(user);
             if(user){
                 return done(null, user);
             }
