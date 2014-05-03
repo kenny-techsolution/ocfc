@@ -14,6 +14,10 @@
 angular.module('app').controller('mvNavBarLoginCtrl',function($scope,$http,mvIdentity,mvNotifier,mvAuth,$location){
     //login box did not disappear
     $scope.identity=mvIdentity;
+
+    console.log("Test $scope.identity=mvIdentity;");
+    console.log($scope.identity);
+
     $scope.signin=function(username,password){
         mvAuth.authenticateUser(username,password).then(function(success){
         if(success){
@@ -21,7 +25,7 @@ angular.module('app').controller('mvNavBarLoginCtrl',function($scope,$http,mvIde
             } else{
                 mvNotifier.notify('Username/Password combination incorrect');
             }
-    });
+        });
     }
     $scope.signout=function(){
         mvAuth.logoutUser().then(function(){

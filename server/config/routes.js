@@ -28,11 +28,12 @@ module.exports=function(app){
     app.get('/api/courses/:id',courses.getCourseById);
 
     //4.29.2014, retrieve data from fellows controller
-    app.get('/api/fellows',fellows.getFellowByZip);
+    app.get('/api/fellows',fellows.getFellows);
 
     //4.30.2014 create route for handling user joining fellowship
     app.post('/api/fellowMems',fellowMems.createFellowMem);
-    app.get('/api/fellowMems',fellowMems.getFellowsByUser);
+    app.get('/api/fellowMems',fellowMems.getFellowMem);
+    app.put('/api/fellowMems',fellowMems.updateFellowMem);
 
     //Define a new route for Jade
     app.get('/partials/*', function(req, res){

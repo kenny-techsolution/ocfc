@@ -5,8 +5,8 @@
 var mongoose=require('mongoose');
 
 var fellowSchema = mongoose.Schema({
-    name: {type:String, required:'(PATH) is required!'},
-    zipcode: {type:String,required:'(PATH) is required!'}});
+    name: {type:String, required:'(PATH) is required!',index:true},
+    zipcode: {type:String,required:'(PATH) is required!',index:true}});
 
 var Fellow=mongoose.model('Fellow', fellowSchema);
 

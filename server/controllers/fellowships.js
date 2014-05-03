@@ -4,9 +4,29 @@
 
 var Fellow=require('mongoose').model('Fellow');
 
-exports.getFellowByZip=function(req,res){
-    Fellow.find({zipcode:req.query.zip}, null, {}, function (err, fellows){
-        console.log(fellows);
-        res.send(fellows);
-    });
+//find doc by zipcode from URL within Fellow collection
+exports.getFellows=function(req,res){
+    if(req.query.zip){
+        //by zipcode
+        Fellow.find({zipcode:req.query.zip}, null, {}, function (err, fellows){
+            if (!err) {
+                console.log(fellows);
+                res.send(fellows);
+            }else{
+                res.status(404);
+            }
+        });
+    } else {
+        //by all fellowships
+        Fellow.find({}, null, {}, function (err, fellows){
+            if (!err) {
+                console.log(fellows);
+                res.send(fellows);
+            }else{
+                res.status(404);
+            }
+        });
+
+    }
+
 };
