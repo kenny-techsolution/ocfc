@@ -16,7 +16,7 @@ var mongoose = require('mongoose');
 
 exports.createFellowMem=function(req,res){
     var fellowMemData=req.body;
-    console.log("Test content of fellowMemData");
+    console.log("createFellowMem");
     console.log(fellowMemData);
 
     var fellowMemDoc = {
@@ -43,37 +43,33 @@ exports.createFellowMem=function(req,res){
 };
 
 exports.getFellowMem= function(req,res){
-    var userId=req.query.userId;
-    if(userId){
-        FellowMem.find({member:userId}).exec(function(err,collection){
-            res.json(collection);
-        })
-    } else {
-        FellowMem.findOne({_id:req.params.id}).exec(function(err,collection){
-            res.json(collection);
-        })
-    }
+    console.log("getFellowMem");
+    console.log(req.params);
+    FellowMem.findOne({_id:req.params.id}).exec(function(err,collection){
+    	console.log("try this");
+    	console.log(collection);
+        res.json(collection);
+    })
 };
-
-exports.updateFellowMem=function(req,res){
-    var fellowMemUpdates=req.body;
-
-//    if(req.user._id !=userUpdates._id && !req.user.hasRole('admin')){
-//        res.status(403);
-//        return res.end();
-//    }
-    console.log("what is inside");
-    console.log(fellowMemUpdates);
-    req.fellowMem.member = fellowMemUpdates.member;
-    req.fellowMem.status = fellowMemUpdates.status;
-    req.fellowMem.fellowship = fellowMemUpdates.fellowship;
-    req.fellowMem.sav
-    e(function(err){
-        if(err) {
-            res.status(400);
-            return res.send({reason:err.toString()});
-        };
-        //sending response back to client.
-        res.send(req.fellowMem);
+exports.getFellowMemByUser = function (req,res){
+	var userId=req.query.userId;
+	console.log("getFellowMemByUser");
+	console.log(userId);
+    FellowMem.find({member:userId}).exec(function(err,collection){
+    	console.log(collection);
+        res.json(collection);
     });
+};
+exports.updateFellowMem=function(req,res){
+	return FellowMem.findById(req.params.id, function (err,fellowMem) {
+			fellowMem.status = req.body.status;
+			return fellowMem.save(function (err) {
+			  if (!err) {
+			    console.log("updated");
+			  } else {
+			    console.log(err);
+			  }
+			  return res.send(fellowMem);
+			});
+	     });
 };

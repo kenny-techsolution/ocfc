@@ -32,8 +32,10 @@ module.exports=function(app){
 
     //4.30.2014 create route for handling user joining fellowship
     app.post('/api/fellowMems',fellowMems.createFellowMem);
-    app.get('/api/fellowMems',fellowMems.getFellowMem);
-    app.put('/api/fellowMems',fellowMems.updateFellowMem);
+
+    app.get('/api/fellowMems',fellowMems.getFellowMemByUser);
+    app.get('/api/fellowMems/:id',fellowMems.getFellowMem);
+    app.put('/api/fellowMems/:id',fellowMems.updateFellowMem);
 
     //Define a new route for Jade
     app.get('/partials/*', function(req, res){
