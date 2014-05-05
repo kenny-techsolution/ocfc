@@ -1,5 +1,13 @@
 /*************************************************************************************
  Routes are required to connect to the server
+
+ Mapping:
+
+ GET    -> $HTTP GET
+ QUERY  -> $HTTP GET
+ UPDATE -> $HTTP PUT (REQ BODY permitted)
+ REMOVE -> $HTTP DELETE
+ ADD    -> $HTTP POST (REQ BODY permitted)
  ***************************************************************************************/
 
 var auth=require('./auth'),
@@ -7,6 +15,7 @@ var auth=require('./auth'),
     courses=require('../controllers/courses'),
     fellows=require('../controllers/fellowships'),
     fellowMems=require('../controllers/fellowMems'),
+    init=require('../controllers/init'),
     mongoose=require('mongoose'),
     User=mongoose.model('User');
 
@@ -29,13 +38,18 @@ module.exports=function(app){
 
     //4.29.2014, retrieve data from fellows controller
     app.get('/api/fellows',fellows.getFellows);
+    app.get('/api/fellows/:id',fellows.getFellow);
 
-    //4.30.2014 create route for handling user joining fellowship
+    //4.30.2014 equalvilant to add, create route for handling user joining fellowship
     app.post('/api/fellowMems',fellowMems.createFellowMem);
 
     app.get('/api/fellowMems',fellowMems.getFellowMemByUser);
     app.get('/api/fellowMems/:id',fellowMems.getFellowMem);
+
+    //equalvilant to update
     app.put('/api/fellowMems/:id',fellowMems.updateFellowMem);
+
+    app.get('/api/init',init.getInit);
 
     //Define a new route for Jade
     app.get('/partials/*', function(req, res){

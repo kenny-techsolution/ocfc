@@ -31,6 +31,7 @@ angular.module('app').controller('mvJoinFellowCtrl', function($scope, $http, mvI
         }
     }());
 
+
     // this function will update the fellowships array,binded to our view,
     // by checking the zipcode string user typed in.
     $scope.updateFellowListByZip = function() {
@@ -45,13 +46,17 @@ angular.module('app').controller('mvJoinFellowCtrl', function($scope, $http, mvI
 
     // this function will interact with the server to let user join the
     // selectedFellowship.
-    $scope.joinFellowship = function(id) {
+    $scope.joinFellowship = function(fellowship) {
         var fellowMemData = {
             "userId": mvIdentity.currentUser._id,
-            "fellowId": id
+            "fellowId": fellowship._id
         };
         var newFellowMem = new mvFellowMem(fellowMemData);
         newFellowMem.$save().then(function(response) {
+            //after save, set the status of Join Fellowship to Pending
+            fellowship.status='Pending';
+            console.log("fasdfasdfasdf response");
+            fellowship.fellowMemId = response.fellowMemId;
             console.log(response);
         });
     };
@@ -59,22 +64,53 @@ angular.module('app').controller('mvJoinFellowCtrl', function($scope, $http, mvI
     // 4.30.2014
     // this function interacts with server to approve the user for the
     // fellowship.
-    $scope.approveFellowship = function(id, fellowMemId) {
-        var fellowMemData = {
-            "userId": mvIdentity.currentUser._id,
-            "fellowId": id
-        };
-        console.log("approveFellowship");
-        console.log(fellowMemId);
+    $scope.approveFellowship = function(fellowship) {
+        console.log('test fellowship');
+        console.log(fellowship);
         // we need to get the fellowMem document that we want to update.
-        var fellowMem = mvFellowMem.get({
-            _id: fellowMemId
-        }, function() {
-            fellowMem.status = 'Approved';
-            mvFellowMem.update({
-                _id: fellowMem._id
-            }, fellowMem);
-        });
+        // GET is asyncronized
+
+        //below parameter is a callback, 1st parameter must be met
+        var fellowMem = mvFellowMem.get(
+            {_id: fellowship.fellowMemId}
+            ,function() {
+                fellowMem.status = 'Approved';
+
+                //update server with fellowMem data on the front end
+                mvFellowMem.update({
+                    _id: fellowMem._id
+                }, fellowMem,function(){
+                   fellowship.status='Approved';
+                });
+            }
+
+        );
+
+    };
+
+    // 5.3.2014
+    // this function interacts with server to cancel the user for the
+    // fellowship when under Pending status
+    $scope.cancelFellowship = function(fellowship) {
+        // we need to get the fellowMem document that we want to update.
+        // GET is asyncronized
+        var fellowMem = mvFellowMem.get(
+            {
+                _id: fellowship.fellowMemId}
+            //below parameter is a callback, 1st parameter must be met
+            ,function() {
+                fellowMem.status = 'None';
+
+                //update server with fellowMem data on the front end
+                mvFellowMem.update({
+                    _id: fellowMem._id
+                }, fellowMem,function(){
+                    fellowship.status='None';
+                });
+            }
+
+        );
+
     };
 
     // this function interact with server to load all the fellowships,

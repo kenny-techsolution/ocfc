@@ -60,6 +60,8 @@ exports.getFellowMemByUser = function (req,res){
         res.json(collection);
     });
 };
+//fellowMan is doc returned by the database
+//actual update against the db
 exports.updateFellowMem=function(req,res){
 	return FellowMem.findById(req.params.id, function (err,fellowMem) {
 			fellowMem.status = req.body.status;

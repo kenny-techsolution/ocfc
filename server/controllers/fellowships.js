@@ -10,7 +10,7 @@ exports.getFellows=function(req,res){
         //by zipcode
         Fellow.find({zipcode:req.query.zip}, null, {}, function (err, fellows){
             if (!err) {
-                console.log(fellows);
+//                console.log(fellows);
                 res.send(fellows);
             }else{
                 res.status(404);
@@ -20,7 +20,7 @@ exports.getFellows=function(req,res){
         //by all fellowships
         Fellow.find({}, null, {}, function (err, fellows){
             if (!err) {
-                console.log(fellows);
+//                console.log(fellows);
                 res.send(fellows);
             }else{
                 res.status(404);
@@ -29,4 +29,15 @@ exports.getFellows=function(req,res){
 
     }
 
+};
+
+//grab 1 fellowship
+exports.getFellow=function(req,res){
+        console.log("getFellow");
+        console.log(req.params);
+        Fellow.findOne({_id:req.params.id}).exec(function(err,item){
+            console.log("try this");
+            console.log(item);
+            res.json(item);
+        });
 };

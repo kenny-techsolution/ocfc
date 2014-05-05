@@ -38,7 +38,8 @@ angular.module('app').config(function($routeProvider,$locationProvider){
         .when('/profile',{templateUrl:'/partials/account/profile',controller:'mvProfileCtrl',resolve:routeRoleChecks.user})
         .when('/courses',{templateUrl:'/partials/courses/course-list',controller:'mvCourseListCtrl'})
         .when('/courses/:id',{templateUrl:'/partials/courses/course-details',controller:'mvCourseDetailCtrl'})
-        .when('/joinFellow',{templateUrl:'/partials/fellowship/join-fellow',controller:'mvJoinFellowCtrl'});
+        .when('/joinFellow',{templateUrl:'/partials/fellowship/join-fellow',controller:'mvJoinFellowCtrl'})
+        .when('/fellowship/:id',{templateUrl:'/partials/fellowship/fellowship',controller:'mvFellowshipCtrl'});
 });
 
 //execute after above code to re-route path after rejection

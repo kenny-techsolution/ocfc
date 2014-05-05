@@ -8,16 +8,95 @@ body
     h6
         color #ccc
 
+a.navbar-brand
+    width 300px
+
+.navbar-right
+    height 70px
+    .dropdown
+        height 70px
+        width 150px
+        a
+         height 70px
+         padding-top 26px
+         padding-right 20px
+        .dropdown-menu li a
+            height 40px
+            padding-top 10px
+            padding-right 15px
+            padding-left 15px
+            padding-bottom 10px
+
+.toolbar-search
+    position absolute
+    top 20px
+    width 200px
+    right 370px
+    input
+        padding-right: 30px;
+    i
+        position: absolute;
+        right: 15px;
+        top: -2px;
+        padding: 10px 12px;
+        pointer-events: none;
+
+.toolbar-language
+    position absolute
+    top 20px
+    width 100px
+    right 250px
+    padding-top 5px
+    padding-left 10px
+    vertical-align top
+    i
+        font-size: 1.6em;
+    span
+        padding-left 10px
+        line-height 25px
+        vertical-align top
+
+.toolbar-message
+    position absolute
+    top 20px
+    width 50px
+    right 200px
+    padding-top 5px
+    padding-left 10px
+    i
+      font-size: 1.6em;
+
+.toolbar-notification
+    position absolute
+    top 20px
+    width 50px
+    right 150px
+    padding-top 5px
+    padding-left 10px
+    i
+      font-size: 1.6em;
+
 //4.29.2014, added code to include sidebar
 
 body
   padding-top 60px
   overflow hidden
 
+#header
+  margin-bottom: 0px;
+  min-width 1040px
+  height 70px
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.70);
+  -moz-box-shadow:    0px 1px 5px 0px rgba(0, 0, 0, 0.70);
+  box-shadow:         0px 1px 5px 0px rgba(0, 0, 0, 0.70);
+  background-image: url('images/ocfc_logo.png');
+  background-repeat: no-repeat
+
 #wrapper
   min-height 100%
   height 100%
   width 100%
+  min-width 1040px
   position absolute
   top 0px
   left 0
@@ -26,31 +105,42 @@ body
 #main-wrapper
   height 100%
   overflow-y auto
-  padding 60px 0 0px 0
+  padding 70px 0 0px 250px
+  width: 100%
 
 #main
   position relative
   height 100%
   overflow-y auto
   padding 0 15px
+  background-color #f0f0f0
 
 #sidebar-wrapper
   height 100%
-  padding 60px 0 0px 0
+  padding 80px 0 0px 0
   position fixed
   left 0px
   border-right 1px solid gray
+  float left
+  width 250px
+  z-index 400
+  -webkit-box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.70);
+  -moz-box-shadow:    0px 0px 7px 0px rgba(0, 0, 0, 0.70);
+  box-shadow:         0px 0px 7px 0px rgba(0, 0, 0, 0.70);
 
 #sidebar
   position fixed
+  z-index 3000
   left 0px
   height 100%
   overflow-y auto
-  .list-group-item
-    border-radius 0
-    border-left 0
-    border-right 0
-    border-top 0
+  .list-group
+    z-index 300000
+    .list-group-item
+      border-radius 0
+      border-left 0
+      border-right 0
+      border-top 0
 
 
 
@@ -92,22 +182,45 @@ footer
        padding-right 10px
 
 //4.29.2014 style for joinFellow page
-#joinFellow
+#content
+    width 790px
+    margin-left auto
+    margin-right auto
+#filterContainer
+    position fixed
+    top 0
+    left 250px
+    right 20px
+    padding-top 70px
+    z-index 1000
     .filter-bar
         height 60px
-        position fixed
-        top 60px
-        width 90%
+        width 790px
+        margin-left auto
+        margin-right auto
+        z-index: 1000
+        background-color #f0f0f0
+        .zip-search-container
+            height 60px
+            input
+              margin-top 15px
+        .name-search-container
+            height 60px
+            input
+              margin-top 15px
+
+
+#joinFellow
     .list-page
-        padding-top 80px
-        width 1140px
+        padding-top 60px
+        width 790px
         margin-left auto
         margin-right auto
 
         .fellowships-wrapper
                     .well.well-lg.fellowship
                         position relative
-
+                        background white
                         .btn-group
                              position absolute
                              right 60px

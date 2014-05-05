@@ -6,22 +6,32 @@ block main-content
     //4.29.2014 adding header nav bar
     #header.navbar.navbar-default.navbar-fixed-top
         .navbar-header
-                        a.navbar-brand(href="/") OCFC
-                            h6 -Extreme Tech Training
-                    .navbar-collapse.collapse
-                        ul.nav.navbar-nav
-                            li
-                                a(href="/") Home
-                            li
-                                a(href="/courses") Courses
-                        div(ng-include="'/partials/account/navbar-login'")
+                        a.navbar-brand(href="/")
+        .navbar-collapse.collapse
+            //ul.nav.navbar-nav
+            //    li
+            //        a(href="/") Home
+            //    li
+            //        a(href="/courses") Courses
+
+            div.toolbar-search
+                i.glyphicon.glyphicon-search
+                input.form-control(type='search', placeholder='search')
+            div.toolbar-language
+                i.glyphicon.glyphicon-globe
+                span English
+            div.toolbar-message
+                i.glyphicon.glyphicon-comment
+            div.toolbar-notification
+                i.glyphicon.glyphicon-bell
+            div(ng-include="'/partials/account/navbar-login'")
     //4.29.2014 adding header nav bar ends
 
 
     //.navbar.navbar-inverse.navbar-fixed-top
     //    .container
     #wrapper
-        #sidebar-wrapper.col-md-1
+        #sidebar-wrapper
             #sidebar
                 ul.nav.list-group
                   li
@@ -34,11 +44,16 @@ block main-content
                       | Fellowship
 
                   li.sub-menu
-
                     a.list-group-item(href='/joinFellow')
                       i.icon-home.icon-1x
                       span.glyphicon.glyphicon-plus
                       | Join
+
+                  .myApprvFellows-wrapper(ng-repeat='myApprvFellow in initObj.myFellowships')
+                      li.sub-menu
+                        a.list-group-item(href='/fellowship/{{myApprvFellow._id}}')
+                          i.icon-home.icon-1x
+                          | {{myApprvFellow.name}} {{myApprvFellow.zipcode}}
 
                   li
                     a.list-group-item(href='/church')
@@ -48,7 +63,7 @@ block main-content
                     a.list-group-item(href='/world')
                       i.icon-home.icon-1x
                       | World
-        #main-wrapper.col-md-11.pull-right
+        #main-wrapper.pull-right
             #main(ng-view)
 
 

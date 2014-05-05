@@ -19,3 +19,4 @@ var fellowMemSchema = mongoose.Schema({
 });
 
 var FellowMem =mongoose.model('FellowMem', fellowMemSchema);
+

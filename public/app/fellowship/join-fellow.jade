@@ -1,14 +1,18 @@
 //4.29.2014, created a join fellowship page that includes zipcode and fellowshp name input boxes
 //which will dynamically generate data stored in Mongodb
-#joinFellow
-    .filter-bar
-        .col-sm-6
-            input.form-control(ng-change='updateFellowListByZip()',ng-model='zipcode', type='text', placeholder='ZipCode')
-        .col-sm-6
-            input.form-control(type='text', placeholder='Type Fellowship Name')
-    .list-page
-        .fellowships-wrapper(ng-repeat='fellowship in fellowships')
-            .well.well-lg.fellowship {{fellowship.name}} {{fellowship.zipcode}}
-                .btn-group
-                     button.btn.btn-default(type='button',ng-click='joinFellowship(fellowship._id)',ng-show="{{fellowship.status=='None'}}") Join Fellowship
-                     button.btn.btn-default(type='button',ng-click='approveFellowship(fellowship._id,fellowship.fellowMemId)',ng-show="{{fellowship.status=='Pending'}}") Approve
+#content
+    #filterContainer
+        .filter-bar
+            .zip-search-container.col-sm-6
+                input.form-control(ng-change='updateFellowListByZip()',ng-model='zipcode', type='text', placeholder='ZipCode')
+            .name-search-container.col-sm-6
+                input.form-control(type='text', placeholder='Type Fellowship Name')
+
+    #joinFellow
+        .list-page
+            .fellowships-wrapper(ng-repeat='fellowship in fellowships')
+                .well.well-lg.fellowship {{fellowship.name}} {{fellowship.zipcode}} {{fellowship.status}}
+                    .btn-group
+                         button.btn.btn-default(type='button',ng-click='joinFellowship(fellowship)',ng-show="fellowship.status=='None'") Join Fellowship
+                         button.btn.btn-default(type='button',ng-click='approveFellowship(fellowship)',ng-show="fellowship.status=='Pending'") Approve
+                         button.btn.btn-default(type='button',ng-click='cancelFellowship(fellowship)',ng-show="fellowship.status=='Pending'") Cancel
