@@ -14,15 +14,15 @@ block main-content
             //    li
             //        a(href="/courses") Courses
 
-            div.toolbar-search
+            div.toolbar-search(ng-show="identity.isAuthenticated()")
                 i.glyphicon.glyphicon-search
                 input.form-control(type='search', placeholder='search')
-            div.toolbar-language
+            div.toolbar-language(ng-show="identity.isAuthenticated()")
                 i.glyphicon.glyphicon-globe
                 span English
-            div.toolbar-message
+            div.toolbar-message(ng-show="identity.isAuthenticated()")
                 i.glyphicon.glyphicon-comment
-            div.toolbar-notification
+            div.toolbar-notification(ng-show="identity.isAuthenticated()")
                 i.glyphicon.glyphicon-bell
             div(ng-include="'/partials/account/navbar-login'")
     //4.29.2014 adding header nav bar ends

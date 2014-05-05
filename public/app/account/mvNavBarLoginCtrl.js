@@ -20,6 +20,7 @@ angular.module('app').controller('mvNavBarLoginCtrl',function($scope,$http,mvIde
 
     $scope.signin=function(username,password){
         mvAuth.authenticateUser(username,password).then(function(success){
+            console.log("login succesfull!!!!!");
         if(success){
                 mvNotifier.notify('You have successfully signed in!');
             } else{
