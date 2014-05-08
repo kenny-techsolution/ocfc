@@ -1,8 +1,9 @@
 /*******************************************************************************
  ******************************************************************************/
-angular.module('app').controller('mvFellowshipCtrl', function($scope, $resource, mvFellowship,$routeParams) {
+angular.module('app').controller('mvFellowshipCtrl', function($scope, mvFellowship,$routeParams) {
     $scope.about;
     $scope.name;
+    $scope.id;
     var fellow = mvFellowship.get(
         {
             _id: $routeParams.id}
@@ -10,6 +11,7 @@ angular.module('app').controller('mvFellowshipCtrl', function($scope, $resource,
         ,function() {
             $scope.about=fellow.about;
             $scope.name = fellow.name;
+            $scope.id = fellow._id;
         }
 
     );

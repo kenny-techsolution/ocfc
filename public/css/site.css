@@ -109,6 +109,14 @@ body {
   left: 0;
   display: inline-block;
 }
+#intro-pg {
+  position: fixed;
+  width: 100%;
+  top: 70px;
+  height: 100%;
+  background-color: #00b8ff;
+  z-index: 5000;
+}
 #main-wrapper {
   height: 100%;
   overflow-y: auto;
@@ -231,4 +239,7 @@ footer p {
 #joinFellow .list-page .fellowships-wrapper .well.well-lg.fellowship .btn-group {
   position: absolute;
   right: 60px;
+}
+.modal-dialog-center {
+  margin-top: 17%;
 }

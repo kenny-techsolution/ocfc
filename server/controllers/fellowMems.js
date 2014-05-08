@@ -51,14 +51,20 @@ exports.getFellowMem= function(req,res){
         res.json(collection);
     })
 };
-exports.getFellowMemByUser = function (req,res){
-	var userId=req.query.userId;
-	console.log("getFellowMemByUser");
-	console.log(userId);
-    FellowMem.find({member:userId}).exec(function(err,collection){
-    	console.log(collection);
-        res.json(collection);
-    });
+
+exports.queryFellowMem = function (req,res){
+    if (req.query.userId){
+        var userId=req.query.userId;
+        FellowMem.find({member:userId}).exec(function(err,collection){
+            console.log(collection);
+            res.json(collection);
+        });
+    }else if (req.query.fellowshipId){
+        FellowMem.find({fellowship:req.query.fellowshipId}).populate("member").exec(function(err,collection){
+            console.log(collection);
+            res.send(collection);
+        });
+    }
 };
 //fellowMan is doc returned by the database
 //actual update against the db
@@ -74,4 +80,19 @@ exports.updateFellowMem=function(req,res){
 			  return res.send(fellowMem);
 			});
 	     });
+};
+
+//5.7.2014 remove member
+exports.removeFellowMem= function(req,res){
+    console.log("removeFellowMem");
+    console.log(req.params);
+    FellowMem.findOne({_id:req.params.id}).remove().exec(function(err,collection){
+        console.log("try this");
+        console.log(collection);
+        if (!err) {
+            res.send({status:"success"});
+        }else{
+            res.send({status:"failure"});
+        }
+    })
 };

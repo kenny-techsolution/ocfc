@@ -61,33 +61,6 @@ angular.module('app').controller('mvJoinFellowCtrl', function($scope, $http, mvI
         });
     };
 
-    // 4.30.2014
-    // this function interacts with server to approve the user for the
-    // fellowship.
-    $scope.approveFellowship = function(fellowship) {
-        console.log('test fellowship');
-        console.log(fellowship);
-        // we need to get the fellowMem document that we want to update.
-        // GET is asyncronized
-
-        //below parameter is a callback, 1st parameter must be met
-        var fellowMem = mvFellowMem.get(
-            {_id: fellowship.fellowMemId}
-            ,function() {
-                fellowMem.status = 'Approved';
-
-                //update server with fellowMem data on the front end
-                mvFellowMem.update({
-                    _id: fellowMem._id
-                }, fellowMem,function(){
-                   fellowship.status='Approved';
-                });
-            }
-
-        );
-
-    };
-
     // 5.3.2014
     // this function interacts with server to cancel the user for the
     // fellowship when under Pending status
@@ -121,6 +94,7 @@ angular.module('app').controller('mvJoinFellowCtrl', function($scope, $http, mvI
             url: '/api/fellows',
             method: 'GET'
         }, params);
+
         $http(params).success(function(data) {
             angular.forEach(data, function(fellowObj, key) {
                 var norun = false;

@@ -40,11 +40,13 @@ module.exports=function(app){
     app.get('/api/fellows',fellows.getFellows);
     app.get('/api/fellows/:id',fellows.getFellow);
 
+
     //4.30.2014 equalvilant to add, create route for handling user joining fellowship
     app.post('/api/fellowMems',fellowMems.createFellowMem);
 
-    app.get('/api/fellowMems',fellowMems.getFellowMemByUser);
+    app.get('/api/fellowMems',fellowMems.queryFellowMem);
     app.get('/api/fellowMems/:id',fellowMems.getFellowMem);
+    app.delete('/api/fellowMems/:id',fellowMems.removeFellowMem);
 
     //equalvilant to update
     app.put('/api/fellowMems/:id',fellowMems.updateFellowMem);

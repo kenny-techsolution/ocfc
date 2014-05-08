@@ -31,6 +31,9 @@ block main-content
     //.navbar.navbar-inverse.navbar-fixed-top
     //    .container
     #wrapper
+        #intro-pg(ng-hide="identity.isAuthenticated()")
+           h1 Welcome to One Christ for Christ
+
         #sidebar-wrapper
             #sidebar
                 ul.nav.list-group

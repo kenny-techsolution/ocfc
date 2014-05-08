@@ -21,7 +21,7 @@ exports.getInit=function(req,res){
         var initObj = {
             myFellowships : fellows
         };
-        res.json(initObj);
+        res.send(initObj);
     });
 };
 

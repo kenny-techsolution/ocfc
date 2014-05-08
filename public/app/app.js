@@ -8,20 +8,22 @@ angular.module('app').config(function($routeProvider,$locationProvider){
 
     var routeRoleChecks={
         admin:{auth: function(mvAuth){
-            var admin=mvAuth.authorizedCurrentUserForRoute('admin'),
-                churchAdmin=mvAuth.authorizedCurrentUserForRoute('churchAdmin'),
-                worldAdmin=mvAuth.authorizedCurrentUserForRoute('worldAdmin');
+            var admin=mvAuth.authorizedCurrentUserForRoute('admin');
             console.log("Test for different admin privileges");
             console.log(admin);
             console.log(churchAdmin);
             console.log(worldAdmin);
-            var pass = (admin===true)||(churchAdmin===true)||(worldAdmin===true);
+            var pass = (admin===true);
             console.log(pass);
             return pass;
 
         }},
         user:{auth: function(mvAuth){
             return mvAuth.authorizedAuthenticatedUserForRoute();
+        }},
+
+        fellowAdmin:{auth:function(){
+            return true;
         }}
     };
 //4.29.2014, updated code to include churchAdmin and worldAdmin authorization ends
@@ -39,7 +41,8 @@ angular.module('app').config(function($routeProvider,$locationProvider){
         .when('/courses',{templateUrl:'/partials/courses/course-list',controller:'mvCourseListCtrl'})
         .when('/courses/:id',{templateUrl:'/partials/courses/course-details',controller:'mvCourseDetailCtrl'})
         .when('/joinFellow',{templateUrl:'/partials/fellowship/join-fellow',controller:'mvJoinFellowCtrl'})
-        .when('/fellowship/:id',{templateUrl:'/partials/fellowship/fellowship',controller:'mvFellowshipCtrl'});
+        .when('/fellowship/:id',{templateUrl:'/partials/fellowship/fellowship',controller:'mvFellowshipCtrl'})
+        .when('/fellowshipMembers/:id',{templateUrl:'/partials/fellowship/member',controller:'mvMemberCtrl'});
 });
 
 //execute after above code to re-route path after rejection
