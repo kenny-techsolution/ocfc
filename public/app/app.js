@@ -42,7 +42,8 @@ angular.module('app').config(function($routeProvider,$locationProvider){
         .when('/courses/:id',{templateUrl:'/partials/courses/course-details',controller:'mvCourseDetailCtrl'})
         .when('/joinFellow',{templateUrl:'/partials/fellowship/join-fellow',controller:'mvJoinFellowCtrl'})
         .when('/fellowship/:id',{templateUrl:'/partials/fellowship/fellowship',controller:'mvFellowshipCtrl'})
-        .when('/fellowshipMembers/:id',{templateUrl:'/partials/fellowship/member',controller:'mvMemberCtrl'});
+        .when('/fellowshipMembers/:id',{templateUrl:'/partials/fellowship/member',controller:'mvMemberCtrl'})
+        .when('/createFellow/',{templateUrl:'/partials/fellowship/create-fellow',controller:'mvCreateFellowCtrl'});
 });
 
 //execute after above code to re-route path after rejection
@@ -56,5 +57,8 @@ angular.module('app').run(function($rootScope,$location){
 });
 
 
-
-
+//Common Functions used on the Client Slide are defined here
+var cl = function (title, value) {
+    console.log(title);
+    console.log(value);
+};

@@ -3,11 +3,15 @@
  ***************************************************************************************/
 
 var mongoose=require('mongoose');
-
+var ObjectId=mongoose.Schema.Types.ObjectId;
 var fellowSchema = mongoose.Schema({
-    name: {type:String, required:'(PATH) is required!',index:true},
-    zipcode: {type:String,required:'(PATH) is required!',index:true},
-    about:{type:String}
+    name: {type:String, required:'(name) is required!',index:true},
+    zipcode: {type:String,required:'(zipcode) is required!',index:true},
+    about:{type:String},
+    status:{type:String,index:true},
+    admin:[{type:ObjectId, ref: 'User', unique: false, required:'(MEMBER) is required!'}],
+    createDate:{type:Date, required:'(CREATEDATE) is required!','default': Date.now, unique:false}
+
 });
 
 var Fellow=mongoose.model('Fellow', fellowSchema);

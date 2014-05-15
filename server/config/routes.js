@@ -14,6 +14,7 @@ var auth=require('./auth'),
     users=require('../controllers/users'),
     courses=require('../controllers/courses'),
     fellows=require('../controllers/fellowships'),
+    fellowGrps=require('../controllers/createFellows'),
     fellowMems=require('../controllers/fellowMems'),
     init=require('../controllers/init'),
     mongoose=require('mongoose'),
@@ -40,6 +41,8 @@ module.exports=function(app){
     app.get('/api/fellows',fellows.getFellows);
     app.get('/api/fellows/:id',fellows.getFellow);
 
+    //5.14.2015, create new fellowship by Admin
+    app.post('/api/fellows',fellowGrps.createFellow);
 
     //4.30.2014 equalvilant to add, create route for handling user joining fellowship
     app.post('/api/fellowMems',fellowMems.createFellowMem);

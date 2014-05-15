@@ -1,0 +1,18 @@
+//5.9.2014, Admin to create fellowship by filling out necessary info on below form
+//which will dynamically generate data stored in Mongodb
+#content
+    #createContainer
+        .filter-bar
+            .zip-create-container.col-sm-6
+                input.form-control(ng-model='zipcode', type='text', placeholder='ZipCode')
+            .name-create-container.col-sm-6
+                input.form-control(ng-model='fellowName',type='text', placeholder='Type Fellowship Name')
+            .button.btn.btn-default(type='button',ng-click='uploadProof()') Proof of Leadership
+
+    #createFellow
+        .list-page
+            .fellowships-wrapper
+                .well.well-lg {{fellowName}} {{zipcode}}
+                    .btn-group
+                         button.btn.btn-default(type='button',ng-click='createFellowship()') Create Fellowship
+                         button.btn.btn-default(type='button',ng-click='cancelCreateFellowship()') Cancel
