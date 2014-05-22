@@ -234,3 +234,17 @@ footer
 //centering modal position
 .modal-dialog-center
     margin-top 17%
+
+//5.21.2014, styling for Form errors
+input.ng-dirty.ng-invalid
+    background #f2dede
+    &:focus
+      border-color #f2dede
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(242,222,222, .6);
+
+span.valid-check
+    background-image: url('images/checkmark.svg');
+    width 16px
+    height 12px
+    display inline-block
+    margin-top 11px

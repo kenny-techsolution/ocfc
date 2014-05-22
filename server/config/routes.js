@@ -43,6 +43,9 @@ module.exports=function(app){
 
     //5.14.2015, create new fellowship by Admin
     app.post('/api/fellows',fellowGrps.createFellow);
+    app.get('/api/fellows',fellowGrps.createFellow);
+    app.get('/api/fellows',fellowGrps.queryFellow);
+
 
     //4.30.2014 equalvilant to add, create route for handling user joining fellowship
     app.post('/api/fellowMems',fellowMems.createFellowMem);
