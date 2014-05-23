@@ -42,17 +42,18 @@ block main-content
                       i.icon-home.icon-1x
                       | Personal Growth
                   li
-                    a.list-group-item(href='/createFellow')
+                    a.list-group-item(href='/Fellow')
                       i.icon-home.icon-1x
                       | Fellowship
-                      span.glyphicon.glyphicon-plus
-                      | Create
-
-                  li.sub-menu
-                    a.list-group-item(href='/joinFellow')
+                  li.sub-menu.sub-menu-actions.row
+                    a.list-group-item.col-xs-6(href='/joinFellow')
                       i.icon-home.icon-1x
                       span.glyphicon.glyphicon-plus
                       | Join
+                    a.list-group-item.col-xs-6(href='/createFellow')
+                      i.icon-home.icon-1x
+                      span.glyphicon.glyphicon-plus
+                      | Create
 
                   .myApprvFellows-wrapper(ng-repeat='myApprvFellow in initObj.myFellowships')
                       li.sub-menu
@@ -68,6 +69,11 @@ block main-content
                     a.list-group-item(href='/world')
                       i.icon-home.icon-1x
                       | World
+                   li
+                     a.list-group-item(href='/ocfcAdmin')
+                       i.icon-home.icon-1x
+                       | OCFC Admin
+
         #main-wrapper.pull-right
             #main(ng-view)
 

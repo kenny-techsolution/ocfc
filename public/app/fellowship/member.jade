@@ -7,8 +7,8 @@
                     .well.well-lg.member {{member.firstName}} {{member.lastName}} {{member.status}}
                         .btn-group.pull-right
                             button.btn.btn-default(type='button',ng-click='approveMember(member)',ng-show="member.status=='Pending'") Approve
-                            button.btn.btn-default(type='button',ng-show="member.status=='Pending'",ng-click="setModalMemberIndex($index)" data-toggle="modal",data-target="#RejRemvConfirmation") Reject
-                            button.btn.btn-default(type='button',ng-show="member.status=='Approved'",ng-click="setModalMemberIndex($index)" data-toggle="modal",data-target="#RejRemvConfirmation") Remove
+                            button.btn.btn-default(type='button',ng-show="member.status=='Pending'",ng-click="setModalMemberIndex($index)", data-toggle="modal",data-target="#RejRemvConfirmation") Reject
+                            button.btn.btn-default(type='button',ng-show="member.status=='Approved'",ng-click="setModalMemberIndex($index)", data-toggle="modal",data-target="#RejRemvConfirmation") Remove
 //ng-click='removeMember(member, $index)'
 
 #RejRemvConfirmation.modal.fade

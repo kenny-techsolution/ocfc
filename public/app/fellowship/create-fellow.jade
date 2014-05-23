@@ -22,7 +22,7 @@
               .form-group
                 label.control-label.col-xs-3(for='inputUrl') URL
                 .col-xs-8
-                  input#inputUrl.form-control(type='url', placeholder='Type church URL')
+                  input#inputUrl.form-control(ng-model='cfForm.url',name='url',type='url', placeholder='Type church URL: http://www.example.com/myfile.html')
               .form-group
                 label.control-label.col-xs-3(for='inputPhone') Phone
                 .col-xs-8
@@ -38,7 +38,7 @@
               .form-group
                 label.control-label.col-xs-3(for='inputProof') Proof
                 .col-xs-8
-                  input#inputProof.form-control(type='text', placeholder='Upload proof of leadership')
+                  input#inputProof.form-control(ng-model='cfForm.proof',type='text', placeholder='Upload proof of leadership')
               .form-group
                 label.control-label.col-xs-3(for='inputDescription') Description
                 .col-xs-8
@@ -51,4 +51,4 @@
                         .btn-group
                             button.btn.btn-primary(ng-disabled='myFormNg.$invalid',type='submit',ng-click='createFellowship()') Create
                         .btn-group
-                            button.btn.btn-primary(type='cancel',ng-click='cancelCreateFellowship()') Cancel
+                            button.btn.btn-primary(ng-click='resetCreateFellowship()',type='text') Reset

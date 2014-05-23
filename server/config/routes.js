@@ -14,7 +14,6 @@ var auth=require('./auth'),
     users=require('../controllers/users'),
     courses=require('../controllers/courses'),
     fellows=require('../controllers/fellowships'),
-    fellowGrps=require('../controllers/createFellows'),
     fellowMems=require('../controllers/fellowMems'),
     init=require('../controllers/init'),
     mongoose=require('mongoose'),
@@ -27,6 +26,7 @@ module.exports=function(app){
     //app is an extension from server.js file, the object is from express
 
     //grab from user controller
+    //API is referring to resource path
     app.get('/api/users',auth.requiresRole('admin'),users.getUsers);
     //create new user
     app.post('/api/users',users.createUser);
@@ -40,12 +40,9 @@ module.exports=function(app){
     //4.29.2014, retrieve data from fellows controller
     app.get('/api/fellows',fellows.getFellows);
     app.get('/api/fellows/:id',fellows.getFellow);
-
     //5.14.2015, create new fellowship by Admin
-    app.post('/api/fellows',fellowGrps.createFellow);
-    app.get('/api/fellows',fellowGrps.createFellow);
-    app.get('/api/fellows',fellowGrps.queryFellow);
-
+    app.post('/api/fellows',fellows.createFellow);
+    app.put('/api/fellows/:id',fellows.updateFellow);
 
     //4.30.2014 equalvilant to add, create route for handling user joining fellowship
     app.post('/api/fellowMems',fellowMems.createFellowMem);
@@ -56,6 +53,7 @@ module.exports=function(app){
 
     //equalvilant to update
     app.put('/api/fellowMems/:id',fellowMems.updateFellowMem);
+
 
     app.get('/api/init',init.getInit);
 
