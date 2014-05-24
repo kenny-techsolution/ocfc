@@ -18,14 +18,16 @@ angular.module('app').controller('mvCreateFellowCtrl', function($scope, $http, m
 
     //5.15.2014 Add code to display fellowship list created by Admin user
     $scope.createFellowship = function() {
-        var zip=$scope.cfForm.zipcode;
+        var createFellowForm=$scope.cfForm;
         var fellowship={};
-        if(zip.length == 5 && $scope.validZip()==true){
 
             //need to find a way to validate zipcode for correctness too
-            fellowship.zipcode=zip;
+            fellowship.zipcode=createFellowForm.zipcode;
             fellowship.status="Waiting for Approval";
-            fellowship.fellowName=$scope.cfForm.fellowName;
+            fellowship.fellowName=createFellowForm.fellowName;
+            fellowship.url=createFellowForm.url;
+            fellowship.address=createFellowForm.address;
+            fellowship.description=createFellowForm.description;
 
             var newFellow = new mvFellowship(fellowship);
             newFellow.$save().then(function() {
@@ -37,14 +39,18 @@ angular.module('app').controller('mvCreateFellowCtrl', function($scope, $http, m
             );
         };
     };
-
     // 5.15.2014
     // this function will reset zipcode and fellowName to blank
     // fellowship when under Pending status
-        $scope.cancelCreateFellowship = function() {
+        $scope.resetCreateFellowship = function() {
             $scope.cfForm.zipcode='';
             $scope.cfForm.fellowName='';
-
+            $scope.cfForm.url='';
+            $scope.cfForm.phone='';
+            $scope.cfForm.address='';
+            $scope.cfForm.proof='';
+            $scope.cfForm.description='';
+            $scope.myFormNg.$setPristine();
         };
 
 

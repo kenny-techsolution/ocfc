@@ -193,6 +193,27 @@ footer p {
   padding-left: 10px;
   padding-right: 10px;
 }
+.sub-menu-actions a {
+  font-weight: bold;
+  color: #2fa9cf;
+  background-color: #c9c9c9;
+}
+.sub-menu-actions a.list-group-item:last-child {
+  color: #e9de60;
+  border-left: 1px solid #dfdddd !important;
+}
+.sub-menu-actions a.list-group-item:last-child:hover {
+  color: #fff;
+  background-color: #e9de60 !important;
+}
+.sub-menu-actions a:hover {
+  color: #fff;
+  background-color: #2fa9cf !important;
+}
+.sub-menu-actions span.glyphicon {
+  padding-left: 10px;
+  padding-right: 10px;
+}
 #content {
   width: 790px;
   margin-left: auto;

@@ -10,8 +10,11 @@ var fellowSchema = mongoose.Schema({
     about:{type:String},
     status:{type:String,index:true},
     admin:[{type:ObjectId, ref: 'User', unique: false, required:'(MEMBER) is required!'}],
-    createDate:{type:Date, required:'(CREATEDATE) is required!','default': Date.now, unique:false}
-
+    createDate:{type:Date, required:'(CREATEDATE) is required!','default': Date.now, unique:false},
+    url:{type:String},
+    address:{type:String,required:'(address) is required!'},
+    description:{type:String,required:'(description) is required!'},
+    reason:{type:String}
 });
 
 var Fellow=mongoose.model('Fellow', fellowSchema);
