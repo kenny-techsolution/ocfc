@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
     //4.30.2014, added new model for members who joined a fellowship
     FellowModel=require('../models/Fellowship');
     FellowMemModel=require('../models/FellowMem');
+    PostModel=require('../models/Post');
 module.exports = function(config){
 
     mongoose.connect(config.db);

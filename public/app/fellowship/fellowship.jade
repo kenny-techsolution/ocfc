@@ -4,3 +4,41 @@
         h2 About
         p {{about}}
         a.btn.btn-lg.btn-default(type='button', href='/fellowshipMembers/{{id}}') Members
+    .container
+        .container
+                  hr
+                  form.fellow-share-box(action='#', method='post', role='form', enctype='multipart/form-data')
+                    ul.post-types
+                      li.post-type
+                        a.status(title='', href='#',ng-click='onClickType("post")')
+                          span.glyphicon.glyphicon-list-alt
+                          | Write a Post
+                      li.post-type
+                        a.status(title='', href='#',ng-click='onClickType("question")')
+                          span.glyphicon.glyphicon-list-alt
+                          | Ask a Question
+                      li.post-type
+                        a.photos(href='#')
+                          span.glyphicon.glyphicon-camera
+                          | Add photos
+                    .share
+                      .arrow
+                      .panel.panel-default
+                        .panel-body
+                            textarea.form-control.message(name='postMsg', ng-model='post.content',cols='40', rows='10', style='height: 62px; overflow: hidden;', placeholder="{{placeholder}}")
+                        .panel-footer
+                          .row
+                            .col-md-7
+                              .form-group
+                                .btn-group
+                                  button.btn.btn-default(type='button')
+                                    span.glyphicon.glyphicon-map-marker
+                                    | Location
+                                  button.btn.btn-default(type='button')
+                                    span.glyphicon.glyphicon-picture
+                                    | Photo
+                            .col-md-5
+                              .form-group
+                                select.form-control.privacy-dropdown.pull-left.input-sm(name='privacy',ng-init="currVisibility=visibilityOptions[0]", ng-model='currVisibility',ng-options='visibilityOption.name for visibilityOption in visibilityOptions')
+                                input.btn.btn-primary(type='submit', name='submit', value='Post',ng-click='createPost($event)')
+                                {{currVisibility}}
