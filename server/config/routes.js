@@ -15,6 +15,7 @@ var auth=require('./auth'),
     courses=require('../controllers/courses'),
     fellows=require('../controllers/fellowships'),
     fellowMems=require('../controllers/fellowMems'),
+    posts=require('../controllers/posts'),
     init=require('../controllers/init'),
     mongoose=require('mongoose'),
     User=mongoose.model('User');
@@ -54,6 +55,8 @@ module.exports=function(app){
     //equalvilant to update
     app.put('/api/fellowMems/:id',fellowMems.updateFellowMem);
 
+    //5.24.2014 create post api
+    app.post('/api/posts',posts.createPost);
 
     app.get('/api/init',init.getInit);
 
