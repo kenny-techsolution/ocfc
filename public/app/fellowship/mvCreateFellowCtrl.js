@@ -13,7 +13,7 @@ angular.module('app').controller('mvCreateFellowCtrl', function($scope, $http, m
         address:'',
         proof:'',
         description:''
-    }
+    };
 
 
     //5.15.2014 Add code to display fellowship list created by Admin user
@@ -35,6 +35,7 @@ angular.module('app').controller('mvCreateFellowCtrl', function($scope, $http, m
                 }
 
             );
+        };
     };
 
     // 5.15.2014
@@ -44,7 +45,7 @@ angular.module('app').controller('mvCreateFellowCtrl', function($scope, $http, m
             $scope.cfForm.zipcode='';
             $scope.cfForm.fellowName='';
 
-        }
+        };
 
 
 });
