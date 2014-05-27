@@ -77,4 +77,13 @@ angular.module('app').controller('mvFellowshipCtrl', function($scope, mvFellowsh
         console.log($scope.posts);
     });
 
+    //5.26.2014 update Post by adding on comment
+    $scope.addComment = function(id,comment) {
+        mvFellowship.update({
+            _id: id  //where clause
+        }, {comment:comment},function(){
+
+        });
+    };
+
 });

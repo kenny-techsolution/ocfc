@@ -82,14 +82,14 @@ exports.updateFellow=function(req,res){
     return Fellow.findById(req.params.id, function (err,Fellow) {
         Fellow.status = req.body.status; //pass client status into Fellow database in the server
         Fellow.reason=req.body.reason;  //pass client status into Fellow database in the server
-        return Fellow.save(function (err) {
+        rend(Fellow);
+        });turn Fellow.save(function (err) {
             if (!err) {
                 console.log("updated");
             } else {
                 console.log(err);
             }
-            return res.send(Fellow);
-        });
+            return res.se
     });
 };
 
