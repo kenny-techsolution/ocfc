@@ -41,4 +41,20 @@
                               .form-group
                                 select.form-control.privacy-dropdown.pull-left.input-sm(name='privacy',ng-init="currVisibility=visibilityOptions[0]", ng-model='currVisibility',ng-options='visibilityOption.name for visibilityOption in visibilityOptions')
                                 input.btn.btn-primary(type='submit', name='submit', value='Post',ng-click='createPost($event)')
-                                {{currVisibility}}
+
+                  .post-panel.panel.panel-default(ng-repeat='post in posts')
+                      .panel-heading
+                        .row
+                            .col-md-10
+                                h3.panel-title {{post.user_object_id.firstName}} {{post.user_object_id.lastName}} {{post.postDate|date:'longDate'}}
+                            .col-md-2
+                                h3.span.label.label-default {{transformType(post.type)}}
+                        .panel-body.Panel {{post.content}}
+                        .panel-footer
+                            .btn-group
+                                button.btn.btn-default(type='button') Like
+                                button.btn.btn-default(type='button') Comment
+                                button.btn.btn-default(type='button') Share
+                            textarea.form-control.message(name='postComment',cols='40', rows='10', style='height: 50px; overflow: hidden;', placeholder="Write a comment")
+
+

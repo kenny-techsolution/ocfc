@@ -4,12 +4,13 @@ angular.module('app').controller('mvFellowshipCtrl', function($scope, mvFellowsh
     $scope.about;
     $scope.name;
     $scope.id;
-    $scope.placeholder;
+    $scope.placeholder="What's on your mind?";
     $scope.post = {
         content:"",
         type:0,
         visibility:"",
-        postDate:""
+        postDate:"",
+        fellow_object_id:$routeParams.id
     };
     $scope.placeholder;
     $scope.currVisibility;
@@ -45,16 +46,35 @@ angular.module('app').controller('mvFellowshipCtrl', function($scope, mvFellowsh
         }
     };
 
+    //5.24.2014 method that transform Type values to string
+    $scope.transformType=function(type){
+        if(type===0){
+            return 'Post'
+        }else if(type===1){
+            return 'Question'
+        }else{
+
+        }
+    };
+
     $scope.createPost = function(e) {
         e.preventDefault();
         $scope.post.visibility=$scope.currVisibility.id;
         $scope.post.postDate=new Date();
-        cl("post oboject", $scope.post);
+        $scope.post.fellow_object_id;
         var newPost = new mvPost($scope.post);
         newPost.$save().then(function() {
+                $scope.posts.unshift(newPost.post);
             },function(reason){
             }
         );
     };
+
+    //5.24.2014, query all posts made within a fellowship
+    $scope.posts =mvPost.query({
+        fellow_object_id:$scope.post.fellow_object_id  //where clause
+    }, function() {
+        console.log($scope.posts);
+    });
 
 });

@@ -37,5 +37,6 @@
   },
   "_source": "git://github.com/leon/angular-upload.git",
   "_target": "~1.0.10",
-  "_originalSource": "angular-upload"
+  "_originalSource": "angular-upload",
+  "_direct": true
 }
