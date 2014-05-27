@@ -10,6 +10,7 @@ var ObjectId=mongoose.Schema.Types.ObjectId;
 //visibility: 0 for Public, 1 for Church Lvl, 2 for World Lvl
 var postSchema = mongoose.Schema({
     user_object_id:{type:ObjectId, ref: 'User', unique: false, required:'(MEMBER) is required!'},
+    fellow_object_id:{type:ObjectId, ref: 'Fellow', unique: false,  required:'(FELLOWSHIP) is required!'},
     content:{type:String,required:'(content) is required!',unique:false},
     type:{type:Number,required:'(type) is required!',unique:false},
     visibility:{type:Number,required:'(visibility) is required!',unique:false},
