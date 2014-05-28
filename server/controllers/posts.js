@@ -41,8 +41,28 @@ exports.queryPost=function(req,res){
                 res.status(404);
             }
         });
-
-
     }
 
+};
+
+exports.updatePost=function(req,res){
+     Post.findById(req.params.id, function (err,Post) {
+        if(!err){
+            Post.comments.push({
+                comment:req.body.comments,
+                postDate:new Date(),
+                user_object_id:req.user._id,
+                firstName:req.user.firstName,
+                lastName:req.user.lastName
+            });
+        }
+        Post.save(function(err,Post){
+            if(err){
+                console.log("oh dear",err);
+            }else {
+                console.log("Comment saved:"+req.body.comments);
+                res.send(Post);
+            }
+        });
+    });
 };

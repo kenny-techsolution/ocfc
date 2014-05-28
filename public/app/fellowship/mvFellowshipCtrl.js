@@ -34,7 +34,6 @@ angular.module('app').controller('mvFellowshipCtrl', function($scope, mvFellowsh
     );
 
     $scope.onClickType=function(type){
-        cl("test post",type);
         if(type==='post'){
             $scope.post.type=0;
             $scope.placeholder="What's on your mind?";
@@ -74,16 +73,19 @@ angular.module('app').controller('mvFellowshipCtrl', function($scope, mvFellowsh
     $scope.posts =mvPost.query({
         fellow_object_id:$scope.post.fellow_object_id  //where clause
     }, function() {
-        console.log($scope.posts);
+//        console.log($scope.posts);
     });
 
     //5.26.2014 update Post by adding on comment
     $scope.addComment = function(id,comment) {
-        mvFellowship.update({
+//        cl("test id",id);
+//        cl("test comment",comment);
+//        return;
+        mvPost.update({
             _id: id  //where clause
-        }, {comment:comment},function(){
+        }, {comments:comment},function(){
 
         });
     };
-
 });
+
