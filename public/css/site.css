@@ -343,3 +343,11 @@ span.valid-check {
 .post-panel {
   margin-bottom: 20px;
 }
+.uploaded-image-holder {
+  width: 100px;
+  height: 100px;
+  background: #999;
+}
+.loading {
+  background-image: url("images/loading-spinner.gif");
+}

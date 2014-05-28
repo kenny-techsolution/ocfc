@@ -14,6 +14,9 @@ angular.module('app').controller('mvFellowshipCtrl', function($scope, mvFellowsh
     };
     $scope.placeholder;
     $scope.currVisibility;
+    $scope.loading = true;
+    $scope.photoUploaded = false;
+    $scope.imagePath;
 
     $scope.visibilityOptions = [
         { id: 1, name: 'Public' },
@@ -87,5 +90,19 @@ angular.module('app').controller('mvFellowshipCtrl', function($scope, mvFellowsh
 
         });
     };
+    $scope.addPhoto = function() {
+        $("#photo-upload").click();
+    };
+
+    $scope.setFileEventListener = function(element) {
+        $scope.uploadedFile = element.files[0];
+        $scope.photoUploaded = true;
+        if ($scope.uploadedFile) {
+            $scope.$apply(function() {
+                $scope.upload_button_state = true;
+            });
+        }
+
+    }
 });
 

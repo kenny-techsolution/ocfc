@@ -22,7 +22,11 @@
                       .arrow
                       .panel.panel-default
                         .panel-body
+                            div{{uploadedFile }}
                             textarea.form-control.message(name='postMsg', ng-model='post.content',cols='40', rows='10', style='height: 62px; overflow: hidden;', placeholder="{{placeholder}}")
+                            div.uploaded-image-holder(ng-class="{'loading':loading}",ng-show='photoUploaded')
+                            form(method='post', enctype='multipart/form-data', action='/file-upload')
+                                input#photo-upload(type='file', name='thumbnail',ng-hide="true",ng-model="imagePath", onchange="angular.element(this).scope().setFileEventListener(this)")
                         .panel-footer
                           .row
                             .col-md-9
@@ -32,7 +36,7 @@
                                     span.glyphicon.glyphicon-map-marker
                                     | Location
 
-                                  button.btn.btn-default(type='button')
+                                  button.btn.btn-default(type='button',ng-click="addPhoto()")
                                     span.glyphicon.glyphicon-picture
                                     | Photo
                             .col-md-3
