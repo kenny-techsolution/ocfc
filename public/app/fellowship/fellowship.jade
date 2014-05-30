@@ -4,6 +4,7 @@
         h2 About
         p {{about}}
         a.btn.btn-lg.btn-default(type='button', href='/fellowshipMembers/{{id}}') Members
+        a.btn.btn-lg.btn-default(type='button', href='/fellowshipResources/{{id}}') Resources
     .container
         .container
                   hr
@@ -17,44 +18,74 @@
                         a.status(title='', href='#',ng-click='onClickType("question")')
                           span.glyphicon.glyphicon-list-alt
                           | Ask a Question
-                      li.post-type
-                        a.photos(href='#')
-                          span.glyphicon.glyphicon-camera
-                          | Add photos
                     .share
                       .arrow
                       .panel.panel-default
                         .panel-body
+                            div{{uploadedFile }}
                             textarea.form-control.message(name='postMsg', ng-model='post.content',cols='40', rows='10', style='height: 62px; overflow: hidden;', placeholder="{{placeholder}}")
+                            div.uploaded-image-holder(ng-class="{'loading':loading}",ng-show='photoUploaded')
+                            form(method='post', enctype='multipart/form-data', action='/file-upload')
+                                input#photo-upload(type='file', name='thumbnail',ng-hide="true",ng-model="imagePath", onchange="angular.element(this).scope().setFileEventListener(this)")
                         .panel-footer
                           .row
-                            .col-md-7
+                            .col-md-9
                               .form-group
                                 .btn-group
                                   button.btn.btn-default(type='button')
                                     span.glyphicon.glyphicon-map-marker
                                     | Location
-                                  button.btn.btn-default(type='button')
+
+                                  button.btn.btn-default(type='button',ng-click="addPhoto()")
                                     span.glyphicon.glyphicon-picture
                                     | Photo
-                            .col-md-5
+                            .col-md-3
                               .form-group
                                 select.form-control.privacy-dropdown.pull-left.input-sm(name='privacy',ng-init="currVisibility=visibilityOptions[0]", ng-model='currVisibility',ng-options='visibilityOption.name for visibilityOption in visibilityOptions')
                                 input.btn.btn-primary(type='submit', name='submit', value='Post',ng-click='createPost($event)')
-
                   .post-panel.panel.panel-default(ng-repeat='post in posts')
                       .panel-heading
                         .row
-                            .col-md-10
+                            .col-md-1
+                                h3.span.label.label-default {{transformType(post.type)}}
+                            .col-md-9
                                 h3.panel-title {{post.user_object_id.firstName}} {{post.user_object_id.lastName}} {{post.postDate|date:'longDate'}}
                             .col-md-2
-                                h3.span.label.label-default {{transformType(post.type)}}
+                                .btn-group(dropdown)
+                                    button.btn.btn-default.dropdown-toggle(type='button')
+                                        | Share
+                                        span.caret
+                                      ul.dropdown-menu(role='menu')
+                                        li
+                                          a(href='#') Action
+                                        li
+                                          a(href='#') Another action
+                                        li
+                                          a(href='#') Something else here
+                                        li.divider
+                                        li
+                                          a(href='#') Separated link
                         .panel-body.Panel {{post.content}}
                         .panel-footer
-                            .btn-group
-                                button.btn.btn-default(type='button') Like
-                                button.btn.btn-default(type='button') Comment
-                                button.btn.btn-default(type='button') Share
-                            textarea.form-control.message(name='postComment',cols='40', rows='10', style='height: 50px; overflow: hidden;', placeholder="Write a comment")
+                            .row(ng-repeat='comment in post.comments')
+                                //.col-md-1
+                                //    span.glyphicon.glyphicon-user
+                                //.col-md-11
+                                //   p  {{comment.comment}} {{comment.postDate}}
+                                .media
+                                    a.pull-left(href='#')
+                                        img.media-object(src='../css/images/kenny_face.jpg', alt='...',style='width: 54px; height: 54px; border: 2px solid white')
+                                      .media-body
+                                        h5.media-heading {{comment.firstName}} {{comment.lastName}} {{comment.postDate}}
+                                        p {{comment.comment}}
+                            .row
+                                .input-group
+                                    input.form-control(type='text',ng-model="post.currComment",placeholder="Write a comment")
+                                    span.input-group-btn
+                                      button.btn.btn-default(type='button',ng-click="addComment(post._id,post.currComment)") Enter
+
+
+
+
 
 
