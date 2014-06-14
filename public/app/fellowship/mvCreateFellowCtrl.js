@@ -21,23 +21,24 @@ angular.module('app').controller('mvCreateFellowCtrl', function($scope, $http, m
         var createFellowForm=$scope.cfForm;
         var fellowship={};
 
-            //need to find a way to validate zipcode for correctness too
-            fellowship.zipcode=createFellowForm.zipcode;
-            fellowship.status="Waiting for Approval";
-            fellowship.fellowName=createFellowForm.fellowName;
-            fellowship.url=createFellowForm.url;
-            fellowship.address=createFellowForm.address;
-            fellowship.description=createFellowForm.description;
+        //need to find a way to validate zipcode for correctness too
+        fellowship.zipcode=createFellowForm.zipcode;
+        fellowship.status="Waiting for Approval";
+        fellowship.fellowName=createFellowForm.fellowName;
+        fellowship.url=createFellowForm.url;
+        fellowship.address=createFellowForm.address;
+        fellowship.description=createFellowForm.description;
 
-            var newFellow = new mvFellowship(fellowship);
-            newFellow.$save().then(function() {
-                mvNotifier.notify('New fellowship has been created, please wait for approval');
-                    },function(reason){
-                    mvNotifier.error(reason);
-                }
+        var newFellow = new mvFellowship(fellowship);
+        newFellow.$save().then(function() {
+            mvNotifier.notify('New fellowship has been created, please wait for approval');
+                },function(reason){
+                mvNotifier.error(reason);
+            }
 
-            );
+        );
     };
+     
     // 5.15.2014
     // this function will reset zipcode and fellowName to blank
     // fellowship when under Pending status

@@ -19,7 +19,10 @@ module.exports = function(app, config){
 
     //add cookie parser for sessions
     app.use(express.cookieParser());
-    app.use(express.bodyParser());
+    //app.use(express.bodyParser());
+    //upload image
+    app.use(express.bodyParser({uploadDir: config.rootPath + '/uploads'}));
+    
     //add session middle ware
     app.use(express.session({secret: 'multi vision unicorns'}));
     //initialize passport
@@ -35,4 +38,5 @@ module.exports = function(app, config){
 
     //Static routing to public directory
     app.use(express.static(config.rootPath+'/public'));
+
 };

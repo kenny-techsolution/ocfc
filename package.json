@@ -1,7 +1,7 @@
 {
-  "name": "MultiVision",
+  "name": "OCFC",
   "version": "0.0.0",
-  "description": "Extreme Tec Training",
+  "description": "One Church For Christ",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

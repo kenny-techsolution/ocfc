@@ -71,12 +71,14 @@
                         .panel-body
                             div{{uploadedFile }}
                             textarea.form-control.message(name='postMsg', ng-model='post.content',cols='40', rows='10', style='height: 62px; overflow: hidden;', placeholder="{{placeholder}}")
-                            div.uploaded-image-holder(ng-class="{'loading':loading}",ng-show='photoUploaded')
-                            form(method='post', enctype='multipart/form-data', action='/file-upload')
-                                input#photo-upload(type='file', name='thumbnail',ng-hide="true",ng-model="imagePath", onchange="angular.element(this).scope().setFileEventListener(this)")
+                            //div.uploaded-image-holder(ng-class="{'loading':loading}",ng-show='photoUploaded')
+                            .row
+                                .col-md-2(ng-repeat='item in uploader.queue')
+                                    div(ng-show="uploader.isHTML5", ng-thumb="{ file: item.file, height: 80 }") 
+                            input.upload-image(ng-file-select='', type='file', multiple='' ng-hide='true')
                         .panel-footer
                           .row
-                            .col-md-9
+                            .col-md-6 
                               .form-group
                                 .btn-group
                                   button.btn.btn-default(type='button')
@@ -86,10 +88,14 @@
                                   button.btn.btn-default(type='button',ng-click="addPhoto()")
                                     span.glyphicon.glyphicon-picture
                                     | Photo
-                            .col-md-3
+                            .col-md-6
                               .form-group
                                 select.form-control.privacy-dropdown.pull-left.input-sm(name='privacy',ng-init="currVisibility=visibilityOptions[0]", ng-model='currVisibility',ng-options='visibilityOption.name for visibilityOption in visibilityOptions')
+                                input.btn.btn-default(type='button', name='submit', value='Upload Images',ng-click='uploader.uploadAll()')
                                 input.btn.btn-primary(type='submit', name='submit', value='Post',ng-click='createPost($event)')
+                          .row
+                              div.progress(style='margin-bottom: 0;')
+                                  div.progress-bar(role='progressbar', ng-style='{ "width": uploader.progress + "%" }')        
                   .post-panel.panel.panel-default(ng-repeat='post in posts')
                       .panel-heading
                         .row
