@@ -1,12 +1,59 @@
-#content
-    .jumbotron
-        h1 {{name}}
-        h2 About
-        p {{about}}
-        a.btn.btn-lg.btn-default(type='button', href='/fellowshipMembers/{{id}}') Members
-        a.btn.btn-lg.btn-default(type='button', href='/fellowshipResources/{{id}}') Resources
-    .container
-        .container
+.content-left
+    .content-container
+            .banner
+                 img(src='/css/images/kenny_face.jpg')
+                 h1 {{name}}
+            .container
+                .row
+                    #about.col-md-7
+                        h2 About
+                        p {{about}}
+                    #fact.col-md-5
+                        h2 Facts
+                        .row
+                          p Founded in YYYY
+                        .row
+                          p Members
+                        .row
+                          p More info
+
+                .row
+                    #wknews.col-md-7
+                      h2 This Week's News
+                      ul
+                        li Bible Study Verse
+                        li Weekend Picnic
+                        li Celebrate Mei's Birthday
+                    #photos.col-md-5
+                      ul.media-list
+                          li.media
+                              a.pull-left(href='#')
+                                img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+                              a.pull-left(href='#')
+                                img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+                              a.pull-left(href='#')
+                                img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+                              a.pull-left(href='#')
+                                img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+                              a.pull-left(href='#')
+                                img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+                              a.pull-left(href='#')
+                                img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+             .container
+                 .row
+                     #resource.col-md-12
+                       h2 Resource
+                       .row
+                         .com-md-6
+                           ul
+                             a.btn.btn-lg.btn-default(type='button', href='/fellowshipMembers/{{id}}') Members
+                             li Total of xx members
+                         .com-md-6
+                           ul
+                             a.btn.btn-lg.btn-default(type='button', href='/fellowshipResources/{{id}}') Resources
+                             li Click to view sermons
+.content-right
+    .feed-container
                   hr
                   form.fellow-share-box(action='#', method='post', role='form', enctype='multipart/form-data')
                     ul.post-types

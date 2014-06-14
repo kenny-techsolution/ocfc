@@ -1,22 +1,38 @@
-.modal-dialog-center {
-  margin-top: 17%;
+.banner {
+  height: 300px;
 }
-input.ng-dirty.ng-invalid {
-  background: #f2dede;
+.banner img {
+  width: 579px;
+  height: 300px;
 }
-input.ng-dirty.ng-invalid:focus {
-  border-color: #f2dede;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(242,222,222,0.6);
+.banner h1 {
+  position: relative;
+  bottom: 70px;
+  color: #fff;
+  text-align: right;
 }
-span.valid-check {
-  background-image: url("images/checkmark.svg");
-  width: 16px;
-  height: 12px;
+.row #about.col-md-8 {
+  padding: 5px;
+}
+.row #photos.col-md-5 img {
+  width: 80px;
+}
+.row #resource.col-md-12 {
+  border-radius: 15px;
+  width: 530px;
+}
+.row #resource.col-md-12 .row .com-md-6 li,
+.row #resource.col-md-12 ul li {
+  margin: 25px;
+  list-style: none;
   display: inline-block;
-  margin-top: 11px;
 }
-.container {
-  width: 790px;
+.content-container {
+  width: 578px;
+}
+.feed-container {
+  width: 578px;
+  margin-left: 35px;
 }
 .fellow-share-box {
   width: 100%;

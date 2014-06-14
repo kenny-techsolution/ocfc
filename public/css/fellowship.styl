@@ -1,0 +1,112 @@
+//fellowship.jade, added on 5.23.2014 to style for Fellowship update status box
+
+.banner
+ height 300px
+
+ img
+   width 579px
+   height 300px
+ h1
+   position relative
+   bottom 70px
+   color white
+   text-align right
+
+.row
+  #about.col-md-8
+    padding 5px
+
+  #photos.col-md-5
+    img
+      width 80px
+
+.row
+  #resource.col-md-12
+    border-radius 15px
+    width 530px
+    .row .com-md-6
+    ul
+      li
+        margin 25px
+        list-style none
+        display inline-block
+
+.content-container
+  width 578px
+
+.feed-container
+  width 578px
+  margin-left 35px
+
+.fellow-share-box
+  width 100%
+
+.fellow-share-box
+  .share
+    -webkit-transition 0.1s ease-out height
+    -moz-transition 0.1s ease-out height
+    -ms-transition 0.1s ease-out height
+    -o-transition 0.1s ease-out height
+    transition 0.1s ease-out height
+    clear both
+    background white
+    border 2px solid #dddddd
+    margin-bottom 10px
+    position relative
+
+.fellow-share-box
+  .share
+    .arrow
+      background url(arrow.png) no-repeat #dddddd
+      position absolute
+      width 14px
+      height 10px
+      left 4px
+      display inline
+      top -10px
+      -webkit-transition 0.3s ease-out all
+      -moz-transition 0.3s ease-out all
+      -ms-transition 0.3s ease-out all
+      -o-transition 0.3s ease-out all
+      transition 0.3s ease-out all
+
+.fellow-share-box
+  .post-types
+    padding-left 5px
+    li
+      display inline
+      margin-right 10px
+      a
+        color #085083
+        text-decoration none
+        &.active
+          color #404040
+  ul
+    list-style none
+    margin-bottom 9px
+
+.message
+  border-radius 0
+  border none
+
+.panel
+  border-radius 0
+  border none
+  margin-bottom 0
+
+.privacy-dropdown
+  width 100px
+
+ //Style post panel
+.post-panel
+    margin-bottom 20px
+
+//image upload
+.uploaded-image-holder {
+    width: 100px;
+    height: 100px;
+    background: #999;
+}
+.loading {
+    background-image url('images/loading-spinner.gif');
+}
