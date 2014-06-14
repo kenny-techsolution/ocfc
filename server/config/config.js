@@ -15,11 +15,13 @@ module.exports={
     development:{
         db:  'mongodb://localhost/multivision',
         rootPath: rootPath,
-        port: process.env.PORT || 3030
+        port: process.env.PORT || 3030,
+        uploadPath: rootPath + '/uploads'
     },
     production:{
         db:  'mongodb://localhost/multivision',
         rootPath: rootPath,
-        port: process.env.PORT || 80
+        port: process.env.PORT || 80,
+        uploadPath: rootPath + '/uploads'
     }
 };

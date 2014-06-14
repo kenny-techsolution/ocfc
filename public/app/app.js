@@ -1,6 +1,6 @@
 //This file references all module required for this project
 //Defining a model called 'app' which uses directives listed within []
-angular.module('app',['ngResource','ngRoute','lr.upload', 'ui.bootstrap']);
+angular.module('app',['ngResource','ngRoute','lr.upload', 'ui.bootstrap','angularFileUpload']);
 
 
 //4.29.2014, updated code to include churchAdmin and worldAdmin authorization

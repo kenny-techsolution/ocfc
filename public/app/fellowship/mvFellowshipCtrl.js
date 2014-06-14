@@ -1,6 +1,22 @@
 /*******************************************************************************
  ******************************************************************************/
-angular.module('app').controller('mvFellowshipCtrl', function($scope, mvFellowship,$routeParams,mvPost) {
+angular.module('app').controller('mvFellowshipCtrl', function($fileUploader, $http, $scope, mvFellowship,$routeParams,mvPost) {
+    $scope.formData = {};
+    var uploader = $scope.uploader = $fileUploader.create({
+        scope: $scope,
+        url: '/file-upload', 
+        formData : $scope.formData
+    });
+    uploader.filters.push(function(item /*{File|HTMLInputElement}*/) {
+        var type = uploader.isHTML5 ? item.type : '/' + item.value.slice(item.value.lastIndexOf('.') + 1);
+        type = '|' + type.toLowerCase().slice(type.lastIndexOf('/') + 1) + '|';
+        return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+    });
+    
+    $scope.uploadFile = function () {
+        
+    };
+    
     $scope.about;
     $scope.name;
     $scope.id;
@@ -16,8 +32,8 @@ angular.module('app').controller('mvFellowshipCtrl', function($scope, mvFellowsh
     $scope.currVisibility;
     $scope.loading = true;
     $scope.photoUploaded = false;
-    $scope.imagePath;
-
+    $scope.imagePath;  
+    
     $scope.visibilityOptions = [
         { id: 1, name: 'Public' },
         { id: 2, name: 'Church' },
@@ -65,7 +81,11 @@ angular.module('app').controller('mvFellowshipCtrl', function($scope, mvFellowsh
         $scope.post.postDate=new Date();
         $scope.post.fellow_object_id;
         var newPost = new mvPost($scope.post);
-        newPost.$save().then(function() {
+        newPost.$save().then(function(data) {
+                console.log(data);
+                $scope.formData.post_id = data._id;
+                console.log("current post id");
+                console.log($scope.formData);
                 $scope.posts.unshift(newPost.post);
             },function(reason){
             }
@@ -91,18 +111,8 @@ angular.module('app').controller('mvFellowshipCtrl', function($scope, mvFellowsh
         });
     };
     $scope.addPhoto = function() {
-        $("#photo-upload").click();
+        $("input.upload-image").click();
     };
 
-    $scope.setFileEventListener = function(element) {
-        $scope.uploadedFile = element.files[0];
-        $scope.photoUploaded = true;
-        if ($scope.uploadedFile) {
-            $scope.$apply(function() {
-                $scope.upload_button_state = true;
-            });
-        }
-
-    }
 });
 

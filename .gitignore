@@ -3,3 +3,4 @@ node modules
 /.project
 /.DS_Store
 /.gitignore
+./uploads
