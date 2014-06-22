@@ -20,3 +20,47 @@ span.valid-check {
   width: 486px;
   height: 85px;
 }
+#option1 {
+  border: 2px solid #a59334;
+  border-radius: 25px;
+  background-color: #f7dc4c;
+}
+#option1 .well.well-lg {
+  height: 434px;
+  background-color: #f7dc4c;
+  border: 0px;
+}
+#option1 button.btn {
+  width: 208px;
+  text-align: left;
+  background-color: #ec9191;
+}
+#option1 button.btn .caret {
+  margin-left: 130px;
+}
+#option2 {
+  border: 2px solid #a59334;
+  border-radius: 25px;
+  background-color: #f7dc4c;
+}
+#option2 .well.well-lg {
+  height: 434px;
+  background-color: #f7dc4c;
+  border: 0px;
+}
+#inputZip {
+  margin-bottom: 15px;
+}
+#get-started-one {
+  width: 95px;
+  height: 25px;
+  margin-top: 135px;
+  margin-left: 35px;
+  padding-bottom: 25px;
+}
+#get-started-two {
+  width: 95px;
+  height: 25px;
+  margin-left: 80px;
+  padding-bottom: 25px;
+}

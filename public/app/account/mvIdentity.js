@@ -20,15 +20,11 @@ angular.module('app').factory('mvIdentity',function($window, mvUser){
     var currentUser;
     if(!!$window.bootstrappedUserObject){
         currentUser=new mvUser();
-//        console.log("Test currentUser=new mvUser()");
-//        console.log(currentUser);
         angular.extend(currentUser,$window.bootstrappedUserObject);
     }
     return{
         currentUser:currentUser,
         isAuthenticated: function(){
-//            console.log("Test isAuthenticated in mvIdentity");
-//            console.log(this.currentUser);
             return !!this.currentUser;
 
         },

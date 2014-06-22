@@ -2,37 +2,67 @@
   height: 300px;
 }
 .banner img {
-  width: 579px;
-  height: 300px;
+  width: 400px;
+  height: 275px;
 }
 .banner h1 {
   position: relative;
-  bottom: 70px;
+  bottom: 64px;
   color: #fff;
   text-align: right;
+  width: 400px;
 }
-.row #about.col-md-8 {
-  padding: 5px;
+.row #about.col-md-7 {
+  width: 200px;
+}
+.row #about.col-md-7 p {
+  font-size: x-small;
+  width: 170px;
+}
+.row #fact.col-md-5 {
+  width: 200px;
+}
+.row #fact.col-md-5 .row p {
+  font-size: x-small;
+  width: 170px;
+}
+.row #wknews.col-md-7 {
+  font-size: x-small;
+  width: 170px;
+  height: 151px;
+}
+.row #photos.col-md-5 {
+  width: 200px;
 }
 .row #photos.col-md-5 img {
-  width: 80px;
+  width: 70px;
 }
 .row #resource.col-md-12 {
-  border-radius: 15px;
-  width: 530px;
+  font-size: x-small;
+  width: 400px;
+}
+.row #resource.col-md-12 .row .com-md-6 a.btn,
+.row #resource.col-md-12 ul a.btn {
+  font-size: x-small;
 }
 .row #resource.col-md-12 .row .com-md-6 li,
 .row #resource.col-md-12 ul li {
+  font-size: x-small;
   margin: 25px;
   list-style: none;
   display: inline-block;
 }
 .content-container {
-  width: 578px;
+  width: 400px;
 }
 .feed-container {
-  width: 578px;
-  margin-left: 35px;
+  width: 600px;
+}
+textarea.form-control {
+  font-size: 12px;
+}
+a.status {
+  font-size: 12px;
 }
 .fellow-share-box {
   width: 100%;

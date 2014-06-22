@@ -1,10 +1,17 @@
-#content
+#standardCol
     .jumbotron
         #members
             .list-page
-                p Joined or pending members are listed here
+                h2 Members
                 .member-wrapper(ng-repeat='member in members')
-                    .well.well-lg.member {{member.firstName}} {{member.lastName}} {{member.status}}
+                    .well.well-lg.member
+                        .row
+                          .col-xs-4
+                            img(src='../css/images/kenny_face.jpg')
+                          .col-xs-4
+                            h8 {{member.firstName}} {{member.lastName}}
+                          #status-margin.col-xs-4
+                            h8 {{member.status}}
                         .btn-group.pull-right
                             button.btn.btn-default(type='button',ng-click='approveMember(member)',ng-show="member.status=='Pending'") Approve
                             button.btn.btn-default(type='button',ng-show="member.status=='Pending'",ng-click="setModalMemberIndex($index)", data-toggle="modal",data-target="#RejRemvConfirmation") Reject

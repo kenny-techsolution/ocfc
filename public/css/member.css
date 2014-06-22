@@ -1,3 +1,22 @@
 .modal-dialog-center {
   margin-top: 17%;
 }
+#members .member-wrapper {
+  display: inline-block;
+  padding-right: 15px;
+}
+#members .well.member {
+  width: 300px;
+}
+#members .well.member img {
+  width: 65px;
+  height: 50px;
+  margin-right: 20px;
+  border-radius: 15px;
+}
+#members .well.member .btn-group {
+  margin-top: -12px;
+}
+#status-margin {
+  margin-left: 1px;
+}

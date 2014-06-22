@@ -23,7 +23,6 @@
 
  authorizedAuthenticatedUserForRoute: Check if isAuthenticated is true in mvIdentity.js
  ***************************************************************************************/
-
 angular.module('app').factory('mvAuth',function($http,mvIdentity,$q,mvUser){
     return{
         authenticateUser: function(username,password){

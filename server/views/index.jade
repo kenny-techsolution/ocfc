@@ -6,7 +6,7 @@ block main-content
     //4.29.2014 adding header nav bar
     #header.navbar.navbar-default.navbar-fixed-top
         .navbar-header
-                        a.navbar-brand(href="/")
+          a.navbar-brand(href="/")
         .navbar-collapse.collapse
             //ul.nav.navbar-nav
             //    li
@@ -32,17 +32,66 @@ block main-content
     //    .container
     #wrapper
         #intro-pg(ng-hide="identity.isAuthenticated()")
-           h1 Welcome to One Christ for Christ
+          #signupSection
+            .row
+              .col-md-7
+                h2 Welcome to One Chirst for Christ
+                h4 We love you to join and be part of our big family!
+              .col-md-5
+                .well
+                    form.form-horizontal(name="signupForm")
+                        fieldset
+                            legend Sign Up
+                            p It's free and always will be.
+                            .form-group
+                                label.col-md-5.control-label(for="fname") First Name
+                                .col-md-7
+                                  input.form-control(name="fname",type="fname",placeholder="First Name",ng-model="fname",required)
+                            .form-group
+                                label.col-md-5.control-label(for="lname") Last Name
+                                .col-md-7
+                                  input.form-control(name="lname",type="lname",placeholder="Last Name",ng-model="lname",required)
+                            .form-group
+                                label.col-md-5.control-label(for="email") Email
+                                .col-md-7
+                                    input.form-control(name="email",type="email",placeholder="Email",ng-model="email",required)
+                            .form-group
+                                label.col-md-5.control-label(for="password") Password
+                                .col-md-7
+                                    input.form-control(name="password",type="password",placeholder="Password",ng-model="password",required)
 
+                            .form-group
+                                label.col-md-5.control-label(for="ageRange") Age Range
+                                .col-md-7
+                                  .btn-group(dropdown)
+                                      button.btn.btn-default.dropdown-toggle(type='button')
+                                          | Age
+                                          span.caret
+                                        ul.dropdown-menu(role='menu')
+                                          li
+                                            a(href='#') Under 18
+                                          li
+                                            a(href='#') 18-24
+                                          li
+                                            a(href='#') 25-34
+                                          li
+                                            a(href='#') 35-54
+                                          li.divider
+                                          li
+                                            a(href='#') 55 Up
+                            .form-group
+                                .col-md-10.col-md-offset-2
+                                    .pull-right
+                                        button.btn.btn-success.btn-lg(ng-click="signup()",ng-disabled="signupForm.$invalid") Sign up
         #sidebar-wrapper
             #sidebar
                 ul.nav.list-group
                   li
-                    a.list-group-item(href='/personalGrowth')
+                    a.list-group-item(href='')
                       i.icon-home.icon-1x
                       | Personal Growth
                   li
-                    a.list-group-item(href='/Fellow')
+                    a.list-group-item(href='')
                       i.icon-home.icon-1x
                       | Fellowship
                   li.sub-menu.sub-menu-actions.row
@@ -62,11 +111,11 @@ block main-content
                           | {{myApprvFellow.name}}
                           .span.badge 42
                   li
-                    a.list-group-item(href='/church')
+                    a.list-group-item(href='')
                       i.icon-home.icon-1x
                       | Church
                   li
-                    a.list-group-item(href='/world')
+                    a.list-group-item(href='')
                       i.icon-home.icon-1x
                       | World
                    li

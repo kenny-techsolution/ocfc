@@ -1,6 +1,5 @@
 //form that checks for Email, Password, First Name and Last Name
-
-.container
+#standardCol
     .well
         form.form-horizontal(name="signupForm")
             fieldset
@@ -22,6 +21,23 @@
                     .col-md-10
                         input.form-control(name="lname",type="lname",placeholder="Last Name",ng-model="lname",required)
 
+                .form-group
+                    label.col-md-2.control-label(for="ageRange") Age Range
+                    .col-md-10
+                      .btn-group(dropdown)
+                          button.btn.btn-default.dropdown-toggle(type='button')
+                              | Age
+                              span.caret
+                            ul.dropdown-menu(role='menu')
+                              li
+                                a(href='#') 16-23
+                              li
+                                a(href='#') 23-30
+                              li
+                                a(href='#') 30-40
+                              li.divider
+                              li
+                                a(href='#') 40 & up
                 .form-group
                     .col-md-10.col-md-offset-2
                         .pull-right

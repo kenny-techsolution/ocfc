@@ -44,7 +44,10 @@ angular.module('app').config(function($routeProvider,$locationProvider){
         .when('/fellowship/:id',{templateUrl:'/partials/fellowship/fellowship',controller:'mvFellowshipCtrl'})
         .when('/fellowshipMembers/:id',{templateUrl:'/partials/fellowship/member',controller:'mvMemberCtrl'})
         .when('/createFellow/',{templateUrl:'/partials/fellowship/create-fellow',controller:'mvCreateFellowCtrl'})
-        .when('/ocfcAdmin/',{templateUrl:'/partials/fellowship/ocfc-admin',controller:'mvApprvFellowCtrl'});
+        .when('/ocfcAdmin/',{templateUrl:'/partials/fellowship/ocfc-admin',controller:'mvApprvFellowCtrl'})
+        .when('/event/',{templateUrl:'/partials/calendar/event',controller:'mvEventCtrl'})
+        .when('/fellowship/:id/photo',{templateUrl:'/partials/fellowship/fellow-photo',controller:'mvFellowPhotoCtrl'})
+        .when('/fellowshipResources/:id/resource',{templateUrl:'/partials/fellowship/fellow-resource',controller:'mvFellowResourceCtrl'});
 });
 
 //execute after above code to re-route path after rejection

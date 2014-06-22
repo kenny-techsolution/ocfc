@@ -81,6 +81,7 @@ angular.module('app').controller('mvFellowshipCtrl', function($fileUploader, $ht
         $scope.post.postDate=new Date();
         $scope.post.fellow_object_id;
         var newPost = new mvPost($scope.post);
+        //standard Rest API call
         newPost.$save().then(function(data) {
                 console.log(data);
                 $scope.formData.post_id = data._id;

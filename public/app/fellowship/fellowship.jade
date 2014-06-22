@@ -1,15 +1,15 @@
 .content-left
     .content-container
             .banner
-                 img(src='/css/images/kenny_face.jpg')
+                 img(src='/css/images/IMG_5501.JPG')
                  h1 {{name}}
             .container
                 .row
                     #about.col-md-7
-                        h2 About
+                        h4 About
                         p {{about}}
                     #fact.col-md-5
-                        h2 Facts
+                        h4 Facts
                         .row
                           p Founded in YYYY
                         .row
@@ -19,7 +19,7 @@
 
                 .row
                     #wknews.col-md-7
-                      h2 This Week's News
+                      h4 This Week's News
                       ul
                         li Bible Study Verse
                         li Weekend Picnic
@@ -42,7 +42,7 @@
              .container
                  .row
                      #resource.col-md-12
-                       h2 Resource
+                       h4 Resource
                        .row
                          .com-md-6
                            ul
@@ -69,7 +69,7 @@
                       .arrow
                       .panel.panel-default
                         .panel-body
-                            div{{uploadedFile }}
+                            div{{uploadedFile}}
                             textarea.form-control.message(name='postMsg', ng-model='post.content',cols='40', rows='10', style='height: 62px; overflow: hidden;', placeholder="{{placeholder}}")
                             //div.uploaded-image-holder(ng-class="{'loading':loading}",ng-show='photoUploaded')
                             .row
@@ -78,7 +78,7 @@
                             input.upload-image(ng-file-select='', type='file', multiple='' ng-hide='true')
                         .panel-footer
                           .row
-                            .col-md-6 
+                            .col-md-5
                               .form-group
                                 .btn-group
                                   button.btn.btn-default(type='button')
@@ -88,7 +88,7 @@
                                   button.btn.btn-default(type='button',ng-click="addPhoto()")
                                     span.glyphicon.glyphicon-picture
                                     | Photo
-                            .col-md-6
+                            .col-md-7
                               .form-group
                                 select.form-control.privacy-dropdown.pull-left.input-sm(name='privacy',ng-init="currVisibility=visibilityOptions[0]", ng-model='currVisibility',ng-options='visibilityOption.name for visibilityOption in visibilityOptions')
                                 input.btn.btn-default(type='button', name='submit', value='Upload Images',ng-click='uploader.uploadAll()')
@@ -102,7 +102,7 @@
                             .col-md-1
                                 h3.span.label.label-default {{transformType(post.type)}}
                             .col-md-9
-                                h3.panel-title {{post.user_object_id.firstName}} {{post.user_object_id.lastName}} {{post.postDate|date:'longDate'}}
+                                h4.panel-title {{post.user_object_id.firstName}} {{post.user_object_id.lastName}} {{post.postDate|date:'longDate'}}
                             .col-md-2
                                 .btn-group(dropdown)
                                     button.btn.btn-default.dropdown-toggle(type='button')
@@ -129,16 +129,10 @@
                                     a.pull-left(href='#')
                                         img.media-object(src='../css/images/kenny_face.jpg', alt='...',style='width: 54px; height: 54px; border: 2px solid white')
                                       .media-body
-                                        h5.media-heading {{comment.firstName}} {{comment.lastName}} {{comment.postDate}}
+                                        h6.media-heading {{comment.firstName}} {{comment.lastName}} {{comment.postDate}}
                                         p {{comment.comment}}
                             .row
                                 .input-group
                                     input.form-control(type='text',ng-model="post.currComment",placeholder="Write a comment")
                                     span.input-group-btn
                                       button.btn.btn-default(type='button',ng-click="addComment(post._id,post.currComment)") Enter
-
-
-
-
-
-
