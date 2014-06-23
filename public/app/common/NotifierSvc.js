@@ -1,5 +1,5 @@
 /*************************************************************************************
- This file creates a new Controller called mvNotifier
+ This file creates a new Controller called NotifierSvc
 
  Brings in mvToastr
 
@@ -14,7 +14,7 @@
  ***************************************************************************************/
 
 angular.module('app').value('mvToastr',toastr);
-angular.module('app').factory('mvNotifier',function(mvToastr){
+angular.module('app').factory('NotifierSvc',function(mvToastr){
     return{
         notify: function(msg){
             mvToastr.success(msg);

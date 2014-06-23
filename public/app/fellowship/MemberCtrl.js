@@ -1,7 +1,7 @@
-angular.module('app').controller('mvMemberCtrl', function($scope, mvFellowMem,$routeParams, mvNotifier) {
+angular.module('app').controller('MemberCtrl', function($scope, FellowMemSvc,$routeParams, NotifierSvc) {
     $scope.members =[];
     $scope.modalMemberIndex;
-    $scope.fellowMems = mvFellowMem.query(
+    $scope.fellowMems = FellowMemSvc.query(
         {
             fellowshipId: $routeParams.id}
         //below parameter is a callback, 1st parameter must be met
@@ -27,13 +27,13 @@ angular.module('app').controller('mvMemberCtrl', function($scope, mvFellowMem,$r
         // GET is asyncronized
 
         //below parameter is a callback, 1st parameter must be met
-        var fellowMem = mvFellowMem.get(
+        var fellowMem = FellowMemSvc.get(
             {_id: member.fellowMemId}
             ,function() {
                 fellowMem.status = 'Approved';
 
                 //update server with fellowMem data on the front end
-                mvFellowMem.update({
+                FellowMemSvc.update({
                     _id: fellowMem._id
                 }, fellowMem,function(){
                     member.status='Approved';
@@ -57,13 +57,13 @@ angular.module('app').controller('mvMemberCtrl', function($scope, mvFellowMem,$r
         console.log($scope.modalMemberIndex);
         console.log(member);
         //below parameter is a callback, 1st parameter must be met
-        var fellowMem = mvFellowMem.remove(
+        var fellowMem = FellowMemSvc.remove(
             {_id: member.fellowMemId}
             ,function(data) {
                 if (data.status="success"){
                     $("#RejRemvConfirmation").modal('hide');
                     $scope.members.splice($scope.modalMemberIndex,1);
-                    mvNotifier.notify('You have successfully removed the user!');
+	                NotifierSvc.notify('You have successfully removed the user!');
                 }else{
 
                 };

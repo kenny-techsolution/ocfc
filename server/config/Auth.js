@@ -19,7 +19,7 @@ auth(req,res,next);
 //Function that will authenticate currentUser
 exports.requiresApiLogin= function(req,res,next){
     if(!req.isAuthenticated()){
-        console.log("test !req.isAuthenticated() in Auth.js");
+        console.log("test !req.isAuthenticated() in auth.js");
         console.log(!req.isAuthenticated());
         res.status(403);
         res.end();

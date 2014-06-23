@@ -1,7 +1,7 @@
 /*******************************************************************************
  5.7.2014, This controller is used to create new fellowship(s) by Administrator
  ******************************************************************************/
-angular.module('app').controller('mvCreateFellowCtrl', function($scope, $http, mvIdentity, mvFellowship, mvNotifier,$routeParams) {
+angular.module('app').controller('CreateFellowCtrl', function($scope, $http, IdentitySvc, FellowshipSvc, NotifierSvc,$routeParams) {
 
     // this function will interact with the server to let user create a
     // new fellowship.
@@ -29,11 +29,11 @@ angular.module('app').controller('mvCreateFellowCtrl', function($scope, $http, m
         fellowship.address=createFellowForm.address;
         fellowship.description=createFellowForm.description;
 
-        var newFellow = new mvFellowship(fellowship);
+        var newFellow = new FellowshipSvc(fellowship);
         newFellow.$save().then(function() {
-            mvNotifier.notify('New fellowship has been created, please wait for approval');
+            NotifierSvc.notify('New fellowship has been created, please wait for approval');
                 },function(reason){
-                mvNotifier.error(reason);
+                NotifierSvc.error(reason);
             }
 
         );

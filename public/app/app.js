@@ -7,8 +7,8 @@ angular.module('app',['ngResource','ngRoute','lr.upload', 'ui.bootstrap','angula
 angular.module('app').config(function($routeProvider,$locationProvider){
 
     var routeRoleChecks={
-        admin:{auth: function(mvAuth){
-            var admin=mvAuth.authorizedCurrentUserForRoute('admin');
+        admin:{auth: function(AuthSvc){
+            var admin=AuthSvc.authorizedCurrentUserForRoute('admin');
             console.log("Test for different admin privileges");
             console.log(admin);
             console.log(churchAdmin);
@@ -18,8 +18,8 @@ angular.module('app').config(function($routeProvider,$locationProvider){
             return pass;
 
         }},
-        user:{auth: function(mvAuth){
-            return mvAuth.authorizedAuthenticatedUserForRoute();
+        user:{auth: function(AuthSvc){
+            return AuthSvc.authorizedAuthenticatedUserForRoute();
         }},
 
         fellowAdmin:{auth:function(){
@@ -35,19 +35,19 @@ angular.module('app').config(function($routeProvider,$locationProvider){
     //4.29.2014, updated code to include churchAdmin and worldAdmin
     $locationProvider.html5Mode(true);
     $routeProvider.when('/',{templateUrl:'/partials/main/main',controller:'mvMainCtrl'})
-        .when('/admin/users',{templateUrl:'/partials/admin/user-list',controller:'mvUserListCtrl',resolve: routeRoleChecks.admin})
-        .when('/signup',{templateUrl:'/partials/account/signup',controller:'mvSignupCtrl'})
-        .when('/profile',{templateUrl:'/partials/account/profile',controller:'mvProfileCtrl',resolve:routeRoleChecks.user})
+        .when('/admin/users',{templateUrl:'/partials/admin/user-list',controller:'UserListCtrl',resolve: routeRoleChecks.admin})
+        .when('/signup',{templateUrl:'/partials/account/signup',controller:'SignupCtrl'})
+        .when('/profile',{templateUrl:'/partials/account/profile',controller:'ProfileCtrl',resolve:routeRoleChecks.user})
         .when('/courses',{templateUrl:'/partials/courses/course-list',controller:'mvCourseListCtrl'})
         .when('/courses/:id',{templateUrl:'/partials/courses/course-details',controller:'mvCourseDetailCtrl'})
-        .when('/joinFellow',{templateUrl:'/partials/fellowship/join-fellow',controller:'mvJoinFellowCtrl'})
-        .when('/fellowship/:id',{templateUrl:'/partials/fellowship/fellowship',controller:'mvFellowshipCtrl'})
-        .when('/fellowshipMembers/:id',{templateUrl:'/partials/fellowship/member',controller:'mvMemberCtrl'})
-        .when('/createFellow/',{templateUrl:'/partials/fellowship/create-fellow',controller:'mvCreateFellowCtrl'})
+        .when('/joinFellow',{templateUrl:'/partials/fellowship/join-fellow',controller:'JoinFellowCtrl'})
+        .when('/fellowship/:id',{templateUrl:'/partials/fellowship/fellowship',controller:'FellowshipCtrl'})
+        .when('/fellowshipMembers/:id',{templateUrl:'/partials/fellowship/member',controller:'MemberCtrl'})
+        .when('/createFellow/',{templateUrl:'/partials/fellowship/create-fellow',controller:'CreateFellowCtrl'})
         .when('/ocfcAdmin/',{templateUrl:'/partials/fellowship/ocfc-admin',controller:'mvApprvFellowCtrl'})
-        .when('/event/',{templateUrl:'/partials/calendar/event',controller:'mvEventCtrl'})
+        .when('/event/',{templateUrl:'/partials/calendar/event',controller:'EventCtrl'})
         .when('/fellowship/:id/photo',{templateUrl:'/partials/fellowship/fellow-photo',controller:'mvFellowPhotoCtrl'})
-        .when('/fellowshipResources/:id/resource',{templateUrl:'/partials/fellowship/fellow-resource',controller:'mvFellowResourceCtrl'});
+        .when('/fellowshipResources/:id/resource',{templateUrl:'/partials/fellowship/fellow-resource',controller:'FellowResourceCtrl'});
 });
 
 //execute after above code to re-route path after rejection
@@ -66,3 +66,4 @@ var cl = function (title, value) {
     console.log(title);
     console.log(value);
 };
+

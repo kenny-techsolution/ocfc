@@ -1,15 +1,15 @@
 /*************************************************************************************
- This file creates a new Controller called mvCourseListCtrl
+ This file creates a new Controller called CourseSvcListCtrl
 
- takes $scope, mvCourse.js directives.
+ takes $scope, CourseSvc.js directives.
 
- Stores mvCourse.query() into object, courses
+ Stores CourseSvc.query() into object, courses
 
- mvCourse:   Takes $resource directive and stores data into mongoose
+ CourseSvc:   Takes $resource directive and stores data into mongoose
  ***************************************************************************************/
 
-angular.module('app').controller('mvCourseListCtrl',function($scope, mvCachedCourses){
-    $scope.courses=mvCachedCourses.query();
+angular.module('app').controller('CourseSvcListCtrl',function($scope, CachedCoursesSvc){
+    $scope.courses=CachedCoursesSvc.query();
 
     $scope.sortOptions=[{value:"title", text:"Sort by Title"},
                         {value:"published",text:"Sort by Publish Date"}]

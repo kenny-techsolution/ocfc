@@ -1,11 +1,11 @@
 // This file creates a page layout for the project.  It creates a login navigation bar
-// at the top right corner of the page.  It uses a Controller from mvNavBarLoginCtrl.js
+// at the top right corner of the page.  It uses a Controller from acct-signin-dir.js and acct-drpdown-menu-dir.js directives
 // which creates 3 objects: identity, signin and signout.
-//    identity:  this object is derived from mvIdentity.js which returns
+//    identity:  this object is derived from IdentitySvc.js which returns
 //                currentUser and isAuthenticated values.
-//    signin:  Checks username and password against object, authenticateUser of mvAuth.js
+//    signin:  Checks username and password against object, authenticateUser of AuthSvc.js
 //               to authenticate user
-//    signout:  Checks username and password against object, logoutUser of mvAuth.js to
+//    signout:  Checks username and password against object, logoutUser of AuthSvc.js to
 //                log user out and set username and password as blank/null
 
 // The layout will hid Email and Password textbox once user has been authenticated
@@ -16,28 +16,8 @@
 
 // The Sign Out button calls signout object
 
+//form is hidden after identity has been authenticated from acct-signin-dir.js and acct-drpdown-menu-dir.js directives
 
-.navbar-right(ng-controller="mvNavBarLoginCtrl")
-    //form is hidden after identity has been authenticated from mvNavBarLoginCtrl.js
-    form.signin-form.navbar-form(ng-hide="identity.isAuthenticated()")
-        .form-group
-            //create a variable called username
-            input.form-control(placeholder="Email",ng-model="username")
-        .form-group
-            //create a variable called password
-            input.form-control(type="password",placeholder="Password",ng-model="password")
-        //calls $scope.signin
-        button.btn.btn-primary(ng-click="signin(username,password)") Sign In
-
-    ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
-        li.dropdown
-            a.dropdown-toggle(href="#", data-toggle="dropdown")
-                | {{identity.currentUser.firstName + " " + identity.currentUser.lastName}}
-                b.caret
-            ul.dropdown-menu
-                li(ng-show="identity.currentUser.isAdmin()")
-                    a(href="/admin/users") User Admin
-                li
-                    a(href="/profile") Profile
-                li
-                    a(href="", ng-click="signout()") Sign Out
+.navbar-right
+	ocfc-signin
+	ocfc-user-dropdown-menu

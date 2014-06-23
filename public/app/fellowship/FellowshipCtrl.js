@@ -1,6 +1,6 @@
 /*******************************************************************************
  ******************************************************************************/
-angular.module('app').controller('mvFellowshipCtrl', function($fileUploader, $http, $scope, mvFellowship,$routeParams,mvPost) {
+angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http, $scope, FellowshipSvc,$routeParams,PostSvc) {
     $scope.formData = {};
     var uploader = $scope.uploader = $fileUploader.create({
         scope: $scope,
@@ -40,7 +40,7 @@ angular.module('app').controller('mvFellowshipCtrl', function($fileUploader, $ht
         { id: 3, name: 'World' }
     ];
 
-    var fellow = mvFellowship.get(
+    var fellow = FellowshipSvc.get(
         {
             _id: $routeParams.id}
         //below parameter is a callback, 1st parameter must be met
@@ -80,7 +80,7 @@ angular.module('app').controller('mvFellowshipCtrl', function($fileUploader, $ht
         $scope.post.visibility=$scope.currVisibility.id;
         $scope.post.postDate=new Date();
         $scope.post.fellow_object_id;
-        var newPost = new mvPost($scope.post);
+        var newPost = new PostSvc($scope.post);
         //standard Rest API call
         newPost.$save().then(function(data) {
                 console.log(data);
@@ -94,7 +94,7 @@ angular.module('app').controller('mvFellowshipCtrl', function($fileUploader, $ht
     };
 
     //5.24.2014, query all posts made within a fellowship
-    $scope.posts =mvPost.query({
+    $scope.posts =PostSvc.query({
         fellow_object_id:$scope.post.fellow_object_id  //where clause
     }, function() {
 //        console.log($scope.posts);
@@ -105,7 +105,7 @@ angular.module('app').controller('mvFellowshipCtrl', function($fileUploader, $ht
 //        cl("test id",id);
 //        cl("test comment",comment);
 //        return;
-        mvPost.update({
+        PostSvc.update({
             _id: id  //where clause
         }, {comments:comment},function(){
 

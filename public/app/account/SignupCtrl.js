@@ -1,15 +1,15 @@
 /*************************************************************************************
- This file creates a new Controller called mvSignupCtrl
- which takes $scope, mvUser.js, mvNotifier,$location,mvAuth.js
+ This file creates a new Controller called SignupCtrl
+ which takes $scope, UserSvc.js, NotifierSvc,$location,AuthSvc.js
  directives
 
  newUserData object is created containing username, password, firstName and LastName
 
- Checks data against mvAuth.js to insure data is correct
+ Checks data against AuthSvc.js to insure data is correct
  *************** ************************************************************************/
 
 
-angular.module('app').controller('mvSignupCtrl',function($scope, mvUser, mvNotifier,$location,mvAuth)
+angular.module('app').controller('SignupCtrl',function($scope, UserSvc, NotifierSvc,$location,AuthSvc)
     {
         $scope.signup=function(){
             var newUserData={
@@ -18,14 +18,14 @@ angular.module('app').controller('mvSignupCtrl',function($scope, mvUser, mvNotif
                 firstName:$scope.fname,
                 lastName: $scope.lname};
 
-        mvAuth.createUser(newUserData).then(function()
+        AuthSvc.createUser(newUserData).then(function()
             {
-            mvNotifier.notify('User account created!');
+            NotifierSvc.notify('User account created!');
             $location.path('/');
             }
             ,function(reason)
                 {
-                mvNotifier.error(reason);
+                NotifierSvc.error(reason);
                 })
         }
     });

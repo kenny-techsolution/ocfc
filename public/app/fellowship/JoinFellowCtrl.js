@@ -1,6 +1,6 @@
 /*******************************************************************************
- * This file creates a new Controller called mvJoinFellowCtrl. The code stores
- * all records into mvJoinFellowCtrl controller. The controller checks zipcode
+ * This file creates a new Controller called JoinFellowCtrl. The code stores
+ * all records into JoinFellowCtrl controller. The controller checks zipcode
  * input text of no more than 5 length chars creates a objects called:
  * updateFellowList: once the condition is met, $http directive will retrieve
  * the data from mongodb of fellowships collection associatedFellowships: get or
@@ -9,7 +9,7 @@
  * collection fellowMemResource: Takes rest /api/fellowMems/:id using GET method
  * to grab records for specific user
  ******************************************************************************/
-angular.module('app').controller('mvJoinFellowCtrl', function($scope, $http, mvIdentity, mvFellowMem) {
+angular.module('app').controller('JoinFellowCtrl', function($scope, $http, IdentitySvc, FellowMemSvc) {
     // function()() is a self triggered function
     // no calling required
 
@@ -21,9 +21,9 @@ angular.module('app').controller('mvJoinFellowCtrl', function($scope, $http, mvI
     // which is the list of fellowships associated with the current user.
     $scope.getAssociatedFellowships = (function() {
         // check if the current user is authenticated
-        if (mvIdentity.isAuthenticated() === true) {
-            $scope.associatedFellowships = mvFellowMem.query({
-                userId: mvIdentity.currentUser._id
+        if (IdentitySvc.isAuthenticated() === true) {
+            $scope.associatedFellowships = FellowMemSvc.query({
+                userId: IdentitySvc.currentUser._id
             }, function() {
                 console.log("the result is here");
                 $scope.loadFellows();
@@ -48,10 +48,10 @@ angular.module('app').controller('mvJoinFellowCtrl', function($scope, $http, mvI
     // selectedFellowship.
     $scope.joinFellowship = function(fellowship) {
         var fellowMemData = {
-            "userId": mvIdentity.currentUser._id,
+            "userId": IdentitySvc.currentUser._id,
             "fellowId": fellowship._id
         };
-        var newFellowMem = new mvFellowMem(fellowMemData);
+        var newFellowMem = new FellowMemSvc(fellowMemData);
         newFellowMem.$save().then(function(response) {
             //after save, set the status of Join Fellowship to Pending
             fellowship.status='Pending';
@@ -71,13 +71,13 @@ angular.module('app').controller('mvJoinFellowCtrl', function($scope, $http, mvI
         // GET is asyncronized
 
         //below parameter is a callback, 1st parameter must be met
-        var fellowMem = mvFellowMem.get(
+        var fellowMem = FellowMemSvc.get(
             {_id: fellowship.fellowMemId}
             ,function() {
                 fellowMem.status = 'Approved';
 
                 //update server with fellowMem data on the front end
-                mvFellowMem.update({
+                FellowMemSvc.update({
                     _id: fellowMem._id
                 }, fellowMem,function(){
                     fellowship.status='Approved';
@@ -94,7 +94,7 @@ angular.module('app').controller('mvJoinFellowCtrl', function($scope, $http, mvI
     $scope.cancelFellowship = function(fellowship) {
         // we need to get the fellowMem document that we want to update.
         // GET is asyncronized
-        var fellowMem = mvFellowMem.get(
+        var fellowMem = FellowMemSvc.get(
             {
                 _id: fellowship.fellowMemId}
             //below parameter is a callback, 1st parameter must be met
@@ -102,7 +102,7 @@ angular.module('app').controller('mvJoinFellowCtrl', function($scope, $http, mvI
                 fellowMem.status = 'None';
 
                 //update server with fellowMem data on the front end
-                mvFellowMem.update({
+                FellowMemSvc.update({
                     _id: fellowMem._id
                 }, fellowMem,function(){
                     fellowship.status='None';

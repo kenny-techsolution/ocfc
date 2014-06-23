@@ -1,9 +1,9 @@
 /*******************************************************************************
- * 5.22.2014, this file creates a new Controller called mvApprvFellowCtrl for OCFC
+ * 5.22.2014, this file creates a new Controller called ApprvFellowCtrl for OCFC
  * admin approval.
  * GET, UPDATE, REMOVE, QUERY, ADD
  ******************************************************************************/
-angular.module('app').controller('mvApprvFellowCtrl', function($scope, $http, mvIdentity,mvFellowship) {
+angular.module('app').controller('ApprvFellowCtrl', function($scope, $http, IdentitySvc,FellowshipSvc) {
     // function()() is a self triggered function
     // no calling required
     $scope.curr_idx;
@@ -11,7 +11,7 @@ angular.module('app').controller('mvApprvFellowCtrl', function($scope, $http, mv
         $scope.curr_idx = fellowIndex;
     };
     //5.22.2014, Display list of data where status='Waiting for Approval'
-    $scope.fellowships =mvFellowship.query({
+    $scope.fellowships =FellowshipSvc.query({
         status: 'Waiting for Approval'  //where clause
     }, function() {
         console.log("the result is here");
@@ -24,7 +24,7 @@ angular.module('app').controller('mvApprvFellowCtrl', function($scope, $http, mv
     $scope.approveFellowship = function(fellowship) {
             //update server with fellowMem data on the front end
             fellowship.status='Approved';
-            mvFellowship.update({
+            FellowshipSvc.update({
                 _id: fellowship._id  //where clause
             }, fellowship,function(){
 
@@ -39,7 +39,7 @@ angular.module('app').controller('mvApprvFellowCtrl', function($scope, $http, mv
         cl('test fellowship',fellowship);
         fellowship.status='Denied';
         fellowship.reason=$scope.reason;
-        mvFellowship.update({
+        FellowshipSvc.update({
             _id: fellowship._id  //where clause
         }, fellowship,function(){
             $("#RejConfirmation").modal('hide');

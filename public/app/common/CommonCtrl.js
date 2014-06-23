@@ -2,9 +2,9 @@
  Common controller, always required
  ***************************************************************************************/
 
-angular.module('app').controller('mvCommonCtrl',function($scope, mvSetup,mvIdentity){
+angular.module('app').controller('CommonCtrl',function($scope, SetupSvc,IdentitySvc){
     $scope.initObj={};
     $scope.initObj.myFellowships;
-    mvSetup.init($scope.initObj);
-    $scope.identity=mvIdentity;
+    SetupSvc.init($scope.initObj);
+    $scope.identity=IdentitySvc;
 });
