@@ -12,7 +12,7 @@
  createUser:         A function that injects newUserData object which contains
  password, username, firstName and LastName into UserSvc.js
  called user.
- user object is then set as IdentitySvc.currentUser
+ user object is then set as IdentitySvc.currentUser.
 
  update currentUser: Clones data from IdentitySvc.currentUser and extending from newUserData
 
