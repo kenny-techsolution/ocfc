@@ -16,7 +16,7 @@
 
  update currentUser: Clones data from IdentitySvc.currentUser and extending from newUserData
 
- logoutUser:        Uses $http directive to check if user has logged out
+ logoutUser: Uses $http directive to check if user has logged out
 
  authorizedCurrentUserForRoute:  Checks if isAuthorized(role) is true in IdentitySvc.js
 
