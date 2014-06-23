@@ -18,8 +18,7 @@
 
  logoutUser:        Uses $http directive to check if user has logged out
 
- authorizedCurrentUserForRoute:  Checks if isAuthorized(role) is true in
- IdentitySvc.js
+ authorizedCurrentUserForRoute:  Checks if isAuthorized(role) is true in IdentitySvc.js
 
  authorizedAuthenticatedUserForRoute: Check if isAuthenticated is true in IdentitySvc.js
  ***************************************************************************************/
