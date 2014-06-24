@@ -177,6 +177,7 @@ body {
 }
 #sidebar-wrapper #sidebar .fellowship-container {
   padding-left: 0px;
+  font-size: 12px;
 }
 #sidebar-wrapper #sidebar .fellowship-container .fellowship-sub-menu .menu-item a {
   background-color: #454147;
@@ -184,4 +185,22 @@ body {
   border-radius: 0;
   padding: 5px 30px 5px 30px;
   font-size: 12px;
+}
+.animate-show {
+  line-height: 20px;
+  opacity: 1;
+  padding: 10px;
+  border: 1px solid #000;
+  background: #fff;
+}
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
+  display: block !important;
+}
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition: all linear 1s;
+  transition: all linear 1s;
 }

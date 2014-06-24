@@ -41,43 +41,38 @@
 						.row
 							div.progress(style='margin-bottom: 0;')
 								div.progress-bar(role='progressbar', ng-style='{ "width": uploader.progress + "%" }')
-		.post-panel.panel.panel-default(ng-repeat='post in posts')
-			.panel-heading
-				.row
-					.col-md-1
-						h3.span.label.label-default {{transformType(post.type)}}
-					.col-md-9
-						h4.panel-title {{post.user_object_id.firstName}} {{post.user_object_id.lastName}} {{post.postDate|date:'longDate'}}
-					.col-md-2
-						.btn-group(dropdown)
-							button.btn.btn-default.dropdown-toggle(type='button')
-								| Share
-								span.caret
-								ul.dropdown-menu(role='menu')
-									li
-										a(href='#') Action
-									li
-										a(href='#') Another action
-									li
-										a(href='#') Something else here
-									li.divider
-									li
-										a(href='#') Separated link
+
+	.post-panel.panel.panel-default(ng-repeat='post in posts')
+		.panel-heading
+			.row
+				.col-md-1
+					h3.span.label.label-default {{transformType(post.type)}}
+				.col-md-9
+					h4.panel-title {{post.user_object_id.firstName}} {{post.user_object_id.lastName}} {{post.postDate|date:'longDate'}}
+				.col-md-2
+					.btn-group
+						button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
+							| Share
+							span.caret
+						ul.dropdown-menu(role='menu')
+							li
+								a(href='#') Action
+							li
+								a(href='#') Another Action
+							li
+								a(href='#') Something else here
+
 				.panel-body.Panel {{post.content}}
-				.panel-footer
-					.row(ng-repeat='comment in post.comments')
-						//.col-md-1
-						//    span.glyphicon.glyphicon-user
-						//.col-md-11
-						//   p  {{comment.comment}} {{comment.postDate}}
-						.media
-							a.pull-left(href='#')
-								img.media-object(src='../css/images/kenny_face.jpg', alt='...',style='width: 54px; height: 54px; border: 2px solid white')
-								.media-body
-									h6.media-heading {{comment.firstName}} {{comment.lastName}} {{comment.postDate}}
-									p {{comment.comment}}
-					.row
-						.input-group
-							input.form-control(type='text',ng-model="post.currComment",placeholder="Write a comment")
-							span.input-group-btn
-								button.btn.btn-default(type='button',ng-click="addComment(post._id,post.currComment)") Enter
+			.panel-footer
+				.row(ng-repeat='comment in post.comments')
+					.media
+						a.pull-left(href='#')
+							img.media-object(src='/css/images/kenny_face.jpg', alt='...',style='width: 54px; height: 54px; border: 2px solid white')
+							.media-body
+								h6.media-heading {{comment.firstName}} {{comment.lastName}} {{comment.postDate |date}}
+								p {{comment.comment}}
+				.row
+					.input-group
+						input.form-control(type='text',ng-model="post.currComment",placeholder="Write a comment")
+						span.input-group-btn
+							button.btn.btn-default(type='button',ng-click="addComment(post._id,post.currComment)") Enter

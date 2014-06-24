@@ -7,7 +7,7 @@
 		.fellowship {{fellowship.zipcode}}
 	#status.col-xs-1
 		.fellowship {{fellowship.status}}
-	.col-xs-2.btn-group
-		button.btn.btn-default(type='button',ng-click='joinFellowship(fellowship)',ng-show="fellowship.status=='None'") Join Fellowship
-		button.btn.btn-default(type='button',ng-click='approveFellowship(fellowship)',ng-show="fellowship.status=='Pending'") Approve
-		button.btn.btn-default(type='button',ng-click='cancelFellowship(fellowship)',ng-show="fellowship.status=='Pending'") Cancel
+	.join-fellow-button-group.col-xs-4.btn-group
+		button.join-fellow-button-option.btn.btn-default(type='button',ng-click='joinFellowship(fellowship)',ng-show="fellowship.status=='None'") Join Fellowship
+		button.join-fellow-button-option.btn.btn-default(type='button',ng-click='approveFellowship(fellowship)',ng-show="fellowship.status=='Pending'") Approve
+		button.join-fellow-button-option.btn.btn-default(type='button',ng-click='cancelFellowship(fellowship)',ng-show="fellowship.status=='Pending'") Cancel

@@ -5,16 +5,20 @@
   display: inline-block;
   padding-right: 15px;
 }
-#members .well.member {
-  width: 300px;
+#members .member-wrapper .member-list {
+  position: relative;
+  top: 100px;
+  left: -600px;
+  height: 100px;
 }
-#members .well.member img {
+#members .member-wrapper .member-list img {
   width: 65px;
   height: 50px;
-  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 15px;
   border-radius: 15px;
 }
-#members .well.member .btn-group {
+#members .member-wrapper .member-button-group {
   margin-top: -12px;
 }
 #status-margin {

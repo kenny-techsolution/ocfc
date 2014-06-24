@@ -102,10 +102,7 @@ angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http
 
     //5.26.2014 update Post by adding on comment
     $scope.addComment = function(id,comment) {
-//        cl("test id",id);
-//        cl("test comment",comment);
-//        return;
-        PostSvc.update({
+	    PostSvc.update({
             _id: id  //where clause
         }, {comments:comment},function(){
 

@@ -3,7 +3,7 @@ li.fellowship-menu(ng-click='toggleMenu()')
 		i.icon-home.icon-1x
 		| {{fellowship.name}}
 		.span.badge 42
-li.fellowship-sub-menu(ng-show='open')
+li.fellowship-sub-menu.slide-show(ng-show='open', ng-animate="'slide-show'" )
 	.menu-item
 		a.list-group-item(href='') Home
 	.menu-item

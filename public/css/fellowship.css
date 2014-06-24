@@ -11,13 +11,11 @@ img {
   width: 367px;
   height: 260px;
 }
-h2 {
+.fellow-name {
   position: relative;
   top: -235px;
-  right: -198px;
+  right: -393px;
   color: #000;
-  text-align: right;
-  width: 400px;
 }
 #about {
   font-size: small;
