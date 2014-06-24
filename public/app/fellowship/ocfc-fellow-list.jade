@@ -1,0 +1,13 @@
+.fellowships-wrapper.well.row(ng-repeat='fellowship in fellowships')
+	#fellow-img.col-xs-3
+		img(src='/css/images/IMG_5501.JPG')
+	.col-xs-6
+		h3.fellowship {{fellowship.name}}
+		p(style='margin-bottom:0px') Church-Name: CCIC
+		.fellowship {{fellowship.zipcode}}
+	#status.col-xs-1
+		.fellowship {{fellowship.status}}
+	.col-xs-2.btn-group
+		button.btn.btn-default(type='button',ng-click='joinFellowship(fellowship)',ng-show="fellowship.status=='None'") Join Fellowship
+		button.btn.btn-default(type='button',ng-click='approveFellowship(fellowship)',ng-show="fellowship.status=='Pending'") Approve
+		button.btn.btn-default(type='button',ng-click='cancelFellowship(fellowship)',ng-show="fellowship.status=='Pending'") Cancel

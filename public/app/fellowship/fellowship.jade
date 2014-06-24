@@ -1,138 +1,45 @@
-.content-left
-    .content-container
-            .banner
-                 img(src='/css/images/IMG_5501.JPG')
-                 h1 {{name}}
-            .container
-                .row
-                    #about.col-md-7
-                        h4 About
-                        p {{about}}
-                    #fact.col-md-5
-                        h4 Facts
-                        .row
-                          p Founded in YYYY
-                        .row
-                          p Members
-                        .row
-                          p More info
+#standardCol
+	.well
+		.banner
+			img(src='/css/images/IMG_5501.JPG')
+		h2 {{name}}
+		#about.p {{about}}
+		#photos
+			ul.media-list
+				li.media
+					a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
+						img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+					a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
+						img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+					a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
+						img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+					a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
+						img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+					a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
+						img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+					a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
+						img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+					a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
+						img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+					a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
+						img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+					a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
+						img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+					a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
+						img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+					a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
+						img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+					a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
+						img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
+		#members
+			a(href='/fellowshipMembers/{{id}}')
+				p 12 members
 
-                .row
-                    #wknews.col-md-7
-                      h4 This Week's News
-                      ul
-                        li Bible Study Verse
-                        li Weekend Picnic
-                        li Celebrate Mei's Birthday
-                    #photos.col-md-5
-                      ul.media-list
-                          li.media
-                              a.pull-left(href='#')
-                                img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-                              a.pull-left(href='#')
-                                img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-                              a.pull-left(href='#')
-                                img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-                              a.pull-left(href='#')
-                                img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-                              a.pull-left(href='#')
-                                img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-                              a.pull-left(href='#')
-                                img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-             .container
-                 .row
-                     #resource.col-md-12
-                       h4 Resource
-                       .row
-                         .com-md-6
-                           ul
-                             a.btn.btn-lg.btn-default(type='button', href='/fellowshipMembers/{{id}}') Members
-                             li Total of xx members
-                         .com-md-6
-                           ul
-                             a.btn.btn-lg.btn-default(type='button', href='/fellowshipResources/{{id}}') Resources
-                             li Click to view sermons
-.content-right
-    .feed-container
-                  hr
-                  form.fellow-share-box(action='#', method='post', role='form', enctype='multipart/form-data')
-                    ul.post-types
-                      li.post-type
-                        a.status(title='', href='#',ng-click='onClickType("post")')
-                          span.glyphicon.glyphicon-list-alt
-                          | Write a Post
-                      li.post-type
-                        a.status(title='', href='#',ng-click='onClickType("question")')
-                          span.glyphicon.glyphicon-list-alt
-                          | Ask a Question
-                    .share
-                      .arrow
-                      .panel.panel-default
-                        .panel-body
-                            div{{uploadedFile}}
-                            textarea.form-control.message(name='postMsg', ng-model='post.content',cols='40', rows='10', style='height: 62px; overflow: hidden;', placeholder="{{placeholder}}")
-                            //div.uploaded-image-holder(ng-class="{'loading':loading}",ng-show='photoUploaded')
-                            .row
-                                .col-md-2(ng-repeat='item in uploader.queue')
-                                    div(ng-show="uploader.isHTML5", ng-thumb="{ file: item.file, height: 80 }") 
-                            input.upload-image(ng-file-select='', type='file', multiple='' ng-hide='true')
-                        .panel-footer
-                          .row
-                            .col-md-5
-                              .form-group
-                                .btn-group
-                                  button.btn.btn-default(type='button')
-                                    span.glyphicon.glyphicon-map-marker
-                                    | Location
-
-                                  button.btn.btn-default(type='button',ng-click="addPhoto()")
-                                    span.glyphicon.glyphicon-picture
-                                    | Photo
-                            .col-md-7
-                              .form-group
-                                select.form-control.privacy-dropdown.pull-left.input-sm(name='privacy',ng-init="currVisibility=visibilityOptions[0]", ng-model='currVisibility',ng-options='visibilityOption.name for visibilityOption in visibilityOptions')
-                                input.btn.btn-default(type='button', name='submit', value='Upload Images',ng-click='uploader.uploadAll()')
-                                input.btn.btn-primary(type='submit', name='submit', value='Post',ng-click='createPost($event)')
-                          .row
-                              div.progress(style='margin-bottom: 0;')
-                                  div.progress-bar(role='progressbar', ng-style='{ "width": uploader.progress + "%" }')        
-                  .post-panel.panel.panel-default(ng-repeat='post in posts')
-                      .panel-heading
-                        .row
-                            .col-md-1
-                                h3.span.label.label-default {{transformType(post.type)}}
-                            .col-md-9
-                                h4.panel-title {{post.user_object_id.firstName}} {{post.user_object_id.lastName}} {{post.postDate|date:'longDate'}}
-                            .col-md-2
-                                .btn-group(dropdown)
-                                    button.btn.btn-default.dropdown-toggle(type='button')
-                                        | Share
-                                        span.caret
-                                      ul.dropdown-menu(role='menu')
-                                        li
-                                          a(href='#') Action
-                                        li
-                                          a(href='#') Another action
-                                        li
-                                          a(href='#') Something else here
-                                        li.divider
-                                        li
-                                          a(href='#') Separated link
-                        .panel-body.Panel {{post.content}}
-                        .panel-footer
-                            .row(ng-repeat='comment in post.comments')
-                                //.col-md-1
-                                //    span.glyphicon.glyphicon-user
-                                //.col-md-11
-                                //   p  {{comment.comment}} {{comment.postDate}}
-                                .media
-                                    a.pull-left(href='#')
-                                        img.media-object(src='../css/images/kenny_face.jpg', alt='...',style='width: 54px; height: 54px; border: 2px solid white')
-                                      .media-body
-                                        h6.media-heading {{comment.firstName}} {{comment.lastName}} {{comment.postDate}}
-                                        p {{comment.comment}}
-                            .row
-                                .input-group
-                                    input.form-control(type='text',ng-model="post.currComment",placeholder="Write a comment")
-                                    span.input-group-btn
-                                      button.btn.btn-default(type='button',ng-click="addComment(post._id,post.currComment)") Enter
+	#columns.well
+		.row
+			.col-xs-4
+				h4 What's new
+			.col-xs-4
+				h4 Schedule
+			.col-xs-4
+				h4 Sharing

@@ -1,6 +1,6 @@
 //This code stores all records into mvMainCtrl controller
-angular.module('app').controller('mvMainCtrl',function($scope, mvCachedCourses){
-    $scope.courses=mvCachedCourses.query();
+angular.module('app').controller('MainCtrl',function($scope){
+//    $scope.courses=mvCachedCourses.query();
 
 //HARDCODED DATA
 //        [

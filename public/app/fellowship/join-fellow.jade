@@ -1,25 +1,8 @@
 //4.29.2014, created a join fellowship page that includes zipcode and fellowshp name input boxes
 //which will dynamically generate data stored in Mongodb
 #standardCol
-  #filter-container
-    .filter-bar
-      .zip-search-container.col-xs-6
-          input.form-control(ng-change='updateFellowListByZip()',ng-model='zipcode', type='text', placeholder='ZipCode')
-      .name-search-container.col-xs-6
-          input.form-control(type='text', placeholder='Type Fellowship Name')
-
-  #join-fellow
-    #fellow-no-resize.list-page.container
-      .fellowships-wrapper.well.row(ng-repeat='fellowship in fellowships')
-          #fellow-img.col-xs-3
-            img(src='/css/images/IMG_5501.JPG')
-          .col-xs-6
-            h3.fellowship {{fellowship.name}}
-            p(style='margin-bottom:0px') Church-Name: CCIC
-            .fellowship {{fellowship.zipcode}}
-          #status.col-xs-1
-            .fellowship {{fellowship.status}}
-          .col-xs-2.btn-group
-            button.btn.btn-default(type='button',ng-click='joinFellowship(fellowship)',ng-show="fellowship.status=='None'") Join Fellowship
-            button.btn.btn-default(type='button',ng-click='approveFellowship(fellowship)',ng-show="fellowship.status=='Pending'") Approve
-            button.btn.btn-default(type='button',ng-click='cancelFellowship(fellowship)',ng-show="fellowship.status=='Pending'") Cancel
+	#filter-container
+		ocfc-filter-bar
+	#join-fellow
+		#fellow-no-resize.list-page.container
+			ocfc-fellow-list

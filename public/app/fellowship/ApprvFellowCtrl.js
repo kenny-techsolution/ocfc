@@ -14,7 +14,6 @@ angular.module('app').controller('ApprvFellowCtrl', function($scope, $http, Iden
     $scope.fellowships =FellowshipSvc.query({
         status: 'Waiting for Approval'  //where clause
     }, function() {
-        console.log("the result is here");
     });
 
 

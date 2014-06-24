@@ -172,8 +172,16 @@ body {
   width: 215px;
 }
 #sidebar-wrapper #sidebar ul.nav.list-group li.sub-menu.sub-menu-actions.row a.list-group-item {
+  border-radius: 0;
   font-size: 12px;
 }
-#sidebar-wrapper #sidebar ul.nav.list-group .myApprvFellows-wrapper li.sub-menu a.list-group-item {
+#sidebar-wrapper #sidebar .fellowship-container {
+  padding-left: 0px;
+}
+#sidebar-wrapper #sidebar .fellowship-container .fellowship-sub-menu .menu-item a {
+  background-color: #454147;
+  color: #fff;
+  border-radius: 0;
+  padding: 5px 30px 5px 30px;
   font-size: 12px;
 }

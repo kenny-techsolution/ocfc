@@ -17,17 +17,3 @@ angular.module('app').factory('SetupSvc',function($http,IdentitySvc){
         }
     }
 });
-
-
-
-//
-//$scope.getMyApprvFellows=function(){
-//    var myApprvFellows= [];
-//    angular.forEach($scope.associatedFellowships, function(myFellowObj, key) {
-//        if (myFellowObj.status=='Approved'){
-//            myApprvFellows.push(myFellowObj);
-//        }
-//    });
-//    $scope.myApprvFellows=myApprvFellows;
-//
-//};

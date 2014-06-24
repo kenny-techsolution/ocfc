@@ -19,7 +19,6 @@ angular.module('app').directive('ocfcSignin',function(){
 
 			$scope.signin=function(username,password){
 				AuthSvc.authenticateUser(username,password).then(function(success){
-					console.log("login succesfull!!!!!");
 					if(success){
 						NotifierSvc.notify('You have successfully signed in!');
 					} else{
