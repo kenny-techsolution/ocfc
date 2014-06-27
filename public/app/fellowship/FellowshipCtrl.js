@@ -2,6 +2,31 @@
  ******************************************************************************/
 angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http, $scope, FellowshipSvc,$routeParams,PostSvc) {
     $scope.formData = {};
+	$scope.about;
+	$scope.name;
+	$scope.id;
+	$scope.placeholder="What's on your mind?";
+	$scope.post = {
+		content:"",
+		type:0,
+		visibility:"",
+		postDate:"",
+		fellow_object_id:$routeParams.id
+	};
+	$scope.placeholder;
+	$scope.currVisibility;
+	$scope.loading = true;
+	$scope.photoUploaded = false;
+	$scope.imagePath;
+
+	$scope.visibilityOptions = [
+		{ id: 1, name: 'Public' },
+		{ id: 2, name: 'Church' },
+		{ id: 3, name: 'World' }
+	];
+	$scope.isPostShown=false;
+
+
     var uploader = $scope.uploader = $fileUploader.create({
         scope: $scope,
         url: '/file-upload', 
@@ -16,29 +41,7 @@ angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http
     $scope.uploadFile = function () {
         
     };
-    
-    $scope.about;
-    $scope.name;
-    $scope.id;
-    $scope.placeholder="What's on your mind?";
-    $scope.post = {
-        content:"",
-        type:0,
-        visibility:"",
-        postDate:"",
-        fellow_object_id:$routeParams.id
-    };
-    $scope.placeholder;
-    $scope.currVisibility;
-    $scope.loading = true;
-    $scope.photoUploaded = false;
-    $scope.imagePath;  
-    
-    $scope.visibilityOptions = [
-        { id: 1, name: 'Public' },
-        { id: 2, name: 'Church' },
-        { id: 3, name: 'World' }
-    ];
+
 
     var fellow = FellowshipSvc.get(
         {
@@ -53,27 +56,40 @@ angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http
     );
 
     $scope.onClickType=function(type){
-        if(type==='post'){
+        if(type==='testimony'){
             $scope.post.type=0;
-            $scope.placeholder="What's on your mind?";
+            $scope.placeholder="Share your testimony";
+	        console.log('called testimony')
         }else if(type==='question'){
             $scope.post.type=1;
             $scope.placeholder="What is your question?";
+	        console.log('called question')
+        }else if (type==='general'){
+	        $scope.post.type=2;
+	        $scope.placeholder="What's on your mind?"
+	        console.log('called general')
         }else{
-
-        }
+	    }
     };
 
     //5.24.2014 method that transform Type values to string
     $scope.transformType=function(type){
         if(type===0){
-            return 'Post'
-        }else if(type===1){
-            return 'Question'
+            return 'Testimony'
+        }else if(type===1) {
+	        return 'Question'
+        }else if (type==2){
+	        return 'General'
         }else{
-
         }
     };
+
+	//6.26.2014 created displayPost function
+	$scope.displayPost=function(){
+		console.log('isPostShown works');
+		$scope.isPostShown=!$scope.isPostShown;
+		console.log($scope.isPostShown);
+	};
 
     $scope.createPost = function(e) {
         e.preventDefault();
