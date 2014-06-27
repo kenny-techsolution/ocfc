@@ -1,3 +1,8 @@
+#standardCol {
+  padding-right: 12px;
+  padding-left: 12px;
+  background-color: transparent;
+}
 .well {
   margin-top: 80px;
   height: 260px;
@@ -52,82 +57,518 @@ a
 #columns .row h4 {
   border-bottom: 1px solid #000;
 }
-.feed-container .post-types {
-  list-style-type: none;
+#post-widget.well {
+  margin: 50px 50px 50px 50px;
+  height: 157px;
+  padding: 0px;
 }
-textarea.form-control {
-  font-size: 12px;
+#post-widget.well .post-header-row {
+  width: 662px;
+  height: 37px;
+  margin-right: 5px;
+  margin-left: 5px;
+  border-bottom: 1px solid #d3d3d3;
+  padding: 0px;
 }
-a.status {
-  font-size: 12px;
+#post-widget.well .post-header-title {
+  position: relative;
+  height: 100%;
 }
-.fellow-share-box {
+#post-widget.well .post-header-title p {
+  margin-top: 9px;
+  font-size: 15px;
+}
+#post-widget.well .post-input {
+  height: 75px !important;
+  margin-top: 37px;
   width: 100%;
+  resize: none;
+  border-color: transparent;
 }
-.fellow-share-box .share {
-  -webkit-transition: 0.1s ease-out height;
-  -moz-transition: 0.1s ease-out height;
-  -ms-transition: 0.1s ease-out height;
-  -o-transition: 0.1s ease-out height;
-  transition: 0.1s ease-out height;
-  clear: both;
-  background: #fff;
-  border: 2px solid #ddd;
-  margin-bottom: 10px;
+#post-widget.well .post-input:focus {
+  box-shadow: none;
+}
+#post-widget.well .post-footer {
+  width: 100%;
+  height: 40px;
+  margin-right: 0;
+  margin-left: 0;
+  border-top: 1px solid #d3d3d3;
+  padding: 0px;
+}
+#post-widget.well .post-button-container {
+  position: relative;
+  width: 80px;
+  display: inline-block;
+  top: 5px;
+}
+#post-widget.well .post-button-container button.btn {
+  width: 81px;
+}
+#post-widget.well ocfc-wall-category .header-icons {
+  display: inline-block;
+  position: absolute;
+  padding: 5px;
+  top: 7px;
+  width: 80px;
+  color: #333;
+}
+#post-widget.well ocfc-wall-category .header-icons:hover {
+  border-radius: 3px;
+  text-decoration: none;
+  color: #fff;
+}
+#post-widget.well ocfc-wall-category .header-icons span {
+  font-weight: bold;
+}
+#post-widget.well ocfc-wall-category .header-icons.post {
+  left: 100px;
+  color: #e47168;
+}
+#post-widget.well ocfc-wall-category .header-icons.post:hover {
+  background-color: #e47168;
+  color: #fff;
+}
+#post-widget.well ocfc-wall-category .header-icons.event {
+  left: 187px;
+  color: #8d778f;
+}
+#post-widget.well ocfc-wall-category .header-icons.event:hover {
+  background-color: #8d778f;
+  color: #fff;
+}
+#post-widget.well .button.btn {
+  position: relative;
+  display: inline-block;
+  top: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+#post-widget.well .button.btn .caret {
+  margin-left: 4px;
+}
+#post-widget.well ocfc-post-types .type-container {
+  height: 33px;
+  display: inline-block;
   position: relative;
 }
-.fellow-share-box .share .arrow {
-  background: url("arrow.png") no-repeat #ddd;
+#post-widget.well ocfc-post-types .type-container p {
+  width: 33px;
+  position: relative;
+  display: inline-block;
+  top: 5px;
+  margin-left: 25px;
+}
+#post-widget.well ocfc-post-types .type-container ul.dropdown-menu {
+  left: 57px;
+  min-width: 0px;
+}
+#post-widget.well ocfc-view-permission .visibility-container {
+  width: 272px;
+  height: 35px;
+  display: inline-block;
+  position: relative;
+}
+#post-widget.well ocfc-view-permission .visibility-container p {
+  width: 60px;
+  position: relative;
+  display: inline-block;
+  top: 5px;
+  margin-left: 25px;
+  margin-right: 20;
+}
+#post-widget.well ocfc-view-permission .visibility-container ul.dropdown-menu {
+  left: 84px;
+  min-width: 0px;
+}
+#post-widget.well ocfc-post-icons .icons-container {
+  width: 160px;
+  position: relative;
+  display: inline-block;
+  top: 6px;
+}
+#post-widget.well ocfc-post-icons .icons-container a {
+  color: #000;
+}
+#post-widget.well ocfc-post-icons .icons-container a span {
+  position: relative;
+  width: 40px;
+}
+#post-feed.well {
+  margin-top: 0px;
+  height: auto;
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+}
+#post-feed.well ocfc-filter-by-types .type-filter.container {
+  height: 30px;
+  width: 100%;
+}
+#post-feed.well ocfc-filter-by-types .type-filter.container div {
+  display: inline-block;
+  border: 1px outset;
+  border-radius: 5px;
+  width: 65px;
+  height: 28px;
+  margin-right: 15px;
+  text-align: center;
+  margin-top: 14px;
+  font-weight: bold;
+}
+#post-feed.well ocfc-filter-by-types .type-filter.container div p {
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
+#post-feed.well ocfc-filter-by-types .type-filter.container div.question:hover {
+  border-color: #5fcac6;
+}
+#post-feed.well ocfc-filter-by-types .type-filter.container div.question:active {
+  color: #fff;
+  background-color: #5fcac6;
+}
+#post-feed.well ocfc-filter-by-types .type-filter.container div.testimony:hover {
+  border-color: #76a5df;
+}
+#post-feed.well ocfc-filter-by-types .type-filter.container div.testimony:active {
+  color: #fff;
+  background-color: #76a5df;
+}
+#post-feed.well ocfc-filter-by-types .type-filter.container div.general:hover {
+  border-color: #a5adce;
+}
+#post-feed.well ocfc-filter-by-types .type-filter.container div.general:active {
+  color: #fff;
+  background-color: #a5adce;
+}
+#post-feed.well ocfc-filter-by-types .type-filter.container div.event:hover {
+  border-color: #6f7692;
+}
+#post-feed.well ocfc-filter-by-types .type-filter.container div.event:active {
+  color: #fff;
+  background-color: #6f7692;
+}
+#post-feed.well .date-feed-status {
+  display: inline-block;
+  position: relative;
+  top: 42px;
+  left: 69px;
+  border: 1px solid;
+  text-align: center;
+  padding: 2px 10px 2px 10px;
+  border-radius: 5px;
+}
+#post-feed.well well.type-icon {
+  margin-right: 8px;
+  border: 1px outset;
+  width: 88px;
+  height: 34px;
+  position: relative;
+  top: 3px;
+}
+#post-feed.well .question-feed-display {
+  display: inline-block;
+  height: 255px;
+  width: 750px;
+  position: relative;
+  margin-top: 45px;
+  border-color: transparent;
+  background-color: transparent;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+}
+#post-feed.well .question-feed-display well.type-icon {
+  background-color: #5fcac6;
+}
+#post-feed.well .question-feed-display well.type-icon span {
+  height: 12px;
+  width: 68px;
+  color: #fff;
+}
+#post-feed.well .question-feed-display .user-comment {
+  border-color: #5fcac6;
+}
+#post-feed.well well.div.timeline {
+  background-color: #808080;
+  height: 100%;
+  width: 1px;
   position: absolute;
-  width: 14px;
-  height: 10px;
-  left: 4px;
-  display: inline;
-  top: -10px;
-  -webkit-transition: 0.3s ease-out all;
-  -moz-transition: 0.3s ease-out all;
-  -ms-transition: 0.3s ease-out all;
-  -o-transition: 0.3s ease-out all;
-  transition: 0.3s ease-out all;
 }
-.fellow-share-box .post-types {
-  padding-left: 5px;
+#post-feed.well ocfc-user-image well.post-image {
+  margin-right: 15px;
+  margin-left: 5px;
+  border-color: transparent;
+  padding: 0px 25px 0px 25px;
 }
-.fellow-share-box .post-types li {
-  display: inline;
-  margin-right: 10px;
+#post-feed.well ocfc-user-image well.post-image img {
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
 }
-.fellow-share-box .post-types li a {
-  color: #085083;
-  text-decoration: none;
+#post-feed.well .post-content .name-heading {
+  font-weight: bold;
 }
-.fellow-share-box .post-types li a.active {
-  color: #404040;
+#post-feed.well well.post-content {
+  position: absolute;
+  width: 540px;
+  border-color: transparent;
 }
-.fellow-share-box ul {
-  list-style: none;
-  margin-bottom: 9px;
+#post-feed.well well.post-content .post-content-input {
+  background-color: #e4dfdf;
+  padding: 15px;
+  border-radius: 5px;
 }
-.message {
-  border-radius: 0;
-  border: none;
+#post-feed.well well.post-content ocfc-post-res-icons a span {
+  margin-right: 15px;
+  position: inherit;
+  padding: 6px;
+  color: #333;
+  border: 1px transparent;
 }
-.panel {
-  border-radius: 0;
-  border: none;
-  margin-bottom: 0;
+#post-feed.well well.post-content ocfc-post-res-icons a span:hover {
+  background-color: #5fcac6;
+  color: #fff;
 }
-.privacy-dropdown {
-  width: 100px;
+ocfc-user-comment-input #user-comment-input {
+  width: 100%;
+  margin-top: 15px;
 }
-.post-panel {
-  margin-bottom: 20px;
+ocfc-user-comment-input #user-comment-input .icon img {
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
 }
-.uploaded-image-holder {
-  width: 100px;
+ocfc-user-comment-input #user-comment-input .post-comment {
+  width: 38px;
+  margin-top: 12px;
+}
+.testimony-feed-display {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  position: relative;
+  height: 333px;
+  border-color: transparent;
+  background-color: transparent;
+}
+.testimony-feed-display well.type-icon {
+  background-color: #76a5df;
+}
+.testimony-feed-display well.type-icon span {
+  height: 12px;
+  width: 68px;
+  color: #fff;
+}
+.testimony-feed-display well.timeline {
+  position: absolute;
+  height: 100%;
+}
+.testimony-feed-display well.post-content .post-title {
+  font-size: 16px;
+  border-bottom: 1px dashed;
+  border-left: 1px solid;
+  border-top: 1px solid;
+  border-right: 1px solid;
+  border-color: #696969;
+}
+.testimony-feed-display well.post-content .post-content-input {
+  height: 95px;
+  border-left: 1px solid #696969;
+  border-right: 1px solid #696969;
+  border-bottom: 1px solid #696969;
+}
+.testimony-feed-display well.post-content ocfc-post-res-icons a span {
+  margin-right: 15px;
+  position: inherit;
+  padding: 6px;
+  color: #333;
+  border: 1px transparent;
+}
+.testimony-feed-display well.post-content ocfc-post-res-icons a span:hover {
+  background-color: #76a5df !important;
+  color: #fff;
+}
+.general-feed-display {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  position: relative;
+  height: 500px;
+  border-color: transparent;
+  background-color: transparent;
+}
+.general-feed-display well.type-icon {
+  background-color: #a5adce;
+}
+.general-feed-display well.type-icon span {
+  height: 12px;
+  width: 68px;
+  color: #fff;
+}
+.general-feed-display well.timeline {
+  position: absolute;
+  height: 100%;
+}
+.general-feed-display well.post-content div.gen-post-content {
+  border: 1px solid;
+  min-height: 200px;
+}
+.general-feed-display well.post-content div.gen-post-content div.lg-content {
+  background-color: #00f;
+  display: inline-block;
+  position: absolute;
+  width: 275px;
+  height: 198px;
+}
+.general-feed-display well.post-content div.gen-post-content div.lg-content ocfc-user-image img {
+  width: 277px !important;
+  border-radius: 0px !important;
+  height: 200px !important;
+  position: relative !important;
+  left: -32px !important;
+}
+.general-feed-display well.post-content div.gen-post-content div.sm-contents {
+  background-color: #008000;
+  display: inline-block;
+  position: absolute;
+  left: 285px;
+  width: 245px;
+  height: 198px;
+}
+.general-feed-display well.post-content div.gen-post-content div.sm-contents img {
+  position: relative;
+  border-radius: 0px;
+  width: 245px;
   height: 100px;
-  background: #999;
 }
-.loading {
-  background-image: url("images/loading-spinner.gif");
+.general-feed-display well.post-content div.gen-post-text {
+  border: 1px solid;
+  height: 65px;
+  border-color: #696969;
+  color: #696969;
+}
+.general-feed-display well.post-content ocfc-post-res-icons a span {
+  margin-right: 15px;
+  position: inherit;
+  padding: 6px;
+  color: #333;
+  border: 1px transparent;
+  color: #fff;
+}
+.general-feed-display well.post-content ocfc-post-res-icons a span:hover {
+  background-color: #a5adce !important;
+}
+.event-feed-display {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  position: relative;
+  height: 297px;
+  border-color: transparent;
+  background-color: transparent;
+}
+.event-feed-display well.type-icon {
+  background-color: #6f7692;
+}
+.event-feed-display well.type-icon span {
+  height: 12px;
+  width: 68px;
+  color: #fff;
+}
+.event-feed-display well.timeline {
+  position: absolute;
+  height: 100%;
+}
+.event-feed-display well.post-content div.event-container {
+  border: 1px solid #696969;
+}
+.event-feed-display well.post-content div.event-container div.date-info {
+  border-right: 1px solid #696969;
+  height: 90px;
+  width: 70px;
+  display: inline-block;
+}
+.event-feed-display well.post-content div.event-container div.date-info div.date {
+  text-align: center;
+  font-weight: bold;
+  width: 70px;
+}
+.event-feed-display well.post-content div.event-container div.date-info div.date.mm-yy {
+  height: 50px;
+  border-bottom: 1px solid #696969;
+  font-size: 31px;
+}
+.event-feed-display well.post-content div.event-container div.date-info div.date.event-time {
+  height: 40px;
+}
+.event-feed-display well.post-content div.event-container div.event-info {
+  display: inline-block;
+}
+.event-feed-display well.post-content div.event-container div.event-info div.event-title {
+  height: 30px;
+  width: 450px;
+  font-weight: bold;
+}
+.event-feed-display well.post-content div.event-container div.event-info div.event-detail-info {
+  height: 40px;
+  position: relative;
+  bottom: -18px;
+  border-top: 1px solid #696969;
+}
+.event-feed-display well.post-content div.event-container div.event-info div.event-detail-info div.event-description {
+  display: inline-block;
+  width: 328px;
+  height: 37px;
+  position: relative;
+  bottom: 18px;
+  border-right: 1px solid #696969;
+}
+.event-feed-display well.post-content div.event-container div.event-info div.event-detail-info div.response {
+  display: inline-block;
+  height: 37px;
+  width: 40px;
+  border-right: 1px solid #696969;
+  text-align: center;
+}
+.event-feed-display well.post-content div.event-container div.event-info div.event-detail-info div.response.denied {
+  border-right: none;
+}
+.event-feed-display well.post-content ocfc-post-res-icons a span {
+  margin-right: 15px;
+  position: inherit;
+  padding: 6px;
+  color: #333;
+  border: 1px transparent;
+  color: #fff;
+}
+.event-feed-display well.post-content ocfc-post-res-icons a span:hover {
+  background-color: #6f7692 !important;
+}
+.user-comment {
+  background-color: #c9ced3;
+  margin-top: 17px;
+  min-height: 37px;
+}
+.user-comment .content {
+  display: inline-block;
+  width: 400px;
+  position: relative;
+  margin-left: 10px;
+  padding-top: 7px;
+  padding-bottom: 3px;
+}
+.user-comment .content P:first-child {
+  margin-bottom: 0px;
+}
+.user-comment .content p:last-child {
+  margin-bottom: 0px;
+  font-size: 10px;
+}
+.user-comment img.gravitar {
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+  background-color: #d3d3d3;
+  display: inline-block;
+  top: -9px;
+  position: relative;
 }
