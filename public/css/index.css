@@ -186,21 +186,19 @@ body {
   padding: 5px 30px 5px 30px;
   font-size: 12px;
 }
-.animate-show {
-  line-height: 20px;
+.fellowship-sub-menu .list-group-item {
+  border: none;
+}
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+  -webkit-transition: 0.2s linear all;
+  transition: 0.2s linear all;
+/* remember to add this */
+  display: block !important;
   opacity: 1;
-  padding: 10px;
-  border: 1px solid #000;
-  background: #fff;
+  height: 200px;
 }
 .animate-show.ng-hide {
-  line-height: 0;
   opacity: 0;
-  padding: 0 10px;
-  display: block !important;
-}
-.animate-show.ng-hide-add.ng-hide-add-active,
-.animate-show.ng-hide-remove.ng-hide-remove-active {
-  -webkit-transition: all linear 1s;
-  transition: all linear 1s;
+  height: 0px;
 }
