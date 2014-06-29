@@ -13,14 +13,17 @@
 				button.btn.btn-default.btn-sm(type='submit',ng-click='createPost($event)',ng-show='isPostShown') Post
 	#post-feed.well
 		ocfc-filter-by-types
-		.date-feed-status
-			div	Today
-		.question-feed-display
-			well.well-sm.type-icon
-				span.glyphicon.glyphicon-question-sign Question
-			well.div.vertical-line.timeline
+		.date-separator Today
+
+		.question-feed-display.common-post-ui
+			.line-decor
+			.dot-decor
+			.vertical-line.timeline
+			.post-type-icon
+				.glyphicon.glyphicon-question-sign
+				span Question
 			ocfc-user-image
-			well.well-sm.post-content
+			.post-content
 				ocfc-post-heading
 				.post-content-input "Post Content goes here"
 				ocfc-post-res-icons
@@ -31,76 +34,85 @@
 						p Jane 10:20PM
 				ocfc-user-comment-input
 
-		.testimony-feed-display.well
-			well.well-sm.type-icon
-				span.glyphicon.glyphicon-text-width Testimony
-			well.div.vertical-line.timeline
+		.testimony-feed-display.common-post-ui
+			.line-decor
+			.dot-decor
+			.vertical-line.timeline
+			.post-type-icon
+				.glyphicon.glyphicon-text-width
+				span Testimony
 			ocfc-user-image
-			well.well-sm.post-content
-				div.name-heading Kenny Chung 9:24PM
-				div.post-title Post Title Goes Here XXXXXXXXXXXXXXXXXXXXX
-				.post-content-input "Post Content goes here"
+			.post-content
+				ocfc-post-heading
+				.article
+					.content-title My way to home
+					.content-body In the law, testimony is a form of evidence that is obtained from a witness who makes a solemn statement or declaration of fact. Testimony may be oral or written, and it is usually made by oath or affirmation under penalty of perjury. Unless a witness is testifying as an expert witness, testimony in the form of opinions or inferences is generally limited to those opinions or inferences that are rationally based on the perceptions of the witness and are helpful to a clear understanding of the witness' testimony.
 				ocfc-post-res-icons
 				.user-comment
 					ocfc-user-image
 					.content
-						p This is a great testimony!
+						p This is a great question!
 						p Jane 10:20PM
 				ocfc-user-comment-input
 
-		.general-feed-display.well
-			well.well-sm.type-icon
-				span.glyphicon.glyphicon-align-justify General
-			well.div.vertical-line.timeline
+		.general-feed-display.common-post-ui
+			.line-decor
+			.dot-decor
+			.vertical-line.timeline
+			.post-type-icon
+				.glyphicon.glyphicon-align-justify
+				span General
 			ocfc-user-image
-			well.well-sm.post-content
+			.post-content
 				ocfc-post-heading
-				div.gen-post-content
-					div.lg-content
-						ocfc-user-image
-					div.sm-contents
-						div.sm-content1
-							img(src='/css/images/kenny_face.jpg')
-						div.sm-content2
-							img(src='/css/images/kenny_face.jpg')
-				div.gen-post-text Bunch of text goes here..............
+				div.post-content-photos
+					.lg-content
+						img(src='/css/images/TimothyFellowship1.jpg')
+					.rt-content
+						img(src='/css/images/TimothyFellowship4.jpg')
+					.rb-content
+						img(src='/css/images/TimothyFellowship2.jpg')
+				.post-content-input testimony is a form of evidence that is obtained from a witness who makes a solemn statement or declaration of fact. Testimony may be oral or written...
 				ocfc-post-res-icons
 				.user-comment
 					ocfc-user-image
 					.content
-						p This is a great general post!
+						p This is a great question!
 						p Jane 10:20PM
 				ocfc-user-comment-input
 
-		.event-feed-display.well
-			well.well-sm.type-icon
-				span.glyphicon.glyphicon-calendar Event
-			well.div.vertical-line.timeline
+		.event-feed-display.common-post-ui
+			.line-decor
+			.dot-decor
+			.vertical-line.timeline
+			.post-type-icon
+				.glyphicon.glyphicon-calendar
+				span Event
 			ocfc-user-image
-			well.well-sm.post-content
+			.post-content
 				ocfc-post-heading
-				div.event-container
-					div.date-info
-						div.date.mm-yy 3/14
-						div.date.event-time 3PM-4PM
-					div.event-info
-						div.event-title Annual BBQ event at CCIC room #211
-						div.event-detail-info
-							div.event-description xxxxdescription goes here xxxxxx
-							div.response.invited
-								div.invited-num 25
-								div.invited-label invited
-							div.response.replied
-								div.replied-num 2
-								div.replied-label replied
-							div.response.denied
-								div.denied-num 30
-								div.denied-label denied
-
+				.event-container
+					.date-info
+						.mm-yy 3/14
+						.event-time 3PM-4PM
+					.event-info
+						.event-title Annual BBQ event at CCIC room #211
+						.event-detail-info
+							.event-description
+								p This is a great event, please bring your friend to this wonderiful event. you have to bring food and drink.
+							.response.invited
+								.status-num 25
+								.status-label invited
+							.response.replied
+								.status-num 2
+								.status-label replied
+							.response.denied
+								.status-num 30
+								.status-label denied
 				ocfc-post-res-icons
 				.user-comment
 					ocfc-user-image
 					.content
-						p This is a great event!
+						p This is a great question!
 						p Jane 10:20PM
 				ocfc-user-comment-input

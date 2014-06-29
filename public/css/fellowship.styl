@@ -14,8 +14,8 @@
   height 260px
 
 img
-  width 367px
-  height 260px
+//  width 367px
+ // height 260px
 
 .fellow-name
   position relative
@@ -57,7 +57,6 @@ img
       border-bottom 1px solid #000000
 
 //fellowship wall page style
-
 #post-widget.well
   margin:50px 50px 50px 50px
   height:157px
@@ -77,7 +76,7 @@ img
       margin-top 9px
       font-size 15px
 
-  .post-input
+  .text-input textarea
     height:75px!important
     margin-top:37px
     width:100%
@@ -191,6 +190,10 @@ img
   box-shadow: none
   border: none
   ocfc-filter-by-types
+    background-color black
+    display block
+    width 100%
+    height 50px
     .type-filter.container
       height 30px
       width 100%
@@ -232,156 +235,83 @@ img
           color white
           background-color #6f7692
 
-  .date-feed-status
-    display: inline-block
-    position: relative
-    top: 42px
-    left: 69px
-    border: 1px solid
-    text-align: center
-    padding 2px 10px 2px 10px
-    border-radius 5px
-
-  well.type-icon
-    margin-right 8px
-    border 1px outset
-    width 88px
-    height 34px
-    position relative
-    top 3px
 
   .question-feed-display
-    display inline-block
-    height 255px
-    width 750px
-    position relative
-    margin-top 45px
-    border-color transparent
-    background-color: transparent
-    border-top-width: 0px
-    border-right-width: 0px
-    border-bottom-width: 0px
-    border-left-width: 0px
-    well.type-icon
+    .post-type-icon
       background-color #5FCAC6
-      span
-        height 12px
-        width 68px
-        color white
-    .user-comment
-      border-color #5FCAC6
-  well.div.timeline
-    background-color #808080
-    height 100%
-    width 1px
-    position absolute
 
-  ocfc-user-image
-    well.post-image
-      margin-right 15px
-      margin-left 5px
-      border-color transparent
-      padding 0px 25px 0px 25px
-      img
-        width 30px
-        height 30px
-        border-radius 25px
-
-  .post-content
-    .name-heading
-      font-weight bold
-
-  well.post-content
-    position absolute
-    width 540px
-    border-color transparent
-    .post-content-input
+  .testimony-feed-display
+    .post-type-icon
+      background-color #76A5DF
+    .article
       background-color #E4DFDF
       padding 15px
       border-radius 5px
-
-    ocfc-post-res-icons
-      a span
-        margin-right 15px
-        position inherit
-        padding 6px
-        color #333
-        border 1px transparent
-        &:hover
-          background-color #5FCAC6
-          color #ffffff
+      .content-title
+        font-family serif
+        font-size 24px
+        border-bottom 1px dashed #a9a9a9
+        vertical-align top
+      .content-body
+        margin-top 10px
 
 ocfc-user-comment-input
   #user-comment-input
     width 100%
     margin-top 15px
+    height 47px
+    padding-right 0px
+    padding-left 0px
     .icon
       img
         width:30px
         height:30px
         border-radius:25px
+        position absolute
+        top 5px
+        left 31px
     .post-comment
       width 38px
       margin-top 12px
 
-.testimony-feed-display
-  margin-top 0px
-  margin-bottom 0px
-  position relative
-  height 333px
-  border-color transparent
-  background-color: transparent
-  well.type-icon
-    background-color #76A5DF
-    span
-      height 12px
-      width 68px
-      color white
-  well.timeline
-    position absolute
-    height 100%
-  well.post-content
-    .post-title
-      font-size 16px
-      border-bottom:1px dashed
-      border-left 1px solid
-      border-top 1px solid
-      border-right 1px solid
-      border-color dimgray
-    .post-content-input
-      height 95px
-      border-left:1px solid dimgray
-      border-right:1px solid dimgray
-      border-bottom:1px solid dimgray
-    ocfc-post-res-icons
-      a span
-        margin-right 15px
-        position inherit
-        padding 6px
-        color #333
-        border 1px transparent
-        &:hover
-          background-color #76A5DF!important
-          color #ffffff
+
+
+
 
 .general-feed-display
-  margin-top 0px
-  margin-bottom 0px
-  position relative
-  height 500px
-  border-color transparent
-  background-color: transparent
-  well.type-icon
+  .post-type-icon
     background-color #A5ADCE
-    span
-      height 12px
-      width 68px
-      color white
-
-  well.timeline
-    position absolute
-    height 100%
-
+  .post-content-photos
+    background-color white
+    height:240px
+    position relative
+    .lg-content
+      position absolute
+      width 357px
+      height 240px
+      overflow hidden
+      img
+        width 357px
+        height auto
+    .rt-content
+      position absolute
+      left 360px
+      width 180px
+      height 117px
+      overflow-y hidden
+      img
+        width 180px
+        height auto
+    .rb-content
+      position absolute
+      left 360px
+      top 120px
+      width 180px
+      height 120px
+      overflow-y hidden
+      img
+        width 180px
+        height auto
   well.post-content
     div.gen-post-content
       border 1px solid
@@ -394,11 +324,11 @@ ocfc-user-comment-input
         height 198px
         ocfc-user-image
           img
-            width 277px!important
-            border-radius 0px!important
-            height 200px!important
-            position relative!important
-            left -32px!important
+            //width 277px!important
+            //border-radius 0px!important
+            //height 200px!important
+            //position relative!important
+            //left -32px!important
       div.sm-contents
         background-color green
         display inline-block
@@ -407,10 +337,10 @@ ocfc-user-comment-input
         width 245px
         height 198px
         img
-          position relative
-          border-radius 0px
-          width 245px
-          height 100px
+          /*position relative*/
+          /*border-radius 0px*/
+          /*width 245px*/
+          /*height 100px*/
 
     div.gen-post-text
       border 1px solid
@@ -436,60 +366,81 @@ ocfc-user-comment-input
   height 297px
   border-color transparent
   background-color: transparent
-  well.type-icon
+  .post-type-icon
     background-color #6F7692
-    span
-      height 12px
-      width 68px
-      color white
-  well.timeline
-    position absolute
-    height 100%
-  well.post-content
+
+  .post-content
     div.event-container
       border 1px solid #696969
-      div.date-info
+      display block
+      border-radius 5px
+      background-color #ffffff
+      .date-info
         border-right 1px solid #696969
-        height 90px
+        height 92px
         width 70px
         display inline-block
-        div.date
-          text-align: center
-          font-weight: bold
-          width 70px
-        div.date.mm-yy
-          height 50px
+        .mm-yy
+          line-height 65px
+          font-family serif
+          height 65px
           border-bottom 1px solid #696969
-          font-size: 31px
-        div.date.event-time
-          height 40px
+          font-size: 32px
+          text-align center
+        .event-time
+          height 25px
+          line-height 25px
+          font-weight bold
+          text-align center
       div.event-info
+        vertical-align top
         display inline-block
+        background-color #e4dfdf
+        border-top-right-radius 5px
+        border-bottom-right-radius 5px
         div.event-title
-          height 30px
-          width 450px
-          font-weight: bold
+          height 46px
+          width 468px
+          font-size 20px
+          font-family serif
+          text-indent 20px
+          line-height 46px
+          border-top-right-radius 5px
         div.event-detail-info
-          height 40px
+          height 46px
           position relative
-          bottom -18px
           border-top 1px solid #696969
+          border-bottom-right-radius 5px
           div.event-description
             display inline-block
             width 328px
-            height 37px
+            height 46px
             position relative
-            bottom 18px
             border-right 1px solid #696969
+            p
+              margin-top 4px
+              margin-left 20px
           div.response
             display inline-block
-            height 37px
-            width 40px
+            height 46px
+            width 46px
             border-right 1px solid #696969
-            text-align: center
+            text-align center
+            vertical-align top
+            background-color rgb(162, 157, 187)
+            .status-num
+              font-size: 18px
+              margin-top: 5px
+              color #ffffff
+            .status-label
+              position: relative
+              top: -5px
+              font-size: 11px
+              color #ffffff
           div.response.denied
             border-right none
-
+            border-bottom-right-radius: 5px
+            width 48px
     ocfc-post-res-icons
       a span
         margin-right 15px
@@ -501,28 +452,149 @@ ocfc-user-comment-input
           background-color #6F7692!important
         color #ffffff
 
-.user-comment
-  background-color #C9CED3
-  margin-top 17px
-  min-height 37px
-  .content
-    display inline-block
-    width 400px
-    position relative
-    margin-left 10px
-    padding-top 7px
-    padding-bottom 3px
-    P:first-child
-      margin-bottom 0px
-    p:last-child
-      margin-bottom 0px
-      font-size 10px
-  img.gravitar
-    width:30px
-    height:30px
-    border-radius:25px
-    background-color:#d3d3d3
-    display inline-block
-    top -9px
-    position relative
 
+.content
+  display inline-block
+  width 400px
+  position relative
+  margin-left 10px
+  padding-top 7px
+  padding-bottom 3px
+  P:first-child
+    margin-bottom 0px
+  p:last-child
+    margin-bottom 0px
+    font-size 10px
+img.gravitar
+  width:30px
+  height:30px
+  border-radius:25px
+  background-color:#d3d3d3
+  display inline-block
+  top -9px
+  position relative
+
+.date-separator
+  border: 1px solid darkgray
+  text-align: center
+  padding 2px 10px 2px 10px
+  border-radius 5px
+  width: 55px
+  margin 5px auto 0px 77px
+  color darkgray
+
+.common-post-ui
+  width 750px
+  position relative
+  .line-decor
+    position absolute
+    border-bottom 1px solid darkgray
+    top 0px
+    width 129px
+    height 24px
+  .dot-decor
+    border-radius 100px
+    width 9px
+    height 9px
+    position absolute
+    left 100px
+    top 19px
+    background-color darkgray
+  .timeline
+    border-right 1px solid darkgray
+    height 100%
+    width 1px
+    position absolute
+    left 104px
+  .post-type-icon
+    margin-right 13px
+    margin-top 6px
+    border 1px outset
+    width 93px
+    height 34px
+    position relative
+    display inline-block
+    vertical-align top
+    border-radius 5px
+    .glyphicon
+      height 12px
+      width 12px
+      color white
+      display inline-block
+      margin-top 8px
+      margin-left 7px
+    span
+      height 12px
+      color white
+      display inline-block
+      margin-left 5px
+
+  ocfc-user-image
+    display inline-block
+    width 40px
+    height 40px
+    position relative
+    margin-top 3px
+    margin-left 12px
+    vertical-align top
+    .user-image
+      width 100%
+      border-radius 25px
+      position absolute
+  .post-content
+    position relative
+    display inline-block
+    width 540px
+    border-color transparent
+    margin-left 9px
+    margin-bottom: 30px;
+    .post-content-input
+      background-color #E4DFDF
+      padding 15px
+      border-radius 5px
+    .user-comment
+      background-color #C9CED3
+      border-top 1px solid #DDE2E7
+      ocfc-user-image
+        margin-top 5px
+        width 30px
+        height 30px
+        padding-bottom 5px
+      .text-input
+        display inline-block
+        width 441px
+        margin-left 5px
+        textarea
+          margin 0px 2px 0px 0px
+          height 27px
+          width 438px
+          margin-top 6px
+      button
+        vertical-align bottom
+        display inline-block
+        margin-bottom 5px
+    ocfc-post-res-icons
+      display block
+      height 20px
+      margin-bottom 10px
+      a span
+        margin-right 15px
+        position inherit
+        padding 6px
+        color #333
+        border 1px transparent
+        &:hover
+          background-color #5FCAC6
+          color #ffffff
+  ocfc-post-heading
+    .common-name-heading
+      font-size 14px
+      margin-bottom 6px
+      color #548ABB
+      margin-top: 11px
+      display: block
+      .time-stamp
+        display inline-block
+        margin-left 10px
+        font-size 11px
+        color #a9a9a9
