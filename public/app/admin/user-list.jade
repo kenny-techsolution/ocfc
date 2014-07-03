@@ -3,7 +3,7 @@
     table.table
         tr(ng-repeat="user in users")
             //for each user in the users array
-            td{{user.firstName + ' ' + user.lastName}}
+            td(ng-bind-template="{{user.firstName}} {{user.lastName}}")&nbsp;
 
 
 

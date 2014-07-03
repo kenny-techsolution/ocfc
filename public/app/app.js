@@ -37,16 +37,16 @@ angular.module('app').config(function($routeProvider,$locationProvider){
 	$routeProvider.when('/',{templateUrl:'/partials/main/main',controller:'MainCtrl'})
 		.when('/admin/users',{templateUrl:'/partials/admin/user-list',controller:'UserListCtrl',resolve: routeRoleChecks.admin})
 		.when('/signup',{templateUrl:'/partials/account/signup',controller:'SignupCtrl'})
-		.when('/profile',{templateUrl:'/partials/account/profile',controller:'ProfileCtrl',resolve:routeRoleChecks.user})
-		.when('/joinFellow',{templateUrl:'/partials/fellowship/join-fellow',controller:'JoinFellowCtrl'})
-		.when('/fellowship/:id',{templateUrl:'/partials/fellowship/fellowship',controller:'FellowshipCtrl'})
-		.when('/fellowship/:id/members',{templateUrl:'/partials/fellowship/member',controller:'MemberCtrl'})
-		.when('/fellowship/:id/wall/',{templateUrl:'/partials/fellowship/wall',controller:'FellowshipCtrl'})
-		.when('/createFellow/',{templateUrl:'/partials/fellowship/create-fellow',controller:'CreateFellowCtrl'})
-		.when('/ocfcAdmin/',{templateUrl:'/partials/fellowship/ocfc-admin',controller:'ApprvFellowCtrl'})
+		.when('/profile',{templateUrl:'/partials/account/profile/profile',controller:'ProfileCtrl',resolve:routeRoleChecks.user})
+		.when('/joinFellow',{templateUrl:'/partials/fellowship/join/join-fellow',controller:'JoinFellowCtrl'})
+		.when('/fellowship/:id',{templateUrl:'/partials/fellowship/main/fellowship',controller:'FellowshipCtrl'})
+		.when('/fellowship/:id/members',{templateUrl:'/partials/fellowship/member/member',controller:'MemberCtrl'})
+		.when('/fellowship/:id/wall/',{templateUrl:'/partials/fellowship/wall/wall',controller:'FellowshipCtrl'})
+		.when('/createFellow/',{templateUrl:'/partials/fellowship/create/create-fellow',controller:'CreateFellowCtrl'})
+		.when('/ocfcAdmin/',{templateUrl:'/partials/fellowship/admin/ocfc-admin',controller:'ApprvFellowCtrl'})
 		.when('/fellowship/:id/event/',{templateUrl:'/partials/calendar/event',controller:'EventCtrl'})
-		.when('/fellowship/:id/photo',{templateUrl:'/partials/fellowship/fellow-photo',controller:'FellowPhotoCtrl'})
-		.when('/fellowshipResources/:id/resource',{templateUrl:'/partials/fellowship/fellow-resource',controller:'FellowResourceCtrl'});
+		.when('/fellowship/:id/photo',{templateUrl:'/partials/fellowship/event/fellow-photo',controller:'FellowPhotoCtrl'})
+		.when('/fellowshipResources/:id/resource',{templateUrl:'/partials/fellowship/resource/fellow-resource',controller:'FellowResourceCtrl'});
 });
 
 //execute after above code to re-route path after rejection

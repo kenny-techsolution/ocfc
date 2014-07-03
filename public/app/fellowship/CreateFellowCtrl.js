@@ -1,7 +1,7 @@
 /*******************************************************************************
  5.7.2014, This controller is used to create new fellowship(s) by Administrator
  ******************************************************************************/
-angular.module('app').controller('CreateFellowCtrl', function($scope, $http, IdentitySvc, FellowshipSvc, NotifierSvc,$routeParams) {
+angular.module('app').controller('CreateFellowCtrl', function($scope, $http, FellowshipSvc, NotifierSvc) {
 
     // this function will interact with the server to let user create a
     // new fellowship.

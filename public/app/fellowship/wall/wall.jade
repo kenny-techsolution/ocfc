@@ -1,0 +1,151 @@
+#standardCol
+	#post-widget.common-widget-ui.well
+		.post-header-row.col-xs-12
+			.post-header-title.col-xs-2
+				p Make a
+				ocfc-wall-category
+		textarea.common-text-input.form-control(type='text',ng-show='isPostShown', ng-model='post.content',placeholder='{{placeholder}}')
+		.common-footer.row
+			ocfc-view-permission(ng-show='isPostShown')
+			ocfc-post-icons(ng-show='isPostShown')
+			.common-button-container
+				button.btn.btn-default.btn-sm(type='submit',ng-click='createPost($event)',ng-show='isPostShown') Post
+
+	#event-widget.common-widget-ui.well
+		.event-container
+			.event-name Angel Island 2014
+			textarea.event-detail.form-control(type='text') Meetup at San Fran and catch ferry in Tiburon
+			.event-scheduler
+				p From:
+				.calendar
+					input(type='date')
+				.time
+					input(type='time')
+				p To:
+				.calendar
+					input(type='date')
+				.time
+					input(type='time')
+				p Where:
+				.input
+					input(type='text')
+				p.welcome Welcome:
+				.input
+					input(type='text')
+		.common-footer.row
+			.common-button-container
+				button.btn.btn-default.btn-sm(type='submit') Post
+
+	#testimony-widget.common-widget-ui.well
+		.testimony-title Title
+		textarea.common-text-input.form-control(type='text',placeholder='content')
+		.common-footer.row
+			.common-button-container
+				button.btn.btn-default.btn-sm(type='submit') Post
+
+
+	#post-feed.well
+		ocfc-filter-by-types
+		.date-separator Today
+
+		.question-feed-display.common-post-ui
+			.line-decor
+			.dot-decor
+			.vertical-line.timeline
+			.post-type-icon
+				.glyphicon.glyphicon-question-sign
+				span Question
+			ocfc-user-image
+			.post-content
+				ocfc-post-heading
+				.post-content-input "Post Content goes here"
+				ocfc-post-res-icons
+				.user-comment
+					ocfc-user-image
+					.content
+						p This is a great question!
+						p Jane 10:20PM
+				ocfc-user-comment-input
+
+		.testimony-feed-display.common-post-ui
+			.line-decor
+			.dot-decor
+			.vertical-line.timeline
+			.post-type-icon
+				.glyphicon.glyphicon-text-width
+				span Testimony
+			ocfc-user-image
+			.post-content
+				ocfc-post-heading
+				.article
+					.content-title My way to home
+					.content-body In the law, testimony is a form of evidence that is obtained from a witness who makes a solemn statement or declaration of fact. Testimony may be oral or written, and it is usually made by oath or affirmation under penalty of perjury. Unless a witness is testifying as an expert witness, testimony in the form of opinions or inferences is generally limited to those opinions or inferences that are rationally based on the perceptions of the witness and are helpful to a clear understanding of the witness' testimony.
+				ocfc-post-res-icons
+				.user-comment
+					ocfc-user-image
+					.content
+						p This is a great question!
+						p Jane 10:20PM
+				ocfc-user-comment-input
+
+		.general-feed-display.common-post-ui
+			.line-decor
+			.dot-decor
+			.vertical-line.timeline
+			.post-type-icon
+				.glyphicon.glyphicon-align-justify
+				span General
+			ocfc-user-image
+			.post-content
+				ocfc-post-heading
+				div.post-content-photos
+					.lg-content
+						img(src='/css/images/TimothyFellowship1.jpg')
+					.rt-content
+						img(src='/css/images/TimothyFellowship4.jpg')
+					.rb-content
+						img(src='/css/images/TimothyFellowship2.jpg')
+				.post-content-input testimony is a form of evidence that is obtained from a witness who makes a solemn statement or declaration of fact. Testimony may be oral or written...
+				ocfc-post-res-icons
+				.user-comment
+					ocfc-user-image
+					.content
+						p This is a great question!
+						p Jane 10:20PM
+				ocfc-user-comment-input
+
+		.event-feed-display.common-post-ui
+			.line-decor
+			.dot-decor
+			.vertical-line.timeline
+			.post-type-icon
+				.glyphicon.glyphicon-calendar
+				span Event
+			ocfc-user-image
+			.post-content
+				ocfc-post-heading
+				.event-container
+					.date-info
+						.mm-yy 3/14
+						.event-time 3PM-4PM
+					.event-info
+						.event-title Annual BBQ event at CCIC room #211
+						.event-detail-info
+							.event-description
+								p This is a great event, please bring your friend to this wonderiful event. you have to bring food and drink.
+							.response.invited
+								.status-num 25
+								.status-label invited
+							.response.replied
+								.status-num 2
+								.status-label replied
+							.response.denied
+								.status-num 30
+								.status-label denied
+				ocfc-post-res-icons
+				.user-comment
+					ocfc-user-image
+					.content
+						p This is a great question!
+						p Jane 10:20PM
+				ocfc-user-comment-input

@@ -1,0 +1,27 @@
+.visibility-container
+	p Visible To
+	.dropdown.fellowship
+		button.btn.btn-default.dropdown-toggle.glyphicon.glyphicon-eye-open(type='button', data-toggle='dropdown')
+			p Fellowship
+			span.caret
+		ul.dropdown-menu(role='menu', aria-labelledby='dropdownMenu1')
+			li.glyphicon.glyphicon-eye-open(role='presentation')
+				a(role='menuitem', tabindex='-1', href='#')
+				p Timothy
+			li.glyphicon.glyphicon-eye-close(role='presentation')
+				a(role='menuitem', tabindex='-1', href='#')
+				p Lin Xin
+	.dropdown.church
+		button.btn.btn-default.dropdown-toggle.glyphicon.glyphicon-eye-close(type='button', data-toggle='dropdown')
+			p Church
+			span.caret
+		ul.dropdown-menu(role='menu', aria-labelledby='dropdownMenu1')
+			li.glyphicon.glyphicon-eye-close(role='presentation')
+				a(role='menuitem', tabindex='-1', href='#')
+				p CCIC
+			li.glyphicon.glyphicon-eye-close(role='presentation')
+				a(role='menuitem', tabindex='-1', href='#')
+				p Home of Christ
+
+	button.btn.btn-default.glyphicon.glyphicon-eye-close(type='button')
+		p World

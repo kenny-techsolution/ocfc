@@ -3,7 +3,7 @@
  * admin approval.
  * GET, UPDATE, REMOVE, QUERY, ADD
  ******************************************************************************/
-angular.module('app').controller('ApprvFellowCtrl', function($scope, $http, IdentitySvc,FellowshipSvc) {
+angular.module('app').controller('ApprvFellowCtrl', function($scope,$http,FellowshipSvc) {
     // function()() is a self triggered function
     // no calling required
     $scope.curr_idx;
@@ -12,7 +12,7 @@ angular.module('app').controller('ApprvFellowCtrl', function($scope, $http, Iden
     };
     //5.22.2014, Display list of data where status='Waiting for Approval'
     $scope.fellowships =FellowshipSvc.query({
-        status: 'Waiting for Approval'  //where clause
+        status: 'Waiting for Approval'  //this is like the where clause
     }, function() {
     });
 

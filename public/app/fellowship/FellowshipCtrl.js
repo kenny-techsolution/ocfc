@@ -1,11 +1,10 @@
 /*******************************************************************************
  ******************************************************************************/
-angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http, $scope, FellowshipSvc,$routeParams,PostSvc) {
+angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http, $scope, FellowshipSvc,$routeParams,PostSvc,TransformSvc) {
     $scope.formData = {};
 	$scope.about;
 	$scope.name;
 	$scope.id;
-	$scope.placeholder="What's on your mind?";
 	$scope.post = {
 		content:"",
 		type:0,
@@ -42,7 +41,6 @@ angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http
         
     };
 
-
     var fellow = FellowshipSvc.get(
         {
             _id: $routeParams.id}
@@ -54,35 +52,19 @@ angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http
         }
 
     );
+	$scope.placeHolderStrs = [
+		"Share your testimony",
+		"What is your question?",
+		"What's on your mind?"
+	];
 
     $scope.onClickType=function(type){
-        if(type==='testimony'){
-            $scope.post.type=0;
-            $scope.placeholder="Share your testimony";
-	        console.log('called testimony')
-        }else if(type==='question'){
-            $scope.post.type=1;
-            $scope.placeholder="What is your question?";
-	        console.log('called question')
-        }else if (type==='general'){
-	        $scope.post.type=2;
-	        $scope.placeholder="What's on your mind?"
-	        console.log('called general')
-        }else{
-	    }
+	    $scope.post.type = TransformSvc.toPostTypeInt(type);
+	    $scope.placeholder = $scope.placeHolderStrs[$scope.post.type];
     };
 
     //5.24.2014 method that transform Type values to string
-    $scope.transformType=function(type){
-        if(type===0){
-            return 'Testimony'
-        }else if(type===1) {
-	        return 'Question'
-        }else if (type==2){
-	        return 'General'
-        }else{
-        }
-    };
+	$scope.transformType=TransformSvc.toPostTypeStr;
 
 	//6.26.2014 created displayPost function
 	$scope.displayPost=function(){

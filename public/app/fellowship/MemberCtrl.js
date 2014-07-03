@@ -53,9 +53,9 @@ angular.module('app').controller('MemberCtrl', function($scope, FellowMemSvc,$ro
         // GET is asyncronized
 
         var member = $scope.members[$scope.modalMemberIndex];
-        console.log("jajajajjaj");
-        console.log($scope.modalMemberIndex);
-        console.log(member);
+//        console.log("jajajajjaj");
+//        console.log($scope.modalMemberIndex);
+//        console.log(member);
         //below parameter is a callback, 1st parameter must be met
         var fellowMem = FellowMemSvc.remove(
             {_id: member.fellowMemId}

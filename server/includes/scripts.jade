@@ -13,7 +13,7 @@ script(type="text/javascript", src="/vendor/angular-file-upload/angular-file-upl
 script(type="text/javascript", src="/vendor/angular-bootstrap/ui-bootstrap-tpls.js")
 
 script(type="text/javascript", src="/app/app.js")
-script(type="text/javascript", src="/app/directives/ngThumb.js")
+script(type="text/javascript", src="/app/common/ngThumb.js")
 script(type="text/javascript", src="/app/main/MainCtrl.js")
 script(type="text/javascript", src="/app/main/ocfc-collapsible-menu.js")
 
@@ -21,14 +21,21 @@ script(type="text/javascript", src="/app/common/NotifierSvc.js")
 script(type="text/javascript", src="/app/common/SetupSvc.js")
 script(type="text/javascript", src="/app/common/CommonCtrl.js")
 
+script(type="text/javascript", src="/app/common/ocfc-view-permission.js")
+script(type="text/javascript", src="/app/common/ocfc-user-image.js")
+
+
 script(type="text/javascript", src="/app/account/IdentitySvc.js")
 script(type="text/javascript", src="/app/account/AuthSvc.js")
 script(type="text/javascript", src="/app/account/UserSvc.js")
 script(type="text/javascript", src="/app/account/SignupCtrl.js")
 script(type="text/javascript", src="/app/account/ProfileCtrl.js")
-script(type="text/javascript", src="/app/account/ocfc-signin.js")
-script(type="text/javascript", src="/app/account/ocfc-user-dropdown-menu.js")
-script(type="text/javascript", src="/app/account/ocfc-profile-form.js")
+
+script(type="text/javascript", src="/app/account/profile/ocfc-profile-form.js")
+
+script(type="text/javascript", src="/app/account/login/ocfc-signin.js")
+script(type="text/javascript", src="/app/account/login/ocfc-user-dropdown-menu.js")
+
 
 script(type="text/javascript", src="/app/admin/UserListCtrl.js")
 
@@ -43,17 +50,17 @@ script(type="text/javascript", src="/app/fellowship/CreateFellowCtrl.js")
 script(type="text/javascript", src="/app/fellowship/ApprvFellowCtrl.js")
 script(type="text/javascript", src="/app/fellowship/FellowPhotoCtrl.js")
 script(type="text/javascript", src="/app/fellowship/FellowResourceCtrl.js")
-script(type="text/javascript", src="/app/fellowship/ocfc-filter-bar.js")
-script(type="text/javascript", src="/app/fellowship/ocfc-fellow-list.js")
-script(type="text/javascript", src="/app/fellowship/ocfc-wall-category.js")
-script(type="text/javascript", src="/app/fellowship/ocfc-post-types.js")
-script(type="text/javascript", src="/app/fellowship/ocfc-view-permission.js")
-script(type="text/javascript", src="/app/fellowship/ocfc-post-icons.js")
-script(type="text/javascript", src="/app/fellowship/ocfc-filter-by-types.js")
-script(type="text/javascript", src="/app/fellowship/ocfc-post-res-icons.js")
-script(type="text/javascript", src="/app/fellowship/ocfc-user-image.js")
-script(type="text/javascript", src="/app/fellowship/ocfc-user-comment-input.js")
-script(type="text/javascript", src="/app/fellowship/ocfc-post-heading.js")
+script(type="text/javascript", src="/app/fellowship/TransformSvc.js")
 
+
+script(type="text/javascript", src="/app/fellowship/join/ocfc-filter-bar.js")
+script(type="text/javascript", src="/app/fellowship/join/ocfc-fellow-list.js")
+
+script(type="text/javascript", src="/app/fellowship/wall/ocfc-wall-category.js")
+script(type="text/javascript", src="/app/fellowship/wall/ocfc-post-icons.js")
+script(type="text/javascript", src="/app/fellowship/wall/ocfc-filter-by-types.js")
+script(type="text/javascript", src="/app/fellowship/wall/ocfc-post-res-icons.js")
+script(type="text/javascript", src="/app/fellowship/wall/ocfc-user-comment-input.js")
+script(type="text/javascript", src="/app/fellowship/wall/ocfc-post-heading.js")
 
 script(type="text/javascript", src="/app/calendar/EventCtrl.js")
