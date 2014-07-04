@@ -12,11 +12,8 @@
 angular.module('app').directive('ocfcSignin',function(){
 	return{
 		restrict:'E',
-		templateUrl:'/partials/account/login/ocfc-signin',
-		controller:function($scope,$http,IdentitySvc,NotifierSvc,AuthSvc,$location){
-			//login box did not disappear
-			$scope.identity=IdentitySvc;
-
+		templateUrl:'/partials/account/access/ocfc-signin',
+		controller:function($scope,$http,IdentitySvc,NotifierSvc,AuthSvc){
 			$scope.signin=function(username,password){
 				AuthSvc.authenticateUser(username,password).then(function(success){
 					if(success){
@@ -29,4 +26,3 @@ angular.module('app').directive('ocfcSignin',function(){
 		}
 	};
 });
-

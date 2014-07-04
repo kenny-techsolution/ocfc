@@ -9,6 +9,39 @@
  Calls AuthSvc.updateCurrentUser with the new data stored in object, newUserData.
  ***************************************************************************************/
 
-angular.module('app').controller('ProfileCtrl',function($scope, AuthSvc,IdentitySvc,NotifierSvc){
+angular.module('app').controller('ProfileCtrl',function($scope,AuthSvc,IdentitySvc,NotifierSvc){
+		$scope.email = IdentitySvc.currentUser.userName;
+		$scope.fname = IdentitySvc.currentUser.firstName;
+		$scope.lname = IdentitySvc.currentUser.lastName;
+
+		$scope.update=function(){
+			console.log("check update function");
+
+			var newUserData={
+				userName: $scope.email,
+				firstName: $scope.fname,
+				lastName: $scope.lname
+			};
+			if($scope.password && $scope.password.length>0){
+				newUserData.password=$scope.password;
+			}
+
+			AuthSvc.updateCurrentUser(newUserData).then(function(){
+					NotifierSvc.notify('Your user account has been updated');}
+				,function(reason){
+					NotifierSvc.error(reason);
+				});
+		};
+
+		$scope.signin=function(username,password){
+			AuthSvc.authenticateUser(username,password).then(function(success){
+				if(success){
+					NotifierSvc.notify('You have successfully signed in!');
+				} else{
+					NotifierSvc.notify('Username/Password combination incorrect');
+				}
+			});
+		};
+
 
 });

@@ -10,13 +10,13 @@
  ***************************************************************************************/
 
 //6.22.2014, create directive for signout
-angular.module('app').directive('ocfcUserDropdownMenu',function(){
+angular.module('app').directive('ocfcSignout',function(){
     return{
         restrict:'E',
-        templateUrl:'/partials/account/login/ocfc-user-dropdown-menu',
-        controller:function($scope,$http,IdentitySvc,NotifierSvc,AuthSvc,$location){
+        templateUrl:'/partials/account/access/ocfc-signout',
+        controller:function($scope,NotifierSvc,AuthSvc,$location){
             //login box did not disappear
-            $scope.identity=IdentitySvc;
+            //$scope.identity=IdentitySvc;
 
             $scope.signout=function(){
 	            AuthSvc.logoutUser().then(function(){

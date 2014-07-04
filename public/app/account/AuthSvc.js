@@ -1,5 +1,5 @@
 /*************************************************************************************
- This file creates a new Directive called AuthSvc
+ This file creates a new Service called AuthSvc
  which will authenticate username & password info.
 
  Its takes in 4 injections ($http,IdentitySvc, $q and UserSvc)
@@ -73,8 +73,6 @@ angular.module('app').factory('AuthSvc',function($http,IdentitySvc,$q,UserSvc){
             return dfd.promise;
         },
         authorizedCurrentUserForRoute: function(role){
-            console.log("test IdentitySvc.isAuthorized(role)");
-            console.log(role);
             if(IdentitySvc.isAuthorized(role)){
                 console.log("IdentitySvc.isAuthorized(role) returned as TRUE in AuthSvc");
                 return true;
@@ -83,8 +81,6 @@ angular.module('app').factory('AuthSvc',function($http,IdentitySvc,$q,UserSvc){
             }
         },
         authorizedAuthenticatedUserForRoute: function(){
-            console.log("test Identity.isAuthenticated() 2nd time in AuthSvc");
-            console.log(IdentitySvc.isAuthenticated());
             if(IdentitySvc.isAuthenticated()){
                 console.log("IdentitySvc.isAuthenticated() returned as TRUE in AuthSvc");
                 return true;
