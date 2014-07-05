@@ -1,28 +1,14 @@
 .visibility-container
 	p Visible To
-	.dropdown.fellowship
-		button.btn.btn-default(type='button', ng-click='fellowshipVisiMenu=!fellowshipVisiMenu')
-			span.glyphicon.glyphicon-eye-open
-			span Fellowship
-			span.caret
-		ul.fellowship-visi-menu(aria-labelledby='dropdownMenu1', ng-show='fellowshipVisiMenu')
-			li.glyphicon.glyphicon-eye-open(role='presentation', ng-click='toggleGroupSelection('123')')
-				a(role='menuitem', tabindex='-1', href='#')
-					p Timothy
-			li.glyphicon.glyphicon-eye-close(role='presentation', ng-click='toggleGroupSelection('234')')
-				a(role='menuitem', tabindex='-1', href='#')
-					p Lin Xin
-	.dropdown.church
-		button.btn.btn-default.dropdown-toggle.glyphicon.glyphicon-eye-close(type='button', data-toggle='dropdown')
-			p Church
-			span.caret
-		ul.dropdown-menu(role='menu', aria-labelledby='dropdownMenu1')
-			li.glyphicon.glyphicon-eye-close(role='presentation')
-				a(role='menuitem', tabindex='-1', href='#')
-				p CCIC
-			li.glyphicon.glyphicon-eye-close(role='presentation')
-				a(role='menuitem', tabindex='-1', href='#')
-				p Home of Christ
-
-	button.btn.btn-default.glyphicon.glyphicon-eye-close(type='button')
-		p World
+	.btn.btn-default.btn-sm(ng-click='visibility.fellowship=!visibility.fellowship')
+		span.glyphicon.glyphicon-eye-open(ng-show='visibility.fellowship===true')
+		span.glyphicon.glyphicon-eye-close(ng-show='visibility.fellowship===false')
+		| Fellowship
+	.btn.btn-default.btn-sm(ng-click='visibility.church=!visibility.church')
+		span.glyphicon.glyphicon-eye-open(ng-show='visibility.church===true')
+		span.glyphicon.glyphicon-eye-close(ng-show='visibility.church===false')
+		| Church		
+	.btn.btn-default.btn-sm(ng-click='visibility.world=!visibility.world')
+		span.glyphicon.glyphicon-eye-open(ng-show='visibility.world===true')
+		span.glyphicon.glyphicon-eye-close(ng-show='visibility.world===false')
+		| World

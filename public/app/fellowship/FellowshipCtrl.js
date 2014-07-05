@@ -30,14 +30,28 @@ angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http
 	$scope.generalPost = {
 		content: ''
 	};
-	$scope.visibility = [];
-	$scope.toggleGroupSelection = function (groupId) {
-		$scope.visibility.push(groupId);
-
+	
+	$scope.eventPost = {
+	    title: '',
+	    content: '',
+	    from: '',
+	    to: '',
+	    where: '',
+	    welcome: ''
 	};
+	$scope.visibility = {
+	    fellowship: true,
+	    church: false,
+	    world: false
+	};
+
 	console.log("underscore");
 	console.log(_);
-    var uploader = $scope.uploader = $fileUploader.create({
+    
+	
+	
+	
+	var uploader = $scope.uploader = $fileUploader.create({
         scope: $scope,
         url: '/file-upload', 
         formData : $scope.formData
