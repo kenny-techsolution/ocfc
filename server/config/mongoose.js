@@ -16,6 +16,7 @@ module.exports = function(config){
     });
     userModel.createDefaultUsers();
     courseModel.createDefaultCourses();
+	console.log("ldldldldldldl");
     fellowModel.createDefaultFellows();
 };
 

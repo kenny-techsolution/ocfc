@@ -27,7 +27,10 @@ module.exports = function(app, config){
     app.use(express.session({secret: 'multi vision unicorns'}));
     //initialize passport
     app.use(passport.initialize());
-    app.use(passport.session());
+    app.use(passport.session({
+	    maxAge  : new Date(Date.now() + 3600000), //1 Hour
+	    expires : new Date(Date.now() + 3600000), //1 Hour
+    }));
     //Configure stylus middleware
     app.use(stylus.middleware(
         {

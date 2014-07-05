@@ -2,7 +2,6 @@
 angular.module('app').directive('ocfcWallCategory',function() {
 	return{
 		restrict: 'E',
-		$scope: true,
 		templateUrl: '/partials/fellowship/wall/ocfc-wall-category',
 		controller: function () {
 		}

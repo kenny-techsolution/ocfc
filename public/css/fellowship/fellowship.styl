@@ -54,8 +54,69 @@
 
 .common-widget-ui.well
   margin:50px 50px 50px 50px
-  height:145px
+  height:auto
   padding:0px
+  .post-header-row
+    width 662px
+    height 37px
+    margin-right 5px
+    margin-left 5px
+    border-bottom 1px solid lightgrey
+    padding 0px
+    .post-header-title
+      position relative
+      height 100%
+      p
+        margin-top 9px
+        font-size 15px
+  ocfc-wall-category
+    .header-icons
+      display: inline-block
+      position: absolute
+      padding: 5px
+      top: 7px
+      width: 80px
+      color #333333
+      &:hover
+      &:active
+        border-radius 3px
+        text-decoration none
+        color white
+      span
+        font-weight bold
+
+    .header-icons.post
+      left: 100px
+      color #E47168
+      &:hover
+      &:active
+        background-color #E47168
+        color white
+
+    .header-icons.event
+      left: 187px
+      color #8D778F
+      &:hover
+      &:active
+        background-color #8D778F
+        color white
+
+    .header-icons.testimony
+      left: 274px
+      color #76a5df
+      width: 100px
+      &:hover
+      &:active
+        background-color #76a5df
+        color white
+
+    .header-icons.question
+      left: 375px
+      color #5fcac6
+      width: 100px
+      &:hover
+        background-color #5fcac6
+        color white
 
   .common-text-input textarea
     height:75px!important
@@ -78,7 +139,7 @@
       width 80px
       display inline-block
       top 5px
-      left 574px
+      left 0px
       button.btn
         width 81px
         margin-top 5px
@@ -120,71 +181,6 @@
       input
         width 214px
 
-
-
-//fellowship wall page style
-#post-widget
-  .post-header-row
-    width 662px
-    height 37px
-    margin-right 5px
-    margin-left 5px
-    border-bottom 1px solid lightgrey
-    padding 0px
-
-  .post-header-title
-    position relative
-    height 100%
-    p
-      margin-top 9px
-      font-size 15px
-
-
-  ocfc-wall-category
-    .header-icons
-      display: inline-block
-      position: absolute
-      padding: 5px
-      top: 7px
-      width: 80px
-      color #333333
-      &:hover
-        border-radius 3px
-        text-decoration none
-        color white
-      span
-        font-weight bold
-
-    .header-icons.post
-      left: 100px
-      color #E47168
-      &:hover
-        background-color #E47168
-        color white
-
-    .header-icons.event
-      left: 187px
-      color #8D778F
-      &:hover
-        background-color #8D778F
-        color white
-
-    .header-icons.testimony
-      left: 274px
-      color #76a5df
-      width: 100px
-      &:hover
-        background-color #76a5df
-        color white
-
-    .header-icons.question
-      left: 375px
-      color #5fcac6
-      width: 100px
-      &:hover
-        background-color #5fcac6
-        color white
-
   .button.btn
     position relative
     display inline-block
@@ -193,7 +189,6 @@
     padding-right 15px
     .caret
       margin-left 4px
-
   ocfc-post-types
     .type-container
       height 33px
@@ -267,8 +262,33 @@
           position relative
           width 40px
 
-  .common-button-container
-    left 0px
+
+
+.post-show.ng-hide-remove
+  -webkit-transition 0.4s linear all
+  transition 0.4s linear all
+  /* remember to add this */
+  display block!important
+  opacity 1
+  /*height 200px*/
+
+.post-show.ng-hide-add
+  -webkit-transition 0.1s linear all
+  transition 0.1s linear all
+  /* remember to add this */
+  display none!important
+  opacity 0
+  height 0px
+
+.post-show.ng-hide
+  opacity 0
+  height 0px
+
+
+
+
+
+
 
 #testimony-widget.well
   height 135px
@@ -287,7 +307,7 @@
     left 9px
 
 
-#event-widget.well
+#event-widget
   height 222px
 
   .event-name
@@ -674,3 +694,16 @@ img.gravitar
         margin-left 10px
         font-size 11px
         color #a9a9a9
+
+//fellowship-visi-menu
+.fellowship-visi-menu
+  position absolute
+  left -39px
+  li
+    display block
+    height 35px
+    border 1px solid grey
+    a
+      display block
+      width 100%
+      height 100%

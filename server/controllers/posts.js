@@ -5,27 +5,29 @@
 var Post=require('mongoose').model('Post'),
     commFunc=require('../utilities/commonFunctions');
 
+//POST
 exports.createPost=function(req,res){
     var postData=req.body;
-    postData.user_object_id = req.user._id;
+    postData.user = req.user._id;
 
-    Post.create(postData, function(err,postFellow){
+    Post.create(postData, function(err,returnedPost){
         if(err){
             if(err.toString().indexOf('E11000')>-1){
-                err=new Error("Duplicate createFellow");}
+                err=new Error("Duplicate createPost");}
             res.status(400);
             var err_message = err.toString();
             return res.send({reason:err_message});
         }
-        Post.findOne(postFellow).populate("user_object_id").exec(function (err, postFellow){
-            res.send({status:"success", post: postFellow});
+        Post.findOne(returnedPost).populate("user").exec(function (err, returnedPost){
+            res.send({status:"success", post: returnedPost});
         });
     });
 };
 
+//GET
 exports.queryPost=function(req,res){
     if(req.query.fellow_object_id){
-        Post.find({fellow_object_id:req.query.fellow_object_id}).populate("user_object_id").exec(function (err, collection){
+        Post.find({group:req.query.fellow_object_id}).populate("user").exec(function (err, collection){
             if (!err) {
                 commFunc.cl("check collection",collection);
                 res.send(collection.reverse());
@@ -45,6 +47,7 @@ exports.queryPost=function(req,res){
 
 };
 
+/*
 exports.updatePost=function(req,res){
      Post.findById(req.params.id, function (err,Post) {
         if(!err){
@@ -66,3 +69,4 @@ exports.updatePost=function(req,res){
         });
     });
 };
+*/

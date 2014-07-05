@@ -4,7 +4,8 @@ angular.module('app').directive('ocfcViewPermission',function() {
 		restrict: 'E',
 		$scope: true,
 		templateUrl: '/partials/common/ocfc-view-permission',
-		controller: function () {
+		controller: function ($scope) {
+			$scope.fellowshipVisiMenu = false;
 		}
 	};
 });

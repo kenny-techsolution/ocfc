@@ -1,47 +1,49 @@
 #standardCol
-	#post-widget.common-widget-ui.well
-		.post-header-row.col-xs-12
-			.post-header-title.col-xs-2
+	.common-widget-ui.well
+		.post-header-row
+			.post-header-title
 				p Make a
 				ocfc-wall-category
-		textarea.common-text-input.form-control(type='text',ng-show='isPostShown', ng-model='post.content',placeholder='{{placeholder}}')
-		.common-footer.row
-			ocfc-view-permission(ng-show='isPostShown')
-			ocfc-post-icons(ng-show='isPostShown')
-			.common-button-container
-				button.btn.btn-default.btn-sm(type='submit',ng-click='createPost($event)',ng-show='isPostShown') Post
+		#post-editor.post-show(ng-show='postType==="post"')
+			textarea.common-text-input.form-control(type='text',ng-model='generalPost.content',placeholder='{{placeholder}}')
 
-	#event-widget.common-widget-ui.well
-		.event-container
-			.event-name Angel Island 2014
-			textarea.event-detail.form-control(type='text') Meetup at San Fran and catch ferry in Tiburon
-			.event-scheduler
-				p From:
-				.calendar
-					input(type='date')
-				.time
-					input(type='time')
-				p To:
-				.calendar
-					input(type='date')
-				.time
-					input(type='time')
-				p Where:
-				.input
-					input(type='text')
-				p.welcome Welcome:
-				.input
-					input(type='text')
-		.common-footer.row
-			.common-button-container
-				button.btn.btn-default.btn-sm(type='submit') Post
 
-	#testimony-widget.common-widget-ui.well
-		.testimony-title Title
-		textarea.common-text-input.form-control(type='text',placeholder='content')
+		#event-widget.post-show(ng-show="postType==='event'")
+			.event-container
+				.event-name Angel Island 2014
+				textarea.event-detail.form-control(type='text') Meetup at San Fran and catch ferry in Tiburon
+				.event-scheduler
+					p From:
+					.calendar
+						input(type='date')
+					.time
+						input(type='time')
+					p To:
+					.calendar
+						input(type='date')
+					.time
+						input(type='time')
+					p Where:
+					.input
+						input(type='text')
+					p.welcome Welcome:
+					.input
+						input(type='text')
 		.common-footer.row
+			ocfc-view-permission
+			ocfc-post-icons
 			.common-button-container
-				button.btn.btn-default.btn-sm(type='submit') Post
+				button.btn.btn-default.btn-sm(type='submit',ng-click='createPost($event)') Post
+			//.common-footer.row
+			//	.common-button-container
+			//		button.btn.btn-default.btn-sm(type='submit',ng-click='createPost($event)') Post
+		//
+		//#testimony-widget.common-widget-ui.well
+		//	.testimony-title Title
+		//	textarea.common-text-input.form-control(type='text',placeholder='content')
+		//	.common-footer.row
+		//		.common-button-container
+		//			button.btn.btn-default.btn-sm(type='submit') Post
 
 
 	#post-feed.well

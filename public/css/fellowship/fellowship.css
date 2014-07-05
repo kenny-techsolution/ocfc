@@ -55,8 +55,78 @@ a
 }
 .common-widget-ui.well {
   margin: 50px 50px 50px 50px;
-  height: 145px;
+  height: auto;
   padding: 0px;
+}
+.common-widget-ui.well .post-header-row {
+  width: 662px;
+  height: 37px;
+  margin-right: 5px;
+  margin-left: 5px;
+  border-bottom: 1px solid #d3d3d3;
+  padding: 0px;
+}
+.common-widget-ui.well .post-header-row .post-header-title {
+  position: relative;
+  height: 100%;
+}
+.common-widget-ui.well .post-header-row .post-header-title p {
+  margin-top: 9px;
+  font-size: 15px;
+}
+.common-widget-ui.well ocfc-wall-category .header-icons {
+  display: inline-block;
+  position: absolute;
+  padding: 5px;
+  top: 7px;
+  width: 80px;
+  color: #333;
+}
+.common-widget-ui.well ocfc-wall-category .header-icons:hover,
+.common-widget-ui.well ocfc-wall-category .header-icons:active {
+  border-radius: 3px;
+  text-decoration: none;
+  color: #fff;
+}
+.common-widget-ui.well ocfc-wall-category .header-icons span {
+  font-weight: bold;
+}
+.common-widget-ui.well ocfc-wall-category .header-icons.post {
+  left: 100px;
+  color: #e47168;
+}
+.common-widget-ui.well ocfc-wall-category .header-icons.post:hover,
+.common-widget-ui.well ocfc-wall-category .header-icons.post:active {
+  background-color: #e47168;
+  color: #fff;
+}
+.common-widget-ui.well ocfc-wall-category .header-icons.event {
+  left: 187px;
+  color: #8d778f;
+}
+.common-widget-ui.well ocfc-wall-category .header-icons.event:hover,
+.common-widget-ui.well ocfc-wall-category .header-icons.event:active {
+  background-color: #8d778f;
+  color: #fff;
+}
+.common-widget-ui.well ocfc-wall-category .header-icons.testimony {
+  left: 274px;
+  color: #76a5df;
+  width: 100px;
+}
+.common-widget-ui.well ocfc-wall-category .header-icons.testimony:hover,
+.common-widget-ui.well ocfc-wall-category .header-icons.testimony:active {
+  background-color: #76a5df;
+  color: #fff;
+}
+.common-widget-ui.well ocfc-wall-category .header-icons.question {
+  left: 375px;
+  color: #5fcac6;
+  width: 100px;
+}
+.common-widget-ui.well ocfc-wall-category .header-icons.question:hover {
+  background-color: #5fcac6;
+  color: #fff;
 }
 .common-widget-ui.well .common-text-input textarea {
   height: 75px !important;
@@ -81,7 +151,7 @@ a
   width: 80px;
   display: inline-block;
   top: 5px;
-  left: 574px;
+  left: 0px;
 }
 .common-widget-ui.well .common-footer .common-button-container button.btn {
   width: 81px;
@@ -130,167 +200,118 @@ a
 .common-widget-ui.well .event-scheduler .input input {
   width: 214px;
 }
-#post-widget .post-header-row {
-  width: 662px;
-  height: 37px;
-  margin-right: 5px;
-  margin-left: 5px;
-  border-bottom: 1px solid #d3d3d3;
-  padding: 0px;
-}
-#post-widget .post-header-title {
-  position: relative;
-  height: 100%;
-}
-#post-widget .post-header-title p {
-  margin-top: 9px;
-  font-size: 15px;
-}
-#post-widget ocfc-wall-category .header-icons {
-  display: inline-block;
-  position: absolute;
-  padding: 5px;
-  top: 7px;
-  width: 80px;
-  color: #333;
-}
-#post-widget ocfc-wall-category .header-icons:hover {
-  border-radius: 3px;
-  text-decoration: none;
-  color: #fff;
-}
-#post-widget ocfc-wall-category .header-icons span {
-  font-weight: bold;
-}
-#post-widget ocfc-wall-category .header-icons.post {
-  left: 100px;
-  color: #e47168;
-}
-#post-widget ocfc-wall-category .header-icons.post:hover {
-  background-color: #e47168;
-  color: #fff;
-}
-#post-widget ocfc-wall-category .header-icons.event {
-  left: 187px;
-  color: #8d778f;
-}
-#post-widget ocfc-wall-category .header-icons.event:hover {
-  background-color: #8d778f;
-  color: #fff;
-}
-#post-widget ocfc-wall-category .header-icons.testimony {
-  left: 274px;
-  color: #76a5df;
-  width: 100px;
-}
-#post-widget ocfc-wall-category .header-icons.testimony:hover {
-  background-color: #76a5df;
-  color: #fff;
-}
-#post-widget ocfc-wall-category .header-icons.question {
-  left: 375px;
-  color: #5fcac6;
-  width: 100px;
-}
-#post-widget ocfc-wall-category .header-icons.question:hover {
-  background-color: #5fcac6;
-  color: #fff;
-}
-#post-widget .button.btn {
+.common-widget-ui.well .button.btn {
   position: relative;
   display: inline-block;
   top: 5px;
   padding-left: 15px;
   padding-right: 15px;
 }
-#post-widget .button.btn .caret {
+.common-widget-ui.well .button.btn .caret {
   margin-left: 4px;
 }
-#post-widget ocfc-post-types .type-container {
+.common-widget-ui.well ocfc-post-types .type-container {
   height: 33px;
   display: inline-block;
   position: relative;
 }
-#post-widget ocfc-post-types .type-container p {
+.common-widget-ui.well ocfc-post-types .type-container p {
   width: 33px;
   position: relative;
   display: inline-block;
   top: 5px;
   margin-left: 25px;
 }
-#post-widget ocfc-post-types .type-container ul.dropdown-menu {
+.common-widget-ui.well ocfc-post-types .type-container ul.dropdown-menu {
   left: 57px;
   min-width: 0px;
 }
-#post-widget ocfc-view-permission .visibility-container {
+.common-widget-ui.well ocfc-view-permission .visibility-container {
   width: 414px;
   height: 61px;
   display: inline-block;
   position: relative;
 }
-#post-widget ocfc-view-permission .visibility-container p {
+.common-widget-ui.well ocfc-view-permission .visibility-container p {
   width: 60px;
   position: relative;
   display: inline-block;
   margin-left: 5px;
   top: 5px;
 }
-#post-widget ocfc-view-permission .visibility-container .dropdown {
+.common-widget-ui.well ocfc-view-permission .visibility-container .dropdown {
   display: inline-block;
   margin-top: 10px;
   margin-right: 5px;
 }
-#post-widget ocfc-view-permission .visibility-container .dropdown button {
+.common-widget-ui.well ocfc-view-permission .visibility-container .dropdown button {
   width: 108px;
   height: 28px;
   top: 5px;
 }
-#post-widget ocfc-view-permission .visibility-container .dropdown button p {
+.common-widget-ui.well ocfc-view-permission .visibility-container .dropdown button p {
   width: 60px;
   position: relative;
   display: inline-block;
   margin-left: 5px;
   top: -2px;
 }
-#post-widget ocfc-view-permission .visibility-container .dropdown ul.dropdown-menu {
+.common-widget-ui.well ocfc-view-permission .visibility-container .dropdown ul.dropdown-menu {
   min-width: 0px;
 }
-#post-widget ocfc-view-permission .visibility-container .dropdown ul.dropdown-menu li {
+.common-widget-ui.well ocfc-view-permission .visibility-container .dropdown ul.dropdown-menu li {
   width: 100%;
   height: 20px;
   font-size: 12px;
   left: 12px;
 }
-#post-widget ocfc-view-permission .visibility-container .dropdown ul.dropdown-menu li p {
+.common-widget-ui.well ocfc-view-permission .visibility-container .dropdown ul.dropdown-menu li p {
   left: 12px;
   top: -20px;
 }
-#post-widget ocfc-view-permission .visibility-container button {
+.common-widget-ui.well ocfc-view-permission .visibility-container button {
   height: 28px;
   top: 6px;
 }
-#post-widget ocfc-view-permission .visibility-container button p {
+.common-widget-ui.well ocfc-view-permission .visibility-container button p {
   width: 60px;
   position: relative;
   display: inline-block;
   margin-left: 5px;
   top: -2px;
 }
-#post-widget ocfc-post-icons .icons-container {
+.common-widget-ui.well ocfc-post-icons .icons-container {
   width: 160px;
   position: relative;
   display: inline-block;
   top: 6px;
 }
-#post-widget ocfc-post-icons .icons-container a {
+.common-widget-ui.well ocfc-post-icons .icons-container a {
   color: #000;
 }
-#post-widget ocfc-post-icons .icons-container a span {
+.common-widget-ui.well ocfc-post-icons .icons-container a span {
   position: relative;
   width: 40px;
 }
-#post-widget .common-button-container {
-  left: 0px;
+.post-show.ng-hide-remove {
+  -webkit-transition: 0.4s linear all;
+  transition: 0.4s linear all;
+/* remember to add this */
+  display: block !important;
+  opacity: 1;
+/*height 200px*/
+}
+.post-show.ng-hide-add {
+  -webkit-transition: 0.1s linear all;
+  transition: 0.1s linear all;
+/* remember to add this */
+  display: none !important;
+  opacity: 0;
+  height: 0px;
+}
+.post-show.ng-hide {
+  opacity: 0;
+  height: 0px;
 }
 #testimony-widget.well {
   height: 135px;
@@ -309,10 +330,10 @@ a
   position: relative;
   left: 9px;
 }
-#event-widget.well {
+#event-widget {
   height: 222px;
 }
-#event-widget.well .event-name {
+#event-widget .event-name {
   width: 344px;
   position: relative;
   left: 24px;
@@ -320,7 +341,7 @@ a
   margin-right: 15px;
   margin-top: 5px;
 }
-#event-widget.well .event-detail {
+#event-widget .event-detail {
   width: 345px;
   display: inline-block;
   position: relative;
@@ -744,4 +765,18 @@ img.gravitar {
   margin-left: 10px;
   font-size: 11px;
   color: #a9a9a9;
+}
+.fellowship-visi-menu {
+  position: absolute;
+  left: -39px;
+}
+.fellowship-visi-menu li {
+  display: block;
+  height: 35px;
+  border: 1px solid #808080;
+}
+.fellowship-visi-menu li a {
+  display: block;
+  width: 100%;
+  height: 100%;
 }

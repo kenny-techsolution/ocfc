@@ -25,7 +25,18 @@ angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http
 	];
 	$scope.isPostShown=false;
 
+	//7.4
+	$scope.postType = 'post';
+	$scope.generalPost = {
+		content: ''
+	};
+	$scope.visibility = [];
+	$scope.toggleGroupSelection = function (groupId) {
+		$scope.visibility.push(groupId);
 
+	};
+	console.log("underscore");
+	console.log(_);
     var uploader = $scope.uploader = $fileUploader.create({
         scope: $scope,
         url: '/file-upload', 
@@ -73,8 +84,10 @@ angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http
 		console.log($scope.isPostShown);
 	};
 
-    $scope.createPost = function(e) {
+    $scope.createPost = function(e,type) {
         e.preventDefault();
+	    console.log(type);
+	    return;
         $scope.post.visibility=$scope.currVisibility.id;
         $scope.post.postDate=new Date();
         $scope.post.fellow_object_id;

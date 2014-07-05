@@ -1,16 +1,17 @@
 .visibility-container
 	p Visible To
 	.dropdown.fellowship
-		button.btn.btn-default.dropdown-toggle.glyphicon.glyphicon-eye-open(type='button', data-toggle='dropdown')
-			p Fellowship
+		button.btn.btn-default(type='button', ng-click='fellowshipVisiMenu=!fellowshipVisiMenu')
+			span.glyphicon.glyphicon-eye-open
+			span Fellowship
 			span.caret
-		ul.dropdown-menu(role='menu', aria-labelledby='dropdownMenu1')
-			li.glyphicon.glyphicon-eye-open(role='presentation')
+		ul.fellowship-visi-menu(aria-labelledby='dropdownMenu1', ng-show='fellowshipVisiMenu')
+			li.glyphicon.glyphicon-eye-open(role='presentation', ng-click='toggleGroupSelection('123')')
 				a(role='menuitem', tabindex='-1', href='#')
-				p Timothy
-			li.glyphicon.glyphicon-eye-close(role='presentation')
+					p Timothy
+			li.glyphicon.glyphicon-eye-close(role='presentation', ng-click='toggleGroupSelection('234')')
 				a(role='menuitem', tabindex='-1', href='#')
-				p Lin Xin
+					p Lin Xin
 	.dropdown.church
 		button.btn.btn-default.dropdown-toggle.glyphicon.glyphicon-eye-close(type='button', data-toggle='dropdown')
 			p Church

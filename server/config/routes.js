@@ -59,7 +59,7 @@ module.exports=function(app){
     //5.24.2014 create post api
     app.post('/api/posts',posts.createPost);
     app.get('/api/posts',posts.queryPost);
-    app.put('/api/posts/:id',posts.updatePost);
+    //app.put('/api/posts/:id',posts.updatePost);
 
     app.get('/api/init',init.getInit);
 

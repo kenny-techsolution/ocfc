@@ -9,11 +9,11 @@ var fellowSchema = mongoose.Schema({
     zipcode: {type:String,required:'(zipcode) is required!',index:true},
     about:{type:String},
     status:{type:String,index:true},
-    admin:[{type:ObjectId, ref: 'User', unique: false, required:'(MEMBER) is required!'}],
-    createDate:{type:Date, required:'(CREATEDATE) is required!','default': Date.now, unique:false},
+    //admin:[{type:ObjectId, ref: 'User', unique: false, required:'(MEMBER) is required!'}],
+    //createDate:{type:Date, required:'(CREATEDATE) is required!','default': Date.now, unique:false},
     url:{type:String},
-    address:{type:String,required:'(address) is required!'},
-    description:{type:String,required:'(description) is required!'},
+    //address:{type:String,required:'(address) is required!'},
+    //description:{type:String,required:'(description) is required!'},
     reason:{type:String}
 });
 
@@ -21,8 +21,11 @@ var Fellow=mongoose.model('Fellow', fellowSchema);
 
 function createDefaultFellows(){
     Fellow.find({}).exec(function(err,collection){
+	    console.log("asdfasdfasdfsadf");
+	    console.log(collection.length);
         if(collection.length===0){
-            Fellow.create({name: 'Timothy Fellowship', zipcode: '12456', about:'Wix is the leading web publishing platform with over 37 million users worldwide. Wix makes it easier than ever to create a stunning website for free by giving you all the essentials. Choose from 100s of designer-made HTML5 templates. Use the '});
+
+            Fellow.create({name: '提摩太團契', zipcode: '12456', about:'Wix is the leading web publishing platform with over 37 million users worldwide. Wix makes it easier than ever to create a stunning website for free by giving you all the essentials. Choose from 100s of designer-made HTML5 templates. Use the '});
             Fellow.create({name: 'Agape Fellowship', zipcode: '78912',about:'Enhance your website by adding popular web Apps & Services like Facebook Comments, Instagram, Google Maps & SoundCloud.'});
             Fellow.create({name: 'Young Adult Fellowship', zipcode: '34567',about:'instantly with one-click to publish. You even have the option to enable people to find you on search engines like Google, Yahoo, Bing & more.'});
             Fellow.create({name: 'Abc Fellowship', zipcode: '65432',about:'No spectators were injured in the crash, said Peter Gaynor, the director of the Providence Emergency Management Agency. The performers suffered serious injuries, but they appeared to be non-life-threatening, he said.'});
