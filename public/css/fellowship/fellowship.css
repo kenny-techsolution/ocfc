@@ -1,57 +1,63 @@
-#standardCol {
-  padding-right: 12px;
-  padding-left: 12px;
-  background-color: transparent;
+#standardCol .intro-banner {
+  display: block;
+  width: 760px;
+  height: 326px;
 }
-.well {
-  margin-top: 80px;
-  height: 260px;
-  padding: 0px 19px 0px 0px;
+#standardCol .intro-banner img {
+  display: inline-block;
+  width: 342px;
+  height: 295px;
+  margin-top: 12px;
 }
-.banner {
-  width: 735px;
-  height: 260px;
-}
-.fellow-name {
-  position: relative;
-  top: -235px;
-  right: -393px;
-  color: #000;
-}
-#about {
-  font-size: small;
-  width: 300px;
-  position: relative;
-  top: -233px;
-  right: -400px;
-}
-#photos {
-  position: relative;
-  top: -220px;
-  right: -379px;
-  width: 300px;
+#standardCol .intro-banner .name {
+  display: inline-block;
+  width: 176px;
   height: 40px;
+  position: absolute;
+  top: 5px;
+  left: 400px;
 }
-#photos img {
+#standardCol .intro-banner .about {
+  display: inline-block;
+  width: 362px;
+  height: 100px;
+  position: absolute;
+  top: 78px;
+  left: 399px;
+}
+#standardCol .intro-banner .members {
+  display: inline-block;
+  width: 302px;
+  height: 109px;
+  position: absolute;
+  top: 192px;
+  left: 398px;
+}
+#standardCol .intro-banner .members .imgs img {
+  display: inline-block;
   width: 40px;
   height: 40px;
 }
-#members {
-a
-  color: #000;
-  position: relative;
-  top: -200px;
-  right: -680px;
-  text-decoration: none;
+#standardCol .intro-banner .count {
+  display: inline-block;
+  width: 66px;
+  height: 46px;
+  font-size: 11px;
+  position: absolute;
+  top: 282px;
+  right: 346px;
 }
-#members p {
-  width: 80px;
+#standardCol .highlight-sections .section.one {
+  display: inline-block;
+  margin-left: 20px;
 }
-#columns {
-  text-align: left;
+#standardCol .highlight-sections .section.two {
+  display: inline-block;
+  margin-left: 150px;
 }
-#columns .row h4 {
-  border-bottom: 1px solid #000;
+#standardCol .highlight-sections .section.three {
+  display: inline-block;
+  margin-left: 150px;
 }
 .common-widget-ui.well {
   margin: 50px 50px 50px 50px;
@@ -226,59 +232,50 @@ a
   left: 57px;
   min-width: 0px;
 }
-.common-widget-ui.well ocfc-view-permission .visibility-container {
-  width: 414px;
-  height: 61px;
+.common-widget-ui.well ocfc-view-permission p {
   display: inline-block;
-  position: relative;
 }
-.common-widget-ui.well ocfc-view-permission .visibility-container p {
-  width: 60px;
-  position: relative;
+.common-widget-ui.well ocfc-view-permission ocfc-toggle-button {
   display: inline-block;
-  margin-left: 5px;
-  top: 5px;
 }
-.common-widget-ui.well ocfc-view-permission .visibility-container .dropdown {
+.common-widget-ui.well ocfc-view-permission ocfc-toggle-button .yes {
   display: inline-block;
-  margin-top: 10px;
-  margin-right: 5px;
+  margin-left: 10px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  cursor: pointer;
+  border-top: 1px solid #696969;
+  border-left: 1px solid #696969;
+  border-bottom: 1px solid #696969;
+  background-color: #d5d5d4;
+  color: #7a7e80;
+  font-weight: bold;
+  padding: 2px 8px 2px 8px;
+  font-size: 10px;
 }
-.common-widget-ui.well ocfc-view-permission .visibility-container .dropdown button {
-  width: 108px;
-  height: 28px;
-  top: 5px;
+.common-widget-ui.well ocfc-view-permission ocfc-toggle-button .yes.active {
+  background-color: #5cc3cb;
+  color: #fff;
+  box-shadow: inset -1px 1px 2px 0px rgba(50,50,50,0.6);
 }
-.common-widget-ui.well ocfc-view-permission .visibility-container .dropdown button p {
-  width: 60px;
-  position: relative;
+.common-widget-ui.well ocfc-view-permission ocfc-toggle-button .no {
   display: inline-block;
-  margin-left: 5px;
-  top: -2px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  cursor: pointer;
+  border-top: 1px solid #696969;
+  border-right: 1px solid #696969;
+  border-bottom: 1px solid #696969;
+  background-color: #d5d5d4;
+  color: #7a7e80;
+  font-weight: bold;
+  padding: 2px 8px 2px 8px;
+  font-size: 10px;
 }
-.common-widget-ui.well ocfc-view-permission .visibility-container .dropdown ul.dropdown-menu {
-  min-width: 0px;
-}
-.common-widget-ui.well ocfc-view-permission .visibility-container .dropdown ul.dropdown-menu li {
-  width: 100%;
-  height: 20px;
-  font-size: 12px;
-  left: 12px;
-}
-.common-widget-ui.well ocfc-view-permission .visibility-container .dropdown ul.dropdown-menu li p {
-  left: 12px;
-  top: -20px;
-}
-.common-widget-ui.well ocfc-view-permission .visibility-container button {
-  height: 28px;
-  top: 6px;
-}
-.common-widget-ui.well ocfc-view-permission .visibility-container button p {
-  width: 60px;
-  position: relative;
-  display: inline-block;
-  margin-left: 5px;
-  top: -2px;
+.common-widget-ui.well ocfc-view-permission ocfc-toggle-button .no.active {
+  background-color: #e47168;
+  color: #fff;
+  box-shadow: inset -1px 1px 2px 0px rgba(50,50,50,0.6);
 }
 .common-widget-ui.well ocfc-post-icons .icons-container {
   width: 160px;

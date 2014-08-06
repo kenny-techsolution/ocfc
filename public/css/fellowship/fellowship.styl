@@ -1,56 +1,57 @@
 //fellowship.jade, added on 5.23.2014 to style for Fellowship update status box
 #standardCol
-  padding-right 12px
-  padding-left 12px
-  background-color transparent
-
-.well
-  margin-top 80px
-  height 260px
-  padding  0px 19px 0px 0px
-
-.banner
-  width 735px
-  height 260px
-
-.fellow-name
-  position relative
-  top -235px
-  right -393px
-  color black
-
-#about
-  font-size small
-  width 300px
-  position relative
-  top -233px
-  right -400px
-
-#photos
-  position relative
-  top  -220px
-  right -379px
-  width 300px
-  height 40px
-  img
-    width 40px
-    height 40px
-
-#members
-  a
-  color #000000
-  position relative
-  top -200px
-  right -680px
-  text-decoration none
-  p
-    width 80px
-
-#columns
-  text-align left
-  .row
-    h4
-      border-bottom 1px solid #000000
+  .intro-banner
+    display block
+    width 760px
+    height 326px
+    img
+      display inline-block
+      width 342px
+      height 295px
+      margin-top 12px
+    .name
+      display inline-block
+      width 176px
+      height 40px
+      position: absolute
+      top: 5px
+      left: 400px
+    .about
+      display: inline-block
+      width: 362px
+      height: 100px
+      position: absolute
+      top: 78px
+      left: 399px
+    .members
+      display: inline-block
+      width: 302px
+      height: 109px
+      position: absolute
+      top: 192px
+      left: 398px
+      .imgs img
+        display: inline-block
+        width: 40px
+        height: 40px
+    .count
+      display: inline-block
+      width: 66px
+      height: 46px
+      font-size: 11px
+      position: absolute
+      top: 282px
+      right: 346px
+  .highlight-sections
+    .section.one
+      display: inline-block
+      margin-left: 20px
+    .section.two
+      display: inline-block
+      margin-left: 150px
+    .section.three
+      display: inline-block
+      margin-left: 150px
 
 .common-widget-ui.well
   margin:50px 50px 50px 50px
@@ -205,50 +206,60 @@
         min-width 0px
 
   ocfc-view-permission
-    .visibility-container
-      width 414px
-      height 61px
+    p
       display inline-block
-      position relative
-      p
-        width 60px
-        position relative
+    ocfc-toggle-button
+      display inline-block
+
+      .yes
         display inline-block
-        margin-left 5px
-        top 5px
-      .dropdown
+        margin-left: 10px
+        border-top-left-radius: 4px
+        border-bottom-left-radius: 4px
+        cursor pointer
+
+        border-top 1px solid #696969
+        border-left 1px solid #696969
+        border-bottom 1px solid #696969
+        //border-right 1px outset
+        //border-bottom 1px outset
+        background-color: #D5D5D4;
+        color: #7A7E80
+        font-weight: bold
+        padding: 2px 8px 2px 8px;
+        font-size: 10px;
+        &.active
+          background-color: #5CC3CB
+          color #ffffff
+          //border-left 1px inset
+          //border-top 1px inset
+          //box-shadow inset 1px 1px 3px 0px rgba(50, 50, 50, 0.63)
+          box-shadow inset -1px 1px 2px 0px rgba(50, 50, 50, 0.60)
+
+      .no
         display inline-block
-        margin-top 10px
-        margin-right 5px
-        button
-          width 108px
-          height 28px
-          top 5px
-          p
-            width 60px
-            position relative
-            display inline-block
-            margin-left 5px
-            top -2px
-        ul.dropdown-menu
-          min-width 0px
-          li
-            width 100%
-            height 20px
-            font-size 12px
-            left 12px
-            p
-              left 12px
-              top -20px
-      button
-        height 28px
-        top 6px
-        p
-          width 60px
-          position relative
-          display inline-block
-          margin-left 5px
-          top -2px
+        //border-right 1px outset
+        //border-bottom 1px outset
+        border-top-right-radius: 4px
+        border-bottom-right-radius: 4px
+        cursor pointer
+
+        border-top 1px solid #696969
+        border-right 1px solid #696969
+        border-bottom 1px solid #696969
+
+        background-color: #D5D5D4;
+        color: #7A7E80
+        font-weight: bold
+        padding: 2px 8px 2px 8px;
+        font-size: 10px;
+        &.active
+          background-color: #e47168
+          color #ffffff
+          //border-top 1px inset
+          //border-left 1px inset
+          box-shadow inset -1px 1px 2px 0px rgba(50, 50, 50, 0.60)
+
 
   ocfc-post-icons
     .icons-container
