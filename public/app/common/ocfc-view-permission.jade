@@ -1,14 +1,5 @@
 .visibility-container
-	p Visible To
-	.btn.btn-default.btn-sm(ng-click='visibility.fellowship=!visibility.fellowship')
-		span.glyphicon.glyphicon-eye-open(ng-show='visibility.fellowship===true')
-		span.glyphicon.glyphicon-eye-close(ng-show='visibility.fellowship===false')
-		| Fellowship
-	.btn.btn-default.btn-sm(ng-click='visibility.church=!visibility.church')
-		span.glyphicon.glyphicon-eye-open(ng-show='visibility.church===true')
-		span.glyphicon.glyphicon-eye-close(ng-show='visibility.church===false')
-		| Church		
-	.btn.btn-default.btn-sm(ng-click='visibility.world=!visibility.world')
-		span.glyphicon.glyphicon-eye-open(ng-show='visibility.world===true')
-		span.glyphicon.glyphicon-eye-close(ng-show='visibility.world===false')
-		| World
+	p Post To
+	ocfc-toggle-button(status="visibility.fellowship")
+	ocfc-toggle-button(status="visibility.church")
+	ocfc-toggle-button(status="visibility.world")
