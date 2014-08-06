@@ -26,12 +26,14 @@ angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http
 	$scope.isPostShown=false;
 
 	//7.4
-	$scope.postType = 'post';
+	$scope.postType = 'general';
 	$scope.generalPost = {
+	    type: 0,
 		content: ''
 	};
 	
 	$scope.eventPost = {
+	    type: 1,
 	    title: '',
 	    content: '',
 	    from: '',
@@ -39,18 +41,16 @@ angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http
 	    where: '',
 	    welcome: ''
 	};
+
 	$scope.visibility = {
 	    fellowship: true,
 	    church: false,
 	    world: false
 	};
 
-	console.log("underscore");
-	console.log(_);
-    
 	
 	
-	
+	//TODO: image uploading functionality.
 	var uploader = $scope.uploader = $fileUploader.create({
         scope: $scope,
         url: '/file-upload', 
@@ -65,7 +65,12 @@ angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http
     $scope.uploadFile = function () {
         
     };
-
+    
+    $scope.addPhoto = function() {
+        $("input.upload-image").click();
+    };
+    
+    
     var fellow = FellowshipSvc.get(
         {
             _id: $routeParams.id}
@@ -75,7 +80,6 @@ angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http
             $scope.name = fellow.name;
             $scope.id = fellow._id;
         }
-
     );
 	$scope.placeHolderStrs = [
 		"Share your testimony",
@@ -98,14 +102,15 @@ angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http
 		console.log($scope.isPostShown);
 	};
 
-    $scope.createPost = function(e,type) {
+    $scope.createPost = function(e,type,postObj) {
         e.preventDefault();
-	    console.log(type);
+        var post = postObj;
+        
 	    return;
-        $scope.post.visibility=$scope.currVisibility.id;
-        $scope.post.postDate=new Date();
-        $scope.post.fellow_object_id;
-        var newPost = new PostSvc($scope.post);
+	    //TODO: will change this use to the visibility array later.
+        post.visibility=[$routeParams.id];
+        post.postDate=new Date();
+        var newPost = new PostSvc(post);
         //standard Rest API call
         newPost.$save().then(function(data) {
                 console.log(data);
@@ -133,9 +138,7 @@ angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http
 
         });
     };
-    $scope.addPhoto = function() {
-        $("input.upload-image").click();
-    };
+
 
 });
 

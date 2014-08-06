@@ -4,18 +4,19 @@
 			.post-header-title
 				p Make a
 				ocfc-wall-category
-		#post-editor.post-show(ng-show='postType==="post"')
+		#post-editor.post-show(ng-show='postType==="general"')
 			textarea.common-text-input.form-control(type='text',ng-model='generalPost.content',placeholder='{{placeholder}}')
 
 
 		#event-widget.post-show(ng-show="postType==='event'")
 			.event-container
 				.event-name Angel Island 2014
+				{{eventPost.from}}
 				textarea.event-detail.form-control(type='text') Meetup at San Fran and catch ferry in Tiburon
 				.event-scheduler
 					p From:
 					.calendar
-						input(type='date')
+						input(type='date',ng-model='eventPost.from')
 					.time
 						input(type='time')
 					p To:
@@ -33,7 +34,8 @@
 			ocfc-view-permission
 			ocfc-post-icons
 			.common-button-container
-				button.btn.btn-default.btn-sm(type='submit',ng-click='createPost($event)') Post
+				button.btn.btn-default.btn-sm(type='submit',ng-click='createPost($event, postType, generalPost)',ng-show='postType==="general"') Post
+				button.btn.btn-default.btn-sm(type='submit',ng-click='createPost($event, postType, eventPost)',ng-show='postType==="event"') Post
 			//.common-footer.row
 			//	.common-button-container
 			//		button.btn.btn-default.btn-sm(type='submit',ng-click='createPost($event)') Post
