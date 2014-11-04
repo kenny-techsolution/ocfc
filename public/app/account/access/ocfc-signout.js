@@ -13,11 +13,11 @@
 angular.module('app').directive('ocfcSignout',function(){
     return{
         restrict:'E',
+	    scope: {},
         templateUrl:'/partials/account/access/ocfc-signout',
-        controller:function($scope,NotifierSvc,AuthSvc,$location){
+        controller:function($scope,NotifierSvc,IdentitySvc,AuthSvc,$location){
             //login box did not disappear
-            //$scope.identity=IdentitySvc;
-
+            $scope.identity=IdentitySvc;
             $scope.signout=function(){
 	            AuthSvc.logoutUser().then(function(){
                     $scope.username="";

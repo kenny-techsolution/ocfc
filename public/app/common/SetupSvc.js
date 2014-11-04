@@ -1,4 +1,4 @@
-angular.module('app').factory('SetupSvc',function($http,IdentitySvc){
+angular.module('app').service('SetupSvc',function($http,IdentitySvc){
     return{
         init: function(initObj){
 //            console.log("test IdentitySvc.currentUser");
@@ -16,4 +16,5 @@ angular.module('app').factory('SetupSvc',function($http,IdentitySvc){
             }
         }
     }
+
 });

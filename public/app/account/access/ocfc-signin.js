@@ -12,8 +12,10 @@
 angular.module('app').directive('ocfcSignin',function(){
 	return{
 		restrict:'E',
+		scope: {},
 		templateUrl:'/partials/account/access/ocfc-signin',
 		controller:function($scope,$http,IdentitySvc,NotifierSvc,AuthSvc){
+			$scope.identity = IdentitySvc;
 			$scope.signin=function(username,password){
 				AuthSvc.authenticateUser(username,password).then(function(success){
 					if(success){
