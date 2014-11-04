@@ -1,17 +1,25 @@
 //Bring in express module to start creating express app
-var express=require('express');
+//Built on to of Node Js
+//Create actual express app
+//app is defined as server
+var app=require('express')()
+	,http=require('http')
+	,server=http.createServer(app)
+	,io=require('socket.io').listen(server);
+
+
 //Set environment mode
 var env=process.env.NODE_ENV=process.env.NODE_ENV || 'development';
-//Create actual express app
-var app=express();
+
 var config=require('./server/config/config')[env];
 
 require('./server/config/express')(app,config);
 require('./server/config/mongoose')(config);
 require('./server/config/passport')();
-require('./server/config/routes')(app);
+require('./server/config/routes')(app,io);
 
-app.listen(config.port);
+
+server.listen(config.port);
 console.log('Listening on port' + config.port +'...');
 
 

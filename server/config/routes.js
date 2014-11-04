@@ -22,7 +22,13 @@ var auth=require('./auth'),
     fs = require('fs');
 
 //app comes from whoever calls this function
-module.exports=function(app){
+module.exports=function(app,io){
+
+	//global variable
+	var ioSocket;
+	io.on('connection', function (socket) {
+		ioSocket=socket;
+	});
 
     //Only allowing ADMIN access info from /api/users
     //app is an extension from server.js file, the object is from express
