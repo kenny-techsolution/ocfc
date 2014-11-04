@@ -12,14 +12,13 @@ var app=require('express')()
 var env=process.env.NODE_ENV=process.env.NODE_ENV || 'development';
 
 var config=require('./server/config/config')[env];
+server.listen(config.port);
 
 require('./server/config/express')(app,config);
 require('./server/config/mongoose')(config);
 require('./server/config/passport')();
 require('./server/config/routes')(app,io);
 
-
-server.listen(config.port);
 console.log('Listening on port' + config.port +'...');
 
 

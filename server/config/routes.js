@@ -28,6 +28,7 @@ module.exports=function(app,io){
 	var ioSocket;
 	io.on('connection', function (socket) {
 		ioSocket=socket;
+		ioSocket.emit('testSocket',{result:"Socket test complete"});
 	});
 
     //Only allowing ADMIN access info from /api/users
@@ -63,7 +64,10 @@ module.exports=function(app,io){
     app.put('/api/fellowMems/:id',fellowMems.updateFellowMem);
 
     //5.24.2014 create post api
-    app.post('/api/posts',posts.createPost);
+    app.post('/api/posts',function(req, res, next){
+	    ioSocket.emit('routesSocket',{result:"Socket test complete from routes.js"});
+	    next();
+    },posts.createPost);
     app.get('/api/posts',posts.queryPost);
     //app.put('/api/posts/:id',posts.updatePost);
 

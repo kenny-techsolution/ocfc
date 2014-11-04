@@ -1,7 +1,10 @@
 //This file references all module required for this project
 //Defining a model called 'app' which uses directives listed within []
-angular.module('app',['ngResource','ngRoute','lr.upload', 'ui.bootstrap','angularFileUpload','ngAnimate']);
-
+angular.module('app',['ngResource','ngRoute','lr.upload', 'ui.bootstrap','angularFileUpload','ngAnimate','btford.socket-io']).
+factory('mySocket', function (socketFactory) {
+	return socketFactory();
+	});
+//must move above factory into a separate service during refactoring
 
 //4.29.2014, updated code to include churchAdmin and worldAdmin authorization
 angular.module('app').config(function($routeProvider,$locationProvider){

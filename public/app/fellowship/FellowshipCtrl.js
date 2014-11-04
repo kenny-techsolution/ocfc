@@ -1,13 +1,16 @@
 /*******************************************************************************
  ******************************************************************************/
-angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http, $scope, FellowshipSvc,$routeParams,PostSvc,TransformSvc) {
-		$scope.formData = {};
+angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http, $scope, IdentitySvc, FellowshipSvc,$routeParams,PostSvc,TransformSvc,mySocket) {
+	mySocket.on('routesSocket',function(data){
+		console.log(data);
+	});
+	$scope.formData = {};
 	$scope.about;
 	$scope.name;
 	$scope.id;
 	$scope.post = {
 		content:"",
-		type:0,
+		postType:0,
 		visibility:"",
 		postDate:"",
 		fellow_object_id:$routeParams.id
@@ -101,26 +104,49 @@ angular.module('app').controller('FellowshipCtrl', function($fileUploader, $http
 		console.log($scope.isPostShown);
 	};
 
-		$scope.createPost = function(e,type,postObj) {
-				e.preventDefault();
-				var post = postObj;
+//		$scope.createPost = function(e,type,postObj) {
+//				e.preventDefault();
+//				var post = postObj;
+//
+//			//return;
+//			//TODO: will change this use to the visibility array later.
+//				post.visibility=[$routeParams.id];
+//				post.postDate=new Date();
+//				var newPost = new PostSvc(post);
+//				//standard Rest API call
+//				newPost.$save().then(function(data) {
+//								console.log(data);
+//								$scope.formData.post_id = data._id;
+//								console.log("current post id");
+//								console.log($scope.formData);
+//								$scope.posts.unshift(newPost.post);
+//						},function(reason){
+//						}
+//				);
+//		};
 
-			return;
-			//TODO: will change this use to the visibility array later.
-				post.visibility=[$routeParams.id];
-				post.postDate=new Date();
-				var newPost = new PostSvc(post);
-				//standard Rest API call
-				newPost.$save().then(function(data) {
-								console.log(data);
-								$scope.formData.post_id = data._id;
-								console.log("current post id");
-								console.log($scope.formData);
-								$scope.posts.unshift(newPost.post);
-						},function(reason){
-						}
-				);
-		};
+	$scope.createPost = function(e) {
+		e.preventDefault();
+		$scope.post.visibility=[$scope.post.fellow_object_id];
+		$scope.post.postDate=new Date();
+		$scope.post.fellow_object_id = $scope.post.fellow_object_id;
+		console.log(IdentitySvc.currentUser);
+		$scope.post.postBy = IdentitySvc.currentUser._id;
+
+		var newPost = new PostSvc($scope.post);
+		console.log(newPost);
+
+		//standard Rest API call
+		newPost.$save().then(function(data) {
+				console.log(data);
+				$scope.formData.post_id = data._id;
+				console.log("current post id");
+				console.log($scope.formData);
+				$scope.posts.unshift(newPost.post);
+			},function(reason){
+			}
+		);
+	};
 
 		//5.24.2014, query all posts made within a fellowship
 		$scope.posts =PostSvc.query({
