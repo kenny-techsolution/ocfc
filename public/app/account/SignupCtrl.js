@@ -9,23 +9,20 @@
  *************** ************************************************************************/
 
 
-angular.module('app').controller('SignupCtrl',function($scope, UserSvc, NotifierSvc,$location,AuthSvc)
-    {
-        $scope.signup=function(){
-            var newUserData={
-                userName: $scope.email,
-                password: $scope.password,
-                firstName:$scope.fname,
-                lastName: $scope.lname};
+angular.module('app').controller('SignupCtrl', function ($scope, UserSvc, NotifierSvc, $location, AuthSvc) {
+	$scope.signup = function () {
+		var newUserData = {
+			userName: $scope.email,
+			password: $scope.password,
+			firstName: $scope.fname,
+			lastName: $scope.lname};
 
-        AuthSvc.createUser(newUserData).then(function()
-            {
-            NotifierSvc.notify('User account created!');
-            $location.path('/');
-            }
-            ,function(reason)
-                {
-                NotifierSvc.error(reason);
-                })
-        }
-    });
+	AuthSvc.createUser(newUserData).then(function () {
+			NotifierSvc.notify('User account created!');
+			$location.path('/');
+		}
+		, function (reason) {
+			NotifierSvc.error(reason);
+		})
+	}
+});

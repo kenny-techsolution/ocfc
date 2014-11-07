@@ -64,10 +64,11 @@ module.exports=function(app,io){
     app.put('/api/fellowMems/:id',fellowMems.updateFellowMem);
 
     //5.24.2014 create post api
-    app.post('/api/posts',function(req, res, next){
-	    ioSocket.emit('routesSocket',{result:"Socket test complete from routes.js"});
-	    next();
-    },posts.createPost);
+    app.post('/api/posts',posts.createPost, function(req, res, next){
+	    io.sockets.emit('routesSocket',res.$_emitBody);
+	    res.send(res.$_emitBody);
+    });
+
     app.get('/api/posts',posts.queryPost);
     //app.put('/api/posts/:id',posts.updatePost);
 

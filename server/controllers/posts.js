@@ -6,7 +6,7 @@ var Post=require('mongoose').model('Post'),
     commFunc=require('../utilities/commonFunctions');
 
 //POST
-exports.createPost=function(req,res){
+exports.createPost=function(req,res, next){
     var postData=req.body;
     postData.user = req.user._id;
 
@@ -19,17 +19,21 @@ exports.createPost=function(req,res){
             return res.send({reason:err_message});
         }
         Post.findOne(returnedPost).populate("user").exec(function (err, returnedPost){
-            res.send({status:"success", post: returnedPost});
+            //res.send({status:"success", post: returnedPost});
+	        res.$_emitBody = {status:"success", post: returnedPost};
+	        next();
         });
     });
 };
 
 //GET
 exports.queryPost=function(req,res){
+	console.log("post req*****");
+	console.log(req);
     if(req.query.fellow_object_id){
-        Post.find({group:req.query.fellow_object_id}).populate("user").exec(function (err, collection){
+        Post.find({visibility:req.query.fellow_object_id}).populate("user").exec(function (err, collection){
             if (!err) {
-                commFunc.cl("check collection",collection);
+                //commFunc.cl("check collection",collection);
                 res.send(collection.reverse());
             }else{
                 res.status(404);
@@ -46,6 +50,7 @@ exports.queryPost=function(req,res){
     }
 
 };
+
 
 /*
 exports.updatePost=function(req,res){

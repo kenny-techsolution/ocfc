@@ -9,6 +9,8 @@ angular.module('app').factory('TransformSvc', function() {
 			return 1;
 		}else if (type==='general'){
 			return 2;
+		}else if (type==='event'){
+			return 3;
 		}else{
 		}
 	};
@@ -16,7 +18,8 @@ angular.module('app').factory('TransformSvc', function() {
 	var postTypeInt=[
 		'Testimony',
 		'Question',
-		'General'
+		'General',
+		'Event'
 	];
 
 	var toPostTypeStr = function(type){

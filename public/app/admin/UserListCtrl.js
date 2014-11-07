@@ -8,10 +8,10 @@
 
  ***************************************************************************************/
 
-angular.module('app').controller('UserListCtrl',function($scope,UserSvc){
-    //return all fields from UserSvc.query() in mongoose db
-    $scope.users=UserSvc.query();
-    console.log("Test user role by calling $scope.users");
-    console.log($scope.users);
+angular.module('app').controller('UserListCtrl', function ($scope, UserSvc) {
+	//return all fields from UserSvc.query() in mongoose db
+	$scope.users = UserSvc.query();
+	console.log("Test user role by calling $scope.users");
+	console.log($scope.users);
 });
 

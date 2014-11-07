@@ -707,6 +707,7 @@ img.gravitar {
   background-color: #e4dfdf;
   padding: 15px;
   border-radius: 5px;
+  word-wrap: break-word;
 }
 .common-post-ui .post-content .user-comment {
   background-color: #c9ced3;
