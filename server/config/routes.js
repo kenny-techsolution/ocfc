@@ -16,6 +16,7 @@ var auth=require('./auth'),
     fellows=require('../controllers/fellowships'),
     fellowMems=require('../controllers/fellowMems'),
     posts=require('../controllers/posts'),
+	events=require('../controllers/events'),
     init=require('../controllers/init'),
     mongoose=require('mongoose'),
     User=mongoose.model('User');
@@ -70,7 +71,12 @@ module.exports=function(app,io){
     });
 
     app.get('/api/posts',posts.queryPost);
-    //app.put('/api/posts/:id',posts.updatePost);
+
+	app.post('/api/events',events.createEvent);
+
+
+
+
 
 
     app.get('/api/init',init.getInit);

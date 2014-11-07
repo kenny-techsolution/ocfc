@@ -15,7 +15,8 @@ var eventSchema = mongoose.Schema({
 	to_date_time:{type:Date,unique:false},
 	where:{type:String,unique:false},
 	welcome:{type:String,unique:false},
-	title:{type:String,unique:false}
+	title:{type:String,unique:false},
+	postBy:{type:ObjectId, ref: 'User', unique: false, required:'(User ID) is required!'}
 
 });
 

@@ -2,7 +2,7 @@
  ******************************************************************************/
 angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $http, $scope,
                                                              IdentitySvc, FellowshipSvc, $routeParams,
-                                                             PostSvc, TransformSvc, mySocket, $timeout) {
+                                                             PostSvc, EventSvc,TransformSvc, mySocket, $timeout) {
 
 	//TODO: image uploading functionality.
 	var uploader = $scope.uploader = $fileUploader.create({
@@ -184,23 +184,35 @@ angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $htt
 
 		//Resource object allows $scope.post as parameter
 		var newPost = new PostSvc($scope.postObj);
+		console.log('chk newPost which is an instance of PostSvc');
+		console.log(newPost);
 
+		if ($scope.postObj.type==3){
+			var newEvent=new EventSvc($scope.postObj.eventPost);
+			newEvent.$save().then(function(data){
+				newPost.event=data._id;
+				savePost(newPost);
+				console.log('New post results');
+				console.log(newPost);
+			});
+
+		}else {
+			savePost(newPost);
+		}
+
+	};
+
+	var savePost = function(newpost){
 		//standard Rest API call
-		newPost.$save().then(function (data) {
-				//assign data.post._id into $scope.formData.post_id object
-				$scope.formData.post_id = data.post._id;
-
+		newpost.$save().then(function (data) {
 				//The unshift() method adds one or more elements
 				// to the beginning of $scope.posts array and
 				// returns the new length of the array.
-				$scope.posts.unshift(newPost);
+				$scope.posts.unshift(newpost);
 			}, function (reason) {
 			}
 		);
-		console.log('New post results');
-		console.log(newPost);
 	};
-
 	//5.24.2014, query all posts made within a fellowship
 	$scope.posts = PostSvc.query({
 		fellow_object_id: $scope.postObj.fellow_object_id  //where clause
