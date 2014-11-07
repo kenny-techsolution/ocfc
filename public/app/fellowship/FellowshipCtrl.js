@@ -1,6 +1,8 @@
 /*******************************************************************************
  ******************************************************************************/
-angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $http, $scope, IdentitySvc, FellowshipSvc, $routeParams, PostSvc, TransformSvc, mySocket) {
+angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $http, $scope,
+                                                             IdentitySvc, FellowshipSvc, $routeParams,
+                                                             PostSvc, TransformSvc, mySocket, $timeout) {
 
 	//TODO: image uploading functionality.
 	var uploader = $scope.uploader = $fileUploader.create({
@@ -28,14 +30,13 @@ angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $htt
 		console.log(data);
 		var emittedPost = new PostSvc(data.post);
 		$scope.posts.unshift(emittedPost);
-		console.log('chk $scope.posts');
-		console.log($scope.posts);
 	});
 
 	/*************************** initialize variables here ********************/
 	$scope.formData = {};
 	$scope.loading = true;
 	$scope.photoUploaded = false;
+	$scope.postsLoaded=false;
 //	$scope.currVisibility;
 //	$scope.imagePath;
 
@@ -91,15 +92,15 @@ angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $htt
 		},
 		eventPost: {
 			event:'create ObjectId here',
-			from_date:'',
-			from_date_time:'',
-			to_date:'',
-			to_date_time:'',
-			where:'',
-			welcome:'',
+			from_date:new Date(1999,05,22),
+			from_date_time:new Date(),
+			to_date:new Date(2999,05,22),
+			to_date_time:new Date(),
+			where:'CCIC',
+			welcome:'Newcomber',
 			type: 3,
-			title: '',
-			content: '',
+			title: 'title is Hi',
+			content: 'this is boday of content',
 			placeholder:"What event to plan?"
 		},
 		fellow_object_id: $routeParams.id,
@@ -128,8 +129,6 @@ angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $htt
 //		$scope.postObj.placeholder = $scope.postObj.placeHolderStrs[$scope.postObj.type];
 //	};
 //
-
-
 
 //	//5.24.2014 method that transform Type values to string
 //	//Set $scope.transformType to either testimony, question or general string
@@ -200,13 +199,16 @@ angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $htt
 		);
 		console.log('New post results');
 		console.log(newPost);
-
 	};
 
 	//5.24.2014, query all posts made within a fellowship
 	$scope.posts = PostSvc.query({
 		fellow_object_id: $scope.postObj.fellow_object_id  //where clause
 	}, function () {
+		$timeout(function(){
+			$scope.postsLoaded=true;
+		},500);
+
 
 	});
 
@@ -218,29 +220,6 @@ angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $htt
 
 		});
 	};
-
-
-	//		$scope.createPost = function(e,type,postObj) {
-//				e.preventDefault();
-//				var post = postObj;
-//
-//			//return;
-//			//TODO: will change this use to the visibility array later.
-//				post.visibility=[$routeParams.id];
-//				post.postDate=new Date();
-//				var newPost = new PostSvc(post);
-//				//standard Rest API call
-//				newPost.$save().then(function(data) {
-//								console.log(data);
-//								$scope.formData.post_id = data._id;
-//								console.log("current post id");
-//								console.log($scope.formData);
-//								$scope.posts.unshift(newPost.post);
-//						},function(reason){
-//						}
-//				);
-//		};
-
 
 });
 

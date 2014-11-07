@@ -31,12 +31,6 @@ var postSchema = mongoose.Schema({
 
 	/*EVENT Specific*/
 	event:{type:ObjectId, ref: 'Event', unique: false},
-	from_date:{type:Date,unique:false},
-	from_date_time:{type:Date,unique:false},
-	to_date:{type:Date,unique:false},
-	to_date_time:{type:Date,unique:false},
-	where:{type:String,unique:false},
-	welcome:{type:String,unique:false},
 
 	/*TESTIMONY Specific*/
 	testimony:{type:ObjectId, ref: 'Testimony', unique: false},
@@ -49,10 +43,8 @@ var postSchema = mongoose.Schema({
 	images:[{type:String,unique:false}],
 	video:[{type:String,unique:false}],
 	audio:[{type:String,unique:false}],
-	links:[{type:String,unique:false}],
+	links:[{type:String,unique:false}]
 
 });
 
 var Post=mongoose.model('Post', postSchema);
-
-console.log("jajajajj");

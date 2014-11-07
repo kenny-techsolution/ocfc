@@ -2,9 +2,11 @@ var mongoose = require('mongoose'),
     userModel=require('../models/User'),
     courseModel=require('../models/Course'),
     //4.30.2014, added new model for members who joined a fellowship
-    fellowModel=require('../models/Fellowship');
-    fellowMemModel=require('../models/FellowMem');
-    postModel=require('../models/Post');
+    fellowModel=require('../models/Fellowship'),
+    fellowMemModel=require('../models/FellowMem'),
+    postModel=require('../models/Post'),
+	eventModel=require('../models/Event'),
+	testimonyModel=require('../models/Testimony');
 
 module.exports = function(config){
 
@@ -14,9 +16,9 @@ module.exports = function(config){
     db.once('open',function callback(){
         console.log('multivision db opened');
     });
+	//used for creating dummy data
     userModel.createDefaultUsers();
     courseModel.createDefaultCourses();
-	console.log("ldldldldldldl");
     fellowModel.createDefaultFellows();
 };
 

@@ -778,3 +778,20 @@ img.gravitar {
   width: 100%;
   height: 100%;
 }
+.postAnimate.ng-enter {
+  -webkit-transition: 0.3s ease all;
+  -moz-transition: 0.3s ease all;
+  -o-transition: 0.3s ease all;
+  transition: 0.3s ease all;
+  position: relative;
+  transition-delay: 0.5s;
+}
+.postAnimate.ng-enter {
+  display: block;
+  max-height: 0px;
+  opacity: 0;
+}
+.postAnimate.ng-enter.ng-enter-active {
+  max-height: 600px;
+  opacity: 1;
+}

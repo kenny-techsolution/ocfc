@@ -72,6 +72,7 @@ module.exports=function(app,io){
     app.get('/api/posts',posts.queryPost);
     //app.put('/api/posts/:id',posts.updatePost);
 
+
     app.get('/api/init',init.getInit);
 
     //Define a new route for Jade

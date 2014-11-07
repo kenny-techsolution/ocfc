@@ -17,6 +17,5 @@ angular.module('app').factory('PostSvc', function ($resource) {
 			isArray: false
 		}
 	});
-
 	return postResource;
 });

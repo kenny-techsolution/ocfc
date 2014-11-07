@@ -3,12 +3,26 @@
  ***************************************************************************************/
 
 var Post=require('mongoose').model('Post'),
+	Event=require('mongoose').model('Event'),
     commFunc=require('../utilities/commonFunctions');
 
 //POST
 exports.createPost=function(req,res, next){
     var postData=req.body;
     postData.user = req.user._id;
+
+	if (postData.type==3){
+		Event.create(postData.eventPost,function(err,returnedEvent){
+			postData.event=returnedEvent._id;
+			if(err){
+				if(err.toString().indexOf('E11000')>-1){
+					err=new Error("Duplicate createPost");}
+				res.status(400);
+				var err_message = err.toString();
+				return res.send({reason:err_message});
+			}
+		});
+	}
 
     Post.create(postData, function(err,returnedPost){
         if(err){
@@ -20,7 +34,13 @@ exports.createPost=function(req,res, next){
         }
         Post.findOne(returnedPost).populate("user").exec(function (err, returnedPost){
             //res.send({status:"success", post: returnedPost});
-	        res.$_emitBody = {status:"success", post: returnedPost};
+	        if(returnedPost==3){
+		        Post.findOne(returnPost).populate("event").exec(function(err,returnedEventPost){
+			        res.$_emitBody = {status:"success", post: returnedEventPost};
+		        });
+	        }else{
+		        res.$_emitBody = {status:"success", post: returnedPost};
+	        }
 	        next();
         });
     });
