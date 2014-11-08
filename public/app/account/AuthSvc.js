@@ -40,10 +40,13 @@ angular.module('app').factory('AuthSvc',function($http,IdentitySvc,$q,UserSvc){
             return dfd.promise;
         },
         createUser: function(newUserData){
+	        //newUserData contains data fields for signup
+	        //newUser creates new instance of UserSvc service resource
             var newUser= new UserSvc(newUserData);
             var dfd=$q.defer();
 
             newUser.$save().then(function(){
+	            //Save & pass newUser data to IdentitySvc.currentUser
 	            IdentitySvc.currentUser=newUser;
                 dfd.resolve();
             }, function(response){

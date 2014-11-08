@@ -16,23 +16,24 @@ var mongoose=require('mongoose'),
     encrypt=require('../utilities/encryption');
 
 var userSchema = mongoose.Schema({
-    firstName: {type:String, required:'(PATH) is required!',index:true},
-    lastName: {type:String, required:'(PATH) is required!',index:true},
-    userName: {
-        type:String,
-        required:'(PATH) is required!',
-        unique:true},
-    salt: {type:String, required:'(PATH) is required!'},
-    hashed_pwd: {type:String, required:'(PATH) is required!'},
-    roles: [{type:String, default:'user'}]
+    firstName: {type:String, required:'(firstName) is required!',index:true},
+    lastName: {type:String, required:'(lastName) is required!',index:true},
+    userName: {type:String, required:'(userName aka email) is required!',unique:true},
+	hashed_pwd: {type:String, required:'(hashed_pwd) is required!'},
+    salt: {type:String, required:'(salt) is required!'},
+    roles: [{type:String, default:'user'}],
+	birthday:{type:Date,unique:false},
+	gender:{type:String,unique:false}
+
 });
 
 userSchema.methods={
     authenticate: function(passwordToMatch){
-        console.log(passwordToMatch);
-        console.log(encrypt.hashPwd(this.salt, passwordToMatch));
-        console.log(this.hashed_pwd);
+	    //salt and passwordToMatch are used to create hashPwd
         return encrypt.hashPwd(this.salt, passwordToMatch)===this.hashed_pwd;
+	    console.log(passwordToMatch);
+	    console.log(encrypt.hashPwd(this.salt, passwordToMatch));
+	    console.log(this.hashed_pwd);
     },
     hasRole: function(role){
         return this.roles.indexof(role)>-1;
@@ -42,11 +43,12 @@ userSchema.methods={
 
 var User = mongoose.model('User',userSchema);
 
-
+//Create pre-populated or default dummy data
 function createDefaultUsers(){
     User.find({}).exec(function(err, collection){
         if(collection.length===0){
             var salt, hash;
+	        //new salt is created each time thus every user will have it's own unique value
             salt=encrypt.createSalt();
             hash=encrypt.hashPwd(salt,'joe');
             User.create({firstName:'Joe',lastName:'Eames',userName:'joe',salt:salt, hashed_pwd:hash,roles:['admin']});

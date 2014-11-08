@@ -26,8 +26,6 @@ block main-content
 				i.glyphicon.glyphicon-bell
 			div(ng-include="'/partials/account/access/navbar-login'")
 	//4.29.2014 adding header nav bar ends
-
-
 	//.navbar.navbar-inverse.navbar-fixed-top
 	//    .container
 	#wrapper
@@ -38,51 +36,7 @@ block main-content
 						h2 Welcome to One Chirst for Christ
 						h4 We love you to join and be part of our big family!
 					.col-md-5
-						.well
-							form.form-horizontal(name="signupForm")
-								fieldset
-									legend Sign Up
-									p It's free and always will be.
-									.form-group
-										label.col-md-5.control-label(for="fname") First Name
-										.col-md-7
-											input.form-control(name="fname",type="fname",placeholder="First Name",ng-model="fname",required)
-									.form-group
-										label.col-md-5.control-label(for="lname") Last Name
-										.col-md-7
-											input.form-control(name="lname",type="lname",placeholder="Last Name",ng-model="lname",required)
-									.form-group
-										label.col-md-5.control-label(for="email") Email
-										.col-md-7
-											input.form-control(name="email",type="email",placeholder="Email",ng-model="email",required)
-									.form-group
-										label.col-md-5.control-label(for="password") Password
-										.col-md-7
-											input.form-control(name="password",type="password",placeholder="Password",ng-model="password",required)
-
-									.form-group
-										label.col-md-5.control-label(for="ageRange") Age Range
-										.col-md-7
-											.btn-group(dropdown)
-												button.btn.btn-default.dropdown-toggle(type='button')
-													| Age
-													span.caret
-													ul.dropdown-menu(role='menu')
-														li
-															a(href='#') Under 18
-														li
-															a(href='#') 18-24
-														li
-															a(href='#') 25-34
-														li
-															a(href='#') 35-54
-														li.divider
-														li
-															a(href='#') 55 Up
-									.form-group
-										.col-md-10.col-md-offset-2
-											.pull-right
-												button.btn.btn-success.btn-lg(ng-click="signup()",ng-disabled="signupForm.$invalid") Sign up
+						.well(ng-include="'/partials/account/signup/signup'")
 		#sidebar-wrapper
 			#sidebar
 				ul.nav.list-group
