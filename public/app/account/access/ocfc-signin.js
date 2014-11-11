@@ -17,9 +17,13 @@ angular.module('app').directive('ocfcSignin',function(){
 		controller:function($scope,$http,IdentitySvc,NotifierSvc,AuthSvc){
 			$scope.identity = IdentitySvc;
 			$scope.signin=function(username,password){
+				// AuthSvc.authenticateUser updates data by calling $http post service
+				// Also adding response data with extend method
 				AuthSvc.authenticateUser(username,password).then(function(success){
 					if(success){
+
 						NotifierSvc.notify('You have successfully signed in!');
+
 					} else{
 						NotifierSvc.notify('Username/Password combination incorrect');
 					}

@@ -24,6 +24,8 @@
  ***************************************************************************************/
 angular.module('app').factory('AuthSvc',function($http,IdentitySvc,$q,UserSvc){
     return{
+	    //Updates data by calling $http post service
+	    //Also adding response data with extend method
         authenticateUser: function(username,password){
             var dfd=$q.defer();
             $http.post('/login',{username:username, password:password}).then(function(response){
@@ -31,6 +33,8 @@ angular.module('app').factory('AuthSvc',function($http,IdentitySvc,$q,UserSvc){
                     var user=new UserSvc();
                     angular.extend(user,response.data.user);
 	                IdentitySvc.currentUser=user;
+	                console.log("oosjdofijasodifjasdf");
+	                console.log(IdentitySvc.currentUser.isAdmin());
                     dfd.resolve(true);
                 } else{
                     dfd.resolve(false);

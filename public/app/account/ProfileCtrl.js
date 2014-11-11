@@ -34,6 +34,10 @@ angular.module('app').controller('ProfileCtrl', function ($scope, AuthSvc, Ident
 			});
 	};
 
+	// As of 11.8.2014, $scope.signin function is not being called elsewhere
+	// $scope.signin is a function that calls AuthSvc.authenticateUser(username, password) to sign in
+	// AuthSvc.authenticateUser updates data by calling $http post service
+	// Also adding response data with extend method
 	$scope.signin = function (username, password) {
 		AuthSvc.authenticateUser(username, password).then(function (success) {
 			if (success) {
