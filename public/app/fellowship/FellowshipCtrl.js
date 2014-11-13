@@ -1,26 +1,11 @@
 /*******************************************************************************
  ******************************************************************************/
-angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $http, $scope, IdentitySvc, FellowshipSvc, $routeParams, PostSvc, EventSvc, TransformSvc, mySocket, $timeout) {
+
+angular.module('app').controller('FellowshipCtrl', function ($http, $scope,
+                                                             IdentitySvc, FellowshipSvc, $routeParams,
+                                                             PostSvc, EventSvc,TransformSvc, mySocket, $timeout) {
 
 	//TODO: image uploading functionality.
-	var uploader = $scope.uploader = $fileUploader.create({
-		scope: $scope,
-		url: '/file-upload',
-		formData: $scope.formData
-	});
-	uploader.filters.push(function (item /*{File|HTMLInputElement}*/) {
-		var type = uploader.isHTML5 ? item.type : '/' + item.value.slice(item.value.lastIndexOf('.') + 1);
-		type = '|' + type.toLowerCase().slice(type.lastIndexOf('/') + 1) + '|';
-		return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-	});
-
-	$scope.uploadFile = function () {
-
-	};
-
-	$scope.addPhoto = function () {
-		$("input.upload-image").click();
-	};
 
 	/******************************** Socket IO ********************************/
 		//calling mySocket.on to the server

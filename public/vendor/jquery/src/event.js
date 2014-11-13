@@ -10,7 +10,51 @@ define([
 	"./core/init",
 	"./data/accepts",
 	"./selector"
+<<<<<<< HEAD
 ], function (jQuery, strundefined, rnotwhite, hasOwn, slice, support, data_priv) {
+=======
+], function( jQuery, strundefined, rnotwhite, hasOwn, slice, support, data_priv ) {
+
+var
+	rkeyEvent = /^key/,
+	rmouseEvent = /^(?:mouse|pointer|contextmenu)|click/,
+	rfocusMorph = /^(?:focusinfocus|focusoutblur)$/,
+	rtypenamespace = /^([^.]*)(?:\.(.+)|)$/;
+
+function returnTrue() {
+	return true;
+}
+
+function returnFalse() {
+	return false;
+}
+
+function safeActiveElement() {
+	try {
+		return document.activeElement;
+	} catch ( err ) { }
+}
+
+/*
+ * Helper functions for managing events -- not part of the public interface.
+ * Props to Dean Edwards' addEvent library for many of the ideas.
+ */
+jQuery.event = {
+
+	global: {},
+
+	add: function( elem, types, handler, data, selector ) {
+
+		var handleObjIn, eventHandle, tmp,
+			events, t, handleObj,
+			special, handlers, type, namespaces, origType,
+			elemData = data_priv.get( elem );
+
+		// Don't attach events to noData or text/comment nodes (but allow plain objects)
+		if ( !elemData ) {
+			return;
+		}
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 
 	var
 		rkeyEvent = /^key/,
@@ -591,6 +635,7 @@ define([
 			}
 		},
 
+<<<<<<< HEAD
 		simulate: function (type, elem, event, bubble) {
 			// Piggyback on a donor event to simulate a different one.
 			// Fake originalEvent to avoid donor's stopPropagation, but if the
@@ -602,6 +647,15 @@ define([
 					type: type,
 					isSimulated: true,
 					originalEvent: {}
+=======
+		beforeunload: {
+			postDispatch: function( event ) {
+
+				// Support: Firefox 20+
+				// Firefox doesn't alert if the returnValue field is not set.
+				if ( event.result !== undefined && event.originalEvent ) {
+					event.originalEvent.returnValue = event.result;
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 				}
 			);
 			if (bubble) {
@@ -632,6 +686,7 @@ define([
 			this.originalEvent = src;
 			this.type = src.type;
 
+<<<<<<< HEAD
 			// Events bubbling up the document may have been marked as prevented
 			// by a handler lower down the tree; reflect the correct value.
 			this.isDefaultPrevented = src.defaultPrevented ||
@@ -640,6 +695,16 @@ define([
 				src.getPreventDefault && src.getPreventDefault() ?
 				returnTrue :
 				returnFalse;
+=======
+		// Events bubbling up the document may have been marked as prevented
+		// by a handler lower down the tree; reflect the correct value.
+		this.isDefaultPrevented = src.defaultPrevented ||
+				src.defaultPrevented === undefined &&
+				// Support: Android < 4.0
+				src.returnValue === false ?
+			returnTrue :
+			returnFalse;
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 
 			// Event type
 		} else {
@@ -687,6 +752,7 @@ define([
 			this.isImmediatePropagationStopped = returnTrue;
 			this.stopPropagation();
 		}
+<<<<<<< HEAD
 	};
 
 // Create mouseenter/leave events using mouseover/out and event-time checks
@@ -716,6 +782,51 @@ define([
 			}
 		};
 	});
+=======
+	},
+	stopImmediatePropagation: function() {
+		var e = this.originalEvent;
+
+		this.isImmediatePropagationStopped = returnTrue;
+
+		if ( e && e.stopImmediatePropagation ) {
+			e.stopImmediatePropagation();
+		}
+
+		this.stopPropagation();
+	}
+};
+
+// Create mouseenter/leave events using mouseover/out and event-time checks
+// Support: Chrome 15+
+jQuery.each({
+	mouseenter: "mouseover",
+	mouseleave: "mouseout",
+	pointerenter: "pointerover",
+	pointerleave: "pointerout"
+}, function( orig, fix ) {
+	jQuery.event.special[ orig ] = {
+		delegateType: fix,
+		bindType: fix,
+
+		handle: function( event ) {
+			var ret,
+				target = this,
+				related = event.relatedTarget,
+				handleObj = event.handleObj;
+
+			// For mousenter/leave call the handler if related is outside the target.
+			// NB: No relatedTarget if the mouse left/entered the browser window
+			if ( !related || (related !== target && !jQuery.contains( target, related )) ) {
+				event.type = handleObj.origType;
+				ret = handleObj.handler.apply( this, arguments );
+				event.type = fix;
+			}
+			return ret;
+		}
+	};
+});
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 
 // Create "bubbling" focus and blur events
 // Support: Firefox, Chrome, Safari

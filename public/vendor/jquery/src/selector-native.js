@@ -1,5 +1,6 @@
 define([
 	"./core"
+<<<<<<< HEAD
 ], function (jQuery) {
 
 	/*
@@ -39,6 +40,48 @@ define([
 				selector_hasDuplicate = true;
 				return 0;
 			}
+=======
+], function( jQuery ) {
+
+/*
+ * Optional (non-Sizzle) selector module for custom builds.
+ *
+ * Note that this DOES NOT SUPPORT many documented jQuery
+ * features in exchange for its smaller size:
+ *
+ * Attribute not equal selector
+ * Positional selectors (:first; :eq(n); :odd; etc.)
+ * Type selectors (:input; :checkbox; :button; etc.)
+ * State-based selectors (:animated; :visible; :hidden; etc.)
+ * :has(selector)
+ * :not(complex selector)
+ * custom selectors via Sizzle extensions
+ * Leading combinators (e.g., $collection.find("> *"))
+ * Reliable functionality on XML fragments
+ * Requiring all parts of a selector to match elements under context
+ *   (e.g., $div.find("div > *") now matches children of $div)
+ * Matching against non-elements
+ * Reliable sorting of disconnected nodes
+ * querySelectorAll bug fixes (e.g., unreliable :focus on WebKit)
+ *
+ * If any of these are unacceptable tradeoffs, either use Sizzle or
+ * customize this stub for the project's specific needs.
+ */
+
+var docElem = window.document.documentElement,
+	selector_hasDuplicate,
+	matches = docElem.matches ||
+		docElem.webkitMatchesSelector ||
+		docElem.mozMatchesSelector ||
+		docElem.oMatchesSelector ||
+		docElem.msMatchesSelector,
+	selector_sortOrder = function( a, b ) {
+		// Flag for duplicate removal
+		if ( a === b ) {
+			selector_hasDuplicate = true;
+			return 0;
+		}
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 
 			var compare = b.compareDocumentPosition && a.compareDocumentPosition && a.compareDocumentPosition(b);
 

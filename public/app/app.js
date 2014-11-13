@@ -1,17 +1,21 @@
 //This file references all module required for this project
 //Defining a model called 'app' which uses directives listed within []
-angular.module('app', ['ngResource', 'ngRoute', 'lr.upload', 'ui.bootstrap', 'angularFileUpload', 'ngAnimate', 'btford.socket-io']).
-	factory('mySocket', function (socketFactory) {
-		return socketFactory();
+angular.module('app',['ngResource','ngRoute', 'ui.bootstrap','ngAnimate','btford.socket-io','cloudinary','angularFileUpload']).
+factory('mySocket', function (socketFactory) {
+	return socketFactory();
 	});
 //must move above factory into a separate service during refactoring
 
 //4.29.2014, updated code to include churchAdmin and worldAdmin authorization
 angular.module('app').config(function ($routeProvider, $locationProvider) {
 
-	var routeRoleChecks = {
-		admin: {auth: function (AuthSvc) {
-			var admin = AuthSvc.authorizedCurrentUserForRoute('admin');
+	//initialize cloudinary config
+	$.cloudinary.config().cloud_name = 'ocfc';
+	$.cloudinary.config().upload_preset = 'faz4z06p';
+
+	var routeRoleChecks={
+		admin:{auth: function(AuthSvc){
+			var admin=AuthSvc.authorizedCurrentUserForRoute('admin');
 			console.log("Test for different admin privileges");
 			console.log(admin);
 			console.log(churchAdmin);

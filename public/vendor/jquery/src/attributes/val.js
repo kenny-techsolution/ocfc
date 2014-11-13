@@ -61,6 +61,7 @@ define([
 
 				hooks = jQuery.valHooks[ this.type ] || jQuery.valHooks[ this.nodeName.toLowerCase() ];
 
+<<<<<<< HEAD
 				// If set returns undefined, fall back to normal setting
 				if (!hooks || !("set" in hooks) || hooks.set(this, val, "value") === undefined) {
 					this.value = val;
@@ -89,6 +90,38 @@ define([
 
 						// IE6-9 doesn't update selected after form reset (#2551)
 						if (( option.selected || i === index ) &&
+=======
+jQuery.extend({
+	valHooks: {
+		option: {
+			get: function( elem ) {
+				var val = jQuery.find.attr( elem, "value" );
+				return val != null ?
+					val :
+					// Support: IE10-11+
+					// option.text throws exceptions (#14686, #14858)
+					jQuery.trim( jQuery.text( elem ) );
+			}
+		},
+		select: {
+			get: function( elem ) {
+				var value, option,
+					options = elem.options,
+					index = elem.selectedIndex,
+					one = elem.type === "select-one" || index < 0,
+					values = one ? null : [],
+					max = one ? index + 1 : options.length,
+					i = index < 0 ?
+						max :
+						one ? index : 0;
+
+				// Loop through all the selected options
+				for ( ; i < max; i++ ) {
+					option = options[ i ];
+
+					// IE6-9 doesn't update selected after form reset (#2551)
+					if ( ( option.selected || i === index ) &&
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 							// Don't return options that are disabled or in a disabled optgroup
 							( support.optDisabled ? !option.disabled : option.getAttribute("disabled") === null ) &&
 							( !option.parentNode.disabled || !jQuery.nodeName(option.parentNode, "optgroup") )) {
@@ -115,11 +148,18 @@ define([
 						values = jQuery.makeArray(value),
 						i = options.length;
 
+<<<<<<< HEAD
 					while (i--) {
 						option = options[ i ];
 						if ((option.selected = jQuery.inArray(jQuery(option).val(), values) >= 0)) {
 							optionSet = true;
 						}
+=======
+				while ( i-- ) {
+					option = options[ i ];
+					if ( (option.selected = jQuery.inArray( option.value, values ) >= 0) ) {
+						optionSet = true;
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 					}
 
 					// force browsers to behave consistently when non-matching value is set

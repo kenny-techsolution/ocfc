@@ -275,21 +275,36 @@ define([
 			return fragment;
 		},
 
+<<<<<<< HEAD
 		cleanData: function (elems) {
 			var data, elem, events, type, key, j,
 				special = jQuery.event.special,
 				i = 0;
+=======
+	cleanData: function( elems ) {
+		var data, elem, type, key,
+			special = jQuery.event.special,
+			i = 0;
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 
 			for (; (elem = elems[ i ]) !== undefined; i++) {
 				if (jQuery.acceptData(elem)) {
 					key = elem[ data_priv.expando ];
 
+<<<<<<< HEAD
 					if (key && (data = data_priv.cache[ key ])) {
 						events = Object.keys(data.events || {});
 						if (events.length) {
 							for (j = 0; (type = events[j]) !== undefined; j++) {
 								if (special[ type ]) {
 									jQuery.event.remove(elem, type);
+=======
+				if ( key && (data = data_priv.cache[ key ]) ) {
+					if ( data.events ) {
+						for ( type in data.events ) {
+							if ( special[ type ] ) {
+								jQuery.event.remove( elem, type );
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 
 									// This is a shortcut to avoid jQuery.event.remove's overhead
 								} else {

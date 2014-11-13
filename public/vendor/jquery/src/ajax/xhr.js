@@ -113,11 +113,24 @@ define([
 					// Create the abort callback
 					callback = xhrCallbacks[ id ] = callback("abort");
 
+<<<<<<< HEAD
 					// Do send the request
 					// This may raise an exception which is actually
 					// handled in jQuery.ajax (so no try/catch here)
 					xhr.send(options.hasContent && options.data || null);
 				},
+=======
+				try {
+					// Do send the request (this may raise an exception)
+					xhr.send( options.hasContent && options.data || null );
+				} catch ( e ) {
+					// #14683: Only rethrow if this hasn't been notified as an error yet
+					if ( callback ) {
+						throw e;
+					}
+				}
+			},
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 
 				abort: function () {
 					if (callback) {

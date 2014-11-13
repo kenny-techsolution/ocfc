@@ -12,6 +12,7 @@ define([
 	 * @param {Object} doc Document object
 	 */
 // Called only from within defaultDisplay
+<<<<<<< HEAD
 	function actualDisplay(name, doc) {
 		var elem = jQuery(doc.createElement(name)).appendTo(doc.body),
 
@@ -21,6 +22,18 @@ define([
 				// Use of this method is a temporary fix (more like optmization) until something better comes along,
 				// since it was removed from specification and supported only in FF
 				window.getDefaultComputedStyle(elem[ 0 ]).display : jQuery.css(elem[ 0 ], "display");
+=======
+function actualDisplay( name, doc ) {
+	var style,
+		elem = jQuery( doc.createElement( name ) ).appendTo( doc.body ),
+
+		// getDefaultComputedStyle might be reliably used only on attached element
+		display = window.getDefaultComputedStyle && ( style = window.getDefaultComputedStyle( elem[ 0 ] ) ) ?
+
+			// Use of this method is a temporary fix (more like optmization) until something better comes along,
+			// since it was removed from specification and supported only in FF
+			style.display : jQuery.css( elem[ 0 ], "display" );
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 
 		// We don't have any data stored on the element,
 		// so use "detach" method as fast way to get rid of the element

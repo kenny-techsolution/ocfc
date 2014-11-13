@@ -50,6 +50,7 @@ define([
 		return data;
 	}
 
+<<<<<<< HEAD
 	jQuery.extend({
 		hasData: function (elem) {
 			return data_user.hasData(elem) || data_priv.hasData(elem);
@@ -93,6 +94,30 @@ define([
 							if (name.indexOf("data-") === 0) {
 								name = jQuery.camelCase(name.slice(5));
 								dataAttr(elem, name, data[ name ]);
+=======
+jQuery.fn.extend({
+	data: function( key, value ) {
+		var i, name, data,
+			elem = this[ 0 ],
+			attrs = elem && elem.attributes;
+
+		// Gets all values
+		if ( key === undefined ) {
+			if ( this.length ) {
+				data = data_user.get( elem );
+
+				if ( elem.nodeType === 1 && !data_priv.get( elem, "hasDataAttrs" ) ) {
+					i = attrs.length;
+					while ( i-- ) {
+
+						// Support: IE11+
+						// The attrs elements can be null (#14894)
+						if ( attrs[ i ] ) {
+							name = attrs[ i ].name;
+							if ( name.indexOf( "data-" ) === 0 ) {
+								name = jQuery.camelCase( name.slice(5) );
+								dataAttr( elem, name, data[ name ] );
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 							}
 						}
 						data_priv.set(elem, "hasDataAttrs", true);

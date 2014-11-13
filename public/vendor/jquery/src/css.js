@@ -22,6 +22,7 @@ define([
 	var
 	// swappable if display is none or starts with table except "table", "table-cell", or "table-caption"
 	// see here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
+<<<<<<< HEAD
 		rdisplayswap = /^(none|table(?!-c[ea]).+)/,
 		rnumsplit = new RegExp("^(" + pnum + ")(.*)$", "i"),
 		rrelNum = new RegExp("^([+-])=(" + pnum + ")", "i"),
@@ -31,6 +32,17 @@ define([
 			letterSpacing: 0,
 			fontWeight: 400
 		},
+=======
+	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
+	rnumsplit = new RegExp( "^(" + pnum + ")(.*)$", "i" ),
+	rrelNum = new RegExp( "^([+-])=(" + pnum + ")", "i" ),
+
+	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
+	cssNormalTransform = {
+		letterSpacing: "0",
+		fontWeight: "400"
+	},
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 
 		cssPrefixes = [ "Webkit", "O", "Moz", "ms" ];
 
@@ -160,6 +172,7 @@ define([
 				continue;
 			}
 
+<<<<<<< HEAD
 			values[ index ] = data_priv.get(elem, "olddisplay");
 			display = elem.style.display;
 			if (show) {
@@ -184,6 +197,19 @@ define([
 						data_priv.set(elem, "olddisplay", hidden ? display : jQuery.css(elem, "display"));
 					}
 				}
+=======
+			// Set elements which have been overridden with display: none
+			// in a stylesheet to whatever the default browser style is
+			// for such an element
+			if ( elem.style.display === "" && isHidden( elem ) ) {
+				values[ index ] = data_priv.access( elem, "olddisplay", defaultDisplay(elem.nodeName) );
+			}
+		} else {
+			hidden = isHidden( elem );
+
+			if ( display !== "none" || !hidden ) {
+				data_priv.set( elem, "olddisplay", hidden ? display : jQuery.css( elem, "display" ) );
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 			}
 		}
 
@@ -215,7 +241,42 @@ define([
 					}
 				}
 			}
+<<<<<<< HEAD
 		},
+=======
+		}
+	},
+
+	// Don't automatically add "px" to these possibly-unitless properties
+	cssNumber: {
+		"columnCount": true,
+		"fillOpacity": true,
+		"flexGrow": true,
+		"flexShrink": true,
+		"fontWeight": true,
+		"lineHeight": true,
+		"opacity": true,
+		"order": true,
+		"orphans": true,
+		"widows": true,
+		"zIndex": true,
+		"zoom": true
+	},
+
+	// Add in properties whose names you wish to fix before
+	// setting or getting the value
+	cssProps: {
+		// normalize float css property
+		"float": "cssFloat"
+	},
+
+	// Get and set the style property on a DOM Node
+	style: function( elem, name, value, extra ) {
+		// Don't set styles on text and comment nodes
+		if ( !elem || elem.nodeType === 3 || elem.nodeType === 8 || !elem.style ) {
+			return;
+		}
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 
 		// Don't automatically add "px" to these possibly-unitless properties
 		cssNumber: {
@@ -267,10 +328,17 @@ define([
 					type = "number";
 				}
 
+<<<<<<< HEAD
 				// Make sure that null and NaN values aren't set. See: #7116
 				if (value == null || value !== value) {
 					return;
 				}
+=======
+			// If a hook was provided, use that value, otherwise just set the specified value
+			if ( !hooks || !("set" in hooks) || (value = hooks.set( elem, value, extra )) !== undefined ) {
+				style[ name ] = value;
+			}
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 
 				// If a number was passed in, add 'px' to the (except for certain CSS properties)
 				if (type === "number" && !jQuery.cssNumber[ origName ]) {
@@ -318,6 +386,7 @@ define([
 				val = hooks.get(elem, true, extra);
 			}
 
+<<<<<<< HEAD
 			// Otherwise, if a way to get the computed value exists, use that
 			if (val === undefined) {
 				val = curCSS(elem, name, styles);
@@ -326,6 +395,19 @@ define([
 			//convert "normal" to computed value
 			if (val === "normal" && name in cssNormalTransform) {
 				val = cssNormalTransform[ name ];
+=======
+jQuery.each([ "height", "width" ], function( i, name ) {
+	jQuery.cssHooks[ name ] = {
+		get: function( elem, computed, extra ) {
+			if ( computed ) {
+				// certain elements can have dimension info if we invisibly show them
+				// however, it must have a current display style that would benefit from this
+				return rdisplayswap.test( jQuery.css( elem, "display" ) ) && elem.offsetWidth === 0 ?
+					jQuery.swap( elem, cssShow, function() {
+						return getWidthOrHeight( elem, name, extra );
+					}) :
+					getWidthOrHeight( elem, name, extra );
+>>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 			}
 
 			// Return, converting to number if forced or a qualifier was provided and val looks numeric
