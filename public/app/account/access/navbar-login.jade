@@ -1,23 +1,6 @@
-// This file creates a page layout for the project.  It creates a login navigation bar
-// at the top right corner of the page.  It uses a Controller from acct-signin-dir.js and acct-drpdown-menu-dir.js directives
-// which creates 3 objects: identity, signin and signout.
-//    identity:  this object is derived from IdentitySvc.js which returns
-//                currentUser and isAuthenticated values.
-//    signin:  Checks username and password against object, authenticateUser of AuthSvc.js
-//               to authenticate user
-//    signout:  Checks username and password against object, logoutUser of AuthSvc.js to
-//                log user out and set username and password as blank/null
-
-// The layout will hid Email and Password textbox once user has been authenticated
-
-// The Sign Up link is created
-
 // The Sign In button calls signin object
-
 // The Sign Out button calls signout object
-
-//form is hidden after identity has been authenticated from acct-signin-dir.js and acct-drpdown-menu-dir.js directives
-
+//navbar-login.jade
 .navbar-right
 	ocfc-signin
 	ocfc-signout

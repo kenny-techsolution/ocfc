@@ -61,6 +61,12 @@
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
 }
+.members-ui .detail-info .btn-group {
+  top: -35px;
+  width: 27px;
+  height: 22px;
+  left: 119px;
+}
 .members-ui .detail-info .name {
   font-size: 16px;
   color: #548abb;
@@ -79,7 +85,6 @@
 }
 .members-ui .detail-info button {
   height: 26px;
-  width: 143px;
   position: relative;
   margin-left: 28px;
   top: 15px;

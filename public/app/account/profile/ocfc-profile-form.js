@@ -1,12 +1,10 @@
 /*************************************************************************************
  This file creates a new Directive called ProfileCtrl
- which injects $scope, AuthSvc.js,IdentitySvc.js,NotifierSvc.js
+ which injects $scope, AuthSvc,IdentitySvc,NotifierSvc
 
- Includes 4 fields: email, fname, lname and password (optional)
-
- Script will update email, fname & lname, if password is entered then save the new info.
-
- Calls AuthSvc.updateCurrentUser with the new data stored in object, newUserData.
+ Controller contains $scope.update function which sets userName, firstName, lastName
+ and password.  Data gets updated into AuthSvc service if data entry of password in the
+                frontend is not empty.
  ***************************************************************************************/
 
 //6.22.2014, create directive for profile-form
@@ -28,7 +26,6 @@ angular.module('app').directive('ocfcProfileForm',function(){
 				if($scope.password && $scope.password.length>0){
 					newUserData.password=$scope.password;
 				}
-
 				AuthSvc.updateCurrentUser(newUserData).then(function(){
 						NotifierSvc.notify('Your user account has been updated');}
 					,function(reason){
