@@ -1,4 +1,11 @@
 #standardCol
+  .form_controls
+    .upload_button_holder
+        .upload_button(href='#', ng-file-select='onFileSelect($files)', data-multiple='false', title='aaaa', onclick='this.value = null') Upload
+      .status {{status}}
+      .progress-bar
+        .progress(ng-init='progress=0')
+
   h1 Photo Gallery
   br
   pre Angel Island Trip         (44 pics)       4/24/2014
