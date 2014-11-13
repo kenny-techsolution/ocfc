@@ -1,28 +1,17 @@
 define([
 	"../core",
 	"../manipulation" // appendTo
-], function (jQuery) {
+], function( jQuery ) {
 
-	var iframe,
-		elemdisplay = {};
+var iframe,
+	elemdisplay = {};
 
-	/**
-	 * Retrieve the actual display of a element
-	 * @param {String} name nodeName of the element
-	 * @param {Object} doc Document object
-	 */
+/**
+ * Retrieve the actual display of a element
+ * @param {String} name nodeName of the element
+ * @param {Object} doc Document object
+ */
 // Called only from within defaultDisplay
-<<<<<<< HEAD
-	function actualDisplay(name, doc) {
-		var elem = jQuery(doc.createElement(name)).appendTo(doc.body),
-
-		// getDefaultComputedStyle might be reliably used only on attached element
-			display = window.getDefaultComputedStyle ?
-
-				// Use of this method is a temporary fix (more like optmization) until something better comes along,
-				// since it was removed from specification and supported only in FF
-				window.getDefaultComputedStyle(elem[ 0 ]).display : jQuery.css(elem[ 0 ], "display");
-=======
 function actualDisplay( name, doc ) {
 	var style,
 		elem = jQuery( doc.createElement( name ) ).appendTo( doc.body ),
@@ -33,50 +22,49 @@ function actualDisplay( name, doc ) {
 			// Use of this method is a temporary fix (more like optmization) until something better comes along,
 			// since it was removed from specification and supported only in FF
 			style.display : jQuery.css( elem[ 0 ], "display" );
->>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 
-		// We don't have any data stored on the element,
-		// so use "detach" method as fast way to get rid of the element
-		elem.detach();
+	// We don't have any data stored on the element,
+	// so use "detach" method as fast way to get rid of the element
+	elem.detach();
 
-		return display;
-	}
+	return display;
+}
 
-	/**
-	 * Try to determine the default display value of an element
-	 * @param {String} nodeName
-	 */
-	function defaultDisplay(nodeName) {
-		var doc = document,
-			display = elemdisplay[ nodeName ];
+/**
+ * Try to determine the default display value of an element
+ * @param {String} nodeName
+ */
+function defaultDisplay( nodeName ) {
+	var doc = document,
+		display = elemdisplay[ nodeName ];
 
-		if (!display) {
-			display = actualDisplay(nodeName, doc);
+	if ( !display ) {
+		display = actualDisplay( nodeName, doc );
 
-			// If the simple way fails, read from inside an iframe
-			if (display === "none" || !display) {
+		// If the simple way fails, read from inside an iframe
+		if ( display === "none" || !display ) {
 
-				// Use the already-created iframe if possible
-				iframe = (iframe || jQuery("<iframe frameborder='0' width='0' height='0'/>")).appendTo(doc.documentElement);
+			// Use the already-created iframe if possible
+			iframe = (iframe || jQuery( "<iframe frameborder='0' width='0' height='0'/>" )).appendTo( doc.documentElement );
 
-				// Always write a new HTML skeleton so Webkit and Firefox don't choke on reuse
-				doc = iframe[ 0 ].contentDocument;
+			// Always write a new HTML skeleton so Webkit and Firefox don't choke on reuse
+			doc = iframe[ 0 ].contentDocument;
 
-				// Support: IE
-				doc.write();
-				doc.close();
+			// Support: IE
+			doc.write();
+			doc.close();
 
-				display = actualDisplay(nodeName, doc);
-				iframe.detach();
-			}
-
-			// Store the correct default display
-			elemdisplay[ nodeName ] = display;
+			display = actualDisplay( nodeName, doc );
+			iframe.detach();
 		}
 
-		return display;
+		// Store the correct default display
+		elemdisplay[ nodeName ] = display;
 	}
 
-	return defaultDisplay;
+	return display;
+}
+
+return defaultDisplay;
 
 });

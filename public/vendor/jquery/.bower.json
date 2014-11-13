@@ -1,42 +1,4 @@
 {
-<<<<<<< HEAD
-	"name": "jquery",
-	"version": "2.1.0",
-	"main": "dist/jquery.js",
-	"license": "MIT",
-	"ignore": [
-		"**/.*",
-		"build",
-		"speed",
-		"test",
-		"*.md",
-		"AUTHORS.txt",
-		"Gruntfile.js",
-		"package.json"
-	],
-	"devDependencies": {
-		"sizzle": "1.10.16",
-		"requirejs": "~2.1.8",
-		"qunit": "~1.12.0",
-		"sinon": "~1.7.3"
-	},
-	"keywords": [
-		"jquery",
-		"javascript",
-		"library"
-	],
-	"homepage": "https://github.com/jquery/jquery",
-	"_release": "2.1.0",
-	"_resolution": {
-		"type": "version",
-		"tag": "2.1.0",
-		"commit": "9434e03193c45d51bbd063a0edd1a07a6178d33f"
-	},
-	"_source": "git://github.com/jquery/jquery.git",
-	"_target": "~2.1.0",
-	"_originalSource": "jquery",
-	"_direct": true
-=======
   "name": "jquery",
   "version": "2.1.1",
   "main": "dist/jquery.js",
@@ -70,7 +32,6 @@
     "commit": "4dec426aa2a6cbabb1b064319ba7c272d594a688"
   },
   "_source": "git://github.com/jquery/jquery.git",
-  "_target": ">=1.6",
+  "_target": "~2.1.0",
   "_originalSource": "jquery"
->>>>>>> a09b969e6e55601ac491c7749739eaff84bac2f2
 }

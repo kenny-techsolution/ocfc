@@ -1,5 +1,5 @@
 define([
 	"../../core"
-], function (jQuery) {
+], function( jQuery ) {
 	return jQuery.now();
 });
