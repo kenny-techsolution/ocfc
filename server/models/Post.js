@@ -2,16 +2,16 @@
  5.24.2014 added to post text
  ***************************************************************************************/
 
-var mongoose=require('mongoose');
-var ObjectId=mongoose.Schema.Types.ObjectId;
+var mongoose = require('mongoose');
+var ObjectId = mongoose.Schema.Types.ObjectId;
 
 //5.27.2014, create a sub document called, Comment
 var commentSchema = mongoose.Schema({
-    comment:{type:String,required:'(comment) is required!',unique:false},
-	createdOn:{type:Date, required:'(postdate) is required!','default': Date.now, unique:false},
-    user:{type:ObjectId, ref: 'User', unique: false, required:'(MEMBER) is required!'},
-    firstName:{type:String,required:'(firstname) is required!',unique:false},
-    lastName:{type:String,required:'(lastname) is required!',unique:false}
+	comment: {type: String, required: '(comment) is required!', unique: false},
+	createdOn: {type: Date, required: '(postdate) is required!', 'default': Date.now, unique: false},
+	user: {type: ObjectId, ref: 'User', unique: false, required: '(MEMBER) is required!'},
+	firstName: {type: String, required: '(firstname) is required!', unique: false},
+	lastName: {type: String, required: '(lastname) is required!', unique: false}
 });
 
 //mongoose.Schema.Types.ObjectId
@@ -20,31 +20,41 @@ var commentSchema = mongoose.Schema({
 var postSchema = mongoose.Schema({
 
 	/*GENERAL*/
-	content:{type:String,required:'(post_content) is required!',unique:false},
-	visibility:[{type:ObjectId, ref: 'Group', unique: false,  required:'(GROUP) is required!'}],
-	postBy:{type:ObjectId, ref: 'User', unique: false, required:'(User ID) is required!'},
-	postType:{type:String,required:'(post_type_str) is required!',unique:false},
-	type:{type:Number,required:'(post_type_num) is required!',unique:false},
-	createdOn:{type:Date, required:'(created_on) is required!','default': Date.now, unique:false},
-	updatedOn:{type:Date,'default': Date.now, unique:false},
-	comments:[commentSchema],
+	content: {type: String, required: '(post_content) is required!', unique: false},
+	visibility: [
+		{type: ObjectId, ref: 'Group', unique: false, required: '(GROUP) is required!'}
+	],
+	postBy: {type: ObjectId, ref: 'User', unique: false, required: '(User ID) is required!'},
+	postType: {type: String, required: '(post_type_str) is required!', unique: false},
+	type: {type: Number, required: '(post_type_num) is required!', unique: false},
+	createdOn: {type: Date, required: '(created_on) is required!', 'default': Date.now, unique: false},
+	updatedOn: {type: Date, 'default': Date.now, unique: false},
+	comments: [commentSchema],
 
 	/*EVENT Specific*/
-	event:{type:ObjectId, ref: 'Event', unique: false},
+	event: {type: ObjectId, ref: 'Event', unique: false},
 
 	/*TESTIMONY Specific*/
-	testimony:{type:ObjectId, ref: 'Testimony', unique: false},
+	testimony: {type: ObjectId, ref: 'Testimony', unique: false},
 
 	/*EVENT & TESTIMONY Shared*/
-	title:{type:String,unique:false},
+	title: {type: String, unique: false},
 
 	/*OTHERS*/
-	excerpt:{type:String,unique:false},
-	images:[{type:String,unique:false}],
-	video:[{type:String,unique:false}],
-	audio:[{type:String,unique:false}],
-	links:[{type:String,unique:false}]
+	excerpt: {type: String, unique: false},
+	images: [
+		{type: String, unique: false}
+	],
+	video: [
+		{type: String, unique: false}
+	],
+	audio: [
+		{type: String, unique: false}
+	],
+	links: [
+		{type: String, unique: false}
+	]
 
 });
 
-var Post=mongoose.model('Post', postSchema);
+var Post = mongoose.model('Post', postSchema);

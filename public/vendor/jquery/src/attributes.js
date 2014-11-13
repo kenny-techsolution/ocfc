@@ -4,8 +4,8 @@ define([
 	"./attributes/prop",
 	"./attributes/classes",
 	"./attributes/val"
-], function( jQuery ) {
+], function (jQuery) {
 
 // Return jQuery for attributes-only inclusion
-return jQuery;
+	return jQuery;
 });

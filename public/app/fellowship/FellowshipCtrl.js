@@ -1,8 +1,6 @@
 /*******************************************************************************
  ******************************************************************************/
-angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $http, $scope,
-                                                             IdentitySvc, FellowshipSvc, $routeParams,
-                                                             PostSvc, EventSvc,TransformSvc, mySocket, $timeout) {
+angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $http, $scope, IdentitySvc, FellowshipSvc, $routeParams, PostSvc, EventSvc, TransformSvc, mySocket, $timeout) {
 
 	//TODO: image uploading functionality.
 	var uploader = $scope.uploader = $fileUploader.create({
@@ -36,7 +34,7 @@ angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $htt
 	$scope.formData = {};
 	$scope.loading = true;
 	$scope.photoUploaded = false;
-	$scope.postsLoaded=false;
+	$scope.postsLoaded = false;
 //	$scope.currVisibility;
 //	$scope.imagePath;
 
@@ -77,39 +75,39 @@ angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $htt
 		testimonyPost: {
 			type: 0,
 			content: '',
-			title:'',
-			placeholder:"Share your testimony"
+			title: '',
+			placeholder: "Share your testimony"
 		},
 		questionPost: {
 			type: 1,
 			content: '',
-			placeholder:"What is your question?"
+			placeholder: "What is your question?"
 		},
 		generalPost: {
 			type: 2,
 			content: '',
-			placeholder:"What's on your mind?"
+			placeholder: "What's on your mind?"
 		},
 		eventPost: {
-			event:'create ObjectId here',
-			from_date:new Date(1999,05,22),
-			from_date_time:new Date(),
-			to_date:new Date(2999,05,22),
-			to_date_time:new Date(),
-			where:'CCIC',
-			welcome:'Newcomber',
+			event: 'create ObjectId here',
+			from_date: new Date(1999, 05, 22),
+			from_date_time: new Date(),
+			to_date: new Date(2999, 05, 22),
+			to_date_time: new Date(),
+			where: 'CCIC',
+			welcome: 'Newcomber',
 			type: 3,
 			title: 'title is Hi',
 			content: 'this is boday of content',
-			placeholder:"What event to plan?"
+			placeholder: "What event to plan?"
 		},
 		fellow_object_id: $routeParams.id,
-		content:'',
+		content: '',
 		visibility: '',
 		postBy: '',
 		postDate: '',
 		isPostShown: false,
-		postType:'general',
+		postType: 'general',
 		type: 2,
 		placeholder: '',
 		placeHolderStrs: [
@@ -117,7 +115,7 @@ angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $htt
 			"What is your question?",
 			"What's on your mind?",
 			"What event to plan?"],
-		title:''
+		title: ''
 	};
 
 //	$scope.onClickType = function (type) {
@@ -148,7 +146,7 @@ angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $htt
 		e.preventDefault();
 		$scope.postObj.type = type;
 		//$scope.postType is an inline function created on ocfc-wall-category
-		$scope.postObj.postType=$scope.postType;
+		$scope.postObj.postType = $scope.postType;
 		//Set $scope.post.visibility variable to an array that captures fellow_object_id
 		$scope.postObj.visibility = [$scope.postObj.fellow_object_id];
 		//Set $scope.post.postDate to current date
@@ -162,7 +160,7 @@ angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $htt
 		switch ($scope.postObj.type) {
 			case 0: //testimony
 				$scope.postObj.testimonyPost.content = $scope.postObj.content;
-				$scope.postObj.testimonyPost.title=$scope.postObj.title;
+				$scope.postObj.testimonyPost.title = $scope.postObj.title;
 
 				break;
 			case 1: //question
@@ -175,34 +173,35 @@ angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $htt
 				break;
 			case 3: //event
 				$scope.postObj.eventPost.content = $scope.postObj.content;
-				$scope.postObj.eventPost.title=$scope.postObj.title;
+				$scope.postObj.eventPost.title = $scope.postObj.title;
 
 				break;
 			default:
 				$scope.postObj.generalPost.content = $scope.postObj.content;
-		};
+		}
+		;
 
 		//Resource object allows $scope.post as parameter
 		var newPost = new PostSvc($scope.postObj);
 		console.log('chk newPost which is an instance of PostSvc');
 		console.log(newPost);
 
-		if ($scope.postObj.type==3){
-			var newEvent=new EventSvc($scope.postObj.eventPost);
-			newEvent.$save().then(function(data){
-				newPost.event=data._id;
+		if ($scope.postObj.type == 3) {
+			var newEvent = new EventSvc($scope.postObj.eventPost);
+			newEvent.$save().then(function (data) {
+				newPost.event = data._id;
 				savePost(newPost);
 				console.log('New post results');
 				console.log(newPost);
 			});
 
-		}else {
+		} else {
 			savePost(newPost);
 		}
 
 	};
 
-	var savePost = function(newpost){
+	var savePost = function (newpost) {
 		//standard Rest API call
 		newpost.$save().then(function (data) {
 				//The unshift() method adds one or more elements
@@ -217,10 +216,9 @@ angular.module('app').controller('FellowshipCtrl', function ($fileUploader, $htt
 	$scope.posts = PostSvc.query({
 		fellow_object_id: $scope.postObj.fellow_object_id  //where clause
 	}, function () {
-		$timeout(function(){
-			$scope.postsLoaded=true;
-		},500);
-
+		$timeout(function () {
+			$scope.postsLoaded = true;
+		}, 500);
 
 	});
 

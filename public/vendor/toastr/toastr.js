@@ -9,7 +9,8 @@
  * Author: John Papa and Hans Fjällemark
  * Project: https://github.com/CodeSeven/toastr
  */
-; (function (define) {
+;
+(function (define) {
 	define(['jquery'], function ($) {
 		return (function () {
 			var version = '2.0.1';
@@ -84,12 +85,16 @@
 
 			function clear($toastElement) {
 				var options = getOptions();
-				if (!$container) { getContainer(options); }
+				if (!$container) {
+					getContainer(options);
+				}
 				if ($toastElement && $(':focus', $toastElement).length === 0) {
 					$toastElement[options.hideMethod]({
 						duration: options.hideDuration,
 						easing: options.hideEasing,
-						complete: function () { removeToast($toastElement); }
+						complete: function () {
+							removeToast($toastElement);
+						}
 					});
 					return;
 				}
@@ -97,10 +102,13 @@
 					$container[options.hideMethod]({
 						duration: options.hideDuration,
 						easing: options.hideEasing,
-						complete: function () { $container.remove(); }
+						complete: function () {
+							$container.remove();
+						}
 					});
 				}
 			}
+
 			//#endregion
 
 			//#region Internal Methods
@@ -199,7 +207,6 @@
 					$container.append($toastElement);
 				}
 
-
 				$toastElement[options.showMethod](
 					{ duration: options.showDuration, easing: options.showEasing, complete: options.onShown }
 				);
@@ -247,7 +254,7 @@
 							}
 							response.state = 'hidden';
 							response.endTime = new Date(),
-							publish(response);
+								publish(response);
 						}
 					});
 				}
@@ -265,8 +272,11 @@
 					);
 				}
 			}
+
 			function getContainer(options) {
-				if (!options) { options = getOptions(); }
+				if (!options) {
+					options = getOptions();
+				}
 				$container = $('#' + options.containerId);
 				if ($container.length) {
 					return $container;
@@ -283,7 +293,9 @@
 			}
 
 			function removeToast($toastElement) {
-				if (!$container) { $container = getContainer(); }
+				if (!$container) {
+					$container = getContainer();
+				}
 				if ($toastElement.is(':visible')) {
 					return;
 				}
@@ -293,6 +305,7 @@
 					$container.remove();
 				}
 			}
+
 			//#endregion
 
 		})();

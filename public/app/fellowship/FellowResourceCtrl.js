@@ -1,4 +1,3 @@
-angular.module('app').controller('FellowResourceCtrl', function($scope, $http) {
-
+angular.module('app').controller('FellowResourceCtrl', function ($scope, $http) {
 
 });

@@ -14,7 +14,6 @@ angular.module('app').controller('ProfileCtrl', function ($scope, AuthSvc, Ident
 	$scope.fname = IdentitySvc.currentUser.firstName;
 	$scope.lname = IdentitySvc.currentUser.lastName;
 
-
 	$scope.update = function () {
 		console.log("update function completed");
 		var newUserData = {
@@ -47,6 +46,5 @@ angular.module('app').controller('ProfileCtrl', function ($scope, AuthSvc, Ident
 			}
 		});
 	};
-
 
 });

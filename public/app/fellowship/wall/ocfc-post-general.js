@@ -5,7 +5,7 @@ angular.module('app').directive('ocfcPostGeneral', function () {
 	return{
 		restrict: 'E',
 		$scope: {
-			post:"="
+			post: "="
 		},
 		templateUrl: '/partials/fellowship/wall/ocfc-post-general',
 		controller: function ($scope) {

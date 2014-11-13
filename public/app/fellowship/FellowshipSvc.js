@@ -6,21 +6,21 @@
 
 // factory, is a singleton, that contains data or function that can be used
 // across controllers
-angular.module('app').factory('FellowshipSvc', function($resource,$http) {
-    // rest api standard, for GET, if id is specified, it will grab specific
-    // user by id
-    var fellowshipResource = $resource('/api/fellows/:_id', {
-        _id: '@id'
-    }, {
-        'update': {
-            method: 'PUT',
-            isArray: false
-        }
-    });
+angular.module('app').factory('FellowshipSvc', function ($resource, $http) {
+	// rest api standard, for GET, if id is specified, it will grab specific
+	// user by id
+	var fellowshipResource = $resource('/api/fellows/:_id', {
+		_id: '@id'
+	}, {
+		'update': {
+			method: 'PUT',
+			isArray: false
+		}
+	});
 
 	//params can be any type of parameter such as zipcode and more..
 	//params will merge w below objects using extend method
-	fellowshipResource.getFellows=function(params) {
+	fellowshipResource.getFellows = function (params) {
 		var params = $.extend({
 			url: '/api/fellows',
 			method: 'GET'
@@ -29,5 +29,5 @@ angular.module('app').factory('FellowshipSvc', function($resource,$http) {
 		return $http(params);
 	};
 
-    return fellowshipResource;
+	return fellowshipResource;
 });

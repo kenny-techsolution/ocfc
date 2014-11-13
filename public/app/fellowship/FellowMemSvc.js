@@ -6,21 +6,21 @@
 
 // factory, is a singleton, that contains data or function that can be used
 // across controllers
-angular.module('app').factory('FellowMemSvc', function($resource) {
-    // rest api standard, for GET, if id is specified, it will grab specific
-    // user by id
-    var fellowMemResource = $resource('/api/fellowMems/:_id', {
-        _id: '@id'
-    }, {
-        'update': {
-            method: 'PUT',
-            isArray: false
-        },
-	    'delete_fellowMem': {
-		    method: 'DELETE',
-		    params:{}
-	    }
-    });
+angular.module('app').factory('FellowMemSvc', function ($resource) {
+	// rest api standard, for GET, if id is specified, it will grab specific
+	// user by id
+	var fellowMemResource = $resource('/api/fellowMems/:_id', {
+		_id: '@id'
+	}, {
+		'update': {
+			method: 'PUT',
+			isArray: false
+		},
+		'delete_fellowMem': {
+			method: 'DELETE',
+			params: {}
+		}
+	});
 
-    return fellowMemResource;
+	return fellowMemResource;
 });

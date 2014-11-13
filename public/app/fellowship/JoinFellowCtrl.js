@@ -9,9 +9,7 @@
  * collection fellowMemResource: Takes rest /api/fellowMems/:id using GET method
  * to grab records for specific user
  ******************************************************************************/
-angular.module('app').controller('JoinFellowCtrl', function ($scope, $http, IdentitySvc,
-                                                             FellowshipSvc, FellowMemSvc,
-                                                             IdentitySvc,NotifierSvc) {
+angular.module('app').controller('JoinFellowCtrl', function ($scope, $http, IdentitySvc, FellowshipSvc, FellowMemSvc, IdentitySvc, NotifierSvc) {
 	// function()() is a self triggered function
 	// no calling required
 
@@ -22,7 +20,7 @@ angular.module('app').controller('JoinFellowCtrl', function ($scope, $http, Iden
 	// This function interact with server to load all the fellowships,
 	// $scope.loadFellows contains the latest data object filtered by params
 	// and update fields statues to each fellowship
-	$scope.loadFellows = function(params){
+	$scope.loadFellows = function (params) {
 		//Calls getFellows service
 		FellowshipSvc.getFellows(params).success(function (data) {
 			//Loop data
@@ -102,9 +100,9 @@ angular.module('app').controller('JoinFellowCtrl', function ($scope, $http, Iden
 		var fellowMem = FellowMemSvc.get(
 			{_id: fellowship.fellowMemId}
 			// Below function is a callback where 1st parameter must be met
-			, function() {
+			, function () {
 				//Must have Admin privilege
-				if (IdentitySvc.currentUser.isAdmin()){
+				if (IdentitySvc.currentUser.isAdmin()) {
 					fellowMem.status = 'Approved';
 
 					//update server with fellowMem data on the front end
@@ -113,9 +111,10 @@ angular.module('app').controller('JoinFellowCtrl', function ($scope, $http, Iden
 					}, fellowMem, function () {
 						fellowship.status = 'Approved';
 					});
-				}else{
+				} else {
 					NotifierSvc.notify('You do have admin right to approve');
-				};
+				}
+				;
 			}
 		);
 

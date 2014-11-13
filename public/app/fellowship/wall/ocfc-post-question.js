@@ -5,7 +5,7 @@ angular.module('app').directive('ocfcPostQuestion', function () {
 	return{
 		restrict: 'E',
 		$scope: {
-			post:"="
+			post: "="
 		},
 		templateUrl: '/partials/fellowship/wall/ocfc-post-question',
 		controller: function ($scope) {

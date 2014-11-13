@@ -19,8 +19,8 @@ angular.module('app').controller('SignupCtrl', function ($scope, UserSvc, Notifi
 			userName: $scope.email,
 			password: $scope.password,
 			birthday: {month: $scope.month,
-					   day: $scope.day,
-					   year: $scope.year},
+				day: $scope.day,
+				year: $scope.year},
 			gender: $scope.gender
 		};
 

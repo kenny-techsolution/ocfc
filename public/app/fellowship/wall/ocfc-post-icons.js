@@ -1,5 +1,5 @@
 //6.26.2014, create directive for post icons
-angular.module('app').directive('ocfcPostIcons',function() {
+angular.module('app').directive('ocfcPostIcons', function () {
 	return{
 		restrict: 'E',
 		$scope: true,

@@ -1,4 +1,3 @@
-angular.module('app').controller('FellowPhotoCtrl', function($scope, $http) {
-
+angular.module('app').controller('FellowPhotoCtrl', function ($scope, $http) {
 
 });
