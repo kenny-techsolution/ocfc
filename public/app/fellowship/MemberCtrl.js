@@ -97,9 +97,29 @@ angular.module('app').controller('MemberCtrl', function($scope, FellowMemSvc,$ro
 		        };
 	        }
         );
-
-
     };
+
+	//11.10.2014
+	$scope.rejectMem=function(member) {
+		// GET is asyncronized
+		var fellowMem = FellowMemSvc.get(
+			{_id: member.fellowMemId}
+			// Below function is a callback where 1st parameter must be met
+			, function(fellowMem) {
+				//Must have Admin privilege
+				if (IdentitySvc.currentUser.isAdmin()){
+					//update server with fellowMem data on the front end
+					fellowMem.$delete({_id:member.fellowMemId},function(){
+						var index = $scope.members.indexOf(member);
+						$scope.members.splice(index,1);
+					});
+				}else{
+					NotifierSvc.notify('You do have admin right to delete');
+				};
+			}
+		);
+	};
+
     $scope.setModalMemberIndex = function (index) {
         $scope.modalMemberIndex = index;
     };

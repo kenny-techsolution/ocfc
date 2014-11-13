@@ -1,12 +1,13 @@
 /*************************************************************************************
  This file creates a new directive
- which takes $scope, $http, $location, IdentitySvc.js, NotifierSvc.js and AuthSvc.js
- directives
+ which injects $scope,NotifierSvc,IdentitySvc,AuthSvc,$location directives
 
- There are 3 objects created (identity, signin and signout)
- identity: points to IdentitySvc which will return values for currentUser and isAuthenticated.
- signout:  Checks username and password against object, logoutUser of AuthSvc.js to
- log user out and set username and password as blank/null
+ There are 2 objects created (identity and signout)
+
+ identity: Assigned from IdentitySvc service which hold for currentUser and isAuthenticated
+           objects.
+ signout:  Function that calls logoutUser object of AuthSvc service, then
+           sets username and password to null.
  ***************************************************************************************/
 
 //6.22.2014, create directive for signout

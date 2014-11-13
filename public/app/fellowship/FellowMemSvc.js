@@ -15,7 +15,11 @@ angular.module('app').factory('FellowMemSvc', function($resource) {
         'update': {
             method: 'PUT',
             isArray: false
-        }
+        },
+	    'delete_fellowMem': {
+		    method: 'DELETE',
+		    params:{}
+	    }
     });
 
     return fellowMemResource;

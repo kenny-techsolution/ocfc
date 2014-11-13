@@ -22,6 +22,12 @@
 			ocfc-user-image
 		.status{{member.status}}
 		.detail-info
+			div.btn-group
+				button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
+					span.caret
+				ul.dropdown-menu(role='menu')
+					li
+						a(href='#',ng-click='rejectMem(member)') Reject
 			.name{{member.firstName}}&nbsp{{member.lastName}}
 			.description Hi my name is Kenny Chung.  I love my wife.
 			.join-date Joined 12/14/2013

@@ -1,13 +1,11 @@
 /*************************************************************************************
- This file creates a new Service called AuthSvc
- which will authenticate username & password info.
+ This file creates AuthSvc which authenticates username & password info.  Its uses
+ following 4 injections: ($http,IdentitySvc, $q and UserSvc)
 
- Its takes in 4 injections ($http,IdentitySvc, $q and UserSvc)
-
- Creates 2 objects (authenticateUser & logoutUser)
- authenticateUser:  A function that injects username & password.
- It uses $http directive to check if users exist.
- If true then code will extend to UserSvc.js
+ Creates 6 objects
+ authenticateUser:  A function that injects username & password.  Uses $http post
+                    directive. Then creates 'user' variable which is a a new instance
+                    of UserSvc merging with response.data.user.
 
  createUser:         A function that injects newUserData object which contains
  password, username, firstName and LastName into UserSvc.js
@@ -24,8 +22,8 @@
  ***************************************************************************************/
 angular.module('app').factory('AuthSvc',function($http,IdentitySvc,$q,UserSvc){
     return{
-	    //Updates data by calling $http post service
-	    //Also adding response data with extend method
+	    //Update data by calling $http post service
+	    //Also returns with response data using extend method
         authenticateUser: function(username,password){
             var dfd=$q.defer();
             $http.post('/login',{username:username, password:password}).then(function(response){
