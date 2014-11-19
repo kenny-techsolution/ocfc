@@ -1,13 +1,34 @@
 var User = require('mongoose').model('User'),
 	encrypt = require('../utilities/encryption');
-
-// Retrieve all users data and sends back to client
-// (ie: Angular Svc or Controller)
-exports.getUsers = function (req, res) {
-	User.find({}).exec(function (err, collection) {
-		res.send(collection);
-	})
+//TODO
+exports.createUser=function (req, res) {
+	res.end();
 };
+//TODO
+exports.updateUser=function (req, res) {
+	res.end();
+};
+//TODO
+exports.getUserById=function (req, res) {
+	res.end();
+};
+//TODO
+exports.deleteUserById=function (req, res) {
+	res.end();
+};
+//TODO
+exports.resetPassword=function (req, res) {
+	res.end();
+};
+//TODO
+exports.updateProfileImage=function (req, res) {
+	res.end();
+};
+//TODO
+exports.updateEventParticipation=function (req, res) {
+	res.end();
+};
+
 
 //Function creates new user data set grabbed it from client
 exports.createUser = function (req, res, next) {
@@ -73,3 +94,26 @@ exports.updateUser = function (req, res) {
 		res.send(req.user);
 	});
 };
+
+//TODO
+exports.getUserById = function (req, res) {
+	res.end();
+};
+
+//TODO
+exports.deleteUserById = function (req, res) {
+	res.end();
+};
+
+//TODO
+exports.resetPassword = function (req, res) {
+	res.end();
+};
+
+//TODO
+exports.updateProfileImage = function (req, res) {
+	res.end();
+};
+
+
+

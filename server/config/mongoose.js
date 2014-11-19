@@ -1,15 +1,24 @@
 var mongoose = require('mongoose'),
 	userModel = require('../models/User'),
-	courseModel = require('../models/Course'),
 //4.30.2014, added new model for members who joined a fellowship
+	userModel= require('../models/User'),
 	fellowModel = require('../models/Fellowship'),
-	fellowMemModel = require('../models/FellowMem'),
+	churchModel = require('../models/Church'),
+	fellowUserModel = require('../models/FellowshipUser'),
+	churchFellowModel=require('../models/ChurchFellowship'),
+	churchUserModel=require('../models/ChurchUser'),
 	postModel = require('../models/Post'),
 	eventModel = require('../models/Event'),
-	testimonyModel = require('../models/Testimony');
+	commentModel= require('../models/Comment'),
+	albumModel= require('../models/Album'),
+	calendarModel= require('../models/Calendar'),
+	folderModel= require('../models/Folder'),
+	fileModel= require('../models/File'),
+	imageModel= require('../models/Image'),
+	inviteOtherToFellowshipModel= require('../models/InviteOtherToFellowship'),
+	wallModel= require('../models/Wall');
 
 module.exports = function (config) {
-
 	mongoose.connect(config.db);
 	var db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error....'));
@@ -18,7 +27,9 @@ module.exports = function (config) {
 	});
 	//used for creating dummy data
 	userModel.createDefaultUsers();
-	courseModel.createDefaultCourses();
-	fellowModel.createDefaultFellows();
+	fellowModel.createDefaultFellowships();
+	churchModel.createDefaultChurches();
+	churchFellowModel.createDefaultChurchFellows();
+	churchUserModel.createDefaultChurchUsers();
 };
 

@@ -1,71 +1,72 @@
 /*************************************************************************************
- This file creates a new mongoose model called users that contains firstname,
- lastname, username, salt, password and roles.
+ This file creates a new mongoose model called User
 
  The userSchema has 2 methods:
- authenticat:  injects passwordToMatch to validate against encrypted password.
+ authenticate:  injects passwordToMatch to validate against encrypted password.
  hasRole:  injects role to check if role value exist
 
- The user data collection is stored in createDefaultUsers object.
-
- 4.29.2013, update code to include churchAdmin and worldAdmin records
-
+ 11.18.2014, re-create User model as per latest requirement
  ***************************************************************************************/
 
 var mongoose = require('mongoose'),
 	encrypt = require('../utilities/encryption');
 
 var userSchema = mongoose.Schema({
-	firstName: {type: String, required: '(firstName) is required!', index: true},
-	lastName: {type: String, required: '(lastName) is required!', index: true},
-	userName: {type: String, required: '(userName aka email) is required!', unique: true},
-	hashed_pwd: {type: String, required: '(hashed_pwd) is required!'},
-	salt: {type: String, required: '(salt) is required!'},
-	roles: [
-		{type: String, default: 'user'}
-	],
-	birthday: {type: Date, unique: false},
-	gender: {type: String, unique: false}
-
+	firstName: 	{type: String, required: '(firstName) is required!', index: true, unique: false},
+	lastName: 	{type: String, required: '(lastName) is required!', index: true, unique: false},
+	userName: 	{type: String, required: '(userName uses email) is required!', index: true, unique: true},
+	hashedPwd: 	{type: String, required: '(hashedPwd) is required!',index: true, unique: false},
+	salt: 		{type: String, required: '(salt) is required!',index: true, unique: true},
+	birthday:	{type: Date,index: true, unique: false},
+	gender: 	{type: String, index: false, unique: false},
+	profileImg: {type: String, index: false, unique: false},
+	signupDate: {type: Date,required:'(signupDate) is required!',index: true, unique: false},
+	about:		{type: String, index: false, unique: false},
+	place: 		{type: String,required:'(place) is required!',index: true, unique: false},
+	coordinates:[{type: Number,required:'(geoCode) is required!',index: true, unique: false}],
+	language: 	{type: String, required:'(language) is required!', index: true, unique: false},
+	passReset:	{type: String, index: false, unique: true},
+	resetOn:	{type: Date,index: false, unique: false},
 });
 
 userSchema.methods = {
 	authenticate: function (passwordToMatch) {
-		//salt and passwordToMatch are used to create hashPwd
-		return encrypt.hashPwd(this.salt, passwordToMatch) === this.hashed_pwd;
-		console.log(passwordToMatch);
-		console.log(encrypt.hashPwd(this.salt, passwordToMatch));
-		console.log(this.hashed_pwd);
+		//salt and passwordToMatch parameter are used to create hashPwd
+		return encrypt.hashPwd(this.salt, passwordToMatch) === this.hashedPwd;
 	},
 	hasRole: function (role) {
-		return this.roles.indexof(role) > -1;
+		return this.userRoles.indexof(role) > -1;
 	}
 
 };
 
 var User = mongoose.model('User', userSchema);
-
 //Create pre-populated or default dummy data
 function createDefaultUsers() {
 	User.find({}).exec(function (err, collection) {
 		if (collection.length === 0) {
 			var salt, hash;
-			//new salt is created each time thus every user will have it's own unique value
+			//new salt is created each time thus, user will have it's own unique value
 			salt = encrypt.createSalt();
-			hash = encrypt.hashPwd(salt, 'joe');
-			User.create({firstName: 'Joe', lastName: 'Eames', userName: 'joe', salt: salt, hashed_pwd: hash, roles: ['admin']});
+			hash = encrypt.hashPwd(salt, 'joe@gmail.com');
+			User.create({firstName: 'Joe', lastName: 'Eames', userName: 'joe@gmail.com', salt: salt, hashedPwd: hash,
+						 signupDate:'01/01/2014',place:'San Francisco',geoCode:[-34.397, 150.644],language:'English'});
 			salt = encrypt.createSalt();
-			hash = encrypt.hashPwd(salt, 'john');
-			User.create({firstName: 'John', lastName: 'Papa', userName: 'john', salt: salt, hashed_pwd: hash, roles: []});
+			hash = encrypt.hashPwd(salt, 'mei@gmail.com');
+			User.create({firstName: 'Mei', lastName: 'Zhang', userName: 'mei@gmail.com', salt: salt, hashedPwd: hash,
+						 signupDate:'02/01/2014',place:'Los Angeles',geoCode:[-30.397, 130.644],language:'English'});
 			salt = encrypt.createSalt();
-			hash = encrypt.hashPwd(salt, 'dan');
-			User.create({firstName: 'Dan', lastName: 'Wahlin', userName: 'dan', salt: salt, hashed_pwd: hash});
+			hash = encrypt.hashPwd(salt, 'kenny@gmail.com');
+			User.create({firstName: 'Kenny', lastName: 'Chung', userName: 'kenny@gmail.com', salt: salt, hashedPwd: hash,
+						 signupDate:'03/01/2014',place:'Millbrae',geoCode:[-20.397, 120.644],language:'Mandarin'});
 			salt = encrypt.createSalt();
-			hash = encrypt.hashPwd(salt, 'mei');
-			User.create({firstName: 'Mei', lastName: 'Zhang', userName: 'mei', salt: salt, hashed_pwd: hash, roles: ['churchAdmin']});
+			hash = encrypt.hashPwd(salt, 'ting@gmail.com');
+			User.create({firstName: 'Ting', lastName: 'Chung', userName: 'ting@gmail.com', salt: salt, hashedPwd: hash,
+						 signupDate:'02/01/2014',place:'Taiwan',geoCode:[-10.397, 110.644],language:'Mandarin'});
 			salt = encrypt.createSalt();
-			hash = encrypt.hashPwd(salt, 'kenny');
-			User.create({firstName: 'Kenny', lastName: 'Chung', userName: 'kenny', salt: salt, hashed_pwd: hash, roles: ['worldAdmin']});
+			hash = encrypt.hashPwd(salt, 'john@gmail.com');
+			User.create({firstName: 'John', lastName: 'Doe', userName: 'john@gmail.com', salt: salt, hashedPwd: hash,
+						 signupDate:'03/01/2014',place:'Ohio',geoCode:[-13.397, 160.644],language:'English'});
 		}
 	})
 };

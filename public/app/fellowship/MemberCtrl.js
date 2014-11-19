@@ -1,4 +1,4 @@
-angular.module('app').controller('MemberCtrl', function ($scope, FellowMemSvc, $routeParams, NotifierSvc, IdentitySvc) {
+angular.module('app').controller('MemberCtrl', function ($scope, FellowUserSvc, $routeParams, NotifierSvc, IdentitySvc) {
 	$scope.members = [];
 	$scope.modalMemberIndex;
 
@@ -49,21 +49,21 @@ angular.module('app').controller('MemberCtrl', function ($scope, FellowMemSvc, $
 		;
 	};
 
-	//$scope.fellowMems contains members associated to a fellowship
+	//$scope.fellowUsers contains members associated to a fellowship
 	//Then, assigns retrieved data onto $scope.members array object
-	$scope.fellowMems = FellowMemSvc.query(
+	$scope.fellowUsers = FellowUserSvc.query(
 		{
 			fellowshipId: $routeParams.id}
 		//below parameter is a callback, 1st parameter must be met
 		, function () {
-			console.log("chk $scope.fellowMems query array object");
-			console.log($scope.fellowMems);
-			angular.forEach($scope.fellowMems, function (fellowMem, key) {
-				fellowMem.member.status = fellowMem.status;
-				fellowMem.member.fellowMemId = fellowMem._id;
+			console.log("chk $scope.fellowUsers query array object");
+			console.log($scope.fellowUsers);
+			angular.forEach($scope.fellowUsers, function (fellowUser, key) {
+				fellowUser.member.status = fellowUser.status;
+				fellowUser.member.fellowUserId = fellowUser._id;
 
 				//Assign data into $scope.members array object
-				$scope.members.push(fellowMem.member);
+				$scope.members.push(fellowUser.member);
 				console.log('chk $scope.members');
 				console.log($scope.members);
 			});
@@ -74,20 +74,20 @@ angular.module('app').controller('MemberCtrl', function ($scope, FellowMemSvc, $
 	// $scope.approveMember contains a member that needs approval
 	$scope.approveMember = function (member) {
 		// GET is asyncronized
-		var fellowMem = FellowMemSvc.get(
-			{_id: member.fellowMemId}
+		var fellowUser = FellowUserSvc.get(
+			{_id: member.fellowUserId}
 			// Below function is a callback where 1st parameter must be met
 			, function () {
 				//Must have Admin privilege
 				if (IdentitySvc.currentUser.isAdmin()) {
-					fellowMem.status = 'Approved';
-					//update server with fellowMem data on the front end
-					FellowMemSvc.update({
-						_id: fellowMem._id
-					}, fellowMem, function () {
+					fellowUser.status = 'Approved';
+					//update server with fellowUser data on the front end
+					FellowUserSvc.update({
+						_id: fellowUser._id
+					}, fellowUser, function () {
 						member.status = 'Approved';
-						console.log('chk fellowMem array');
-						console.log(fellowMem);
+						console.log('chk fellowUser array');
+						console.log(fellowUser);
 					});
 				} else {
 					NotifierSvc.notify('You do have admin right to approve');
@@ -100,14 +100,14 @@ angular.module('app').controller('MemberCtrl', function ($scope, FellowMemSvc, $
 	//11.10.2014
 	$scope.rejectMem = function (member) {
 		// GET is asyncronized
-		var fellowMem = FellowMemSvc.get(
-			{_id: member.fellowMemId}
+		var fellowUser = FellowUserSvc.get(
+			{_id: member.fellowUserId}
 			// Below function is a callback where 1st parameter must be met
-			, function (fellowMem) {
+			, function (fellowUser) {
 				//Must have Admin privilege
 				if (IdentitySvc.currentUser.isAdmin()) {
-					//update server with fellowMem data on the front end
-					fellowMem.$delete({_id: member.fellowMemId}, function () {
+					//update server with fellowUser data on the front end
+					fellowUser.$delete({_id: member.fellowUserId}, function () {
 						var index = $scope.members.indexOf(member);
 						$scope.members.splice(index, 1);
 					});
@@ -126,7 +126,7 @@ angular.module('app').controller('MemberCtrl', function ($scope, FellowMemSvc, $
 	// 5.7.2014
 	// this function interacts with server to remove member
 	$scope.removeMember = function () {
-		// we need to get the fellowMem document that we want to update.
+		// we need to get the fellowUser document that we want to update.
 		// GET is asyncronized
 
 		var member = $scope.members[$scope.modalMemberIndex];
@@ -134,8 +134,8 @@ angular.module('app').controller('MemberCtrl', function ($scope, FellowMemSvc, $
 //        console.log($scope.modalMemberIndex);
 //        console.log(member);
 		//below parameter is a callback, 1st parameter must be met
-		var fellowMem = FellowMemSvc.remove(
-			{_id: member.fellowMemId}
+		var fellowUser = FellowUserSvc.remove(
+			{_id: member.fellowUserId}
 			, function (data) {
 				if (data.status = "success") {
 					$("#RejRemvConfirmation").modal('hide');

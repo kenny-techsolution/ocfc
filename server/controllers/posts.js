@@ -6,6 +6,44 @@ var Post = require('mongoose').model('Post'),
 	Event = require('mongoose').model('Event'),
 	commFunc = require('../utilities/commonFunctions');
 
+//TODO
+exports.createPost=function (req, res) {
+	res.end();
+};
+//TODO
+exports.getPost=function (req, res) {
+	res.end();
+};
+//TODO
+exports.queryPost=function (req, res) {
+	res.end();
+};
+//TODO
+exports.updatePost=function (req, res) {
+	res.end();
+};
+//TODO
+exports.removePost=function (req, res) {
+	res.end();
+};
+//TODO
+exports.addCommentToPost=function (req, res) {
+	res.end();
+};
+//TODO
+exports.getCommentForPost=function (req, res) {
+	res.end();
+};
+//TODO
+exports.updateCommentFromPost=function (req, res) {
+	res.end();
+};
+//TODO
+exports.deleteCommentFromPost=function (req, res) {
+	res.end();
+};
+
+
 //POST
 exports.createPost = function (req, res, next) {
 	var postData = req.body;

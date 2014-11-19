@@ -2,10 +2,10 @@
 //Built on to of Node Js
 //Create actual express app
 //app is defined as server
-var app = require('express')()
-	, http = require('http')
-	, server = http.createServer(app)
-	, io = require('socket.io').listen(server);
+var app = require('express')(),
+	http = require('http'),
+	server = http.createServer(app),
+	io = require('socket.io').listen(server);
 
 //Set environment mode
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -19,5 +19,3 @@ require('./server/config/passport')();
 require('./server/config/routes')(app, io);
 
 console.log('Listening on port' + config.port + '...');
-
-
