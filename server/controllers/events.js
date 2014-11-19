@@ -1,20 +1,39 @@
-/*************************************************************************************
- 5.24.2014, create creatPost object that grabs data from mongodb by zipcode
- ***************************************************************************************/
-
 var Event = require('mongoose').model('Event'),
 	commFunc = require('../utilities/commonFunctions');
 
-//POST
-exports.createEvent = function (req, res, next) {
-	var eventData = req.body;
-	eventData.postBy = req.user._id;
-
-	if (eventData.type == 3) {
-		Event.create(eventData, function (err, returnedEvent) {
-			console.log('chk returnedEvent');
-			console.log(returnedEvent);
-			res.send(returnedEvent);
-		});
-	}
+//TODO
+exports.createEventToCalendar= function (req, res) {
+	res.end();
+};
+//TODO
+exports.queryEventsFromCalendar= function (req, res) {
+	res.end();
+};
+//TODO
+exports.getEvent= function (req, res) {
+	res.end();
+};
+//TODO
+exports.updateEvent= function (req, res) {
+	res.end();
+};
+//TODO
+exports.deleteEvent= function (req, res) {
+	res.end();
+};
+//TODO
+exports.addCommentToEvent= function (req, res) {
+	res.end();
+};
+//TODO
+exports.getCommentForEvent= function (req, res) {
+	res.end();
+};
+//TODO
+exports.updateCommentFromEvent= function (req, res) {
+	res.end();
+};
+//TODO
+exports.deleteCommentFromEvent= function (req, res) {
+	res.end();
 };

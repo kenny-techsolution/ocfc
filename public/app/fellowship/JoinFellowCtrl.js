@@ -5,11 +5,11 @@
  * updateFellowList: once the condition is met, $http directive will retrieve
  * the data from mongodb of fellowships collection associatedFellowships: get or
  * read all the associated fellowships for the current user. selectedFellowship:
- * set as null joinFellowship: add userId and fellowId onto fellowMems
- * collection fellowMemResource: Takes rest /api/fellowMems/:id using GET method
+ * set as null joinFellowship: add userId and fellowId onto fellowUser
+ * collection fellowUserResource: Takes rest /api/fellowUsers/:id using GET method
  * to grab records for specific user
  ******************************************************************************/
-angular.module('app').controller('JoinFellowCtrl', function ($scope, $http, IdentitySvc, FellowshipSvc, FellowMemSvc, IdentitySvc, NotifierSvc) {
+angular.module('app').controller('JoinFellowCtrl', function ($scope, $http, IdentitySvc, FellowshipSvc, FellowUserSvc, IdentitySvc, NotifierSvc) {
 	// function()() is a self triggered function
 	// no calling required
 
@@ -27,12 +27,12 @@ angular.module('app').controller('JoinFellowCtrl', function ($scope, $http, Iden
 			angular.forEach(data, function (fellowObj, key) {
 				var norun = false;
 				if ($scope.associatedFellowships.length !== 0) {
-					//Update fellowMemObj fields onto fellowObj
-					angular.forEach($scope.associatedFellowships, function (fellowMemObj, key) {
+					//Update fellowUserObj fields onto fellowObj
+					angular.forEach($scope.associatedFellowships, function (fellowUserObj, key) {
 						if (norun == false) {
-							if (fellowObj._id == fellowMemObj.fellowship) {
-								fellowObj.status = fellowMemObj.status;
-								fellowObj.fellowMemId = fellowMemObj._id;
+							if (fellowObj._id == fellowUserObj.fellowship) {
+								fellowObj.status = fellowUserObj.status;
+								fellowObj.fellowUserId = fellowUserObj._id;
 								norun = true;
 							} else {
 								fellowObj.status = 'None';
@@ -53,7 +53,7 @@ angular.module('app').controller('JoinFellowCtrl', function ($scope, $http, Iden
 	$scope.getAssociatedFellowships = (function () {
 		// check if the current user is authenticated
 		if (IdentitySvc.isAuthenticated() === true) {
-			$scope.associatedFellowships = FellowMemSvc.query({
+			$scope.associatedFellowships = FellowUserSvc.query({
 				userId: IdentitySvc.currentUser._id
 			}, function () {
 				$scope.loadFellows();
@@ -76,16 +76,16 @@ angular.module('app').controller('JoinFellowCtrl', function ($scope, $http, Iden
 	// $scope.joinFellowship retrieves latest data from server
 	// then assign fields onto fellowship object
 	$scope.joinFellowship = function (fellowship) {
-		var fellowMemData = {
+		var fellowUserData = {
 			"userId": IdentitySvc.currentUser._id,
 			"fellowId": fellowship._id
 		};
-		//Service call that passes fellowMemData object
-		var newFellowMem = new FellowMemSvc(fellowMemData);
-		newFellowMem.$save().then(function (response) {
+		//Service call that passes fellowUserData object
+		var newFellowUser = new FellowUserSvc(fellowUserData);
+		newFellowUser.$save().then(function (response) {
 			//After save, set the status of Join Fellowship to Pending
 			fellowship.status = 'Pending';
-			fellowship.fellowMemId = response.fellowMemId;
+			fellowship.fellowUserId = response.fellowUserId;
 		});
 	};
 
@@ -93,22 +93,22 @@ angular.module('app').controller('JoinFellowCtrl', function ($scope, $http, Iden
 	// This function interacts with server to approve the user for the
 	// fellowship.
 	$scope.approveFellowship = function (fellowship) {
-		// We need to get the fellowMem document that we want to update.
+		// We need to get the fellowUser document that we want to update.
 		// GET is asyncronized
 
 		//Service call to grab all members associated to a fellowship
-		var fellowMem = FellowMemSvc.get(
-			{_id: fellowship.fellowMemId}
+		var fellowUser = FellowUserSvc.get(
+			{_id: fellowship.fellowUserId}
 			// Below function is a callback where 1st parameter must be met
 			, function () {
 				//Must have Admin privilege
 				if (IdentitySvc.currentUser.isAdmin()) {
-					fellowMem.status = 'Approved';
+					fellowUser.status = 'Approved';
 
-					//update server with fellowMem data on the front end
-					FellowMemSvc.update({
-						_id: fellowMem._id
-					}, fellowMem, function () {
+					//update server with fellowUser data on the front end
+					FellowUserSvc.update({
+						_id: fellowUser._id
+					}, fellowUser, function () {
 						fellowship.status = 'Approved';
 					});
 				} else {
@@ -126,19 +126,19 @@ angular.module('app').controller('JoinFellowCtrl', function ($scope, $http, Iden
 	// $scope.cancelFellowship contains data where statues
 	// have been reverted back to original state
 	$scope.cancelFellowship = function (fellowship) {
-		// we need to get the fellowMem document that we want to update.
+		// we need to get the fellowUser document that we want to update.
 		// GET is asyncronized
-		var fellowMem = FellowMemSvc.get(
+		var fellowUser = FellowUserSvc.get(
 			{
-				_id: fellowship.fellowMemId}
+				_id: fellowship.fellowUserId}
 			//below parameter is a callback, 1st parameter must be met
 			, function () {
-				fellowMem.status = 'None';
+				fellowUser.status = 'None';
 
-				//update server with fellowMem data on the front end
-				FellowMemSvc.update({
-					_id: fellowMem._id
-				}, fellowMem, function () {
+				//update server with fellowUser data on the front end
+				FellowUserSvc.update({
+					_id: fellowUser._id
+				}, fellowUser, function () {
 					fellowship.status = 'None';
 				});
 			}

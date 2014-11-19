@@ -2,8 +2,64 @@
  4.29.2014, create getFellowByZip object that grabs data from mongodb by zipcode
  ***************************************************************************************/
 
-var Fellow = require('mongoose').model('Fellow'),
+var Fellow = require('mongoose').model('Fellowship'),
 	commFunc = require('../utilities/commonFunctions');
+
+//TODO
+exports.createFellowship=function (req, res) {
+	res.end();
+};
+//TODO
+exports.updateFellowshipById=function (req, res) {
+	res.end();
+};
+//TODO
+exports.getFellowshipById=function (req, res) {
+	res.end();
+};
+//TODO
+exports.deleteFellowshipById=function (req, res) {
+	res.end();
+};
+//TODO
+exports.getFellowshipsByUserId=function (req, res) {
+	res.end();
+};
+//TODO
+exports.addUserToFellowship=function (req, res) {
+	res.end();
+};
+//TODO
+exports.getUsers=function (req, res) {
+	res.end();
+};
+//TODO
+exports.updateUserToFellowship=function (req, res) {
+	res.end();
+};
+//TODO
+exports.removeUserFromFellowship=function (req, res) {
+	res.end();
+};
+
+
+/* ------ Invite Other To Fellowships related API -------- */
+//TODO
+exports.createInvite=function (req, res) {
+	res.end();
+};
+//TODO
+exports.queryInvites=function (req, res) {
+	res.end();
+};
+//TODO
+exports.getInvite=function (req, res) {
+	res.end();
+};
+//TODO
+exports.deleteInvite=function (req, res) {
+	res.end();
+};
 
 //find doc by zipcode from URL within Fellow collection
 exports.getFellows = function (req, res) {
