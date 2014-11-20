@@ -5,9 +5,9 @@
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 var wallSchema = mongoose.Schema({
-	type:			{type: String, Required:'(type) is required!', index: true, unique: false},
-	fellowshipId:	{type: ObjectId, ref:'Fellowship', index: true, unique: true},
-	churchId:		{type: ObjectId, ref:'Church', index: true, unique: false}
+	type:			{type: String, Required:'(type) is required!', index: true, unique: false,lowercase: true},
+	fellowshipId:	{type: ObjectId, ref:'Fellowship', index: true, unique: true,lowercase: true},
+	churchId:		{type: ObjectId, ref:'Church', index: true, unique: false,lowercase: true}
 });
 
 var Wall = mongoose.model('Wall', wallSchema);

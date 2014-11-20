@@ -5,11 +5,11 @@
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 var churchFellowshipSchema = mongoose.Schema({
-	churchId:	{type: ObjectId, ref:'Church', required:'(churchId) is required!', index: true, unique: false},
-	fellowshipId:	{type: ObjectId, ref:'Fellowship', required:'(FellowshipId) is required!', index: true, unique: false},
-	updateDate:	{type: Date, required:'(updateDate) is required!', index: true, unique: false},
+	churchId:	{type: ObjectId, ref:'Church', required:'(churchId) is required!', index: true, unique: false,lowercase: true},
+	fellowshipId:	{type: ObjectId, ref:'Fellowship', required:'(FellowshipId) is required!', index: true, unique: false,lowercase: true},
+	updateDate:	{type: Date, required:'(updateDate) is required!', index: true, unique: false,lowercase: true},
 	rejReason:	{type: String, index: true, unique: false},
-	status:		{type: String, required:'(status) is required!', index: true, unique: false}
+	status:		{type: String, required:'(status) is required!', index: true, unique: false,lowercase: true}
 });
 
 var ChurchFellowship = mongoose.model('ChurchFellowship', churchFellowshipSchema);

@@ -7,9 +7,9 @@ var commentSchema=require('./Comment').commentSchema;
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var testimonySchema = mongoose.Schema({
-	title:{type: String, Required:'(title) is required!',index: false, unique: false},
-	story: {type: String, Required:'(story) is required!',index: false, unique: false},
-	imageIds:[{type: ObjectId,ref:'Image',index: false, unique: false}],
+	title:{type: String, Required:'(title) is required!',index: false, unique: false,lowercase: true},
+	story: {type: String, Required:'(story) is required!',index: false, unique: false,lowercase: true},
+	imageIds:[{type: ObjectId,ref:'Image',index: false, unique: false,lowercase: true}]
 });
 
 var postSchema = mongoose.Schema({

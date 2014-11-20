@@ -5,12 +5,12 @@
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 var churchUserSchema = mongoose.Schema({
-	churchId:	{type: ObjectId, ref:'Church', Required:'(churchId) is required!',index: true, unique: false},
-	userId:		{type: ObjectId, ref:'User', Required:'(userId) is required!',index: true, unique: false},
-	updateDate:	{type: String, Required:'(updateDate) is required!',index: true, unique: false},
-	rejReason:	{type: String, index: true, unique: false},
-	status:		{type: String, Required:'(status) is required!',index: true, unique: false},
-	role:		{type: String, required:'(role) is required!', index: true, unique: false}
+	churchId:	{type: ObjectId, ref:'Church', Required:'(churchId) is required!',index: true, unique: false,lowercase: true},
+	userId:		{type: ObjectId, ref:'User', Required:'(userId) is required!',index: true, unique: false,lowercase: true},
+	updateDate:	{type: String, Required:'(updateDate) is required!',index: true, unique: false,lowercase: true},
+	rejReason:	{type: String, index: true, unique: false,lowercase: true},
+	status:		{type: String, Required:'(status) is required!',index: true, unique: false,lowercase: true},
+	role:		{type: String, required:'(role) is required!', index: true, unique: false,lowercase: true}
 });
 
 var ChurchUser = mongoose.model('ChurchUser', churchUserSchema);

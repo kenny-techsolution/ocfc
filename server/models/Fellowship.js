@@ -5,17 +5,17 @@
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 var fellowshipSchema = mongoose.Schema({
-	albumIds:	[{type: ObjectId, ref: 'Album', index: true,unique: false}],
-	fileIds:	[{type: ObjectId, ref:'File',index: true,unique: false}],
-	calendarIds:{type: ObjectId, ref:'Calendar', index: true, unique: true},
-	name:		{type: String, required:'(name) is required!', index: true, unique: false},
-	slogan:		{type: String, index: false, unique: false},
-	about:		{type: String, required: '(about) is required!', index: false, unique: false},
-	address:	{type: String, required: '(address) is required!', index: false, unique: false},
-	city:		{type: String, required: '(city) is required!', index: true, unique: false},
-	country:	{type: String, required: '(country) is required!', index: true, unique: false},
-	zipcode:	{type: String, required: '(zipcode) is required!', index: true, unique: false},
-	startDate: 	{type: Date, required: '(meetupDate) is required!', index: false, unique: false}
+	albumIds:	[{type: ObjectId, ref: 'Album', index: false,unique: false}],
+	fileIds:	[{type: ObjectId, ref:'File',index: false,unique: false}],
+	calendarIds:[{type: ObjectId, ref:'Calendar', index: false, unique: false}],
+	name:		{type: String, required:'(name) is required!', index: true, unique: false,lowercase: true},
+	slogan:		{type: String, index: false, unique: false,lowercase: true},
+	about:		{type: String, required: '(about) is required!', index: false, unique: false,lowercase: true},
+	address:	{type: String, required: '(address) is required!', index: false, unique: false,lowercase: true},
+	city:		{type: String, required: '(city) is required!', index: true, unique: false,lowercase: true},
+	country:	{type: String, required: '(country) is required!', index: true, unique: false,lowercase: true},
+	zipcode:	{type: String, required: '(zipcode) is required!', index: true, unique: false,lowercase: true},
+	startDate: 	{type: Date, required: '(meetupDate) is required!', index: false, unique: false,lowercase: true}
 });
 
 var Fellowship = mongoose.model('Fellowship', fellowshipSchema);

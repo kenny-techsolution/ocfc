@@ -5,18 +5,18 @@
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 var churchSchema = mongoose.Schema({
-	name:			{type: String,required:'(name) is required!',index: true, unique: false},
-	about:			{type: String,index: false, unique: false},
-	url:			{type: String,index: false, unique: false},
-	address:		{type: String,required:'(address) is required!',index: true, unique: false},
-	city:			{type: String,required:'(city) is required!',index: true, unique: false},
-	country:		{type: String,required:'(country) is required!',index: true, unique: false},
-	zipcode:		{type: String,required:'(zipcode) is required!',index: true, unique: false},
-	phone:			{type: String,required:'(phone) is required!',index: false, unique: false},
+	name:			{type: String,required:'(name) is required!',index: true, unique: false,lowercase: true},
+	about:			{type: String,index: false, unique: false,lowercase: true},
+	url:			{type: String,index: false, unique: false,lowercase: true},
+	address:		{type: String,required:'(address) is required!',index: true, unique: false,lowercase: true},
+	city:			{type: String,required:'(city) is required!',index: true, unique: false,lowercase: true},
+	country:		{type: String,required:'(country) is required!',index: true, unique: false,lowercase: true},
+	zipcode:		{type: String,required:'(zipcode) is required!',index: true, unique: false,lowercase: true},
+	phone:			{type: String,required:'(phone) is required!',index: false, unique: false,lowercase: true},
 	fax:			{type: String,index: false, unique: false},
-	faithStatement:	{type: String,required:'(faithStatement) is required!',index: false, unique: false},
-	mission:		{type: String,required:'(mission) is required!',index: false, unique: false},
-	vision:			{type: String,required:'(vision) is required!',index: false, unique: false}
+	faithStatement:	{type: String,required:'(faithStatement) is required!',index: false, unique: false,lowercase: true},
+	mission:		{type: String,required:'(mission) is required!',index: false, unique: false,lowercase: true},
+	vision:			{type: String,required:'(vision) is required!',index: false, unique: false,lowercase: true}
 });
 
 var Church = mongoose.model('Church', churchSchema);

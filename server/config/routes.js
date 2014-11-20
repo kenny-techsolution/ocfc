@@ -43,7 +43,7 @@ module.exports = function (app, io) {
 	app.get('/api/users/:id', users.getUserById);
 	app.delete('/api/users/:id', users.deleteUserById);
 	app.get('/api/users/:id/reset_password', users.resetPassword);
-	app.get('/api/users/:id/update_profile_image', users.updateProfileImage);
+	app.put('/api/users/:id/update_profile_image', users.updateProfileImage);
 	app.put('/api/eventParticipation/:event_id', users.updateEventParticipation);
 
 	/* ------ Fellowship related API -------- */

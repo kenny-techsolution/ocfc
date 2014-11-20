@@ -23,7 +23,7 @@ module.exports = function (config) {
 	var db = mongoose.connection;
 	db.on('error', console.error.bind(console, 'connection error....'));
 	db.once('open', function callback() {
-		console.log('multivision db opened');
+		console.log('ocfc db opened');
 	});
 	//used for creating dummy data
 	userModel.createDefaultUsers();

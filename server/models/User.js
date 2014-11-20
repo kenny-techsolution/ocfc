@@ -12,21 +12,21 @@ var mongoose = require('mongoose'),
 	encrypt = require('../utilities/encryption');
 
 var userSchema = mongoose.Schema({
-	firstName: 	{type: String, required: '(firstName) is required!', index: true, unique: false},
-	lastName: 	{type: String, required: '(lastName) is required!', index: true, unique: false},
-	userName: 	{type: String, required: '(userName uses email) is required!', index: true, unique: true},
-	hashedPwd: 	{type: String, required: '(hashedPwd) is required!',index: true, unique: false},
-	salt: 		{type: String, required: '(salt) is required!',index: true, unique: true},
-	birthday:	{type: Date,index: true, unique: false},
-	gender: 	{type: String, index: false, unique: false},
+	firstName: 	{type: String, required: '(firstName) is required!', index: true, unique: false,lowercase: true},
+	lastName: 	{type: String, required: '(lastName) is required!', index: true, unique: false,lowercase: true},
+	userName: 	{type: String, required: '(userName uses email) is required!', index: true, unique: true,lowercase: true},
+	hashedPwd: 	{type: String, required: '(hashedPwd) is required!',index: true, unique: false,lowercase: true, select: false},
+	salt: 		{type: String, required: '(salt) is required!',index: true, unique: true,lowercase: true, select: false},
+	birthday:	{type: Date,index: true, unique: false,lowercase: true},
+	gender: 	{type: String, index: false, unique: false,lowercase: true},
 	profileImg: {type: String, index: false, unique: false},
-	signupDate: {type: Date,required:'(signupDate) is required!',index: true, unique: false},
-	about:		{type: String, index: false, unique: false},
-	place: 		{type: String,required:'(place) is required!',index: true, unique: false},
-	coordinates:[{type: Number,required:'(geoCode) is required!',index: true, unique: false}],
-	language: 	{type: String, required:'(language) is required!', index: true, unique: false},
-	passReset:	{type: String, index: false, unique: true},
-	resetOn:	{type: Date,index: false, unique: false},
+	signupDate: {type: Date,required:'(signupDate) is required!',index: true, unique: false,lowercase: true},
+	about:		{type: String, index: false, unique: false,lowercase: true},
+	place: 		{type: String,required:'(place) is required!',index: true, unique: false,lowercase: true},
+	coordinates:[{type: Number,required:'(geoCode) is required!',index: true, unique: false,lowercase: true}],
+	language: 	{type: String, required:'(language) is required!', index: true, unique: false,lowercase: true},
+	passReset:	{type: String, index: false, unique: true,lowercase: true, select: false},
+	resetOn:	{type: Date,index: false, unique: false,lowercase: true, select: false}
 });
 
 userSchema.methods = {
@@ -48,23 +48,23 @@ function createDefaultUsers() {
 			var salt, hash;
 			//new salt is created each time thus, user will have it's own unique value
 			salt = encrypt.createSalt();
-			hash = encrypt.hashPwd(salt, 'joe@gmail.com');
+			hash = encrypt.hashPwd(salt, 'joe');
 			User.create({firstName: 'Joe', lastName: 'Eames', userName: 'joe@gmail.com', salt: salt, hashedPwd: hash,
 						 signupDate:'01/01/2014',place:'San Francisco',geoCode:[-34.397, 150.644],language:'English'});
 			salt = encrypt.createSalt();
-			hash = encrypt.hashPwd(salt, 'mei@gmail.com');
+			hash = encrypt.hashPwd(salt, 'mei');
 			User.create({firstName: 'Mei', lastName: 'Zhang', userName: 'mei@gmail.com', salt: salt, hashedPwd: hash,
 						 signupDate:'02/01/2014',place:'Los Angeles',geoCode:[-30.397, 130.644],language:'English'});
 			salt = encrypt.createSalt();
-			hash = encrypt.hashPwd(salt, 'kenny@gmail.com');
+			hash = encrypt.hashPwd(salt, 'kenny');
 			User.create({firstName: 'Kenny', lastName: 'Chung', userName: 'kenny@gmail.com', salt: salt, hashedPwd: hash,
 						 signupDate:'03/01/2014',place:'Millbrae',geoCode:[-20.397, 120.644],language:'Mandarin'});
 			salt = encrypt.createSalt();
-			hash = encrypt.hashPwd(salt, 'ting@gmail.com');
+			hash = encrypt.hashPwd(salt, 'ting');
 			User.create({firstName: 'Ting', lastName: 'Chung', userName: 'ting@gmail.com', salt: salt, hashedPwd: hash,
 						 signupDate:'02/01/2014',place:'Taiwan',geoCode:[-10.397, 110.644],language:'Mandarin'});
 			salt = encrypt.createSalt();
-			hash = encrypt.hashPwd(salt, 'john@gmail.com');
+			hash = encrypt.hashPwd(salt, 'john');
 			User.create({firstName: 'John', lastName: 'Doe', userName: 'john@gmail.com', salt: salt, hashedPwd: hash,
 						 signupDate:'03/01/2014',place:'Ohio',geoCode:[-13.397, 160.644],language:'English'});
 		}
