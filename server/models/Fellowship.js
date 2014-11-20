@@ -7,7 +7,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var fellowshipSchema = mongoose.Schema({
 	albumIds:	[{type: ObjectId, ref: 'Album', index: false,unique: false}],
 	fileIds:	[{type: ObjectId, ref:'File',index: false,unique: false}],
-	calendarIds:[{type: ObjectId, ref:'Calendar', index: false, unique: false}],
+	calendarIds:[{type: ObjectId, ref:'Calendar',index: false,unique: false}],
 	name:		{type: String, required:'(name) is required!', index: true, unique: false,lowercase: true},
 	slogan:		{type: String, index: false, unique: false,lowercase: true},
 	about:		{type: String, required: '(about) is required!', index: false, unique: false,lowercase: true},

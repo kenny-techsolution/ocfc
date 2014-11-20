@@ -3,8 +3,9 @@
  ***************************************************************************************/
 
 var Fellow = require('mongoose').model('Fellowship'),
-	commFunc = require('../utilities/commonFunctions');
-
+	commFunc = require('../utilities/commonFunctions'),
+	deleteKey = require('key-del'),
+	_=require('lodash');//Library for Array
 
 var handleError= function(err){
 	var modError = err;
@@ -20,20 +21,18 @@ var toLowerCase=function(obj){
 	return obj;
 };
 
-
-//TODO
+//Post
 exports.createFellowship=function (req, res) {
 	var fellow = req.body;
 	fellow.startDate=new Date();
-	fellow.name=fellow.name;
-	fellow.about=fellow.about;
-	fellow.address=fellow.address;
-	fellow.city=fellow.city;
-	fellow.country=fellow.country;
-	fellow.zipcode=fellow.zipcode;
+//	fellow.name=fellow.name;
+//	fellow.about=fellow.about;
+//	fellow.address=fellow.address;
+//	fellow.city=fellow.city;
+//	fellow.country=fellow.country;
+//	fellow.zipcode=fellow.zipcode;
 
 	var fellow = new Fellow(fellow);
-
 	fellow.save(function (err) {
 		if (err) {
 			err = handleError(err);
@@ -42,17 +41,46 @@ exports.createFellowship=function (req, res) {
 		return res.json({status:"success",fellow:fellow});
 	})
 };
-//TODO
+
+//Put
 exports.updateFellowshipById=function (req, res) {
-	res.end();
+	var fellow=req.body;
+
+	fellow = toLowerCase(fellow);
+	fellow = deleteKey(fellow, ['calendarIds', 'fileIds','albumIds']);
+
+	var keys = _.keys(fellow);
+	if(keys.length==1 && keys[0]=='_id'){
+		return res.json({});
+	}
+
+	Fellow.update({ _id: req.params.id}, fellow, { multi: true }, function (err, numberAffected, raw) {
+		if (err) {
+			err = handleError(err);
+			return res.json(err);
+		}
+		return res.json({status:"success",fellow:raw});
+	});
 };
-//TODO
+//Get
 exports.getFellowshipById=function (req, res) {
-	res.end();
+	Fellow.findOne({_id: req.params.id}).exec(function (err, fellow) {
+		if (err) {
+			err = handleError(err);
+			return res.json(err);
+		}
+		return res.json({status:"success",fellow:fellow});
+	});
 };
-//TODO
+//Delete
 exports.deleteFellowshipById=function (req, res) {
-	res.end();
+	Fellow.remove({_id:req.params.id}, function (err) {
+		if (err) {
+			err = handleError(err);
+			return res.json(err);
+		}
+		return res.json({status:"successfully removed"});
+	});
 };
 //TODO
 exports.getFellowshipsByUserId=function (req, res) {

@@ -39,7 +39,7 @@ module.exports = function (app, io) {
 
 	/* ------ User related API -------- */
 	app.post('/api/users', users.createUser);
-	app.put('/api/users', users.updateUser);
+	app.put('/api/users', users.updateUserById);
 	app.get('/api/users/:id', users.getUserById);
 	app.delete('/api/users/:id', users.deleteUserById);
 	app.get('/api/users/:id/reset_password', users.resetPassword);

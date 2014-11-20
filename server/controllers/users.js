@@ -34,12 +34,12 @@ exports.createUser=function (req, res) {
 			err = handleError(err);
 			return res.json(err);
 		}
-		return res.json(user);
+		return res.json({status:"success",user:user});
 	})
 };
 
 //Put
-exports.updateUser=function (req, res) {
+exports.updateUserById=function (req, res) {
 	var user=req.body;
 
 	user = toLowerCase(user);
@@ -51,12 +51,12 @@ exports.updateUser=function (req, res) {
 		return res.json({});
 	}
 
-	User.update({ _id: user._id }, user, { multi: true }, function (err, numberAffected, raw) {
+	User.update({ _id:req.params.id }, user, { multi: true }, function (err, numberAffected, raw) {
 		if (err) {
 			err = handleError(err);
 			return res.json(err);
 		}
-		return res.json(raw);
+		return res.json({status:"success",user:raw});
 	});
 };
 
@@ -67,8 +67,7 @@ exports.getUserById=function (req, res) {
 			err = handleError(err);
 			return res.json(err);
 		}
-		console.log(user);
-		return res.json(user);
+		return res.json({status:"success",user:user});
 	});
 };
 
@@ -103,7 +102,7 @@ exports.updateProfileImage=function (req, res) {
 				err = handleError(err);
 				return res.json(err);
 			}
-			return res.json(raw);
+			return res.json({status:"success",user:raw});
 		})
 	}else{
 		return res.json({status:"not a good uri"});
