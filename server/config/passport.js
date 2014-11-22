@@ -6,9 +6,9 @@ var passport = require('passport'),
 module.exports = function () {
 	passport.use(new LocalStrategy(
 		function (username, password, done) {
-			User.findOne({userName: username}).exec(function (err, user) {
-//                console.log("below is password");
-//                console.log(password);
+			console.log(username);
+			console.log(password);
+			User.findOne({userName: username},'+salt +hashedPwd').exec(function (err, user) {
 				if (user && user.authenticate(password)) {
 					return done(null, user);
 				}

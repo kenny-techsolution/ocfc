@@ -5,6 +5,7 @@
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 var fellowshipSchema = mongoose.Schema({
+	churchId:	{type: ObjectId, ref: 'Church', index: false,unique: false},
 	albumIds:	[{type: ObjectId, ref: 'Album', index: false,unique: false}],
 	fileIds:	[{type: ObjectId, ref:'File',index: false,unique: false}],
 	calendarIds:[{type: ObjectId, ref:'Calendar',index: false,unique: false}],
@@ -15,7 +16,7 @@ var fellowshipSchema = mongoose.Schema({
 	city:		{type: String, required: '(city) is required!', index: true, unique: false,lowercase: true},
 	country:	{type: String, required: '(country) is required!', index: true, unique: false,lowercase: true},
 	zipcode:	{type: String, required: '(zipcode) is required!', index: true, unique: false,lowercase: true},
-	startDate: 	{type: Date, required: '(meetupDate) is required!', index: false, unique: false,lowercase: true}
+	startDate: 	{type: Date, required: '(meetupDate) is required!', index: false, unique: false,lowercase: true,default: Date.now}
 });
 
 var Fellowship = mongoose.model('Fellowship', fellowshipSchema);

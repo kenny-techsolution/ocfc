@@ -16,22 +16,27 @@ var userSchema = mongoose.Schema({
 	lastName: 	{type: String, required: '(lastName) is required!', index: true, unique: false,lowercase: true},
 	userName: 	{type: String, required: '(userName uses email) is required!', index: true, unique: true,lowercase: true},
 	hashedPwd: 	{type: String, required: '(hashedPwd) is required!',index: true, unique: false,lowercase: true, select: false},
-	salt: 		{type: String, required: '(salt) is required!',index: true, unique: true,lowercase: true, select: false},
+	salt: 		{type: String, required: '(salt) is required!',index: true, unique: true, select: false},
 	birthday:	{type: Date,index: true, unique: false,lowercase: true},
 	gender: 	{type: String, index: false, unique: false,lowercase: true},
 	profileImg: {type: String, index: false, unique: false},
-	signupDate: {type: Date,required:'(signupDate) is required!',index: true, unique: false,lowercase: true},
+	signupDate: {type: Date,required:'(signupDate) is required!',index: true, unique: false,lowercase: true,default: Date.now},
 	about:		{type: String, index: false, unique: false,lowercase: true},
 	place: 		{type: String,required:'(place) is required!',index: true, unique: false,lowercase: true},
 	coordinates:[{type: Number,required:'(geoCode) is required!',index: true, unique: false,lowercase: true}],
 	language: 	{type: String, required:'(language) is required!', index: true, unique: false,lowercase: true},
-	passReset:	{type: String, index: false, unique: true,lowercase: true, select: false},
-	resetOn:	{type: Date,index: false, unique: false,lowercase: true, select: false}
+	passReset:	{type: String, index: false, unique: false,lowercase: true, select: false},
+	resetOn:	{type: Date,index: false, unique: false,lowercase: true, select: false,default: Date.now}
 });
 
 userSchema.methods = {
 	authenticate: function (passwordToMatch) {
 		//salt and passwordToMatch parameter are used to create hashPwd
+		console.log("console.log(passwordToMatch);");
+		console.log(passwordToMatch);
+		console.log(this);
+		console.log(encrypt.hashPwd(this.salt, passwordToMatch));
+		console.log(this.hashedPwd);
 		return encrypt.hashPwd(this.salt, passwordToMatch) === this.hashedPwd;
 	},
 	hasRole: function (role) {

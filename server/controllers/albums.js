@@ -1,21 +1,62 @@
 var Album = require('mongoose').model('Album'),
+	deleteKey = require('key-del'),
 	commFunc = require('../utilities/commonFunctions');
 
-//TODO
+var handleError= function(err){
+	var modError = err;
+	return modError;
+};
+
+//Post
 exports.createAlbum = function (req, res) {
-	res.end();
+	var album = req.body;
+	album.name="Mei's Album";
+	album.createdOn=new Date();
+	album.imageIds='546d0d4cd0b5cd7d27a5da57';
+	var album = new Album(album);
+	album.save(function (err) {
+		if (err) {
+			err = handleError(err);
+			return res.json(err);
+		}
+		return res.json({status:"success",album:album});
+	})
 };
-//TODO
+//Get
 exports.getAlbum= function (req, res) {
-	res.end();
+	Album.findOne({_id: req.params.id}).exec(function (err, album) {
+		if (err) {
+			err = handleError(err);
+			return res.json(err);
+		}
+		return res.json({status:"success",album:album});
+	});
 };
+
 //TODO
 exports.queryAlbums= function (req, res) {
 	res.end();
 };
-//TODO
+//TODO Put
 exports.updateAlbum= function (req, res) {
-	res.end();
+	var album=req.body;
+
+	album = toLowerCase(album);
+	album = deleteKey(album, ['createdOn', 'imageIds']);
+
+	var keys = _.keys(album);
+
+	if(keys.length==1 && keys[0]=='_id'){
+		return res.json({});
+	}
+
+	Album.update({ _id:req.params.id }, album, { multi: true }, function (err, numberAffected, raw) {
+		if (err) {
+			err = handleError(err);
+			return res.json(err);
+		}
+		return res.json({status:"success",raw:raw});
+	});
 };
 //TODO
 exports.deleteAlbum= function (req, res) {
