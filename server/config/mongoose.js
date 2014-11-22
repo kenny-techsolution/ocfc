@@ -1,12 +1,11 @@
 var mongoose = require('mongoose'),
-	userModel = require('../models/User'),
-//4.30.2014, added new model for members who joined a fellowship
+	userModel = require('../models/User'),//4.30.2014, added new model for members who joined a fellowship
 	userModel= require('../models/User'),
 	fellowModel = require('../models/Fellowship'),
 	churchModel = require('../models/Church'),
 	fellowUserModel = require('../models/FellowshipUser'),
-	churchFellowModel=require('../models/ChurchFellowship'),
-	churchUserModel=require('../models/ChurchUser'),
+	churchFellowModel= require('../models/ChurchFellowship'),
+	churchUserModel= require('../models/ChurchUser'),
 	postModel = require('../models/Post'),
 	eventModel = require('../models/Event'),
 	commentModel= require('../models/Comment'),

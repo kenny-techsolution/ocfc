@@ -57,7 +57,7 @@ module.exports = function (app, io) {
 	app.delete('/api/fellowships/:fellowship_id/users/:user_id', fellowships.removeUserFromFellowship);
 
 	/* ------ Invite Other To Fellowships related API -------- */
-	app.post('/api/inviteOtherToFellowships', inviteOtherToFellowship.createInvite);
+	app.post('/api/inviteOtherToFellowships/:fellowship_id', inviteOtherToFellowship.createInvite);
 	app.get('/api/inviteOtherToFellowships', inviteOtherToFellowship.queryInvites);
 	app.get('/api/inviteOtherToFellowships/:id', inviteOtherToFellowship.getInvite);
 	app.delete('/api/inviteOtherToFellowships/:id', inviteOtherToFellowship.deleteInvite);
