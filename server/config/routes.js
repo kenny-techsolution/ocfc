@@ -95,13 +95,12 @@ module.exports = function (app, io) {
 
 	/* ------ Post related API -------- */
 	app.post('/app/posts', posts.createPost);// put Socket IO emit.
-	app.get('/app/posts/:post_id', posts.getPost);
+	app.get('/app/posts/:id', posts.getPost);
 	app.get('/app/posts', posts.queryPost);
-	app.put('/app/posts/:post_id', posts.updatePost);
-	app.delete('/app/posts/:post_id', posts.removePost);
+	app.put('/app/posts/:id', posts.updatePost);
+	app.delete('/app/posts/:id', posts.removePost);
 
 	app.post('/app/posts/:post_id/comments', posts.addCommentToPost);
-	app.get('/app/posts/:post_id/comments/:comment_id', posts.getCommentForPost);
 	app.put('/app/posts/:post_id/comments/:comment_id', posts.updateCommentFromPost);
 	app.delete('/app/posts/:post_id/comments/:comment_id', posts.deleteCommentFromPost);
 
@@ -122,6 +121,8 @@ module.exports = function (app, io) {
 	app.get('/app/events/:event_id/comments/:comment_id', events.getCommentForEvent);
 	app.put('/app/events/:event_id/comments/:comment_id', events.updateCommentFromEvent);
 	app.delete('/app/events/:event_id/comments/:comment_id', events.deleteCommentFromEvent);
+	//add invitee crud functions.
+
 
 	/* ------ Album related API -------- */
 	app.post('/app/albums', albums.createAlbum);
