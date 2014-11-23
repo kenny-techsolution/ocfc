@@ -16,7 +16,9 @@ var churchSchema = mongoose.Schema({
 	fax:			{type: String,index: false, unique: false},
 	faithStatement:	{type: String,required:'(faithStatement) is required!',index: false, unique: false,lowercase: true},
 	mission:		{type: String,required:'(mission) is required!',index: false, unique: false,lowercase: true},
-	vision:			{type: String,required:'(vision) is required!',index: false, unique: false,lowercase: true}
+	vision:			{type: String,required:'(vision) is required!',index: false, unique: false,lowercase: true},
+	startDate: 	    {type: Date, required: '(startDate) is required!', index: false, unique: false,lowercase: true,default: Date.now},
+	updateDate: 	{type: Date, required: '(updateDate) is required!', index: false, unique: false,lowercase: true,default: Date.now}
 });
 
 var Church = mongoose.model('Church', churchSchema);

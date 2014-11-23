@@ -10,7 +10,7 @@ var handleError= function(err){
 //Post
 exports.createAlbum = function (req, res) {
 	var album = req.body;
-	album.name="Mei's Album";
+	album.name=album.name;
 	album.createdOn=new Date();
 	album.imageIds='546d0d4cd0b5cd7d27a5da57';
 	var album = new Album(album);

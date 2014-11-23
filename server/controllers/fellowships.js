@@ -61,6 +61,7 @@ exports.updateFellowshipById=function (req, res) {
 			var fellowship=req.body;
 			fellowship = toLowerCase(fellowship);
 			fellowship = deleteKey(fellowship, ['calendarIds', 'fileIds','albumIds']);
+			fellowship.updateDate=new Date();
 
 			var keys = _.keys(fellowship);
 			if(keys.length==1 && keys[0]=='_id'){
@@ -148,10 +149,9 @@ exports.addUserToFellowship=function (req, res) {
 			var fellowshipUser = req.body;
 			fellowshipUser.userId=req.user._id;
 			fellowshipUser.fellowshipId=req.params.fellowship_id;
-//			fellowshipUser.signupDate=new Date();
+
 			fellowshipUser.status="Pending";
-			fellowshipUser.role="Admin";
-//			fellowshipUser.updateDate=new Date();
+			fellowshipUser.role=fellowshipUser.role;
 
 			console.log('chk fellowUser variable');
 			console.log(fellowshipUser);
@@ -193,7 +193,6 @@ exports.updateUserToFellowship=function (req, res) {
 		if (count>0){
 			var fellowshipUser=req.body;
 			fellowshipUser = toLowerCase(fellowshipUser);
-//			fellowshipUser.updateDate=new Date();
 			fellowshipUser = deleteKey(fellowshipUser, ['userId', 'fellowshipId','signupDate']);
 
 			var keys = _.keys(fellowshipUser);

@@ -17,7 +17,7 @@ exports.createInvite = function (req, res) {
 			return res.json(err);
 		}
 		if (count > 0) {
-			//check if invitee's email exist already
+			//check if invitee's email already exist
 			var inviteOtherToFellowship = new InviteOtherToFellowship();
 
 			inviteOtherToFellowship.fellowshipId = req.params.fellowship_id;
