@@ -14,3 +14,8 @@ exports.toProperCase = function (str) {
 		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
 	});
 };
+
+exports.handleError= function(err){
+	var modError = err;
+	return modError;
+};

@@ -12,7 +12,6 @@ var albums = require('../controllers/albums'),
 	churches = require('../controllers/churches');
 	events = require('../controllers/events'),
 	fellowships = require('../controllers/fellowships'),
-	fellowUsers = require('../controllers/fellowshipUsers'),
 	files = require('../controllers/files'),
 	folders = require('../controllers/folders'),
 	images = require('../controllers/images'),
@@ -39,11 +38,11 @@ module.exports = function (app, io) {
 
 	/* ------ User related API -------- */
 	app.post('/api/users', users.createUser);
-	app.put('/api/users', users.updateUserById);
+	app.put('/api/users', users.updateUser);
 	app.get('/api/users/:id', users.getUserById);
-	app.delete('/api/users/:id', users.deleteUserById);
+	app.delete('/api/users', users.deleteUser);
+	app.put('/api/users/update_profile_image', users.updateProfileImage);
 	app.get('/api/users/:id/reset_password', users.resetPassword);
-	app.put('/api/users/:id/update_profile_image', users.updateProfileImage);
 	app.put('/api/eventParticipation/:event_id', users.updateEventParticipation);
 
 	/* ------ Fellowship related API -------- */
@@ -51,15 +50,14 @@ module.exports = function (app, io) {
 	app.put('/api/fellowships/:id', fellowships.updateFellowshipById);
 	app.get('/api/fellowships/:id', fellowships.getFellowshipById);
 	app.delete('/api/fellowships/:id', fellowships.deleteFellowshipById);
-	app.get('/api/users/:user_id/fellowships', fellowships.getFellowshipsByUserId);
 
-	app.post('/app/fellowships/:fellowship_id/users', fellowships.addUserToFellowship);
-	app.get('/app/fellowships/:fellowship_id/users', fellowships.getUsers);
-	app.put('/app/fellowships/:fellowship_id/users/:user_id', fellowships.updateUserToFellowship);
-	app.delete('/app/fellowships/:fellowship_id/users/:user_id', fellowships.removeUserFromFellowship);
+	app.post('/api/fellowships/:fellowship_id/users/', fellowships.addUserToFellowship);
+	app.get('/api/fellowships/:fellowship_id/users', fellowships.getUsersFromFellowship);
+	app.put('/api/fellowships/:fellowship_id/users/:user_id', fellowships.updateUserToFellowship);
+	app.delete('/api/fellowships/:fellowship_id/users/:user_id', fellowships.removeUserFromFellowship);
 
 	/* ------ Invite Other To Fellowships related API -------- */
-	app.post('/api/inviteOtherToFellowships', inviteOtherToFellowship.createInvite);
+	app.post('/api/inviteOtherToFellowships/:fellowship_id', inviteOtherToFellowship.createInvite);
 	app.get('/api/inviteOtherToFellowships', inviteOtherToFellowship.queryInvites);
 	app.get('/api/inviteOtherToFellowships/:id', inviteOtherToFellowship.getInvite);
 	app.delete('/api/inviteOtherToFellowships/:id', inviteOtherToFellowship.deleteInvite);
@@ -105,11 +103,11 @@ module.exports = function (app, io) {
 	app.delete('/app/posts/:post_id/comments/:comment_id', posts.deleteCommentFromPost);
 
 	/* ------ Calendar related API -------- */
-	app.post('/app/calendars', calendars.createCalendar);
-	app.get('/app/calendars/:id', calendars.getCalendar);
-	app.get('/app/calendars', calendars.queryCalendars);
-	app.put('/app/calendars/:id', calendars.updateCalendar);
-	app.delete('/app/calendars/:id', calendars.deleteCalendar);
+	app.post('/api/calendars', calendars.createCalendar);
+	app.get('/api/calendars/:id', calendars.getCalendar);
+	app.get('/api/calendars', calendars.queryCalendars);
+	app.put('/api/calendars/:id', calendars.updateCalendar);
+	app.delete('/api/calendars/:id', calendars.deleteCalendar);
 
 	app.post('/app/calendars/:calendar_id/events', calendars.createEventToCalendar);
 	app.get('/app/calendars/:calendar_id/events', calendars.queryEventsFromCalendar);
@@ -125,11 +123,11 @@ module.exports = function (app, io) {
 
 
 	/* ------ Album related API -------- */
-	app.post('/app/albums', albums.createAlbum);
-	app.get('/app/albums/:id', albums.getAlbum);
-	app.get('/app/albums', albums.queryAlbums);
-	app.put('/app/albums/:id', albums.updateAlbum);
-	app.delete('/app/albums/:id', albums.deleteAlbum);
+	app.post('/api/albums', albums.createAlbum);
+	app.get('/api/albums/:id', albums.getAlbum);
+	app.get('/api/albums', albums.queryAlbums);
+	app.put('/api/albums/:id', albums.updateAlbum);
+	app.delete('/api/albums/:id', albums.deleteAlbum);
 
 	app.post('/app/albums/:album_id/images', albums.createImage);
 	app.get('/app/albums/:album_id/images', albums.queryImages);

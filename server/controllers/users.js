@@ -26,7 +26,7 @@ exports.createUser=function (req, res) {
 	var salt = encrypt.createSalt();
 	user.salt = salt;
 	user.hashedPwd = encrypt.hashPwd(salt, user.password);
-	user.signupDate=new Date();
+//	user.signupDate=new Date();
 
 	var user = new User(user);
 	user.save(function (err) {
@@ -39,9 +39,8 @@ exports.createUser=function (req, res) {
 };
 
 //Put
-exports.updateUserById=function (req, res) {
+exports.updateUser=function (req, res) {
 	var user=req.body;
-
 	user = toLowerCase(user);
 	user = deleteKey(user, ['userName', 'hashedPwd','salt','signupDate','passReset','resetOn']);
 
@@ -51,12 +50,12 @@ exports.updateUserById=function (req, res) {
 		return res.json({});
 	}
 
-	User.update({ _id:req.params.id }, user, { multi: true }, function (err, numberAffected, raw) {
+	User.update({ _id:req.user._id }, user, { multi: true }, function (err, numberAffected, raw) {
 		if (err) {
-			err = handleError(err);
+			err = commFunc.handleError(err);
 			return res.json(err);
 		}
-		return res.json({status:"success",user:raw});
+		return res.json({status:"success",raw:raw});
 	});
 };
 
@@ -64,7 +63,7 @@ exports.updateUserById=function (req, res) {
 exports.getUserById=function (req, res) {
 	User.findOne({_id: req.params.id}).exec(function (err, user) {
 		if (err) {
-			err = handleError(err);
+			err = commFunc.handleError(err);
 			return res.json(err);
 		}
 		return res.json({status:"success",user:user});
@@ -72,10 +71,10 @@ exports.getUserById=function (req, res) {
 };
 
 //Delete
-exports.deleteUserById=function (req, res) {
-	User.remove({_id:req.params.id}, function (err) {
+exports.deleteUser=function (req, res) {
+	User.remove({_id:req.user._id}, function (err) {
 		if (err) {
-			err = handleError(err);
+			err = commFunc.handleError(err);
 			return res.json(err);
 		}
 		return res.json({status:"successfully removed"});
@@ -97,12 +96,12 @@ exports.updateProfileImage=function (req, res) {
 
 
 	if(user.profileImg!==null || user.profileImg!==""){
-		User.update({ _id: req.params.id}, user, { multi: true }, function (err, numberAffected, raw) {
+		User.update({ _id: req.user._id}, user, { multi: true }, function (err, numberAffected, raw) {
 			if (err) {
-				err = handleError(err);
+				err = commFunc.handleError(err);
 				return res.json(err);
 			}
-			return res.json({status:"success",user:raw});
+			return res.json({status:"success",raw:raw});
 		})
 	}else{
 		return res.json({status:"not a good uri"});
@@ -112,7 +111,6 @@ exports.updateProfileImage=function (req, res) {
 
 //TODO Get
 exports.resetPassword=function (req, res) {
-
 	res.end();
 };
 

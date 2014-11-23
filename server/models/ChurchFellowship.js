@@ -7,7 +7,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var churchFellowshipSchema = mongoose.Schema({
 	churchId:	{type: ObjectId, ref:'Church', required:'(churchId) is required!', index: true, unique: false,lowercase: true},
 	fellowshipId:	{type: ObjectId, ref:'Fellowship', required:'(FellowshipId) is required!', index: true, unique: false,lowercase: true},
-	updateDate:	{type: Date, required:'(updateDate) is required!', index: true, unique: false,lowercase: true},
+	updateDate:	{type: Date, required:'(updateDate) is required!', index: true, unique: false,lowercase: true, default: Date.now},
 	rejReason:	{type: String, index: true, unique: false},
 	status:		{type: String, required:'(status) is required!', index: true, unique: false,lowercase: true}
 });
