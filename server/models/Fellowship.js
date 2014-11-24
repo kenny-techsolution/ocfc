@@ -7,6 +7,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var fellowshipSchema = mongoose.Schema({
 	churchId:	{type: ObjectId, ref: 'Church', index: false,unique: false},
 	albumIds:	[{type: ObjectId, ref: 'Album', index: false,unique: false}],
+	defaultAlbumId:{type: ObjectId, ref: 'Album', required:'(defaultAlbumId) is set as Album _id!',index: false,unique: false},
 	fileIds:	[{type: ObjectId, ref:'File',index: false,unique: false}],
 	calendarIds:[{type: ObjectId, ref:'Calendar',index: false,unique: false}],
 	name:		{type: String, required:'(name) is required!', index: true, unique: false,lowercase: true},

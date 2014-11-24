@@ -124,7 +124,6 @@ module.exports = function (app, io) {
 	/* ------ Album related API -------- */
 	app.post('/api/albums', albums.createAlbum);
 	app.get('/api/albums/:id', albums.getAlbum);
-	app.get('/api/albums', albums.queryAlbums);
 	app.put('/api/albums/:id', albums.updateAlbum);
 	app.delete('/api/albums/:id', albums.deleteAlbum);
 

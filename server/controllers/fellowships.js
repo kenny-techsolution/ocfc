@@ -45,6 +45,7 @@ exports.createFellowship=function (req, res) {
 				err = commFunc.handleError(err);
 				return res.json(err);
 			}
+			//TODO create an album for this fellowship
 			return res.json({status:"success",fellowship:fellowship});
 		});
 	})
