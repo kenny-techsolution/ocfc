@@ -331,7 +331,7 @@ exports.addCommentToPost=function (req, res) {
 			err = handleError(err);
 			return res.json(err);
 		}
-		commentObj = req.body;
+		var commentObj = req.body;
 		errors = checkRequiedFields(commentObj, ['comment']);
 		if(errors>0) return res.json(errors);
 		commentObj = {

@@ -5,10 +5,11 @@
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 var folderSchema = mongoose.Schema({
-	name:		{type: String, Required:'(name) is required!', index: true, unique: false,lowercase: true},
-	createdOn:	{type: Date, Required:'(createdOn) is required!', index: true, unique: false,lowercase: true},
-	fileIds:	[{type: ObjectId, ref:'File', Required:'(fileIds) is required!', index: true, unique: false,lowercase: true}],
-	description: {type: String, index: true, unique: false,lowercase: true}
+	name:		{type: String, Required:'(name) is required!', index: true, unique: false},
+	createdOn:	{type: Date, Required:'(createdOn) is required!', index: true, unique: false, default:Date.now},
+	fileIds:	[{type: ObjectId, ref:'File', index: true, unique: false}],
+	description: {type: String, index: true, unique: false},
+	updatedOn:	{type: Date, Required:'(updatedOn) is required!', index: true, unique: false, default:Date.now}
 });
 
 var Folder = mongoose.model('Folder', folderSchema);
