@@ -20,7 +20,6 @@ var albums = require('../controllers/albums'),
 	posts = require('../controllers/posts'),
 	stats = require('../controllers/stats'),
 	users = require('../controllers/users'),
-	walls = require('../controllers/walls'),
 
 	/*--Others--*/
 	auth = require('./auth'),
@@ -156,9 +155,8 @@ module.exports = function (app, io) {
 	app.put('/api/files/:file_id/comments/:comment_id', files.updateCommentFromFile);
 	app.delete('/api/files/:file_id/comments/:comment_id', files.deleteCommentFromFile);
 
-	/*------Init, Stat and Wall------ */
+	/*------Init, Stat----- */
 	app.get('/api/inits',inits.getInit);
-	app.get('/api/walls',walls.getWall);
 	/* ------ Traffic data API -------- */
 	app.get('/api/stats',stats.getStats);
 

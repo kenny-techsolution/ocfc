@@ -15,7 +15,7 @@ var mongoose = require('mongoose'),
 	fileModel= require('../models/File'),
 	imageModel= require('../models/Image'),
 	inviteOtherToFellowshipModel= require('../models/InviteOtherToFellowship'),
-	wallModel= require('../models/Wall');
+	membershipModel = require('../models/Membership');
 
 module.exports = function (config) {
 	mongoose.connect(config.db);
