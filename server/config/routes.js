@@ -69,24 +69,12 @@ module.exports = function (app, io) {
 	app.delete('/api/churches/:id', churches.deleteChurchById);
 
 	app.post('/api/churches/:church_id/fellowships/:fellowship_id', churches.addFellowshipToChurch );
-	app.put('/api/churches/:church_id/fellowships/:fellowship_id', churches.updateFellowshipToChurch);// this
-																										// includes
-																										// approve
-																										// or
-																										// reject
-																										// with
-																										// reason.
+	app.put('/api/churches/:church_id/fellowships/:fellowship_id', churches.updateFellowshipToChurch);
 	app.get('/api/churches/:church_id/fellowships', churches.getFellowships);
 	app.delete('/api/churches/:church_id/fellowships/:fellowship_id', churches.removeFellowshipFromChurch);
 
 	app.post('/api/churches/:church_id/users/:user_id', churches.addUserToChurch);
-	app.put('/api/churches/:church_id/users/:user_id', churches.updateUserToChurch);// this
-																					// includes
-																					// approve
-																					// or
-																					// reject
-																					// with
-																					// reason.
+	app.put('/api/churches/:church_id/users/:user_id', churches.updateUserToChurch);
 	app.get('/api/churches/:church_id/users', churches.getUsers);
 	app.delete('/api/churches/:church_id/users/:user_id', churches.removeUserFromChurch);
 
