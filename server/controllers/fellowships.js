@@ -1,5 +1,5 @@
 /*************************************************************************************
- 4.29.2014, create getFellowByZip object that grabs data from mongodb by zipcode
+4.29.2014, create getFellowByZip object that grabs data from mongodb by zipcode
  ***************************************************************************************/
 
 var Fellowship = require('mongoose').model('Fellowship'),
@@ -38,8 +38,8 @@ exports.createFellowship=function (req, res) {
 		fellowshipUser.fellowshipId = fellowship._id;
 		fellowshipUser.status = 'pending';
 		fellowshipUser.role = 'admin';
-//		fellowshipUser.signupDate = new Date();
-//		fellowshipUser.updateDate = new Date();
+		fellowshipUser.updateDate = new Date();
+
 		fellowshipUser.save(function(err){
 			if (err) {
 				err = commFunc.handleError(err);
