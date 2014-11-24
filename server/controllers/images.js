@@ -4,7 +4,8 @@ var Image = require('mongoose').model('Image'),
 	deleteKey = require('key-del'),
 	commFunc = require('../utilities/commonFunctions'),
 	deleteKey = require('key-del'),
-	_=require('lodash');//Library for Array
+	_=require('lodash'),
+	html_strip=require('htmlstrip-native');//Library for Array
 
 var handleError= function(err){
 	var modError = err;
@@ -19,6 +20,22 @@ var toLowerCase=function(obj){
 		}
 	}
 	return obj;
+};
+
+var checkRequiredFields = function (obj, fields) {
+	var errors = []
+	_.forEach(fields, function(key){
+		if(!_.has(obj, key)){
+			errors.push(key + " is required field.");
+		}
+		return errors;
+	});
+};
+
+var htmlStripOptions = {
+	include_script : false,
+	include_style : false,
+	compact_whitespace : true
 };
 
 //Get
@@ -75,20 +92,82 @@ exports.deleteImage= function (req, res) {
 	});
 };
 
-
-//TODO
+//Post
 exports.addCommentToImage= function (req, res) {
-	res.end();
+	Image.findById(req.params.image_id).exec(function(err, image){
+		if (err) {
+			err = handleError(err);
+			return res.json(err);
+		}
+
+		var comment = req.body;
+		errors = checkRequiredFields(comment, ['comment']);
+		if(errors>0) return res.json(errors);
+
+		//TODO html_strip is cutting off very last letter in comment
+		comment = {
+			userId:	req.user._id,
+			comment: html_strip.html_strip(comment.comment, htmlStripOptions),
+			profileImg: req.user.profileImg,
+			firstName: req.user.firstName,
+			lastName: req.user.lastName
+		};
+		image.comments.push(comment);
+		image.save(function(){
+			if (err) {
+				err = handleError(err);
+				return res.json(err);
+			}
+			return res.json({status: "success",image:image});
+		});
+	});
 };
-//TODO
-exports.getCommentForImage= function (req, res) {
-	res.end();
-};
-//TODO
+
+//Put
 exports.updateCommentFromImage= function (req, res) {
-	res.end();
+	var commentObj=req.body;
+
+	commentObj = toLowerCase(commentObj);
+	commentObj = deleteKey(commentObj, ['userId', 'profileImg','firstName','lastName']);
+
+	var keys = _.keys(commentObj);
+
+	if(keys.length==1 && keys[0]=='_id'){
+		return res.json({});
+	}
+
+	Image.findOne({ _id:req.params.image_id }, function (err, image) {
+		if (err) {
+			err = handleError(err);
+			return res.json(err);
+		}
+		var comment = image.comments.id(req.params.comment_id);
+		comment.comment = commentObj.comment;
+
+		image.save(function(err){
+			if (err) {
+				err = handleError(err);
+				return res.json(err);
+			}
+			return res.json({status:"success",comment:comment});
+		});
+	});
 };
-//TODO
+//Delete
 exports.deleteCommentFromImage= function (req, res) {
-	res.end();
+	Image.findOne({ _id:req.params.image_id }, function (err, image) {
+		if (err) {
+			err = handleError(err);
+			return res.json(err);
+		}
+		var comment = image.comments.id(req.params.comment_id).remove();
+
+		image.save(function(err){
+			if (err) {
+				err = handleError(err);
+				return res.json(err);
+			}
+			return res.json({status:"success",comment:comment});
+		});
+	});
 };

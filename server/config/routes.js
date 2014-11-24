@@ -127,34 +127,33 @@ module.exports = function (app, io) {
 	app.put('/api/albums/:id', albums.updateAlbum);
 	app.delete('/api/albums/:id', albums.deleteAlbum);
 
-	app.post('/app/albums/:album_id/images', albums.createImage);
-	app.get('/app/albums/:album_id/images', albums.queryImages);
-	app.get('/app/images/:image_id', images.getImage);
-	app.put('/app/images/:image_id', images.updateImage);
-	app.delete('/app/images/:image_id', images.deleteImage);
+	app.post('/api/albums/:album_id/images', albums.createImage);
+	app.get('/api/albums/:album_id/images', albums.queryImages);
+	app.get('/api/images/:image_id', images.getImage);
+	app.put('/api/images/:image_id', images.updateImage);
+	app.delete('/api/images/:image_id', images.deleteImage);
 
-	app.post('/app/images/:image_id/comments', images.addCommentToImage);
-	app.get('/app/images/:image_id/comments/:comment_id', images.getCommentForImage);
-	app.put('/app/images/:image_id/comments/:comment_id', images.updateCommentFromImage);
-	app.delete('/app/images/:image_id/comments/:comment_id', images.deleteCommentFromImage);
+	app.post('/api/images/:image_id/comments', images.addCommentToImage);
+	app.put('/api/images/:image_id/comments/:comment_id', images.updateCommentFromImage);
+	app.delete('/api/images/:image_id/comments/:comment_id', images.deleteCommentFromImage);
 
 	/* ------ Folder related API -------- */
-	app.post('/app/folders', folders.createFolder);
-	app.get('/app/folders/:id', folders.getFolder);
-	app.get('/app/folders', folders.queryFolers);
-	app.put('/app/folders/:id', folders.updateFolder);
-	app.delete('/app/folders/:id', folders.deleteFolder);
+	app.post('/api/folders', folders.createFolder);
+	app.get('/api/folders/:id', folders.getFolder);
+	app.get('/api/folders', folders.queryFolders);
+	app.put('/api/folders/:id', folders.updateFolder);
+	app.delete('/api/folders/:id', folders.deleteFolder);
 
-	app.post('/app/folders/:folder_id/files', folders.createFile);
-	app.get('/app/folders/:folder_id', folders.queryFiles);
-	app.get('/app/files/:file_id', files.getFile);
-	app.put('/app/files/:file_id', files.updateFile);
-	app.delete('/app/files/:file_id', files.deleteFile);
+	app.post('/api/folders/:folder_id/files', folders.createFile);
+	app.get('/api/folders/:folder_id', folders.queryFiles);
+	app.get('/api/files/:file_id', files.getFile);
+	app.put('/api/files/:file_id', files.updateFile);
+	app.delete('/api/files/:file_id', files.deleteFile);
 
-	app.post('/app/files/:file_id/comments', files.addCommentToFile);
-	app.get('/app/files/:file_id/comments/:comment_id', files.getCommentForFile);
-	app.put('/app/files/:file_id/comments/:comment_id', files.updateCommentFromFile);
-	app.delete('/app/files/:file_id/comments/:comment_id', files.deleteCommentFromFile);
+	app.post('/api/files/:file_id/comments', files.addCommentToFile);
+	app.get('/api/files/:file_id/comments/:comment_id', files.getCommentForFile);
+	app.put('/api/files/:file_id/comments/:comment_id', files.updateCommentFromFile);
+	app.delete('/api/files/:file_id/comments/:comment_id', files.deleteCommentFromFile);
 
 	/*------Init, Stat----- */
 	app.get('/api/inits',inits.getInit);
