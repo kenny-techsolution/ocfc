@@ -1,5 +1,5 @@
 /*************************************************************************************
- 11.18.2014 re-create Post model as per latest requirement
+11.18.2014 re-create Post model as per latest requirement
  ***************************************************************************************/
 
 var mongoose = require('mongoose');
@@ -21,7 +21,17 @@ var postSchema = mongoose.Schema({
 	comments:		[commentSchema],
 	testimony:		[testimonySchema], //mongoose only allows array for subDocument to be included.
 	general:		[generalSchema],
-	wallIds:		[{type: ObjectId, ref:'wallId', index: true, unique: false}],
+	postUnder: {
+		groupId: {type: ObjectId, index: true},
+		groupType: {type: String, Required:'(grouptype) in postUnder, is required!'}
+	},
+	shareTo: [
+		{
+			groupId: {type: ObjectId, Required:'(groupId) in shareTo, is required!', index: true},
+			groupType: {type: String, Required:'(grouptype) in shareTo, is required!'},
+			status: {type: String, equired:'(status) in statuså, is required!'}
+		}
+	],
 	question:		{type: String, index: false, unique: false},
 	prayer:			{type: String, index: false, unique: false},
 	eventId:		{type: ObjectId, ref:'Event', index: false, unique: false},

@@ -122,7 +122,7 @@ var createTestimonyPost = function(postObj) {
 		});
 		return savePost(post);
 	});
-}
+};
 
 var createEventPost = function (postObj) {
 	var errors = checkRequiedFieldsForPostType(post.postType, post, ['title', 'description', 'fromDate', 'toDate', 'where','hostBy','invitees']);
@@ -153,10 +153,15 @@ var createEventPost = function (postObj) {
 		});
 		return savePost(post);
 	});
-}
+};
 
+var canUserOperateOnThisPostUnder = function(user, groupType, groupId, action) {
+	return (user.membership[groupType].indexOf(groupId) !== -1);
+};
 /* Request Fields Description:
 {
+	postUnderGroupId: (string-fellowship._id) required,
+	postUnderGroupType: (string) required,
 	postType: (string) required ['general','testimony','question','prayer','event'],
 	content: (string) required if postType == general || testimony || question || prayer,
 	title: (string) required if postType == testimony || event,
@@ -171,10 +176,13 @@ var createEventPost = function (postObj) {
 	invitees: [string-user._id] required for postType == event
 }
 */
-
 exports.createPost=function (req, res) {
 	var postObj = req.body;
-	//TODO: post by the user must be the member of the walls. implement that in the user req user obj.
+
+	if(!canUserOperateOnThisPostUnder(req.user, postObj.postUnderGroupType, postObj.postUnderGroupId)) {
+		return res.json({status: "fail", message: "you are not allowed to create post on this wall which you're not a member of."});
+	}
+
 	postObj = deleteKey(postObj, ['comments','updatedOn', 'postBy']);
 	if(_.has(postObj,'postType')){
 		if(postObj.postType === 'question') {
@@ -201,14 +209,18 @@ exports.getPost=function (req, res) {
 			err = handleError(err);
 			return res.json(err);
 		}
+		if(!canUserOperateOnThisPostUnder(req.user, post.postUnder.groupType, post.postUnder.groupId)) {
+			return res.json({status: "fail", message: "you are not allowed to get this post from this wall which you're not a member of."});
+		}
 		return res.json(post);
 	});
 };
 
 exports.queryPost=function (req, res) {
-	var validKeys = ['postType', 'postBy'];
+	var validKeys = ['postType', 'postBy', 'postUnderGroupType', 'postUnderGroupId'];
 	var actualKeys = _.keys(req.query);
 	var filteredKeys = _.intersection(validKeys, actualKeys);
+
 	var condition = {};
 	_.forEach(filteredKeys, function(key){
 		condition[key] = req.query[key];

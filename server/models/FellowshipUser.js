@@ -17,4 +17,3 @@ var fellowshipUserSchema = mongoose.Schema({
 });
 
 var FellowshipUser = mongoose.model('FellowshipUser', fellowshipUserSchema);
-
