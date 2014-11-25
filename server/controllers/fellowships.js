@@ -228,7 +228,7 @@ exports.addUserToFellowship = function (req, res) {
 	});
 };
 
-//Get - Round 1
+//Get - Round1
 exports.getUsersFromFellowship = function (req, res) {
 	//Populate users associated to a fellowship
 	//Search FellowUser model by fellowshipId against param id,
@@ -239,35 +239,25 @@ exports.getUsersFromFellowship = function (req, res) {
 	});
 };
 
-//Put - Round 1
+
+
+//Put - Round1
 exports.updateUserToFellowship = function (req, res) {
 	//Only admin privilege allowed to update from fellowshipUser tbl
-	FellowshipUser.count({userId: req.user._id, fellowshipId: req.params.fellowship_id, role: 'admin', status: 'approved'}, function (err, count) {
+	FellowshipUser.count({userId:commFunc.reqSessionUserId(req),fellowshipId:commFunc.reqParamFellowshipId(req), role: 'admin', status: 'approved'}, function (err, count) {
 		if (err) return res.json(err);
 		if (count > 0) {
-			var fellowshipUserObj = req.body;
-			fellowshipUserObj = commFunc.toLowerCase(fellowshipUserObj);
-			fellowshipUserObj = deleteKey(fellowshipUserObj, ['userId', 'fellowshipId', 'signupDate']);
+			var fellowshipUserObj = commFunc.removeInvalidKeys(req.body,['status','role','rejectReason','updateDate']);
 
-			var keys = _.keys(fellowshipUserObj);
-			if (keys.length == 1 && keys[0] == '_id') {
-				return res.json({});
-			}
-
-			FellowshipUser.findOne({userId: req.params.user_id, fellowshipId: req.params.fellowship_id}).populate('fellowshipId').exec(function(err, fellowshipUser){
+			FellowshipUser.findOne({userId: commFunc.reqParamUserId(req), fellowshipId:commFunc.reqParamFellowshipId(req)}).populate('fellowshipId').exec(function(err, fellowshipUser){
 				var preStatus = fellowshipUser.status;
-				console.log("fsadfasdf   fellowshipUserObj");
-				console.log(fellowshipUserObj);
-				console.log(fellowshipUserObj.status);
-				console.log(fellowshipUserObj.rejectReason);
 				if(preStatus === 'pending') {
 					if(fellowshipUserObj.status ==="rejected" && !fellowshipUserObj.rejectReason) {
 						return res.json({status:"fail", message: "to reject, you must provide a reason"});
 					}
 				}
-				_.forIn(fellowshipUserObj, function(value, key){
-					fellowshipUser[key] = value;
-				});
+				commFunc.updateInstanceWithObject(fellowshipUserObj,fellowshipUser);
+
 				fellowshipUser.save(function(err){
 					if (err) return res.json(err);
 					//if user is approved. add fellowshipId to membership.
@@ -323,6 +313,7 @@ exports.updateUserToFellowship = function (req, res) {
 exports.removeUserFromFellowship = function (req, res) {
 	// Session user must be an admin in order to delete
 	// fellowship from Fellowship & FellowUser Models
+	//TODO. can't find membership object on session user.
 	console.log("removeUserFromFellowship");
 	console.log(req.user);
 	var matchedResult = _.filter(req.user.membership.fellowships, {fellowshipId : req.params.fellowship_id});
