@@ -12,8 +12,7 @@ module.exports = function () {
 			User.findOne({userName: username, active:true},'+salt +hashedPwd').exec(function (err, user) {
 				if (user && user.authenticate(password)) {
 					return done(null, user);
-				}
-				else {
+				} else {
 					return done(null, false);
 				}
 			})
@@ -30,10 +29,8 @@ module.exports = function () {
 		User.findOne({_id: id}).exec(function (err, user) {
 			if (user) {
 				Membership.findOne({userId: user._id}, function(err, membership){
-					console.log("membership");
-					console.log(membership);
-					user.membership =  membership;
-					return done(null, user);
+					var extendedUser = _.merge(user, membership);
+					return done(null, extendedUser);
 				});
 			}
 			else {
