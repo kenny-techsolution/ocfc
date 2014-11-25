@@ -14,9 +14,20 @@ var mongoose = require('mongoose'),
 
 var membershipSchema = mongoose.Schema({
 	userId:			{type: ObjectId, ref:'User', required:'(userId) is required!',index: true, unique: false},
-	fellowshipIds:	[{type: ObjectId, ref:'Fellowship', index: false, unique: false}],
-	churchIds:	[{type: ObjectId, ref:'Church', index: false, unique: false}],
-	albumIds: [{type: ObjectId, ref:'Album', index: false, unique: false}]
+	fellowships:	[{
+		fellowshipId : 	{type: ObjectId, ref:'Fellowship', required:'(FellowshipId) is required!', index: false, unique: false},
+		name:			{type: String, required:'(name) is required!', index: true, unique: false,lowercase: true},
+		role:	 		{type: String, required:'(role) is required!', index: false, unique: false,lowercase: true},
+	}],
+	churches:	[{
+		churchId: 		{type: ObjectId, ref:'Church', required:'(churchId) is required!', index: false, unique: false},
+		name:			{type: String, required:'(name) is required!', index: true, unique: false,lowercase: true},
+		role:	 		{type: String, required:'(name) is required!', index: false, unique: false,lowercase: true}
+	}],
+	albums: [{
+		albumId:  		{type: ObjectId, ref:'Album',  required:'(albumId) is required!', index: false, unique: false},
+		name:			{type: String, required:'(name) is required!', index: true, unique: false,lowercase: true},
+	}]
 });
 
 membershipSchema.methods = {

@@ -4,7 +4,7 @@ var Post = require('mongoose').model('Post'),
 	deleteKey = require('key-del'),
 	html_strip=require('htmlstrip-native');
 
-var checkRequiedFieldsForPostType = function (postType, obj, fields) {
+var checkRequiredFieldsForPostType = function (postType, obj, fields) {
 	var errors = []
 	_.forEach(fields, function(key){
 		if(!_.has(obj, key)){
@@ -14,7 +14,7 @@ var checkRequiedFieldsForPostType = function (postType, obj, fields) {
 	});
 };
 
-var checkRequiedFields = function (obj, fields) {
+var checkRequiredFields = function (obj, fields) {
 	var errors = []
 	_.forEach(fields, function(key){
 		if(!_.has(obj, key)){
@@ -54,7 +54,7 @@ var savePost = function(post) {
 };
 
 var createQuestionPost = function(postObj) {
-	var errors = checkRequiedFieldsForPostType(postObj.postType, postObj, ['content']);
+	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
 	if(errors.length > 0){
 		return res.json({statue:"failed", errors: errors});
 	}
@@ -65,7 +65,7 @@ var createQuestionPost = function(postObj) {
 };
 
 var createPrayerPost = function(postObj) {
-	var errors = checkRequiedFieldsForPostType(postObj.postType, postObj, ['content']);
+	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
 	if(errors.length > 0){
 		return res.json({statue:"failed", errors: errors});
 	}
@@ -76,7 +76,7 @@ var createPrayerPost = function(postObj) {
 };
 
 var createGeneralPost = function(postObj) {
-	var errors = checkRequiedFieldsForPostType(postObj.postType, postObj, ['content']);
+	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
 	if(errors.length > 0){
 		return res.json({statue:"failed", errors: errors});
 	}
@@ -103,7 +103,7 @@ var createGeneralPost = function(postObj) {
 };
 
 var createTestimonyPost = function(postObj) {
-	var errors = checkRequiedFieldsForPostType(post.postType, post, ['content', 'title']);
+	var errors = checkRequiredFieldsForPostType(post.postType, post, ['content', 'title']);
 	if(errors.length > 0){
 		return res.json({statue:"failed", errors: errors});
 	}
@@ -125,7 +125,7 @@ var createTestimonyPost = function(postObj) {
 };
 
 var createEventPost = function (postObj) {
-	var errors = checkRequiedFieldsForPostType(post.postType, post, ['title', 'description', 'fromDate', 'toDate', 'where','hostBy','invitees']);
+	var errors = checkRequiredFieldsForPostType(post.postType, post, ['title', 'description', 'fromDate', 'toDate', 'where','hostBy','invitees']);
 	if(errors.length > 0){
 		return res.json({statue:"failed", errors: errors});
 	}
@@ -217,20 +217,37 @@ exports.getPost=function (req, res) {
 };
 
 exports.queryPost=function (req, res) {
+	var errors = checkRequiredFields(post.postType, post, ['postUnderGroupType', 'postUnderGroupIdd']);
+	if(errors.length > 0){
+		return res.json({statue:"failed", errors: errors});
+	}
+	if(!canUserOperateOnThisPostUnder(req.user, post.postUnderGroupType, post.postUnderGroupId)) {
+		return res.json({status: "fail", message: "you are not allowed to query post from this wall which you're not a member of."});
+	}
+
 	var validKeys = ['postType', 'postBy', 'postUnderGroupType', 'postUnderGroupId'];
 	var actualKeys = _.keys(req.query);
 	var filteredKeys = _.intersection(validKeys, actualKeys);
 
 	var condition = {};
 	_.forEach(filteredKeys, function(key){
-		condition[key] = req.query[key];
+		var whereClause = {};
+		if(key == 'postUnderGroupType') {
+			whereClause.groupType = req.query[key];
+		} else if (key == 'postUnderGroupId') {
+			whereClause.groupId = req.query[key];
+		} else {
+			condition[key] = req.query[key];
+		}
 	});
-	Post.find(condition, function(err, posts){
+
+	Post.find(condition).where('postUnder',{$elemMatch:whereClause}).exec(function(err,fellowship) {
 		if (err) {
 			err = handleError(err);
 			return res.json(err);
 		}
 		return res.json(posts);
+
 	});
 };
 
@@ -246,11 +263,15 @@ var _updatePost = function(id, postObj) {
 
 exports.updatePost=function (req, res) {
 	var postObj = req.body;
-	//TODO: post by the user must be the member of the walls. implement that in the user req user obj.
+
+	if(!canUserOperateOnThisPostUnder(req.user, post.postUnderGroupType, post.postUnderGroupId)) {
+		return res.json({status: "fail", message: "you are not allowed to update post from this wall which you're not a member of."});
+	}
+
 	postObj = deleteKey(postObj, ['comments','updatedOn', 'postBy']);
 	if(_.has(postObj,'postType')){
 		if(postObj.postType === 'question') {
-			var errors = checkRequiedFieldsForPostType(postObj.postType, postObj, ['content']);
+			var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
 			if(errors.length > 0){
 				return res.json({statue:"failed", errors: errors});
 			}
@@ -259,7 +280,7 @@ exports.updatePost=function (req, res) {
 			return _updatePost(req.params.id, postObj);
 		}
 		if(postObj.postType === 'prayer') {
-			var errors = checkRequiedFieldsForPostType(postObj.postType, postObj, ['content']);
+			var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
 			if(errors.length > 0){
 				return res.json({statue:"failed", errors: errors});
 			}
@@ -268,7 +289,7 @@ exports.updatePost=function (req, res) {
 			return _updatePost(req.params.id, postObj);
 		}
 		if(postObj.postType === 'general') {
-			var errors = checkRequiedFieldsForPostType(postObj.postType, postObj, ['content']);
+			var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
 			if(errors.length > 0){
 				return res.json({statue:"failed", errors: errors});
 			}
@@ -281,7 +302,7 @@ exports.updatePost=function (req, res) {
 			});
 		}
 		if(post.postType === 'testimony') {
-			var errors = checkRequiedFieldsForPostType(postObj.postType, postObj, ['content', 'title']);
+			var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content', 'title']);
 			if(errors.length > 0){
 				return res.json({statue:"failed", errors: errors});
 			}
@@ -325,8 +346,7 @@ exports.updatePost=function (req, res) {
 	}
 };
 
-exports.removePost=function (req, res) {
-	Post.findOneAndRemove({_id: req.params.id, postBy: req.user._id}, function(err){
+exports.removePost=function (req, res) {Post.findOneAndRemove({_id: req.params.id, postBy: req.user._id}, function(err){
 		if (err) {
 			err = handleError(err);
 			return res.json(err);
@@ -337,14 +357,16 @@ exports.removePost=function (req, res) {
 
 /*---Comment related-----*/
 exports.addCommentToPost=function (req, res) {
-	//TODO: check if user is belonged to that wall.
 	Post.findById(req.params.id).exec(function(err, post){
 		if (err) {
 			err = handleError(err);
 			return res.json(err);
 		}
-		var commentObj = req.body;
-		errors = checkRequiedFields(commentObj, ['comment']);
+		if(!canUserOperateOnThisPostUnder(req.user, post.postUnderGroupType, post.postUnderGroupId)) {
+			return res.json({status: "fail", message: "you are not allowed to add comment to post to this wall which you're not a member of."});
+		}
+		commentObj = req.body;
+		errors = checkRequiredFields(commentObj, ['comment']);
 		if(errors>0) return res.json(errors);
 		commentObj = {
 			userId:	req.user._id,
@@ -360,9 +382,15 @@ exports.addCommentToPost=function (req, res) {
 
 exports.updateCommentFromPost=function (req, res) {
 	Post.findById(req.params.post_id).exec(function(err, post){
-		errors = checkRequiedFields(commentObj, ['comment']);
+		if (err) {
+			err = handleError(err);
+			return res.json(err);
+		}
+		errors = checkRequiredFields(commentObj, ['comment']);
 		if(errors>0) return res.json(errors);
-
+		if(!canUserOperateOnThisPostUnder(req.user, post.postUnderGroupType, post.postUnderGroupId)) {
+			return res.json({status: "fail", message: "you are not allowed to update comment to post to this wall which you're not a member of."});
+		}
 		var comment = post.comments.id(req.params.comment_id);
 		if(comment.userId === req.user._id) {
 			commentObj = req.body;

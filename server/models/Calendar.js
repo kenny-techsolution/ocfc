@@ -1,5 +1,5 @@
 /*************************************************************************************
- 11.18.2014 re-create Calendar model as per latest requirement
+11.18.2014 re-create Calendar model as per latest requirement
  ***************************************************************************************/
 
 var mongoose = require('mongoose');

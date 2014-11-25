@@ -1,5 +1,5 @@
 /*************************************************************************************
- This file extends from passport.js which authenticate user using Passport module
+This file extends from passport.js which authenticate user using Passport module
  ***************************************************************************************/
 var passport = require('passport'),
 	mongoose = require('mongoose'),
@@ -16,14 +16,13 @@ exports.authenticate = function (req, res, next) {
 			res.send({success: false})
 		}
 
-		FellowshipUser.find({userId: user._id}, 'fellowshipId', function(err, fellowshipUser){
-
+		Membership.findOne({userId: user._id}, function(err, membership){
+			user.membership = membership;
 		});
 		req.logIn(user, function (err) {
 			if (err) {
 				return next(err);
 			}
-
 			res.send({success: true, user: user});
 		});
 	});
