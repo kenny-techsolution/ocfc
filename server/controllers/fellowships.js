@@ -2,6 +2,8 @@ var Fellowship = require('mongoose').model('Fellowship'),
 	FellowshipUser = require('mongoose').model('FellowshipUser'),
 	ChurchFellowship = require('mongoose').model('ChurchFellowship'),
 	Membership = require('mongoose').model('Membership'),
+	Album = require('mongoose').model('Album'),
+	Calendar = require('mongoose').model('Calendar'),
 	commFunc = require('../utilities/commonFunctions'),
 	deleteKey = require('key-del'),
 	async = require('async'),
@@ -51,41 +53,64 @@ exports.createFellowship=function (req, res) {
 
 var approveFellowship = function (fellowshipId) {
 	fellowship.findById(fellowshipId).exec(function(err){
-		fellowship.approved = true;
 		if (err) {
 			err = commFunc.handleError(err);
 			return res.json(err);
 		}
-		fellowship.save(function(err){
-			if (err) {
-				err = commFunc.handleError(err);
-				return res.json(err);
+		var album = new Album({name:"Fellowship Photos", createdBy: req.user._id});
+		var calendar = new Calendar({ownerType:"fellowship", fellowshipId: fellowship._id, title: "Fellowship Calendar"});
+		var albumId, calendarId;
+		async.parallel([
+			function(callback) {
+				album.save(function(err){
+					if (err) return res.json(err);
+					albumId = album._id;
+					callback();
+				});
+			},
+			function(callback) {
+				calendar.save(function(err){
+					if (err) return res.json(err);
+					calendarId = calendar._id;
+					callback();
+				});
 			}
-			//approve the fellowship admin as well.
-			fellowshipUser.find({fellowshipId: fellowshipId, role: "admin"}, function(err, fellowshipUser){
+		], function(err){
+			if (err) return res.json(err);
+			fellowship.approved = true;
+			fellowship.defaultAlbumId = albumId;
+			fellowship.calendarIds = calendarIds;
+			fellowship.save(function(err){
 				if (err) {
 					err = commFunc.handleError(err);
 					return res.json(err);
 				}
-				fellowshipUser.status = "approved";
-				fellowshipUser.save(function(){
+				//approve the fellowship admin as well.
+				fellowshipUser.find({fellowshipId: fellowshipId, role: "admin"}, function(err, fellowshipUser){
 					if (err) {
 						err = commFunc.handleError(err);
 						return res.json(err);
 					}
-					//add the fellowship to the membership of the fellowship Admin user.
-					membership.findOne({userId: fellowshipUser.userId}, function(err, membership){
-						if (err) return res.json(err);
-						membership.fellowships.push({
-							fellowshipId: fellowship._id,
-							name: fellowship.name,
-							role: "admin"
-						});
-						membership.save(function(err){
+					fellowshipUser.status = "approved";
+					fellowshipUser.save(function(){
+						if (err) {
+							err = commFunc.handleError(err);
+							return res.json(err);
+						}
+						//add the fellowship to the membership of the fellowship Admin user.
+						membership.findOne({userId: fellowshipUser.userId}, function(err, membership){
 							if (err) return res.json(err);
-							return res.json({status:"fellowship is approved"});
-						});
-					})
+							membership.fellowships.push({
+								fellowshipId: fellowship._id,
+								name: fellowship.name,
+								role: "admin"
+							});
+							membership.save(function(err){
+								if (err) return res.json(err);
+								return res.json({status:"fellowship is approved"});
+							});
+						})
+					});
 				});
 			});
 		});
