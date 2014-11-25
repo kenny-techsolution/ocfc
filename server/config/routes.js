@@ -108,16 +108,15 @@ module.exports = function (app, io) {
 	app.put('/api/calendars/:id', calendars.updateCalendar);
 	app.delete('/api/calendars/:id', calendars.deleteCalendar);
 
-	app.post('/app/calendars/:calendar_id/events', calendars.createEventToCalendar);
-	app.get('/app/calendars/:calendar_id/events', calendars.queryEventsFromCalendar);
-	app.get('/app/events/:event_id', events.getEvent);
-	app.put('/app/events/:event_id', events.updateEvent);
-	app.delete('/app/events/:event_id', events.deleteEvent);
+	app.post('/api/calendars/:calendar_id/events', calendars.createEventToCalendar);
+	app.get('/api/calendars/:calendar_id/events', calendars.queryEventsFromCalendar);
+	app.get('/api/events/:event_id', events.getEvent);
+	app.put('/api/events/:event_id', events.updateEvent);
+	app.delete('/api/events/:event_id', events.deleteEvent);
 
-	app.post('/app/events/:event_id/comments', events.addCommentToEvent);
-	app.get('/app/events/:event_id/comments/:comment_id', events.getCommentForEvent);
-	app.put('/app/events/:event_id/comments/:comment_id', events.updateCommentFromEvent);
-	app.delete('/app/events/:event_id/comments/:comment_id', events.deleteCommentFromEvent);
+	app.post('/api/events/:event_id/comments', events.addCommentToEvent);
+	app.put('/api/events/:event_id/comments/:comment_id', events.updateCommentFromEvent);
+	app.delete('/api/events/:event_id/comments/:comment_id', events.deleteCommentFromEvent);
 	//add invitee crud functions.
 
 
@@ -151,7 +150,6 @@ module.exports = function (app, io) {
 	app.delete('/api/files/:file_id', files.deleteFile);
 
 	app.post('/api/files/:file_id/comments', files.addCommentToFile);
-	app.get('/api/files/:file_id/comments/:comment_id', files.getCommentForFile);
 	app.put('/api/files/:file_id/comments/:comment_id', files.updateCommentFromFile);
 	app.delete('/api/files/:file_id/comments/:comment_id', files.deleteCommentFromFile);
 

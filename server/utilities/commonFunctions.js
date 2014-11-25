@@ -19,3 +19,13 @@ exports.handleError= function(err){
 	var modError = err;
 	return modError;
 };
+
+exports.toLowerCase=function(obj){
+	for (var i in obj) {
+		if (i!=="imageIds" || i!=="createdOn"){
+			console.log(obj[i]);
+			obj[i] = obj[i].toLowerCase();
+		}
+	}
+	return obj;
+};

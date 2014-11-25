@@ -23,7 +23,7 @@ var userSchema = mongoose.Schema({
 	signupDate: {type: Date,required:'(signupDate) is required!',index: true, unique: false,lowercase: true,default: Date.now},
 	about:		{type: String, index: false, unique: false,lowercase: true},
 	place: 		{type: String,required:'(place) is required!',index: true, unique: false,lowercase: true},
-	coordinates:[{type: Number,required:'(geoCode) is required!',index: true, unique: false,lowercase: true}],
+	coordinates:[{type: Number,index: true, unique: false,lowercase: true}],
 	language: 	{type: String, required:'(language) is required!', index: true, unique: false,lowercase: true},
 	passReset:	{type: String, index: false, unique: false,lowercase: true, select: false},
 	resetOn:	{type: Date,index: false, unique: false,lowercase: true, select: false,default: Date.now}

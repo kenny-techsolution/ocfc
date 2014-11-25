@@ -40,6 +40,8 @@ exports.createInvite = function (req, res) {
 							err = commFunc.handleError(err);
 							return res.json(err);
 						}
+						console.log('test inviteOtherToFellowship');
+						console.log(inviteOtherToFellowship);
 						return res.json({status: "success", inviteOtherToFellowship: inviteOtherToFellowship});
 					});
 				}

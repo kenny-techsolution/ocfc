@@ -7,28 +7,14 @@ var Album = require('mongoose').model('Album'),
 	deleteKey = require('key-del'),
 	_=require('lodash');//Library for Array
 
-var handleError= function(err){
-	var modError = err;
-	return modError;
-};
-
-var toLowerCase=function(obj){
-	for (var i in obj) {
-		if (i!=="imageIds" || i!=="createdOn"){
-			console.log(obj[i]);
-			obj[i] = obj[i].toLowerCase();
-		}
-	}
-	return obj;
-};
-
 //Post
 exports.createAlbum = function (req, res) {
 	var album = req.body;
-	album.name=album.name;
-	album.createdOn=new Date();
-	album.createdBy=req.user.id;
-
+	album={
+		name:album.name,
+		createdOn:new Date(),
+		createdBy:req.user.id
+	}
 	var album = new Album(album);
 	album.save(function (err) {
 		if (err) {
@@ -69,7 +55,7 @@ exports.getAlbum= function (req, res) {
 exports.updateAlbum= function (req, res) {
 	var album=req.body;
 
-	album = toLowerCase(album);
+	album = commFunc.toLowerCase(album);
 	album = deleteKey(album, ['createdOn', 'imageIds']);
 
 	var keys = _.keys(album);
@@ -80,7 +66,7 @@ exports.updateAlbum= function (req, res) {
 
 	Album.update({ _id:req.params.id }, album, { multi: true }, function (err, numberAffected, raw) {
 		if (err) {
-			err = handleError(err);
+			err = commFunc.handleError(err);
 			return res.json(err);
 		}
 		return res.json({status:"success",raw:raw});
@@ -119,14 +105,14 @@ exports.createImage= function (req, res) {
 	//TODO make sure user can post to this album
 	image.save(function(err){
 		if(err){
-			err=handError(err);
+			err=commFunc.handleError(err);
 			return res.json(err);
 		}
 		Album.findById(req.params.album_id).exec(function(err, album){
 			album.imageIds.push(image._id);
 			album.save(function(err){
 				if(err) {
-					err = handError(err);
+					err = commFunc.handleError(err);
 					return res.json(err);
 				}
 				return res.json({status:'success',album:album})

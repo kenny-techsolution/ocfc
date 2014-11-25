@@ -38,8 +38,7 @@ exports.createFellowship=function (req, res) {
 		fellowshipUser.fellowshipId = fellowship._id;
 		fellowshipUser.status = 'pending';
 		fellowshipUser.role = 'admin';
-//		fellowshipUser.signupDate = new Date();
-//		fellowshipUser.updateDate = new Date();
+
 		fellowshipUser.save(function(err){
 			if (err) {
 				err = commFunc.handleError(err);
@@ -60,7 +59,7 @@ exports.updateFellowshipById=function (req, res) {
 		}
 		if (count>0){
 			var fellowship=req.body;
-			fellowship = toLowerCase(fellowship);
+//			fellowship = toLowerCase(fellowship);
 			fellowship = deleteKey(fellowship, ['calendarIds', 'fileIds','albumIds']);
 			fellowship.updateDate=new Date();
 
@@ -73,6 +72,8 @@ exports.updateFellowshipById=function (req, res) {
 					err = commFunc.handleError(err);
 					return res.json(err);
 				}
+				console.log('chk fellowship');
+				console.log(fellowship);
 				return res.json({status:"success",raw:raw});
 			});
 		};

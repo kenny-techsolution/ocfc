@@ -7,9 +7,10 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var commentSchema=require('./Comment').commentSchema;
 
 var fileSchema = mongoose.Schema({
-	name:		{type: String, Required:'(name) is required!', index: true, unique: false,lowercase: true},
-	createdOn:	{type: Date, Required:'(createdOn) is required!', index: true, unique: false,lowercase: true},
-	source:		{type: String, Required:'(source) is required!', index: true, unique: false,lowercase: true},
+	name:		{type: String, Required:'(name) is required!', index: true, unique: false},
+	createdOn:	{type: Date, Required:'(createdOn) is required!', index: true, unique: false, default: Date.now},
+	updatedOn:	{type: Date, Required:'(updatedOn) is required!', index: true, unique: false, default: Date.now},
+	path:		{type: String, Required:'(path) is required!', index: true, unique: false},
 	comments: 	[commentSchema]
 });
 

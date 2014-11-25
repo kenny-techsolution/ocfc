@@ -5,15 +5,15 @@ var Church = require('mongoose').model('Church'),
 	deleteKey = require('key-del'),
 	_=require('lodash');//Library for Array
 
-var toLowerCase=function(obj){
-	for (var i in obj) {
-		if (i!=="name" || i!=="url" || i!=="faithStatement"||i!=="mission"||i!=="vision"||i!=="about"||i!=="churchId"||i!=="fellowshipId"){
-			console.log(obj[i]);
-			obj[i] = obj[i].toLowerCase();
-		}
-	}
-	return obj;
-};
+//var toLowerCase=function(obj){
+//	for (var i in obj) {
+//		if (i!=="name" || i!=="url" || i!=="faithStatement"||i!=="mission"||i!=="vision"||i!=="about"||i!=="churchId"||i!=="fellowshipId"){
+//			console.log(obj[i]);
+//			obj[i] = obj[i].toLowerCase();
+//		}
+//	}
+//	return obj;
+//};
 
 //Post
 exports.createChurch= function (req, res) {
@@ -46,7 +46,6 @@ exports.updateChurchById= function (req, res) {
 		}
 		if (count>0){
 			var church=req.body;
-			church = toLowerCase(church);
 			church = deleteKey(church, ['startDate', 'updateDate']);
 			church.updateDate=new Date();
 
@@ -182,7 +181,7 @@ exports.updateFellowshipToChurch= function (req, res) {
 			churchFellowship.fellowshipId=req.params.fellowship_id;
 			churchFellowship.rejReason=churchFellowship.rejReason;
 			churchFellowship.status='Pending';
-			churchFellowship = toLowerCase(churchFellowship);
+//			churchFellowship = toLowerCase(churchFellowship);
 			churchFellowship.updateDate=new Date();
 			churchFellowship = deleteKey(churchFellowship, ['userId', 'churchId']);
 
@@ -269,7 +268,7 @@ exports.updateUserToChurch= function (req, res) {
 		}
 		if (count>0){
 			var churchUser=req.body;
-			churchUser = toLowerCase(churchUser);
+//			churchUser = toLowerCase(churchUser);
 			churchUser = deleteKey(churchUser, ['userId', 'churchId','updateDate']);
 			churchUser.updateDate=new Date();
 
@@ -282,6 +281,8 @@ exports.updateUserToChurch= function (req, res) {
 					err = commFunc.handleError(err);
 					return res.json(err);
 				}
+				console.log('chk churchUser');
+				console.log(churchUser);
 				return res.json({status:"success",raw:raw});
 			});
 		};

@@ -144,6 +144,9 @@ exports.updateCommentFromImage= function (req, res) {
 		var comment = image.comments.id(req.params.comment_id);
 		comment.comment = commentObj.comment;
 
+		console.log('chk comment');
+		console.log(comment);
+
 		image.save(function(err){
 			if (err) {
 				err = handleError(err);

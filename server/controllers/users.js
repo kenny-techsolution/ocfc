@@ -26,7 +26,11 @@ exports.createUser=function (req, res) {
 	var salt = encrypt.createSalt();
 	user.salt = salt;
 	user.hashedPwd = encrypt.hashPwd(salt, user.password);
-//	user.signupDate=new Date();
+
+	console.log('chk user.hashedPwd');
+	console.log(user.hashedPwd);
+	console.log('chk user');
+	console.log(user);
 
 	var user = new User(user);
 	user.save(function (err) {

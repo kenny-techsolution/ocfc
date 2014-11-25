@@ -8,7 +8,7 @@ var commentSchema=require('./Comment').commentSchema;
 
 var imageSchema = mongoose.Schema({
 	path:		{type: String, Required:'(path) is required', index: true, unique: true},
-	caption:	{type: String, index: false, unique: false,lowercase: true},
+	caption:	{type: String, index: false, unique: false},
 	createdOn:	[{type: Date, Required:'(createdOn) is required', index: true, unique: false, default:Date.now}],
 	comments: 	[commentSchema]
 });
