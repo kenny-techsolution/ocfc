@@ -4,6 +4,7 @@ This file extends from passport.js which authenticate user using Passport module
 var passport = require('passport'),
 	mongoose = require('mongoose'),
 	FellowshipUser = mongoose.model('FellowshipUser'),
+	Membership = mongoose.model('Membership'),
 	ChurchUser = mongoose.model('ChurchUser');
 
 exports.authenticate = function (req, res, next) {

@@ -382,10 +382,7 @@ exports.addCommentToPost=function (req, res) {
 
 exports.updateCommentFromPost=function (req, res) {
 	Post.findById(req.params.post_id).exec(function(err, post){
-		if (err) {
-			err = handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
 		errors = checkRequiredFields(commentObj, ['comment']);
 		if(errors>0) return res.json(errors);
 		if(!canUserOperateOnThisPostUnder(req.user, post.postUnderGroupType, post.postUnderGroupId)) {

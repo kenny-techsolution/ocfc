@@ -7,6 +7,7 @@ var Album = require('mongoose').model('Album'),
 	deleteKey = require('key-del'),
 	_=require('lodash');//Library for Array
 
+
 //Post
 exports.createAlbum = function (req, res) {
 	var album = req.body;
@@ -16,12 +17,9 @@ exports.createAlbum = function (req, res) {
 		createdBy:req.user.id
 	}
 	var album = new Album(album);
-	album.save(function (err) {
-		if (err) {
-			err = handleError(err);
-			return res.json(err);
-		}
-		return res.json({status:"success",album:album});
+	album.save(function (err,album) {
+		if (err) return res.json(err);
+		return res.json({status: "success", album: album})
 	})
 };
 //Get
@@ -30,21 +28,12 @@ exports.getAlbum= function (req, res) {
 	//match by album id against fellowship
 	//grab fellowship_id, chk against fellowshipUser and chk if it matches session user's fellowship_id
 	Album.findOne({_id:req.params.id}).exec(function(err,album){
-		if (err) {
-			err = commFunc.handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
 		Fellowship.find({}).where('albumIds',{$elemMatch:{$in: [album._id]}}).exec(function(err,fellowship) {
 			console.log(err);
-			if (err) {
-				err = commFunc.handleError(err);
-				return res.json(err);
-			}
+			if (err) return res.json(err);
 			FellowshipUser.findOne({fellowshipId:fellowship._id,userId:req.user.id}).exec(function(err,fellowshipUser){
-				if (err) {
-					err = commFunc.handleError(err);
-					return res.json(err);
-				}
+				if (err) return res.json(err);
 				return res.json({status:"success",album:album});
 			})
 		});
@@ -65,10 +54,7 @@ exports.updateAlbum= function (req, res) {
 	}
 
 	Album.update({ _id:req.params.id }, album, { multi: true }, function (err, numberAffected, raw) {
-		if (err) {
-			err = commFunc.handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
 		return res.json({status:"success",raw:raw});
 	});
 };
@@ -76,19 +62,13 @@ exports.updateAlbum= function (req, res) {
 //Delete
 exports.deleteAlbum= function (req, res) {
 	Album.count({createdBy:req.user._id,_id:req.params.id},function (err, count) {
-		if (err) {
-			err = commFunc.handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
 		console.log('chk count');
 		console.log(count);
 
 		if (count>0){
 			Album.remove({_id:req.params.id},function (err) {
-				if (err) {
-					err = commFunc.handleError(err);
-					return res.json(err);
-				}
+				if (err) return res.json(err);
 				return res.json({status: "successfully removed from Album"});
 			})
 		}
@@ -104,17 +84,11 @@ exports.createImage= function (req, res) {
 
 	//TODO make sure user can post to this album
 	image.save(function(err){
-		if(err){
-			err=commFunc.handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
 		Album.findById(req.params.album_id).exec(function(err, album){
 			album.imageIds.push(image._id);
 			album.save(function(err){
-				if(err) {
-					err = commFunc.handleError(err);
-					return res.json(err);
-				}
+				if (err) return res.json(err);
 				return res.json({status:'success',album:album})
 			});
 		});
@@ -131,10 +105,7 @@ exports.queryImages= function (req, res) {
 		condition[key] = req.query[key];
 	})
 	Album.find(condition).exec(function (err, queryAlbumImgs) {
-		if (err) {
-			err = commFunc.handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
 		return res.json({status:"success",queryAlbumImgs: _.pluck(queryAlbumImgs,'imageIds')});
 	});
 };

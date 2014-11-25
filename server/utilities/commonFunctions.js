@@ -15,11 +15,6 @@ exports.toProperCase = function (str) {
 	});
 };
 
-exports.handleError= function(err){
-	var modError = err;
-	return modError;
-};
-
 exports.toLowerCase=function(obj){
 	for (var i in obj) {
 		if (i!=="imageIds" || i!=="createdOn"){

@@ -25,10 +25,10 @@ module.exports = function (config) {
 		console.log('ocfc db opened');
 	});
 	//used for creating dummy data
-	userModel.createDefaultUsers();
-	fellowModel.createDefaultFellowships();
-	churchModel.createDefaultChurches();
-	churchFellowModel.createDefaultChurchFellows();
-	churchUserModel.createDefaultChurchUsers();
+//	userModel.createDefaultUsers();
+//	fellowModel.createDefaultFellowships();
+//	churchModel.createDefaultChurches();
+//	churchFellowModel.createDefaultChurchFellows();
+//	churchUserModel.createDefaultChurchUsers();
 };
 
