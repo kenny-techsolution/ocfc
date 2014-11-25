@@ -27,14 +27,10 @@ exports.createUser=function (req, res) {
 
 //Put - Round1
 exports.updateUser=function (req, res) {
-	var user=req.body;
+	var user = commFunc.removeInvalidKeys(req.body,['firstName','lastName','birthday','gender','profileImg','about','place','coordinates','language','active']);
 	user = commFunc.toLowerCase(user);
-	user = deleteKey(user, ['userName', 'hashedPwd','salt','signupDate','passReset','resetOn']);
 
-	var keys = _.keys(user);
-	if(keys.length==1 && keys[0]=='_id') return res.json({});
-
-	User.update({ _id:req.user._id }, user, function (err, numberAffected, raw) {
+	User.update({ _id:commFunc.reqSessionUserId(req) }, user, function (err, numberAffected, raw) {
 		if (err) return res.json(err);
 		return res.json({status:"success",raw:raw});
 	});
@@ -42,7 +38,7 @@ exports.updateUser=function (req, res) {
 
 //Get - Round1
 exports.getUserById=function (req, res) {
-	User.findOne({_id: req.params.id}).exec(function (err, user) {
+	User.findOne({_id: commFunc.reqParamUserId(req,'id')}).exec(function (err, user) {
 		if (err) return res.json(err);
 		return res.json({status:"success",user:user});
 	});
@@ -51,7 +47,7 @@ exports.getUserById=function (req, res) {
 //Delete - Round1
 exports.deleteUser=function (req, res) {
 	//TODO implement custom remove to rid all referencing objects
-	User.update({_id:req.user._id},{active:false}, function (err) {
+	User.update({_id:commFunc.reqSessionUserId(req)},{active:false}, function (err) {
 		if (err) return res.json(err);
 		return res.json({status:"successfully de-activated acct"});
 	});
@@ -61,14 +57,9 @@ exports.deleteUser=function (req, res) {
 exports.updateProfileImage=function (req, res) {
 	var user={profileImg: req.body.profileImg};
 
-	var options = {
-		include_script : false,
-		include_style : false
-	};
-
 	// Strip tags and decode HTML entities to prevent hacking
 	//TODO image validation needed
-	user.profileImg = html_strip.html_strip(user.profileImg,options);
+	user.profileImg = html_strip.html_strip(user.profileImg,commFunc.htmlStripOptions);
 
 
 	if(user.profileImg!==null || user.profileImg!==""){

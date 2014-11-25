@@ -17,7 +17,7 @@ var membershipSchema = mongoose.Schema({
 	fellowships:	[{
 		fellowshipId : 	{type: ObjectId, ref:'Fellowship', required:'(FellowshipId) is required!', index: false, unique: false},
 		name:			{type: String, required:'(name) is required!', index: true, unique: false,lowercase: true},
-		role:	 		{type: String, required:'(role) is required!', index: false, unique: false,lowercase: true},
+		role:	 		{type: String, required:'(role) is required!', index: false, unique: false,lowercase: true}
 	}],
 	churches:	[{
 		churchId: 		{type: ObjectId, ref:'Church', required:'(churchId) is required!', index: false, unique: false},
@@ -26,7 +26,7 @@ var membershipSchema = mongoose.Schema({
 	}],
 	albums: [{
 		albumId:  		{type: ObjectId, ref:'Album',  required:'(albumId) is required!', index: false, unique: false},
-		name:			{type: String, required:'(name) is required!', index: true, unique: false,lowercase: true},
+		name:			{type: String, required:'(name) is required!', index: true, unique: false,lowercase: true}
 	}]
 });
 
