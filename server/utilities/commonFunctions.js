@@ -17,7 +17,8 @@ exports.toProperCase = function (str) {
 
 exports.toLowerCase=function(obj){
 	for (var i in obj) {
-		if (i!=="imageIds" || i!=="createdOn"){
+		if (i!=="imageIds" || i!=="createdOn"||i!=="profileImg"||i!=="albumIds"
+			|| i!=="fileIds" || i!=="calendarIds"){
 			console.log(obj[i]);
 			obj[i] = obj[i].toLowerCase();
 		}

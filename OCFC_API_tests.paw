@@ -5,7 +5,7 @@
     <databaseInfo>
         <version>134481920</version>
         <UUID>85169B30-4DCA-4B31-B36E-8760CDF22A00</UUID>
-        <nextObjectID>282</nextObjectID>
+        <nextObjectID>284</nextObjectID>
         <metadata>
             <plist version="1.0">
                 <dict>
@@ -120,7 +120,7 @@
         <attribute name="order" type="int64">0</attribute>
         <attribute name="name" type="string">OCFC API test suit</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM" idrefs="z154 z104 z208 z225 z248 z113 z141 z179 z234"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM" idrefs="z154 z104 z208 z225 z248 z113 z141 z179 z234 z283"></relationship>
         <relationship name="bodyparameters" type="0/0" destination="LMKEYVALUE"></relationship>
         <relationship name="headers" type="0/0" destination="LMKEYVALUE"></relationship>
         <relationship name="urlparameters" type="0/0" destination="LMKEYVALUE"></relationship>
@@ -177,7 +177,7 @@
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z111"></relationship>
     </object>
     <object type="LMREQUEST" id="z113">
-        <attribute name="body" type="string">[{"data":{"keyValues":[["username","xin@gmail.com",true],["password","xin",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["username","shoof@gmail.com",true],["password","yo",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">6726CC3D-8869-4BE9-A226-9C418D238C40</attribute>
         <attribute name="url" type="string">http://localhost:3030/login</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
@@ -187,7 +187,7 @@
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="order" type="int64">0</attribute>
-        <attribute name="name" type="string">auth.authenticate</attribute>
+        <attribute name="name" type="string">auth.authenticate login</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z108"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z114"></relationship>
@@ -1337,7 +1337,7 @@
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z210"></relationship>
     </object>
     <object type="LMREQUEST" id="z210">
-        <attribute name="body" type="string">[{"data":{"keyValues":[["name","fellowshi dkkk",true],["about","dsfsdfd",true],["address","3934 lnn drive",true],["city","michigan",true],["country","usa",true],["zipcode","24245",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Mei Fellowship",true],["about","welcome to our fellowship",true],["address","3934 lnn drive",true],["city","michigan",true],["country","usa",true],["zipcode","24245",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">00491139-3E6D-4D64-B902-63A68399B2C2</attribute>
         <attribute name="url" type="string">http://localhost:3030/api/fellowships</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
@@ -1354,14 +1354,14 @@
     </object>
     <object type="LMREQUEST" id="z211">
         <attribute name="uuid" type="string">FF7B5EF5-409C-4798-8EC9-6061CFA74B93</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/fellowships/5473ab695f571d228d267822</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/fellowships/54740066abf5dde2d6cf71de</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">PUT</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"keyValues":[["name","fellowshi udpdated",true],["about","dsfsdfd",false],["address","3934 lnn drive",false],["city","michigan",false],["country","usa",false],["zipcode","24245",false]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Mei Fellowship Updated",true],["about","dsfsdfd",false],["address","3934 lnn drive",false],["city","michigan",false],["country","usa",false],["zipcode","24245",false],["status","approved",false]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="order" type="int64">1</attribute>
         <attribute name="name" type="string">updateFellowshipById</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z208"></relationship>
@@ -1380,7 +1380,7 @@
     </object>
     <object type="LMREQUEST" id="z213">
         <attribute name="uuid" type="string">5F8463A5-1331-49FB-BDD7-1B957C4D86E3</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/fellowships/5473ab695f571d228d267822</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/fellowships/54740066abf5dde2d6cf71de</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -1432,14 +1432,14 @@
     </object>
     <object type="LMREQUEST" id="z217">
         <attribute name="uuid" type="string">333DBC0A-0D67-4885-AF93-184CEFCFF21B</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/fellowships/5473ab695f571d228d267822/users/</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/fellowships/54740066abf5dde2d6cf71de/users/</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"keyValues":[["role","admin",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="order" type="int64">4</attribute>
         <attribute name="name" type="string">addUserToFellowship</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z208"></relationship>
@@ -1468,7 +1468,7 @@
     </object>
     <object type="LMREQUEST" id="z220">
         <attribute name="uuid" type="string">37BD1359-358C-4297-B8A4-AA24A50B31DD</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/fellowships/5473ab695f571d228d267822/users/</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/fellowships/54740066abf5dde2d6cf71de/users/</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -1484,14 +1484,14 @@
     </object>
     <object type="LMREQUEST" id="z221">
         <attribute name="uuid" type="string">FA70F693-3B29-4ECF-92F9-702042DCE440</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/fellowships/5473ab695f571d228d267822/users/546ed15442b5ae255f9d8061</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/fellowships/54740066abf5dde2d6cf71de/users/5474043430152094da01f832</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">PUT</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"keyValues":[["role","pending like",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["status","approved",true],["rejectReason","too old",false]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="order" type="int64">6</attribute>
         <attribute name="name" type="string">updateUserToFellowship</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z208"></relationship>
@@ -1510,7 +1510,7 @@
     </object>
     <object type="LMREQUEST" id="z223">
         <attribute name="uuid" type="string">FE266083-4BA7-4318-953B-661046F21C97</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/fellowships/5473ab695f571d228d267822/users/546ed15442b5ae255f9d8061</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/fellowships/54740066abf5dde2d6cf71de/users/5474043430152094da01f832</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -1650,7 +1650,7 @@
     </object>
     <object type="LMREQUESTGROUP" id="z234">
         <attribute name="uuid" type="string">098726BE-2FCF-4E86-8DF8-7810395ED144</attribute>
-        <attribute name="order" type="int64">1</attribute>
+        <attribute name="order" type="int64">2</attribute>
         <attribute name="name" type="string">Post</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z108"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM" idrefs="z235"></relationship>
@@ -1774,7 +1774,7 @@
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z235"></relationship>
     </object>
     <object type="LMREQUEST" id="z246">
-        <attribute name="body" type="string">[{"data":{"keyValues":[["firstName","xin",true],["lastName","xin",true],["userName","xin@gmail.com",true],["place","here",true],["language","english",true],["password","xin",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["firstName","yo",true],["lastName","yo",true],["userName","tian@gmail.com",true],["place","here",true],["language","chinese",true],["password","yo",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">7EEB9C17-BC45-458E-BA91-47E210F9F591</attribute>
         <attribute name="url" type="string">http://localhost:3030/api/users</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
@@ -1828,7 +1828,7 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">PUT</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"keyValues":[["firstName","xin2",true],["lastName","xin2",true],["userName","xin@gmail.com",true],["place","here",true],["language","english",true],["password","xin",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["firstName","xin3",true],["lastName","xin3",true],["userName","xin@gmail.com",true],["place","here",true],["language","english",true],["password","xin",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="order" type="int64">1</attribute>
         <attribute name="name" type="string">updateUser</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z248"></relationship>
@@ -1847,14 +1847,14 @@
     </object>
     <object type="LMREQUEST" id="z259">
         <attribute name="uuid" type="string">958E744D-B38D-43A1-A699-8FAE29B14494</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/users/546d0d4cd0b5cd7d27a5da57</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/users/5473effe0c5cb1abc7e7384c</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"keyValues":[["firstName","xin2",true],["lastName","xin2",true],["userName","xin@gmail.com",true],["place","here",true],["language","english",true],["password","xin",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="order" type="int64">2</attribute>
         <attribute name="name" type="string">getUserById</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z248"></relationship>
@@ -1896,7 +1896,7 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">PUT</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"keyValues":[["profileImg","xxxxdsfsdfd",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["profileImg","cccccc",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="order" type="int64">4</attribute>
         <attribute name="name" type="string">updateProfileImage</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z248"></relationship>
@@ -2119,5 +2119,31 @@
         <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z281"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z283">
+        <attribute name="uuid" type="string">31BA60DB-2AAA-4E49-8F46-6A0219E87E67</attribute>
+        <attribute name="url" type="string">http://localhost:3030/logout</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">POST</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">1</attribute>
+        <attribute name="name" type="string">auth.authenticate logout</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z108"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z284"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z284">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z283"></relationship>
     </object>
 </database>

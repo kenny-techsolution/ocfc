@@ -26,7 +26,8 @@ var userSchema = mongoose.Schema({
 	coordinates:[{type: Number,index: true, unique: false,lowercase: true}],
 	language: 	{type: String, required:'(language) is required!', index: true, unique: false,lowercase: true},
 	passReset:	{type: String, index: false, unique: false,lowercase: true, select: false},
-	resetOn:	{type: Date,index: false, unique: false,lowercase: true, select: false,default: Date.now}
+	resetOn:	{type: Date,index: false, unique: false,lowercase: true, select: false,default: Date.now},
+	active:     {type: Boolean,index: false, unique: false, select: false,default:true}
 });
 
 userSchema.methods = {

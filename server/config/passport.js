@@ -1,12 +1,15 @@
 var passport = require('passport'),
 	mongoose = require('mongoose'),
+	Membership = mongoose.model('Membership'),
 	LocalStrategy = require('passport-local').Strategy,
-	User = mongoose.model('User');
+	User = mongoose.model('User'),
+	_ = require('lodash');//Library for Array
 
 module.exports = function () {
 	passport.use(new LocalStrategy(
 		function (username, password, done) {
-			User.findOne({userName: username},'+salt +hashedPwd').exec(function (err, user) {
+			console.log("here go this A");
+			User.findOne({userName: username, active:true},'+salt +hashedPwd').exec(function (err, user) {
 				if (user && user.authenticate(password)) {
 					return done(null, user);
 				}
@@ -26,7 +29,12 @@ module.exports = function () {
 	passport.deserializeUser(function (id, done) {
 		User.findOne({_id: id}).exec(function (err, user) {
 			if (user) {
-				return done(null, user);
+				Membership.findOne({userId: user._id}, function(err, membership){
+					console.log("membership");
+					console.log(membership);
+					user.membership =  membership;
+					return done(null, user);
+				});
 			}
 			else {
 				return done(null, false);
