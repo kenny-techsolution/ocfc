@@ -177,7 +177,7 @@
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z111"></relationship>
     </object>
     <object type="LMREQUEST" id="z113">
-        <attribute name="body" type="string">[{"data":{"keyValues":[["username","tian@gmail.com",true],["password","yo",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["username","mei@gmail.com",true],["password","yo",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">6726CC3D-8869-4BE9-A226-9C418D238C40</attribute>
         <attribute name="url" type="string">http://localhost:3030/login</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
