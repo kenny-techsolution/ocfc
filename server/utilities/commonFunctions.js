@@ -1,6 +1,6 @@
 /*************************************************************************************
- This file creates a new utility called commonFunction.js which will store commonly
- used functions
+This file creates a new utility called commonFunction.js which will store commonly
+used functions
  ***************************************************************************************/
 var _=require('lodash'); //Library for Array;
 
@@ -63,6 +63,7 @@ exports.updateInstanceWithObject=function(obj,instanceObj){
 	_.forEach(obj, function(key){
 		instanceObj[key] = obj[key];
 	});
+	return instanceObj;
 };
 
 
