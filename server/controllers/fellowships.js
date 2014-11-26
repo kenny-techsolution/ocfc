@@ -17,16 +17,13 @@ exports.createFellowship = function (req, res) {
 	//TODO, prevent duplicate fellowship
 	//compared by name, address, if there's associated church,
 	//admin cannot create duplicate fellowships
-	fellowship = deleteKey(fellowship, ['calendarIds', 'albumIds', 'status']);
-
-	var fellowship = new Fellowship(fellowship);
-
+	var fellowship=commFunc.removeInvalidKeys(req.body,['name','slogan','about','address','city',
+														'country','zipcode']);
+	fellowship = new Fellowship(fellowship);
 	fellowship.save(function (err) {
 		if (err) return res.json(err);
 
 		var fellowshipUser = new FellowshipUser();
-		console.log('chk req.user');
-		console.log(req.user);
 		fellowshipUser.userId = req.user._id;
 		fellowshipUser.fellowshipId = fellowship._id;
 		fellowshipUser.status = 'pending';
@@ -114,10 +111,8 @@ exports.updateFellowshipById = function (req, res) {
 	if (req.status === "approved") {
 		//1. find out the churchId it associated with this fellowship.
 		ChurchFellowship.findById(req.params.id).exec(function (err, churchFellowship) {
-			if (err) {
-				err = commFunc.handleError(err);
-				return res.json(err);
-			}
+			if (err) return res.json(err);
+
 			//2. check current user is the church admin.
 			var matchedResult = _.filter(req.user.membership.churches, function (church) {
 				return (church.churchId === churchFellowship.churchId && church.role === 'admin');
@@ -135,16 +130,8 @@ exports.updateFellowshipById = function (req, res) {
 	FellowshipUser.count({userId: req.user._id, fellowshipId: req.params.id, role: 'admin', status: 'approved'}, function (err, count) {
 		if (err) return res.json(err);
 		if (count > 0) {
-			var fellowship = req.body;
-
-			fellowship = deleteKey(fellowship, ['calendarIds', 'fileIds', 'albumIds']);
-			fellowship.updateDate = new Date();
-
-			var keys = _.keys(fellowship);
-			if (keys.length == 1 && keys[0] == '_id') {
-				return res.json({});
-			}
-
+			var fellowship=commFunc.removeInvalidKeys(req.body,['name','slogan','about','address','city',
+				'country','zipcode']);
 			Fellowship.update({ _id: req.params.id}, fellowship, { multi: true }, function (err, numberAffected, raw) {
 				if (err) return res.json(err);
 				return res.json({status: "success", raw: raw});
@@ -158,15 +145,11 @@ exports.updateFellowshipById = function (req, res) {
 exports.getFellowshipById = function (req, res) {
 	//chk if entry exist match by fellowshipId & status of approved
 	FellowshipUser.count({ fellowshipId: req.params.id, userId: req.user._id, status: 'approved'}, function (err, count) {
-		console.log('count');
-		console.log(count);
-
 		if (count == 1) {
 			Fellowship.findOne({_id: req.params.id}).exec(function (err, fellowship) {
 				if (err) return res.json(err);
 				return res.json({status: "success", fellowship: fellowship});
 			});
-
 		} else {
 			Fellowship.findOne({_id: req.params.id}, '-albumIds -fileIds -calendarIds').exec(function (err, fellowship) {
 				if (err) return res.json(err);
@@ -183,7 +166,7 @@ exports.getFellowshipById = function (req, res) {
 exports.deleteFellowshipById = function (req, res) {
 	// Session user must be an admin in order to delete
 	// fellowship from Fellowship & FellowUser Models
-	console.log("test21");
+
 	if(!isFellowshipAdmin(req.user ,req.params.fellowship_id)) {
 		return res.json({status:'fail', message:'you are not an admin for this fellowship.'});
 	}
@@ -203,6 +186,7 @@ exports.deleteFellowshipById = function (req, res) {
 			Membership.update({'fellowships.fellowshipId': req.params.id}, {$pull: {fellowships: {fellowshipId: req.params.id}}}, function (err) {
 				if (err) return res.json(err);
 				return res.json({status: "successfully removed from Fellowship & FellowshipUser"});
+
 			});
 		});
 	});
@@ -255,6 +239,7 @@ var isFellowshipAdmin = function(sessionUser, fellowshipId) {
 	var resultBoolean = (permissions.length == 0)? false: true;
 	return resultBoolean;
 };
+
 //Put - Round 1
 exports.updateUserToFellowship = function (req, res) {
 	if(!isFellowshipAdmin(req.user ,req.params.fellowship_id)) {

@@ -8,14 +8,12 @@ var mongoose = require('mongoose'),
 
 
 /* ------ Invite Other To Fellowships related API -------- */
-//Post
+//Post - Round1
 exports.createInvite = function (req, res) {
 	//user must be logged in & must belong to that specific fellowship in order to invite
 	FellowshipUser.count({userId: req.user._id, fellowshipId: req.params.fellowship_id, status: 'approved'}, function (err, count) {
-		if (err) {
-			err = commFunc.handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
+
 		if (count > 0) {
 			//check if invitee's email already exist
 			var inviteOtherToFellowship = new InviteOtherToFellowship();
@@ -27,21 +25,11 @@ exports.createInvite = function (req, res) {
 			inviteOtherToFellowship.welcomeMessage = req.body.welcomeMessage;
 
 			User.count({userName: req.body.email}, function (err, count) {
-				if (err) {
-					err = commFunc.handleError(err);
-					return res.json(err);
-				}
-				console.log('test email count condition');
-				console.log(count);
+				if (err) return res.json(err);
 
 				if (count == 0) {
 					inviteOtherToFellowship.save(function (err) {
-						if (err) {
-							err = commFunc.handleError(err);
-							return res.json(err);
-						}
-						console.log('test inviteOtherToFellowship');
-						console.log(inviteOtherToFellowship);
+						if (err) return res.json(err);
 						return res.json({status: "success", inviteOtherToFellowship: inviteOtherToFellowship});
 					});
 				}
@@ -50,50 +38,34 @@ exports.createInvite = function (req, res) {
 		;
 	});
 };
-//Get
+//Get - Round1
 exports.queryInvites = function (req, res) {
 	//query from a particular fellowship
 	//user parameter passes as search criteria
 	//filter out any non-qualified parameter keys using lo-dash
-	var validKeys = ["fellowshipId","inviter","invitee","email","welcomeMessage","invitedOn"];
-	var actualKeys = _.keys(req.query);
-	var filteredKeys = _.intersection(validKeys, actualKeys);
-	var condition = {};
-	_.forEach(filteredKeys, function(key){
-		//Grab value for each key
-		condition[key] = req.query[key];
-	})
-	InviteOtherToFellowship.find(condition).exec(function (err, invitedUsers) {
-		if (err) {
-			err = commFunc.handleError(err);
-			return res.json(err);
-		}
+	var validKeys=commFunc.removeInvalidKeys(req.query,["fellowshipId","inviter","invitee","email","welcomeMessage","invitedOn"]);
+	InviteOtherToFellowship.find(validKeys).exec(function (err, invitedUsers) {
+		if (err) return res.json(err);
 		return res.json({status:"success",invitedUsers:invitedUsers});
 	});
 
 };
 
-//Get
+//Get - Round1
 exports.getInvite = function (req, res) {
 	InviteOtherToFellowship.find({_id:req.params.id}).exec(function (err, invitedUser) {
-		if (err) {
-			err = commFunc.handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
 		return res.json({status:"success",invitedUser:invitedUser});
 	});
 };
 
 
-//Delete
+//Delete - Round1
 exports.deleteInvite = function (req, res) {
 	//Delete if session user is the inviter
 	if (req.user._id==req.body.inviter){
 		InviteOtherToFellowship.remove({_id:req.params.id},function (err) {
-			if (err) {
-				err = commFunc.handleError(err);
-				return res.json(err);
-			}
+			if (err) return res.json(err);
 			return res.json({status:"successfully removed from InviteOtherToFellowship"});
 		});
 

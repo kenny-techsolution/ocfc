@@ -38,7 +38,7 @@ exports.updateUser=function (req, res) {
 
 //Get - Round1
 exports.getUserById=function (req, res) {
-	User.findOne({_id: commFunc.reqParamId(req,'id')}).exec(function (err, user) {
+	User.findOne({_id: req.params.id}).exec(function (err, user) {
 		if (err) return res.json(err);
 		return res.json({status:"success",user:user});
 	});
