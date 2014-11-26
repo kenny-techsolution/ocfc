@@ -29,8 +29,13 @@ module.exports = function () {
 		User.findOne({_id: id}).exec(function (err, user) {
 			if (user) {
 				Membership.findOne({userId: user._id}, function(err, membership){
-					var extendedUser = _.merge(user, membership);
-					return done(null, extendedUser);
+					user.set('fellowships', membership.fellowships);
+					user.set('churches', membership.churches);
+					console.log("user");
+					console.log(user);
+					var extendedUser = _.merge(membership, user);
+
+					return done(null, extendedUser.toObject());
 				});
 			}
 			else {

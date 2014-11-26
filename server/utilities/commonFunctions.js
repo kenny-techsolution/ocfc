@@ -46,9 +46,9 @@ exports.removeInvalidKeys = function(obj, validKeyArray){
 };
 
 exports.updateInstanceWithObject=function(obj,instanceObj){
-	_.forEach(obj, function(key){
-		instanceObj[key] = obj[key];
-	});
+	for(var key in obj){
+		instanceObj.set(key, obj[key]);
+	}
 	return instanceObj;
 };
 
