@@ -38,9 +38,13 @@ exports.reqParamFellowshipId=function(req){
 };
 
 //Equates to, fellowshipId: req.params.fellowship_id
-exports.reqParamUserId=function(req,idName){
+exports.reqParamId=function(req,idName){
 	if(idName=='user_id'){
 		return req.params.user_id
+	}else if (idName=='album_id'){
+		return req.params.album_id
+	}else if (idName=='calendar_id'){
+		return req.params.calendar_id
 	}else{
 		return req.params.id
 	}

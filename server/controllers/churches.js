@@ -1,56 +1,39 @@
 var Church = require('mongoose').model('Church'),
 	ChurchUser = require('mongoose').model('ChurchUser'),
+	Membership = require('mongoose').model('Membership'),
 	ChurchFellowship = require('mongoose').model('ChurchFellowship'),
 	commFunc = require('../utilities/commonFunctions'),
 	deleteKey = require('key-del'),
 	_=require('lodash');//Library for Array
 
-//var toLowerCase=function(obj){
-//	for (var i in obj) {
-//		if (i!=="name" || i!=="url" || i!=="faithStatement"||i!=="mission"||i!=="vision"||i!=="about"||i!=="churchId"||i!=="fellowshipId"){
-//			console.log(obj[i]);
-//			obj[i] = obj[i].toLowerCase();
-//		}
-//	}
-//	return obj;
-//};
-
 //Post
 exports.createChurch= function (req, res) {
-	var church = req.body;
-
 	//TODO, prevent duplicate church
 	//compared by name, address
 	//admin cannot create duplicate church
 
-	var church = new Church(church);
-
+	var church = req.body;
+	church = new Church(church);
 	church.save(function (err) {
-		if (err) {
-			err = commFunc.handleError(err);
-			return res.json(err);
-		}
-
-		console.log('chk church object model');
-		console.log(church);
+		if (err) return res.json(err);
 		return res.json({status:"success",church:church});
 	})
 };
 
 var approveChurch = function (churchId) {
-	church.findById(churchId).exec(function(err){
+	Church.findById(churchId).exec(function(err){
 		if (err) return res.json(err);
 		church.approved = true;
 		church.save(function(err){
 			if (err) return res.json(err);
 			//approve the fellowship admin as well.
-			churchUser.find({churchId: churchId, role: "admin"}, function(err, churchUser){
+			ChurchUser.find({churchId: churchId, role: "admin"}, function(err, churchUser){
 				if (err) return res.json(err);
 				churchUser.status = "approved";
 				churchUser.save(function(){
 					if (err) return res.json(err);
 					//add the fellowship to the membership of the fellowship Admin user.
-					membership.findOne({userId: churchUser.userId}, function(err, membership){
+					Membership.findOne({userId: churchUser.userId}, function(err, membership){
 						if (err) return res.json(err);
 						membership.churchs.push({
 							churchId: church._id,
@@ -71,32 +54,44 @@ var approveChurch = function (churchId) {
 exports.updateChurchById= function (req, res) {
 	//Scenario: site admin approves the church.
 	if(user.userName === 'yoyocicada@gmail.com' && req.status === "approved") {
-		return approveChurch(req.params.id);
+		return approveChurch(commFunc.reqParamId(req,'id'));
 	}
-
-	ChurchUser.count({userId: req.user._id, churchId:req.params.id, role:'admin',status:'approved'},function (err, count) {
-		if (err) {
-			err = commFunc.handleError(err);
-			return res.json(err);
-		}
+	ChurchUser.count({userId:commFunc.reqSessionUserId(req), churchId:commFunc.reqParamId(req,'id'), role:'admin',status:'approved'},function (err, count) {
+		if (err) return res.json(err);
 		if (count>0){
-			var church=req.body;
-			church = deleteKey(church, ['startDate', 'updateDate']);
-			church.updateDate=new Date();
+			var church=commFunc.removeInvalidKeys(req.body,['approved','name','about','url','address','city','country',
+				'zipcode','phone','fax','faithStatement','mission','vision']);
 
-			var keys = _.keys(church);
-			if(keys.length==1 && keys[0]=='_id'){
-				return res.json({});
-			}
 			Church.update({ _id: req.params.id}, church, { multi: true }, function (err, numberAffected, raw) {
-				if (err) {
-					err = commFunc.handleError(err);
-					return res.json(err);
-				}
+				if (err) return res.json(err);
 				return res.json({status:"success",raw:raw});
 			});
 		};
 	});
+
+//	ChurchUser.count({userId: req.user._id, churchId:req.params.id, role:'admin',status:'approved'},function (err, count) {
+//		if (err) {
+//			err = commFunc.handleError(err);
+//			return res.json(err);
+//		}
+//		if (count>0){
+//			var church=req.body;
+//			church = deleteKey(church, ['startDate', 'updateDate']);
+//			church.updateDate=new Date();
+//
+//			var keys = _.keys(church);
+//			if(keys.length==1 && keys[0]=='_id'){
+//				return res.json({});
+//			}
+//			Church.update({ _id: req.params.id}, church, { multi: true }, function (err, numberAffected, raw) {
+//				if (err) {
+//					err = commFunc.handleError(err);
+//					return res.json(err);
+//				}
+//				return res.json({status:"success",raw:raw});
+//			});
+//		};
+//	});
 };
 //Get
 exports.getChurchById= function (req, res) {

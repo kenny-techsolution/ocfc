@@ -38,7 +38,7 @@ exports.updateUser=function (req, res) {
 
 //Get - Round1
 exports.getUserById=function (req, res) {
-	User.findOne({_id: commFunc.reqParamUserId(req,'id')}).exec(function (err, user) {
+	User.findOne({_id: commFunc.reqParamId(req,'id')}).exec(function (err, user) {
 		if (err) return res.json(err);
 		return res.json({status:"success",user:user});
 	});
@@ -56,14 +56,12 @@ exports.deleteUser=function (req, res) {
 //Put - Round1
 exports.updateProfileImage=function (req, res) {
 	var user={profileImg: req.body.profileImg};
-
 	// Strip tags and decode HTML entities to prevent hacking
 	//TODO image validation needed
 	user.profileImg = html_strip.html_strip(user.profileImg,commFunc.htmlStripOptions);
 
-
 	if(user.profileImg!==null || user.profileImg!==""){
-		User.update({ _id: req.user._id}, user, function (err, numberAffected, raw) {
+		User.update({ _id: commFunc.reqSessionUserId(req)}, user, function (err, numberAffected, raw) {
 			if (err) return res.json(err);
 			return res.json({status:"success",raw:raw});
 		})
