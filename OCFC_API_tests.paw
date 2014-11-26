@@ -1338,7 +1338,7 @@
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z210"></relationship>
     </object>
     <object type="LMREQUEST" id="z210">
-        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Mei Fellowship",true],["about","welcome to our fellowship",true],["address","3934 lnn drive",true],["city","michigan",true],["country","usa",true],["zipcode","24245",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["name","New Fellowship",true],["about","welcome to our fellowship",true],["address","3934 lnn drive",true],["city","michigan",true],["country","usa",true],["zipcode","24245",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">00491139-3E6D-4D64-B902-63A68399B2C2</attribute>
         <attribute name="url" type="string">http://localhost:3030/api/fellowships</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
