@@ -56,26 +56,51 @@ exports.htmlStripOptions = {
 	include_script : false,
 	include_style : false
 };
-exports.isChurchAdmin = function(sessionUser, churchId) {
-	var user = sessionUser.toObject();
+
+exports.isFellowshipAdmin = function(sessionUser, fellowshipId) {
+	var fellowships = sessionUser['fellowships'];
 	var permissions = [];
-	_.forEach(user["churches"], function(church){
-		if(church.churchId.toString() === churchId && church.role.toString() === "admin"){
-			permissions.push(church);
+	for(var i=0; i< fellowships.length; i++) {
+		if(String(fellowships[i].fellowshipId) === fellowshipId && String(fellowships[i].role) === "admin"){
+			permissions.push(fellowships[i]);
 		}
-	});
+	}
+	var resultBoolean = (permissions.length == 0)? false: true;
+	return resultBoolean;
+};
+
+exports.isFellowshipMember = function(sessionUser, fellowshipId) {
+	var fellowships = sessionUser['fellowships'];
+	var permissions = [];
+	for(var i=0; i< fellowships.length; i++) {
+		if(String(fellowships[i].fellowshipId) === fellowshipId && (String(fellowships[i].role) === "admin"||String(fellowships[i].role) === "member")){
+			permissions.push(fellowships[i]);
+		}
+	}
+	var resultBoolean = (permissions.length == 0)? false: true;
+	return resultBoolean;
+};
+
+exports.isChurchAdmin = function(sessionUser, churchId) {
+	var churches = sessionUser['churches'];
+	var permissions = [];
+	for(var i=0; i< churches.length; i++) {
+		if(String(churches[i].churchId) == String(churchId) && (churches[i].role) == "admin"){
+			permissions.push(churches[i]);
+		}
+	}
 	var resultBoolean = (permissions.length == 0)? false: true;
 	return resultBoolean;
 };
 
 exports.isChurchMember = function(sessionUser, churchId) {
-	var user = sessionUser.toObject();
+	var churches = sessionUser['churches'];
 	var permissions = [];
-	_.forEach(user["churches"], function(church){
-		if(church.churchId.toString() === churchId && (church.role.toString() === "member"||church.role.toString() === "admin")){
-			permissions.push(church);
+	for(var i=0; i< churches.length; i++) {
+		if(String(churches[i].churchId) === churchId && (String(churches[i].role) === "admin"||String(church.role) === "member")){
+			permissions.push(churches[i]);
 		}
-	});
+	}
 	var resultBoolean = (permissions.length == 0)? false: true;
 	return resultBoolean;
 };

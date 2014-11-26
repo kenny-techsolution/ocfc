@@ -50,7 +50,7 @@ module.exports = function (app, io) {
 	app.get('/api/fellowships/:id', fellowships.getFellowshipById);
 	app.delete('/api/fellowships/:id', fellowships.deleteFellowshipById);
 
-	app.post('/api/fellowships/:fellowship_id/users/', fellowships.addUserToFellowship);
+	app.post('/api/fellowships/:fellowship_id/users', fellowships.addUserToFellowship);
 	app.get('/api/fellowships/:fellowship_id/users', fellowships.getUsersFromFellowship);
 	app.put('/api/fellowships/:fellowship_id/users/:user_id', fellowships.updateUserToFellowship);
 	app.delete('/api/fellowships/:fellowship_id/users/:user_id', fellowships.removeUserFromFellowship);
