@@ -233,6 +233,7 @@ exports.getUsersFromFellowship = function (req, res) {
 	//Populate users associated to a fellowship
 	//Search FellowUser model by fellowshipId against param id,
 	//then populate user table
+	isFellowshipAdmin(req.user ,req.params.fellowship_id);
 	console.log(req.user);
 	FellowshipUser.find({fellowshipId: req.params.fellowship_id, status: 'approved'}).populate("userId").exec(function (err, fellowshipUser) {
 		if (err) return res.json(err);
@@ -241,14 +242,20 @@ exports.getUsersFromFellowship = function (req, res) {
 };
 
 var isFellowshipAdmin = function(sessionUser, fellowshipId) {
-	var permissions = _.where(sessionUser["fellowships"], { 'fellowshipId': fellowshipId, role: "admin"});
+	var user = sessionUser.toObject();
+	var permissions = [];
+	_.forEach(user["fellowships"], function(fellowship){
+		if(fellowship.fellowshipId.toString() === fellowshipId && fellowship.role.toString() === "admin"){
+			permissions.push(fellowship);
+		}
+	});
 	var resultBoolean = (permissions.length == 0)? false: true;
 	return resultBoolean;
 };
 
 //Put - Round 1
 exports.updateUserToFellowship = function (req, res) {
-	if(isFellowshipAdmin(req.user ,req.params.fellowship_id)) {
+	if(!isFellowshipAdmin(req.user ,req.params.fellowship_id)) {
 		return res.json({status:'fail', message:'you are not an admin for this fellowship.'});
 	}
 	var fellowshipUserObj = commFunc.removeInvalidKeys(req.body,['status','role','rejectReason','updateDate']);
@@ -256,21 +263,24 @@ exports.updateUserToFellowship = function (req, res) {
 	var fellowshipUserInstance;
 	async.series([
 		function(callback){
+			console.log("retrieve the fellowshipUser instance");
 			FellowshipUser.findOne({userId: req.params.user_id, fellowshipId: req.params.fellowship_id}).populate('fellowshipId').exec(function(err, fellowshipUser){
 				if (err) callback(err);
 				fellowshipUserInstance = fellowshipUser;
+				callback();
 			});
 		},
 		function(callback){
-			preStatus = fellowshipUser.status;
+			console.log("update the fellowshipUser instance");
+			preStatus = fellowshipUserInstance.status;
 			if(fellowshipUserObj.status === preStatus || ['rejected', 'approved', 'pending'].indexOf(fellowshipUserObj.status)===-1) {
 				return res.json({status:'fail', message: 'invalid status string or update with the same status value.'});
 			}
 			if(fellowshipUserObj.status === 'rejected' && !fellowshipUserObj.rejectReason) {
 				return res.json({status:"fail", message: "to reject, you must provide a reason"});
 			}
-			commFunc.updateInstanceWithObject(fellowshipUserObj, fellowshipUserInstance);
-			fellowshipUser.save(function(err){
+			fellowshipUserInstance = commFunc.updateInstanceWithObject(fellowshipUserObj, fellowshipUserInstance);
+			fellowshipUserInstance.save(function(err){
 				if (err) callback(err);
 				callback();
 			});
@@ -278,14 +288,14 @@ exports.updateUserToFellowship = function (req, res) {
 		function (callback){
 			async.parallel([
 				function(callback){
-					//add fellowship to the user's membership tbl.
-					if (preStatus === 'pending' && fellowshipUserCopy.status === 'approved') {
+					console.log("add fellowship to the user's membership tbl.");
+					if (preStatus === 'pending' && fellowshipUserInstance.status === 'approved') {
 						var fellowship = {
-								fellowshipId: fellowshipUserCopy.fellowshipId._id,
-								name: fellowshipUserCopy.fellowshipId.name,
-								role: fellowshipUserCopy.role
+								fellowshipId: fellowshipUserInstance.fellowshipId._id,
+								name: fellowshipUserInstance.fellowshipId.name,
+								role: fellowshipUserInstance.role
 							};
-						Membership.findOneAndUpdate({userId: req.params.user_id, 'fellowships.fellowshipId':{$ne: fellowshipUserCopy.fellowshipId._id}},{$push:{fellowships:fellowship}}).exec(function(err){
+						Membership.findOneAndUpdate({userId: req.params.user_id, 'fellowships.fellowshipId':{$ne: fellowshipUserInstance.fellowshipId._id}},{$push:{fellowships:fellowship}}).exec(function(err){
 							if (err) return callback(err);
 							callback();
 						});
@@ -295,43 +305,45 @@ exports.updateUserToFellowship = function (req, res) {
 					//TODO: test the scenario where there is church that this fellowship belonged to.
 					async.waterfall([
 						function(callback){
-							//see if this fellowship has any church.
-							ChurchFellowship.findOne({fellowshipId: fellowshipUserCopy.fellowshipId._id}).select('churchId').exec(function (err, churchFellowship) {
+							console.log("see if this fellowship has any church.");h.
+							ChurchFellowship.findOne({fellowshipId: fellowshipUserInstance.fellowshipId._id}).select('churchId').exec(function (err, churchFellowship) {
 								if (err) return callback(err);
-								if(!churchFellowship) return callback();
-								callback(churchFellowship);
+								if(!churchFellowship) return callback("This fellowhsip has no church connected.");
+								callback(null, [churchFellowship]);
 							});
 						},
 						function(result, callback){
-							//add this user to that church.
-							var churchFellowship = result[0]
-							var churchUser = new ChurchUser({
+							console.log("add this user to that church if churchfellowship instance exists.");
+							var churchFellowship = result[0];
+							var churchUser = {
 								churchId: churchFellowship.churchId,
-								userId: fellowshipUserCopy.userId,
+								userId: fellowshipUserInstance.userId,
 								status: "approved",
 								role: "member"
-							});
-							churchUser.save(function (err) {
+							};
+							ChurchUser.update({churchId: churchFellowship.churchId, userId: fellowshipUserInstance.userId}, churchUser, {upsert:true}, function(err){
 								if (err) return callback(err);
-								callback([churchFellowship, churchUser]);
+								callback(null, result);
 							});
 						},
 						function(result, callback){
+							console.log("need to find the church name first for updating membership tbl.");
+							console.log(result);
 							var churchFellowship = result[0];
-							var churchUser = result[1];
 							//and updated membership tbl. need to find the church name first.
 							Church.find({_id: churchFellowship.church_id}, 'name').exec(function (err, church) {
 								if (err) return callback(err);
-								callback([churchFellowship, churchUser, church]);
+								callback(null, [churchFellowship, church]);
 							});
 						},
 						function(result, callback){
+							console.log("update membership tbl. ");
 							var churchFellowship = result[0];
 							var churchUser = result[1];
 							var church = result[2];
-							Membership.update({'userId': churchUser.userId, 'churches.churchId': {$ne: churchUser.churchId}}, {$push: {churches: {churchId: churchUser.churchId, name: church.name, role: "member"}}}, function (err) {
+							Membership.update({'userId': req.user._id, 'churches.churchId': {$ne: churchFellowship.churchId}}, {$push: {churches: {churchId: churchFellowship.churchId, name: church.name, role: "member"}}}, function (err) {
 								if (err) return callback(err);
-								callback();
+								callback(null, result);
 							});
 						}
 					], callback);
@@ -339,6 +351,7 @@ exports.updateUserToFellowship = function (req, res) {
 			],callback);
 		}
 	],function(err){
+		console.log("finally done");
 		if (err) return res.json(err);
 		return res.json({status:"success", message: "user is updated on the fellowship."});
 	});
