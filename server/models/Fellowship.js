@@ -19,7 +19,8 @@ var fellowshipSchema = mongoose.Schema({
 	country:	{type: String, required: '(country) is required!', index: true, unique: false,lowercase: true},
 	zipcode:	{type: String, required: '(zipcode) is required!', index: true, unique: false,lowercase: true},
 	startDate: 	{type: Date, required: '(startDate) is required!', index: false, unique: false,default: Date.now},
-	updateDate: {type: Date, required: '(updateDate) is required!', index: false, unique: false,default: Date.now}
+	updateDate: {type: Date, required: '(updateDate) is required!', index: false, unique: false,default: Date.now},
+	active:     {type:Boolean,required: '(active) is required!',default:true}
 });
 
 var Fellowship = mongoose.model('Fellowship', fellowshipSchema);

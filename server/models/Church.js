@@ -19,7 +19,8 @@ var churchSchema = mongoose.Schema({
 	mission:		{type: String,required:'(mission) is required!',index: false, unique: false,lowercase: true},
 	vision:			{type: String,required:'(vision) is required!',index: false, unique: false,lowercase: true},
 	startDate: 	    {type: Date, required: '(startDate) is required!', index: false, unique: false,lowercase: true,default: Date.now},
-	updateDate: 	{type: Date, required: '(updateDate) is required!', index: false, unique: false,lowercase: true,default: Date.now}
+	updateDate: 	{type: Date, required: '(updateDate) is required!', index: false, unique: false,lowercase: true,default: Date.now},
+	active:         {type:Boolean,required: '(active) is required!',default:true}
 });
 
 var Church = mongoose.model('Church', churchSchema);

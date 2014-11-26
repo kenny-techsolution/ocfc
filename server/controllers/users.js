@@ -29,11 +29,6 @@ exports.createUser=function (req, res) {
 exports.updateUser=function (req, res) {
 	var user = commFunc.removeInvalidKeys(req.body,['firstName','lastName','birthday','gender','profileImg',
 													'about','place','coordinates','language','active']);
-	console.log('commFunc.reqSessionUserId(req)');
-	console.log(commFunc.reqSessionUserId(req));
-	console.log('user');
-	console.log(user);
-
 	User.findOneAndUpdate({ _id:commFunc.reqSessionUserId(req)},user, function (err, numberAffected, raw) {
 		if (err) return res.json(err);
 		return res.json({status:"success",raw:raw});
