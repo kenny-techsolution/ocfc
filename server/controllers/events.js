@@ -7,64 +7,36 @@ var Event = require('mongoose').model('Event'),
 	html_strip=require('htmlstrip-native');
 
 
-//Get
+//Get - Round1
 exports.getEvent= function (req, res) {
 	Event.findOne({_id:req.params.event_id}).exec(function(err,event){
-		if (err) {
-			err = commFunc.handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
 		return res.json({status:"success",event:event});
 	});
 };
 
-//Put
+//Put - Round1
 exports.updateEvent= function (req, res) {
-	var event=req.body;
-	event = deleteKey(event, ['albumId', 'hostBy','eventIds']);
-
-	var keys = _.keys(event);
-
-	if(keys.length==1 && keys[0]=='_id'){
-		return res.json({});
-	}
+	var event=commFunc.removeInvalidKeys(req.body,['comments','links','title','description',
+												   'fromDate','toDate','where','banner','invitees',
+												   'gos','noGos','maybes']);
 
 	Event.update({ _id:req.params.event_id }, event, { multi: true }, function (err, numberAffected, raw) {
-		if (err) {
-			err = handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
 		return res.json({status:"success",raw:raw});
 	});
 };
-//Delete
+//Delete - Round1
 exports.deleteEvent= function (req, res) {
-	Event.count({hostBy:req.user._id,_id:req.params.event_id},function (err, count) {
-		if (err) {
-			err = commFunc.handleError(err);
-			return res.json(err);
-		}
-		console.log('chk count');
-		console.log(count);
-
-		if (count>0){
-			Event.remove({_id:req.params.event_id},function (err) {
-				if (err) {
-					err = commFunc.handleError(err);
-					return res.json(err);
-				}
-				return res.json({status: "successfully removed from Event"});
-			})
-		}
-	});
+	Event.findOneAndRemove({hostBy:req.user._id,_id:req.params.event_id},function (err) {
+		if(err) return res.json(err);
+		return res.json({status: "successfully removed from Event"});
+});
 };
-//Post
+//Post - Round1
 exports.addCommentToEvent= function (req, res) {
 	Event.findById(req.params.event_id).exec(function(err, event){
-		if (err) {
-			err = handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
 
 		var comment = req.body;
 		errors = commFunc.checkRequiredFields(comment, ['comment']);
@@ -80,60 +52,37 @@ exports.addCommentToEvent= function (req, res) {
 		};
 		event.comments.push(comment);
 		event.save(function(){
-			if (err) {
-				err = handleError(err);
-				return res.json(err);
-			}
+			if (err) return res.json(err);
 			return res.json({status: "success",event:event});
 		});
 	});
 };
-//Put
+//Put - Round1
 exports.updateCommentFromEvent= function (req, res) {
-	var commentObj=req.body;
-//	commentObj = toLowerCase(commentObj);
-	commentObj = deleteKey(commentObj, ['userId', 'profileImg','firstName','lastName']);
-
-	var keys = _.keys(commentObj);
-
-	if(keys.length==1 && keys[0]=='_id'){
-		return res.json({});
-	}
+	var commentObj=commFunc.removeInvalidKeys(req.body,['comment']);
 
 	Event.findOne({ _id:req.params.event_id }, function (err, event) {
-		if (err) {
-			err = handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
+
 		var comment = event.comments.id(req.params.comment_id);
 		comment.comment = commentObj.comment;
 
-		console.log('chk comment');
-		console.log(comment);
-
 		event.save(function(err){
-			if (err) {
-				err = handleError(err);
-				return res.json(err);
-			}
+			if (err) return res.json(err);
 			return res.json({status:"success",comment:comment});
 		});
 	});
 };
-//Delete
+
+//Delete - Round1
 exports.deleteCommentFromEvent= function (req, res) {
 	Event.findOne({ _id:req.params.event_id }, function (err, event) {
-		if (err) {
-			err = handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
+
 		var comment = event.comments.id(req.params.comment_id).remove();
 
 		event.save(function(err){
-			if (err) {
-				err = handleError(err);
-				return res.json(err);
-			}
+			if (err) return res.json(err);
 			return res.json({status:"success",comment:comment});
 		});
 	});

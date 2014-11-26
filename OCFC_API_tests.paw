@@ -177,7 +177,7 @@
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z111"></relationship>
     </object>
     <object type="LMREQUEST" id="z113">
-        <attribute name="body" type="string">[{"data":{"keyValues":[["username","tian@gmail.com",true],["password","yo",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["username","shoof@gmail.com",true],["password","yo",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">6726CC3D-8869-4BE9-A226-9C418D238C40</attribute>
         <attribute name="url" type="string">http://localhost:3030/login</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
@@ -1014,7 +1014,7 @@
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">PUT</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"keyValues":[["name","making sure upd works by Tian",true],["vision","dfdf",false],["mission","etetet",false],["faithStatement","nnhmmh",false],["phone","344444444",false],["zipcode","45432",false],["country","xxx",false],["city","olean",false],["address","3554 kdfjdkf lane",false]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["name","byb Tian",true],["vision","dfdf",false],["mission","etetet",false],["faithStatement","nnhmmh",false],["phone","344444444",false],["zipcode","45432",false],["country","xxx",false],["city","olean",false],["address","3554 kdfjdkf lane",false]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="order" type="int64">1</attribute>
         <attribute name="name" type="string">updateChurchById</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
@@ -1033,14 +1033,14 @@
     </object>
     <object type="LMREQUEST" id="z184">
         <attribute name="uuid" type="string">3BA32FB8-2220-4C6A-B425-E3437E7E946A</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/churches/546d0d4cd0b5cd7d27a5da52</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/churches/5475030a49d1418b3ba58713</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Once Christ Church Updated Again",true],["vision","dfdf",true],["mission","etetet",true],["faithStatement","nnhmmh",true],["phone","344444444",true],["zipcode","45432",true],["country","xxx",true],["city","olean",true],["address","3554 kdfjdkf lane",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Once Christ Church Updated Again",false],["vision","dfdf",false],["mission","etetet",false],["faithStatement","nnhmmh",false],["phone","344444444",false],["zipcode","45432",false],["country","xxx",false],["city","olean",false],["address","3554 kdfjdkf lane",false]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="order" type="int64">2</attribute>
         <attribute name="name" type="string">getChurchById</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>

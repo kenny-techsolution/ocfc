@@ -57,11 +57,25 @@ exports.htmlStripOptions = {
 	include_style : false
 };
 exports.isChurchAdmin = function(sessionUser, churchId) {
-	console.log("sessionUser");
-	console.log(sessionUser);
-	console.log(sessionUser['fellowships']);
-	var permissions = _.where(sessionUser["churches"], { 'churchId': churchId, role: "admin"});
-	console.log(permissions);
+	var user = sessionUser.toObject();
+	var permissions = [];
+	_.forEach(user["churches"], function(church){
+		if(church.churchId.toString() === churchId && church.role.toString() === "admin"){
+			permissions.push(church);
+		}
+	});
+	var resultBoolean = (permissions.length == 0)? false: true;
+	return resultBoolean;
+};
+
+exports.isChurchMember = function(sessionUser, churchId) {
+	var user = sessionUser.toObject();
+	var permissions = [];
+	_.forEach(user["churches"], function(church){
+		if(church.churchId.toString() === churchId && (church.role.toString() === "member"||church.role.toString() === "admin")){
+			permissions.push(church);
+		}
+	});
 	var resultBoolean = (permissions.length == 0)? false: true;
 	return resultBoolean;
 };

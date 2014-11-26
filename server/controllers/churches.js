@@ -56,18 +56,18 @@ var approveChurch = function (churchId) {
 exports.updateChurchById= function (req, res) {
 	//Scenario: site admin approves the church.
 	if(req.user.userName === 'yoyocicada@gmail.com' && req.status === "approved") {
-		return approveChurch(commFunc.reqParamId(req,'id'));
+		return approveChurch(req.params.id);
 	}
-//	if(!commFunc.isChurchAdmin(req.user,commFunc.reqParamId(req,'church_id'))) {
-//		return res.json({status:'fail', message:'you are not an admin for this church.'});
-//	}
+	if(!commFunc.isChurchAdmin(req.user,req.params.id)) {
+		return res.json({status:'fail', message:'you are not an admin for this church.'});
+	}
 	var church=commFunc.removeInvalidKeys(req.body,['approved','name','about','url','address','city','country',
 		'zipcode','phone','fax','faithStatement','mission','vision']);
 
 	console.log('chk church');
 	console.log(church);
 
-	Church.update({ _id: commFunc.reqParamId(req,'id')}, church, { multi: true }, function (err, numberAffected, raw) {
+	Church.update({ _id: req.params.id}, church, { multi: true }, function (err, numberAffected, raw) {
 		if (err) return res.json(err);
 		console.log('church update executed');
 		return res.json({status:"success",raw:raw});
@@ -77,20 +77,17 @@ exports.updateChurchById= function (req, res) {
 //Get - Round1
 exports.getChurchById= function (req, res) {
 	//chk if entry exist match by churchId & status of approved
-	ChurchUser.count({ churchId: req.params.id,userId: commFunc.reqSessionUserId(req),status: 'approved'}, function(err, count){
-		if (count==1){
-			Church.findOne({_id: req.params.id}).exec(function (err, church) {
-				if (err) return res.json(err);
-				return res.json({status:"success",church:church});
-			});
-		}else{
-			Church.findOne({_id: req.params.id},'-updateDate').exec(function (err, church) {
-				if (err) return res.json(err);
-				return res.json({status:"success",church:church});
-			});
-
-		};
-	});
+	if(commFunc.isChurchMember(req.user,req.params.id)) {
+		Church.findOne({_id: req.params.id}).exec(function (err, church) {
+			if (err) return res.json(err);
+			return res.json({status:"success",church:church});
+		});
+	} else {
+		Church.findOne({_id: req.params.id},'-updateDate').exec(function (err, church) {
+			if (err) return res.json(err);
+			return res.json({status:"success",church:church});
+		});
+	}
 };
 //Get - Round1
 exports.queryChurches= function (req, res) {
@@ -108,21 +105,19 @@ exports.queryChurches= function (req, res) {
 exports.deleteChurchById= function (req, res) {
 	// Session user must be an admin in order to delete
 	// church from Church & ChurchUser Models
-	ChurchUser.count({userId:req.user._id,churchId: req.params.id,status:'approved',role:'admin'},function (err, count) {
+	if(!commFunc.isChurchAdmin(req.user,req.params.id)) {
+		return res.json({status:'fail', message:'you are not an admin for this church.'});
+	}
+	ChurchUser.remove({churchId:req.params.id}, function (err) {
 		if (err) return res.json(err);
-		if (count>0){
-			ChurchUser.remove({churchId:req.params.id}, function (err) {
+		Church.remove({_id:req.params.id}, function (err) {
+			if (err) return res.json(err);
+			//remove this fellowship from all membership.
+			Membership.update({'churches.churchId': req.params.id}, {$pull: {churches: {churchId: req.params.id}}},function(err){
 				if (err) return res.json(err);
-				Church.remove({_id:req.params.id}, function (err) {
-					if (err) return res.json(err);
-					//remove this fellowship from all membership.
-					Membership.update({'churches.churchId': req.params.id}, {$pull: {churches: {churchId: req.params.id}}},function(err){
-						if (err) return res.json(err);
-						return res.json({status:"successfully removed from Church & ChurchUser"});
-					});
-				});
+				return res.json({status:"successfully removed from Church & ChurchUser"});
 			});
-		};
+		});
 	});
 };
 //Post - Round1
@@ -147,66 +142,50 @@ exports.addFellowshipToChurch= function (req, res) {
 //Put
 exports.updateFellowshipToChurch= function (req, res) {
 	//Only admin privilege allowed to update from ChurchFellowship tbl
-	ChurchUser.count({userId: req.user._id, churchId:req.params.church_id, role:'admin',status:'approved'},function (err, count) {
-		if (err) return res.json(err);
-
-		if (count>0){
-//			var churchFellowship=req.body;
-//			churchFellowship.churchId=req.params.church_id;
-//			churchFellowship.fellowshipId=req.params.fellowship_id;
-//			churchFellowship.rejReason=churchFellowship.rejReason;
-//			churchFellowship.status='approved';
-//			churchFellowship = toLowerCase(churchFellowship);
-//			churchFellowship.updateDate=new Date();
-//			churchFellowship = deleteKey(churchFellowship, ['userId', 'churchId']);
-//
-//			var keys = _.keys(churchFellowship);
-//			if(keys.length==1 && keys[0]=='_id'){
-//				return res.json({});
-//			}
-			ChurchFellowship.find({ churchId: req.params.church_id}).exec(function(err, churchFellowship){
-				if(churchFellowship.status==="pending" && req.body.status === "approved") {
-					churchFellowship.status = req.body.status;
-					churchFellowship.updateDate=new Date();
-					churchFellowship.save(function(err){
+	if(!commFunc.isChurchAdmin(req.user,req.params.id)) {
+		return res.json({status:'fail', message:'you are not an admin for this church.'});
+	}
+	ChurchFellowship.find({ churchId: req.params.church_id}).exec(function(err, churchFellowship){
+		if(churchFellowship.status==="pending" && req.body.status === "approved") {
+			churchFellowship.status = req.body.status;
+			churchFellowship.updateDate=new Date();
+			churchFellowship.save(function(err){
+				if (err) return res.json(err);
+				//add all fellowshipsUsers to churchUsers
+				FellowshipUser.findById(churchFellowship.fellowshipId).exec(function(err,fellowshipUsers){
+					var userIds = _.pluck(fellowshipUsers, 'userId');
+				});
+				var churchUserArray = [];
+				_forEach(userIds, function(userId){
+					churchUserArray.push({
+						churchId: req.params.church_id,
+						userId: userId,
+						status:	"approved",
+						role: "member"
+					});
+				});
+				ChurchUser.create(churchUserArray, function (err) {
+					if (err) return res.json(err);
+					//add church to membership where user has this fellowship.
+					church.find({_id: req.params.church_id}, 'name').exec(function(err, church){
 						if (err) return res.json(err);
-						//add all fellowshipsUsers to churchUsers
-						FellowshipUser.findById(churchFellowship.fellowshipId).exec(function(err,fellowshipUsers){
-							var userIds = _.pluck(fellowshipUsers, 'userId');
-						});
-						var churchUserArray = [];
-						_forEach(userIds, function(userId){
-							churchUserArray.push({
-								churchId: req.params.church_id,
-								userId: userId,
-								status:	"approved",
-								role: "member"
-							});
-						});
-						ChurchUser.create(churchUserArray, function (err) {
+						Membership.update({'fellowships.fellowshipId': req.params.fellowship_id, 'churches.churchId': {$ne: req.params.church_id}}, {$push: {churches: {churchId: req.params.church_id, name: church.name, role: "member"}}},function(err){
 							if (err) return res.json(err);
-							//add church to membership where user has this fellowship.
-							church.find({_id: req.params.church_id}, 'name').exec(function(err, church){
-								if (err) return res.json(err);
-								Membership.update({'fellowships.fellowshipId': req.params.fellowship_id, 'churches.churchId': {$ne: req.params.church_id}}, {$push: {churches: {churchId: req.params.church_id, name: church.name, role: "member"}}},function(err){
-									if (err) return res.json(err);
-									return res.json({status:"success"});
-								});
-							});
+							return res.json({status:"success"});
 						});
 					});
-				}
-				if(churchFellowship.status==="pending" && req.body.status === "rejected") {
-					churchFellowship.status = req.body.status;
-					churchFellowship.rejReason=req.body.rejReason;
-					churchFellowship.updateDate=new Date();
-					churchFellowship.save(function(err){
-						if (err) return res.json(err);
-						return res.json({status:"success"});
-					});
-				}
+				});
 			});
-		};
+		}
+		if(churchFellowship.status==="pending" && req.body.status === "rejected") {
+			churchFellowship.status = req.body.status;
+			churchFellowship.rejReason=req.body.rejReason;
+			churchFellowship.updateDate=new Date();
+			churchFellowship.save(function(err){
+				if (err) return res.json(err);
+				return res.json({status:"success"});
+			});
+		}
 	});
 };
 //Get- Round1
@@ -222,17 +201,15 @@ exports.getFellowships= function (req, res) {
 exports.removeFellowshipFromChurch= function (req, res) {
 	// Session user must be an admin in order to delete
 	// church from ChurchFellowship Models
-	ChurchUser.count({userId:req.user._id,churchId: req.params.church_id,status:'approved',role:'admin'},function (err, count) {
+	if(!commFunc.isChurchAdmin(req.user,req.params.id)) {
+		return res.json({status:'fail', message:'you are not an admin for this church.'});
+	}
+	ChurchFellowship.remove({churchId:req.params.church_id, fellowshipId:req.params.fellowship_id},function (err) {
 		if (err) return res.json(err);
-
-		if (count>0){
-			ChurchFellowship.remove({churchId:req.params.church_id, fellowshipId:req.params.fellowship_id},function (err) {
-				if (err) return res.json(err);
-				return res.json({status: "successfully removed from ChurchFellowship"});
-			})
-		};
-	});
+		return res.json({status: "successfully removed from ChurchFellowship"});
+	})
 };
+
 //Post
 exports.addUserToChurch= function (req, res) {
 	//Populate data onto ChurchUser tbl
@@ -255,33 +232,30 @@ exports.addUserToChurch= function (req, res) {
 //Put
 exports.updateUserToChurch= function (req, res) {
 	//Only admin privilege allowed to update from ChurchUser tbl
-	ChurchUser.count({userId: req.user._id, churchId:req.params.church_id, role:'admin',status:'approved'},function (err, count) {
+	if(!commFunc.isChurchAdmin(req.user,req.params.id)) {
+		return res.json({status:'fail', message:'you are not an admin for this church.'});
+	}
+	var churchUser=commFunc.removeInvalidKeys(req.body,['rejReason','status','role']);
+	churchUser.updateDate=new Date();
+
+	var preStatus = churchUser.status;
+	ChurchUser.findOneAndUpdate({ userId: commFunc.reqSessionUserId(req), churchId:req.params.church_id}, churchUser).populate('churchId').exec(function(err, churchUser){
 		if (err) return res.json(err);
-
-		if (count>0){
-			var churchUser=commFunc.removeInvalidKeys(req.body,['rejReason','status','role']);
-			churchUser.updateDate=new Date();
-
-			var preStatus = churchUser.status;
-			ChurchUser.findOneAndUpdate({ userId: commFunc.reqSessionUserId(req), churchId:req.params.church_id}, churchUser).populate('churchId').exec(function(err, churchUser){
-				if (err) return res.json(err);
-				//if user is approved. add fellowshipId to membership.
-				if(preStatus === 'pending' && churchUser.status ==='approved') {
-					membership.churches.push({
-						churchId: churchUser.churchId._id,
-						churchName: churchUser.churchId.name,
-						role: churchUser.role
-					});
-					membership.save(function(err){
-						if (err) return res.json(err);
-						return res.json({status: "success", message: "update user to fellowship successfully"});
-					});
-				} else {
-					return res.json({status: "success", message: "update user to fellowship successfully"});
-				}
-				return res.json({status:"success",raw:raw});
+		//if user is approved. add fellowshipId to membership.
+		if(preStatus === 'pending' && churchUser.status ==='approved') {
+			membership.churches.push({
+				churchId: churchUser.churchId._id,
+				churchName: churchUser.churchId.name,
+				role: churchUser.role
 			});
-		};
+			membership.save(function(err){
+				if (err) return res.json(err);
+				return res.json({status: "success", message: "update user to fellowship successfully"});
+			});
+		} else {
+			return res.json({status: "success", message: "update user to fellowship successfully"});
+		}
+		return res.json({status:"success",raw:raw});
 	});
 };
 //Get
@@ -297,17 +271,15 @@ exports.getUsers= function (req, res) {
 exports.removeUserFromChurch= function (req, res) {
 	// Session user must be an admin in order to delete
 	// church from ChurchFellowship Models
-	ChurchUser.count({userId:req.user._id,churchId: req.params.church_id,status:'approved',role:'admin'},function (err, count) {
+	if(!commFunc.isChurchAdmin(req.user,req.params.id)) {
+		return res.json({status:'fail', message:'you are not an admin for this church.'});
+	}
+	ChurchUser.remove({churchId:req.params.church_id, userId:commFunc.reqSessionUserId(req)},function (err) {
 		if (err) return res.json(err);
-		if (count>0){
-			ChurchUser.remove({churchId:req.params.church_id, userId:commFunc.reqSessionUserId(req)},function (err) {
-				if (err) return res.json(err);
-				//remove this fellowship from all membership.
-				Membership.update({userId: req.params.user_id ,'churches.churchId': req.params.id}, {$pull: {churches: {churchId: req.params.id}}},function(err){
-					if (err) return res.json(err);
-					return res.json({status:"successfully removed from ChurchUser"});
-				});
-			})
-		};
-	});
+		//remove this fellowship from all membership.
+		Membership.update({userId: req.params.user_id ,'churches.churchId': req.params.id}, {$pull: {churches: {churchId: req.params.id}}},function(err){
+			if (err) return res.json(err);
+			return res.json({status:"successfully removed from ChurchUser"});
+		});
+	})
 };
