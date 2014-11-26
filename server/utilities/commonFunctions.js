@@ -32,24 +32,6 @@ exports.reqSessionUserId=function(req){
 	return req.user._id
 };
 
-//Equates to, fellowshipId: req.params.fellowship_id
-exports.reqParamFellowshipId=function(req){
-	return req.params.fellowship_id
-};
-
-//Equates to, fellowshipId: req.params.fellowship_id
-exports.reqParamId=function(req,idName){
-	if(idName=='user_id'){
-		return req.params.user_id
-	}else if (idName=='album_id'){
-		return req.params.album_id
-	}else if (idName=='calendar_id'){
-		return req.params.calendar_id
-	}else{
-		return req.params.id
-	}
-};
-
 exports.removeInvalidKeys = function(obj, validKeyArray){
 	var actualKeys = _.keys(obj);
 	var filteredKeys = _.intersection(validKeyArray, actualKeys);
@@ -69,8 +51,27 @@ exports.updateInstanceWithObject=function(obj,instanceObj){
 	});
 };
 
-
 exports.htmlStripOptions = {
 	include_script : false,
 	include_style : false
+};
+
+exports.isChurchAdmin = function(sessionUser, churchId) {
+	console.log("sessionUser");
+	console.log(sessionUser);
+	console.log(sessionUser['fellowships']);
+	var permissions = _.where(sessionUser["churches"], { 'churchId': churchId, role: "admin"});
+	console.log(permissions);
+	var resultBoolean = (permissions.length == 0)? false: true;
+	return resultBoolean;
+};
+
+exports.checkRequiredFields = function (obj, fields) {
+	var errors = []
+	_.forEach(fields, function(key){
+		if(!_.has(obj, key)){
+			errors.push(key + " is required field.");
+		}
+		return errors;
+	});
 };

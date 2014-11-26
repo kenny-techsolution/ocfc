@@ -7,27 +7,6 @@ var Event = require('mongoose').model('Event'),
 	html_strip=require('htmlstrip-native');
 
 
-var handleError= function(err){
-	var modError = err;
-	return modError;
-};
-
-var checkRequiredFields = function (obj, fields) {
-	var errors = []
-	_.forEach(fields, function(key){
-		if(!_.has(obj, key)){
-			errors.push(key + " is required field.");
-		}
-		return errors;
-	});
-};
-
-var htmlStripOptions = {
-	include_script : false,
-	include_style : false,
-	compact_whitespace : true
-};
-
 //Get
 exports.getEvent= function (req, res) {
 	Event.findOne({_id:req.params.event_id}).exec(function(err,event){
@@ -88,13 +67,13 @@ exports.addCommentToEvent= function (req, res) {
 		}
 
 		var comment = req.body;
-		errors = checkRequiredFields(comment, ['comment']);
+		errors = commFunc.checkRequiredFields(comment, ['comment']);
 		if(errors>0) return res.json(errors);
 
 		//TODO html_strip is cutting off very last letter in comment
 		comment = {
 			userId:	req.user._id,
-			comment: html_strip.html_strip(comment.comment, htmlStripOptions),
+			comment: html_strip.html_strip(comment.comment, commFunc.htmlStripOptions),
 			profileImg: req.user.profileImg,
 			firstName: req.user.firstName,
 			lastName: req.user.lastName

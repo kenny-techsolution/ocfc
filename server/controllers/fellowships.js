@@ -245,6 +245,7 @@ var isFellowshipAdmin = function(sessionUser, fellowshipId) {
 	var resultBoolean = (permissions.length == 0)? false: true;
 	return resultBoolean;
 };
+
 //Put - Round 1
 exports.updateUserToFellowship = function (req, res) {
 	if(isFellowshipAdmin(req.user ,req.params.fellowship_id)) {
