@@ -5,7 +5,10 @@
     <databaseInfo>
         <version>134481920</version>
         <UUID>85169B30-4DCA-4B31-B36E-8760CDF22A00</UUID>
+
         <nextObjectID>307</nextObjectID>
+
+        <nextObjectID>312</nextObjectID>
         <metadata>
             <plist version="1.0">
                 <dict>
@@ -1653,7 +1656,9 @@
         <attribute name="order" type="int64">3</attribute>
         <attribute name="name" type="string">Post</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z108"></relationship>
+
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM" idrefs="z300 z290 z297 z292 z235 z294 z296"></relationship>
+
         <relationship name="bodyparameters" type="0/0" destination="LMKEYVALUE"></relationship>
         <relationship name="headers" type="0/0" destination="LMKEYVALUE"></relationship>
         <relationship name="urlparameters" type="0/0" destination="LMKEYVALUE"></relationship>
@@ -2171,7 +2176,7 @@
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"json":"{\\"postUnderGroupId\\":\\"5475597f1bad85f58a2e7b4e\\",\\"postUnderGroupType\\":\\"fellowship\\",\\"postType\\":\\"event\\"\\/*,\\"content\\":\\"test general content\\"*\\/,\\"title\\":\\"BBQ day\\",\\"imageIds\\":[\\"5476630e34b83aa83c3a05c9\\",\\"5476631334b83aa83c3a05ca\\"]\\/*,\\"links\\":\\"\\"*\\/,\\"description\\":\\"this will be a great fun event\\",\\"fromDate\\":\\"Wed Nov 26 2014 16:20:21 GMT-0800 (PST)\\",\\"toDate\\":\\"Wed Nov 26 2014 16:20:41 GMT-0800 (PST)\\",\\"where\\":\\"church frontdoor\\",\\"hostBy\\":\\"5475549cb8733c5d864688ea\\",\\"banner\\":\\"5476631334b83aa83c3a05ca\\",\\"invitees\\":[\\"547554db93b70264879b8308\\",\\"547580216ff77211983dc720\\"]}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">5</attribute>
+        <attribute name="order" type="int64">10</attribute>
         <attribute name="name" type="string">getPost</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z234"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -2207,12 +2212,13 @@
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"json":"{\\"postUnderGroupId\\":\\"5475597f1bad85f58a2e7b4e\\",\\"postUnderGroupType\\":\\"fellowship\\"\\/*,\\"postType\\":\\"event\\",\\"content\\":\\"test general content\\",\\"title\\":\\"BBQ day\\",\\"imageIds\\":[\\"5476630e34b83aa83c3a05c9\\",\\"5476631334b83aa83c3a05ca\\"],\\"links\\":\\"\\",\\"description\\":\\"this will be a great fun event\\",\\"fromDate\\":\\"Wed Nov 26 2014 16:20:21 GMT-0800 (PST)\\",\\"toDate\\":\\"Wed Nov 26 2014 16:20:41 GMT-0800 (PST)\\",\\"where\\":\\"church frontdoor\\",\\"hostBy\\":\\"5475549cb8733c5d864688ea\\",\\"banner\\":\\"5476631334b83aa83c3a05ca\\",\\"invitees\\":[\\"547554db93b70264879b8308\\",\\"547580216ff77211983dc720\\"]*\\/}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">6</attribute>
+        <attribute name="order" type="int64">11</attribute>
         <attribute name="name" type="string">queryPost</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z234"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z299"></relationship>
     </object>
+
     <object type="LMREQUESTGROUP" id="z301">
         <attribute name="uuid" type="string">67680E8B-184C-42A5-8D3B-0C38C0E1D9D6</attribute>
         <attribute name="order" type="int64">2</attribute>
@@ -2239,9 +2245,29 @@
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z303"></relationship>
     </object>
+
+        <attribute name="method" type="string">DELETE</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\"postUnderGroupId\\":\\"5475597f1bad85f58a2e7b4e\\",\\"postUnderGroupType\\":\\"fellowship\\",\\"postType\\":\\"event\\"\\/*,\\"content\\":\\"test general content\\"*\\/,\\"title\\":\\"BBQ day\\",\\"imageIds\\":[\\"5476630e34b83aa83c3a05c9\\",\\"5476631334b83aa83c3a05ca\\"]\\/*,\\"links\\":\\"\\"*\\/,\\"description\\":\\"this will be a great fun event\\",\\"fromDate\\":\\"Wed Nov 26 2014 16:20:21 GMT-0800 (PST)\\",\\"toDate\\":\\"Wed Nov 26 2014 16:20:41 GMT-0800 (PST)\\",\\"where\\":\\"church frontdoor\\",\\"hostBy\\":\\"5475549cb8733c5d864688ea\\",\\"banner\\":\\"5476631334b83aa83c3a05ca\\",\\"invitees\\":[\\"547554db93b70264879b8308\\",\\"547580216ff77211983dc720\\"]}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">12</attribute>
+        <attribute name="name" type="string">deletePost</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z234"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z302"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z302">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">13</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z301"></relationship>
+    </object>
     <object type="LMKEYVALUE" id="z303">
         <attribute name="value" type="string"></attribute>
-        <attribute name="order" type="int64">0</attribute>
+        <attribute name="order" type="int64">13</attribute>
         <attribute name="name" type="string"></attribute>
         <attribute name="enabled" type="bool">1</attribute>
         <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
@@ -2253,6 +2279,11 @@
         <attribute name="body" type="string">[{"data":{"keyValues":[["comment","comment updated for 1st time",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">1B579028-AD47-42E4-80F4-C3AB008C7B54</attribute>
         <attribute name="url" type="string">http://localhost:3030/app/posts/5476889b572df7ef60e9b02a/comments/547688e3dbf9a5000096480e</attribute>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z304"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z304">
+        <attribute name="uuid" type="string">A313F71D-ABD1-4868-A389-1D71C2115513</attribute>
+        <attribute name="url" type="string">http://localhost:3030/app/posts/5476986c9966c71b70b5c77a</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -2268,6 +2299,48 @@
     <object type="LMKEYVALUE" id="z305">
         <attribute name="value" type="string"></attribute>
         <attribute name="order" type="int64">0</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\/*\\"postUnderGroupId\\":\\"5475597f1bad85f58a2e7b4e\\",\\"postUnderGroupType\\":\\"fellowship\\",*\\/\\"postType\\":\\"general\\",\\"content\\":\\"update 2 general content\\"\\/*,\\"title\\":\\"\\",\\"imageIds\\":[\\"5476630e34b83aa83c3a05c9\\",\\"5476631334b83aa83c3a05ca\\",\\"5476631634b83aa83c3a05cb\\"],\\"links\\":\\"\\",\\"description\\":\\"\\",\\"fromDate\\":\\"\\",\\"toDate\\":\\"\\",\\"where\\":\\"\\",\\"hostBy\\":\\"\\",\\"banner\\":\\"\\",\\"invitees\\":\\"\\"*\\/}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">5</attribute>
+        <attribute name="name" type="string">updatePost-general</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z234"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z303"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z305">
+        <attribute name="uuid" type="string">3133C3EC-4340-4F40-939D-6F6F9FF53236</attribute>
+        <attribute name="url" type="string">http://localhost:3030/app/posts/547698749966c71b70b5c77f</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">PUT</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\/*\\"postUnderGroupId\\":\\"5475597f1bad85f58a2e7b4e\\",\\"postUnderGroupType\\":\\"fellowship\\",*\\/\\"postType\\":\\"question\\",\\"content\\":\\"updated question\\"\\/*,\\"title\\":\\"\\",\\"imagesIds\\":[\\"image1\\",\\"image2\\",\\"image3\\"],\\"links\\":\\"\\",\\"description\\":\\"\\",\\"fromDate\\":\\"\\",\\"toDate\\":\\"\\",\\"where\\":\\"\\",\\"hostBy\\":\\"\\",\\"banner\\":\\"\\",\\"invitees\\":\\"\\"*\\/}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">8</attribute>
+        <attribute name="name" type="string">updatePost-question</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z234"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z307"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z306">
+        <attribute name="uuid" type="string">FB7BC95B-0F38-4B60-8C62-831F1F72F7B5</attribute>
+        <attribute name="url" type="string">http://localhost:3030/app/posts/5476986f9966c71b70b5c77c</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">PUT</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\/*\\"postUnderGroupId\\":\\"5475597f1bad85f58a2e7b4e\\",\\"postUnderGroupType\\":\\"fellowship\\",*\\/\\"postType\\":\\"testimony\\",\\"content\\":\\"1 update testimony\\",\\"title\\":\\"this is title yea updated\\"\\/*,\\"imageIds\\":[\\"5476630e34b83aa83c3a05c9\\",\\"5476631334b83aa83c3a05ca\\"],\\"links\\":\\"\\",\\"description\\":\\"\\",\\"fromDate\\":\\"\\",\\"toDate\\":\\"\\",\\"where\\":\\"\\",\\"hostBy\\":\\"\\",\\"banner\\":\\"\\",\\"invitees\\":\\"\\"*\\/}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">6</attribute>
+        <attribute name="name" type="string">updatePost-testimony</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z234"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z308"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z307">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">13</attribute>
         <attribute name="name" type="string"></attribute>
         <attribute name="enabled" type="bool">1</attribute>
         <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
@@ -2278,6 +2351,31 @@
     <object type="LMKEYVALUE" id="z306">
         <attribute name="value" type="string"></attribute>
         <attribute name="order" type="int64">0</attribute>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z305"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z308">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">13</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z306"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z309">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">13</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z312"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z310">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">13</attribute>
         <attribute name="name" type="string"></attribute>
         <attribute name="enabled" type="bool">1</attribute>
         <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
@@ -2288,10 +2386,16 @@
     <object type="LMREQUEST" id="z307">
         <attribute name="uuid" type="string">8095231D-5709-4DDA-B4F3-401778F143C8</attribute>
         <attribute name="url" type="string">http://localhost:3030/app/posts/5476889b572df7ef60e9b02a/comments/547688e3dbf9a5000096480e</attribute>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z311"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z311">
+        <attribute name="uuid" type="string">F8260596-A404-4AC1-81C8-DC970424F4E5</attribute>
+        <attribute name="url" type="string">http://localhost:3030/app/posts/547698769966c71b70b5c781</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
         <attribute name="redirectauthorization" type="bool">0</attribute>
+
         <attribute name="method" type="string">DELETE</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[["comment","comment updated for 1st time",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
@@ -2300,5 +2404,31 @@
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z301"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z306"></relationship>
+
+        <attribute name="method" type="string">PUT</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\/*\\"postUnderGroupId\\":\\"5475597f1bad85f58a2e7b4e\\",\\"postUnderGroupType\\":\\"fellowship\\",*\\/\\"postType\\":\\"event\\"\\/*,\\"content\\":\\"test general content\\"*\\/,\\"title\\":\\"Updated BBQ day\\",\\"imageIds\\":[\\"5476630e34b83aa83c3a05c9\\",\\"5476631334b83aa83c3a05ca\\"]\\/*,\\"links\\":\\"\\"*\\/,\\"description\\":\\"come just come\\",\\"fromDate\\":\\"Wed Nov 26 2014 16:20:21 GMT-0800 (PST)\\",\\"toDate\\":\\"Wed Nov 26 2014 16:20:41 GMT-0800 (PST)\\",\\"where\\":\\"church frontdoor\\",\\"hostBy\\":\\"5475549cb8733c5d864688ea\\",\\"banner\\":\\"5476631334b83aa83c3a05ca\\",\\"invitees\\":[\\"547554db93b70264879b8308\\",\\"547580216ff77211983dc720\\"]}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">9</attribute>
+        <attribute name="name" type="string">updatePost-event</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z234"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z310"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z312">
+        <attribute name="uuid" type="string">DD70AFB3-2691-4A77-A77D-053E17BCC8DF</attribute>
+        <attribute name="url" type="string">http://localhost:3030/app/posts/547698729966c71b70b5c77e</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">PUT</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\/*\\"postUnderGroupId\\":\\"5475597f1bad85f58a2e7b4e\\",\\"postUnderGroupType\\":\\"fellowship\\",*\\/\\"postType\\":\\"prayer\\",\\"content\\":\\"updated prayer\\"\\/*,\\"title\\":\\"\\",\\"imagesIds\\":[\\"image1\\",\\"image2\\",\\"image3\\"],\\"links\\":\\"\\",\\"description\\":\\"\\",\\"fromDate\\":\\"\\",\\"toDate\\":\\"\\",\\"where\\":\\"\\",\\"hostBy\\":\\"\\",\\"banner\\":\\"\\",\\"invitees\\":\\"\\"*\\/}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">7</attribute>
+        <attribute name="name" type="string">updatePost-prayer</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z234"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z309"></relationship>
+
     </object>
 </database>
