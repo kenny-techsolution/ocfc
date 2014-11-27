@@ -34,6 +34,8 @@ var htmlStripOptions = {
 };
 
 var stripHtmlforFields = function (obj, fields) {
+	console.log(obj);
+	console.log(fields);
 	_.forEach(fields, function(key){
 		obj[key] = html_strip.html_strip(obj[key], htmlStripOptions);
 	});
@@ -50,20 +52,21 @@ var savePost = function(post, res) {
 	});
 };
 //round-1
-var createQuestionPost = function(postObj, res) {
+var createQuestionPost = function(postObj, req, res) {
 	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType','postUnderGroupId','content']);
 	if(errors.length > 0){
 		return res.json({statue:"failed", errors: errors});
 	}
 	postObj = stripHtmlforFields(postObj, ['content']);
 	postObj.question = postObj.content;
+	postObj.postBy = req.user._id;
 	//TODO: perform image validation.
 	console.log(postObj);
 	var post = new Post(postObj);
 	return savePost(post, res);
 };
 //round-1
-var createPrayerPost = function(postObj, res) {
+var createPrayerPost = function(postObj, req, res) {
 	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType','postUnderGroupId','content']);
 	if(errors.length > 0){
 		return res.json({statue:"failed", errors: errors});
@@ -71,13 +74,14 @@ var createPrayerPost = function(postObj, res) {
 	postObj = stripHtmlforFields(postObj, ['content']);
 
 	postObj.prayer = postObj.content;
+	postObj.postBy = req.user._id;
 	//TODO: perform image validation.
 	var post = new Post(postObj);
 	console.log(postObj);
 	return savePost(post, res);
 };
 //round-1
-var createGeneralPost = function(postObj, res) {
+var createGeneralPost = function(postObj, req, res) {
 	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType','postUnderGroupId','content']);
 	if(errors.length > 0){
 		return res.json({statue:"failed", errors: errors});
@@ -85,6 +89,7 @@ var createGeneralPost = function(postObj, res) {
 	postObj = stripHtmlforFields(postObj, ['content']);
 	//TODO: perform image validation.
 	postObj.general = [{ content: postObj.content}];
+	postObj.postBy = req.user._id;
 	post = new Post(postObj);
 
 	var imageIds = postObj.imageIds;
@@ -106,7 +111,7 @@ var createGeneralPost = function(postObj, res) {
 
 };
 //round-1
-var createTestimonyPost = function(postObj, res) {
+var createTestimonyPost = function(postObj, req, res) {
 	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType','postUnderGroupId','content', 'title']);
 	if(errors.length > 0){
 		return res.json({statue:"failed", errors: errors});
@@ -114,6 +119,7 @@ var createTestimonyPost = function(postObj, res) {
 	postObj = stripHtmlforFields(postObj, ['content', 'title']);
 	//TODO: perform image validation.
 	postObj.testimony = [{ title: postObj.title, content: postObj.content}];
+	postObj.postBy = req.user._id;
 	post = new Post(postObj);
 
 	var imageIds = postObj.imageIds;
@@ -157,7 +163,7 @@ var createEventPost = function (postObj, req, res) {
 
 		var post = new Post({
 			postType: postObj.postType,
-			postBy: req.user_id,
+			postBy: req.user._id,
 			eventId: event._id,
 			postUnderGroupType: postObj.postUnderGroupType,
 			postUnderGroupId: postObj.postUnderGroupId
@@ -211,16 +217,16 @@ exports.createPost=function (req, res) {
 	postObj = deleteKey(postObj, ['comments','updatedOn', 'postBy']);
 	if(_.has(postObj,'postType')){
 		if(postObj.postType === 'question') {
-			return createQuestionPost(postObj, res);
+			return createQuestionPost(postObj, req, res);
 		}
 		if(postObj.postType === 'prayer') {
-			return createPrayerPost(postObj, res);
+			return createPrayerPost(postObj, req, res);
 		}
 		if(postObj.postType === 'general') {
-			return createGeneralPost(postObj, res);
+			return createGeneralPost(postObj, req, res);
 		}
 		if(postObj.postType === 'testimony') {
-			return createTestimonyPost(postObj, res);
+			return createTestimonyPost(postObj, req, res);
 		}
 		if(postObj.postType === 'event'){
 			return createEventPost(postObj, req, res);
@@ -240,9 +246,10 @@ exports.getPost=function (req, res) {
 	});
 };
 
+//get Round-1
 exports.queryPost=function (req, res) {
 	var postObj = req.query;
-	var errors = checkRequiredFields(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId']);
+	var errors = checkRequiredFields(postObj, ['postUnderGroupType', 'postUnderGroupId']);
 	if(errors.length > 0){
 		return res.json({statue:"failed", errors: errors});
 	}
@@ -255,8 +262,8 @@ exports.queryPost=function (req, res) {
 	var filteredKeys = _.intersection(validKeys, actualKeys);
 
 	var condition = {};
+	var whereClause = {};
 	_.forEach(filteredKeys, function(key){
-		var whereClause = {};
 		if(key == 'postUnderGroupType') {
 			whereClause.postUnderGroupType = req.query[key];
 		} else if (key == 'postUnderGroupId') {
@@ -265,26 +272,22 @@ exports.queryPost=function (req, res) {
 			condition[key] = req.query[key];
 		}
 	});
-
+	console.log(whereClause);
 	Post.find(condition).where(whereClause).exec(function(err,posts) {
 		if (err) return res.json(err);
 		return res.json(posts);
 	});
 };
 
-var _updatePost = function(id, postObj) {
-	Post.findOneAndUpdate({_id: id}, postObj, function(err){
+var _updatePost = function(id, userId, postObj, res) {
+	Post.findOneAndUpdate({_id: id, postBy: userId}, postObj, function(err, post){
 		if (err) return res.json(err);
-		return res.json({status: "post updated successful"});
+		return res.json(post);
 	});
 };
-
+//put . need to provide postType
 exports.updatePost=function (req, res) {
 	var postObj = req.body;
-
-	if(!canUserOperateOnThisPostUnder(req.user, post.postUnderGroupType, post.postUnderGroupId)) {
-		return res.json({status: "fail", message: "you are not allowed to update post from this wall which you're not a member of."});
-	}
 
 	postObj = deleteKey(postObj, ['comments','updatedOn', 'postBy']);
 	if(_.has(postObj,'postType')){
@@ -293,58 +296,79 @@ exports.updatePost=function (req, res) {
 			if(errors.length > 0){
 				return res.json({statue:"failed", errors: errors});
 			}
+			delete postObj.postType;
 			postObj = stripHtmlforFields(postObj, ['content']);
+			postObj.question = postObj.content;
 			postObj.updatedOn = new Date();
-			return _updatePost(req.params.id, postObj);
+			return _updatePost(req.params.id, req.user._id, postObj, res);
 		}
 		if(postObj.postType === 'prayer') {
 			var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
 			if(errors.length > 0){
 				return res.json({statue:"failed", errors: errors});
 			}
+			delete postObj.postType;
 			postObj = stripHtmlforFields(postObj, ['content']);
+			postObj.prayer = postObj.content;
 			postObj.updatedOn = new Date();
-			return _updatePost(req.params.id, postObj);
+			return _updatePost(req.params.id, req.user._id, postObj, res);
 		}
 		if(postObj.postType === 'general') {
 			var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
 			if(errors.length > 0){
 				return res.json({statue:"failed", errors: errors});
 			}
-			postObj = stripHtmlforFields(postObj, ['content']);
+			delete postObj.postType;
+			postObj = stripHtmlforFields(postObj,['content']);
+			postObj.general = {
+				content : postObj.content
+			}
 			post = new Post(postObj);
-			Post.findById(req.params.id).exec(function(err, post){
+			Post.findOne({_id: req.params.id , postBy: req.user._id}).exec(function(err, post){
 				var general = post.general[0];
 				general.content = postObj.content;
 				return savePost(post, res);
 			});
 		}
-		if(post.postType === 'testimony') {
+		if(postObj.postType === 'testimony') {
 			var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content', 'title']);
 			if(errors.length > 0){
 				return res.json({statue:"failed", errors: errors});
 			}
+			delete postObj.postType;
 			postObj = stripHtmlforFields(postObj, ['content', 'title']);
+			postObj.testimony = {
+				title : postObj.title,
+				content : postObj.content
+			};
 			post = new Post(postObj);
-			Post.findById(req.params.id).exec(function(err, post){
+			Post.findOne({_id: req.params.id , postBy: req.user._id}).exec(function(err, post){
 				var testimony = post.testimony[0];
 				testimony.title = postObj.title;
 				testimony.content = postObj.content;
 				return savePost(post, res);
 			});
 		}
-		if(post.postType === 'event'){
-			Post.findById(req.params.id, 'eventId').exec(function(err, post){
+		if(postObj.postType === 'event'){
+			delete postObj.postType;
+			Post.findOne({_id: req.params.id , postBy: req.user._id}).exec(function(err, post){
 				if (err) return res.json(err);
 				var validKeys = ['albumId', 'imageIds', 'title', 'description', 'fromDate', 'toDate', 'where', 'banner'];
 				var actualKeys = _.keys(req.params);
 				var filteredKeys = _.intersection(validKeys, actualKeys);
 				var event = {};
 				_.forEach(filteredKeys, function(key){
-					event[key] = req.params[key];
+					event[key] = req.body[key];
 				});
-				Event.update({_id: post.eventId}, event, function(err, NumberUpdated, raw){
+
+				console.log("event");
+				console.log(req.body);
+				console.log(event);
+				console.log(post);
+				Event.findOneAndUpdate({_id: post.eventId}, event, function(err, NumberUpdated, raw){
 					if (err) return res.json(err);
+					console.log("jaidofjpaosidjfa");
+					console.log(post);
 					Post.populate(post, 'eventId general testimony', function(err, post){
 						if (err) return res.json(err);
 						return res.json(post);
@@ -355,7 +379,10 @@ exports.updatePost=function (req, res) {
 	}
 };
 
-exports.removePost=function (req, res) {Post.findOneAndRemove({_id: req.params.id, postBy: req.user._id}, function(err){
+// Round 1
+exports.removePost=function (req, res) {
+
+	Post.where().findOneAndRemove({_id: req.params.id, postBy: req.user._id}, function(err){
 		if (err) return res.json(err);
 		return res.json({status: req.params.id + "removed successfully."});
 	});
