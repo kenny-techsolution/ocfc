@@ -52,6 +52,7 @@ exports.updateInstanceWithObject=function(obj,instanceObj){
 	return instanceObj;
 };
 
+
 exports.htmlStripOptions = {
 	include_script : false,
 	include_style : false
@@ -127,6 +128,8 @@ exports.checkRequiredFields = function (obj, fields) {
 		if(!_.has(obj, key)){
 			errors.push(key + " is required field.");
 		}
-		return errors;
 	});
+	return errors;
 };
+
+
