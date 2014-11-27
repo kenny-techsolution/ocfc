@@ -1,8 +1,11 @@
 var Post = require('mongoose').model('Post'),
 	Event = require('mongoose').model('Event'),
+	Image = require('mongoose').model('Image'),
 	commFunc = require('../utilities/commonFunctions'),
 	deleteKey = require('key-del'),
-	html_strip=require('htmlstrip-native');
+	html_strip=require('htmlstrip-native'),
+	async = require('async'),
+	_=require('lodash');
 
 var checkRequiredFieldsForPostType = function (postType, obj, fields) {
 	var errors = []
@@ -10,8 +13,8 @@ var checkRequiredFieldsForPostType = function (postType, obj, fields) {
 		if(!_.has(obj, key)){
 			errors.push(key + " is required field for postType=" + postType);
 		}
-		return errors;
 	});
+	return errors;
 };
 
 var checkRequiredFields = function (obj, fields) {
@@ -20,8 +23,8 @@ var checkRequiredFields = function (obj, fields) {
 		if(!_.has(obj, key)){
 			errors.push(key + " is required field.");
 		}
-		return errors;
 	});
+	return errors;
 };
 
 var htmlStripOptions = {
@@ -36,100 +39,107 @@ var stripHtmlforFields = function (obj, fields) {
 	});
 	return obj;
 };
-
-var savePost = function(post) {
+//round-1
+var savePost = function(post, res) {
 	post.save(function(err){
-		if (err) {
-			err = handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
 		Post.populate(post, 'eventId general testimony', function(err, post){
-			if (err) {
-				err = handleError(err);
-				return res.json(err);
-			}
+			if (err) return res.json(err);
 			return res.json(post);
 		});
 	});
 };
-
-var createQuestionPost = function(postObj) {
-	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
+//round-1
+var createQuestionPost = function(postObj, res) {
+	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType','postUnderGroupId','content']);
 	if(errors.length > 0){
 		return res.json({statue:"failed", errors: errors});
 	}
 	postObj = stripHtmlforFields(postObj, ['content']);
+	postObj.question = postObj.content;
 	//TODO: perform image validation.
-	post = new Post(post);
-	return savePost(post);
+	console.log(postObj);
+	var post = new Post(postObj);
+	return savePost(post, res);
 };
-
-var createPrayerPost = function(postObj) {
-	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
+//round-1
+var createPrayerPost = function(postObj, res) {
+	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType','postUnderGroupId','content']);
 	if(errors.length > 0){
 		return res.json({statue:"failed", errors: errors});
 	}
 	postObj = stripHtmlforFields(postObj, ['content']);
+
+	postObj.prayer = postObj.content;
 	//TODO: perform image validation.
-	post = new Post(post);
-	return savePost(post);
+	var post = new Post(postObj);
+	console.log(postObj);
+	return savePost(post, res);
 };
-
-var createGeneralPost = function(postObj) {
-	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
+//round-1
+var createGeneralPost = function(postObj, res) {
+	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType','postUnderGroupId','content']);
 	if(errors.length > 0){
 		return res.json({statue:"failed", errors: errors});
 	}
 	postObj = stripHtmlforFields(postObj, ['content']);
 	//TODO: perform image validation.
+	postObj.general = [{ content: postObj.content}];
 	post = new Post(postObj);
-	post.save(function(err){
-		if (err) {
-			err = handleError(err);
-			return res.json(err);
-		}
-		post.general.push({
-			content: postObj.content,
-			imagesIds: postObj.imagesIds || []
-		});
-		post.save(function(err){
-			if (err) {
-				err = handleError(err);
-				return res.json(err);
-			}
-			return res.json(post);
-		});
-	});
-};
 
-var createTestimonyPost = function(postObj) {
-	var errors = checkRequiredFieldsForPostType(post.postType, post, ['content', 'title']);
+	var imageIds = postObj.imageIds;
+
+	//update all images for post.
+	if(imageIds.length > 0){
+		async.forEachLimit(imageIds, 3, function(imageId, callback) {
+			Image.findByIdAndUpdate(imageId, {used: true}, function(err){
+				if (err) return callback(err)
+				callback();
+			});
+		}, function(err) {
+			if (err) return res.json(err);
+			return savePost(post, res);
+		});
+	} else {
+		return savePost(post, res);
+	}
+
+};
+//round-1
+var createTestimonyPost = function(postObj, res) {
+	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType','postUnderGroupId','content', 'title']);
 	if(errors.length > 0){
 		return res.json({statue:"failed", errors: errors});
 	}
-	post = stripHtmlforFields(post, ['content', 'title']);
+	postObj = stripHtmlforFields(postObj, ['content', 'title']);
 	//TODO: perform image validation.
+	postObj.testimony = [{ title: postObj.title, content: postObj.content}];
 	post = new Post(postObj);
-	post.save(function(err){
-		if (err) {
-			err = handleError(err);
-			return res.json(err);
-		}
-		post.testimony.push({
-			title: postObj.title,
-			content: postObj.content,
-			imagesIds: postObj.imagesIds || []
+
+	var imageIds = postObj.imageIds;
+
+	//update all images for post.
+	if(imageIds.length > 0){
+		async.forEachLimit(imageIds, 3, function(imageId, callback) {
+			Image.findByIdAndUpdate(imageId, {used: true}, function(err){
+				if (err) return callback(err)
+				callback();
+			});
+		}, function(err) {
+			if (err) return res.json(err);
+			return savePost(post, res);
 		});
-		return savePost(post);
-	});
+	} else {
+		return savePost(post, res);
+	}
 };
 
-var createEventPost = function (postObj) {
-	var errors = checkRequiredFieldsForPostType(post.postType, post, ['title', 'description', 'fromDate', 'toDate', 'where','hostBy','invitees']);
+var createEventPost = function (postObj, req, res) {
+	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType','postUnderGroupId','title', 'description', 'fromDate', 'toDate', 'where','hostBy','invitees']);
 	if(errors.length > 0){
 		return res.json({statue:"failed", errors: errors});
 	}
-	post = stripHtmlforFields(post, ['title', 'description', 'where']);
+	postObj = stripHtmlforFields(postObj, ['title', 'description', 'where']);
 	//TODO: perform image validation.
 	event = new Event({
 		title: postObj.title,
@@ -138,25 +148,41 @@ var createEventPost = function (postObj) {
 		fromDate: postObj.fromDate,
 		toDate: postObj.toDate,
 		where: postObj.where,
-		hostBy: req.user._id,
+		hostBy: postObj.hostBy,
 		invitees: postObj.invitees
 	});
 	event.save(function(err){
-		if (err) {
-			err = handleError(err);
-			return res.json(err);
-		}
-		post = new Post({
-			postType: Post.postTypeSetter(postObj.postType),
-			postBy: req.user._id,
-			eventId: event._id
+		if (err) return res.json(err);
+		var imageIds = postObj.imageIds;
+
+		var post = new Post({
+			postType: postObj.postType,
+			postBy: req.user_id,
+			eventId: event._id,
+			postUnderGroupType: postObj.postUnderGroupType,
+			postUnderGroupId: postObj.postUnderGroupId
 		});
-		return savePost(post);
+		//update all images for event post.
+		if(imageIds.length > 0){
+			async.forEachLimit(imageIds, 3, function(imageId, callback) {
+				Image.findByIdAndUpdate(imageId, {used: true}, function(err){
+					if (err) return callback(err)
+					callback();
+				});
+			}, function(err) {
+				if (err) return res.json(err);
+				post.imageIds = imageIds;
+				return savePost(post, res);
+			});
+		} else {
+			return savePost(post, res);
+		}
 	});
 };
 
 var canUserOperateOnThisPostUnder = function(user, groupType, groupId, action) {
-	return (user.membership[groupType].indexOf(groupId) !== -1);
+	groupType = groupType + "s";
+	return (user[groupType].indexOf(groupId) !== -1);
 };
 /* Request Fields Description:
 {
@@ -178,51 +204,50 @@ var canUserOperateOnThisPostUnder = function(user, groupType, groupId, action) {
 */
 exports.createPost=function (req, res) {
 	var postObj = req.body;
-
-	if(!canUserOperateOnThisPostUnder(req.user, postObj.postUnderGroupType, postObj.postUnderGroupId)) {
+	if(!commFunc.isGroupMember(postObj.postUnderGroupType, req.user, postObj.postUnderGroupId)) {
 		return res.json({status: "fail", message: "you are not allowed to create post on this wall which you're not a member of."});
 	}
 
 	postObj = deleteKey(postObj, ['comments','updatedOn', 'postBy']);
 	if(_.has(postObj,'postType')){
 		if(postObj.postType === 'question') {
-			return createQuestionPost(postObj);
+			return createQuestionPost(postObj, res);
 		}
 		if(postObj.postType === 'prayer') {
-			return createPrayerPost(postObj);
+			return createPrayerPost(postObj, res);
 		}
 		if(postObj.postType === 'general') {
-			return createGeneralPost(postObj);
+			return createGeneralPost(postObj, res);
 		}
-		if(post.postType === 'testimony') {
-			return createTestimonyPost(postObj);
+		if(postObj.postType === 'testimony') {
+			return createTestimonyPost(postObj, res);
 		}
-		if(post.postType === 'event'){
-			return createEventPost(postObj);
+		if(postObj.postType === 'event'){
+			return createEventPost(postObj, req, res);
 		}
 	}
 };
 
 exports.getPost=function (req, res) {
-	Post.findById(req.params._id).populate('eventId').exec(function(err, post){
-		if (err) {
-			err = handleError(err);
-			return res.json(err);
-		}
-		if(!canUserOperateOnThisPostUnder(req.user, post.postUnder.groupType, post.postUnder.groupId)) {
-			return res.json({status: "fail", message: "you are not allowed to get this post from this wall which you're not a member of."});
+	Post.findById(req.params.id).populate('eventId').exec(function(err, post){
+		console.log("post");
+		console.log(post);
+		if (err) return res.json(err);
+		if(!commFunc.isGroupMember(post.postUnderGroupType.toString(), req.user, post.postUnderGroupId.toString())) {
+			return res.json({status: "fail", message: "you are not allowed to get post on this wall which you're not a member of."});
 		}
 		return res.json(post);
 	});
 };
 
 exports.queryPost=function (req, res) {
-	var errors = checkRequiredFields(post.postType, post, ['postUnderGroupType', 'postUnderGroupIdd']);
+	var postObj = req.query;
+	var errors = checkRequiredFields(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId']);
 	if(errors.length > 0){
 		return res.json({statue:"failed", errors: errors});
 	}
-	if(!canUserOperateOnThisPostUnder(req.user, post.postUnderGroupType, post.postUnderGroupId)) {
-		return res.json({status: "fail", message: "you are not allowed to query post from this wall which you're not a member of."});
+	if(!commFunc.isGroupMember(postObj.postUnderGroupType, req.user, postObj.postUnderGroupId)) {
+		return res.json({status: "fail", message: "you are not allowed to query posts on this wall which you're not a member of."});
 	}
 
 	var validKeys = ['postType', 'postBy', 'postUnderGroupType', 'postUnderGroupId'];
@@ -233,30 +258,23 @@ exports.queryPost=function (req, res) {
 	_.forEach(filteredKeys, function(key){
 		var whereClause = {};
 		if(key == 'postUnderGroupType') {
-			whereClause.groupType = req.query[key];
+			whereClause.postUnderGroupType = req.query[key];
 		} else if (key == 'postUnderGroupId') {
-			whereClause.groupId = req.query[key];
+			whereClause.postUnderGroupId = req.query[key];
 		} else {
 			condition[key] = req.query[key];
 		}
 	});
 
-	Post.find(condition).where('postUnder',{$elemMatch:whereClause}).exec(function(err,fellowship) {
-		if (err) {
-			err = handleError(err);
-			return res.json(err);
-		}
+	Post.find(condition).where(whereClause).exec(function(err,posts) {
+		if (err) return res.json(err);
 		return res.json(posts);
-
 	});
 };
 
 var _updatePost = function(id, postObj) {
 	Post.findOneAndUpdate({_id: id}, postObj, function(err){
-		if (err) {
-			err = handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
 		return res.json({status: "post updated successful"});
 	});
 };
@@ -298,7 +316,7 @@ exports.updatePost=function (req, res) {
 			Post.findById(req.params.id).exec(function(err, post){
 				var general = post.general[0];
 				general.content = postObj.content;
-				return savePost(post);
+				return savePost(post, res);
 			});
 		}
 		if(post.postType === 'testimony') {
@@ -312,15 +330,12 @@ exports.updatePost=function (req, res) {
 				var testimony = post.testimony[0];
 				testimony.title = postObj.title;
 				testimony.content = postObj.content;
-				return savePost(post);
+				return savePost(post, res);
 			});
 		}
 		if(post.postType === 'event'){
 			Post.findById(req.params.id, 'eventId').exec(function(err, post){
-				if (err) {
-					err = handleError(err);
-					return res.json(err);
-				}
+				if (err) return res.json(err);
 				var validKeys = ['albumId', 'imageIds', 'title', 'description', 'fromDate', 'toDate', 'where', 'banner'];
 				var actualKeys = _.keys(req.params);
 				var filteredKeys = _.intersection(validKeys, actualKeys);
@@ -329,15 +344,9 @@ exports.updatePost=function (req, res) {
 					event[key] = req.params[key];
 				});
 				Event.update({_id: post.eventId}, event, function(err, NumberUpdated, raw){
-					if (err) {
-						err = handleError(err);
-						return res.json(err);
-					}
+					if (err) return res.json(err);
 					Post.populate(post, 'eventId general testimony', function(err, post){
-						if (err) {
-							err = handleError(err);
-							return res.json(err);
-						}
+						if (err) return res.json(err);
 						return res.json(post);
 					});
 				});
@@ -347,10 +356,7 @@ exports.updatePost=function (req, res) {
 };
 
 exports.removePost=function (req, res) {Post.findOneAndRemove({_id: req.params.id, postBy: req.user._id}, function(err){
-		if (err) {
-			err = handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
 		return res.json({status: req.params.id + "removed successfully."});
 	});
 };
@@ -358,10 +364,7 @@ exports.removePost=function (req, res) {Post.findOneAndRemove({_id: req.params.i
 /*---Comment related-----*/
 exports.addCommentToPost=function (req, res) {
 	Post.findById(req.params.id).exec(function(err, post){
-		if (err) {
-			err = handleError(err);
-			return res.json(err);
-		}
+		if (err) return res.json(err);
 		if(!canUserOperateOnThisPostUnder(req.user, post.postUnderGroupType, post.postUnderGroupId)) {
 			return res.json({status: "fail", message: "you are not allowed to add comment to post to this wall which you're not a member of."});
 		}
@@ -376,7 +379,7 @@ exports.addCommentToPost=function (req, res) {
 			lastName: req.user.lastName
 		};
 		post.comments.push(commentObj);
-		return savePost();
+		return savePost(post, res);
 	});
 };
 
@@ -396,7 +399,7 @@ exports.updateCommentFromPost=function (req, res) {
 		} else {
 			return res.json({status: "you are not allowed to modify the comment of not yours."});
 		}
-		return savePost(post);
+		return savePost(post, res);
 	});
 };
 
@@ -408,6 +411,6 @@ exports.deleteCommentFromPost=function (req, res) {
 		} else {
 			return res.json({status: "you are not allowed to remove the comment of not yours."});
 		}
-		return savePost(post);
+		return savePost(post, res);
 	});
 };

@@ -57,6 +57,22 @@ exports.htmlStripOptions = {
 	include_style : false
 };
 
+exports.isGroupMember = function(groupType, sessionUser, groupId) {
+	var groups = sessionUser[groupType + "s"];
+	console.log("isGroupMember");
+	console.log(groupType);
+	console.log(groups);
+	console.log(groupId);
+	var permissions = [];
+	for(var i=0; i< groups.length; i++) {
+		if(String(groups[i][groupType + 'Id']) === groupId){
+			permissions.push(groups[i]);
+		}
+	}
+	var resultBoolean = (permissions.length == 0)? false: true;
+	return resultBoolean;
+};
+
 exports.isFellowshipAdmin = function(sessionUser, fellowshipId) {
 	var fellowships = sessionUser['fellowships'];
 	var permissions = [];
