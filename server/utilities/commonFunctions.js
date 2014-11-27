@@ -85,7 +85,7 @@ exports.isChurchAdmin = function(sessionUser, churchId) {
 	var churches = sessionUser['churches'];
 	var permissions = [];
 	for(var i=0; i< churches.length; i++) {
-		if(String(churches[i].churchId) == String(churchId) && (churches[i].role) == "admin"){
+		if(String(churches[i].churchId) == String(churchId) && String(churches[i].role) == "admin"){
 			permissions.push(churches[i]);
 		}
 	}

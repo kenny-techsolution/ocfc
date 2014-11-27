@@ -177,7 +177,7 @@
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z111"></relationship>
     </object>
     <object type="LMREQUEST" id="z113">
-        <attribute name="body" type="string">[{"data":{"keyValues":[["username","yoyocicada@gmail.com",true],["password","yo",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["username","mei@gmail.com",true],["password","yo",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">6726CC3D-8869-4BE9-A226-9C418D238C40</attribute>
         <attribute name="url" type="string">http://localhost:3030/login</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
@@ -1137,14 +1137,14 @@
     </object>
     <object type="LMREQUEST" id="z194">
         <attribute name="uuid" type="string">3CF4D9E5-DC00-4850-8F56-F665E26949D0</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/churches/546d0d4cd0b5cd7d27a5da52/fellowships/546ed962d8ba79e667d1f5f7</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/churches/54755845e3d8ea9d8acd3d44/fellowships/5475597f1bad85f58a2e7b4e</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">PUT</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Once Christ Church xxxx",false],["vision","dfdf",false],["mission","etetet",false],["faithStatement","nnhmmh",false],["phone","344444444",false],["zipcode","45432",false],["country","xxx",false],["city","olean",false],["address","3554 kdfjdkf lane",false],["rejReason","hahkkdjfaha",true],["status","approved",false]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Once Christ Church xxxx",false],["vision","dfdf",false],["mission","etetet",false],["faithStatement","nnhmmh",false],["phone","344444444",false],["zipcode","45432",false],["country","xxx",false],["city","olean",false],["address","3554 kdfjdkf lane",false],["rejReason","hahkkdjfaha",false],["status","approved",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="order" type="int64">6</attribute>
         <attribute name="name" type="string">updateFellowshipToChurch</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
@@ -1163,7 +1163,7 @@
     </object>
     <object type="LMREQUEST" id="z196">
         <attribute name="uuid" type="string">BE20EF31-9A39-4E59-9417-A71E2BA4BD34</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/churches/546d0d4cd0b5cd7d27a5da52/fellowships</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/churches/54755845e3d8ea9d8acd3d44/fellowships</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -1189,7 +1189,7 @@
     </object>
     <object type="LMREQUEST" id="z198">
         <attribute name="uuid" type="string">5EE315AD-F4DF-4658-8E22-11DDCF5DCC11</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/churches/546d0d4cd0b5cd7d27a5da52/fellowships/546ed962d8ba79e667d1f5f7</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/churches/54755845e3d8ea9d8acd3d44/fellowships/5475597f1bad85f58a2e7b4e</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -1215,7 +1215,7 @@
     </object>
     <object type="LMREQUEST" id="z200">
         <attribute name="uuid" type="string">A310E7E6-7870-41AD-952D-B2E3402CC91F</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/churches/5475030a49d1418b3ba58713/users/547409ff14dbdee6dfaee688</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/churches/54755845e3d8ea9d8acd3d44/users/547409ff14dbdee6dfaee688</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -1775,7 +1775,7 @@
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z235"></relationship>
     </object>
     <object type="LMREQUEST" id="z246">
-        <attribute name="body" type="string">[{"data":{"keyValues":[["firstName","chAdmin",true],["lastName","yoyo",true],["userName","jf@gmail.com",true],["place","here",true],["language","chinese",true],["password","jf",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["firstName","chAdmin",true],["lastName","yoyo",true],["userName","mei@gmail.com",true],["place","here",true],["language","chinese",true],["password","yo",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">7EEB9C17-BC45-458E-BA91-47E210F9F591</attribute>
         <attribute name="url" type="string">http://localhost:3030/api/users</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
