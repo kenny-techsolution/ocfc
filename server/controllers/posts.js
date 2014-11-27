@@ -354,9 +354,10 @@ exports.updatePost=function (req, res) {
 			Post.findOne({_id: req.params.id , postBy: req.user._id}).exec(function(err, post){
 				if (err) return res.json(err);
 				var validKeys = ['albumId', 'imageIds', 'title', 'description', 'fromDate', 'toDate', 'where', 'banner'];
-				var actualKeys = _.keys(req.params);
+				var actualKeys = _.keys(req.body);
 				var filteredKeys = _.intersection(validKeys, actualKeys);
 				var event = {};
+				console.log(filteredKeys);
 				_.forEach(filteredKeys, function(key){
 					event[key] = req.body[key];
 				});
@@ -368,6 +369,7 @@ exports.updatePost=function (req, res) {
 				Event.findOneAndUpdate({_id: post.eventId}, event, function(err, NumberUpdated, raw){
 					if (err) return res.json(err);
 					console.log("jaidofjpaosidjfa");
+					console.log(NumberUpdated);
 					console.log(post);
 					Post.populate(post, 'eventId general testimony', function(err, post){
 						if (err) return res.json(err);
