@@ -1,5 +1,5 @@
 /*************************************************************************************
- 11.18.2014 Re-create Fellow model as per latest requirement
+11.18.2014 Re-create Fellow model as per latest requirement
  ***************************************************************************************/
 
 var mongoose = require('mongoose');
@@ -9,7 +9,6 @@ var commentSchema=require('./Comment').commentSchema;
 var eventSchema = mongoose.Schema({
 	albumId:		{type: ObjectId, ref:'Album',index: false, unique: false},
 	comments:		[commentSchema],
-	imageIds:		[{type: ObjectId, ref:'Image',index: false, unique: false}],
 	links:			[{type: String, index: false, unique: false}],
 	title:			{type: String, Required:'(title) is required!',index: false, unique: false},
 	description:	{type: String, Required:'(description) is required!',index: false, unique: false},
