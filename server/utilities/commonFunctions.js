@@ -52,6 +52,7 @@ exports.updateInstanceWithObject=function(obj,instanceObj){
 	return instanceObj;
 };
 
+
 exports.htmlStripOptions = {
 	include_script : false,
 	include_style : false
@@ -101,7 +102,7 @@ exports.isChurchAdmin = function(sessionUser, churchId) {
 	var churches = sessionUser['churches'];
 	var permissions = [];
 	for(var i=0; i< churches.length; i++) {
-		if(String(churches[i].churchId) == String(churchId) && (churches[i].role) == "admin"){
+		if(String(churches[i].churchId) == String(churchId) && String(churches[i].role) == "admin"){
 			permissions.push(churches[i]);
 		}
 	}
@@ -127,6 +128,8 @@ exports.checkRequiredFields = function (obj, fields) {
 		if(!_.has(obj, key)){
 			errors.push(key + " is required field.");
 		}
-		return errors;
 	});
+	return errors;
 };
+
+

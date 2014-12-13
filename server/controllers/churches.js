@@ -137,39 +137,41 @@ exports.addFellowshipToChurch= function (req, res) {
 		}
 	});
 };
-//Put
+//Put -Round 1
 exports.updateFellowshipToChurch= function (req, res) {
 	//Only admin privilege allowed to update from ChurchFellowship tbl
-	if(!commFunc.isChurchAdmin(req.user,req.params.id)) {
+	if(!commFunc.isChurchAdmin(req.user,req.params.church_id)) {
 		return res.json({status:'fail', message:'you are not an admin for this church.'});
 	}
-	ChurchFellowship.find({ churchId: req.params.church_id}).exec(function(err, churchFellowship){
-		if(churchFellowship.status==="pending" && req.body.status === "approved") {
+	ChurchFellowship.findOne({ churchId: req.params.church_id, fellowshipId: req.params.fellowship_id}).exec(function(err, churchFellowship){
+		if (err) return res.json(err);
+		if(churchFellowship.status=="pending" && req.body.status == "approved") {
 			churchFellowship.status = req.body.status;
 			churchFellowship.updateDate=new Date();
 			churchFellowship.save(function(err){
 				if (err) return res.json(err);
 				//add all fellowshipsUsers to churchUsers
-				FellowshipUser.findById(churchFellowship.fellowshipId).exec(function(err,fellowshipUsers){
-					var userIds = _.pluck(fellowshipUsers, 'userId');
-				});
-				var churchUserArray = [];
-				_forEach(userIds, function(userId){
-					churchUserArray.push({
-						churchId: req.params.church_id,
-						userId: userId,
-						status:	"approved",
-						role: "member"
-					});
-				});
-				ChurchUser.create(churchUserArray, function (err) {
+				FellowshipUser.find({fellowshipId: churchFellowship.fellowshipId}).exec(function(err,fellowshipUsers){
 					if (err) return res.json(err);
-					//add church to membership where user has this fellowship.
-					church.find({_id: req.params.church_id}, 'name').exec(function(err, church){
+					var userIds = _.pluck(fellowshipUsers, 'userId');
+					var churchUserArray = [];
+					_.forEach(userIds, function(userId){
+						churchUserArray.push({
+							churchId: req.params.church_id,
+							userId: userId,
+							status:	"approved",
+							role: "member"
+						});
+					});
+					ChurchUser.create(churchUserArray, function (err) {
 						if (err) return res.json(err);
-						Membership.update({'fellowships.fellowshipId': req.params.fellowship_id, 'churches.churchId': {$ne: req.params.church_id}}, {$push: {churches: {churchId: req.params.church_id, name: church.name, role: "member"}}},function(err){
+						//add church to membership where user has this fellowship.
+						Church.find({_id: req.params.church_id}, 'name').exec(function(err, church){
 							if (err) return res.json(err);
-							return res.json({status:"success"});
+							Membership.update({'fellowships.fellowshipId': req.params.fellowship_id, 'churches.churchId': {$ne: req.params.church_id}}, {$push: {churches: {churchId: req.params.church_id, name: church.name, role: "member"}}},function(err){
+								if (err) return res.json(err);
+								return res.json({status:"success"});
+							});
 						});
 					});
 				});
@@ -195,11 +197,11 @@ exports.getFellowships= function (req, res) {
 	});
 };
 
-//Delete
+//Delete Round1
 exports.removeFellowshipFromChurch= function (req, res) {
 	// Session user must be an admin in order to delete
 	// church from ChurchFellowship Models
-	if(!commFunc.isChurchAdmin(req.user,req.params.id)) {
+	if(!commFunc.isChurchAdmin(req.user,req.params.church_id)) {
 		return res.json({status:'fail', message:'you are not an admin for this church.'});
 	}
 	ChurchFellowship.remove({churchId:req.params.church_id, fellowshipId:req.params.fellowship_id},function (err) {
