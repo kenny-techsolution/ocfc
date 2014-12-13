@@ -4,6 +4,8 @@
 
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.Types.ObjectId;
+
+//add funded on.
 var churchSchema = mongoose.Schema({
 	approved:   	{type: Boolean, index: true, unique: false, default: false},
 	name:			{type: String,required:'(name) is required!',index: true, unique: false,lowercase: true},
