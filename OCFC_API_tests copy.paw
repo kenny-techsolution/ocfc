@@ -1675,7 +1675,7 @@
         <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z288"></relationship>
     </object>
     <object type="LMREQUEST" id="z246">
-        <attribute name="body" type="string">[{"data":{"keyValues":[["firstName","yo",true],["lastName","yo",true],["userName","tian@gmail.com",true],["place","here",true],["language","chinese",true],["password","yo",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["firstName","me",true],["lastName","me",true],["userName","me@gmail.com",true],["place","here",true],["language","chinese",true],["password","me",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">7EEB9C17-BC45-458E-BA91-47E210F9F591</attribute>
         <attribute name="url" type="string">http://localhost:3030/api/users</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
