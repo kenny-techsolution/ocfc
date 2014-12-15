@@ -33,11 +33,15 @@ block main-content
 		#intro-pg(ng-hide="identity.isAuthenticated()")
 			#signupSection
 				.row
-					.col-md-7
+					.col-md-8.welcome
 						h2 Welcome to One Church for Christ
-						h4 We love you to join and be part of our big family!
-					.col-md-5
+						h4 Connect, Learn and Fellowship with your church
+						h4 Join and be a part of our big family!
+					.col-md-4
+						.well(ng-include="'/partials/account/signin/signin'")
 						.well(ng-include="'/partials/account/signup/signup'")
-
+			#ocfcSection
+				a.about About Us
+				a.contact Contact Us
 		#main-wrapper.pull-right
 			#main(ng-view)

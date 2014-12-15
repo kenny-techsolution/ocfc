@@ -1,24 +1,15 @@
 form.form-horizontal(name="signupForm" ng-controller='SignupCtrl')
 	fieldset
-		legend Sign Up
-		p It's free and always will be.
+		legend New? sign up here
 		.form-group
-			label.col-md-5.control-label(for="fname") First Name
-			.col-md-7
-				input.form-control(name="fname",type="fname",placeholder="First Name",ng-model="fname",required)
-		.form-group
-			label.col-md-5.control-label(for="lname") Last Name
-			.col-md-7
-				input.form-control(name="lname",type="lname",placeholder="Last Name",ng-model="lname",required)
-		.form-group
-			label.col-md-5.control-label(for="email") Email
-			.col-md-7
+			.col-md-12
 				input.form-control(name="email",type="email",placeholder="Email",ng-model="email",required)
 		.form-group
-			label.col-md-5.control-label(for="password") Password
-			.col-md-7
+			.col-md-12
+				input.form-control(name="fullName",type="fullName",placeholder="Full Name",ng-model="fullName",required)
+		.form-group
+			.col-md-12
 				input.form-control(name="password",type="password",placeholder="Password",ng-model="password",required)
-
 		.form-group
 			span#birthday(data-type='selectors', data-name='birthday_wrapper')
 				span Birthday:
@@ -181,23 +172,13 @@ form.form-horizontal(name="signupForm" ng-controller='SignupCtrl')
 						option(value='1907') 1907
 						option(value='1906') 1906
 						option(value='1905') 1905
-			a#reason(href='#', title='bdateReason') Why do I need to provide my birthday?
 		span.gender
 			input#female(type='radio', name='gender', value='female',ng-model='gender')
 			label.female Female
 		span.gender
 			input#male(type='radio', name='gender', value='male',ng-model='gender')
 			label.male Male
-		div#disclaimer
-			p(style="font-size:12px")
-				| By clicking Sign Up, you agree to our
-				a(href='/legal/terms', target='_blank', rel='nofollow') Terms
-				| and that you have read our
-				a(href='/about/privacy', target='_blank', rel='nofollow') Data Use Policy
-				| , including our
-				a(href='/help/cookies', target='_blank', rel='nofollow') Cookie Use
-				| .
 	.form-group
 		.col-md-10.col-md-offset-2
 			.pull-right
-				button.btn.btn-success.btn-lg(ng-click="signup()",ng-disabled="signupForm.$invalid") Sign up
+				button.btn.btn-success(ng-click="signup()",ng-disabled="signupForm.$invalid") Sign up

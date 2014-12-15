@@ -1,0 +1,9 @@
+form.form-horizontal(name="signinForm" ng-controller='SignupCtrl')
+	#signinSection
+		input.form-control(name="email",type="email",placeholder="Email as username",ng-model="email",required)
+		input.form-control(name="password",type="password",placeholder="Password",ng-model="password",required)
+		span
+			input(type='radio', name='rememberMe', value='Remember me',ng-model='rememberMe')
+			label Remember me
+		button Sign in
+

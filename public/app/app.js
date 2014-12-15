@@ -44,8 +44,11 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 	$routeProvider.when('/', {templateUrl: '/partials/main/main', controller: 'MainCtrl'})
 		.when('/admin/users', {templateUrl: '/partials/admin/user-list', controller: 'UserListCtrl', resolve: routeRoleChecks.admin})
 		.when('/signup', {templateUrl: '/partials/account/signup', controller: 'SignupCtrl'})
+		.when('/signin', {templateUrl: '/partials/account/signin', controller: 'SignupCtrl'})
 		.when('/profile', {templateUrl: '/partials/account/profile/profile', controller: 'ProfileCtrl', resolve: routeRoleChecks.user})
 		.when('/joinFellow', {templateUrl: '/partials/fellowship/join/join-fellow', controller: 'JoinFellowCtrl'})
+		//12.15.2014 new route
+		.when('/fellowship/:id', {templateUrl: '/partials/fellowship/main/fellowshipNew', controller: 'FellowshipCtrl'})
 		.when('/fellowship/:id', {templateUrl: '/partials/fellowship/main/fellowship', controller: 'FellowshipCtrl'})
 		.when('/fellowship/:id/members', {templateUrl: '/partials/fellowship/member/member', controller: 'MemberCtrl'})
 		.when('/fellowship/:id/wall/', {templateUrl: '/partials/fellowship/wall/wall', controller: 'FellowshipCtrl'})
