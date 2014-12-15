@@ -3,25 +3,175 @@
 }
 body {
   padding-top: 69px;
+  background-image: url("./images/binding_light.png");
+  color: #fff;
+}
+[ngcloak],
+[ng-cloak],
+.ng-cloak {
+  display: none !important;
+}
+#global-header {
+  position: fixed;
+  top: 0px;
+  z-index: 9999;
+  width: 100%;
+  height: 50px;
+  margin: 0 auto 1px;
+  background: #fff;
+  background: rgba(255,255,255,0.95);
+  font-size: 18px;
+}
+#global-header .gh-content {
+  display: block;
+  width: 980px;
+  height: 30px;
+  margin: auto;
+  margin-top: 10px;
+  position: relative;
+}
+#global-header .gh-content .gh-tab {
+  height: 30px;
+  background-repeat: no-repeat;
+  display: block;
+  position: absolute;
+}
+#global-header .gh-content .gh-tab.brand {
+  width: 30px;
+  background-image: url("./images/ocfc_logo.png");
+  background-size: 29px 29px;
+}
+#global-header .gh-content .gh-tab.account {
+  width: 30px;
+  background-image: url("./images/kenny_face.jpg");
+  background-size: 30px 30px;
+  right: 0px;
+  top: 0px;
+  border-radius: 5px;
+}
+#global-header .gh-content .gh-tab.notification {
+  width: 30px;
+  background-image: url("./images/notification_icon.svg");
+  background-size: 29px 29px;
+  right: 50px;
+  top: 0px;
+}
+#global-header .gh-content .gh-tab.explore {
+  width: 83px;
+  color: #000;
+  font-size: 14px;
+  line-height: 30px;
+  right: 100px;
+  top: 0px;
+  text-decoration: none;
+}
+#global-header .gh-content .gh-tab.explore:hover {
+  text-decoration: none;
+}
+#global-header .gh-content .gh-tab.explore .icon {
+  display: block;
+  position: absolute;
+  top: 5px;
+  right: 0px;
+  height: 20px;
+  width: 20px;
+  background-size: 20px 20px;
+}
+#global-header .gh-content .gh-tab.explore .icon.cross {
+  background-image: url("./images/cross_icon.svg");
+}
+#global-header .gh-content .gh-tab.explore .icon.explore {
+  background-image: url("./images/explore_icon.svg");
+}
+#explore-menu {
+  overflow: hidden;
+  position: fixed;
+  top: 50px;
+  z-index: 9999;
+  width: 100%;
+  background: rgba(255,255,255,0.95);
+  border-bottom: 1px solid #808080;
+}
+#explore-menu .em-content {
+  display: block;
+  width: 980px;
+  height: auto;
+  margin: 20px auto;
+  position: relative;
+}
+#explore-menu .em-content .section {
+  color: #000;
+  min-height: 50px;
+  width: 25%;
+  display: inline-block;
+  vertical-align: top;
+}
+#explore-menu .em-content .section .title {
+  font-size: 15px;
+  display: block;
+  height: 20px;
+  width: 90%;
+  border-bottom: 1px solid #808080;
+}
+#explore-menu .em-content .section .group {
+  display: block;
+  margin-top: 5px;
+  font-size: 15px;
+  color: #08c;
+}
+#explore-menu .em-content .section .find-group {
+  color: #000;
+  font-size: 14px;
+  margin-top: 5px;
+}
+#explore-menu .em-content .section .coming-soon {
+  display: block;
+  height: 120px;
+  width: 90%;
+  margin-top: 5px;
+  line-height: 120px;
+  color: #fff;
+  background-color: #808080;
+  text-align: center;
+}
+#explore-menu .em-content .section .description {
+  margin-top: 5px;
+  width: 90%;
+  color: #808080;
+}
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+  -webkit-transition: 0.15s linear all;
+  transition: 0.15s linear all;
+  opacity: 1;
+  height: 145px;
+}
+.animate-show.ng-hide {
+  opacity: 0;
+  height: 0px;
+}
+.animate-icon.ng-hide-add,
+-webkit-transition 0.3s linear all {
+  transition: 0.3s linear all;
+  -webkit-transform: rotate(0deg) scale(1);
+  opacity: 1;
+}
+.animate-icon.ng-hide-remove {
+  -webkit-transition: 0.3s linear all;
+  transition: 0.3s linear all;
+  -webkit-transform: rotate(-90deg) scale(1);
+  opacity: 1;
+}
+.animate-icon.ng-hide {
+  -webkit-transition: 0.3s linear all;
+  -webkit-transform: rotate(-45deg) scale(0.2);
+  opacity: 0;
 }
 .toast-top-right {
   top: 70px;
 }
 .toast-success {
   background-color: #13987e;
-}
-#standardCol {
-  width: 800px;
-  padding-left: 25px;
-  background-color: #eee;
-}
-#filterContainer {
-  position: fixed;
-  top: 0;
-  left: -34px;
-  right: 20px;
-  padding-top: 70px;
-  z-index: 1000;
 }
 #signupSection {
   width: 850px;

@@ -11,17 +11,9 @@ html
 		link(rel="stylesheet", href="/css/account/navbar-login.css")
 		link(rel="stylesheet", href="/css/account/index.css")
 
-		link(rel="stylesheet", href="/css/fellowship/member.css")
-		link(rel="stylesheet", href="/css/fellowship/create-fellow.css")
-		link(rel="stylesheet", href="/css/fellowship/fellowship.css")
-		link(rel="stylesheet", href="/css/fellowship/join-fellow.css")
-		link(rel="stylesheet", href="/css/fellowship/event.css")
-		link(rel="stylesheet", href="/css/fellowship/fellow-photo.css")
-		link(rel="stylesheet", href="/css/fellowship/fellow-resource.css")
-
 		meta(name='viewport', content='initial-scale=1,user-scalable=no,maximum-scale=1')
 
-	body(ng-app='app' ng-controller='CommonCtrl')
+	body(ng-app='app' ng-controller='MainCtrl')
 		//include currentUser file
 		include currentUser
 		block main-content
