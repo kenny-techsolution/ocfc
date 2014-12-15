@@ -28,8 +28,8 @@ block main-content
 				.find-group Find a Church >
 			.section.world
 				.title World
-				.coming-soon coming soon
-	#wrapper
+				.coming-soon coming soon			
+	#wrapper(ng-view)
 		#intro-pg(ng-hide="identity.isAuthenticated()")
 			#signupSection
 				.row
