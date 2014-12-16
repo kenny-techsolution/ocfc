@@ -334,9 +334,26 @@ body {
   padding: 20px 30px;
   color: #000;
 }
+#main-content .banner .about-us .logo {
+  display: inline-block;
+}
+#main-content .banner .about-us .logo img.fellow-logo {
+  border: 1px solid #0a0a0a;
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  padding: 5px;
+  margin-right: 8px;
+}
 #main-content .banner .about-us .title {
   font-size: 18px;
+  display: inline-block;
+  position: fixed;
+  top: 86px;
+}
+#main-content .banner .about-us .border {
   border-bottom: 1px solid #000;
+  padding-top: 4px;
 }
 #main-content .banner .about-us .description {
   margin-top: 10px;
