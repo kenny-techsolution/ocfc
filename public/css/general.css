@@ -2,7 +2,6 @@
   font-family: Helvetica, sans-serif;
 }
 body {
-  padding-top: 69px;
   background-image: url("./images/binding_light.png");
   color: #fff;
 }
@@ -235,4 +234,141 @@ body {
 }
 #ocfcSection .contact {
   display: inline-block;
+}
+#main-content {
+  width: 980px;
+  height: 1500px;
+  margin: 0px auto;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 60px;
+}
+#main-content .banner {
+  position: relative;
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 100%;
+  height: 300px;
+  border: 1px solid #fff;
+  border-right: none;
+}
+#main-content .banner .group-pic {
+  height: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
+  overflow: hidden;
+}
+#main-content .banner .group-pic img.group {
+  margin-top: -150px;
+  width: 100%;
+  height: auto;
+}
+#main-content .banner .group-pic .overlay {
+  background-color: #fff;
+  opacity: 0.8;
+  width: 100%;
+  height: 80px;
+  bottom: 0px;
+  position: absolute;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+#main-content .banner .group-pic .summary {
+  width: 100%;
+  height: 80px;
+  bottom: 0px;
+  position: absolute;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+#main-content .banner .group-pic .summary .title-section {
+  display: inline-block;
+  width: 70%;
+  height: 60px;
+  padding-left: 40px;
+  padding-right: 20px;
+  vertical-align: top;
+}
+#main-content .banner .group-pic .summary .title-section .title {
+  font-size: 28px;
+  color: #000;
+}
+#main-content .banner .group-pic .summary .title-section .slogan {
+  font-size: 13px;
+  color: #000;
+}
+#main-content .banner .group-pic .summary .admin-section {
+  display: inline-block;
+  width: 30%;
+  height: 60px;
+  vertical-align: top;
+  padding-left: 10px;
+}
+#main-content .banner .group-pic .summary .admin-section .profile-img {
+  display: inline-block;
+  vertical-align: top;
+}
+#main-content .banner .group-pic .summary .admin-section .profile-img img.admin-profile {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  border: 3px solid #000;
+}
+#main-content .banner .group-pic .summary .admin-section .profile-desc {
+  padding-left: 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+#main-content .banner .group-pic .summary .admin-section .profile-desc .role {
+  font-size: 14px;
+  color: #000;
+  margin-top: 7px;
+}
+#main-content .banner .group-pic .summary .admin-section .profile-desc .name {
+  font-size: 16px;
+  color: #000;
+}
+#main-content .banner .about-us {
+  height: 100%;
+  background-color: #fff;
+  padding: 20px 30px;
+  color: #000;
+}
+#main-content .banner .about-us .title {
+  font-size: 18px;
+  border-bottom: 1px solid #000;
+}
+#main-content .banner .about-us .description {
+  margin-top: 10px;
+  font-size: 13px;
+}
+#main-content .banner .about-us .description:first-letter {
+  font-size: 20px;
+  font-weight: bold;
+}
+#main-content .banner .about-us:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 16px 16px 0;
+  border-style: solid;
+  border-color: #696969 #696969 #d3d3d3 #d3d3d3;
+  background: #d3d3d3;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
+/* Firefox 3.0 damage limitation */
+  display: block;
+  width: 0;
+}
+#main-content .banner .about-us.rounded {
+  -moz-border-radius: 5px 0 5px 5px;
+  border-radius: 5px 0 5px 5px;
+}
+#main-content .banner .about-us.rounded:before {
+  border-width: 8px;
+  border-color: #fff #fff transparent transparent;
+  -moz-border-radius: 0 0 0 5px;
+  border-radius: 0 0 0 5px;
 }

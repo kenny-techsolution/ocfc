@@ -1,47 +1,21 @@
-fellowship.jade
-#standardCol
-	.intro-banner
-		img(src='/css/images/IMG_5501.JPG')
-		.name.h2(ng-bind="name")&nbsp;
-		.about.p(ng-bind="about")&nbsp;
-		.members
-			.imgs
-				ul.media-list
-					li.media
-						a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
-							img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-						a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
-							img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-						a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
-							img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-						a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
-							img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-						a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
-							img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-						a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
-							img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-						a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
-							img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-						a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
-							img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-						a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
-							img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-						a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
-							img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-						a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
-							img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-						a.pull-left(ng-href="/fellowship/{{post.fellow_object_id}}/photo")
-							img.media-object(src='/css/images/IMG_5501.jpg', alt='...')
-		.count
-			a(href='/fellowship/{{post.fellow_object_id}}/members')
-			p 12 members
+//fellowship.jade
+#main-content.container
+	.row.banner
+		.col-md-9.group-pic
+			img.group(ng-src='/css/images/TimothyFellowship4.jpg')
+			.overlay
+			.summary
+				.title-section
+					.title 提摩太團契
+					.slogan 作信徒的榜樣，要剛強壯膽，以清潔的心不要叫人小看你。
+				.admin-section
+					.profile-img
+						img.admin-profile(ng-src='/css/images/kenny_face.jpg')
+					.profile-desc
+						.role 負責人
+						.name Beland Huang
 
-	.highlight-sections
-		.section.one
-			h4 What's new
-		.section.two
-			h4 Schedule
-		.section.three
-			h4 Sharing
-
+		.col-md-3.about-us
+			.title About Us
+			.description 大安森林食堂據說是日本最大的庶民連鎖自助餐，試營運期間就大排長龍，原本想說應該是有七折優惠的魅力，等風潮過後再來輕鬆吃。特別約了前同事休假一起來嚐鮮，沒想到扣折結束後，平日中午來還是繼續排排隊，店門口一堆人在候位，好在我跟友人話多，聊不完的天，一個小時也就這樣排到了。
 
