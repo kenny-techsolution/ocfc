@@ -10,7 +10,6 @@ angular.module('app').directive('ocfcNewFriend', function () {
 					fellowshipId: $routeParams.fellowship_id}
 				//below parameter is a callback, 1st parameter must be met
 				, function () {
-					$scope.fellowshipUsers.userId=ObjectId("5475549cb8733c5d864688ea");
 				}
 			);
 		}

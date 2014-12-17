@@ -1,6 +1,6 @@
 .new-friend
 	.wrapper
-		img.new-friend-profile(ng-src='/css/images/kenny_face.jpg')
+		img.new-friend-profile(ng-src='/css/images/kenny_face.jpg')(ng-repeat="fellowshipUser in fellowshipUsers")
 		.new-friend-desc
 			.name(ng-bind-template="{{fellowshipUser.firstName}} {{fellowshipUser.lastName}}")
 			.desc-section

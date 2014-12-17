@@ -137,7 +137,7 @@ exports.updateFellowshipById = function (req, res) {
 //Get - Round1
 exports.getFellowshipById = function (req, res) {
 	//chk if entry exist match by fellowshipId & status of approved
-	FellowshipUser.count({ fellowshipId: req.params.id, userId: req.user._id, status: 'approved'}, function (err, count) {
+	FellowshipUser.count({ fellowshipId: req.params.id, userId:"5475549cb8733c5d864688ea" /*req.user._id*/, status: 'approved'}, function (err, count) {
 		if (count == 1) {
 			Fellowship.findOne({_id: req.params.id}).exec(function (err, fellowship) {
 				if (err) return res.json(err);

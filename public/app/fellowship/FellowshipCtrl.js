@@ -14,7 +14,6 @@ angular.module('app').controller('FellowshipCtrl', function ($http, $scope,
 			_id: $routeParams.id}
 		//below parameter is a callback, 1st parameter must be met
 		, function () {
-//			$scope.name = fellowship.name;
 		}
 	);
 
