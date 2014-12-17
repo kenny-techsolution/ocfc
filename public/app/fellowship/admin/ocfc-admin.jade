@@ -4,7 +4,7 @@
 #content
 	.list-page
 		.fellowships-wrapper(ng-repeat='fellowship in fellowships')
-			.well.well-lg.fellowship(ng-bind-template="{{fellowsihp.name}} {{fellowship.zipcode}} {{fellowship.status}} {{fellowship.proof}} {{fellowship.address}} {{fellowship.description}}")&nbsp;
+			.well.well-lg.fellowship(ng-bind-template="{{fellowship.name}} {{fellowship.zipcode}} {{fellowship.status}} {{fellowship.proof}} {{fellowship.address}} {{fellowship.description}}")&nbsp;
 				.btn-group
 					button.btn.btn-default(type='button',ng-click='approveFellowship(fellowship)',ng-show="fellowship.status=='Waiting for Approval'") Approve Fellowship
 					button.btn.btn-default(type='button',ng-show="fellowship.status=='Waiting for Approval'",data-target="#RejConfirmation", data-toggle="modal",ng-click="setModalFellowshipIndex($index)") Reject Fellowship

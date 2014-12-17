@@ -9,7 +9,7 @@
 angular.module('app').factory('FellowshipSvc', function ($resource, $http) {
 	// rest api standard, for GET, if id is specified, it will grab specific
 	// user by id
-	var fellowshipResource = $resource('/api/fellows/:_id', {
+	var fellowshipResource = $resource('/api/fellowships/:id', {
 		_id: '@id'
 	}, {
 		'update': {
@@ -22,7 +22,7 @@ angular.module('app').factory('FellowshipSvc', function ($resource, $http) {
 	//params will merge w below objects using extend method
 	fellowshipResource.getFellows = function (params) {
 		var params = $.extend({
-			url: '/api/fellows',
+			url: '/api/fellowships',
 			method: 'GET'
 		}, params);
 

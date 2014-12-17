@@ -194,11 +194,34 @@ exports.getUsersFromFellowship = function (req, res) {
 	//Populate users associated to a fellowship
 	//Search FellowUser model by fellowshipId against param id,
 	//then populate user table
-	console.log(req.user);
-	FellowshipUser.find({fellowshipId: req.params.fellowship_id, status: 'approved'}).populate("userId").exec(function (err, fellowshipUser) {
-		if (err) return res.json(err);
-		return res.json({status: "success", fellowshipUsers: _.pluck(fellowshipUser, 'userId')});
-	});
+//	console.log(req.user);
+	console.log(req.query);
+
+	if (_.isEmpty(req.query)){
+		FellowshipUser.find({fellowshipId: req.params.fellowship_id, status: 'approved'}).populate("userId").exec(function (err, fellowshipUser) {
+			if (err) return res.json(err);
+			return res.json({status: "success", fellowshipUsers: _.pluck(fellowshipUser, 'userId')});
+		});
+	}else{
+
+		//join within x month : numOfMth
+		//current date minus numofMth=joinedDate, if signupDate<joinedDate
+		var currDate=new Date();
+		var numOfMth=req.query.numOfMth;
+		currDate.setMonth(currDate.getMonth()-Number(numOfMth));
+		var joinedDate=currDate;
+
+		//search signupDate in FellowshipUser table by fellowshipId
+		//where signupDate & status is approved is within 1mth of current date
+		//display signupDate and user full name from User table by userId
+		FellowshipUser.find({fellowshipId: req.params.fellowship_id, status: 'approved',signupDate:{$gt:joinedDate}}).populate("userId").exec(function (err, queryFellowshipUser) {
+			console.log('chk queryFellowshipUser');
+			console.log(queryFellowshipUser);
+			if (err) return res.json(err);
+			return res.json({status:"success",queryFellowshipUser:queryFellowshipUser});
+		});
+	}
+
 };
 
 //Put - Round 1
