@@ -393,21 +393,69 @@ body {
 #main-content .dynamic-content {
   height: 1500px;
 }
+#main-content .dynamic-content .widget-title {
+  border-bottom: 1px solid #000;
+  color: #000;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
 #main-content .dynamic-content .wall {
   height: 100%;
-  background-color: #008000;
+  color: #000;
+  background-color: #d3d3d3;
+}
+#main-content .dynamic-content .wall .post-msg-box {
+  border: 1px solid #000;
+  height: 150px;
+}
+#main-content .dynamic-content .wall .post-msg-box .header {
+  border-bottom: 1px solid #000;
+  display: inline-block;
+  width: 100%;
+}
+#main-content .dynamic-content .wall .post-msg-box textarea.textbox {
+  width: 100%;
+  height: 115px;
+}
+#main-content .dynamic-content .wall img.camera-icon {
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  margin-right: 160px;
+  display: inline-block;
+}
+#main-content .dynamic-content .wall .share {
+  display: inline-block;
+  margin-right: 20px;
+  font-size: 12px;
+}
+#main-content .dynamic-content .wall .share img.share-icon {
+  width: 15px;
+  height: 15px;
+  margin-left: 2px;
+}
+#main-content .dynamic-content .wall .post-type {
+  display: inline-block;
+  font-size: 12px;
+}
+#main-content .dynamic-content .wall .post-type-dropdown {
+  display: inline-block;
+  margin-left: 6px;
+}
+#main-content .dynamic-content .wall button.post {
+  display: inline-block;
+  font-size: 12px;
+  margin: 5px 5px 5px 55px;
+  width: 55px;
+  color: #000;
 }
 #main-content .dynamic-content .left-sidebar {
   height: 100%;
-  background-color: #f00;
-}
-#main-content .dynamic-content .left-sidebar .announcement-title {
-  border-bottom: 1px solid #000;
 }
 #main-content .dynamic-content .left-sidebar .announcement {
-  background-color: #00f;
   width: 100%;
-  height: 200px;
+  height: auto;
+  margin-top: 5px;
 }
 #main-content .dynamic-content .left-sidebar .announcement img.admin-annouce-profile {
   width: 35px;
@@ -422,15 +470,18 @@ body {
 }
 #main-content .dynamic-content .left-sidebar .announcement .annouce-profile-desc .name {
   font-size: 11px;
+  color: #000;
 }
 #main-content .dynamic-content .left-sidebar .announcement .annouce-profile-desc .date {
   font-size: 10px;
+  color: #000;
 }
-#main-content .dynamic-content .left-sidebar .new-friend-title {
-  border-bottom: 1px solid #000;
+#main-content .dynamic-content .left-sidebar .announcement .description {
+  font-size: 13px;
+  margin-top: 5px;
+  color: #000;
 }
 #main-content .dynamic-content .left-sidebar .new-friend {
-  background-color: #008000;
   width: 100%;
   height: 200px;
 }
@@ -454,60 +505,79 @@ body {
   margin-right: 40px;
   margin-top: 14px;
   vertical-align: top;
+  color: #000;
+  position: absolute;
+  left: 60px;
 }
 #main-content .dynamic-content .left-sidebar .new-friend .wrapper .new-friend-desc .desc-section {
   display: inline-block;
+  position: absolute;
+  right: 15px;
 }
 #main-content .dynamic-content .left-sidebar .new-friend .wrapper .new-friend-desc .desc-section .status {
   font-size: 10px;
   display: inline-block;
   vertical-align: top;
   margin-top: 14px;
+  color: #000;
 }
 #main-content .dynamic-content .left-sidebar .new-friend .wrapper .new-friend-desc .desc-section .date {
   font-size: 10px;
   display: inline-block;
   vertical-align: top;
   margin-top: 14px;
-}
-#main-content .dynamic-content .left-sidebar .members-title {
-  border-bottom: 1px solid #000;
+  color: #000;
 }
 #main-content .dynamic-content .left-sidebar .members {
-  background-color: #ffa500;
   width: 100%;
   height: 200px;
 }
 #main-content .dynamic-content .left-sidebar .members img {
-  width: 25px;
-  height: 25px;
+  width: 45px;
+  height: 45px;
   margin: 5px;
 }
 #main-content .dynamic-content .right-sidebar {
   height: 100%;
-  background-color: #00f;
-}
-#main-content .dynamic-content .right-sidebar .calendar-title {
-  border-bottom: 1px solid #000;
 }
 #main-content .dynamic-content .right-sidebar .calendar {
-  border: 1px solid #008000;
   width: 100%;
   height: 250px;
 }
-#main-content .dynamic-content .right-sidebar .event-title {
-  border-bottom: 1px solid #000;
-}
 #main-content .dynamic-content .right-sidebar .event {
-  border: 1px solid #ffa500;
   width: 100%;
   height: 200px;
 }
-#main-content .dynamic-content .right-sidebar .birthday-title {
-  border-bottom: 1px solid #000;
+#main-content .dynamic-content .right-sidebar .event .wrapper {
+  display: inline-block;
+}
+#main-content .dynamic-content .right-sidebar .event .wrapper img.new-event-profile {
+  width: 35px;
+  height: 35px;
+  vertical-align: top;
+  display: inline-block;
+  margin: 5px;
+}
+#main-content .dynamic-content .right-sidebar .event .wrapper .new-event-desc {
+  font-size: 10px;
+  display: inline-block;
+  width: 169px;
+  color: #000;
+}
+#main-content .dynamic-content .right-sidebar .event .wrapper .event-subject {
+  font-size: 11px;
+  display: inline-block;
+  margin-right: 40px;
+  vertical-align: top;
+  color: #000;
+}
+#main-content .dynamic-content .right-sidebar .event .wrapper .date {
+  font-size: 10px;
+  display: inline-block;
+  vertical-align: top;
+  color: #000;
 }
 #main-content .dynamic-content .right-sidebar .birthday {
-  border: 1px solid #800080;
   width: 100%;
   height: 200px;
 }
@@ -527,10 +597,14 @@ body {
   margin-right: 40px;
   margin-top: 14px;
   vertical-align: top;
+  color: #000;
 }
 #main-content .dynamic-content .right-sidebar .birthday .wrapper .new-birthday-desc .date {
   font-size: 10px;
   display: inline-block;
   vertical-align: top;
   margin-top: 14px;
+  color: #000;
+  position: absolute;
+  right: 14px;
 }
