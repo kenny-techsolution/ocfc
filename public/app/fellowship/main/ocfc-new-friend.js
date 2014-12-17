@@ -4,7 +4,15 @@ angular.module('app').directive('ocfcNewFriend', function () {
 		restrict: 'E',
 		$scope: true,
 		templateUrl: '/partials/fellowship/main/ocfc-new-friend',
-		controller: function () {
+		controller: function (FellowshipUserSvc) {
+			$scope.fellowshipUsers = FellowshipUserSvc.get(
+				{
+					fellowshipId: $routeParams.fellowship_id}
+				//below parameter is a callback, 1st parameter must be met
+				, function () {
+
+				}
+			);
 		}
 	};
 });
