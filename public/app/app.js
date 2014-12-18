@@ -43,7 +43,7 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 	$locationProvider.html5Mode(true);
 	$routeProvider.when('/', {templateUrl: '/partials/main/main', controller: 'MainCtrl'})
 		//12.18.2014 added
-		.when('/', {templateUrl: '/partials/fellowship/main/ocfc-landing-page', controller: 'SignupCtrl'})
+		.when('/', {templateUrl: '/partials/fellowship/main/landing-page', controller: 'SignupCtrl'})
 		.when('/admin/users', {templateUrl: '/partials/admin/user-list', controller: 'UserListCtrl', resolve: routeRoleChecks.admin})
 		.when('/signup', {templateUrl: '/partials/account/signup', controller: 'SignupCtrl'})
 		.when('/signin', {templateUrl: '/partials/account/signin', controller: 'SignupCtrl'})
@@ -56,7 +56,8 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 		.when('/ocfcAdmin/', {templateUrl: '/partials/fellowship/admin/ocfc-admin', controller: 'ApprvFellowCtrl'})
 		.when('/fellowship/:id/event/', {templateUrl: '/partials/calendar/event', controller: 'EventCtrl'})
 		.when('/fellowship/:id/photo', {templateUrl: '/partials/fellowship/event/fellow-photo', controller: 'FellowPhotoCtrl'})
-		.when('/fellowshipResources/:id/resource', {templateUrl: '/partials/fellowship/resource/fellow-resource', controller: 'FellowResourceCtrl'});
+		.when('/fellowshipResources/:id/resource', {templateUrl: '/partials/fellowship/resource/fellow-resource', controller: 'FellowResourceCtrl'})
+		.when('/church/:id', {templateUrl: '/partials/fellowship/main/church', controller: 'ChurchCtrl'});
 });
 
 //execute after above code to re-route path after rejection
