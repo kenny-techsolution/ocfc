@@ -6,19 +6,6 @@ angular.module('app').controller('FellowshipCtrl', function ($http, $scope,
                                                              PostSvc, EventSvc,TransformSvc, mySocket, $timeout) {
 
 
-	console.log('chk $scope.userId');
-	console.log($scope.userId);
-
-	$scope.fellowship = FellowshipSvc.get(
-		{
-			_id: $routeParams.id}
-		//below parameter is a callback, 1st parameter must be met
-		, function () {
-		}
-	);
-
-	console.log('chk $scope.fellowship');
-	console.log($scope.fellowship);
 
 
 });

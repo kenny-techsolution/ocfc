@@ -9,8 +9,9 @@
 angular.module('app').factory('FellowshipUserSvc', function ($resource) {
 	// rest api standard, for GET, if id is specified, it will grab specific
 	// user by id
-	var fellowshipUserResource = $resource('/api/fellowships/:fellowship_id/users', {
-		fellowship_id: '@id'
+	var fellowshipUserResource = $resource('/api/fellowships/:fellowship_id/users/:user_id', {
+		fellowship_id: '@fellowship_id',
+		user_id:'@user_id'
 	}, {
 		'update': {
 			method: 'PUT',
@@ -21,6 +22,5 @@ angular.module('app').factory('FellowshipUserSvc', function ($resource) {
 			params: {}
 		}
 	});
-
 	return fellowshipUserResource;
 });
