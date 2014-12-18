@@ -5,5 +5,5 @@ form.form-horizontal(name="signinForm" ng-controller='SignupCtrl')
 		span
 			input(type='radio', name='rememberMe', value='Remember me',ng-model='rememberMe')
 			label Remember me
-		button Sign in
+		button(ng-click="signin(email,password)") Sign in
 

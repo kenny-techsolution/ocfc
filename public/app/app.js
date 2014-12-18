@@ -42,6 +42,8 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 	//4.29.2014, updated code to include churchAdmin and worldAdmin
 	$locationProvider.html5Mode(true);
 	$routeProvider.when('/', {templateUrl: '/partials/main/main', controller: 'MainCtrl'})
+		//12.18.2014 added
+		.when('/', {templateUrl: '/partials/fellowship/main/ocfc-landing-page', controller: 'SignupCtrl'})
 		.when('/admin/users', {templateUrl: '/partials/admin/user-list', controller: 'UserListCtrl', resolve: routeRoleChecks.admin})
 		.when('/signup', {templateUrl: '/partials/account/signup', controller: 'SignupCtrl'})
 		.when('/signin', {templateUrl: '/partials/account/signin', controller: 'SignupCtrl'})
