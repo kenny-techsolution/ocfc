@@ -177,7 +177,7 @@
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z111"></relationship>
     </object>
     <object type="LMREQUEST" id="z113">
-        <attribute name="body" type="string">[{"data":{"keyValues":[["username","ch@gmail.com",true],["password","yo",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["username","yoyocicada@gmail.com",true],["password","yo",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">6726CC3D-8869-4BE9-A226-9C418D238C40</attribute>
         <attribute name="url" type="string">http://localhost:3030/login</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
@@ -1432,7 +1432,7 @@
     </object>
     <object type="LMREQUEST" id="z217">
         <attribute name="uuid" type="string">333DBC0A-0D67-4885-AF93-184CEFCFF21B</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/fellowships/5475549cb8733c5d864688ea/users/</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/fellowships/54913941aa6f4e0000642ae6/users/</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>

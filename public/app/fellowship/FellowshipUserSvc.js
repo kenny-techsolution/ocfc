@@ -13,11 +13,20 @@ angular.module('app').factory('FellowshipUserSvc', function ($resource) {
 		fellowship_id: '@fellowship_id',
 		user_id:'@user_id'
 	}, {
+		'getNewFriends':{
+			method: 'GET',
+			isArray: true,
+			params:{numOfMth:1}
+		},
+		'getAllMembers':{
+			method: 'GET',
+			isArray: true
+		},
 		'update': {
 			method: 'PUT',
 			isArray: false
 		},
-		'delete_fellowUsers': {
+		'deleteFellowUsers': {
 			method: 'DELETE',
 			params: {}
 		}

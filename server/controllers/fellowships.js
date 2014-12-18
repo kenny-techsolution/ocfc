@@ -198,9 +198,9 @@ exports.getUsersFromFellowship = function (req, res) {
 	console.log(req.query);
 
 	if (_.isEmpty(req.query)){
-		FellowshipUser.find({fellowshipId: req.params.fellowship_id, status: 'approved'}).populate("userId").exec(function (err, fellowshipUser) {
+		FellowshipUser.find({fellowshipId: req.params.fellowship_id, status: 'approved'}).populate("userId").exec(function (err, fellowshipUsers) {
 			if (err) return res.json(err);
-			return res.json({status: "success", fellowshipUsers: _.pluck(fellowshipUser, 'userId')});
+			return res.json(fellowshipUsers);
 		});
 	}else{
 
@@ -214,11 +214,9 @@ exports.getUsersFromFellowship = function (req, res) {
 		//search signupDate in FellowshipUser table by fellowshipId
 		//where signupDate & status is approved is within 1mth of current date
 		//display signupDate and user full name from User table by userId
-		FellowshipUser.find({fellowshipId: req.params.fellowship_id, status: 'approved',signupDate:{$gt:joinedDate}}).populate("userId").exec(function (err, queryFellowshipUser) {
-			console.log('chk queryFellowshipUser');
-			console.log(queryFellowshipUser);
+		FellowshipUser.find({fellowshipId: req.params.fellowship_id, status: 'approved',signupDate:{$gt:joinedDate}}).populate("userId").exec(function (err, queryFellowshipUsers) {
 			if (err) return res.json(err);
-			return res.json({status:"success",queryFellowshipUser:queryFellowshipUser});
+			return res.json(queryFellowshipUsers);
 		});
 	}
 

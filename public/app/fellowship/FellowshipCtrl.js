@@ -6,7 +6,6 @@ angular.module('app').controller('FellowshipCtrl', function ($http, $scope,
                                                              PostSvc, EventSvc,TransformSvc, mySocket, $timeout) {
 
 
-
-
+console.log('chk FellowshipCtrl');
 });
 

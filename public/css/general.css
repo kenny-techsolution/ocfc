@@ -520,6 +520,7 @@ body {
   vertical-align: top;
   margin-top: 14px;
   color: #000;
+  margin-right: 4px;
 }
 #main-content .dynamic-content .left-sidebar .new-friend .wrapper .new-friend-desc .desc-section .date {
   font-size: 10px;
@@ -530,7 +531,7 @@ body {
 }
 #main-content .dynamic-content .left-sidebar .members {
   width: 100%;
-  height: 200px;
+  color: #000;
 }
 #main-content .dynamic-content .left-sidebar .members img {
   width: 45px;

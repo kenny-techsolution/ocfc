@@ -6,11 +6,7 @@ angular.module('app').directive('ocfcNewFriend', function (FellowshipUserSvc,$ro
 		$scope: {}, //isolated scope
 		templateUrl: '/partials/fellowship/main/ocfc-new-friend',
 		controller: function ($scope) {
-
-			console.log('chk $routeParams.fellowship_id');
-			console.log($routeParams.id);
-
-			$scope.fellowshipUsers = FellowshipUserSvc.get(
+			$scope.fellowshipUsers = FellowshipUserSvc.getNewFriends(
 				{
 					fellowship_id: $routeParams.id
 				}
