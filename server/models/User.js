@@ -12,10 +12,8 @@ var mongoose = require('mongoose'),
 	encrypt = require('../utilities/encryption');
 
 //add hometown. seeker and christian
-//combine firstname and lastname to fullname
 var userSchema = mongoose.Schema({
-	firstName: 	{type: String, required: '(firstName) is required!', index: true, unique: false,lowercase: true},
-	lastName: 	{type: String, required: '(lastName) is required!', index: true, unique: false,lowercase: true},
+	fullName: 	{type: String, required: '(fullName) is required!', index: true, unique: false,lowercase: true},
 	userName: 	{type: String, required: '(userName uses email) is required!', index: true, unique: true,lowercase: true},
 	hashedPwd: 	{type: String, required: '(hashedPwd) is required!',index: true, unique: false,lowercase: true, select: false},
 	salt: 		{type: String, required: '(salt) is required!',index: true, unique: true, select: false},

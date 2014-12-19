@@ -20,16 +20,19 @@ angular.module('app').controller('SignupCtrl', function ($scope, UserSvc, Notifi
 			};
 
 			$scope.signup = function () {
+				var birthday = new Date($scope.year, $scope.month-1, $scope.day);
+
 				var newUserData = {
-					firstName: $scope.fname,
-					lastName: $scope.lname,
+					fullName: $scope.fullName,
 					userName: $scope.email,
 					password: $scope.password,
-					birthday: {month: $scope.month,
-						day: $scope.day,
-						year: $scope.year},
+					birthday: birthday,
 					gender: $scope.gender
 				};
+
+				console.log('chk newUserData');
+				console.log(newUserData);
+				return;
 
 				//newUser creates new instance of UserSvc service resource object
 				//it then gets saved & data is passed into IdentitySvc.currentUser
