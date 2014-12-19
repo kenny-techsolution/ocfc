@@ -24,8 +24,8 @@ var albums = require('../controllers/albums'),
 	/*--Others--*/
 	auth = require('./auth'),
 	eventsOld = require('../controllers/events-old'),
-	cloudinary = require('cloudinary');
-
+	cloudinary = require('cloudinary'),
+	sendgrid  = require('sendgrid')('yoyocicada', 'SendGrid1006');
 
 module.exports = function (app, io) {
 	/* ------ Socket IO setup -------- */
@@ -190,6 +190,22 @@ module.exports = function (app, io) {
 	});
 
 	// middleware will authenticate user
+	app.post('/signup',function(req, res){
+		console.log("/signup");
+		sendgrid.send({
+			to : 'yoyocicada@gmail.com',
+			from : 'support@onechurchforchrist.org',
+			subject : 'test ocfc email verification',
+			text : 'this is to confirm you try to join us!!!!'
+		}, function(err, json) {
+			if (err) {
+				return res.json(err);
+			}
+			return res.json(json);
+		});
+
+	});
+
 	app.post('/login',auth.authenticate);
 
 	app.post('/logout',function(req,res){
