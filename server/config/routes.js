@@ -191,6 +191,7 @@ module.exports = function (app, io) {
 
 	// middleware will authenticate user
 	app.post('/signup',function(req, res){
+		//
 		console.log("/signup");
 		sendgrid.send({
 			to : 'yoyocicada@gmail.com',
