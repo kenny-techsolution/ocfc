@@ -9,10 +9,29 @@
  *************** ************************************************************************/
 
 angular.module('app').controller('SignupCtrl', function ($scope, UserSvc, NotifierSvc, $location, AuthSvc) {
+
 			$scope.signin = function (username, password) {
 				AuthSvc.authenticateUser(username, password).then(function (success) {
 					if (success) {
 						NotifierSvc.notify('You have successfully signed in!');
+						//chk activation table if entry exist given userId
+						$http.get('/api/activate?&userId='+$routeParams.id).
+							success(function(data, status, headers, config) {
+								// this callback will be called asynchronously
+								// when the response is available
+								console.log('userId exist in Activation tbl');
+							}).
+							error(function(data, status, headers, config) {
+								// called asynchronously if an error occurs
+								// or server returns response with an error status.
+								console.log('userId not found in Activation tbl');
+							});
+
+
+
+
+						//if true then bring up first time setup screen
+						//else bring user to personal page
 					} else {
 						NotifierSvc.notify('Username/Password combination incorrect');
 					}
@@ -29,10 +48,6 @@ angular.module('app').controller('SignupCtrl', function ($scope, UserSvc, Notifi
 					birthday: birthday,
 					gender: $scope.gender
 				};
-
-				console.log('chk newUserData');
-				console.log(newUserData);
-				return;
 
 				//newUser creates new instance of UserSvc service resource object
 				//it then gets saved & data is passed into IdentitySvc.currentUser

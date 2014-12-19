@@ -1,0 +1,8 @@
+#first-timer-content
+	.activate-success(ng-show="display")
+		.first-timer-section
+			img(ng-src='/css/images/ocfc_logo.png')
+			.label Your account has been activated, please sign in
+		.well(ng-include="'/partials/account/signin/signin'")
+	.activate-failure(ng-show="!display")
+		h1 Your activation did not work, please try again.

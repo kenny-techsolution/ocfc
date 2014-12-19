@@ -11,6 +11,7 @@ hasRole:  injects role to check if role value exist
 var mongoose = require('mongoose'),
 	encrypt = require('../utilities/encryption');
 
+
 //add hometown. seeker and christian
 var userSchema = mongoose.Schema({
 	fullName: 	{type: String, required: '(fullName) is required!', index: true, unique: false,lowercase: true},
@@ -24,7 +25,7 @@ var userSchema = mongoose.Schema({
 	about:		{type: String, index: false, unique: false,lowercase: true},
 	place: 		{type: String, unique: false,lowercase: true},
 	coordinates:[{type: Number,index: true, unique: false,lowercase: true}],
-	language: 	{type: String, required:'(language) is required!', index: true, unique: false,lowercase: true},
+	language: 	{type: String, index: true, unique: false,lowercase: true},
 	passReset:	{type: String, index: false, unique: false,lowercase: true, select: false},
 	resetOn:	{type: Date,index: false, unique: false,lowercase: true, select: false,default: Date.now},
 	active:     {type: Boolean,index: false, unique: false, select: false,default:true}
@@ -47,6 +48,7 @@ userSchema.methods = {
 };
 
 var User = mongoose.model('User', userSchema);
+
 //Create pre-populated or default dummy data
 function createDefaultUsers() {
 	User.find({}).exec(function (err, collection) {

@@ -214,6 +214,7 @@ body {
   margin-left: 4px;
   margin-bottom: 0px;
   vertical-align: super;
+  color: #000;
 }
 #signinSection button {
   padding-right: 9px;
@@ -609,4 +610,36 @@ body {
   color: #000;
   position: absolute;
   right: 14px;
+}
+#first-timer-content {
+  width: 980px;
+  height: 300px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 60px;
+}
+#first-timer-content .activate-success .first-timer-section {
+  margin-bottom: 5px;
+}
+#first-timer-content .activate-success .first-timer-section img {
+  width: 25px;
+  height: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+#first-timer-content .activate-success .first-timer-section .label {
+  color: #000;
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+}
+#first-timer-content .activate-success .well {
+  width: 270px;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
 }

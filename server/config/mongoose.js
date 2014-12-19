@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
 	userModel = require('../models/User'),//4.30.2014, added new model for members who joined a fellowship
-	userModel= require('../models/User'),
+	activationModel= require('../models/Activation'),
 	fellowModel = require('../models/Fellowship'),
 	churchModel = require('../models/Church'),
 	fellowUserModel = require('../models/FellowshipUser'),

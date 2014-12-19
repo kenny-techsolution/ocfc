@@ -24,8 +24,7 @@ var albums = require('../controllers/albums'),
 	/*--Others--*/
 	auth = require('./auth'),
 	eventsOld = require('../controllers/events-old'),
-	cloudinary = require('cloudinary'),
-	sendgrid  = require('sendgrid')('yoyocicada', 'SendGrid1006');
+	cloudinary = require('cloudinary');
 
 module.exports = function (app, io) {
 	/* ------ Socket IO setup -------- */
@@ -43,6 +42,8 @@ module.exports = function (app, io) {
 	app.put('/api/users/update_profile_image', users.updateProfileImage);
 	app.get('/api/users/:id/reset_password', users.resetPassword);
 	app.put('/api/eventParticipation/:event_id', users.updateEventParticipation);
+	app.get('/api/activate',users.activateUser);
+	app.get('/api/activate',users.getActivation);
 
 	/* ------ Fellowship related API -------- */
 	app.post('/api/fellowships', fellowships.createFellowship);
@@ -190,22 +191,7 @@ module.exports = function (app, io) {
 	});
 
 	// middleware will authenticate user
-	app.post('/signup',function(req, res){
-		//
-		console.log("/signup");
-		sendgrid.send({
-			to : 'yoyocicada@gmail.com',
-			from : 'support@onechurchforchrist.org',
-			subject : 'test ocfc email verification',
-			text : 'this is to confirm you try to join us!!!!'
-		}, function(err, json) {
-			if (err) {
-				return res.json(err);
-			}
-			return res.json(json);
-		});
-
-	});
+	app.post('/signup',users.signup);
 
 	app.post('/login',auth.authenticate);
 

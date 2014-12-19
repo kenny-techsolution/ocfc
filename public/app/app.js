@@ -44,8 +44,9 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 	$routeProvider.when('/', {templateUrl: '/partials/main/main', controller: 'MainCtrl'})
 		//12.18.2014 added
 		.when('/', {templateUrl: '/partials/account/access/landing-page', controller: 'SignupCtrl'})
-		.when('/signup', {templateUrl: '/partials/account/signup', controller: 'SignupCtrl'})
-		.when('/signin', {templateUrl: '/partials/account/signin', controller: 'SignupCtrl'})
+//		.when('/signup', {templateUrl: '/partials/account/signup/signup', controller: 'SignupCtrl'})
+//		.when('/signin', {templateUrl: '/partials/account/signin/signin', controller: 'SignupCtrl'})
+		.when('/activate/:activateCode/userId/:id/email/:email', {templateUrl: '/partials/account/activate', controller: 'ActivateCtrl'})
 		.when('/profile', {templateUrl: '/partials/account/profile/profile', controller: 'ProfileCtrl', resolve: routeRoleChecks.user})
 		.when('/fellowship/:id', {templateUrl: '/partials/fellowship/fellowship', controller: 'FellowshipCtrl'})
 		.when('/church/:id', {templateUrl: '/partials/church/church', controller: 'ChurchCtrl'});

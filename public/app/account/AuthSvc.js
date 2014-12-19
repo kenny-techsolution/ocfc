@@ -31,8 +31,9 @@ angular.module('app').factory('AuthSvc', function ($http, IdentitySvc, $q, UserS
 					var user = new UserSvc();
 					angular.extend(user, response.data.user);
 					IdentitySvc.currentUser = user;
-					console.log("oosjdofijasodifjasdf");
-					console.log(IdentitySvc.currentUser.isAdmin());
+					console.log("authenticateUser has been called in AuthSvc");
+					console.log("chk currentUser");
+					console.log(IdentitySvc.currentUser);
 					dfd.resolve(true);
 				} else {
 					dfd.resolve(false);
