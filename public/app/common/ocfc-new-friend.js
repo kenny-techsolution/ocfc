@@ -4,7 +4,7 @@ angular.module('app').directive('ocfcNewFriend', function (FellowshipUserSvc,$ro
 		restrict: 'E',
 		replace: true,
 		$scope: {}, //isolated scope
-		templateUrl: '/partials/fellowship/main/ocfc-new-friend',
+		templateUrl: '/partials/common/ocfc-new-friend',
 		controller: function ($scope) {
 			$scope.fellowshipUsers = FellowshipUserSvc.getNewFriends(
 				{

@@ -3,7 +3,7 @@ angular.module('app').directive('ocfcAnnouncement', function () {
 	return{
 		restrict: 'E',
 		$scope: true,
-		templateUrl: '/partials/fellowship/main/ocfc-announcement',
+		templateUrl: '/partials/common/ocfc-announcement',
 		controller: function () {
 		}
 	};
