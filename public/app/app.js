@@ -43,21 +43,12 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 	$locationProvider.html5Mode(true);
 	$routeProvider.when('/', {templateUrl: '/partials/main/main', controller: 'MainCtrl'})
 		//12.18.2014 added
-		.when('/', {templateUrl: '/partials/fellowship/main/landing-page', controller: 'SignupCtrl'})
-		.when('/admin/users', {templateUrl: '/partials/admin/user-list', controller: 'UserListCtrl', resolve: routeRoleChecks.admin})
+		.when('/', {templateUrl: '/partials/account/access/landing-page', controller: 'SignupCtrl'})
 		.when('/signup', {templateUrl: '/partials/account/signup', controller: 'SignupCtrl'})
 		.when('/signin', {templateUrl: '/partials/account/signin', controller: 'SignupCtrl'})
 		.when('/profile', {templateUrl: '/partials/account/profile/profile', controller: 'ProfileCtrl', resolve: routeRoleChecks.user})
-		.when('/joinFellow', {templateUrl: '/partials/fellowship/join/join-fellow', controller: 'JoinFellowCtrl'})
-		.when('/fellowship/:id', {templateUrl: '/partials/fellowship/main/fellowship', controller: 'FellowshipCtrl'})
-		.when('/fellowship/:id/members', {templateUrl: '/partials/fellowship/member/member', controller: 'MemberCtrl'})
-		.when('/fellowship/:id/wall/', {templateUrl: '/partials/fellowship/wall/wall', controller: 'FellowshipCtrl'})
-		.when('/createFellow/', {templateUrl: '/partials/fellowship/create/create-fellow', controller: 'CreateFellowCtrl'})
-		.when('/ocfcAdmin/', {templateUrl: '/partials/fellowship/admin/ocfc-admin', controller: 'ApprvFellowCtrl'})
-		.when('/fellowship/:id/event/', {templateUrl: '/partials/calendar/event', controller: 'EventCtrl'})
-		.when('/fellowship/:id/photo', {templateUrl: '/partials/fellowship/event/fellow-photo', controller: 'FellowPhotoCtrl'})
-		.when('/fellowshipResources/:id/resource', {templateUrl: '/partials/fellowship/resource/fellow-resource', controller: 'FellowResourceCtrl'})
-		.when('/church/:id', {templateUrl: '/partials/fellowship/main/church', controller: 'ChurchCtrl'});
+		.when('/fellowship/:id', {templateUrl: '/partials/fellowship/fellowship', controller: 'FellowshipCtrl'})
+		.when('/church/:id', {templateUrl: '/partials/church/church', controller: 'ChurchCtrl'});
 });
 
 //execute after above code to re-route path after rejection

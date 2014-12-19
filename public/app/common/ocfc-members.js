@@ -4,7 +4,7 @@ angular.module('app').directive('ocfcMembers', function (FellowshipUserSvc,$rout
 		restrict: 'E',
 		$scope: {},
 		replace: true,
-		templateUrl: '/partials/fellowship/main/ocfc-members',
+		templateUrl: '/partials/common/ocfc-members',
 		controller: function ($scope) {
 			$scope.fellowshipUsers = FellowshipUserSvc.getAllMembers(
 				{
