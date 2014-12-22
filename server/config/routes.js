@@ -149,11 +149,15 @@ module.exports = function (app, io) {
 
 	/*------Cloudinary Image Signing------ */
 	app.get('/cloudinarySigned', function(req, res){
-		var params = cloudinary.utils.sign_request({
+		if (req.query.type==="avatar"){
+			configurationObj={
 			timestamp: cloudinary.utils.timestamp(),
-			transformation: "c_limit,h_70,w_70",
-			format: "jpg"
-			},
+			transformation: "c_limit,h_168,w_168",
+			format: "jpg",
+			public_id:req.user._id+'avatar'
+			};
+		}
+		var params = cloudinary.utils.sign_request(configurationObj,
 			{
 				api_key: "399137143626587",
 				api_secret: "royt6Nw2fVrbRtdwT_mjmDP7CkE"
