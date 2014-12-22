@@ -4,7 +4,7 @@ angular.module('app').controller('firstTimerCtrl', function ($timeout,$animate, 
 		return $animate.enabled(false, angular.element(".carousel"));
 	});
 	$scope.cloudinarySignedParams;
-	$http.get("/cloudinarySigned").success(function(data){
+	$http.get("/cloudinarySigned?type=avatar").success(function(data){
 		$scope.cloudinarySignedParams = data;
 		console.log($.cloudinary.config());
 
@@ -31,6 +31,12 @@ angular.module('app').controller('firstTimerCtrl', function ($timeout,$animate, 
 			$rootScope.photos.push(data);
 			$scope.backgroundImgPath = 'url('+data.url+')';
 			$scope.$apply();
+			//call and update image on user table
+			$http.put('/api/users/update_profile_image',{profileImg:data.url}).success(function(){
+				console.log('image updated');
+			}).error(function(){
+				console.log('image update failed');
+			});
 		});
 	};
 

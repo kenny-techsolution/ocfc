@@ -131,6 +131,7 @@ exports.deleteUser=function (req, res) {
 
 //Put - Round1
 exports.updateProfileImage=function (req, res) {
+	console.log('updateProfileImage is being called');
 	var user={profileImg: req.body.profileImg};
 	// Strip tags and decode HTML entities to prevent hacking
 	//TODO image validation needed

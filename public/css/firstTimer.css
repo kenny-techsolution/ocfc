@@ -1,0 +1,41 @@
+#first-timer .upload-profile-img {
+  width: 440px;
+}
+#first-timer .skip {
+  line-height: 30px;
+  height: 30px;
+}
+#first-timer .img-container {
+  padding-right: 0px;
+}
+#first-timer .img-container .img {
+  background-image: url("./images/default_avator.jpeg");
+  background-size: 70px 70px;
+  height: 70px;
+  width: 70px;
+  margin-top: 1px;
+}
+#first-timer .progress {
+  background-color: #4169e1;
+  height: 3px;
+  width: 0%;
+  margin-top: 15px;
+  margin-left: 30px;
+}
+.jumbotron.vertical-center {
+  margin-bottom: 0px;
+  width: 100%;
+  height: 100%;
+}
+.vertical-center {
+  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.text-black {
+  color: #000;
+}
+.instruction-label {
+  margin-top: 2px;
+}
