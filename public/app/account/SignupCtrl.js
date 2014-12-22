@@ -8,30 +8,38 @@
  Checks data against AuthSvc.js to insure data is correct
  *************** ************************************************************************/
 
-angular.module('app').controller('SignupCtrl', function ($scope, UserSvc, NotifierSvc, $location, AuthSvc) {
+angular.module('app').controller('SignupCtrl', function ($scope,$http,$routeParams,$location,IdentitySvc,UserSvc, NotifierSvc, $location, AuthSvc) {
 
 			$scope.signin = function (username, password) {
 				AuthSvc.authenticateUser(username, password).then(function (success) {
 					if (success) {
 						NotifierSvc.notify('You have successfully signed in!');
 						//chk activation table if entry exist given userId
-						$http.get('/api/activate?&userId='+$routeParams.id).
+						console.log('chk IdentitySvc.currentUser._id');
+						console.log(IdentitySvc.currentUser._id);
+						$http.get('/api/getActivation?&userId='+IdentitySvc.currentUser._id).
 							success(function(data, status, headers, config) {
 								// this callback will be called asynchronously
 								// when the response is available
-								console.log('userId exist in Activation tbl');
+								console.log('userId is successful, chk data');
+								console.log(data);
+								//then re-direct first time setup screen
+								console.log('chk underscore');
+								console.log(_);
+								if (_.isEmpty(data)){
+									$location.url('/personal');
+								}else{
+									$location.url('/firstTimer');
+								}
+
 							}).
 							error(function(data, status, headers, config) {
 								// called asynchronously if an error occurs
 								// or server returns response with an error status.
 								console.log('userId not found in Activation tbl');
+
 							});
 
-
-
-
-						//if true then bring up first time setup screen
-						//else bring user to personal page
 					} else {
 						NotifierSvc.notify('Username/Password combination incorrect');
 					}

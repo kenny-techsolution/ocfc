@@ -1,0 +1,25 @@
+#first-timer
+	carousel(interval="-1")
+		slide
+			.jumbotron.vertical-center
+				.container.upload-profile-img
+					.row
+						.col-xs-3.img-container
+							.img.pull-right(ng-style="{'background-image':backgroundImgPath}")
+						.col-xs-9.container
+							.row
+								.instruction.col-xs-12
+									h3.instruction-label.text-black Upload Your Profile Picture
+							.row
+								.col-xs-5
+									button.btn.btn-sm.btn-primary(href='#', ng-file-select='onFileSelect($files)', data-multiple='false', title='profile', onclick='this.value = null') Choose your photo
+								.col-xs-7
+									a.skip.pull-left Skip this and do later >
+					.row
+						.progress(ng-style="{'width':progress +'%'}")
+		slide
+			.jumbotron.vertical-center
+				.container.upload-profile-img
+					.row
+						.col-xs-12
+							h2.instruction-label.text-black Welcome Kenny Chung!

@@ -43,7 +43,7 @@ module.exports = function (app, io) {
 	app.get('/api/users/:id/reset_password', users.resetPassword);
 	app.put('/api/eventParticipation/:event_id', users.updateEventParticipation);
 	app.get('/api/activate',users.activateUser);
-	app.get('/api/activate',users.getActivation);
+	app.get('/api/getActivation',users.getActivation);
 
 	/* ------ Fellowship related API -------- */
 	app.post('/api/fellowships', fellowships.createFellowship);
@@ -151,7 +151,7 @@ module.exports = function (app, io) {
 	app.get('/cloudinarySigned', function(req, res){
 		var params = cloudinary.utils.sign_request({
 			timestamp: cloudinary.utils.timestamp(),
-			transformation: "c_limit,h_40,w_40",
+			transformation: "c_limit,h_70,w_70",
 			format: "jpg"
 			},
 			{

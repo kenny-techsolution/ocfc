@@ -68,6 +68,9 @@ exports.activateUser=function(req,res){
 	console.log(req.query);
 	Activation.findOne({activationCode:req.query.activationCode, userId:req.query.userId},function(err,activation){
 		if (err) return res.json(err);
+		if (_.isEmpty(activation)){
+			return 	res.json({status: "activation is empty", activation:actiation})
+		}
 		console.log('chk activation');
 		console.log(activation);
 		User.update({_id:activation.userId},{active:true},function(err,numberAffected,raw){
@@ -84,11 +87,14 @@ exports.getActivation=function(req,res){
 	//Then grab userId and match against User tbl to set Active to true
 	console.log('chk req.query');
 	console.log(req.query);
-	Activation.findOne({userId:req.query.userId},function(err,getActivation){
+	Activation.findOne({userId:req.query.userId},function(err,activation){
 		if (err) return res.json(err);
-		console.log('chk getActivation');
-		console.log(getActivation);
-		return res.json({status: "success call on getActivation", getActivation:getActivation});
+		if (_.isEmpty(activation)){
+			return res.send({});
+		}
+		console.log('chk activation');
+		console.log(activation);
+		return res.json({status: "success call on activation", activation:activation});
 
 	});
 

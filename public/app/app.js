@@ -3,7 +3,10 @@
 angular.module('app',['ngResource','ngRoute', 'ui.bootstrap','ngAnimate','btford.socket-io','cloudinary','angularFileUpload']).
 factory('mySocket', function (socketFactory) {
 	return socketFactory();
+	}).factory('_', function() {
+		return window._; // assumes underscore has already been loaded on the page
 	});
+
 //must move above factory into a separate service during refactoring
 
 //4.29.2014, updated code to include churchAdmin and worldAdmin authorization
@@ -47,6 +50,7 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 //		.when('/signup', {templateUrl: '/partials/account/signup/signup', controller: 'SignupCtrl'})
 //		.when('/signin', {templateUrl: '/partials/account/signin/signin', controller: 'SignupCtrl'})
 		.when('/activate/:activateCode/userId/:id/email/:email', {templateUrl: '/partials/account/activate', controller: 'ActivateCtrl'})
+		.when('/firstTimer', {templateUrl: '/partials/firstTimer/first-timer', controller: 'firstTimerCtrl'})
 		.when('/profile', {templateUrl: '/partials/account/profile/profile', controller: 'ProfileCtrl', resolve: routeRoleChecks.user})
 		.when('/fellowship/:id', {templateUrl: '/partials/fellowship/fellowship', controller: 'FellowshipCtrl'})
 		.when('/church/:id', {templateUrl: '/partials/church/church', controller: 'ChurchCtrl'});
