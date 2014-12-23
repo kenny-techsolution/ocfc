@@ -1,16 +1,23 @@
 * {
   font-family: Helvetica, sans-serif;
 }
+html,
 body {
-  background-image: url("./images/group_study_wp.jpeg");
   color: #fff;
+  background-color: transparent;
+  height: 100%;
+}
+html #wrapper,
+body #wrapper {
+  height: 100%;
 }
 [ngcloak],
 [ng-cloak],
 .ng-cloak {
   display: none !important;
 }
-input.form-control {
+input.form-control,
+input:-webkit-autofill {
   background-color: #dddcdc;
   border-radius: 0px;
   height: 34px;
@@ -20,8 +27,24 @@ input.form-control {
 }
 input.form-control:focus {
   border: none;
-  border-left: 4px solid #00adcc;
+  border-left: 4px solid #428bca;
   box-shadow: none;
+}
+button.btn {
+  font-size: 10px;
+  padding: 10px 25px;
+  border-radius: 0px;
+  border: none;
+}
+.dropdown button {
+  background-color: #dddcdc;
+  display: inline-block;
+  padding: 10px;
+  width: 100%;
+}
+.dropdown button .caret {
+  float: right;
+  margin-top: 5px;
 }
 #global-header {
   position: fixed;
