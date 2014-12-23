@@ -39,5 +39,15 @@ angular.module('app').controller('firstTimerCtrl', function ($timeout,$animate, 
 			});
 		});
 	};
+	//After user completes first timer setup,
+	//he will not be redirected to this page again
+	$scope.deleteUserFromValidation=function(){
+		$http.delete('/api/activate').success(function(){
+			console.log('user successfully deleted from Validation dataset');
+			$location.url('/personal');
+		}).error(function(){
+			console.log('user removal failed');
+		});
+	};
 
 });

@@ -10,7 +10,7 @@ var User = require('mongoose').model('User'),
 	randomString=require('random-string');
 
 
-var sendActivation=function(email,activationCode,res){
+var sendActivation=function(email,activationCode,res,userId){
 	console.log('chk email');
 	console.log(email);
 	var activateEmail=new sendgrid.Email({to:email});
@@ -44,10 +44,10 @@ exports.createUser=function (req, res) {
 	});
 	user.salt = salt;
 	user.hashedPwd = encrypt.hashPwd(salt, user.password);
-	sendActivation(user.userName,activationCode,res);
 	user = new User(user);
 	user.save(function (err) {
 		if (err) return res.json(err);
+		sendActivation(user.userName,activationCode,res,user._id);
 		var membership=new Membership({userId:user._id});
 		membership.save(function(err){
 			if (err) return res.json(err);
@@ -55,9 +55,9 @@ exports.createUser=function (req, res) {
 			activation.save(function(err){
 				if (err) return res.json(err);
 				return res.json({status:"success",user:user});
-			})
+			});
 		});
-	})
+	});
 };
 
 
@@ -100,7 +100,12 @@ exports.getActivation=function(req,res){
 
 };
 
-
+exports.deleteUserFromActivation=function(req,res){
+	Activation.findOneAndRemove({userId: req.user._id}, function (err) {
+		if (err) return res.json(err);
+		return res.json({status: "successfully removed user from Activation dataset"});
+	});
+};
 
 //Put - Round1
 exports.updateUser=function (req, res) {

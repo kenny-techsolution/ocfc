@@ -44,6 +44,7 @@ module.exports = function (app, io) {
 	app.put('/api/eventParticipation/:event_id', users.updateEventParticipation);
 	app.get('/api/activate',users.activateUser);
 	app.get('/api/getActivation',users.getActivation);
+	app.delete('/api/activate',users.deleteUserFromActivation);
 
 	/* ------ Fellowship related API -------- */
 	app.post('/api/fellowships', fellowships.createFellowship);

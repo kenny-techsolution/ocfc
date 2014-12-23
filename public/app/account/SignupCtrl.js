@@ -48,7 +48,6 @@ angular.module('app').controller('SignupCtrl', function ($scope,$http,$routePara
 
 			$scope.signup = function () {
 				var birthday = new Date($scope.year, $scope.month-1, $scope.day);
-
 				var newUserData = {
 					fullName: $scope.fullName,
 					userName: $scope.email,
@@ -67,6 +66,6 @@ angular.module('app').controller('SignupCtrl', function ($scope,$http,$routePara
 					}
 					, function (reason) {
 						NotifierSvc.error(reason);
-					})
-			}
+					});
+			};
 });
