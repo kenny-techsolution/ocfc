@@ -2,13 +2,26 @@
   font-family: Helvetica, sans-serif;
 }
 body {
-  background-image: url("./images/binding_light.png");
+  background-image: url("./images/group_study_wp.jpeg");
   color: #fff;
 }
 [ngcloak],
 [ng-cloak],
 .ng-cloak {
   display: none !important;
+}
+input.form-control {
+  background-color: #dddcdc;
+  border-radius: 0px;
+  height: 34px;
+  box-shadow: none;
+  border: none;
+  font-size: 12px;
+}
+input.form-control:focus {
+  border: none;
+  border-left: 4px solid #00adcc;
+  box-shadow: none;
 }
 #global-header {
   position: fixed;

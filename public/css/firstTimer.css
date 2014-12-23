@@ -46,3 +46,37 @@
 .instruction-label {
   margin-top: 2px;
 }
+.glyphicon.glyphicon-chevron-right {
+  color: transparent;
+  text-shadow: none;
+  background-image: url("./images/next.svg");
+  background-size: 30px 40px;
+  width: 30px;
+  height: 40px;
+}
+.glyphicon.glyphicon-chevron-left {
+  color: transparent;
+  text-shadow: none;
+  background-image: url("./images/previous.svg");
+  background-size: 30px 40px;
+  width: 30px;
+  height: 40px;
+}
+.left.carousel-control,
+.left.carousel-control:hover {
+  background: none;
+}
+.right.carousel-control,
+.right.carousel-control:hover {
+  background: none;
+}
+.carousel-indicators li {
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: #999;
+  border: 1px solid #999;
+}
+.carousel-indicators li.active {
+  background-color: #fff;
+  border: 1px solid #08c;
+}

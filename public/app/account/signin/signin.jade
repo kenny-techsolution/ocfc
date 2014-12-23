@@ -1,9 +1,13 @@
 form.form-horizontal(name="signinForm" ng-controller='SignupCtrl')
 	#signinSection
-		input.form-control(name="email",type="email",placeholder="Email as username",ng-model="email",required)
-		input.form-control(name="password",type="password",placeholder="Password",ng-model="password",required)
-		span
-			input(type='radio', name='rememberMe', value='Remember me',ng-model='rememberMe')
-			label Remember me
-		button(ng-click="signin(email,password)") Sign in
-
+		.row
+			.col-xs-12
+				input.form-control(name="email",type="email",placeholder="Email as username",ng-model="email",required)
+			.col-xs-12
+				input.form-control(name="password",type="password",placeholder="Password",ng-model="password",required)
+		.row
+			.col-xs-7.remember-me
+				input(type='checkbox', name='rememberMe', value='Remember me',ng-model='rememberMe')
+				label Remember me
+			.col-xs-5
+				button.btn.btn-primary.pull-right(ng-click="signin(email,password)") Sign in
