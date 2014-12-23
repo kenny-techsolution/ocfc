@@ -1,4 +1,13 @@
-#signupSection {
+#intro-pg {
+  background: url("./images/group_study_wp.jpeg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+#intro-pg .content {
   font-size: 12px;
   width: 850px;
   margin-left: auto;
@@ -7,23 +16,64 @@
   padding-top: 15px;
   color: #696969;
 }
-#signupSection input {
+#intro-pg .content .row {
   margin-bottom: 5px;
 }
-#signupSection span {
-  padding-top: 5px;
+#intro-pg .content .welcome {
+  color: #fff;
+  margin-top: 50px;
 }
-#signupSection span input {
-  font-size: 12px;
-  color: #a9a9a9;
+#intro-pg .content .welcome h2 {
+  font-family: "Myriad Set Pro", "Lucida Grande", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
+}
+#intro-pg .content legend {
+  font-family: "Myriad Set Pro", "Lucida Grande", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
   margin-bottom: 5px;
+  font-size: 18px;
+  padding-bottom: 5px;
 }
-#signupSection span label {
-  font-size: 11px;
-  margin-left: 4px;
-  margin-right: 10px;
-  margin-bottom: 0px;
-  vertical-align: super;
+#intro-pg .content legend span {
+  font-family: "Myriad Set Pro", "Lucida Grande", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
+  font-size: 14px;
+  margin-left: 10px;
+  color: #9b9b9b;
+}
+#intro-pg .content .dropdown {
+  display: inline-block;
+}
+#intro-pg .content .dropdown.month {
+  width: 64px;
+  margin-right: 5px;
+}
+#intro-pg .content .dropdown.date {
+  width: 64px;
+  margin-right: 5px;
+}
+#intro-pg .content .dropdown.year {
+  width: 85px;
+}
+#intro-pg .content .row.forth {
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
+#intro-pg .content .row.last {
+  margin-top: 7px;
+}
+#intro-pg .content .row.last .gender {
+  float: left;
+  display: block;
+  height: 30px;
+  margin-right: 5px;
+}
+#intro-pg .content .row.last .gender input {
+  position: relative;
+  top: 5px;
+}
+#intro-pg .content .row.last .gender label {
+  position: relative;
+  top: 5px;
+  left: 5px;
+  padding-right: 10px;
 }
 #signinSection span {
   padding-top: 5px;
@@ -40,18 +90,27 @@
   vertical-align: super;
   color: #000;
 }
-#signinSection .remember-me {
-  padding-top: 5px;
+#signinSection .row.second .password {
+  float: left;
+  width: 139px;
+}
+#signinSection .row.second button {
+  float: left;
 }
 #signinSection .remember-me label {
-  vertical-align: middle;
-  margin-top: 5px;
+  float: left;
+  margin-top: 3px;
   margin-left: 10px;
 }
 #signinSection .remember-me input {
-  vertical-align: middle;
+  float: left;
   margin-top: 5px;
   margin-left: 0px;
+}
+#signinSection .remember-me a {
+  float: left;
+  margin-top: 3px;
+  margin-left: 10px;
 }
 #ocfcSection {
   text-align: center;
