@@ -8,8 +8,6 @@
   color: #696969;
 }
 #signupSection input {
-  height: 22px;
-  font-size: 12px;
   margin-bottom: 5px;
 }
 #signupSection span {
@@ -42,14 +40,18 @@
   vertical-align: super;
   color: #000;
 }
-#signinSection button {
-  padding-right: 9px;
-  padding-left: 9px;
-  border-radius: 2px;
-  margin-left: 66px;
-  width: 55px;
-  height: 20px;
-  font-size: 10px;
+#signinSection .remember-me {
+  padding-top: 5px;
+}
+#signinSection .remember-me label {
+  vertical-align: middle;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+#signinSection .remember-me input {
+  vertical-align: middle;
+  margin-top: 5px;
+  margin-left: 0px;
 }
 #ocfcSection {
   text-align: center;
