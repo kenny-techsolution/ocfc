@@ -48,7 +48,6 @@ angular.module('app').controller('SignupCtrl', function ($scope,$http,$routePara
 
 			$scope.signup = function () {
 				var birthday = new Date($scope.year, $scope.month-1, $scope.day);
-
 				var newUserData = {
 					fullName: $scope.fullName,
 					userName: $scope.email,
@@ -63,10 +62,10 @@ angular.module('app').controller('SignupCtrl', function ($scope,$http,$routePara
 						console.log('test newUserData dataset for signup');
 						console.log(newUserData);
 						NotifierSvc.notify('User account created!');
-						$location.path('/');
+						$location.path('/registrationComplete');
 					}
 					, function (reason) {
 						NotifierSvc.error(reason);
-					})
-			}
+					});
+			};
 });
