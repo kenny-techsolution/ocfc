@@ -9,9 +9,19 @@ block main-content
 			.gh-tab.explore(href="/",ng-click='exploreDropDown = !exploreDropDown')
 				|Explore
 				span.icon.explore.animate-icon(ng-show="!exploreDropDown")
-				span.icon.cross.animate-icon(ng-show='exploreDropDown' ng-cloak, class="ng-cloak")
-			a.gh-tab.notification(href="/")
-			a.gh-tab.account(href="/")
+				span.icon.cross.animate-icon(ng-show='exploreDropDown', ng-cloak, class="ng-cloak")
+			a.gh-tab.notification(href="/",ng-click='notificationFlyout = !notificationFlyout')
+				.flyout(ng-hide="!notificationFlyout", ng-cloak, class="ng-cloak")
+					.caret.pull-right
+					ul
+						li Your fellowship is approved
+						li xxxxxxxxxxxxxxxx
+			a.gh-tab.account(href="/",ng-click='profileFlyout = !profileFlyout')
+				.flyout(ng-hide="!profileFlyout", ng-cloak, class="ng-cloak")
+					.caret.pull-right
+					ul
+						li Edit profile
+						li Setting
 	#explore-menu.animate-show(ng-show='exploreDropDown' ng-cloak, class="ng-cloak")
 		.em-content(ng-class='{hide: hideExploreContent}')
 			.section.personal

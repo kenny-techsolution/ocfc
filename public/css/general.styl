@@ -169,3 +169,37 @@ input.form-control:focus
 
 .toast-success
 	background-color #13987e
+
+//flyout
+.flyout
+	font-size 12px
+	width 185px
+	position absolute
+	top 47px
+	right -27px
+	border 1px solid #a9a9a9
+	background-color #ffffff
+	border-radius 5px
+	.caret
+		border-right-width 12px
+		border-left-width 12px
+		border-top-width 0
+		border-bottom 10px solid #ffffff
+		position absolute
+		left 127px
+		bottom 68px
+	ul
+		list-style-type none
+		padding-left 0px
+		margin-bottom 0px
+		li
+			font-size 12px
+			display block
+			border-bottom 1px solid #a9a9a9
+			text-align left
+			padding-left 18px
+			padding 9px
+			&:hover
+				background-color rgb(214, 234, 234)
+		li:last-child
+			border-bottom none
