@@ -53,7 +53,8 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 		.when('/firstTimer', {templateUrl: '/partials/firstTimer/first-timer', controller: 'firstTimerCtrl'})
 		.when('/profile', {templateUrl: '/partials/account/profile/profile', controller: 'ProfileCtrl', resolve: routeRoleChecks.user})
 		.when('/fellowship/:id', {templateUrl: '/partials/fellowship/fellowship', controller: 'FellowshipCtrl'})
-		.when('/church/:id', {templateUrl: '/partials/church/church', controller: 'ChurchCtrl'});
+		.when('/church/:id', {templateUrl: '/partials/church/church', controller: 'ChurchCtrl'})
+		.when('/registrationComplete', {templateUrl: '/partials/account/registration-complete', controller: 'RegistrationCompleteCtrl'});
 });
 
 //execute after above code to re-route path after rejection

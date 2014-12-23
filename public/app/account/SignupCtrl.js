@@ -62,7 +62,7 @@ angular.module('app').controller('SignupCtrl', function ($scope,$http,$routePara
 						console.log('test newUserData dataset for signup');
 						console.log(newUserData);
 						NotifierSvc.notify('User account created!');
-						$location.path('/');
+						$location.path('/registrationComplete');
 					}
 					, function (reason) {
 						NotifierSvc.error(reason);
