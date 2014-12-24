@@ -10,7 +10,7 @@ var User = require('mongoose').model('User'),
 	randomString=require('random-string');
 
 
-var sendActivation=function(email,activationCode,res,userId){
+var sendActivation=function(activationCode,res,userId,email){
 	console.log('chk email');
 	console.log(email);
 	var activateEmail=new sendgrid.Email({to:email});
@@ -47,13 +47,15 @@ exports.createUser=function (req, res) {
 	user = new User(user);
 	user.save(function (err) {
 		if (err) return res.json(err);
-		sendActivation(user.userName,activationCode,res,user._id);
+		sendActivation(activationCode,res,user._id,user.userName);
 		var membership=new Membership({userId:user._id});
 		membership.save(function(err){
 			if (err) return res.json(err);
 			var activation=new Activation({userId:user._id,activationCode:activationCode});
 			activation.save(function(err){
 				if (err) return res.json(err);
+				console.log('chk activation obj to see whether it has been saved to database');
+				console.log(activation);
 				return res.json({status:"success",user:user});
 			});
 		});
@@ -69,7 +71,7 @@ exports.activateUser=function(req,res){
 	Activation.findOne({activationCode:req.query.activationCode, userId:req.query.userId},function(err,activation){
 		if (err) return res.json(err);
 		if (_.isEmpty(activation)){
-			return 	res.json({status: "activation is empty", activation:actiation})
+			return 	res.json({status: "activation is empty", activation:activation})
 		}
 		console.log('chk activation');
 		console.log(activation);

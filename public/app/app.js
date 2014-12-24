@@ -45,12 +45,10 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 	//4.29.2014, updated code to include churchAdmin and worldAdmin
 	$locationProvider.html5Mode(true);
 	$routeProvider.when('/', {templateUrl: '/partials/main/main', controller: 'MainCtrl'})
-		//12.18.2014 added
 		.when('/', {templateUrl: '/partials/account/access/landing-page', controller: 'SignupCtrl'})
-//		.when('/signup', {templateUrl: '/partials/account/signup/signup', controller: 'SignupCtrl'})
-//		.when('/signin', {templateUrl: '/partials/account/signin/signin', controller: 'SignupCtrl'})
 		.when('/activate/:activateCode/userId/:id/email/:email', {templateUrl: '/partials/account/activate', controller: 'ActivateCtrl'})
 		.when('/firstTimer', {templateUrl: '/partials/firstTimer/first-timer', controller: 'firstTimerCtrl'})
+		.when('/setting', {templateUrl: '/partials/account/setting/setting', controller: 'SettingCtrl'})
 		.when('/profile', {templateUrl: '/partials/account/profile/profile', controller: 'ProfileCtrl', resolve: routeRoleChecks.user})
 		.when('/fellowship/:id', {templateUrl: '/partials/fellowship/fellowship', controller: 'FellowshipCtrl'})
 		.when('/church/:id', {templateUrl: '/partials/church/church', controller: 'ChurchCtrl'})

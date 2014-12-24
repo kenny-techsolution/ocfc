@@ -10,18 +10,8 @@ block main-content
 				|Explore
 				span.icon.explore.animate-icon(ng-show="!exploreDropDown")
 				span.icon.cross.animate-icon(ng-show='exploreDropDown', ng-cloak, class="ng-cloak")
-			a.gh-tab.notification(href="/",ng-click='notificationFlyout = !notificationFlyout')
-				.flyout(ng-hide="!notificationFlyout", ng-cloak, class="ng-cloak")
-					.caret.pull-right
-					ul
-						li Your fellowship is approved
-						li xxxxxxxxxxxxxxxx
-			a.gh-tab.account(href="/",ng-click='profileFlyout = !profileFlyout')
-				.flyout(ng-hide="!profileFlyout", ng-cloak, class="ng-cloak")
-					.caret.pull-right
-					ul
-						li Edit profile
-						li Setting
+			a.gh-tab.notification(href="/",ng-click='notificationFlyout = !notificationFlyout',ng-model="dynamicPopover",popover-placement='bottom',popover="{{dynamicPopover}}",popover-title="{{dynamicPopoverTitle}}")
+			a.gh-tab.account(href="/",ng-click='profileFlyout = !profileFlyout',ng-model="dynamicPopover",popover-placement='bottom',popover="{{dynamicPopover}}",popover-title="{{dynamicPopoverTitle}}")
 	#explore-menu.animate-show(ng-show='exploreDropDown' ng-cloak, class="ng-cloak")
 		.em-content(ng-class='{hide: hideExploreContent}')
 			.section.personal

@@ -41,7 +41,7 @@ form.form-horizontal(name="signupForm" ng-controller='SignupCtrl')
 						li(ng-repeat='choice in form.campaignLengthOptions')
 							a(ng-click='$parent.onChangeNumWeeks(choice)') {{choice}}
 		.row(ng-show="false")
-			.col-md-12											
+			.col-md-12
 					select#month(name='birthday_month',ng-model='month')
 						option(value='0', selected='1') Month
 						option(value='1') Jan
