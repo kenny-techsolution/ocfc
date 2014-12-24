@@ -1,6 +1,6 @@
 //This file references all module required for this project
 //Defining a model called 'app' which uses directives listed within []
-angular.module('app',['ngResource','ngRoute', 'ui.bootstrap','ngAnimate','btford.socket-io','cloudinary','angularFileUpload']).
+angular.module('app',['ngResource','ngRoute','ngAnimate','ui.bootstrap','mgcrea.ngStrap','btford.socket-io','cloudinary','angularFileUpload']).
 factory('mySocket', function (socketFactory) {
 	return socketFactory();
 	}).factory('_', function() {
@@ -36,6 +36,18 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 			return true;
 		}}
 	};
+
+
+	var checkLogin = function(IdentitySvc, $q, $location){
+			var defer = $q.defer();
+			if(IdentitySvc.isAuthenticated()){
+				 defer.resolve('logged in');
+			} else {
+				defer.reject('logged out');
+				$location.path("/");
+			}
+			return defer.promise;
+	};
 //4.29.2014, updated code to include churchAdmin and worldAdmin authorization ends
 
 	//The links below will update the body section of the website based on the links being called below
@@ -44,13 +56,13 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 	//Hijacks, changes data w/o going to server, only change on the front end
 	//4.29.2014, updated code to include churchAdmin and worldAdmin
 	$locationProvider.html5Mode(true);
-	$routeProvider.when('/', {templateUrl: '/partials/main/main', controller: 'MainCtrl'})
+	$routeProvider
 		.when('/', {templateUrl: '/partials/account/access/landing-page', controller: 'SignupCtrl'})
 		.when('/activate/:activateCode/userId/:id/email/:email', {templateUrl: '/partials/account/activate', controller: 'ActivateCtrl'})
-		.when('/firstTimer', {templateUrl: '/partials/firstTimer/first-timer', controller: 'firstTimerCtrl'})
+		.when('/firstTimer', {templateUrl: '/partials/firstTimer/first-timer', controller: 'firstTimerCtrl', resolve: { checklogin: checkLogin}})
 		.when('/setting', {templateUrl: '/partials/account/setting/setting', controller: 'SettingCtrl'})
 		.when('/profile', {templateUrl: '/partials/account/profile/profile', controller: 'ProfileCtrl', resolve: routeRoleChecks.user})
-		.when('/fellowship/:id', {templateUrl: '/partials/fellowship/fellowship', controller: 'FellowshipCtrl'})
+		.when('/fellowship/:id', {templateUrl: '/partials/fellowship/fellowship', controller: 'FellowshipCtrl',resolve: { checklogin: checkLogin}})
 		.when('/church/:id', {templateUrl: '/partials/church/church', controller: 'ChurchCtrl'})
 		.when('/registrationComplete', {templateUrl: '/partials/account/registration-complete', controller: 'RegistrationCompleteCtrl'});
 });
