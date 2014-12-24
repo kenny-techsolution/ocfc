@@ -4,7 +4,7 @@ angular.module('app',['ngResource','ngRoute', 'ui.bootstrap','ngAnimate','btford
 factory('mySocket', function (socketFactory) {
 	return socketFactory();
 	}).factory('_', function() {
-		return window._; // assumes underscore has already been loaded on the page
+		return window._;// assumes underscore has already been loaded on the page
 	});
 
 //must move above factory into a separate service during refactoring

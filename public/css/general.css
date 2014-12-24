@@ -11,6 +11,9 @@ html #wrapper,
 body #wrapper {
   height: 100%;
 }
+a {
+  cursor: pointer;
+}
 [ngcloak],
 [ng-cloak],
 .ng-cloak {

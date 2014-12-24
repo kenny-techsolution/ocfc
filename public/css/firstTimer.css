@@ -1,5 +1,5 @@
 #first-timer .upload-profile-img {
-  width: 440px;
+  width: 563px;
 }
 #first-timer .skip {
   line-height: 30px;
@@ -24,7 +24,12 @@
 }
 #first-timer .start {
   width: 60px;
-  color: #2a6496;
+  color: #428bca;
+  font-size: 18px;
+}
+#first-timer .instruction-label {
+  margin-top: 2px;
+  text-align: left;
 }
 .jumbotron.vertical-center {
   margin-bottom: 0px;
@@ -42,9 +47,6 @@
 }
 .text-black {
   color: #000;
-}
-.instruction-label {
-  margin-top: 2px;
 }
 .glyphicon.glyphicon-chevron-right {
   color: transparent;
@@ -64,6 +66,7 @@
 }
 .left.carousel-control,
 .left.carousel-control:hover {
+  height: 0px;
   background: none;
 }
 .right.carousel-control,
