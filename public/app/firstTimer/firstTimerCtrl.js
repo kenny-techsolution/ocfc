@@ -7,7 +7,6 @@ angular.module('app').controller('firstTimerCtrl', function ($scope,$http,$timeo
 	$http.get("/cloudinarySigned?type=avatar").success(function(data){
 		$scope.cloudinarySignedParams = data;
 		console.log($.cloudinary.config());
-
 	});
 	$scope.onFileSelect = function($files) {
 		var file = $files[0]; // we're not interested in multiple file uploads here
