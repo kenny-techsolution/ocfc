@@ -37,7 +37,6 @@ angular.module('app').controller('SettingCtrl', function ($scope, $http,Identity
 		}
 	});
 
-
 	//Set Ng-Click on UPDATE button & assign to updateUser API call
 	$scope.updateUser = function() {
 		var user=new UserSvc();
