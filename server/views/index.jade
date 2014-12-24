@@ -13,7 +13,7 @@ block main-content
 			a.gh-tab.notification(href="/",ng-click='notificationFlyout = !notificationFlyout',ng-show='IdentitySvc.currentUser',bs-popover,data-placement="bottom",
 									data-template='partials/common/profile_popover')
 			div.gh-tab.account(href="/",ng-click='profileFlyout=!profileFlyout',ng-show='IdentitySvc.currentUser',bs-popover,data-placement="bottom",
-									data-template='partials/common/profile_popover', data-auto-close="1")
+									data-template='partials/common/profile_popover', data-auto-close="1" ng-click="")
 	#explore-menu.animate-show(ng-show='exploreDropDown' ng-cloak, class="ng-cloak")
 		.em-content(ng-class='{hide: hideExploreContent}')
 			.section.personal
