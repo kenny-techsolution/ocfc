@@ -61,6 +61,8 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 		.when('/activate/:activateCode/userId/:id/email/:email', {templateUrl: '/partials/account/activate', controller: 'ActivateCtrl'})
 		.when('/firstTimer', {templateUrl: '/partials/firstTimer/first-timer', controller: 'firstTimerCtrl', resolve: { checklogin: checkLogin}})
 		.when('/setting', {templateUrl: '/partials/account/setting/setting', controller: 'SettingCtrl'})
+		.when('/createFellowship', {templateUrl: '/partials/fellowship/create-fellowship', controller: 'FellowshipCtrl',resolve: { checklogin: checkLogin}})
+		.when('/createChurch', {templateUrl: '/partials/church/create-church', controller: 'ChurchCtrl',resolve: { checklogin: checkLogin}})
 		.when('/profile', {templateUrl: '/partials/account/profile/profile', controller: 'ProfileCtrl', resolve: routeRoleChecks.user})
 		.when('/fellowship/:id', {templateUrl: '/partials/fellowship/fellowship', controller: 'FellowshipCtrl',resolve: { checklogin: checkLogin}})
 		.when('/church/:id', {templateUrl: '/partials/church/church', controller: 'ChurchCtrl'})

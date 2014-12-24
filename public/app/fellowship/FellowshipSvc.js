@@ -16,7 +16,14 @@ angular.module('app').factory('FellowshipSvc', function ($resource, $http) {
 			method: 'PUT',
 			isArray: false
 		}
-	});
+	},
+		{
+		'create':{
+			method:'POST',
+			params:{create:true}
+		}
+		}
+	);
 
 	//params can be any type of parameter such as zipcode and more..
 	//params will merge w below objects using extend method
