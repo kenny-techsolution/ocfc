@@ -81,12 +81,16 @@ button.btn {
   background-size: 29px 29px;
 }
 #global-header .gh-content .gh-tab.account {
+  cursor: pointer;
   width: 30px;
   background-image: url("./images/kenny_face.jpg");
   background-size: 30px 30px;
   right: 0px;
   top: 0px;
   border-radius: 5px;
+}
+#global-header .gh-content .gh-tab.account:hover {
+  opacity: 0.7;
 }
 #global-header .gh-content .gh-tab.notification {
   width: 30px;
@@ -211,4 +215,37 @@ button.btn {
 }
 .toast-success {
   background-color: #13987e;
+}
+.profile-popover {
+  background-color: #f7f7f7;
+  top: 35px !important;
+}
+.profile-popover .popover-title {
+  padding-top: 5px;
+}
+.profile-popover .popover-content {
+  padding: 0px;
+}
+.profile-popover .popover-content ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+.profile-popover .popover-content ul li {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ebebeb;
+  height: 30px;
+  width: 110px;
+}
+.profile-popover .popover-content ul li a {
+  font-size: 12px;
+  display: block;
+  height: 30px;
+  padding-left: 30px;
+  padding-top: 6px;
+  text-decoration: none;
+  color: #000;
+}
+.profile-popover .popover-content ul li a:hover {
+  background-color: #08c;
+  color: #fff;
 }

@@ -1,6 +1,9 @@
-.popover
-	.arrow
-		|
-		h3.popover-title(ng-bind='title', ng-show='title')
-		|
-		.popover-content(ng-bind='content')
+div.popover.profile-popover
+	div.arrow
+	h3.popover-title
+	div.popover-content
+		ul
+			li
+				a(href="/setting") Setting
+			li 
+				a Logout
