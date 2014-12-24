@@ -111,7 +111,11 @@ exports.deleteUserFromActivation=function(req,res){
 
 //Put - Round1
 exports.updateUser=function (req, res) {
-	var user = commFunc.removeInvalidKeys(req.body,['firstName','lastName','birthday','gender','profileImg',
+	console.log('updateUser server api has been called');
+	console.log('chk req.body obj');
+	console.log(req.body);
+
+	var user = commFunc.removeInvalidKeys(req.body,['fullName','userName','birthday','gender','profileImg',
 													'about','place','coordinates','language','active']);
 	User.findOneAndUpdate({ _id:commFunc.reqSessionUserId(req)},user, function (err, numberAffected, raw) {
 		if (err) return res.json(err);
@@ -153,6 +157,35 @@ exports.updateProfileImage=function (req, res) {
 		return res.json({status:"no image id"});
 	}
 };
+
+exports.updateUserPassword=function (req, res) {
+	console.log('updateUserPassword is being called');
+	console.log('chk req.body');
+	console.log(req.body);
+	User.findOne({_id: req.user._id},'+salt +hashedPwd').exec(function (err, user) {
+		console.log('chk session user id');
+		console.log(req.user._id);
+
+		if (user && user.authenticate(req.body.oldPassword)) {
+			//update user password using new password
+			var salt = encrypt.createSalt();
+
+			user.salt = salt;
+			user.hashedPwd = encrypt.hashPwd(salt, req.body.newPassword);
+			console.log('chk new hashedPwd');
+			console.log(user.hashedPwd);
+			user.save(function (err) {
+				console.log('server user.save has been called');
+				if (err) return res.json(err);
+				return res.json({status:"success",user:user});
+			});
+		} else {
+			return res.json({status:'error', message:'incorrect old password'});
+		}
+	})
+};
+
+
 
 //TODO Get
 exports.resetPassword=function (req, res) {

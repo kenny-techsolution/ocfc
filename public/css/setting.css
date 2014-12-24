@@ -6,13 +6,6 @@
 .jumbotron.setting .container {
   width: 980px;
 }
-.jumbotron.setting .basic-information {
-  border-bottom: 1px solid #7f7f7f;
-  padding: 0 0 16px 0;
-  font-weight: 500;
-  margin-top: 25px;
-  margin-bottom: 15px;
-}
 .jumbotron.setting .bday-info .dropdown.select-box {
   width: 63px;
   display: inline-block;
@@ -33,4 +26,11 @@
 }
 .cancel-button {
   background: none;
+}
+.info {
+  border-bottom: 1px solid #dbd6d6;
+  padding: 0 0 5px 0;
+  font-weight: 500;
+  margin-top: 25px;
+  margin-bottom: 15px;
 }

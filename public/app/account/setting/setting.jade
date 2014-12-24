@@ -1,29 +1,29 @@
 .jumbotron.setting
 	.container
 		.row
-			h4.basic-information.text-grey Basic Information
+			h4.basic-information.info.text-grey Basic Information
 		.row
 			.account-info.col-md-6
-				.form-label FULL NAME
-				input.form-control
+				.form-label FULL NAME {{fullName}}
+				input.form-control(ng-model='fullName')
 			.bday-info.col-md-6
-				.form-label DATE OF BIRTH
+				.form-label DATE OF BIRTH {{month}} {{day}} {{year}}
 				div.dropdown.select-box.month.inline
-					button.btn.text-grey(focus-when='focusStates["Campaign Dates"]', type='button', data-toggle='dropdown')
+					button.btn.text-grey(focus-when='focusStates["Campaign Dates"]', type='button', data-toggle='dropdown',ng-model='month')
 						| Month
 						span.caret
 					ul.dropdown-menu.text-right
 						li(ng-repeat='choice in form.campaignLengthOptions')
 							a(ng-click='$parent.onChangeNumWeeks(choice)') {{choice}}
 				div.dropdown.select-box.date.inline
-					button.btn.text-grey(focus-when='focusStates["Campaign Dates"]', type='button', data-toggle='dropdown')
-						| Date
+					button.btn.text-grey(focus-when='focusStates["Campaign Dates"]', type='button', data-toggle='dropdown',ng-model='day')
+						| Day
 						span.caret
 					ul.dropdown-menu.text-right
 						li(ng-repeat='choice in form.campaignLengthOptions')
 							a(ng-click='$parent.onChangeNumWeeks(choice)') {{choice}}
 				div.dropdown.select-box.year.inline
-					button.btn.text-grey(focus-when='focusStates["Campaign Dates"]', type='button', data-toggle='dropdown')
+					button.btn.text-grey(focus-when='focusStates["Campaign Dates"]', type='button', data-toggle='dropdown',ng-model='year')
 						| Year
 						span.caret
 					ul.dropdown-menu.text-right
@@ -31,13 +31,28 @@
 							a(ng-click='$parent.onChangeNumWeeks(choice)') {{choice}}
 		.row
 			.account-info.col-md-6
-				.form-label EMAIL
-				input.form-control
-		.row
-			.account-info.col-md-6
-				.form-label PASSWORD
-				input.form-control
+				.form-label EMAIL {{email}}
+				input.form-control(ng-model='email')
+
 		.row
 			.account-info.col-md-12
-				button.btn.btn-primary.pull-right UPDATE
+				button.btn.btn-primary.pull-right(ng-click='updateUser()',ng-disabled='disableFullName&&disableFullName') UPDATE
 				button.btn.btn-default.pull-right.cancel-button CANCEL
+
+		.row
+			h4.preference-information.info.text-grey Preferences
+
+		.row
+			h4.password-information.info.text-grey Update Password
+
+		.row
+			.account-info.col-md-6
+				.form-label OLD PASSWORD {{oldPassword}}
+				input.form-control(ng-model='oldPassword')
+		.row
+			.account-info.col-md-6
+				.form-label NEW PASSWORD {{newPassword}}
+				input.form-control(ng-model='newPassword')
+		.row
+			.account-info.col-md-12
+				button.btn.btn-primary.pull-right(ng-click='updateUserPassword()') UPDATE

@@ -34,17 +34,20 @@ module.exports = function (app, io) {
 		ioSocket.emit('testSocket', {result: "Socket test complete"});
 	});
 
-	/* ------ User related API -------- */
+	/* ------ Standard User related API -------- */
 	app.post('/api/users', users.createUser);
 	app.put('/api/users', users.updateUser);
 	app.get('/api/users/:id', users.getUserById);
 	app.delete('/api/users', users.deleteUser);
-	app.put('/api/users/update_profile_image', users.updateProfileImage);
+	app.get('/api/activate',users.activateUser);
+
+	/*one off API calls*/
 	app.get('/api/users/:id/reset_password', users.resetPassword);
 	app.put('/api/eventParticipation/:event_id', users.updateEventParticipation);
-	app.get('/api/activate',users.activateUser);
 	app.get('/api/getActivation',users.getActivation);
+	app.put('/api/updatePassword',users.updateUserPassword);
 	app.delete('/api/activate',users.deleteUserFromActivation);
+	app.put('/api/users/update_profile_image', users.updateProfileImage);
 
 	/* ------ Fellowship related API -------- */
 	app.post('/api/fellowships', fellowships.createFellowship);
