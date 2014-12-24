@@ -48,6 +48,19 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 			}
 			return defer.promise;
 	};
+
+	var forbidSignup = function(IdentitySvc, $q, $location){
+		var defer = $q.defer();
+		if(!IdentitySvc.isAuthenticated()){
+			console.log("not login");
+			 defer.resolve('logged out');
+		} else {
+			console.log("already login");
+			defer.reject('logged in');
+			$location.path("/personal");
+		}
+		return defer.promise;
+	};
 //4.29.2014, updated code to include churchAdmin and worldAdmin authorization ends
 
 	//The links below will update the body section of the website based on the links being called below
@@ -57,7 +70,7 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 	//4.29.2014, updated code to include churchAdmin and worldAdmin
 	$locationProvider.html5Mode(true);
 	$routeProvider
-		.when('/', {templateUrl: '/partials/account/access/landing-page', controller: 'SignupCtrl'})
+		.when('/', {templateUrl: '/partials/account/access/landing-page', controller: 'SignupCtrl',resolve:{ forbidSignup: forbidSignup}})
 		.when('/activate/:activateCode/userId/:id/email/:email', {templateUrl: '/partials/account/activate', controller: 'ActivateCtrl'})
 		.when('/firstTimer', {templateUrl: '/partials/firstTimer/first-timer', controller: 'firstTimerCtrl', resolve: { checklogin: checkLogin}})
 		.when('/setting', {templateUrl: '/partials/account/setting/setting', controller: 'SettingCtrl'})
