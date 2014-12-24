@@ -3,6 +3,7 @@
 }
 html,
 body {
+  background-image: url("./images/vintage_speckles.png");
   color: #fff;
   background-color: transparent;
   height: 100%;

@@ -48,6 +48,17 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 			}
 			return defer.promise;
 	};
+
+	var checkLogin = function(IdentitySvc, $q, $location){
+		var defer = $q.defer();
+		if(IdentitySvc.isAuthenticated()){
+			 defer.resolve('logged in');
+		} else {
+			defer.reject('logged out');
+			$location.path("/");
+		}
+		return defer.promise;
+	};
 //4.29.2014, updated code to include churchAdmin and worldAdmin authorization ends
 
 	//The links below will update the body section of the website based on the links being called below
