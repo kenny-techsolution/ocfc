@@ -21,6 +21,7 @@ var userSchema = mongoose.Schema({
 	birthday:	{type: Date,index: true, unique: false,lowercase: true},
 	gender: 	{type: String, index: false, unique: false,lowercase: true},
 	profileImg: {type: String, index: false, unique: false},
+	phone: 	    {type: String, index: true, unique: true,lowercase: true},
 	signupDate: {type: Date,required:'(signupDate) is required!',index: true, unique: false,lowercase: true,default: Date.now},
 	about:		{type: String, index: false, unique: false,lowercase: true},
 	place: 		{type: String, unique: false,lowercase: true},

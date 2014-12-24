@@ -13,15 +13,24 @@ var Fellowship = require('mongoose').model('Fellowship'),
 
 //Post - Round1
 exports.createFellowship = function (req, res) {
+	console.log('server createFellowship function has been called');
+
 	var fellowship = req.body;
 
 	//TODO, prevent duplicate fellowship
 	//compared by name, address, if there's associated church,
 	//admin cannot create duplicate fellowships
-	var fellowship=commFunc.removeInvalidKeys(req.body,['name','slogan','about','address','city',
-														'country','zipcode']);
+    fellowship=commFunc.removeInvalidKeys(req.body,['name','about','address','city','state',
+														'country','zipcode','phone']);
 	fellowship = new Fellowship(fellowship);
+	console.log('chking fellowship obj');
+	console.log(fellowship);
+
 	fellowship.save(function (err) {
+		console.log('fellowship.save has been called');
+		console.log('chking fellowship obj inside .save');
+		console.log(fellowship);
+
 		if (err) return res.json(err);
 
 		var fellowshipUser = new FellowshipUser();
@@ -30,7 +39,11 @@ exports.createFellowship = function (req, res) {
 		fellowshipUser.status = 'pending';
 		fellowshipUser.role = 'admin';
 
+		console.log('chking fellowshipUser');
+		console.log(fellowshipUser);
+
 		fellowshipUser.save(function (err) {
+			console.log('fellowshipUser.save has been called');
 			if (err) return res.json(err);
 			return res.json({status: "success", fellowship: fellowship});
 		});
