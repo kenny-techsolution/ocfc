@@ -1,5 +1,5 @@
 
-angular.module('app').controller('firstTimerCtrl', function ($timeout,$animate, $scope,$http,$routeParams,$rootScope, $upload, UserSvc, NotifierSvc, $location, AuthSvc) {
+angular.module('app').controller('firstTimerCtrl', function ($scope,$http,$timeout,$animate, $routeParams,$rootScope, $upload, UserSvc, NotifierSvc, $location, AuthSvc) {
 	$timeout(function() {
 		return $animate.enabled(false, angular.element(".carousel"));
 	});
@@ -49,5 +49,16 @@ angular.module('app').controller('firstTimerCtrl', function ($timeout,$animate, 
 			console.log('user removal failed');
 		});
 	};
+
+	setTimeout(function(){
+		$(".right.carousel-control").on('click', function(){
+			$(".right.carousel-control").css("height", "0px");
+			$(".left.carousel-control").css("height", "auto");
+		});
+		$(".left.carousel-control").on('click', function(){
+			$(".right.carousel-control").css("height", "auto");
+			$(".left.carousel-control").css("height", "0px");
+		});
+	},0);
 
 });
