@@ -288,3 +288,9 @@ textarea.form-control {
   background-color: #08c;
   color: #fff;
 }
+.widget-title-wo-link {
+  border-bottom: 1px solid #000;
+  color: #000;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}

@@ -21,6 +21,15 @@
 				input.form-control.phone(ng-model='phone',placeholder='phone#')
 
 			.fellowship-info.col-md-6
+				.form-label CHURCH ADDRESS
+				input.form-control.address(ng-model='chStreet',placeholder='street')
+				input.form-control.city(ng-model='chCity',placeholder='city')
+				input.form-control.state(ng-model='chState',placeholder='state')
+				input.form-control.country(ng-model='chCountry',placeholder='country')
+				input.form-control.zipcode(ng-model='chZipcode',placeholder='zipcode')
+				input.form-control.phone(ng-model='chPhone',placeholder='phone#')
+		.row
+			.fellowship-info.col-md-6
 				.form-label ABOUT FELLOWSHIP
 				textarea.form-control(ng-model='aboutFellowship')
 

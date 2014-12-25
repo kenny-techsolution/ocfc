@@ -1,8 +1,8 @@
 .new-friend
-	.wrapper(ng-repeat='fellowshipUser in fellowshipUsers')
+	.wrapper(ng-repeat='user in users')
 		img.new-friend-profile(ng-src='/css/images/kenny_face.jpg')
 		.new-friend-desc
-			.name{{fellowshipUser.userId.firstName}}
+			.name{{user.userId.firstName}}
 			.desc-section
-				.status{{fellowshipUser.status}}
-				.date{{fellowshipUser.signupDate|date:'MM/dd/yyyy'}}
+				.status{{user.status}}
+				.date{{user.signupDate|date:'MM/dd/yyyy'}}
