@@ -57,7 +57,6 @@ module.exports = function (app, io) {
 	app.get('/api/fellowships', fellowships.queryFellowships);
 
 
-
 	app.post('/api/fellowships/:fellowship_id/users', fellowships.addUserToFellowship);
 	app.get('/api/fellowships/:fellowship_id/users', fellowships.getUsersFromFellowship);
 	app.put('/api/fellowships/:fellowship_id/users/:user_id', fellowships.updateUserToFellowship);

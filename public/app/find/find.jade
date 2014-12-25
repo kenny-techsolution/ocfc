@@ -1,19 +1,26 @@
 #find-on-map
-	h1 let's find on map
-	.container
-		.row
-			.col-xs-6
-				input.form-control(type="text", ng-model="userAddress")
-			.col-xs-6
-				button.btn.btn-primary find
-		.row
-			.col-xs-6
-				ul.list-group.autocomplete-result
-					li.list-group-item(ng-repeat="address in matchedAddresses")
-						a(ng-click="getLatlng(address.description)") {{address.description}}
-		.row
-			.col-xs-6
-				div.geo-code
-					div coordinate: 
-					div lat: {{lat}} 
-					div lng: {{lng}}
+	.search-section
+		.container
+			.row
+				.col-xs-9
+					input.form-control(type="text", ng-model="userAddress")
+				.col-xs-3
+					button.btn.btn-primary FIND
+			.row
+				.col-xs-12
+					ul.list-group.autocomplete-result
+						li.list-group-item(ng-repeat="address in matchedAddresses")
+							a(ng-click="getLatlng(address.description)") {{address.description}}
+			.row
+				.col-xs-12
+					div.geo-code
+						div coordinate: lat: {{lat}}, lng: {{lng}}
+			.row
+				.col-xs-12.fellowships-result
+					div.panel.panel-default(ng-repeat="fellowship in fellowships")
+						div.panel-body
+							div {{$index}}
+							div {{fellowship.name}}
+							div {{address}} {{city}} {{state}} {{country}}
+							button.btn.btn-default.pull-right JOIN
+	ocfc-map(latlngs="latlngs")

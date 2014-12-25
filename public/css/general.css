@@ -163,9 +163,14 @@ button.btn {
   color: #08c;
 }
 #explore-menu .em-content .section .find-group {
-  color: #000;
-  font-size: 14px;
+  display: block;
   margin-top: 5px;
+  width: 116px;
+}
+#explore-menu .em-content .section .create-group {
+  display: block;
+  margin-top: 5px;
+  width: 116px;
 }
 #explore-menu .em-content .section .coming-soon {
   display: block;

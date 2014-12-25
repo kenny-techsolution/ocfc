@@ -7,6 +7,8 @@ factory('mySocket', function (socketFactory) {
 		return window._;// assumes underscore has already been loaded on the page
 	}).factory('google', function(){
 		return window.google;
+	}).factory('L', function(){
+		return window.L;
 	});
 
 //must move above factory into a separate service during refactoring

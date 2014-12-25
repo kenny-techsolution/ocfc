@@ -23,8 +23,8 @@ block main-content
 			.section.fellowship
 				.title Fellowship
 				a.group(href='/fellowship/54913941aa6f4e0000642ae6',ng-click='exploreDropDown = !exploreDropDown') 提摩太團契
-				.find-group Find a Fellowship >
-				a.find-group(href='/createFellowship',ng-click='exploreDropDown = !exploreDropDown') Create Fellowship >
+				a.find-group.label.label-primary(href="/find", ng-click='exploreDropDown = !exploreDropDown') Find a Fellowship >
+				a.create-group.label.label-success(href='/createFellowship',ng-click='exploreDropDown = !exploreDropDown') Create Fellowship >
 			.section.church
 				.title Church
 				a.group 山景城基督徒會堂

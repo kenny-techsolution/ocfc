@@ -26,6 +26,8 @@ exports.createFellowship = function (req, res) {
 	console.log('chking fellowship obj');
 	console.log(fellowship);
 
+	//TODO call geocoding to get the coordinate
+
 	fellowship.save(function (err) {
 		console.log('fellowship.save has been called');
 		console.log('chking fellowship obj inside .save');
@@ -47,7 +49,7 @@ exports.createFellowship = function (req, res) {
 			if (err) return res.json(err);
 			return res.json({status: "success", fellowship: fellowship});
 		});
-	})
+	});
 };
 
 var approveFellowship = function (fellowshipId,req,res) {
@@ -218,18 +220,33 @@ exports.addUserToFellowship = function (req, res) {
 };
 
 exports.queryFellowships=function(req,res){
-	console.log('server queryFellowships has been called');
-	if(!req.user || req.user.userName !=="butterfly43026@gmail.com") {
-		return res.json({status:"failure",message:"you are not allowed to call this"});
-	}
-	//populate Fellowships where approved status is false
-	Fellowship.find({approved: false}).exec(function (err, queryFellowships) {
-		console.log('chk queryFellowships results');
-		console.log(queryFellowships);
+	//TODO geo search
+	console.log(req.query);
+	if(!_.isEmpty(req.query)){
+		console.log("req.query is not empty");
+		if(req.query.lat && req.query.lng && req.query.maxDistance) {
+			Fellowship.find({geo: { $near: [Number(req.query.lat), Number(req.query.lng)], $maxDistance: Number(req.query.maxDistance)/111.12}}).exec(function (err, queryFellowships) {
+				console.log('chk queryFellowships results using geospatial');
+				console.log(queryFellowships);
+				if (err) return res.json(err);
+				return res.json(queryFellowships);
+			});
+		}
+	} else {
+		//below is for site admin to retrieve a list of yet approved fellowships.
+		console.log('server queryFellowships has been called');
+		if(!req.user || req.user.userName !=="butterfly43026@gmail.com") {
+			return res.json({status:"failure",message:"you are not allowed to call this"});
+		}
+		//populate Fellowships where approved status is false
+		Fellowship.find({approved: false}).exec(function (err, queryFellowships) {
+			console.log('chk queryFellowships results');
+			console.log(queryFellowships);
 
-		if (err) return res.json(err);
-		return res.json(queryFellowships);
-	});
+			if (err) return res.json(err);
+			return res.json(queryFellowships);
+		});
+	}
 
 };
 
