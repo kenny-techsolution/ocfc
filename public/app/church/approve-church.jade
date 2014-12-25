@@ -1,0 +1,37 @@
+.jumbotron
+	.container
+		.row
+			h4.approve-church.info.text-grey Approve Church
+
+	.container(ng-repeat='church in churches')
+		.row
+			.church-info.col-md-6
+				.form-label CHURCH NAME
+				label.form-control {{church.name}}
+			.church-info.col-md-6
+				.form-label CHURCH WEBSITE
+				label.form-control {{church.churchWebsite}}
+		.row
+			.church-info.col-md-6
+				.form-label CHURCH ADDRESS
+				label.form-control.address {{church.address}}
+				label.form-control.city {{church.city}}
+				label.form-control.state {{church.state}}
+				label.form-control.country {{church.country}}
+				label.form-control.zipcode {{church.zipcode}}
+				label.form-control.phone {{church.phone}}
+				label.form-control.fax {{church.fax}}
+			.church-info.col-md-6
+				.form-label FAITH STATEMENT
+				label.form-control {{church.faithStatement}}
+		.row
+			.church-info.col-md-6
+				.form-label MISSION
+				label.form-control {{church.mission}}
+			.church-info.col-md-6
+				.form-label VISION
+				label.form-control {{church.vision}}
+
+		.row
+			.church-info.col-md-12
+				button.btn.btn-primary.pull-right(ng-click='approveChurch(church)') Approve

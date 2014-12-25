@@ -9,6 +9,7 @@ var Church = require('mongoose').model('Church'),
 
 //Post - Round1
 exports.createChurch= function (req, res) {
+	console.log('server createChurch has been called');
 	//TODO, prevent duplicate church
 	//compared by name, address
 	//admin cannot create duplicate church
@@ -16,11 +17,13 @@ exports.createChurch= function (req, res) {
 	var church = req.body;
 	church = new Church(church);
 	church.save(function (err) {
+		console.log('church.save has been called');
 		if (err) return res.json(err);
 			ChurchUser.findOneAndUpdate({churchId:church._id,userId:commFunc.reqSessionUserId(req)},
 									{churchId:church._id,userId:commFunc.reqSessionUserId(req),status:'pending',role:'admin'},
 									{upsert:true},
 									function(err){
+										console.log('ChurchUser.findOneAndUpdate has been called');
 										if (err) return res.json(err);
 										return res.json({status:"success",church:church});
 									});
@@ -29,25 +32,36 @@ exports.createChurch= function (req, res) {
 };
 
 var approveChurch = function (churchId,res) {
-	console.log('churchId');
+	console.log('server approveChurch has been called');
+	console.log('chk churchId parameter value');
 	console.log(churchId);
+
 	Church.findById(churchId).exec(function(err,church){
-		console.log('church');
+		console.log('Church.findById has been called');
 		console.log(church);
+
 		if (err) return res.json(err);
 		church.approved = true;
 		church.save(function(err){
+			console.log('church.save has been called');
+			console.log(church);
 			if (err) return res.json(err);
 			//approve the fellowship admin as well.
 			ChurchUser.findOne({churchId: churchId, role: "admin"}, function(err, churchUser){
+				console.log('ChurchUser.findOne has been called');
+				console.log('chk churchUser obj parameter');
+				console.log(churchUser);
 				if (err) return res.json(err);
 				churchUser.status = "approved";
 				churchUser.save(function(){
+					console.log('churchUser.save has been called');
+					console.log(churchUser);
 					if (err) return res.json(err);
 					//add the fellowship to the membership of the fellowship Admin user.
 					Membership.update({userId: churchUser.userId,'churches.churchId':{$ne: church._id}},
 									{$push: {churches: {churchId: church._id, name: church.name, role: "admin"}}},
 									function(err){
+									console.log('Membership.update has been called');
 									if (err) return res.json(err);
 									return res.json({status:"church is approved"});
 					});
@@ -59,20 +73,24 @@ var approveChurch = function (churchId,res) {
 
 //Put - Round1 (retest required)
 exports.updateChurchById= function (req, res) {
+	console.log('server updateChurchById has been called');
 	//Scenario: site admin approves the church.
-	if(req.user.userName === 'yoyocicada@gmail.com' && req.body.status === "approved") {
+	if(req.user.userName === 'butterfly43026@gmail.com' && req.body.approved === true) {
+		console.log('site admin criteria has been met');
 		return approveChurch(req.params.id,res);
 	}
 	if(!commFunc.isChurchAdmin(req.user,req.params.id)) {
+		console.log('church admin criteria has been met');
 		return res.json({status:'fail', message:'you are not an admin for this church.'});
 	}
-	var church=commFunc.removeInvalidKeys(req.body,['approved','name','about','url','address','city','country',
+	var church=commFunc.removeInvalidKeys(req.body,['approved','name','about','url','address','city','state','country',
 		'zipcode','phone','fax','faithStatement','mission','vision']);
 
-	console.log('chk church');
+	console.log('chk church obj');
 	console.log(church);
 
 	Church.update({ _id: req.params.id}, church, { multi: true }, function (err, numberAffected, raw) {
+		console.log('Church.update has been called');
 		if (err) return res.json(err);
 		console.log('church update executed');
 		return res.json({status:"success",raw:raw});
@@ -102,7 +120,7 @@ exports.queryChurches= function (req, res) {
 	var validKeys=commFunc.removeInvalidKeys(req.query,['ownerType','title']);
 	Church.find(validKeys).exec(function (err, queryChurches) {
 		if (err) return res.json(err);
-		return res.json({status:"success",queryChurches:queryChurches});
+		return res.json(queryChurches);
 	});
 };
 

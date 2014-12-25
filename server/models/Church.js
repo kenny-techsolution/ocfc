@@ -13,6 +13,7 @@ var churchSchema = mongoose.Schema({
 	url:			{type: String,index: false, unique: false,lowercase: true},
 	address:		{type: String,required:'(address) is required!',index: true, unique: false,lowercase: true},
 	city:			{type: String,required:'(city) is required!',index: true, unique: false,lowercase: true},
+	state:			{type: String,required:'(state) is required!',index: true, unique: false,lowercase: true},
 	country:		{type: String,required:'(country) is required!',index: true, unique: false,lowercase: true},
 	zipcode:		{type: String,required:'(zipcode) is required!',index: true, unique: false,lowercase: true},
 	phone:			{type: String,required:'(phone) is required!',index: false, unique: false,lowercase: true},
