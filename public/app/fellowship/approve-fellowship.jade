@@ -1,0 +1,31 @@
+.jumbotron
+	.container
+		.row
+			h4.approve-fellowship.info.text-grey Approve Fellowship
+
+	.container(ng-repeat='fellowship in fellowships')
+		.row
+			.fellowship-info.col-md-6
+				.form-label FELLOWSHIP NAME
+				label.form-control {{fellowship.name}}
+
+			.fellowship-info.col-md-6
+				.form-label ASSOCIATED CHURCH NAME
+				label.form-control
+		.row
+			.fellowship-info.col-md-6
+				.form-label FELLOWSHIP ADDRESS
+				label.form-control.address {{fellowship.address}}
+				label.form-control.city {{fellowship.city}}
+				label.form-control.state {{fellowship.state}}
+				label.form-control.country {{fellowship.country}}
+				label.form-control.zipcode {{fellowship.zipcode}}
+				label.form-control.phone {{fellowship.phone}}
+
+			.fellowship-info.col-md-6
+				.form-label ABOUT FELLOWSHIP
+				label.form-control {{fellowship.about}}
+
+		.row
+			.fellowship-info.col-md-12
+				button.btn.btn-primary.pull-right(ng-click='approveFellowship(fellowship)') Approve

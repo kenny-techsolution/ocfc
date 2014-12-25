@@ -23,18 +23,14 @@ angular.module('app').factory('FellowshipSvc', function ($resource, $http) {
 			params:{create:true}
 		}
 		}
+//	,
+//		{
+//		'getFellowships':{
+//			method: 'GET',
+//			isArray: true
+//			}
+//		}
 	);
-
-	//params can be any type of parameter such as zipcode and more..
-	//params will merge w below objects using extend method
-	fellowshipResource.getFellows = function (params) {
-		var params = $.extend({
-			url: '/api/fellowships',
-			method: 'GET'
-		}, params);
-
-		return $http(params);
-	};
 
 	return fellowshipResource;
 });

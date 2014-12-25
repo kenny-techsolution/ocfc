@@ -54,6 +54,9 @@ module.exports = function (app, io) {
 	app.put('/api/fellowships/:id', fellowships.updateFellowshipById);
 	app.get('/api/fellowships/:id', fellowships.getFellowshipById);
 	app.delete('/api/fellowships/:id', fellowships.deleteFellowshipById);
+	app.get('/api/fellowships', fellowships.queryFellowships);
+
+
 
 	app.post('/api/fellowships/:fellowship_id/users', fellowships.addUserToFellowship);
 	app.get('/api/fellowships/:fellowship_id/users', fellowships.getUsersFromFellowship);

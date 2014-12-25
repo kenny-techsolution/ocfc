@@ -29,5 +29,23 @@ angular.module('app').controller('FellowshipCtrl', function ($http, $scope,
 		//TODO need to link Fellowship to it's associated church with $scope.churchName
 	};
 
+	//Populate all fellowships to approve
+	$scope.fellowships = FellowshipSvc.query(function () {
+			console.log('chk $scope.fellowships');
+			console.log($scope.fellowships);
+		}
+	);
+	$scope.approveFellowship=function(fellowship){
+		console.log('front-end approveFellowship has been called');
+		console.log('chk fellowship');
+		console.log(fellowship);
+		//call updateFellowshipById
+		fellowship.approved=true;
+		FellowshipSvc.update({id:fellowship._id},fellowship);
+
+	};
+
+
+
 });
 
