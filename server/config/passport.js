@@ -31,8 +31,8 @@ module.exports = function () {
 				Membership.findOne({userId: user._id}, function(err, membership){
 					user.set('fellowships', membership.fellowships);
 					user.set('churches', membership.churches);
-					console.log("user");
-					console.log(user);
+//					console.log("user");
+//					console.log(user);
 					var extendedUser = _.merge(membership, user);
 
 					return done(null, extendedUser.toObject());

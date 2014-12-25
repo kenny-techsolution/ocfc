@@ -216,7 +216,6 @@ button.btn {
 .toast-success {
   background-color: #13987e;
 }
-<<<<<<< HEAD
 .jumbotron {
   margin-bottom: 0px;
   width: 100%;
@@ -250,7 +249,7 @@ input.form-control.address {
 }
 textarea.form-control {
   height: 170px;
-=======
+}
 .profile-popover {
   background-color: #f7f7f7;
   top: 35px !important;
@@ -283,5 +282,4 @@ textarea.form-control {
 .profile-popover .popover-content ul li a:hover {
   background-color: #08c;
   color: #fff;
->>>>>>> da4fc5626ad278df0ef91ee455b0d3e3ed04122f
 }

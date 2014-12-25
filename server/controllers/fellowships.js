@@ -51,9 +51,14 @@ exports.createFellowship = function (req, res) {
 };
 
 var approveFellowship = function (fellowshipId,req,res) {
+	console.log('server approveFellowship function has been called');
+
 	Fellowship.findById(fellowshipId).exec(function (err, fellowship) {
 		console.log('chk fellowship');
 		console.log(fellowship);
+
+		//TODO chk if album, calendar already exist then do not create default album/calendar
+
 		if (err) return res.json(err);
 		var album = new Album({name: "Fellowship Photos", createdBy: req.user._id});
 		var calendar = new Calendar({createdBy: req.user._id,ownerType: "fellowship", fellowshipId: fellowship._id, title: "Fellowship Calendar"});
@@ -82,14 +87,19 @@ var approveFellowship = function (fellowshipId,req,res) {
 			fellowship.defaultAlbumId = albumId;
 			fellowship.calendarIds = calendarId;
 			fellowship.save(function (err) {
+				console.log("chk fellowship after save");
+				console.log(fellowship);
 				if (err) return res.json(err);
 				//approve the fellowship admin as well.
 				FellowshipUser.findOne({fellowshipId: fellowship._id, role: "admin"}, function (err, fellowshipUser) {
-					if (err) return res.json(err);
+					console.log('chk fellowshipUser');
 					console.log(fellowshipUser);
+					if (err) return res.json(err);
 
 					fellowshipUser.status = "approved";
 					fellowshipUser.save(function (err) {
+						console.log('chk fellowshipUser after save');
+						console.log(fellowshipUser);
 						if (err) return res.json(err);
 						var pushObj = {
 							fellowshipId: fellowship._id,
@@ -99,6 +109,7 @@ var approveFellowship = function (fellowshipId,req,res) {
 						//Update membership table
 						Membership.update({userId: fellowshipUser.userId, 'fellowships.fellowshipId': {$ne: fellowship._id}},
 										  {$push: {fellowships: pushObj}}, function (err) {
+							console.log('Membership.update has been called');
 							if (err) return res.json(err);
 							return res.json({status: "fellowship is approved"});
 						});
@@ -112,15 +123,18 @@ var approveFellowship = function (fellowshipId,req,res) {
 //Put - Round1
 exports.updateFellowshipById = function (req, res) {
 	//Scenario: site admin approves the fellowship.
-	if (req.user.userName === 'yoyocicada@gmail.com' && req.body.status === "approved") {
+	if (req.user && req.user.userName === 'butterfly43026@gmail.com' && req.body.approved ===true) {
+		console.log('site admin approval criteria has been met');
 		return approveFellowship(req.params.id, req,res);
 	}
 
 	//TODO test this scenario after creation of church
 	//Scenario: church admin approves the fellowship.
-	if (req.body.status === "approved") {
+	if (req.body.approved ===true) {
 		//1. find out the churchId it associated with this fellowship.
+		//if user userName=butterfly43026@gmail.com then we can bypass admin church approval
 		ChurchFellowship.findOne({fellowshipId:req.params.id}).exec(function (err, churchFellowship) {
+			console.log('ChurchFellowship.findOne has been called');
 			if (err) return res.json(err);
 			//2. check current user is the church admin.
 			if(commFunc.isChurchAdmin(req.user, churchFellowship.churchId)) {
@@ -133,10 +147,11 @@ exports.updateFellowshipById = function (req, res) {
 	} else {
 		//regular fellowship content update by fellowship admin
 		FellowshipUser.count({userId: req.user._id, fellowshipId: req.params.id, role: 'admin', status: 'approved'}, function (err, count) {
+			console.log('FellowshipUser.count has been called');
 			if (err) return res.json(err);
 			if (count > 0) {
-				var fellowship=commFunc.removeInvalidKeys(req.body,['name','slogan','about','address','city',
-					'country','zipcode']);
+				var fellowship=commFunc.removeInvalidKeys(req.body,['name','about','address','city','state',
+					'country','zipcode','phone']);
 				Fellowship.update({ _id: req.params.id}, fellowship, { multi: true }, function (err, numberAffected, raw) {
 					if (err) return res.json(err);
 					return res.json({status: "success", raw: raw});
@@ -150,7 +165,7 @@ exports.updateFellowshipById = function (req, res) {
 //Get - Round1
 exports.getFellowshipById = function (req, res) {
 	//chk if entry exist match by fellowshipId & status of approved
-	FellowshipUser.count({ fellowshipId: req.params.id, userId:"5475549cb8733c5d864688ea" /*req.user._id*/, status: 'approved'}, function (err, count) {
+	FellowshipUser.count({ fellowshipId: req.params.id, userId:req.user._id, status: 'approved'}, function (err, count) {
 		if (count == 1) {
 			Fellowship.findOne({_id: req.params.id}).exec(function (err, fellowship) {
 				if (err) return res.json(err);
@@ -202,6 +217,23 @@ exports.addUserToFellowship = function (req, res) {
 	});
 };
 
+exports.queryFellowships=function(req,res){
+	console.log('server queryFellowships has been called');
+	if(!req.user || req.user.userName !=="butterfly43026@gmail.com") {
+		return res.json({status:"failure",message:"you are not allowed to call this"});
+	}
+	//populate Fellowships where approved status is false
+	Fellowship.find({approved: false}).exec(function (err, queryFellowships) {
+		console.log('chk queryFellowships results');
+		console.log(queryFellowships);
+
+		if (err) return res.json(err);
+		return res.json(queryFellowships);
+	});
+
+};
+
+
 //Get - Round1
 exports.getUsersFromFellowship = function (req, res) {
 	//Populate users associated to a fellowship
@@ -234,6 +266,7 @@ exports.getUsersFromFellowship = function (req, res) {
 	}
 
 };
+
 
 //Put - Round 1
 exports.updateUserToFellowship = function (req, res) {

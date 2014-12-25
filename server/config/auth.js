@@ -15,7 +15,7 @@ exports.authenticate = function (req, res, next) {
 		if (!user) {
 			res.send({success: false})
 		}
-		console.log(user);
+		//console.log(user);
 		req.logIn(user, function (err) {
 			console.log("here goes the step C");
 
