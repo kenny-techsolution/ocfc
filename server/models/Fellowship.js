@@ -22,6 +22,7 @@ var fellowshipSchema = mongoose.Schema({
 	zipcode:	{type: String, required: '(zipcode) is required!', index: true, unique: false,lowercase: true},
 	startDate: 	{type: Date, required: '(startDate) is required!', index: false, unique: false,default: Date.now},
 	updateDate: {type: Date, required: '(updateDate) is required!', index: false, unique: false,default: Date.now},
+	geo: 		{type: [Number], index: '2d'},
 	active:     {type:Boolean,required: '(active) is required!',default:true}
 });
 

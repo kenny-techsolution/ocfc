@@ -5,12 +5,14 @@ factory('mySocket', function (socketFactory) {
 	return socketFactory();
 	}).factory('_', function() {
 		return window._;// assumes underscore has already been loaded on the page
+	}).factory('google', function(){
+		return window.google;
 	});
 
 //must move above factory into a separate service during refactoring
 
 //4.29.2014, updated code to include churchAdmin and worldAdmin authorization
-angular.module('app').config(function ($routeProvider, $locationProvider) {
+angular.module('app').config(function ($routeProvider, $locationProvider, $httpProvider) {
 
 	//initialize cloudinary config
 	$.cloudinary.config().cloud_name = 'ocfc';
@@ -81,7 +83,12 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 		.when('/profile', {templateUrl: '/partials/account/profile/profile', controller: 'ProfileCtrl', resolve: routeRoleChecks.user})
 		.when('/fellowship/:id', {templateUrl: '/partials/fellowship/fellowship', controller: 'FellowshipCtrl',resolve: { checklogin: checkLogin}})
 		.when('/church/:id', {templateUrl: '/partials/church/church', controller: 'ChurchCtrl'})
+		.when('/find', {templateUrl: '/partials/find/find', controller: 'FindCtrl'})
 		.when('/registrationComplete', {templateUrl: '/partials/account/registration-complete', controller: 'RegistrationCompleteCtrl'});
+
+		$httpProvider.defaults.useXDomain = true;
+		delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
 });
 
 //execute after above code to re-route path after rejection

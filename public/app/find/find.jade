@@ -1,0 +1,19 @@
+#find-on-map
+	h1 let's find on map
+	.container
+		.row
+			.col-xs-6
+				input.form-control(type="text", ng-model="userAddress")
+			.col-xs-6
+				button.btn.btn-primary find
+		.row
+			.col-xs-6
+				ul.list-group.autocomplete-result
+					li.list-group-item(ng-repeat="address in matchedAddresses")
+						a(ng-click="getLatlng(address.description)") {{address.description}}
+		.row
+			.col-xs-6
+				div.geo-code
+					div coordinate: 
+					div lat: {{lat}} 
+					div lng: {{lng}}

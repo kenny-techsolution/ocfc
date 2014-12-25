@@ -1,0 +1,37 @@
+angular.module('app').controller('FindCtrl', function ($scope,$http,$location,GoogleMapPlacesSvc, GoogleMapGeocoderSvc, google) {
+	$scope.userAddress="";
+	$scope.matchedAddresses = [];
+	$scope.resultLatlng= {};
+	$scope.lat= 0;
+	$scope.lng= 0;
+	$scope.$watch('userAddress', function(newVal, oldVal){
+		if(!newVal) return;
+		console.log(newVal);
+
+		GoogleMapPlacesSvc.getQueryPredictions({ input: newVal },function(data){
+			$scope.matchedAddresses = data;
+			console.log($scope.matchedAddresses.length);
+			console.log(data);
+		});
+
+	});
+
+	$scope.getLatlng = function(address){
+		GoogleMapGeocoderSvc.geocode( { 'address': address}, function(results, status) {
+	      if (status == google.maps.GeocoderStatus.OK) {
+	      	console.log("get Geocode");
+	      	$scope.resultLatlng = results[0].geometry.location;
+	      	console.log($scope.resultLatlng);
+	      	$scope.lat = $scope.resultLatlng.lat;
+	      	$scope.$apply(function(){
+	      		console.log("$scope.resultLatlng.lat");
+	      		console.log($scope.resultLatlng.lat());
+	      		$scope.lat = $scope.resultLatlng.lat();
+	      		$scope.lng = $scope.resultLatlng.lng();
+	      	});
+	      } else {
+	        alert("Geocode was not successful for the following reason: " + status);
+	      }
+	    });
+	};
+});
