@@ -1,29 +1,36 @@
 .jumbotron
 	.container
 		.row
-			h4.create-fellowship.info.text-grey Create Fellowship
+			h4.create-church.info.text-grey Create Church
 		.row
-			.fellowship-info.col-md-6
-				.form-label FELLOWSHIP NAME
-				input.form-control(ng-model='fellowshipName')
-
-			.fellowship-info.col-md-6
-				.form-label ASSOCIATED CHURCH NAME
+			.church-info.col-md-6
+				.form-label CHURCH NAME
 				input.form-control(ng-model='churchName')
+			.church-info.col-md-6
+				.form-label CHURCH WEBSITE
+				input.form-control(ng-model='churchWebsite')
+
 		.row
-			.fellowship-info.col-md-6
-				.form-label FELLOWSHIP ADDRESS
+			.church-info.col-md-6
+				.form-label CHURCH ADDRESS
 				input.form-control.address(ng-model='street',placeholder='street')
 				input.form-control.address(ng-model='city',placeholder='city')
 				input.form-control.address(ng-model='state',placeholder='state')
 				input.form-control.address(ng-model='country',placeholder='country')
 				input.form-control.address(ng-model='zipcode',placeholder='zipcode')
 				input.form-control.address(ng-model='phone',placeholder='phone#')
+				input.form-control.address(ng-model='fax',placeholder='fax#')
 
-			.fellowship-info.col-md-6
-				.form-label ABOUT FELLOWSHIP
-				textarea.form-control(ng-model='aboutFellowship')
-
+			.church-info.col-md-6
+				.form-label FAITH STATEMENT
+				textarea.form-control(ng-model='faithStatement')
 		.row
-			.fellowship-info.col-md-12
-				button.btn.btn-primary.pull-right(ng-click='createFellowship()') CREATE
+			.church-info.col-md-6
+				.form-label MISSION
+				textarea.form-control(ng-model='mission')
+			.church-info.col-md-6
+				.form-label VISION
+				textarea.form-control(ng-model='vision')
+		.row
+			.church-info.col-md-12
+				button.btn.btn-primary.pull-right(ng-click='createChurch()') CREATE
