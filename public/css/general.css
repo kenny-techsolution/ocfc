@@ -229,9 +229,6 @@ button.btn {
 .jumbotron .container {
   width: 980px;
 }
-input.form-control.address {
-  border-bottom: 4px solid #dbd6d6;
-}
 .form-label {
   margin-bottom: 5px;
   color: #7f7f7f;

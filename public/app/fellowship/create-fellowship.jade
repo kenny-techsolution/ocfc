@@ -1,7 +1,18 @@
-.jumbotron
+.jumbotron#create-followship
 	.container
+		.row 
+			.col-md-12				
+				h4.create-fellowship.info.text-grey Create Fellowship
+				h5 Our Faith Statement
+				div Today we face an age of polygomy this is not what bible teaches us to be. To query and find these points within a certain range, you just need to follow MongoDB (not surprisingly). For some reason I had a difficult time having it actually work. I think it is because there is just so much crap out there that is unnecessary. This is the Model I had.
 		.row
-			h4.create-fellowship.info.text-grey Create Fellowship
+			.col-md-12
+				input(type="checkbox" ng-click="agree =!agree") 
+				label I agree the faith statement
+	.container(ng-show="agree")
+		.row
+			.col-md-12
+				h4.create-fellowship.info.text-grey Fellowship Information
 		.row
 			.fellowship-info.col-md-6
 				.form-label FELLOWSHIP NAME
@@ -13,17 +24,24 @@
 		.row
 			.fellowship-info.col-md-6
 				.form-label FELLOWSHIP ADDRESS
-				input.form-control.address(ng-model='street',placeholder='street')
+				input.form-control.address(ng-model='street',placeholder='street' ng-change="addressChange()")
 				input.form-control.city(ng-model='city',placeholder='city')
 				input.form-control.state(ng-model='state',placeholder='state')
 				input.form-control.country(ng-model='country',placeholder='country')
 				input.form-control.zipcode(ng-model='zipcode',placeholder='zipcode')
 				input.form-control.phone(ng-model='phone',placeholder='phone#')
-
+				button.form-control.btn.btn-success(ng-click="validateFellowshipAddress()", ng-disabled="disableValidateButton()") VALIDATE ADDRESS
+				.alert.alert-warning(role="alert", ng-show="disableValidateButton()") Please fill all address fields before Validate!
+				.alert.alert-success(role="alert", ng-show="isValidAddress && !revalidationNeeded") Your address is validated!
+				.alert.alert-danger(role="alert", ng-show="isNotValidAddress") Your address is not valid, please correct your address!
+				.alert.alert-warning(role="alert", ng-show="validatedBefore&&revalidationNeeded") Your address is modified please revalidate!
 			.fellowship-info.col-md-6
 				.form-label ABOUT FELLOWSHIP
 				textarea.form-control(ng-model='aboutFellowship')
-
+		.row
+			.col-md-6
+				ocfc-map(latlngs="latlngs")
 		.row
 			.fellowship-info.col-md-12
 				button.btn.btn-primary.pull-right(ng-click='createFellowship()') CREATE
+				

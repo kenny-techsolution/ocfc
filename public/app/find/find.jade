@@ -5,7 +5,7 @@
 				.col-xs-9
 					input.form-control(type="text", ng-model="userAddress")
 				.col-xs-3
-					button.btn.btn-primary FIND
+					button.btn.btn-primary(ng-click="getLatlng(userAddress)") FIND
 			.row
 				.col-xs-12
 					ul.list-group.autocomplete-result
