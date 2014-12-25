@@ -9,9 +9,8 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 	$scope.$watch('userAddress', function(newVal, oldVal){
 		if(!newVal) return;
 		console.log(newVal);
-
 		GoogleMapPlacesSvc.getQueryPredictions({ input: newVal },function(data){
-			$scope.matchedAddresses = data;
+			//$scope.matchedAddresses = data;
 			console.log($scope.matchedAddresses.length);
 			console.log(data);
 		});
@@ -19,6 +18,8 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 	});
 
 	$scope.getLatlng = function(address){
+		console.log("get address");
+		console.log(address);
 		GoogleMapGeocoderSvc.geocode( { 'address': address}, function(results, status) {
 	      if (status == google.maps.GeocoderStatus.OK) {
 	      	console.log("get Geocode");
