@@ -2,10 +2,12 @@
 	.search-section
 		.container
 			.row
-				.col-xs-9
-					input.form-control(type="text", ng-model="userAddress")
-				.col-xs-3
-					button.btn.btn-primary(ng-click="getLatlng(userAddress)") FIND
+				.col-xs-12.form-inline
+					button.btn.btn-default.inline-block.choose-type(type='button', ng-model='selectedGroup', ng-options='group.value as group.label for group in groups', bs-select='')
+						| Action
+						span.caret
+					input.form-control.inline-block.search-box(type="text", ng-model="userAddress")
+					button.btn.btn-primary.inline-block(ng-click="getLatlng(userAddress)") FIND
 			.row
 				.col-xs-12
 					ul.list-group.autocomplete-result
@@ -23,4 +25,4 @@
 							div {{fellowship.name}}
 							div {{address}} {{city}} {{state}} {{country}}
 							button.btn.btn-default.pull-right JOIN
-	ocfc-map(latlngs="latlngs")
+	ocfc-map#find-map(latlngs="latlngs")

@@ -15,7 +15,8 @@ angular.module('app').directive('ocfcMap', function (L) {
 
 			function initmap() {
 				// set up the map
-				map = new L.Map('map', {
+
+				map = new L.Map(attrs.id, {
 				    center: [37.6087436, -122.40074319999997],
 				    zoom: 13
 				});

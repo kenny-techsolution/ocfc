@@ -11,10 +11,7 @@
   width: 510px;
   float: right;
 }
-#find-on-map .search-section .container .btn-default {
-  border: 1px solid #808080 !important;
-}
-#find-on-map #map {
+#find-on-map #find-map {
   display: block;
   position: fixed;
   width: 50%;

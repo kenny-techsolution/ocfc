@@ -1,4 +1,18 @@
 angular.module('app').controller('FindCtrl', function ($scope,$http,$location,GoogleMapPlacesSvc, GoogleMapGeocoderSvc, google, FellowshipSvc) {
+
+
+	$scope.selectedIcon = '';
+  	$scope.selectedIcons = ['Globe', 'Heart'];
+  	$scope.icons = [
+    	{value: 'Gear', label: 'Gear'},
+		{value: 'Globe', label: 'Globe'},
+		{value: 'Heart', label: 'Heart'},
+		{value: 'Camera', label: 'Camera'}
+  	];
+
+	$scope.selectedGroup = "Fellowship";
+	$scope.groups = [{value:'Fellowship',label:'Fellowship'},{value:'Church',label:'Church'}];
+
 	$scope.userAddress="";
 	$scope.matchedAddresses = [];
 	$scope.resultLatlng= {};
@@ -6,6 +20,9 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 	$scope.lng= 0;
 	$scope.fellowships = [];
 	$scope.latlngs = [];
+
+
+
 	$scope.$watch('userAddress', function(newVal, oldVal){
 		if(!newVal) return;
 		console.log(newVal);
