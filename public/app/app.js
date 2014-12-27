@@ -1,5 +1,6 @@
 //This file references all module required for this project
 //Defining a model called 'app' which uses directives listed within []
+//'ui.bootstrap'
 angular.module('app',['ngResource','ngRoute','ngAnimate','ui.bootstrap','mgcrea.ngStrap','btford.socket-io','cloudinary','angularFileUpload']).
 factory('mySocket', function (socketFactory) {
 	return socketFactory();
