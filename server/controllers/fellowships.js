@@ -258,13 +258,28 @@ exports.getUsersFromFellowship = function (req, res) {
 	//Search FellowUser model by fellowshipId against param id,
 	//then populate user table
 //	console.log(req.user);
+	console.log('chk req.query');
 	console.log(req.query);
 
 	if (_.isEmpty(req.query)){
-		FellowshipUser.find({fellowshipId: req.params.fellowship_id, status: 'approved'}).populate("userId").exec(function (err, fellowshipUsers) {
+		var condition;
+		//if your site admin then grab for all statuses
+		if (commFunc.isFellowshipAdmin(req.user ,req.params.fellowship_id)){
+			console.log('admin condition is met');
+			condition={fellowshipId: req.params.fellowship_id};
+
+		}else{
+			console.log('user condition is met');
+			condition={fellowshipId: req.params.fellowship_id, status: 'approved'};
+		}
+
+		FellowshipUser.find(condition).populate("userId").exec(function (err, fellowshipUsers) {
 			if (err) return res.json(err);
+			console.log('chk fellowshipUsers');
+			console.log(fellowshipUsers);
 			return res.json(fellowshipUsers);
 		});
+
 	}else{
 
 		//join within x month : numOfMth
@@ -279,6 +294,8 @@ exports.getUsersFromFellowship = function (req, res) {
 		//display signupDate and user full name from User table by userId
 		FellowshipUser.find({fellowshipId: req.params.fellowship_id, status: 'approved',signupDate:{$gt:joinedDate}}).populate("userId").exec(function (err, queryFellowshipUsers) {
 			if (err) return res.json(err);
+			console.log('chk queryFellowshipUsers');
+			console.log(queryFellowshipUsers);
 			return res.json(queryFellowshipUsers);
 		});
 	}
@@ -288,6 +305,8 @@ exports.getUsersFromFellowship = function (req, res) {
 
 //Put - Round 1
 exports.updateUserToFellowship = function (req, res) {
+	console.log('server updateUserToFellowship has been called');
+
 	if(!commFunc.isFellowshipAdmin(req.user ,req.params.fellowship_id)) {
 		return res.json({status:'fail', message:'you are not an admin for this fellowship.'});
 	}
@@ -306,7 +325,11 @@ exports.updateUserToFellowship = function (req, res) {
 		function(callback){
 			console.log("update the fellowshipUser instance");
 			preStatus = fellowshipUserInstance.status;
+			console.log('chk preStatus');
+			console.log(preStatus);
 			if(fellowshipUserObj.status === preStatus || ['rejected', 'approved', 'pending'].indexOf(fellowshipUserObj.status)===-1) {
+				console.log('chk fellowshipUserObj.status');
+				console.log(fellowshipUserObj.status);
 				return res.json({status:'fail', message: 'invalid status string or update with the same status value.'});
 			}
 			if(fellowshipUserObj.status === 'rejected' && !fellowshipUserObj.rejectReason) {
