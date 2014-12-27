@@ -166,17 +166,18 @@ exports.updateFellowshipById = function (req, res) {
 
 //Get - Round1
 exports.getFellowshipById = function (req, res) {
+	console.log('server getFellowshipById has been called ');
 	//chk if entry exist match by fellowshipId & status of approved
 	FellowshipUser.count({ fellowshipId: req.params.id, userId:req.user._id, status: 'approved'}, function (err, count) {
 		if (count == 1) {
 			Fellowship.findOne({_id: req.params.id}).exec(function (err, fellowship) {
 				if (err) return res.json(err);
-				return res.json({status: "success", fellowship: fellowship});
+				return res.json(fellowship);
 			});
 		} else {
 			Fellowship.findOne({_id: req.params.id}, '-albumIds -fileIds -calendarIds').exec(function (err, fellowship) {
 				if (err) return res.json(err);
-				return res.json({status: "success", fellowship: fellowship});
+				return res.json(fellowship);
 			});
 
 		}

@@ -291,3 +291,9 @@ textarea.form-control {
   margin-bottom: 5px;
   margin-top: 20px;
 }
+.text-black {
+  color: #000;
+}
+.text-dark-grey {
+  color: #908e8e;
+}
