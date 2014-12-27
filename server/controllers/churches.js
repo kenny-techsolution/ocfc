@@ -208,10 +208,14 @@ exports.updateFellowshipToChurch= function (req, res) {
 };
 //Get- Round1
 exports.getFellowships= function (req, res) {
+	console.log('server getFellowships has been called');
 	//chk if entry exist match by churchId & status of approved
 	ChurchFellowship.find({churchId: req.params.church_id},'fellowshipId').populate('fellowshipId').exec(function (err, churchFellowships) {
+		console.log('ChurchFellowship.find has been called');
+		console.log('chk churchFellowships obj');
+		console.log(churchFellowships);
 		if (err) return res.json(err);
-		return res.json({status:"success",churchFellowships:_.pluck(churchFellowships, 'fellowshipId')});
+		return res.json(_.pluck(churchFellowships, 'fellowshipId'));
 	});
 };
 

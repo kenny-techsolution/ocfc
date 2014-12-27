@@ -84,6 +84,7 @@ angular.module('app').config(function ($routeProvider, $locationProvider, $httpP
 		.when('/createChurch', {templateUrl: '/partials/church/create-church', controller: 'ChurchCtrl',resolve: { checklogin: checkLogin}})
 		.when('/approveChurch', {templateUrl: '/partials/church/approve-church', controller: 'ChurchCtrl',resolve: { checklogin: checkLogin}})
 		.when('/profile', {templateUrl: '/partials/account/profile/profile', controller: 'ProfileCtrl', resolve: routeRoleChecks.user})
+		.when('/fellowship/:id/members', {templateUrl: '/partials/fellowship/fellowship-members', controller: 'FellowshipMembersCtrl'})
 		.when('/fellowship/:id', {templateUrl: '/partials/fellowship/fellowship', controller: 'FellowshipCtrl',resolve: { checklogin: checkLogin}})
 		.when('/church/:id', {templateUrl: '/partials/church/church', controller: 'ChurchCtrl'})
 		.when('/find', {templateUrl: '/partials/find/find', controller: 'FindCtrl'})

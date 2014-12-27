@@ -156,12 +156,6 @@
 #main-content .dynamic-content {
   height: 1500px;
 }
-#main-content .dynamic-content .widget-title {
-  border-bottom: 1px solid #000;
-  color: #000;
-  margin-bottom: 5px;
-  margin-top: 20px;
-}
 #main-content .dynamic-content .wall {
   height: 100%;
   color: #000;

@@ -16,21 +16,23 @@
 			.description 大安森林食堂據說是日本最大的庶民連鎖自助餐，試營運期間就大排長龍，原本想說應該是有七折優惠的魅力，等風潮過後再來輕鬆吃。特別約了前同事休假一起來嚐鮮，沒想到扣折結束後，平日中午來還是繼續排排隊，店門口一堆人在候位，好在我跟友人話多，聊不完的天，一個小時也就這樣排到了。
 	.row.dynamic-content
 		.col-md-3.left-sidebar
-			.widget-title Announcement
+			.widget-title-wo-link Announcement
 			ocfc-announcement
-			.widget-title Fellowship
-			ocfc-fellowship
-			.widget-title New Friend
-			ocfc-new-friend
-			.widget-title Pastoral
+			div.widget-title-with-link
+				span.title.text-black Fellowship
+				a.more-link.text-black.pull-right more
+			ocfc-fellowships
+			.widget-title-wo-link New Friend
+			ocfc-new-friend(group-type="'church'")
+			.widget-title-wo-link Pastoral
 			ocfc-pastoral
 		.col-md-6.wall
-			.widget-title Write to Wall
+			.widget-title-wo-link Write to Wall
 			ocfc-wall
 		.col-md-3.right-sidebar
-			.widget-title Calendar
+			.widget-title-wo-link Calendar
 			ocfc-calendar
-			.widget-title Event
+			.widget-title-wo-link Event
 			ocfc-event
-			.widget-title Birthday
+			.widget-title-wo-link Birthday
 			ocfc-birthday
