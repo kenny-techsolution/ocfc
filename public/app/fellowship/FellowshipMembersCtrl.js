@@ -26,6 +26,18 @@ angular.module('app').controller('FellowshipMembersCtrl', function ($http, $scop
 		FellowshipUserSvc.update({fellowship_id: $routeParams.id, user_id:fellowshipUser.userId._id}, fellowshipUser);
 
 	};
+
+	//Filter status on UI
+	$scope.notApproved = function(fellowshipUser){
+		return fellowshipUser.status!=='approved';
+	};
+
+	$scope.approved = function(fellowshipUser){
+		return fellowshipUser.status==='approved';
+	};
+
+
+
 });
 
 
