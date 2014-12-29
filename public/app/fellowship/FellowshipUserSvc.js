@@ -12,8 +12,7 @@ angular.module('app').factory('FellowshipUserSvc', function ($resource) {
 	var fellowshipUserResource = $resource('/api/fellowships/:fellowship_id/users/:user_id', {
 		fellowship_id: '@fellowship_id',
 		user_id:'@user_id'
-	}, {
-		'getNewFriends':{
+	}, {'getNewFriends':{
 			method: 'GET',
 			isArray: true,
 			params:{numOfMth:1}

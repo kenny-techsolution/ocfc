@@ -8,12 +8,17 @@ angular.module('app').directive('ocfcNewFriend', function (FellowshipUserSvc,Chu
 		}, //isolated scope
 		templateUrl: '/partials/common/ocfc-new-friend',
 		controller: function ($scope) {
-			console.log('chk $scope.groupType value!!!');
+			console.log('chk $scope.groupType value before');
 			console.log($scope.groupType);
+
+			console.log('chk $routeParams obj');
+			console.log($routeParams);
+
 			if($scope.groupType==='fellowship'){
 				console.log('ocfcNewFriend directive has been called for group-type fellowship');
-				console.log('chk $scope.groupType value');
+				console.log('chk $scope.groupType value after');
 				console.log($scope.groupType);
+
 				//logic to populate fellowship users
 				$scope.users = FellowshipUserSvc.getNewFriends(
 					{

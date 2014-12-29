@@ -330,22 +330,27 @@ exports.getUsersFromFellowship = function (req, res) {
 	//Search FellowUser model by fellowshipId against param id,
 	//then populate user table
 //	console.log(req.user);
+	console.log('server getUsersFromFellowship has been called');
 	console.log('chk req.query');
 	console.log(req.query);
+	console.log('chk req.user');
+	console.log(req.user);
 
 	if (_.isEmpty(req.query)){
+		console.log('req.query is empty condition is met');
 		var condition;
 		//if your site admin then grab for all statuses
 		if (commFunc.isFellowshipAdmin(req.user ,req.params.fellowship_id)){
-			console.log('admin condition is met');
+			console.log('admin condition is met, will grab all statuses');
 			condition={fellowshipId: req.params.fellowship_id};
 
 		}else{
-			console.log('user condition is met');
+			console.log('user condition is met, only grab approved statues');
 			condition={fellowshipId: req.params.fellowship_id, status: 'approved'};
 		}
 
 		FellowshipUser.find(condition).populate("userId").exec(function (err, fellowshipUsers) {
+			console.log('FellowshipUser.find has been called and populate data depending on admin/user condition');
 			if (err) return res.json(err);
 			console.log('chk fellowshipUsers');
 			console.log(fellowshipUsers);
@@ -353,7 +358,7 @@ exports.getUsersFromFellowship = function (req, res) {
 		});
 
 	}else{
-
+		console.log('req.query is not empty condition is met');
 		//join within x month : numOfMth
 		//current date minus numofMth=joinedDate, if signupDate<joinedDate
 		var currDate=new Date();
@@ -365,6 +370,7 @@ exports.getUsersFromFellowship = function (req, res) {
 		//where signupDate & status is approved is within 1mth of current date
 		//display signupDate and user full name from User table by userId
 		FellowshipUser.find({fellowshipId: req.params.fellowship_id, status: 'approved',signupDate:{$gt:joinedDate}}).populate("userId").exec(function (err, queryFellowshipUsers) {
+			console.log('FellowshipUser.find has been called and populate data within signupDate');
 			if (err) return res.json(err);
 			console.log('chk queryFellowshipUsers');
 			console.log(queryFellowshipUsers);
