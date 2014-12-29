@@ -2,11 +2,11 @@
 	.search-section
 		.container
 			.row
-				.col-xs-12.form-inline
+				.col-xs-12
 					button.btn.btn-default.inline-block.choose-type(type='button', ng-model='selectedGroup', ng-options='group.value as group.label for group in groups', bs-select='')
 						| Action
 						span.caret
-					input.form-control.inline-block.search-box(type="text", ng-model="userAddress")
+					input.form-control.inline-block.search-box(type="text", ng-model="userAddress", placeholder="Search by address or zip.")
 					button.btn.btn-primary.inline-block(ng-click="getLatlng(userAddress)") FIND
 			.row
 				.col-xs-12
