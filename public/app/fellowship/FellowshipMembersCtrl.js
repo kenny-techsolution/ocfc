@@ -6,6 +6,15 @@ angular.module('app').controller('FellowshipMembersCtrl', function ($http, $scop
 	console.log('chk $routeParams obj');
 	console.log($routeParams);
 
+	var getFellowshipUsers=function(){
+		FellowshipUserSvc.getAllMembers(
+			{fellowship_id: $routeParams.id}
+			, function () {
+				console.log('chk $scope.fellowshipUsers of FellowshipUserSvc.getAllMembers was called');
+				console.log($scope.fellowshipUsers);
+			});
+	};
+
 	$scope.fellowshipUsers = FellowshipUserSvc.getAllMembers(
 		{fellowship_id: $routeParams.id}
 		, function () {
@@ -24,6 +33,7 @@ angular.module('app').controller('FellowshipMembersCtrl', function ($http, $scop
 		//call updateFellowshipById
 		fellowshipUser.status = 'approved';
 		FellowshipUserSvc.update({fellowship_id: $routeParams.id, user_id:fellowshipUser.userId._id}, fellowshipUser);
+		getFellowshipUsers();
 
 	};
 

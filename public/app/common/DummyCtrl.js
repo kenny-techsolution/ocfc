@@ -1,5 +1,5 @@
 angular.module('app').controller('DummyCtrl', function ($http, $scope,UserSvc,ChurchSvc,
-                                                         IdentitySvc, FellowshipSvc,FellowshipUserSvc, $routeParams,
+                                                         IdentitySvc, FellowshipSvc,FellowshipUserSvc, ChurchFellowshipSvc,$routeParams,
                                                          mySocket, $timeout) {
 
 var Users=[{fullName:'Mariah Carey',
@@ -249,6 +249,7 @@ var Users=[{fullName:'Mariah Carey',
 
 $scope.createDummyData=function(){
 	console.log('front-end createDummyData has been called');
+	console.log('create 30 users');
 	var userObj=[];
 	var userIds=[];
 
@@ -258,7 +259,6 @@ $scope.createDummyData=function(){
 
 		userObj[i].$save(function(user){
 			console.log(user);
-
 			userIds.push(user.user._id);
 		});
 	};
@@ -269,27 +269,27 @@ $scope.createDummyData=function(){
 			{
 				name:'Timothy Fellowship',
 				about:'Welcome to Timothy',
-				address:'920 Sierra Vista Dr',
+				address:'920 Sierra Vista Avenue',
 				city:'Mountain view',
 				country:'USA',
-				zipcode:'98002',
+				zipcode:'94043',
 				state:'CA',
 				approved:true,
 				active:true,
-				phone:'335-399-9979'
+				phone:'650-968-2900'
 
 			},
 			{
 				name:'Lin Xin Fellowship',
 				about:'Welcome to Lin Xin',
-				address:'8989 Melo Park',
-				city:'Palo Alto',
+				address:'71 Bay Road',
+				city:'Menlo Park',
 				country:'USA',
-				zipcode:'98002',
+				zipcode:'94025',
 				state:'CA',
 				approved:true,
 				active:true,
-				phone:'335-388-2273'
+				phone:'650-323-5550'
 
 			},
 			{
@@ -298,51 +298,49 @@ $scope.createDummyData=function(){
 				address:'4141 Maize Road',
 				city:'Columbus',
 				country:'USA',
-				zipcode:'45302',
+				zipcode:'43224',
 				state:'OH',
 				approved:true,
 				active:true,
-				phone:'225-349-2279'
+				phone:'614-263-9287'
 
 			},
 			{
 				name:'Amazing Fellowship',
 				about:'Welcome to Amazing',
-				address:'3320 Time Square',
-				city:'New York City',
+				address:'15 Waverly Place',
+				city:'San Francisco',
 				country:'USA',
-				zipcode:'34343',
-				state:'NY',
+				zipcode:'98002',
+				state:'CA',
 				approved:true,
 				active:true,
-				phone:'245-335-1237'
+				phone:'415-362-4139'
 
 			},
 			{
 				name:'Agape Fellowship',
 				about:'Welcome to Amazing',
-				address:'1388 broadway',
-				city:'millbrae',
-				country:'usa',
-				zipcode:'94030',
-				state:'ca',
+				address:'1811 34th Avenue',
+				city:'San Francisco',
+				country:'USA',
+				zipcode:'94122',
+				state:'CA',
 				approved:true,
 				active:true,
-				phone:'245-335-1247'
+				phone:'415-831-2313'
 
 			}
 		];
 
 		//Have 5 users create new fellowship.
+		console.log('create 5 fellowships');
 		for (var i = 0; i < 5; i++){
-			console.log('chk users array');
-			console.log(userIds[i]);
-
+			console.log('for loop has been called');
 			var fellowshipObj=[];
 			var fellowshipIds=[];
 			fellowships[i].userId=userIds[i];
 			console.log(fellowships[i]);
-			console.log('for loop has been called');
 			fellowshipObj[i]=new FellowshipSvc(fellowships[i]);
 
 			fellowshipObj[i].$save(function(fellowship){
@@ -355,7 +353,9 @@ $scope.createDummyData=function(){
 			console.log(fellowshipIds);
 			//approve fellowships.
 			var fellowUsers = [];
+			console.log('create 14 Fellowship Users with Pending status');
 			for (var i = 5; i < 19; i++) {
+				console.log('for loop has been called');
 				fellowUsers[i] = new FellowshipUserSvc({
 					userId: userIds[i],
 					fellowshipId: fellowshipIds[0],
@@ -366,8 +366,11 @@ $scope.createDummyData=function(){
 					console.log(fellowUser);
 				});
 			}
+
+			console.log('create 14 Fellowship Users with Approved status');
 			setTimeout(function(){
 				for (var i = 19; i < 28; i++) {
+					console.log('for loop has been called');
 					fellowUsers[i] = new FellowshipUserSvc({
 						userId: userIds[i],
 						fellowshipId: fellowshipIds[1],
@@ -378,24 +381,166 @@ $scope.createDummyData=function(){
 						console.log(fellowUser);
 					});
 				}
-			},3000);
+			},4000);
+
+			setTimeout(function() {
+				console.log('chk userIds array');
+				console.log(userIds);
+				var churches=[
+					{
+						name:'San Francisco Chinese Baptist Church',
+						about:'Welcome',
+						address:'1811 34th Avenue',
+						city:'San Francisco',
+						state:'CA',
+						country:'USA',
+						zipcode:'94122',
+						phone:'415-831-2313',
+						fax:'344-343-3223',
+						faithStatement:'faith statement goes here',
+						mission:'mission goes here',
+						vision:'vision goes here',
+						startDate:new Date("October 13, 2014 11:13:00"),
+						approved:true,
+						url:'http://sfcbc.org/'
+
+					},
+					{
+						name:'Chinese Church in Christ',
+						about:'Welcome to CCIC',
+						address:'920 Sierra Vista Avenue',
+						city:'Mountain View',
+						state:'CA',
+						country:'USA',
+						zipcode:'94043',
+						phone:'650-968-2900',
+						fax:'344-343-3223',
+						faithStatement:'faith statement goes here',
+						mission:'mission goes here',
+						vision:'vision goes here',
+						startDate:new Date("October 11, 2014 11:13:00"),
+						approved:true,
+						url:'http://ccic.org/mountainview/'
+
+					},
+					{
+						name:'Columbus Chinese Christian Church',
+						about:'Welcome to CCCC',
+						address:'4141 Maize Road',
+						city:'Columbus',
+						state:'OH',
+						country:'USA',
+						zipcode:'43224',
+						phone:'614-263-9287',
+						fax:'344-343-3223',
+						faithStatement:'faith statement goes here',
+						mission:'mission goes here',
+						vision:'vision goes here',
+						startDate:new Date("October 09, 2014 11:13:00"),
+						approved:true,
+						url:'http://www.columbusccc.org/modx/index.php?id=47'
+
+					},
+					{
+						name:'The Home of Christ',
+						about:'Welcome',
+						address:'71 Bay Road',
+						city:'Menlo Park',
+						state:'CA',
+						country:'USA',
+						zipcode:'94025',
+						phone:'650-323-5550',
+						fax:'344-343-3223',
+						faithStatement:'faith statement goes here',
+						mission:'mission goes here',
+						vision:'vision goes here',
+						startDate:new Date("October 13, 2014 11:13:00"),
+						approved:true,
+						url:'http://hoc1.org/English/contact'
+
+					},
+					{
+						name:'OCFC Church',
+						about:'Welcome to OCFC',
+						address:'1388 Broadway',
+						city:'Millbrae',
+						state:'CA',
+						country:'USA',
+						zipcode:'94030',
+						phone:'343-362-4139',
+						fax:'344-343-3223',
+						faithStatement:'faith statement goes here',
+						mission:'mission goes here',
+						vision:'vision goes here',
+						startDate:new Date("August 13, 2014 11:13:00"),
+						approved:true,
+						url:'www.ocfc.org'
+
+					}
+				];
+				console.log('create 5 churches');
+				console.log('check churches array before loop');
+				console.log(churches);
+
+				//Have 5 users create 5 churches.
+				for (var j = 0; j < 5; j++) {
+					console.log('for loop has been called');
+					var churchObj = [];
+					var churchIds = [];
+					console.log(churches[j]);
+					churches[j].userId=userIds[j];
+					churchObj[j] = new ChurchSvc(churches[j]);
+
+					churchObj[j].$save(function (church) {
+						console.log(church);
+						churchIds.push(church._id);
+					});
+				};
+
+
+				console.log('link 4 fellowships to 1 church');
+				console.log('link 1 fellowship to OCFC church as Stand alone');
+				console.log('check fellowships array before loop');
+				console.log(fellowships);
+				setTimeout(function() {
+					//link 4 fellowships to 1 church.
+					//link 1 fellowship to OCFC church.
+					for(var k=0; k<5; k++){
+						console.log('for loop has been called');
+
+						//set to ocfc id
+						if (k===4){
+							var churchFellowshipObj = {fellowshipId:fellowshipIds[k],
+								churchId:churchIds[4],
+								status:'Approved'};
+
+						}else{//set to 1st element of churches array
+							var churchFellowshipObj = {fellowshipId:fellowshipIds[k],
+								churchId:churchIds[0],
+								status:'Approved'};
+						};
+
+						console.log('chk churchFellowshipObj');
+						console.log(churchFellowshipObj);
+
+						var churchFellowship = new ChurchFellowshipSvc(churchFellowshipObj);
+
+						console.log('chk churchFellowship');
+						console.log(churchFellowship);
+
+						churchFellowship.$save(function (churchFellowships) {
+							console.log('chk churchFellowships');
+							console.log(churchFellowships);
+
+						});
+					};
+				},5000);
+
+			},5000);
 		},4000);
 	}, 4000);
 
-
-
-
-
-
-
-
-
-
 };
-
-
-
-
 
 
 });

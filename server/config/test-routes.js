@@ -69,13 +69,13 @@ module.exports = function (app, io) {
 //	app.delete('/api/inviteOtherToFellowships/:id', inviteOtherToFellowship.deleteInviteTest);
 //
 //	/* ------ Church related API -------- */
-//	app.post('/api/churches', churches.createChurchTest);
+	app.post('/api/churches', churches.createChurchTest);
 //	app.put('/api/churches/:id', churches.updateChurchByIdTest);
 //	app.get('/api/churches/:id', churches.getChurchByIdTest);
 //	app.get('/api/churches', churches.queryChurchesTest);
 //	app.delete('/api/churches/:id', churches.deleteChurchByIdTest);
 //
-//	app.post('/api/churches/:church_id/fellowships/:fellowship_id', churches.addFellowshipToChurchTest);
+	app.post('/api/churches/fellowships', churches.addFellowshipToChurchTest);
 //	app.put('/api/churches/:church_id/fellowships/:fellowship_id', churches.updateFellowshipToChurchTest);
 //	app.get('/api/churches/:church_id/fellowships', churches.getFellowshipsTest);
 //	app.delete('/api/churches/:church_id/fellowships/:fellowship_id', churches.removeFellowshipFromChurchTest);

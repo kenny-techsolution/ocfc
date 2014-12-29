@@ -31,6 +31,36 @@ exports.createChurch= function (req, res) {
 	})
 };
 
+
+exports.createChurchTest= function (req, res) {
+	console.log('server createChurchTest has been called');
+	//TODO, prevent duplicate church
+	//compared by name, address
+	//admin cannot create duplicate church
+
+	var church = req.body;
+	church = new Church(church);
+	church.save(function (err) {
+		console.log('church.save has been called');
+		if (err) return res.json(err);
+		ChurchUser.findOneAndUpdate({churchId:church._id,userId:req.body.userId},
+			{churchId:church._id,userId:req.body.userId,status:'approved',role:'admin'},
+			{upsert:true},
+			function(err){
+				console.log('ChurchUser.findOneAndUpdate has been called');
+				if (err) return res.json(err);
+				//add the fellowship to the membership of the fellowship Admin user.
+				Membership.update({userId: req.body.userId,'churches.churchId':{$ne: church._id}},
+					{$push: {churches: {churchId: church._id, name: church.name, role: "admin"}}},
+					function(err){
+						console.log('Membership.update has been called');
+						if (err) return res.json(err);
+						return res.json(church);
+					});
+			});
+	})
+};
+
 var approveChurch = function (churchId,res) {
 	console.log('server approveChurch has been called');
 	console.log('chk churchId parameter value');
@@ -140,6 +170,7 @@ exports.deleteChurchById= function (req, res) {
 exports.addFellowshipToChurch= function (req, res) {
 	//Populate data onto ChurchFellowship tbl
 	Church.count({ _id: req.params.church_id}, function(err, count){
+		if (err) return res.json(err);
 		if (count==1){
 			var churchFellowship = req.body;
 			churchFellowship.churchId=req.params.church_id;
@@ -155,6 +186,34 @@ exports.addFellowshipToChurch= function (req, res) {
 		}
 	});
 };
+
+//Test - Round1
+exports.addFellowshipToChurchTest= function (req, res) {
+	console.log('server addFellowshipToChurchTest has been called');
+	//Populate data onto ChurchFellowship tbl
+	Church.count({ _id: req.body.churchId}, function(err, count){
+		console.log('server Church.count has been called');
+		if (err) return res.json(err);
+		if (count==1){
+			console.log('count equates to 1');
+			var churchFellowship = req.body;
+			churchFellowship.churchId=req.body.churchId;
+			churchFellowship.fellowshipId=req.body.fellowshipId;
+			churchFellowship.updateDate=new Date();
+			churchFellowship.status="Approved";
+			churchFellowship = new ChurchFellowship(churchFellowship);
+
+			churchFellowship.save(function (err) {
+				console.log('server churchFellowship.save has been called');
+				if (err) return res.json(err);
+				return res.json({status:"success",churchFellowship:churchFellowship});
+			})
+		}
+	});
+};
+
+
+
 //Put -Round 1
 exports.updateFellowshipToChurch= function (req, res) {
 	//Only admin privilege allowed to update from ChurchFellowship tbl
