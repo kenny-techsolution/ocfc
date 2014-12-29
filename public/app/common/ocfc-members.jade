@@ -1,4 +1,4 @@
 .members(ng-repeat='fellowshipUser in fellowshipUsers')
-	img.members-profile(ng-src='/css/images/kenny_face.jpg')
-	{{fellowshipUser.userId.firstName}}
+	img.members-profile(ng-src='{{fellowshipUser.userId.profileImg}}')
+	{{fellowshipUser.userId.fullName}}
 
