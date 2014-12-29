@@ -13,7 +13,7 @@ var mongoose = require('mongoose'),
 	ObjectId = mongoose.Schema.Types.ObjectId;
 
 var membershipSchema = mongoose.Schema({
-	userId:			{type: ObjectId, ref:'User', required:'(userId) is required!',index: true, unique: false},
+	userId:			{type: ObjectId, ref:'User', required:'(userId) is required!',index: true, unique: true},
 	fellowships:	[{
 		fellowshipId : 	{type: ObjectId, ref:'Fellowship', required:'(FellowshipId) is required!', index: false, unique: false},
 		name:			{type: String, required:'(name) is required!', index: true, unique: false,lowercase: true},

@@ -63,6 +63,41 @@ exports.createUser=function (req, res) {
 };
 
 
+//Test - Round1
+exports.createUserTest=function (req, res) {
+	console.log('createUser is being called');
+	var user = req.body;
+	var salt = encrypt.createSalt();
+//	var activationCode=randomString({
+//		length:20,
+//		numeric:true,
+//		letters:true,
+//		special:false
+//	});
+	user.salt = salt;
+	user.hashedPwd = encrypt.hashPwd(salt, user.password);
+	user = new User(user);
+	user.active=true;  //added 12.27.2014
+	user.save(function (err) {
+		if (err) return res.json(err);
+//		sendActivation(activationCode,res,user._id,user.userName);
+		var membership=new Membership({userId:user._id});
+		membership.save(function(err){
+//			if (err) return res.json(err);
+//			var activation=new Activation({userId:user._id,activationCode:activationCode});
+//			activation.save(function(err){
+//				if (err) return res.json(err);
+//				console.log('chk activation obj to see whether it has been saved to database');
+//				console.log(activation);
+//				return res.json({status:"success",user:user});
+			if (err) return res.json(err);
+			return res.json({status:"success",user:user});
+//			});
+		});
+	});
+};
+
+
 exports.activateUser=function(req,res){
 	//chk if req.query.activationCode matches Activation.activationCode tbl
 	//Then grab userId and match against User tbl to set Active to true

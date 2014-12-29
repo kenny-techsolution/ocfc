@@ -16,6 +16,10 @@ server.listen(config.port);
 require('./server/config/express')(app, config);
 require('./server/config/mongoose')(config);
 require('./server/config/passport')();
+
 require('./server/config/routes')(app, io);
+
+//test route
+//require('./server/config/test-routes')(app, io);
 
 console.log('Listening on port' + config.port + '...');

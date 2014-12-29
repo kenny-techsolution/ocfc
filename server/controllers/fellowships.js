@@ -52,6 +52,58 @@ exports.createFellowship = function (req, res) {
 	});
 };
 
+
+//Test - Round1
+exports.createFellowshipTest = function (req, res) {
+	console.log('server createFellowship function has been called');
+
+	var fellowship = req.body;
+
+	//TODO, prevent duplicate fellowship
+	//compared by name, address, if there's associated church,
+	//admin cannot create duplicate fellowships
+	//fellowship=commFunc.removeInvalidKeys(req.body,['name','about','address','city','state',
+	//	'country','zipcode','phone']);
+	fellowship = new Fellowship(fellowship);
+	console.log('chking fellowship obj');
+	console.log(fellowship);
+
+	//TODO call geocoding to get the coordinate
+	//fellowship.approved=true; //added 12.27.2014
+	fellowship.save(function (err) {
+		console.log('fellowship.save has been called');
+		console.log('chking fellowship obj inside .save');
+		console.log(fellowship);
+
+		if (err) return res.json(err);
+
+		var fellowshipUser = new FellowshipUser();
+		fellowshipUser.userId = req.body.userId;
+		fellowshipUser.fellowshipId = fellowship._id;
+		fellowshipUser.status = 'approved';
+		fellowshipUser.role = 'admin';
+
+		console.log('chking fellowshipUser');
+		console.log(fellowshipUser);
+
+		fellowshipUser.save(function (err) {
+			console.log('fellowshipUser.save has been called');
+			if (err) return res.json(err);
+			var pushObj = {
+				fellowshipId: fellowship._id,
+				name: fellowship.name,
+				role: "admin"
+			}
+			Membership.update({userId: fellowshipUser.userId, 'fellowships.fellowshipId': {$ne: fellowship._id}},
+				{$push: {fellowships: pushObj}}, function (err) {
+					console.log('Membership.update has been called');
+					if (err) return res.json(err);
+					return res.json(fellowship);
+			});
+		});
+	});
+};
+
 var approveFellowship = function (fellowshipId,req,res) {
 	console.log('server approveFellowship function has been called');
 
@@ -210,6 +262,26 @@ exports.addUserToFellowship = function (req, res) {
 			fellowshipUser.fellowshipId = req.params.fellowship_id;
 
 			fellowshipUser.status = "Pending";
+			fellowshipUser.role = 'member';
+			fellowshipUser = new FellowshipUser(fellowshipUser);
+			fellowshipUser.save(function (err) {
+				if (err) return res.json(err);
+				return res.json({status: "success", fellowshipUser: fellowshipUser});
+			})
+		}
+	});
+};
+
+exports.addUserToFellowshipTest = function (req, res) {
+	//Populate data onto FellowshipUsers tbl
+	Fellowship.count({ _id: req.body.fellowshipId}, function (err, count) {
+
+		if (count == 1) {
+			var fellowshipUser = req.body;
+			fellowshipUser.userId = req.body.userId;
+			fellowshipUser.fellowshipId = req.body.fellowshipId;
+
+			//fellowshipUser.status = "Pending";
 			fellowshipUser.role = 'member';
 			fellowshipUser = new FellowshipUser(fellowshipUser);
 			fellowshipUser.save(function (err) {

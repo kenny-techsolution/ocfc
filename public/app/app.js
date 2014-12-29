@@ -88,7 +88,9 @@ angular.module('app').config(function ($routeProvider, $locationProvider, $httpP
 		.when('/fellowship/:id', {templateUrl: '/partials/fellowship/fellowship', controller: 'FellowshipCtrl',resolve: { checklogin: checkLogin}})
 		.when('/church/:id', {templateUrl: '/partials/church/church', controller: 'ChurchCtrl'})
 		.when('/find', {templateUrl: '/partials/find/find', controller: 'FindCtrl'})
-		.when('/registrationComplete', {templateUrl: '/partials/account/registration-complete', controller: 'RegistrationCompleteCtrl'});
+		.when('/registrationComplete', {templateUrl: '/partials/account/registration-complete', controller: 'RegistrationCompleteCtrl'})
+		.when('/dummy', {templateUrl: '/partials/common/dummy', controller: 'DummyCtrl'});
+
 
 		$httpProvider.defaults.useXDomain = true;
 		delete $httpProvider.defaults.headers.common['X-Requested-With'];
