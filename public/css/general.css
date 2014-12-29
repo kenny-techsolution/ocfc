@@ -301,3 +301,12 @@ textarea.form-control {
 .text-dark-grey {
   color: #908e8e;
 }
+.members-widget {
+  display: inline-block;
+  color: #000;
+}
+.members-widget img {
+  width: 45px;
+  height: 45px;
+  margin: 5px;
+}
