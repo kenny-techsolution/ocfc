@@ -1,12 +1,11 @@
 .jumbotron
 	.container
 		.row
-			.col-md-2(ng-style="{'margin-top': '50px'}")
-				div.member-card
-					img.member-card__img__size.text-black.img-circle.center-block(ng-src='/css/images/kenny_face.jpg')
+			.col-md-3(ng-style="{'margin-top': '50px'}",ng-repeat='fellowshipUser in fellowshipUsers')
+				.member-card
+					img.member-card__img__size.text-black.img-circle.center-block(ng-src='{{fellowshipUser.userId.profileImg}}')
 					.member-card__triangle-bottomright
-					.member-car__role L
-					.member-card__name.text-black.text-center  Beland Huang
+					.member-card__role {{fellowshipUser.role|UserRoleFilter}}
+					.member-card__name.text-black.text-center  {{fellowshipUser.userId.fullName}}
 					.member-card__more-info.text-dark-grey.text-center FULL PROFILE
-					button.btn.btn-danger.center-block APPROVE
-				
+					button.btn.btn-danger.center-block(ng-if='fellowshipUser.status=="pending"', ng-click="approveFellowshipUser(fellowshipUser)") APPROVE
