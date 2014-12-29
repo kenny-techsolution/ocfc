@@ -11,6 +11,16 @@
   width: 510px;
   float: right;
 }
+#find-on-map .search-section .container .btn-default {
+  height: 34px;
+  border-left: 2px solid #c5c5c5 !important;
+}
+#find-on-map .search-section .container .choose-type {
+  width: 100px;
+}
+#find-on-map .search-section .container .search-box {
+  width: 300px;
+}
 #find-on-map #find-map {
   display: block;
   position: fixed;
