@@ -1,10 +1,5 @@
 angular.module('app').controller('FellowshipMembersCtrl', function ($http, $scope,
-                                                                   IdentitySvc, FellowshipSvc,FellowshipUserSvc, $routeParams,
-                                                                   mySocket, $timeout, GoogleMapGeocoderSvc) {
-
-	//Grab all members assoc. to a particular fellowship
-	console.log('chk $routeParams obj');
-	console.log($routeParams);
+                                                                   IdentitySvc, FellowshipSvc,FellowshipUserSvc) {
 
 	var getFellowshipUsers=function(){
 		FellowshipUserSvc.getAllMembers(

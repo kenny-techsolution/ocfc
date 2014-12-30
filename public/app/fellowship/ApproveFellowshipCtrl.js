@@ -1,4 +1,4 @@
-angular.module('app').controller('FellowshipCtrl', function ($http, $scope,
+angular.module('app').controller('ApproveFellowshipCtrl', function ($http, $scope,
                                                              IdentitySvc, FellowshipSvc,FellowshipDataSvc,FellowshipUserSvc, $routeParams,
                                                              mySocket, $timeout) {
 	$scope.fellowshipName;

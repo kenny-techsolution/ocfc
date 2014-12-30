@@ -2,7 +2,7 @@
 	.wrapper(ng-repeat='user in users |filter:newFriends')
 		img.new-friend-profile(ng-src='{{user.userId.profileImg}}')
 		.new-friend-desc
-			.name{{user.userId.fullName}}
+			.name {{user.userId.fullName}}
 			.desc-section
-				.status{{user.userId.status}}
-				.date{{user.userId.signupDate|date:'MM/dd/yyyy'}}
+				.status {{user.userId.status}}
+				.date {{user.userId.signupDate|date:'MM/dd/yyyy'}}

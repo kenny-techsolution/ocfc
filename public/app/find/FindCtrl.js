@@ -49,7 +49,7 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 	      		$scope.lat = $scope.resultLatlng.lat();
 	      		$scope.lng = $scope.resultLatlng.lng();
 	      	});
-
+/*
 			$scope.fellowships = FellowshipSvc.query({lat:$scope.lat,lng: $scope.lng,maxDistance: 20 },function () {
 					console.log('chk $scope.fellowships');
 					console.log($scope.fellowships);
@@ -61,6 +61,7 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 					console.log($scope.latlngs);
 				}
 			);
+			*/
 
 	      } else {
 	        alert("Geocode was not successful for the following reason: " + status);

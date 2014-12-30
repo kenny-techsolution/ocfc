@@ -2,7 +2,7 @@
 angular.module('app').directive('ocfcCalendar', function () {
 	return{
 		restrict: 'E',
-		$scope: true,
+		scope: true,
 		templateUrl: '/partials/common/ocfc-calendar',
 		controller: function () {
 		}

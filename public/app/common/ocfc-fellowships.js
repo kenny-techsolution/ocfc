@@ -2,7 +2,7 @@
 angular.module('app').directive('ocfcFellowships', function (FellowshipUserSvc,$routeParams) {
 	return{
 		restrict: 'E',
-		$scope: {},
+		scope: {},
 		replace: true,
 		templateUrl: '/partials/common/ocfc-fellowships',
 		controller: function ($scope) {

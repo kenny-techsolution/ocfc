@@ -308,17 +308,28 @@ exports.queryFellowships=function(req,res){
 	} else {
 		//below is for site admin to retrieve a list of yet approved fellowships.
 		console.log('server queryFellowships has been called');
-		if(!req.user || req.user.userName !=="butterfly43026@gmail.com") {
+		if(req.user) {
+			//populate Fellowships where approved status is false
+			Fellowship.find({approved: true}).exec(function (err, queryFellowships) {
+				console.log('chk queryFellowships results');
+				console.log(queryFellowships);
+
+				if (err) return res.json(err);
+				return res.json(queryFellowships);
+			});
+		} else if(req.user && req.user.userName =="butterfly43026@gmail.com") {
+			//populate Fellowships where approved status is false
+			Fellowship.find({approved: false}).exec(function (err, queryFellowships) {
+				console.log('chk queryFellowships results');
+				console.log(queryFellowships);
+
+				if (err) return res.json(err);
+				return res.json(queryFellowships);
+			});
+
+		} else {
 			return res.json({status:"failure",message:"you are not allowed to call this"});
 		}
-		//populate Fellowships where approved status is false
-		Fellowship.find({approved: false}).exec(function (err, queryFellowships) {
-			console.log('chk queryFellowships results');
-			console.log(queryFellowships);
-
-			if (err) return res.json(err);
-			return res.json(queryFellowships);
-		});
 	}
 
 };

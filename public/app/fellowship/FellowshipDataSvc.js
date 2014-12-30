@@ -12,7 +12,8 @@ angular.module('app').service('FellowshipDataSvc', function(FellowshipUserSvc) {
 	this.users=[];
 	var that=this;
 	this.initialize=function(fellowId){
-		//
+		console.log("this.initialize");
+		console.log(fellowId);
 		that.users = FellowshipUserSvc.getAllMembers(
 			{
 				fellowship_id:fellowId

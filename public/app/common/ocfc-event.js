@@ -2,7 +2,7 @@
 angular.module('app').directive('ocfcEvent', function () {
 	return{
 		restrict: 'E',
-		$scope: true,
+		scope: true,
 		templateUrl: '/partials/common/ocfc-event',
 		controller: function () {
 		}

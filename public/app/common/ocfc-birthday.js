@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcBirthday', function (FellowshipUserSvc,ChurchUserSvc,$routeParams) {
+angular.module('app').directive('ocfcBirthday', function () {
 	return{
 		restrict: 'E',
 		scope:{
@@ -7,10 +7,6 @@ angular.module('app').directive('ocfcBirthday', function (FellowshipUserSvc,Chur
 		},
 		templateUrl: '/partials/common/ocfc-birthday',
 		controller: function ($scope) {
-
-			console.log('chk $routeParams obj');
-			console.log($routeParams);
-
 			//logic to populate fellowship users this months birthday
 			$scope.comingBirthdays = function(user){
 				var currDate=new Date();

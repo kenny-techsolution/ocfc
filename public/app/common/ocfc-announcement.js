@@ -2,7 +2,7 @@
 angular.module('app').directive('ocfcAnnouncement', function () {
 	return{
 		restrict: 'E',
-		$scope: true,
+		scope: true,
 		templateUrl: '/partials/common/ocfc-announcement',
 		controller: function () {
 		}

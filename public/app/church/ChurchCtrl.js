@@ -2,7 +2,7 @@
  ******************************************************************************/
 
 angular.module('app').controller('ChurchCtrl', function ($http, $scope,ChurchSvc,
-                                                             IdentitySvc, FellowshipSvc,FellowshipUserSvc, $routeParams,
+                                                             IdentitySvc,FellowshipUserSvc, $routeParams,
                                                              mySocket, $timeout) {
 	$scope.churchName;
 	$scope.churchWebsite;
