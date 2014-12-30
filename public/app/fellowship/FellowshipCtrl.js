@@ -2,7 +2,7 @@
  ******************************************************************************/
 
 angular.module('app').controller('FellowshipCtrl', function ($http, $scope,
-                                                             IdentitySvc, FellowshipSvc,FellowshipUserSvc, $routeParams,
+                                                             IdentitySvc, FellowshipSvc,FellowshipDataSvc,FellowshipUserSvc, $routeParams,
                                                              mySocket, $timeout) {
 
 	$scope.fellowshipName;
@@ -30,5 +30,9 @@ angular.module('app').controller('FellowshipCtrl', function ($http, $scope,
 		FellowshipSvc.update({id:fellowship._id},fellowship);
 
 	};
+	//include FellowshipDataSvc which captures all data needed for Fellowship widgets
+	$scope.FellowshipDataSvc=FellowshipDataSvc;
+	$scope.FellowshipDataSvc.initialize($routeParams.id);
+
 });
 

@@ -1,53 +1,29 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcNewFriend', function (FellowshipUserSvc,ChurchUserSvc,$routeParams) {
+angular.module('app').directive('ocfcNewFriend', function () {
 	return{
 		restrict: 'E',
 		replace: false,
 		scope: {
-			groupType:"@"
+			users:'='
 		}, //isolated scope
 		templateUrl: '/partials/common/ocfc-new-friend',
 		controller: function ($scope) {
-			console.log('chk $scope.groupType value before');
-			console.log($scope.groupType);
+			//logic to populate new friends from fellowship
+			$scope.newFriends = function(user){
+				console.log('chk user obj');
+				console.log(user);
+				var currDate=new Date();
+				var signupDate=new Date(user.userId.signupDate);
 
-			console.log('chk $routeParams obj');
-			console.log($routeParams);
+				console.log('chk currDate.getMilliseconds()');
+				console.log(currDate.getTime());
 
-			if($scope.groupType==='fellowship'){
-				console.log('ocfcNewFriend directive has been called for group-type fellowship');
-				console.log('chk $scope.groupType value after');
-				console.log($scope.groupType);
+				console.log('chk signupDate.getMilliseconds()');
+				console.log(signupDate.getTime());
 
-				//logic to populate fellowship users
-				$scope.users = FellowshipUserSvc.getNewFriends(
-					{
-						fellowship_id: $routeParams.id
-					}
-					//below parameter is a callback, 1st parameter must be met
-					, function () {
-						console.log('chk $scope.users of FellowshipUserSvc.getNewFriends was called');
-						console.log($scope.users);
-					}
-				);
-			}else if ($scope.groupType==='church'){
-				console.log('ocfcNewFriend directive has been called for group-type church');
-				console.log('chk $scope.groupType value');
-				console.log($scope.groupType);
-				//add logic to populate church users
-				$scope.users = ChurchUserSvc.getNewFriends(
-					{
-						church_id: $routeParams.id
-					}
-					//below parameter is a callback, 1st parameter must be met
-					, function () {
-						console.log('chk $scope.users of ChurchUserSvc.getNewFriends was called');
-						console.log($scope.users);
-					}
-				);
-
-			}
-
+				//2629743830 equates to 1 month
+				return (currDate.getTime())-(signupDate.getTime())<=2629743830;
+			};
 		}
 	};
 });

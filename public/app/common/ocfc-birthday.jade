@@ -1,6 +1,6 @@
 .birthday
-	.wrapper
-		img.new-birthday-profile(ng-src='/css/images/kenny_face.jpg')
+	.wrapper(ng-repeat='user in users |filter:comingBirthdays')
+		img.new-birthday-profile(ng-src='{{user.userId.profileImg}}')
 		.new-birthday-desc
-			.name Mei Xue Zhang
-			.date 3/21/2014
+			.name{{user.userId.fullName}}
+			.date{{user.userId.birthday|date:'MM/dd/yyyy'}}

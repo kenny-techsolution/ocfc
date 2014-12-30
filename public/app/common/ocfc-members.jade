@@ -1,4 +1,4 @@
-.members-widget(ng-repeat='fellowshipUser in fellowshipUsers')
-	a.members-widget__link(href="http://onechurchforchrist.org/fellowship/{{fellowshipUser.fellowshipId}}/members")
-		img.members-widget__profile(ng-src='{{fellowshipUser.userId.profileImg}}')
+.members-widget(ng-repeat='user in users')
+	a.members-widget__link(href="http://onechurchforchrist.org/fellowship/{{user.fellowshipId}}/members")
+		img.members-widget__profile(ng-src='{{user.userId.profileImg}}')
 

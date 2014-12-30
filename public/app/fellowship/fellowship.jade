@@ -25,9 +25,9 @@
 			.widget-title-wo-link Announcement
 			ocfc-announcement
 			.widget-title-wo-link New Friend
-			ocfc-new-friend(group-type="fellowship")
+			ocfc-new-friend(users='FellowshipDataSvc.users')
 			.widget-title-wo-link Members
-			ocfc-members
+			ocfc-members(users='FellowshipDataSvc.users')
 		.col-md-6.wall
 			.widget-title-wo-link Write to Wall
 			ocfc-wall
@@ -37,4 +37,4 @@
 			.widget-title-wo-link Event
 			ocfc-event
 			.widget-title-wo-link Birthday
-			ocfc-birthday
+			ocfc-birthday(users='FellowshipDataSvc.users')
