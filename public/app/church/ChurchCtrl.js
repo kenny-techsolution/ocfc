@@ -1,9 +1,7 @@
 /*******************************************************************************
  ******************************************************************************/
 
-angular.module('app').controller('ChurchCtrl', function ($http, $scope,ChurchSvc,
-                                                             IdentitySvc,FellowshipUserSvc, $routeParams,
-                                                             mySocket, $timeout) {
+angular.module('app').controller('ChurchCtrl', function ($http, $scope,ChurchSvc) {
 	$scope.churchName;
 	$scope.churchWebsite;
 	$scope.street;

@@ -1,6 +1,5 @@
 angular.module('app').controller('DummyCtrl', function ($http, $scope,UserSvc,ChurchSvc,
-                                                         IdentitySvc, FellowshipSvc,FellowshipUserSvc, ChurchFellowshipSvc,$routeParams,
-                                                         mySocket, $timeout) {
+                                                         IdentitySvc, FellowshipSvc,FellowshipUserSvc, ChurchFellowshipSvc) {
 
 var Users=[{fullName:'Mariah Carey',
 	userName:'mc@gmail.com',
