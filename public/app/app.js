@@ -21,6 +21,8 @@ angular.module('app').config(function ($routeProvider, $locationProvider, $httpP
 	$.cloudinary.config().cloud_name = 'ocfc';
 	$.cloudinary.config().upload_preset = 'faz4z06p';
 
+
+
 	var routeRoleChecks={
 		admin:{auth: function(AuthSvc){
 			var admin=AuthSvc.authorizedCurrentUserForRoute('admin');
@@ -62,7 +64,7 @@ angular.module('app').config(function ($routeProvider, $locationProvider, $httpP
 		} else {
 			console.log("already login");
 			defer.reject('logged in');
-			$location.path("/personal");
+			$location.path("/fellowship/54a0f90799b81bbbb99a00ce");
 		}
 		return defer.promise;
 	};
@@ -77,7 +79,7 @@ angular.module('app').config(function ($routeProvider, $locationProvider, $httpP
 	$routeProvider
 		.when('/', {templateUrl: '/partials/account/access/landing-page', controller: 'SignupCtrl',resolve:{ forbidSignup: forbidSignup}})
 		.when('/activate/:activateCode/userId/:id/email/:email', {templateUrl: '/partials/account/activate', controller: 'ActivateCtrl'})
-		.when('/firstTimer', {templateUrl: '/partials/firstTimer/first-timer', controller: 'firstTimerCtrl', resolve: { checklogin: checkLogin}})
+		.when('/firstTimer', {templateUrl: '/partials/firstTimer/first-timer', controller: 'firstTimerCtrl',resolve: { checklogin: checkLogin}})
 		.when('/setting', {templateUrl: '/partials/account/setting/setting', controller: 'SettingCtrl'})
 		.when('/createFellowship', {templateUrl: '/partials/fellowship/create-fellowship', controller: 'CreateFellowshipCtrl'})
 		.when('/approveFellowship', {templateUrl: '/partials/fellowship/approve-fellowship', controller: 'ApproveFellowshipCtrl',resolve: { checklogin: checkLogin}})
@@ -99,12 +101,14 @@ angular.module('app').config(function ($routeProvider, $locationProvider, $httpP
 
 //execute after above code to re-route path after rejection
 //if user is not authorized then will re-direct to Home page
-angular.module('app').run(function ($rootScope, $location) {
+angular.module('app').run(function ($route, $rootScope, $location) {
+/*
 	$rootScope.$on('$routeChangeError', function (evt, current, previous, rejection) {
 		if (rejection === 'not authorized') {
-			$location.path('/');
+			$location.path('/', false);
 		}
 	});
+*/
 });
 
 //Common Functions used on the Client Slide are defined here
