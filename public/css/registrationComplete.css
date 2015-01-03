@@ -5,12 +5,12 @@
   background-position: 0px;
   width: 420px;
 }
-.ocfc-logo .instruction-label {
+.ocfc-logo--instruction-label {
   margin-top: 11px;
   margin-bottom: 0px;
   width: 360px;
 }
-.ocfc-logo .description {
+.ocfc-logo--description {
   width: 355px;
   margin-top: 2px;
   color: #2a6496;

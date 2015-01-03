@@ -1,8 +1,8 @@
-.new-friend
-	.wrapper(ng-repeat='user in users |filter:newFriends')
-		img.new-friend-profile(ng-src='{{user.userId.profileImg}}')
-		.new-friend-desc
-			.name {{user.userId.fullName}}
-			.desc-section
-				.status {{user.userId.status}}
-				.date {{user.userId.signupDate|date:'MM/dd/yyyy'}}
+.main-content--dynamic-content__left-sidebar__new-friend
+	.main-content--dynamic-content__left-sidebar__new-friend--wrapper(ng-repeat='user in users |filter:newFriends')
+		img.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-profile(ng-src='{{user.userId.profileImg}}')
+		.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc
+			.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--name {{user.userId.fullName}}
+			.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--desc-section
+				.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--desc-section__status {{user.userId.status}}
+				.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--desc-section__date {{user.userId.signupDate|date:'MM/dd/yyyy'}}

@@ -1,6 +1,6 @@
-.birthday
-	.wrapper(ng-repeat='user in users |filter:comingBirthdays')
-		img.new-birthday-profile(ng-src='{{user.userId.profileImg}}')
-		.new-birthday-desc
-			.name {{user.userId.fullName}}
-			.date {{user.userId.birthday|date:'MM/dd/yyyy'}}
+.main-content--dynamic-content__right-sidebar__birthday
+	.main-content--dynamic-content__right-sidebar__birthday--wrapper(ng-repeat='user in users |filter:comingBirthdays')
+		img.main-content--dynamic-content__right-sidebar__birthday--wrapper__new-birthday-profile(ng-src='{{user.userId.profileImg}}')
+		.main-content--dynamic-content__right-sidebar__birthday--wrapper__new-birthday-desc
+			.main-content--dynamic-content__right-sidebar__birthday--wrapper__new-birthday-desc--name {{user.userId.fullName}}
+			.main-content--dynamic-content__right-sidebar__birthday--wrapper__new-birthday-desc--date {{user.userId.birthday|date:'MM/dd/yyyy'}}

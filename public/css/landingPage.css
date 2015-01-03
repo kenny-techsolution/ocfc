@@ -1,4 +1,4 @@
-#intro-pg {
+.intro-pg {
   background: url("./images/group_study_wp.jpeg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -7,7 +7,7 @@
   height: 100%;
   width: 100%;
 }
-#intro-pg .content {
+.intro-pg--content {
   font-size: 12px;
   width: 850px;
   margin-left: auto;
@@ -16,111 +16,63 @@
   padding-top: 15px;
   color: #696969;
 }
-#intro-pg .content .row {
+.intro-pg--content .row {
   margin-bottom: 5px;
 }
-#intro-pg .content .welcome {
+.intro-pg--content__welcome {
   color: #fff;
   margin-top: 50px;
 }
-#intro-pg .content .welcome h2 {
+.intro-pg--content__welcome h2 {
   font-family: "Myriad Set Pro", "Lucida Grande", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
 }
-#intro-pg .content legend {
+legend {
   font-family: "Myriad Set Pro", "Lucida Grande", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
   margin-bottom: 5px;
   font-size: 18px;
   padding-bottom: 5px;
 }
-#intro-pg .content legend span {
+legend span {
   font-family: "Myriad Set Pro", "Lucida Grande", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
   font-size: 14px;
   margin-left: 10px;
   color: #9b9b9b;
 }
-#intro-pg .content .dropdown {
+.dropdown {
   display: inline-block;
 }
-#intro-pg .content .dropdown.month {
+.dropdown.month {
   width: 64px;
   margin-right: 5px;
 }
-#intro-pg .content .dropdown.date {
+.dropdown.date {
   width: 64px;
   margin-right: 5px;
 }
-#intro-pg .content .dropdown.year {
+.dropdown.year {
   width: 85px;
 }
-#intro-pg .content .row.forth {
+.row.forth {
   margin-top: 8px;
   margin-bottom: 4px;
 }
-#intro-pg .content .row.last {
+.row.last {
   margin-top: 7px;
 }
-#intro-pg .content .row.last .gender {
+.row.last .gender {
   float: left;
   display: block;
   height: 30px;
   margin-right: 5px;
 }
-#intro-pg .content .row.last .gender input {
+.row.last .gender input {
   position: relative;
   top: 5px;
 }
-#intro-pg .content .row.last .gender label {
+.row.last .gender label {
   position: relative;
   top: 5px;
   left: 5px;
   padding-right: 10px;
 }
-#signinSection span {
-  padding-top: 5px;
-}
-#signinSection span input {
-  font-size: 12px;
-  color: #a9a9a9;
-  margin-bottom: 5px;
-}
-#signinSection span label {
-  font-size: 11px;
-  margin-left: 4px;
-  margin-bottom: 0px;
-  vertical-align: super;
-  color: #000;
-}
-#signinSection .row.second .password {
-  float: left;
-  width: 139px;
-}
-#signinSection .row.second button {
-  float: left;
-}
-#signinSection .remember-me label {
-  float: left;
-  margin-top: 3px;
-  margin-left: 10px;
-}
-#signinSection .remember-me input {
-  float: left;
-  margin-top: 5px;
-  margin-left: 0px;
-}
-#signinSection .remember-me a {
-  float: left;
-  margin-top: 3px;
-  margin-left: 10px;
-}
-#ocfcSection {
-  text-align: center;
-  font-size: 12px;
-  color: #696969;
-}
-#ocfcSection .about {
-  display: inline-block;
-  margin-right: 10px;
-}
-#ocfcSection .contact {
-  display: inline-block;
-}
+
