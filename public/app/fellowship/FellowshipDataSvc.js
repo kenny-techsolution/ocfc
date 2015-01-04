@@ -25,4 +25,21 @@ angular.module('app').service('FellowshipDataSvc', function(FellowshipUserSvc) {
 		);
 
 	};
+	this.get = function() {
+
+	};
+	this.query = function(){
+
+	};
+	this.create = function(){
+
+	};
+	this.update = function(){
+
+	};
+
+	this.delete = function(){
+
+	};
+
 });
