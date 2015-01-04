@@ -275,6 +275,7 @@ $scope.createDummyData=function(){
 				state:'CA',
 				approved:true,
 				active:true,
+				geo: [37.417823, -122.090220],
 				phone:'650-968-2900'
 
 			},
@@ -288,6 +289,7 @@ $scope.createDummyData=function(){
 				state:'CA',
 				approved:true,
 				active:true,
+				geo: [37.477167, -122.181128],
 				phone:'650-323-5550'
 
 			},
@@ -301,6 +303,7 @@ $scope.createDummyData=function(){
 				state:'OH',
 				approved:true,
 				active:true,
+				geo: [40.050301, -82.98923],
 				phone:'614-263-9287'
 
 			},
@@ -314,6 +317,7 @@ $scope.createDummyData=function(){
 				state:'CA',
 				approved:true,
 				active:true,
+				geo: [37.793482, -122.406859],
 				phone:'415-362-4139'
 
 			},
@@ -327,6 +331,7 @@ $scope.createDummyData=function(){
 				state:'CA',
 				approved:true,
 				active:true,
+				geo: [37.753266, -122.492793],
 				phone:'415-831-2313'
 
 			}

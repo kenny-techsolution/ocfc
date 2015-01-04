@@ -1,15 +1,5 @@
 angular.module('app').controller('FindCtrl', function ($scope,$http,$location,GoogleMapPlacesSvc, GoogleMapGeocoderSvc, google, FellowshipSvc) {
 
-
-	$scope.selectedIcon = '';
-  	$scope.selectedIcons = ['Globe', 'Heart'];
-  	$scope.icons = [
-    	{value: 'Gear', label: 'Gear'},
-		{value: 'Globe', label: 'Globe'},
-		{value: 'Heart', label: 'Heart'},
-		{value: 'Camera', label: 'Camera'}
-  	];
-
 	$scope.selectedGroup = "Fellowship";
 	$scope.groups = [{value:'Fellowship',label:'Fellowship'},{value:'Church',label:'Church'}];
 
@@ -22,12 +12,11 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 	$scope.latlngs = [];
 
 
-
 	$scope.$watch('userAddress', function(newVal, oldVal){
 		if(!newVal) return;
 		console.log(newVal);
 		GoogleMapPlacesSvc.getQueryPredictions({ input: newVal },function(data){
-			//$scope.matchedAddresses = data;
+			$scope.matchedAddresses = data;
 			console.log($scope.matchedAddresses.length);
 			console.log(data);
 		});
@@ -49,7 +38,7 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 	      		$scope.lat = $scope.resultLatlng.lat();
 	      		$scope.lng = $scope.resultLatlng.lng();
 	      	});
-/*
+
 			$scope.fellowships = FellowshipSvc.query({lat:$scope.lat,lng: $scope.lng,maxDistance: 20 },function () {
 					console.log('chk $scope.fellowships');
 					console.log($scope.fellowships);
@@ -61,7 +50,7 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 					console.log($scope.latlngs);
 				}
 			);
-			*/
+
 
 	      } else {
 	        alert("Geocode was not successful for the following reason: " + status);
