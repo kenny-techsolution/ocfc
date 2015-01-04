@@ -1,4 +1,4 @@
-.intro-pg {
+#landing-page.jumbotron {
   background: url("./images/group_study_wp.jpeg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -7,23 +7,22 @@
   height: 100%;
   width: 100%;
 }
-.intro-pg--content {
+.page-content {
   font-size: 12px;
   width: 850px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
   padding-top: 15px;
-  color: #696969;
 }
-.intro-pg--content .row {
+.page-content .row {
   margin-bottom: 5px;
 }
-.intro-pg--content__welcome {
+.page-content__welcome {
   color: #fff;
   margin-top: 50px;
 }
-.intro-pg--content__welcome h2 {
+.page-content__welcome h2 {
   font-family: "Myriad Set Pro", "Lucida Grande", "Helvetica Neue", "Helvetica", "Arial", "Verdana", "sans-serif";
 }
 legend {

@@ -1,9 +1,10 @@
-.first-timer-content
-	.first-timer-content--activate-success(ng-show="display")
-		.first-timer-content--activate-success__first-timer-section
-			img(ng-src='/css/images/ocfc_logo.png')
-			.label Your account has been activated, please sign in
-		.first-timer-content--activate-success__well(ng-include="'/partials/account/signin/signin'")
-	.first-timer-content--activate-failure(ng-show="!display")
-		h1 Your activation did not work, please try again.
+#activate.jumbotron.vertical-center
+	.container
+		.activate-success(ng-show="display")
+			.activate-success__first-timer-section
+				img(ng-src='/css/images/ocfc_logo.png')
+				.label Your account has been activated, please sign in
+			.well.activate-success__signin(ng-include="'/partials/account/signin/signin'")
+		.activate-failure(ng-show="!display")
+			h1 Your activation did not work, please try again.
 

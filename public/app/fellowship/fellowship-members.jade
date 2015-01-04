@@ -1,10 +1,10 @@
-.jumbotron
-	.container
+#members-page.jumbotron
+	.member-card-section.container
 		.row
-			.Title.text-dark-grey(ng-style="{'position':'relative', 'top':'39px','font-size':'18px'}") Require Admin Approval
+			.text-dark-grey(ng-style="{'position':'relative', 'top':'39px','font-size':'18px'}") Require Admin Approval
 			.col-md-3(ng-style="{'margin-top': '50px'}",ng-repeat='user in FellowshipDataSvc.users |filter:notApproved')
 				.member-card
-					img.member-card__img__size.text-black.img-circle.center-block(ng-src='{{user.userId.profileImg}}')
+					img.member-card__img-size.text-black.img-circle.center-block(ng-src='{{user.userId.profileImg}}')
 					.member-card__triangle-bottomright
 					.member-card__role {{user.role|UserRoleFilter}}
 					.member-card__name.text-black.text-center  {{user.userId.fullName}}
@@ -15,7 +15,7 @@
 			.Title.text-dark-grey(ng-style="{'position':'relative', 'top':'39px','font-size':'18px'}") Approved Members
 			.col-md-3(ng-style="{'margin-top': '50px'}",ng-repeat='user in FellowshipDataSvc.users |filter:approved')
 				.member-card
-					img.member-card__img__size.text-black.img-circle.center-block(ng-src='{{user.userId.profileImg}}')
+					img.member-card__img-size.text-black.img-circle.center-block(ng-src='{{user.userId.profileImg}}')
 					.member-card__triangle-bottomright
 					.member-card__role {{user.role|UserRoleFilter}}
 					.member-card__name.text-black.text-center  {{user.userId.fullName}}

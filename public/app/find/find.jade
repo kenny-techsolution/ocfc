@@ -1,7 +1,7 @@
 //--http://onechurchforchrist.org/find--
-.find-on-map
-	.find-on-map--search-section
-		.find-on-map--search-section__container
+#find-on-map
+	.jumbotron
+		.search-section.container
 			.row
 				.col-xs-12
 					button.btn.btn-default.inline-block.choose-type(type='button', ng-model='selectedGroup', ng-options='group.value as group.label for group in groups', bs-select='')
@@ -11,15 +11,15 @@
 					button.btn.btn-primary.inline-block(ng-click="getLatlng(userAddress)") FIND
 			.row
 				.col-xs-12
-					ul.list-group.autocomplete-result
+					ul.list-group.search-section__autocomplete-result
 						li.list-group-item(ng-repeat="address in matchedAddresses")
 							a(ng-click="getLatlng(address.description)") {{address.description}}
 			.row
 				.col-xs-12
-					div.geo-code
+					div.search-section__geo-code
 						div coordinate: lat: {{lat}}, lng: {{lng}}
 			.row
-				.col-xs-12.fellowships-result
+				.col-xs-12.search-section__fellowships-result
 					div.panel.panel-default(ng-repeat="fellowship in fellowships")
 						div.panel-body
 							div {{$index}}

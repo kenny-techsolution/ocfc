@@ -1,8 +1,8 @@
-.main-content--dynamic-content__left-sidebar__new-friend
-	.main-content--dynamic-content__left-sidebar__new-friend--wrapper(ng-repeat='user in users |filter:newFriends')
-		img.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-profile(ng-src='{{user.userId.profileImg}}')
-		.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc
-			.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--name {{user.userId.fullName}}
-			.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--desc-section
-				.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--desc-section__status {{user.userId.status}}
-				.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--desc-section__date {{user.userId.signupDate|date:'MM/dd/yyyy'}}
+.dynamic-content__new-friend
+	.dynamic-content__new-friend__wrapper(ng-repeat='user in users |filter:newFriends')
+		img(ng-src='{{user.userId.profileImg}}')
+		.dynamic-content__new-friend-desc
+			.dynamic-content__new-friend-desc__name {{user.userId.fullName}}
+			.dynamic-content__desc-section
+				.dynamic-content__desc-section__status {{user.userId.status}}
+				.dynamic-content__desc-section__date {{user.userId.signupDate|date:'MM/dd/yyyy'}}

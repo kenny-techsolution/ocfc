@@ -1,40 +1,42 @@
 //fellowship.jade
-.main-content.container
-	.row.main-content--banner
-		.col-md-9.main-content--banner__group-pic
-			img.main-content--banner__group-pic__group(ng-src='/css/images/TimothyFellowship1.jpg')
-			.main-content--banner__group-pic__overlay
-			.main-content--banner__group-pic__summary
-				.main-content--banner__group-pic__summary--title-section
-					.main-content--banner__group-pic__summary--title-section__title 提摩太團契
-					.main-content--banner__group-pic__summary--title-section__slogan 作信徒的榜樣，要剛強壯膽，以清潔的心不要叫人小看你。
-				.main-content--banner__group-pic__summary--admin-section
-					.main-content--banner__group-pic__summary--admin-section__profile-img
-						img.main-content--banner__group-pic__summary--admin-section__profile-img--admin-profile(ng-src='/css/images/kenny_face.jpg')
-					.main-content--banner__group-pic__summary--admin-section__profile-desc
-						.main-content--banner__group-pic__summary--admin-section__profile-desc--role 負責人
-						.main-content--banner__group-pic__summary--admin-section__profile-desc--name Beland Huang
-		.col-md-3.main-content--banner__about-us
-			.main-content--banner__about-us--logo
-				img.fellow-logo(ng-src='/css/images/fellowship_logo.png')
-			.main-content--banner__about-us--title About Us
-			.main-content--banner__about-us--border
-			.main-content--banner__about-us--description 大安森林食堂據說是日本最大的庶民連鎖自助餐，試營運期間就大排長龍，原本想說應該是有七折優惠的魅力，等風潮過後再來輕鬆吃。特別約了前同事休假一起來嚐鮮，沒想到扣折結束後，平日中午來還是繼續排排隊，店門口一堆人在候位，好在我跟友人話多，聊不完的天，一個小時也就這樣排到了。
-	.row.main-content--dynamic-content
-		.col-md-3.main-content--dynamic-content__left-sidebar
-			.widget-title-wo-link Announcement
-			ocfc-announcement(users='FellowshipDataSvc.users')
-			.widget-title-wo-link New Friend
-			ocfc-new-friend(users='FellowshipDataSvc.users')
-			.widget-title-wo-link Members
-			ocfc-members(users='FellowshipDataSvc.users')
-		.col-md-6.main-content--dynamic-content__wall
-			.widget-title-wo-link Write to Wall
-			ocfc-wall(users='FellowshipDataSvc.users')
-		.col-md-3.right-sidebar
-			.widget-title-wo-link Calendar
-			ocfc-calendar(users='FellowshipDataSvc.users')
-			.widget-title-wo-link Event
-			ocfc-event(users='FellowshipDataSvc.users')
-			.widget-title-wo-link Birthday
-			ocfc-birthday(users='FellowshipDataSvc.users')
+#fellowship.container
+	.container.fellow-banner
+			.row
+				.col-md-9.fellow-banner__group-pic
+					img(ng-src='/css/images/TimothyFellowship1.jpg')
+					.fellow-banner__overlay
+					.fellow-banner__summary
+						.fellow-banner__title-section
+							.fellow-banner__title 提摩太團契
+							.fellow-banner__slogan 作信徒的榜樣，要剛強壯膽，以清潔的心不要叫人小看你。
+						.fellow-banner__admin-section
+							.fellow-banner__profile-img
+								img(ng-src='/css/images/kenny_face.jpg')
+							.fellow-banner__profile-desc
+								.fellow-banner__role 負責人
+								.fellow-banner__name Beland Huang
+				.col-md-3.fellow-banner__about-us
+					.fellow-banner__logo
+						img.fellow-logo(ng-src='/css/images/fellowship_logo.png')
+					.fellow-banner__logo__title About Us
+					.fellow-banner__logo__border
+					.fellow-banner__logo__description 大安森林食堂據說是日本最大的庶民連鎖自助餐，試營運期間就大排長龍，原本想說應該是有七折優惠的魅力，等風潮過後再來輕鬆吃。特別約了前同事休假一起來嚐鮮，沒想到扣折結束後，平日中午來還是繼續排排隊，店門口一堆人在候位，好在我跟友人話多，聊不完的天，一個小時也就這樣排到了。
+	.container.dynamic-content
+		.row
+			.col-md-3.dynamic-content__left-sidebar
+				.widget-title-wo-link Announcement
+				ocfc-announcement(users='FellowshipDataSvc.users')
+				.widget-title-wo-link New Friend
+				ocfc-new-friend(users='FellowshipDataSvc.users')
+				.widget-title-wo-link Members
+				ocfc-members(users='FellowshipDataSvc.users')
+			.col-md-6.dynamic-content__wall
+				.widget-title-wo-link Write to Wall
+				ocfc-wall(users='FellowshipDataSvc.users')
+			.col-md-3.dynamic-content__right-sidebar
+				.widget-title-wo-link Calendar
+				ocfc-calendar(users='FellowshipDataSvc.users')
+				.widget-title-wo-link Event
+				ocfc-event(users='FellowshipDataSvc.users')
+				.widget-title-wo-link Birthday
+				ocfc-birthday(users='FellowshipDataSvc.users')

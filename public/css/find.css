@@ -1,4 +1,4 @@
-.find-on-map--search-section {
+#find-on-map .jumbotron {
   display: block;
   position: fixed;
   width: 50%;
@@ -7,18 +7,18 @@
   left: 0px;
   padding-top: 70px;
 }
-.find-on-map--search-section__container {
+.search-section {
   width: 510px;
   float: right;
 }
-.find-on-map--search-section__container .btn-default {
+.search-section .btn-default {
   height: 34px;
   border-left: 2px solid #c5c5c5 !important;
 }
-.find-on-map--search-section__container .choose-type {
+.search-section .choose-type {
   width: 100px;
 }
-.find-on-map--search-section__container .search-box {
+.search-section .search-box {
   width: 300px;
 }
 #find-map {
@@ -29,13 +29,13 @@
   top: 50px;
   right: 0px;
 }
-.autocomplete-result {
+.search-section__autocomplete-result {
   color: #000;
 }
-.geo-code {
+.search-section__geo-code {
   color: #000;
 }
-.fellowships-result {
+.search-section__fellowships-result {
   color: #000;
 }
 #map-container {

@@ -1,9 +1,122 @@
-.widget-title-with-link
-	border-bottom 1px solid black
-	margin-top 20px
-	.more-link
-		text-decoration none
+//church.jade
+#church
+	width 980px
+	height 1500px
+	margin 0px auto
+	padding-left 0px
+	padding-right 0px
+	padding-top 60px
 
+.church-banner
+	position relative
+	margin-left -15px
+	margin-right -15px
+	//width 100%
+	height 300px
+	border 1px solid #ffffff
+	border-right none
+	border-top none
+
+.church-banner__group-pic
+	height 274px
+	padding-left 0px
+	padding-right 0px
+	overflow hidden
+	img
+		margin-top -150px
+		width 100%
+		height auto
+
+.church-banner__overlay
+	background-color #ffffff
+	opacity 0.8
+	width 100%
+	height 80px
+	bottom 0px
+	position absolute
+	padding-top 20px
+	padding-bottom 20px
+
+.church-banner__summary
+	width 100%
+	height 80px
+	bottom 0px
+	position absolute
+	padding-top 10px
+	padding-bottom 20px
+
+.church-banner__title-section
+	display inline-block
+	width 70%
+	height 60px
+	padding-left 40px
+	padding-right 20px
+	vertical-align top
+.church-banner__title
+	font-size 28px
+	color #000000
+.church-banner__slogan
+	font-size 13px
+	color #000000
+
+.church-banner__about-us
+	height 100%
+	background-color #ffffff
+	padding 20px 30px
+	color black
+
+.church-banner__about-us:before
+	content ""
+	position absolute
+	top 0
+	right 0
+	border-width 0 16px 16px 0
+	border-style solid
+	border-color #696969 #696969 lightgrey lightgrey
+	background lightgrey
+	-webkit-box-shadow 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2)
+	-moz-box-shadow 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2)
+	box-shadow 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2)
+	/* Firefox 3.0 damage limitation */
+	display block
+	width 0
+
+.church-banner__about-us.rounded
+	-moz-border-radius 5px 0 5px 5px
+	border-radius 5px 0 5px 5px
+
+.church-banner__about-us.rounded:before
+	border-width 8px
+	border-color #fff #fff transparent transparent
+	-moz-border-radius 0 0 0 5px
+	border-radius 0 0 0 5px
+
+.church-banner__logo
+	display inline-block
+	img.church-logo
+		border 1px solid rgb(10, 10, 10)
+		width 28px
+		height 28px
+		border-radius 14px
+		padding 5px
+		margin-right 6px
+.church-banner__logo__title
+	color #339DB6
+	font-size 18px
+	display inline-block
+	position relative
+	top 7px
+.church-banner__logo__border
+	border-bottom 1px solid black
+	padding-top 4px
+.church-banner__logo__description
+	margin-top 10px
+	font-size 13px
+	&:first-letter
+		font-size 20px
+		font-weight bold
+
+//church announcement layout
 .fellowship-desc
 	display inline-block
 	font-size 13px

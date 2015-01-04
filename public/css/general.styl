@@ -215,14 +215,6 @@ button.btn
 .toast-success
 	background-color #13987e
 
-//standard form style (ie: create-fellowship & create-church)
-.jumbotron
-	margin-bottom 0px
-	width 100%
-	height 100%
-	.container
-		width 980px
-		
 
 //form-label for setting
 .form-label
@@ -305,7 +297,7 @@ textarea.form-control
 	color #000000
 
 //login section
-.signinSection
+.signin-section
 	input
 		font-size 12px
 		color darkgrey
@@ -317,18 +309,19 @@ textarea.form-control
 		vertical-align super
 		color #000000
 
-.signinSection--second
-	.password
+.signin-section__second-row
+	input
 		float left
-		width 139px
+		width 142px
 	button
 		float left
 
-.signinSection--third__remember-me
+.signin-section__third-row
 	label
 		float left
 		margin-top 3px
 		margin-left 10px
+		color dimgrey
 	input
 		float left
 		margin-top 5px
@@ -338,12 +331,11 @@ textarea.form-control
 		margin-top 3px
 		margin-left 10px
 
+//standard form style (ie: create-fellowship & create-church)
 .jumbotron.vertical-center
 	margin-bottom 0px
 	width 100%
 	height 100%
-	.container
-		width 422px
 
 .vertical-center
 	min-height 100%
@@ -361,3 +353,16 @@ textarea.form-control
 	margin-right 10px
 .ocfcSection--contact
 	display inline-block
+
+
+//widget header
+.full-width-widget-header-style1
+	border-bottom 1px dotted #a9a9a9
+	padding-top 10px
+	padding-bottom 10px
+
+.widget-title-with-link
+	border-bottom 1px solid black
+	margin-top 20px
+	.more-link
+		text-decoration none
