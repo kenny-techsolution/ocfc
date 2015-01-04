@@ -159,7 +159,7 @@ var approveFellowship = function (fellowshipId,req,res) {
 							fellowshipId: fellowship._id,
 							name: fellowship.name,
 							role: "admin"
-						}
+						};
 						//Update membership table
 						Membership.update({userId: fellowshipUser.userId, 'fellowships.fellowshipId': {$ne: fellowship._id}},
 										  {$push: {fellowships: pushObj}}, function (err) {

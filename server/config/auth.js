@@ -4,7 +4,8 @@ This file extends from passport.js which authenticate user using Passport module
 var passport = require('passport'),
 	mongoose = require('mongoose'),
 	FellowshipUser = mongoose.model('FellowshipUser'),
-	ChurchUser = mongoose.model('ChurchUser');
+	ChurchUser = mongoose.model('ChurchUser'),
+	Membership = mongoose.model('Membership');
 
 exports.authenticate = function (req, res, next) {
 	//console.log(req);
@@ -17,12 +18,17 @@ exports.authenticate = function (req, res, next) {
 		}
 		//console.log(user);
 		req.logIn(user, function (err) {
-			console.log("here goes the step C");
-
 			if (err) {
 				return next(err);
 			}
-			res.send({success: true, user: user});
+			Membership.findOne({userId: user._id},function(err, membership){
+				if (err) {
+					return next(err);
+				}
+				var modUser = user.toObject();
+				modUser.membership = membership;
+				res.send({success: true, user: modUser});
+			});
 		});
 	});
 	auth(req, res, next);
