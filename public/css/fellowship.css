@@ -16,7 +16,7 @@
   border-top: none;
 }
 .fellow-banner__group-pic {
-  height: 100%;
+  height: 274px;
   padding-left: 0px;
   padding-right: 0px;
   overflow: hidden;
@@ -52,11 +52,11 @@
   padding-right: 20px;
   vertical-align: top;
 }
-.fellow-banner__title-section__title {
+.fellow-banner__title {
   font-size: 28px;
   color: #000;
 }
-.fellow-banner__title-section__slogan {
+.fellow-banner__slogan {
   font-size: 13px;
   color: #000;
 }
@@ -67,27 +67,27 @@
   vertical-align: top;
   padding-left: 10px;
 }
-.fellow-banner__admin-section__profile-img {
+.fellow-banner__profile-img {
   display: inline-block;
   vertical-align: top;
 }
-.fellow-banner__admin-section__profile-img img {
+.fellow-banner__profile-img img {
   width: 60px;
   height: 60px;
   border-radius: 30px;
   border: 3px solid #407f8e;
 }
-.fellow-banner__admin-section__profile-desc {
+.fellow-banner__profile-desc {
   padding-left: 10px;
   display: inline-block;
   vertical-align: top;
 }
-.fellow-banner__admin-section__profile-desc__role {
+.fellow-banner__role {
   font-size: 14px;
   color: #000;
   margin-top: 7px;
 }
-.fellow-banner__admin-section__profile-desc__name {
+.fellow-banner__name {
   font-size: 16px;
   color: #000;
 }
@@ -96,36 +96,6 @@
   background-color: #fff;
   padding: 20px 30px;
   color: #000;
-}
-.fellow-banner__about-us__logo {
-  display: inline-block;
-}
-.fellow-banner__about-us__logo img.fellow-logo {
-  border: 1px solid #0a0a0a;
-  width: 28px;
-  height: 28px;
-  border-radius: 14px;
-  padding: 5px;
-  margin-right: 6px;
-}
-.fellow-banner__about-us__logo__title {
-  color: #339db6;
-  font-size: 18px;
-  display: inline-block;
-  position: relative;
-  top: 7px;
-}
-.fellow-banner__about-us__logo__border {
-  border-bottom: 1px solid #000;
-  padding-top: 4px;
-}
-.fellow-banner__about-us__logo__description {
-  margin-top: 10px;
-  font-size: 13px;
-}
-.fellow-banner__about-us__logo__description:first-letter {
-  font-size: 20px;
-  font-weight: bold;
 }
 .fellow-banner__about-us:before {
   content: "";
@@ -152,6 +122,36 @@
   border-color: #fff #fff transparent transparent;
   -moz-border-radius: 0 0 0 5px;
   border-radius: 0 0 0 5px;
+}
+.fellow-banner__logo {
+  display: inline-block;
+}
+.fellow-banner__logo img.fellow-logo {
+  border: 1px solid #0a0a0a;
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  padding: 5px;
+  margin-right: 6px;
+}
+.fellow-banner__logo__title {
+  color: #339db6;
+  font-size: 18px;
+  display: inline-block;
+  position: relative;
+  top: 7px;
+}
+.fellow-banner__logo__border {
+  border-bottom: 1px solid #000;
+  padding-top: 4px;
+}
+.fellow-banner__logo__description {
+  margin-top: 10px;
+  font-size: 13px;
+}
+.fellow-banner__logo__description:first-letter {
+  font-size: 20px;
+  font-weight: bold;
 }
 .dynamic-content {
   height: 1500px;
@@ -214,22 +214,22 @@
   height: auto;
   margin-top: 5px;
 }
-.dynamic-content__announcement__admin-annouce-profile {
+.dynamic-content__announcement img {
   width: 35px;
   height: 35px;
   vertical-align: top;
   display: inline-block;
   margin-right: 6px;
 }
-.dynamic-content__announcement__annouce-profile-desc {
+.dynamic-content__annouce-profile-desc {
   vertical-align: top;
   display: inline-block;
 }
-.dynamic-content__announcement__annouce-profile-desc .name {
+.dynamic-content__annouce-profile-desc .name {
   font-size: 11px;
   color: #000;
 }
-.dynamic-content__announcement__annouce-profile-desc .date {
+.dynamic-content__annouce-profile-desc .date {
   font-size: 10px;
   color: #000;
 }
@@ -249,10 +249,10 @@
   display: inline-block;
   margin: 5px;
 }
-.dynamic-content__wrapper__new-friend-desc {
+.dynamic-content__new-friend-desc {
   vertical-align: top;
   display: inline-block;
-  width: 176px;
+  width: 165px;
   height: 37px;
   margin-top: 4px;
 }
@@ -266,12 +266,12 @@
   position: absolute;
   left: 60px;
 }
-.dynamic-content__new-friend-desc__desc-section {
+.dynamic-content__desc-section {
   display: inline-block;
   position: absolute;
   right: 15px;
 }
-.dynamic-content__new-friend-desc__desc-section__status {
+.dynamic-content__desc-section__status {
   font-size: 10px;
   display: inline-block;
   vertical-align: top;
@@ -279,18 +279,18 @@
   color: #000;
   margin-right: 4px;
 }
-.dynamic-content__new-friend-desc__desc-section__date {
+.dynamic-content__desc-section__date {
   font-size: 10px;
   display: inline-block;
   vertical-align: top;
   margin-top: 14px;
   color: #000;
 }
-.dynamic-content__new-friend-desc__desc-section__date .members {
+.dynamic-content__desc-section__date .members {
   width: 100%;
   color: #000;
 }
-.dynamic-content__new-friend-desc__desc-section__date .members img {
+.dynamic-content__desc-section__date .members img {
   width: 45px;
   height: 45px;
   margin: 5px;
@@ -309,27 +309,27 @@
 .dynamic-content__event__wrapper {
   display: inline-block;
 }
-.dynamic-content__wrapper__new-event-profile {
+.dynamic-content__event__wrapper img {
   width: 35px;
   height: 35px;
   vertical-align: top;
   display: inline-block;
   margin: 5px;
 }
-.dynamic-content__wrapper__new-event-desc {
+.dynamic-content__new-event-desc {
   font-size: 10px;
   display: inline-block;
   width: 169px;
   color: #000;
 }
-.dynamic-content__wrapper__new-event-desc .event-subject {
+.dynamic-content__new-event-desc .event-subject {
   font-size: 11px;
   display: inline-block;
   margin-right: 40px;
   vertical-align: top;
   color: #000;
 }
-.dynamic-content__wrapper__new-event-desc .date {
+.dynamic-content__new-event-desc .date {
   font-size: 10px;
   display: inline-block;
   vertical-align: top;
