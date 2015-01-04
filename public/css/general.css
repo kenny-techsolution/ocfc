@@ -322,24 +322,24 @@ textarea.form-control {
   vertical-align: super;
   color: #000;
 }
-.signinSection--second .password {
+.signin-section__second-row input {
   float: left;
-  width: 139px;
+  width: 142px;
 }
-.signinSection--second button {
+.signin-section__second-row button {
   float: left;
 }
-.signinSection--third__remember-me label {
+.signin-section__third-row label {
   float: left;
   margin-top: 3px;
   margin-left: 10px;
 }
-.signinSection--third__remember-me input {
+.signin-section__third-row input {
   float: left;
   margin-top: 5px;
   margin-left: 0px;
 }
-.signinSection--third__remember-me a {
+.signin-section__third-row a {
   float: left;
   margin-top: 3px;
   margin-left: 10px;
@@ -348,9 +348,6 @@ textarea.form-control {
   margin-bottom: 0px;
   width: 100%;
   height: 100%;
-}
-.jumbotron.vertical-center .container {
-  width: 422px;
 }
 .vertical-center {
   min-height: 100%;
@@ -363,12 +360,15 @@ textarea.form-control {
   font-size: 12px;
   color: #696969;
 }
-
 .ocfcSection--about {
   display: inline-block;
   margin-right: 10px;
 }
-
 .ocfcSection--contact {
   display: inline-block;
+}
+.full-width-widget-header-style1 {
+  border-bottom: 1px dotted #a9a9a9;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

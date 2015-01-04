@@ -1,14 +1,13 @@
 //--http://onechurchforchrist.org/setting--
-
-.setting.jumbotron
-	.container
+#setting.jumbotron
+	.container.basic-info-edit
 		.row
-			h4.setting--basic-information__info.text-grey Basic Information
+			h4.text-grey.full-width-widget-header-style1.col-md-12 Basic Information
 		.row
-			.setting--account-info.col-md-6
+			.col-md-6
 				.form-label FULL NAME {{fullName}}
 				input.form-control(ng-model='fullName')
-			.setting--bday-info.col-md-6
+			.basic-info-edit__bday-input.col-md-6
 				.form-label DATE OF BIRTH {{month}} {{day}} {{year}}
 				.dropdown.select-box.month.inline
 					button.btn.text-grey(focus-when='focusStates["Campaign Dates"]', type='button', data-toggle='dropdown',ng-model='month')
@@ -32,7 +31,7 @@
 						li(ng-repeat='choice in form.campaignLengthOptions')
 							a(ng-click='$parent.onChangeNumWeeks(choice)') {{choice}}
 		.row
-			.setting--account-info.col-md-6
+			.col-md-6
 				.form-label EMAIL {{email}}
 				input.form-control(ng-model='email')
 
@@ -41,19 +40,21 @@
 				button.btn.btn-primary.pull-right(ng-click='updateUser()',ng-disabled='disableFullName&&disableFullName') UPDATE
 				button.btn.btn-default.pull-right.cancel-button CANCEL
 
+	.container.password-edit
 		.row
-			h4.setting--password-information.info.text-grey Update Password
+			h4.text-grey.full-width-widget-header-style1.col-md-12 Update Password
 		.row
-			.setting--account-info.col-md-6
+			.col-md-6
 				.form-label OLD PASSWORD {{oldPassword}}
 				input.form-control(ng-model='oldPassword')
 		.row
-			.setting--account-info.col-md-6
+			.col-md-6
 				.form-label NEW PASSWORD {{newPassword}}
 				input.form-control(ng-model='newPassword')
 		.row
-			.setting--account-info.col-md-12
+			.col-md-12
 				button.btn.btn-primary.pull-right(ng-click='updateUserPassword()') UPDATE
 
+	.container.preference-edit
 		.row
-			h4.setting--preference-information__info.text-grey Preferences
+			h4.text-grey.full-width-widget-header-style1.col-md-12 Preferences
