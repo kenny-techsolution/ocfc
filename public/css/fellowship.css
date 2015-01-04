@@ -1,4 +1,4 @@
-#main-content {
+.main-content {
   width: 980px;
   height: 1500px;
   margin: 0px auto;
@@ -6,7 +6,7 @@
   padding-right: 0px;
   padding-top: 60px;
 }
-#main-content .banner {
+.main-content--banner {
   position: relative;
   margin-left: -15px;
   margin-right: -15px;
@@ -15,18 +15,18 @@
   border-right: none;
   border-top: none;
 }
-#main-content .banner .group-pic {
+.main-content--banner__group-pic {
   height: 100%;
   padding-left: 0px;
   padding-right: 0px;
   overflow: hidden;
 }
-#main-content .banner .group-pic img.group {
+img.main-content--banner__group-pic__group {
   margin-top: -150px;
   width: 100%;
   height: auto;
 }
-#main-content .banner .group-pic .overlay {
+.main-content--banner__group-pic__overlay {
   background-color: #fff;
   opacity: 0.8;
   width: 100%;
@@ -36,7 +36,7 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
-#main-content .banner .group-pic .summary {
+.main-content--banner__group-pic__summary {
   width: 100%;
   height: 80px;
   bottom: 0px;
@@ -44,7 +44,7 @@
   padding-top: 10px;
   padding-bottom: 20px;
 }
-#main-content .banner .group-pic .summary .title-section {
+.main-content--banner__group-pic__summary--title-section {
   display: inline-block;
   width: 70%;
   height: 60px;
@@ -52,55 +52,55 @@
   padding-right: 20px;
   vertical-align: top;
 }
-#main-content .banner .group-pic .summary .title-section .title {
+.main-content--banner__group-pic__summary--title-section__title {
   font-size: 28px;
   color: #000;
 }
-#main-content .banner .group-pic .summary .title-section .slogan {
+.main-content--banner__group-pic__summary--title-section__slogan {
   font-size: 13px;
   color: #000;
 }
-#main-content .banner .group-pic .summary .admin-section {
+.main-content--banner__group-pic__summary--admin-section {
   display: inline-block;
   width: 30%;
   height: 60px;
   vertical-align: top;
   padding-left: 10px;
 }
-#main-content .banner .group-pic .summary .admin-section .profile-img {
+.main-content--banner__group-pic__summary--admin-section__profile-img {
   display: inline-block;
   vertical-align: top;
 }
-#main-content .banner .group-pic .summary .admin-section .profile-img img.admin-profile {
+.main-content--banner__group-pic__summary--admin-section__profile-img--admin-profile {
   width: 60px;
   height: 60px;
   border-radius: 30px;
   border: 3px solid #407f8e;
 }
-#main-content .banner .group-pic .summary .admin-section .profile-desc {
+.main-content--banner__group-pic__summary--admin-section__profile-desc {
   padding-left: 10px;
   display: inline-block;
   vertical-align: top;
 }
-#main-content .banner .group-pic .summary .admin-section .profile-desc .role {
+.main-content--banner__group-pic__summary--admin-section__profile-desc--role {
   font-size: 14px;
   color: #000;
   margin-top: 7px;
 }
-#main-content .banner .group-pic .summary .admin-section .profile-desc .name {
+.main-content--banner__group-pic__summary--admin-section__profile-desc--name {
   font-size: 16px;
   color: #000;
 }
-#main-content .banner .about-us {
+.main-content--banner__about-us {
   height: 100%;
   background-color: #fff;
   padding: 20px 30px;
   color: #000;
 }
-#main-content .banner .about-us .logo {
+.main-content--banner__about-us--logo {
   display: inline-block;
 }
-#main-content .banner .about-us .logo img.fellow-logo {
+.main-content--banner__about-us--logo img.fellow-logo {
   border: 1px solid #0a0a0a;
   width: 28px;
   height: 28px;
@@ -108,26 +108,26 @@
   padding: 5px;
   margin-right: 6px;
 }
-#main-content .banner .about-us .title {
+.main-content--banner__about-us--title {
   color: #339db6;
   font-size: 18px;
   display: inline-block;
   position: relative;
   top: 7px;
 }
-#main-content .banner .about-us .border {
+.main-content--banner__about-us--border {
   border-bottom: 1px solid #000;
   padding-top: 4px;
 }
-#main-content .banner .about-us .description {
+.main-content--banner__about-us--description {
   margin-top: 10px;
   font-size: 13px;
 }
-#main-content .banner .about-us .description:first-letter {
+.main-content--banner__about-us--description:first-letter {
   font-size: 20px;
   font-weight: bold;
 }
-#main-content .banner .about-us:before {
+.main-content--banner__about-us:before {
   content: "";
   position: absolute;
   top: 0;
@@ -143,120 +143,121 @@
   display: block;
   width: 0;
 }
-#main-content .banner .about-us.rounded {
+.main-content--banner__about-us.rounded {
   -moz-border-radius: 5px 0 5px 5px;
   border-radius: 5px 0 5px 5px;
 }
-#main-content .banner .about-us.rounded:before {
+.main-content--banner__about-us.rounded:before {
   border-width: 8px;
   border-color: #fff #fff transparent transparent;
   -moz-border-radius: 0 0 0 5px;
   border-radius: 0 0 0 5px;
 }
-#main-content .dynamic-content {
+.main-content--dynamic-content {
   height: 1500px;
 }
-#main-content .dynamic-content .wall {
+.main-content--dynamic-content__wall {
   height: 100%;
   color: #000;
   background-color: #d3d3d3;
 }
-#main-content .dynamic-content .wall .post-msg-box {
+.main-content--dynamic-content__wall .post-msg-box {
   border: 1px solid #000;
   height: 150px;
 }
-#main-content .dynamic-content .wall .post-msg-box .header {
+.main-content--dynamic-content__wall .post-msg-box .header {
   border-bottom: 1px solid #000;
   display: inline-block;
   width: 100%;
 }
-#main-content .dynamic-content .wall .post-msg-box textarea.textbox {
+.main-content--dynamic-content__wall .post-msg-box textarea.textbox {
   width: 100%;
   height: 115px;
 }
-#main-content .dynamic-content .wall img.camera-icon {
+.main-content--dynamic-content__wall img.camera-icon {
   width: 20px;
   height: 20px;
   margin: 5px;
   margin-right: 160px;
   display: inline-block;
 }
-#main-content .dynamic-content .wall .share {
+.main-content--dynamic-content__wall .share {
   display: inline-block;
   margin-right: 20px;
   font-size: 12px;
 }
-#main-content .dynamic-content .wall .share img.share-icon {
+.main-content--dynamic-content__wall .share img.share-icon {
   width: 15px;
   height: 15px;
   margin-left: 2px;
 }
-#main-content .dynamic-content .wall .post-type {
+.main-content--dynamic-content__wall .post-type {
   display: inline-block;
   font-size: 12px;
 }
-#main-content .dynamic-content .wall .post-type-dropdown {
+.main-content--dynamic-content__wall .post-type-dropdown {
   display: inline-block;
   margin-left: 6px;
 }
-#main-content .dynamic-content .wall button.post {
+.main-content--dynamic-content__wall button.post {
   display: inline-block;
   font-size: 12px;
   margin: 5px 5px 5px 55px;
   width: 55px;
   color: #000;
 }
-#main-content .dynamic-content .left-sidebar {
+.main-content--dynamic-content__left-sidebar {
   height: 100%;
 }
-#main-content .dynamic-content .left-sidebar .announcement {
+.main-content--dynamic-content__left-sidebar__announcement {
   width: 100%;
   height: auto;
   margin-top: 5px;
 }
-#main-content .dynamic-content .left-sidebar .announcement img.admin-annouce-profile {
+.main-content--dynamic-content__left-sidebar__announcement--admin-annouce-profile {
   width: 35px;
   height: 35px;
   vertical-align: top;
   display: inline-block;
   margin-right: 6px;
 }
-#main-content .dynamic-content .left-sidebar .announcement .annouce-profile-desc {
+.main-content--dynamic-content__left-sidebar__announcement--annouce-profile-desc {
   vertical-align: top;
   display: inline-block;
 }
-#main-content .dynamic-content .left-sidebar .announcement .annouce-profile-desc .name {
+.main-content--dynamic-content__left-sidebar__announcement--annouce-profile-desc .name {
   font-size: 11px;
   color: #000;
 }
-#main-content .dynamic-content .left-sidebar .announcement .annouce-profile-desc .date {
+.main-content--dynamic-content__left-sidebar__announcement--annouce-profile-desc .date {
   font-size: 10px;
   color: #000;
 }
-#main-content .dynamic-content .left-sidebar .announcement .description {
+.main-content--dynamic-content__left-sidebar__announcement--description {
   font-size: 13px;
   margin-top: 5px;
   color: #000;
 }
-#main-content .dynamic-content .left-sidebar .new-friend {
+.main-content--dynamic-content__left-sidebar__new-friend {
   width: 100%;
   height: 200px;
 }
-#main-content .dynamic-content .left-sidebar .new-friend .wrapper img.new-friend-profile {
+.main-content--dynamic-content__left-sidebar__new-friend--wrapper,
+.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-profile {
   width: 35px;
   height: 35px;
   vertical-align: top;
   display: inline-block;
   margin: 5px;
 }
-#main-content .dynamic-content .left-sidebar .new-friend .wrapper .new-friend-desc {
+.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc {
   vertical-align: top;
   display: inline-block;
   width: 176px;
   height: 37px;
   margin-top: 4px;
 }
-#main-content .dynamic-content .left-sidebar .new-friend .wrapper .new-friend-desc .name {
+.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--name {
   font-size: 11px;
   display: inline-block;
   margin-right: 40px;
@@ -266,12 +267,12 @@
   position: absolute;
   left: 60px;
 }
-#main-content .dynamic-content .left-sidebar .new-friend .wrapper .new-friend-desc .desc-section {
+.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--desc-section {
   display: inline-block;
   position: absolute;
   right: 15px;
 }
-#main-content .dynamic-content .left-sidebar .new-friend .wrapper .new-friend-desc .desc-section .status {
+.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--desc-section__status {
   font-size: 10px;
   display: inline-block;
   vertical-align: top;
@@ -279,77 +280,77 @@
   color: #000;
   margin-right: 4px;
 }
-#main-content .dynamic-content .left-sidebar .new-friend .wrapper .new-friend-desc .desc-section .date {
+.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--desc-section__date {
   font-size: 10px;
   display: inline-block;
   vertical-align: top;
   margin-top: 14px;
   color: #000;
 }
-#main-content .dynamic-content .left-sidebar .members {
+.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--desc-section__date .members {
   width: 100%;
   color: #000;
 }
-#main-content .dynamic-content .left-sidebar .members img {
+.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--desc-section__date .members img {
   width: 45px;
   height: 45px;
   margin: 5px;
 }
-#main-content .dynamic-content .right-sidebar {
+.main-content--dynamic-content__right-sidebar {
   height: 100%;
 }
-#main-content .dynamic-content .right-sidebar .calendar {
+.main-content--dynamic-content__right-sidebar__calendar {
   width: 100%;
   height: 250px;
 }
-#main-content .dynamic-content .right-sidebar .event {
+.main-content--dynamic-content__right-sidebar__event {
   width: 100%;
   height: 200px;
 }
-#main-content .dynamic-content .right-sidebar .event .wrapper {
+.main-content--dynamic-content__right-sidebar__event__wrapper {
   display: inline-block;
 }
-#main-content .dynamic-content .right-sidebar .event .wrapper img.new-event-profile {
+.main-content--dynamic-content__right-sidebar__event__wrapper--new-event-profile {
   width: 35px;
   height: 35px;
   vertical-align: top;
   display: inline-block;
   margin: 5px;
 }
-#main-content .dynamic-content .right-sidebar .event .wrapper .new-event-desc {
+.main-content--dynamic-content__right-sidebar__event__wrapper--new-event-desc {
   font-size: 10px;
   display: inline-block;
   width: 169px;
   color: #000;
 }
-#main-content .dynamic-content .right-sidebar .event .wrapper .event-subject {
+.main-content--dynamic-content__right-sidebar__event__wrapper--new-event-desc .event-subject {
   font-size: 11px;
   display: inline-block;
   margin-right: 40px;
   vertical-align: top;
   color: #000;
 }
-#main-content .dynamic-content .right-sidebar .event .wrapper .date {
+.main-content--dynamic-content__right-sidebar__event__wrapper--new-event-desc .date {
   font-size: 10px;
   display: inline-block;
   vertical-align: top;
   color: #000;
 }
-#main-content .dynamic-content .right-sidebar .birthday {
+.main-content--dynamic-content__right-sidebar__birthday {
   width: 100%;
   height: 200px;
 }
-#main-content .dynamic-content .right-sidebar .birthday .wrapper img.new-birthday-profile {
+.main-content--dynamic-content__right-sidebar__birthday--wrapper__new-birthday-profile {
   width: 35px;
   height: 35px;
   vertical-align: top;
   display: inline-block;
   margin: 5px;
 }
-#main-content .dynamic-content .right-sidebar .birthday .wrapper .new-birthday-desc {
+.main-content--dynamic-content__right-sidebar__birthday--wrapper__new-birthday-desc {
   display: inline-block;
 }
-#main-content .dynamic-content .right-sidebar .birthday .wrapper .new-birthday-desc .name {
+.main-content--dynamic-content__right-sidebar__birthday--wrapper__new-birthday-desc--name {
   font-size: 11px;
   display: inline-block;
   margin-right: 40px;
@@ -357,7 +358,7 @@
   vertical-align: top;
   color: #000;
 }
-#main-content .dynamic-content .right-sidebar .birthday .wrapper .new-birthday-desc .date {
+.main-content--dynamic-content__right-sidebar__birthday--wrapper__new-birthday-desc--date {
   font-size: 10px;
   display: inline-block;
   vertical-align: top;

@@ -1,310 +1,328 @@
 //FellowshipNew.jade
-#main-content
+.main-content
 	width 980px
 	height 1500px
 	margin 0px auto
 	padding-left 0px
 	padding-right 0px
 	padding-top 60px
-	.banner
-		position relative
-		margin-left -15px
-		margin-right -15px
-		//width 100%
-		height 300px
-		border 1px solid #ffffff
-		border-right none
-		border-top none
-		.group-pic
-			height 100%
-			padding-left 0px
-			padding-right 0px
-			overflow hidden
-			img.group
-				margin-top -150px
-				width 100%
-				height auto
-			.overlay
-				background-color #ffffff
-				opacity 0.8
-				width 100%
-				height 80px
-				bottom 0px
-				position absolute
-				padding-top 20px
-				padding-bottom 20px
-			.summary
-				width 100%
-				height 80px
-				bottom 0px
-				position absolute
-				padding-top 10px
-				padding-bottom 20px
-				.title-section
-					display inline-block
-					width 70%
-					height 60px
-					padding-left 40px
-					padding-right 20px
-					vertical-align top
-					.title
-						font-size 28px
-						color #000000
-					.slogan
-						font-size 13px
-						color #000000
-				.admin-section
-					display inline-block
-					width 30%
-					height 60px
-					vertical-align top
-					padding-left 10px
-					.profile-img
-						display inline-block
-						vertical-align top
-						img.admin-profile
-							width 60px
-							height 60px
-							border-radius 30px
-							border 3px solid #407F8E
-					.profile-desc
-						padding-left 10px
-						display inline-block
-						vertical-align top
-						.role
-							font-size 14px
-							color #000000
-							margin-top 7px
-						.name
-							font-size 16px
-							color #000000
-		.about-us
-			height 100%
-			background-color #ffffff
-			padding 20px 30px
-			color black
-			.logo
-				display inline-block
-				img.fellow-logo
-					border 1px solid rgb(10, 10, 10)
-					width 28px
-					height 28px
-					border-radius 14px
-					padding 5px
-					margin-right 6px
-			.title
-				color #339DB6
-				font-size 18px
-				display inline-block
-				position relative
-				top 7px
-			.border
-				border-bottom 1px solid black
-				padding-top 4px
-			.description
-				margin-top 10px
-				font-size 13px
-				&:first-letter
-					font-size 20px
-					font-weight bold
-		.about-us:before
-			content ""
-			position absolute
-			top 0
-			right 0
-			border-width 0 16px 16px 0
-			border-style solid
-			border-color #696969 #696969 lightgrey lightgrey
-			background lightgrey
-			-webkit-box-shadow 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2)
-			-moz-box-shadow 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2)
-			box-shadow 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2)
-			/* Firefox 3.0 damage limitation */
-			display block
-			width 0
 
-		.about-us.rounded
-			-moz-border-radius 5px 0 5px 5px
-			border-radius 5px 0 5px 5px
+.main-content--banner
+	position relative
+	margin-left -15px
+	margin-right -15px
+	//width 100%
+	height 300px
+	border 1px solid #ffffff
+	border-right none
+	border-top none
 
-		.about-us.rounded:before
-			border-width 8px
-			border-color #fff #fff transparent transparent
-			-moz-border-radius 0 0 0 5px
-			border-radius 0 0 0 5px
-	.dynamic-content
-		height 1500px
+.main-content--banner__group-pic
+	height 100%
+	padding-left 0px
+	padding-right 0px
+	overflow hidden
 
-		.wall
-			height 100%
-			color #000000
-			background-color #d3d3d3
-			.post-msg-box
-				border 1px solid #000000
-				height 150px
-				.header
-					border-bottom 1px solid #000000
-					display inline-block
-					width 100%
-				textarea.textbox
-					width 100%
-					height 115px
-			img.camera-icon
-				width 20px
-				height 20px
-				margin 5px
-				margin-right 160px
-				display inline-block
-			.share
-				display inline-block
-				margin-right 20px
-				font-size 12px
-				img.share-icon
-					width 15px
-					height 15px
-					margin-left 2px
-			.post-type
-				display inline-block
-				font-size 12px
-			.post-type-dropdown
-				display inline-block
-				margin-left 6px
-			button.post
-				display inline-block
-				font-size 12px
-				margin 5px 5px 5px 55px
-				width 55px
-				color #000000
-		.left-sidebar
-			height 100%
-			.announcement
-				width 100%
-				height auto
-				margin-top 5px
-				img.admin-annouce-profile
-					width 35px
-					height 35px
-					vertical-align top
-					display inline-block
-					margin-right 6px
-				.annouce-profile-desc
-					vertical-align top
-					display inline-block
-					.name
-						font-size 11px
-						color #000000
-					.date
-						font-size 10px
-						color #000000
-				.description
-					font-size 13px
-					margin-top 5px
-					color #000000
-			.new-friend
-				width 100%
-				height 200px
-				.wrapper
-					img.new-friend-profile
-						width 35px
-						height 35px
-						vertical-align top
-						display inline-block
-						margin 5px
-					.new-friend-desc
-						vertical-align top
-						display inline-block
-						width 176px
-						height 37px
-						margin-top 4px
-						.name
-							font-size 11px
-							display inline-block
-							margin-right 40px
-							margin-top 14px
-							vertical-align top
-							color #000000
-							position absolute
-							left 60px
-						.desc-section
-							display inline-block
-							position absolute
-							right 15px
-							.status
-								font-size 10px
-								display inline-block
-								vertical-align top
-								margin-top 14px
-								color #000000
-								margin-right 4px
-							.date
-								font-size 10px
-								display inline-block
-								vertical-align top
-								margin-top 14px
-								color #000000
-			.members
-				width 100%
-				img
-					width 45px
-					height 45px
-					margin 5px
-				color #000000
-		.right-sidebar
-			height 100%
-			.calendar
-				width 100%
-				height 250px
-			.event
-				width 100%
-				height 200px
-				.wrapper
-					display inline-block
-					img.new-event-profile
-						width 35px
-						height 35px
-						vertical-align top
-						display inline-block
-						margin 5px
-					.new-event-desc
-						font-size 10px
-						display inline-block
-						width 169px
-						color #000000
-					.event-subject
-						font-size 11px
-						display inline-block
-						margin-right 40px
-						vertical-align top
-						color #000000
-					.date
-						font-size 10px
-						display inline-block
-						vertical-align top
-						color #000000
-			.birthday
-				width 100%
-				height 200px
-				.wrapper
-					img.new-birthday-profile
-						width 35px
-						height 35px
-						vertical-align top
-						display inline-block
-						margin 5px
-					.new-birthday-desc
-						display inline-block
-						.name
-							font-size 11px
-							display inline-block
-							margin-right 40px
-							margin-top 14px
-							vertical-align top
-							color #000000
-						.date
-							font-size 10px
-							display inline-block
-							vertical-align top
-							margin-top 14px
-							color #000000
-							position absolute
-							right 14px
+img.main-content--banner__group-pic__group
+	margin-top -150px
+	width 100%
+	height auto
+.main-content--banner__group-pic__overlay
+	background-color #ffffff
+	opacity 0.8
+	width 100%
+	height 80px
+	bottom 0px
+	position absolute
+	padding-top 20px
+	padding-bottom 20px
+.main-content--banner__group-pic__summary
+	width 100%
+	height 80px
+	bottom 0px
+	position absolute
+	padding-top 10px
+	padding-bottom 20px
+.main-content--banner__group-pic__summary--title-section
+	display inline-block
+	width 70%
+	height 60px
+	padding-left 40px
+	padding-right 20px
+	vertical-align top
+.main-content--banner__group-pic__summary--title-section__title
+	font-size 28px
+	color #000000
+.main-content--banner__group-pic__summary--title-section__slogan
+	font-size 13px
+	color #000000
+.main-content--banner__group-pic__summary--admin-section
+	display inline-block
+	width 30%
+	height 60px
+	vertical-align top
+	padding-left 10px
+.main-content--banner__group-pic__summary--admin-section__profile-img
+	display inline-block
+	vertical-align top
+.main-content--banner__group-pic__summary--admin-section__profile-img--admin-profile
+	width 60px
+	height 60px
+	border-radius 30px
+	border 3px solid #407F8E
+.main-content--banner__group-pic__summary--admin-section__profile-desc
+	padding-left 10px
+	display inline-block
+	vertical-align top
+.main-content--banner__group-pic__summary--admin-section__profile-desc--role
+	font-size 14px
+	color #000000
+	margin-top 7px
+.main-content--banner__group-pic__summary--admin-section__profile-desc--name
+	font-size 16px
+	color #000000
+
+.main-content--banner__about-us
+	height 100%
+	background-color #ffffff
+	padding 20px 30px
+	color black
+
+.main-content--banner__about-us--logo
+	display inline-block
+	img.fellow-logo
+		border 1px solid rgb(10, 10, 10)
+		width 28px
+		height 28px
+		border-radius 14px
+		padding 5px
+		margin-right 6px
+.main-content--banner__about-us--title
+	color #339DB6
+	font-size 18px
+	display inline-block
+	position relative
+	top 7px
+.main-content--banner__about-us--border
+	border-bottom 1px solid black
+	padding-top 4px
+.main-content--banner__about-us--description
+	margin-top 10px
+	font-size 13px
+	&:first-letter
+		font-size 20px
+		font-weight bold
+.main-content--banner__about-us:before
+	content ""
+	position absolute
+	top 0
+	right 0
+	border-width 0 16px 16px 0
+	border-style solid
+	border-color #696969 #696969 lightgrey lightgrey
+	background lightgrey
+	-webkit-box-shadow 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2)
+	-moz-box-shadow 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2)
+	box-shadow 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2)
+	/* Firefox 3.0 damage limitation */
+	display block
+	width 0
+
+.main-content--banner__about-us.rounded
+	-moz-border-radius 5px 0 5px 5px
+	border-radius 5px 0 5px 5px
+
+.main-content--banner__about-us.rounded:before
+	border-width 8px
+	border-color #fff #fff transparent transparent
+	-moz-border-radius 0 0 0 5px
+	border-radius 0 0 0 5px
+.main-content--dynamic-content
+	height 1500px
+
+.main-content--dynamic-content__wall
+	height 100%
+	color #000000
+	background-color #d3d3d3
+	.post-msg-box
+		border 1px solid #000000
+		height 150px
+		.header
+			border-bottom 1px solid #000000
+			display inline-block
+			width 100%
+		textarea.textbox
+			width 100%
+			height 115px
+	img.camera-icon
+		width 20px
+		height 20px
+		margin 5px
+		margin-right 160px
+		display inline-block
+	.share
+		display inline-block
+		margin-right 20px
+		font-size 12px
+		img.share-icon
+			width 15px
+			height 15px
+			margin-left 2px
+	.post-type
+		display inline-block
+		font-size 12px
+	.post-type-dropdown
+		display inline-block
+		margin-left 6px
+	button.post
+		display inline-block
+		font-size 12px
+		margin 5px 5px 5px 55px
+		width 55px
+		color #000000
+
+.main-content--dynamic-content__left-sidebar
+	height 100%
+.main-content--dynamic-content__left-sidebar__announcement
+	width 100%
+	height auto
+	margin-top 5px
+.main-content--dynamic-content__left-sidebar__announcement--admin-annouce-profile
+	width 35px
+	height 35px
+	vertical-align top
+	display inline-block
+	margin-right 6px
+.main-content--dynamic-content__left-sidebar__announcement--annouce-profile-desc
+	vertical-align top
+	display inline-block
+	.name
+		font-size 11px
+		color #000000
+	.date
+		font-size 10px
+		color #000000
+.main-content--dynamic-content__left-sidebar__announcement--description
+	font-size 13px
+	margin-top 5px
+	color #000000
+
+.main-content--dynamic-content__left-sidebar__new-friend
+	width 100%
+	height 200px
+
+.main-content--dynamic-content__left-sidebar__new-friend--wrapper
+
+.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-profile
+	width 35px
+	height 35px
+	vertical-align top
+	display inline-block
+	margin 5px
+
+.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc
+	vertical-align top
+	display inline-block
+	width 176px
+	height 37px
+	margin-top 4px
+.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--name
+	font-size 11px
+	display inline-block
+	margin-right 40px
+	margin-top 14px
+	vertical-align top
+	color #000000
+	position absolute
+	left 60px
+.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--desc-section
+	display inline-block
+	position absolute
+	right 15px
+.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--desc-section__status
+	font-size 10px
+	display inline-block
+	vertical-align top
+	margin-top 14px
+	color #000000
+	margin-right 4px
+.main-content--dynamic-content__left-sidebar__new-friend--wrapper__new-friend-desc--desc-section__date
+	font-size 10px
+	display inline-block
+	vertical-align top
+	margin-top 14px
+	color #000000
+	.members
+		width 100%
+		img
+			width 45px
+			height 45px
+			margin 5px
+		color #000000
+
+.main-content--dynamic-content__right-sidebar
+	height 100%
+.main-content--dynamic-content__right-sidebar__calendar
+	width 100%
+	height 250px
+.main-content--dynamic-content__right-sidebar__event
+	width 100%
+	height 200px
+.main-content--dynamic-content__right-sidebar__event__wrapper
+	display inline-block
+.main-content--dynamic-content__right-sidebar__event__wrapper--new-event-profile
+	width 35px
+	height 35px
+	vertical-align top
+	display inline-block
+	margin 5px
+.main-content--dynamic-content__right-sidebar__event__wrapper--new-event-desc
+	font-size 10px
+	display inline-block
+	width 169px
+	color #000000
+	.event-subject
+		font-size 11px
+		display inline-block
+		margin-right 40px
+		vertical-align top
+		color #000000
+	.date
+		font-size 10px
+		display inline-block
+		vertical-align top
+		color #000000
+
+.main-content--dynamic-content__right-sidebar__birthday
+	width 100%
+	height 200px
+
+.main-content--dynamic-content__right-sidebar__birthday--wrapper__new-birthday-profile
+	width 35px
+	height 35px
+	vertical-align top
+	display inline-block
+	margin 5px
+
+.main-content--dynamic-content__right-sidebar__birthday--wrapper__new-birthday-desc
+	display inline-block
+
+.main-content--dynamic-content__right-sidebar__birthday--wrapper__new-birthday-desc--name
+	font-size 11px
+	display inline-block
+	margin-right 40px
+	margin-top 14px
+	vertical-align top
+	color #000000
+
+.main-content--dynamic-content__right-sidebar__birthday--wrapper__new-birthday-desc--date
+	font-size 10px
+	display inline-block
+	vertical-align top
+	margin-top 14px
+	color #000000
+	position absolute
+	right 14px
+
+
+

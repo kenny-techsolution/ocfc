@@ -1,14 +1,14 @@
 form.form-horizontal(name="signinForm" ng-controller='SignupCtrl')
-	#signinSection
-		.row.first
+	.signinSection
+		.row.signinSection--first
 			.col-xs-12
 				input.form-control(name="email",type="email",placeholder="Email as username",ng-model="email",required)
-		.row.second
+		.row.signinSection--second
 			.col-xs-12
 				input.form-control.password(name="password",type="password",placeholder="Password",ng-model="password",required)
 				button.btn.btn-primary.pull-right(ng-click="signin(email,password)") LOG IN
-		.row.third
-			.col-xs-12.remember-me
+		.row.signinSection--third
+			.col-xs-12.signinSection--third__remember-me
 				input(type='checkbox', name='rememberMe', value='Remember me',ng-model='rememberMe')
 				label Remember me
 				a Forget password?

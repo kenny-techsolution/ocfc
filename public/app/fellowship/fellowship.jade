@@ -1,40 +1,40 @@
 //fellowship.jade
-#main-content.container
-	.row.banner
-		.col-md-9.group-pic
-			img.group(ng-src='/css/images/TimothyFellowship1.jpg')
-			.overlay
-			.summary
-				.title-section
-					.title 提摩太團契
-					.slogan 作信徒的榜樣，要剛強壯膽，以清潔的心不要叫人小看你。
-				.admin-section
-					.profile-img
-						img.admin-profile(ng-src='/css/images/kenny_face.jpg')
-					.profile-desc
-						.role 負責人
-						.name Beland Huang
-		.col-md-3.about-us
-			.logo
+.main-content.container
+	.row.main-content--banner
+		.col-md-9.main-content--banner__group-pic
+			img.main-content--banner__group-pic__group(ng-src='/css/images/TimothyFellowship1.jpg')
+			.main-content--banner__group-pic__overlay
+			.main-content--banner__group-pic__summary
+				.main-content--banner__group-pic__summary--title-section
+					.main-content--banner__group-pic__summary--title-section__title 提摩太團契
+					.main-content--banner__group-pic__summary--title-section__slogan 作信徒的榜樣，要剛強壯膽，以清潔的心不要叫人小看你。
+				.main-content--banner__group-pic__summary--admin-section
+					.main-content--banner__group-pic__summary--admin-section__profile-img
+						img.main-content--banner__group-pic__summary--admin-section__profile-img--admin-profile(ng-src='/css/images/kenny_face.jpg')
+					.main-content--banner__group-pic__summary--admin-section__profile-desc
+						.main-content--banner__group-pic__summary--admin-section__profile-desc--role 負責人
+						.main-content--banner__group-pic__summary--admin-section__profile-desc--name Beland Huang
+		.col-md-3.main-content--banner__about-us
+			.main-content--banner__about-us--logo
 				img.fellow-logo(ng-src='/css/images/fellowship_logo.png')
-			.title About Us
-			.border
-			.description 大安森林食堂據說是日本最大的庶民連鎖自助餐，試營運期間就大排長龍，原本想說應該是有七折優惠的魅力，等風潮過後再來輕鬆吃。特別約了前同事休假一起來嚐鮮，沒想到扣折結束後，平日中午來還是繼續排排隊，店門口一堆人在候位，好在我跟友人話多，聊不完的天，一個小時也就這樣排到了。
-	.row.dynamic-content
-		.col-md-3.left-sidebar
+			.main-content--banner__about-us--title About Us
+			.main-content--banner__about-us--border
+			.main-content--banner__about-us--description 大安森林食堂據說是日本最大的庶民連鎖自助餐，試營運期間就大排長龍，原本想說應該是有七折優惠的魅力，等風潮過後再來輕鬆吃。特別約了前同事休假一起來嚐鮮，沒想到扣折結束後，平日中午來還是繼續排排隊，店門口一堆人在候位，好在我跟友人話多，聊不完的天，一個小時也就這樣排到了。
+	.row.main-content--dynamic-content
+		.col-md-3.main-content--dynamic-content__left-sidebar
 			.widget-title-wo-link Announcement
-			ocfc-announcement
+			ocfc-announcement(users='FellowshipDataSvc.users')
 			.widget-title-wo-link New Friend
 			ocfc-new-friend(users='FellowshipDataSvc.users')
 			.widget-title-wo-link Members
 			ocfc-members(users='FellowshipDataSvc.users')
-		.col-md-6.wall
+		.col-md-6.main-content--dynamic-content__wall
 			.widget-title-wo-link Write to Wall
-			ocfc-wall
+			ocfc-wall(users='FellowshipDataSvc.users')
 		.col-md-3.right-sidebar
 			.widget-title-wo-link Calendar
-			ocfc-calendar
+			ocfc-calendar(users='FellowshipDataSvc.users')
 			.widget-title-wo-link Event
-			ocfc-event
+			ocfc-event(users='FellowshipDataSvc.users')
 			.widget-title-wo-link Birthday
 			ocfc-birthday(users='FellowshipDataSvc.users')

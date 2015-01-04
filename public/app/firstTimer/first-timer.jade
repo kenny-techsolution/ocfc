@@ -1,34 +1,34 @@
-#first-timer
+.first-timer
 	carousel(interval="-1")
 		slide
 			.jumbotron.vertical-center
-				.container.upload-profile-img
+				.first-timer--upload-profile-img.container
 					.row
-						.col-xs-3.img-container
+						.col-xs-3.first-timer--upload-profile-img__img-container
 							.img.pull-right(ng-style="{'background-image':backgroundImgPath}")
-						.col-xs-9.container
+						.col-xs-9.first-timer--upload-profile-img__container
 							.row
-								.instruction.col-xs-12
-									h3.instruction-label.text-black.lead Upload Your Profile Picture
+								.first-timer--upload-profile-img__container--instruction.col-xs-12
+									h3.first-timer--upload-profile-img__container--instruction__instruction-label.text-black.lead Upload Your Profile Picture
 							.row
 								.col-xs-5
 									button.btn.btn-sm.btn-primary(href='#', ng-file-select='onFileSelect($files)', data-multiple='false', title='profile', onclick='this.value = null') CHOOSE YOUR PHOTO
 								.col-xs-7
-									a.skip.pull-left Skip this and do later >
+									a.first-timer--upload-profile-img__container--skip.pull-left Skip this and do later >
 					.row
-						.progress(ng-style="{'width':progress +'%'}")
+						.first-timer--upload-profile-img__img-progress(ng-style="{'width':progress +'%'}")
 		slide
 			.jumbotron.vertical-center
 				.container
 					.row
 						.col-xs-12
-							h2.instruction-label.text-black.pull-left Welcome Kenny Chung!
+							h2.first-timer--instruction-label.text-black.pull-left Welcome Kenny Chung!
 					.row
 						.col-xs-12
-							h5.description.text-black.pull-left 歡迎你加入我們，你可以在我們的Explore對抗恐懼但開放進口
+							h5.first-timer--description.text-black.pull-left 歡迎你加入我們，你可以在我們的Explore對抗恐懼但開放進口
 					.row
 						.col-xs-12
-							a.start.text-black.pull-right(ng-click='deleteUserFromValidation()') 開始 》
+							a.first-timer--start.text-black.pull-right(ng-click='deleteUserFromValidation()') 開始 》
 
 
 

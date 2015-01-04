@@ -54,7 +54,7 @@ button.btn {
   float: right;
   margin-top: 5px;
 }
-#global-header {
+.global-header {
   position: fixed;
   top: 0px;
   z-index: 9999;
@@ -65,7 +65,7 @@ button.btn {
   background: rgba(255,255,255,0.95);
   font-size: 18px;
 }
-#global-header .gh-content {
+.global-header--content {
   display: block;
   width: 980px;
   height: 30px;
@@ -73,18 +73,18 @@ button.btn {
   margin-top: 10px;
   position: relative;
 }
-#global-header .gh-content .gh-tab {
+.global-header--content__gh-tab {
   height: 30px;
   background-repeat: no-repeat;
   display: block;
   position: absolute;
 }
-#global-header .gh-content .gh-tab.brand {
+.global-header--content__gh-tab--brand {
   width: 30px;
   background-image: url("./images/ocfc_logo.png");
   background-size: 29px 29px;
 }
-#global-header .gh-content .gh-tab.account {
+.global-header--content__gh-tab--account {
   cursor: pointer;
   width: 30px;
   background-image: url("./images/kenny_face.jpg");
@@ -93,17 +93,17 @@ button.btn {
   top: 0px;
   border-radius: 5px;
 }
-#global-header .gh-content .gh-tab.account:hover {
+.global-header--content__gh-tab--account:hover {
   opacity: 0.7;
 }
-#global-header .gh-content .gh-tab.notification {
+.global-header--content__gh-tab--notification {
   width: 30px;
   background-image: url("./images/notification_icon.svg");
   background-size: 29px 29px;
   right: 50px;
   top: 0px;
 }
-#global-header .gh-content .gh-tab.explore {
+.global-header--content__gh-tab--explore {
   width: 83px;
   color: #000;
   font-size: 14px;
@@ -112,10 +112,10 @@ button.btn {
   top: 0px;
   text-decoration: none;
 }
-#global-header .gh-content .gh-tab.explore:hover {
+.global-header--content__gh-tab--explore:hover {
   text-decoration: none;
 }
-#global-header .gh-content .gh-tab.explore .icon {
+.global-header--content__gh-tab--explore .icon {
   display: block;
   position: absolute;
   top: 5px;
@@ -124,13 +124,13 @@ button.btn {
   width: 20px;
   background-size: 20px 20px;
 }
-#global-header .gh-content .gh-tab.explore .icon.cross {
+.global-header--content__gh-tab--explore .icon.cross {
   background-image: url("./images/cross_icon.svg");
 }
-#global-header .gh-content .gh-tab.explore .icon.explore {
+.global-header--content__gh-tab--explore .icon.explore {
   background-image: url("./images/explore_icon.svg");
 }
-#explore-menu {
+.explore-menu {
   overflow: hidden;
   position: fixed;
   top: 50px;
@@ -139,44 +139,44 @@ button.btn {
   background: rgba(255,255,255,0.95);
   border-bottom: 1px solid #808080;
 }
-#explore-menu .em-content {
+.explore-menu--em-content {
   display: block;
   width: 980px;
   height: auto;
   margin: 20px auto;
   position: relative;
 }
-#explore-menu .em-content .section {
+.explore-menu--em-content__section {
   color: #000;
   min-height: 50px;
   width: 25%;
   display: inline-block;
   vertical-align: top;
 }
-#explore-menu .em-content .section .title {
+.explore-menu--em-content__section .title {
   font-size: 15px;
   display: block;
   height: 20px;
   width: 90%;
   border-bottom: 1px solid #808080;
 }
-#explore-menu .em-content .section .group {
+.explore-menu--em-content__section .group {
   display: block;
   margin-top: 5px;
   font-size: 15px;
   color: #08c;
 }
-#explore-menu .em-content .section .find-group {
+.explore-menu--em-content__section .find-group {
   display: block;
   margin-top: 5px;
   width: 116px;
 }
-#explore-menu .em-content .section .create-group {
+.explore-menu--em-content__section .create-group {
   display: block;
   margin-top: 5px;
   width: 116px;
 }
-#explore-menu .em-content .section .coming-soon {
+.explore-menu--em-content__section .coming-soon {
   display: block;
   height: 120px;
   width: 90%;
@@ -186,7 +186,7 @@ button.btn {
   background-color: #808080;
   text-align: center;
 }
-#explore-menu .em-content .section .description {
+.explore-menu--em-content__section .description {
   margin-top: 5px;
   width: 90%;
   color: #808080;
@@ -309,4 +309,66 @@ textarea.form-control {
   width: 45px;
   height: 45px;
   margin: 5px;
+}
+.signinSection input {
+  font-size: 12px;
+  color: #a9a9a9;
+  margin-bottom: 5px;
+}
+.signinSection label {
+  font-size: 11px;
+  margin-left: 4px;
+  margin-bottom: 0px;
+  vertical-align: super;
+  color: #000;
+}
+.signinSection--second .password {
+  float: left;
+  width: 139px;
+}
+.signinSection--second button {
+  float: left;
+}
+.signinSection--third__remember-me label {
+  float: left;
+  margin-top: 3px;
+  margin-left: 10px;
+}
+.signinSection--third__remember-me input {
+  float: left;
+  margin-top: 5px;
+  margin-left: 0px;
+}
+.signinSection--third__remember-me a {
+  float: left;
+  margin-top: 3px;
+  margin-left: 10px;
+}
+.jumbotron.vertical-center {
+  margin-bottom: 0px;
+  width: 100%;
+  height: 100%;
+}
+.jumbotron.vertical-center .container {
+  width: 422px;
+}
+.vertical-center {
+  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.ocfcSection {
+  text-align: center;
+  font-size: 12px;
+  color: #696969;
+}
+
+.ocfcSection--about {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.ocfcSection--contact {
+  display: inline-block;
 }
