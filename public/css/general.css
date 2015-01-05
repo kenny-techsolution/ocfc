@@ -65,7 +65,7 @@ button.btn {
   background: rgba(255,255,255,0.95);
   font-size: 18px;
 }
-.global-header--content {
+.global-header__content {
   display: block;
   width: 980px;
   height: 30px;
@@ -73,37 +73,44 @@ button.btn {
   margin-top: 10px;
   position: relative;
 }
-.global-header--content__gh-tab {
+.global-header__gh-tab {
   height: 30px;
   background-repeat: no-repeat;
   display: block;
   position: absolute;
 }
-.global-header--content__gh-tab--brand {
-  width: 30px;
+.global-header__gh-tab__brand {
+  width: 29px;
+  height: 29px;
   background-image: url("./images/ocfc_logo.png");
   background-size: 29px 29px;
+  display: list-item;
+  list-style-type: none;
 }
-.global-header--content__gh-tab--account {
+.global-header__gh-tab__account {
   cursor: pointer;
   width: 30px;
+  position: absolute;
   background-image: url("./images/kenny_face.jpg");
   background-size: 30px 30px;
-  right: 0px;
+  right: 10px;
   top: 0px;
   border-radius: 5px;
 }
-.global-header--content__gh-tab--account:hover {
+.global-header__gh-tab__account:hover {
   opacity: 0.7;
 }
-.global-header--content__gh-tab--notification {
+.global-header__gh-tab__notification {
   width: 30px;
+  height: 30px;
+  position: absolute;
   background-image: url("./images/notification_icon.svg");
   background-size: 29px 29px;
-  right: 50px;
+  right: 55px;
   top: 0px;
 }
-.global-header--content__gh-tab--explore {
+.global-header__gh-tab__explore {
+  position: absolute;
   width: 83px;
   color: #000;
   font-size: 14px;
@@ -112,10 +119,10 @@ button.btn {
   top: 0px;
   text-decoration: none;
 }
-.global-header--content__gh-tab--explore:hover {
+.global-header__gh-tab__explore:hover {
   text-decoration: none;
 }
-.global-header--content__gh-tab--explore .icon {
+.global-header__gh-tab__explore .icon {
   display: block;
   position: absolute;
   top: 5px;
@@ -124,10 +131,10 @@ button.btn {
   width: 20px;
   background-size: 20px 20px;
 }
-.global-header--content__gh-tab--explore .icon.cross {
+.global-header__gh-tab__explore .icon.cross {
   background-image: url("./images/cross_icon.svg");
 }
-.global-header--content__gh-tab--explore .icon.explore {
+.global-header__gh-tab__explore .icon.explore {
   background-image: url("./images/explore_icon.svg");
 }
 .explore-menu {
@@ -139,44 +146,44 @@ button.btn {
   background: rgba(255,255,255,0.95);
   border-bottom: 1px solid #808080;
 }
-.explore-menu--em-content {
+.explore-menu__content {
   display: block;
   width: 980px;
   height: auto;
   margin: 20px auto;
   position: relative;
 }
-.explore-menu--em-content__section {
+.explore-menu__content-section {
   color: #000;
   min-height: 50px;
   width: 25%;
   display: inline-block;
   vertical-align: top;
 }
-.explore-menu--em-content__section .title {
+.explore-menu__content-section .title {
   font-size: 15px;
   display: block;
   height: 20px;
   width: 90%;
   border-bottom: 1px solid #808080;
 }
-.explore-menu--em-content__section .group {
+.explore-menu__content-section .group {
   display: block;
   margin-top: 5px;
   font-size: 15px;
   color: #08c;
 }
-.explore-menu--em-content__section .find-group {
+.explore-menu__content-section .find-group {
   display: block;
   margin-top: 5px;
   width: 116px;
 }
-.explore-menu--em-content__section .create-group {
+.explore-menu__content-section .create-group {
   display: block;
   margin-top: 5px;
   width: 116px;
 }
-.explore-menu--em-content__section .coming-soon {
+.explore-menu__content-section .coming-soon {
   display: block;
   height: 120px;
   width: 90%;
@@ -186,7 +193,7 @@ button.btn {
   background-color: #808080;
   text-align: center;
 }
-.explore-menu--em-content__section .description {
+.explore-menu__content-section .description {
   margin-top: 5px;
   width: 90%;
   color: #808080;
@@ -316,7 +323,7 @@ textarea.form-control {
 }
 .signin-section__second-row input {
   float: left;
-  width: 142px;
+  width: 99px;
 }
 .signin-section__second-row button {
   float: left;
@@ -353,11 +360,11 @@ textarea.form-control {
   font-size: 12px;
   color: #696969;
 }
-.ocfcSection--about {
+.ocfcSection__about {
   display: inline-block;
   margin-right: 10px;
 }
-.ocfcSection--contact {
+.ocfcSection__contact {
   display: inline-block;
 }
 .full-width-widget-header-style1 {

@@ -64,7 +64,7 @@ button.btn
 	background rgba(255, 255, 255, 0.95)
 	font-size 18px
 
-.global-header--content
+.global-header__content
 	display block
 	width 980px
 	height 30px
@@ -72,36 +72,43 @@ button.btn
 	margin-top 10px
 	position relative
 
-.global-header--content__gh-tab
+.global-header__gh-tab
 	height 30px
 	background-repeat no-repeat
 	display block
 	position absolute
 
-.global-header--content__gh-tab--brand
-	width 30px
+.global-header__gh-tab__brand
+	width 29px
+	height 29px
 	background-image url("./images/ocfc_logo.png")
 	background-size 29px 29px
+	display list-item
+	list-style-type none
 
-.global-header--content__gh-tab--account
+.global-header__gh-tab__account
 	cursor pointer
 	width 30px
+	position absolute
 	background-image url("./images/kenny_face.jpg")
 	background-size 30px 30px
-	right 0px
+	right 10px
 	top 0px
 	border-radius 5px
 	&:hover
 		opacity 0.7
 
-.global-header--content__gh-tab--notification
+.global-header__gh-tab__notification
 	width 30px
+	height 30px
+	position absolute
 	background-image url("./images/notification_icon.svg")
 	background-size 29px 29px
-	right 50px
+	right 55px
 	top 0px
 
-.global-header--content__gh-tab--explore
+.global-header__gh-tab__explore
+	position absolute
 	width 83px
 	color black
 	font-size 14px
@@ -133,14 +140,14 @@ button.btn
 	background rgba(255, 255, 255, 0.95)
 	border-bottom 1px solid gray
 
-.explore-menu--em-content
+.explore-menu__content
 	display block
 	width 980px
 	height auto
 	margin 20px auto
 	position relative
 
-.explore-menu--em-content__section
+.explore-menu__content-section
 	color black
 	min-height 50px
 	width 25%
@@ -312,7 +319,7 @@ textarea.form-control
 .signin-section__second-row
 	input
 		float left
-		width 142px
+		width 99px
 	button
 		float left
 
@@ -348,10 +355,10 @@ textarea.form-control
 	text-align center
 	font-size 12px
 	color #696969
-.ocfcSection--about
+.ocfcSection__about
 	display inline-block
 	margin-right 10px
-.ocfcSection--contact
+.ocfcSection__contact
 	display inline-block
 
 

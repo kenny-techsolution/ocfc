@@ -4,36 +4,36 @@ extends ../includes/layout
 
 block main-content
 	.global-header
-		.global-header--content
-			a.global-header--content__gh-tab--brand(href="/")
-			.global-header--content__gh-tab--explore(href="/",ng-click='exploreDropDown = !exploreDropDown', ng-show='IdentitySvc.currentUser',ng-cloak,class="ng-cloak")
+		.global-header__content
+			a.global-header__gh-tab__brand(href="/")
+			.global-header__gh-tab__explore(href="/",ng-click='exploreDropDown = !exploreDropDown', ng-show='IdentitySvc.currentUser',ng-cloak,class="ng-cloak")
 				|Explore
 				span.icon.explore.animate-icon(ng-show="!exploreDropDown")
 				span.icon.cross.animate-icon(ng-show='exploreDropDown', ng-cloak, class="ng-cloak")
-			.global-header--content__gh-tab--notification(href="/",ng-click='notificationFlyout = !notificationFlyout',ng-show='IdentitySvc.currentUser',ng-cloak,class="ng-cloak",bs-popover,data-placement="bottom",
+			.global-header__gh-tab__notification(href="/",ng-click='notificationFlyout = !notificationFlyout',ng-show='IdentitySvc.currentUser',ng-cloak,class="ng-cloak",bs-popover,data-placement="bottom",
 									data-template='/partials/common/profile_popover', data-auto-close="1")
-			img.global-header--content__gh-tab--account(href="/",ng-show='IdentitySvc.currentUser',ng-cloak,class="ng-cloak",bs-popover,data-placement="bottom",
+			img.global-header__gh-tab__account(href="/",ng-show='IdentitySvc.currentUser',ng-cloak,class="ng-cloak",bs-popover,data-placement="bottom",
 									data-template='/partials/common/profile_popover', data-auto-close="1",ng-src='{{IdentitySvc.currentUser.profileImg}}')
 	.explore-menu.animate-show(ng-show='exploreDropDown' ng-cloak, class="ng-cloak")
-		.explore-menu--em-content(ng-class='{hide: hideExploreContent}')
-			.explore-menu--em-content__section.personal
+		.explore-menu__content(ng-class='{hide: hideExploreContent}')
+			.explore-menu__content-section
 				.title Personal
 				.description This is your personal space more text to take up space.
 				.find-group Go to My Personal Page >
-			.explore-menu--em-content__section.fellowship
+			.explore-menu__content-section
 				.title Fellowship
 				a.group(href='/fellowship/54913941aa6f4e0000642ae6',ng-click='exploreDropDown = !exploreDropDown') 提摩太團契
 				a.find-group.label.label-primary(href="/find", ng-click='exploreDropDown = !exploreDropDown') Find a Fellowship >
 				a.create-group.label.label-success(href='/createFellowship',ng-click='exploreDropDown = !exploreDropDown') Create Fellowship >
-			.explore-menu--em-content__section.church
+			.explore-menu__content-section
 				.title Church
 				a.group(href='/church/54755845e3d8ea9d8acd3d44',ng-click='exploreDropDown = !exploreDropDown') 山景城基督徒會堂
 				.find-group Find a Church >
 				a.find-group(href='/createChurch',ng-click='exploreDropDown = !exploreDropDown') Create Church >
-			.explore-menu--em-content__section.world
+			.explore-menu__content-section
 				.title World
 				.coming-soon coming soon			
 	#wrapper(ng-view)
 			.ocfcSection
-				a.ocfcSection--about About Us
-				a.ocfcSection--contact Contact Us
+				a.ocfcSection__about About Us
+				a.ocfcSection__contact Contact Us
