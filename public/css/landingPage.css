@@ -41,15 +41,18 @@ legend span {
   display: inline-block;
 }
 .dropdown.month {
-  width: 64px;
+  width: 56px;
   margin-right: 5px;
+  color: #a9a9a9;
 }
 .dropdown.date {
-  width: 64px;
+  width: 56px;
   margin-right: 5px;
+  color: #a9a9a9;
 }
 .dropdown.year {
-  width: 85px;
+  width: 56px;
+  color: #a9a9a9;
 }
 .row.forth {
   margin-top: 8px;
@@ -73,4 +76,5 @@ legend span {
   top: 5px;
   left: 5px;
   padding-right: 10px;
+  color: #000;
 }

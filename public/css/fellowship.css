@@ -76,6 +76,7 @@
   height: 60px;
   border-radius: 30px;
   border: 3px solid #407f8e;
+  margin-top: 0px;
 }
 .fellow-banner__profile-desc {
   padding-left: 10px;
