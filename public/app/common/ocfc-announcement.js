@@ -6,11 +6,11 @@ angular.module('app').directive('ocfcAnnouncement', function ($routeParams) {
 		templateUrl: '/partials/common/ocfc-announcement',
 		controller: function ($scope) {
 
-			console.log('chk $routeParam');
-			console.log($routeParams);
-
-			console.log('chk $scope.FellowshipDataSvc');
-			console.log($scope.FellowshipDataSvc);
+//			console.log('chk $routeParam');
+//			console.log($routeParams);
+//
+//			console.log('chk $scope.FellowshipDataSvc');
+//			console.log($scope.FellowshipDataSvc);
 
 
 		}

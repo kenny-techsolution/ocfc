@@ -18,8 +18,8 @@ angular.module('app').service('ChurchDataSvc', function(ChurchUserSvc) {
 				church_id:churchId
 			}
 			, function () {
-				console.log('chk this.users');
-				console.log(that.users);
+//				console.log('chk this.users');
+//				console.log(that.users);
 			}
 		);
 
