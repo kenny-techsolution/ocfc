@@ -10,7 +10,11 @@ factory('mySocket', function (socketFactory) {
 		return window.google;
 	}).factory('L', function(){
 		return window.L;
-	});
+	}).filter('capitalize', function() {
+		return function(input, all) {
+			return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
+	    };
+	});;
 
 //must move above factory into a separate service during refactoring
 
