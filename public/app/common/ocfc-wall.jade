@@ -1,11 +1,5 @@
-.post-msg-box
-	.header
-		img.camera-icon(ng-src='/css/images/camera-logo.png')
-		.share Share
-			img.share-icon(ng-src='/css/images/share-icon.png')
-		.post-type Type
-		.post-type-dropdown
-			select
-				option(value='general') General
-		button.post Post
-	textarea.textbox
+ocfc-general-post(ng-switch-default='general')
+ocfc-testimony-post(ng-switch-when='testimony')
+ocfc-prayer-post(ng-switch-when='prayer')
+ocfc-question-post(ng-switch-when='question')
+ocfc-event-post(ng-switch-when='event')

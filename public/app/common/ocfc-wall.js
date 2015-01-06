@@ -2,9 +2,13 @@
 angular.module('app').directive('ocfcWall', function () {
 	return{
 		restrict: 'E',
-		$scope: true,
+		scope: true,
 		templateUrl: '/partials/common/ocfc-wall',
-		controller: function () {
+		controller: function ($scope) {
+
+		$scope.postTypes = ['general', 'testimony', 'prayer','event','question'];
+
+
 		}
 	};
 });

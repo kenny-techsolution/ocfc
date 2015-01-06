@@ -6,6 +6,9 @@
   padding-right: 0px;
   padding-top: 60px;
 }
+#fellowship .widget-title-wo-link {
+  margin-top: 5px;
+}
 .fellow-banner {
   position: relative;
   margin-left: -15px;
@@ -158,13 +161,14 @@
   height: 1500px;
 }
 .dynamic-content__wall {
-  height: 100%;
+  height: 245px;
   color: #000;
   background-color: #d3d3d3;
 }
 .dynamic-content__wall .post-msg-box {
   border: 1px solid #000;
-  height: 150px;
+  height: 182px;
+  margin-bottom: 32px;
 }
 .dynamic-content__wall .post-msg-box .header {
   border-bottom: 1px solid #000;
@@ -179,18 +183,17 @@
   width: 20px;
   height: 20px;
   margin: 5px;
-  margin-right: 160px;
   display: inline-block;
 }
 .dynamic-content__wall .share {
   display: inline-block;
-  margin-right: 20px;
+  margin-right: 2px;
   font-size: 12px;
 }
 .dynamic-content__wall .share img.share-icon {
   width: 15px;
   height: 15px;
-  margin-left: 2px;
+  margin-left: 5px;
 }
 .dynamic-content__wall .post-type {
   display: inline-block;
@@ -206,6 +209,9 @@
   margin: 5px 5px 5px 55px;
   width: 55px;
   color: #000;
+  position: absolute;
+  top: 210px;
+  left: 460px;
 }
 .dynamic-content__left-sidebar {
   height: 100%;

@@ -32,7 +32,7 @@
 				ocfc-members(users='FellowshipDataSvc.users')
 			.col-md-6.dynamic-content__wall
 				.widget-title-wo-link Write to Wall
-				ocfc-wall(users='FellowshipDataSvc.users')
+				ocfc-wall(users='FellowshipDataSvc.users',ng-model='postTypes',ng-switch='postTypes')
 			.col-md-3.dynamic-content__right-sidebar
 				.widget-title-wo-link Calendar
 				ocfc-calendar(users='FellowshipDataSvc.users')
