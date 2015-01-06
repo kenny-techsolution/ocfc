@@ -5,7 +5,8 @@ var passport = require('passport'),
 	mongoose = require('mongoose'),
 	FellowshipUser = mongoose.model('FellowshipUser'),
 	ChurchUser = mongoose.model('ChurchUser'),
-	Membership = mongoose.model('Membership');
+	Membership = mongoose.model('Membership'),
+	_ = require('lodash');//Library for Array
 
 exports.authenticate = function (req, res, next) {
 	//console.log(req);
@@ -25,9 +26,8 @@ exports.authenticate = function (req, res, next) {
 				if (err) {
 					return next(err);
 				}
-				var modUser = user.toObject();
-				modUser.membership = membership;
-				res.send({success: true, user: modUser});
+				var extendedUser = _.merge(membership, user);
+				res.send({success: true, user: extendedUser});
 			});
 		});
 	});

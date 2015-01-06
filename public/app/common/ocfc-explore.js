@@ -1,22 +1,30 @@
 angular.module('app').directive('ocfcExplore', function (IdentitySvc) {
+	//replace the directive tag with jade template from ocfc-explore
 	return{
 		restrict: 'E',
-		scope: true,
+		replace: false,
+		scope:{exploreDropDown:'='},
 		templateUrl: '/partials/common/ocfc-explore',
 		controller: function ($scope) {
+			//directive only compiles once
 			$scope.users=IdentitySvc;
-			$scope.userFellowships=$scope.users.currentUser.fellowships;
-			$scope.userChurches=$scope.users.currentUser.churches;
+			//set array of empty ensure ngRepeat won't break
+			$scope.userFellowships=[];
+			$scope.userChurches=[];
+			//watch checks changes of a scope variable
+			$scope.$watch('users.currentUser', function(){
+				if(typeof $scope.users.currentUser != 'undefined' && $scope.users.currentUser != null){
+					console.log('chk $scope.users.currentUser');
+					console.log($scope.users.currentUser)
+					$scope.userFellowships=$scope.users.currentUser.fellowships;
+					$scope.userChurches=$scope.users.currentUser.churches;
+				}
+			});
 
-//			console.log('chk $scope.users obj');
-//			console.log($scope.users);
-//
-			console.log('chk $scope.userFellowships obj');
-			console.log($scope.userFellowships);
-
-			console.log('chk $scope.userChurches obj');
-			console.log($scope.userChurches);
-
+			$scope.toggleExploreDropdown=function(){
+				console.log('test $scope.exploreDropDown');
+				$scope.exploreDropDown=!$scope.exploreDropDown;
+			};
 		}
 	};
 });

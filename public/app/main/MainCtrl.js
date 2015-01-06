@@ -8,4 +8,6 @@ angular.module('app').controller('MainCtrl', function ($scope,IdentitySvc,$http,
 		});
 	};
 	$scope.$location = $location;
+
+	$scope.exploreDropDown=false;
 });
