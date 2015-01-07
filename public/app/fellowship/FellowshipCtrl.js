@@ -17,8 +17,5 @@ angular.module('app').controller('FellowshipCtrl', function ($scope,PostSvc,Fell
 	);
 
 
-
-
-
 });
 

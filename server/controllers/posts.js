@@ -266,6 +266,8 @@ exports.queryPost = function (req, res) {
 
 //put . need to provide postType
 exports.updatePost = function (req, res) {
+	console.log('server updatePost function has been called');
+
 	var postObj = req.body;
 
 	postObj = deleteKey(postObj, ['comments', 'updatedOn', 'postBy']);

@@ -8,11 +8,11 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var testimonySchema = mongoose.Schema({
 	title:{type: String, Required:'(title) is required!',index: false, unique: false,lowercase: true},
-	content: {type: String, Required:'(story) is required!',index: false, unique: false,lowercase: true}
+	content: {type: String, Required:'(content) is required!',index: false, unique: false,lowercase: true}
 });
 
 var generalSchema = mongoose.Schema({
-	content:{type: String, Required:'(title) is required!',index: false, unique: false,lowercase: true}
+	content:{type: String, Required:'(content) is required!',index: false, unique: false,lowercase: true}
 });
 
 var postSchema = mongoose.Schema({
@@ -22,7 +22,7 @@ var postSchema = mongoose.Schema({
 		{
 			groupId: {type: ObjectId, Required:'(groupId) in shareTo, is required!', index: true},
 			groupType: {type: String, Required:'(grouptype) in shareTo, is required!'},
-			status: {type: String, equired:'(status) in statusŒ, is required!'}
+			status: {type: String, equired:'(status) in statusï¿½, is required!'}
 		}
 	],
 	testimony:		[testimonySchema], //mongoose only allows array for subDocument to be included.

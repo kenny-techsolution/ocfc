@@ -17,6 +17,31 @@ angular.module('app').directive('ocfcWallInput', function () {
 
 
 
+
+			//save post input data
+			$scope.postInput=function(selectedPostType){
+				console.log('front-end postInput is being called');
+
+				console.log('chk selectedPostType value');
+				console.log(selectedPostType);
+
+				if (selectedPostType=='General'){
+					var postTypeInt=0;
+				}else{
+					//default as 0
+					var postTypeInt=0;
+				}
+
+				var post=new PostSvc({postType:postTypeInt,
+									  general:[{content:$scope.content}]}
+				);
+				post.$save().then(function(){
+					console.log('chk if post data has been saved in Post dataset');
+					console.log(post);
+				});
+			};
+
+
 		}
 	};
 });

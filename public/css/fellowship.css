@@ -195,17 +195,18 @@
   left: 44px;
 }
 .dynamic-content__wall .share img.share-icon {
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
   margin-left: 5px;
   position: absolute;
+  bottom: 2px;
 }
 .dynamic-content__wall .post-type {
   display: inline-block;
   font-size: 12px;
   position: absolute;
   top: 53px;
-  left: 99px;
+  left: 100px;
 }
 .dynamic-content__wall .post-type-dropdown {
   display: inline-block;
