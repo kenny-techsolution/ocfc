@@ -199,12 +199,27 @@ var postFollowByImageUpdate=function(req,res,post){
 };
 
 exports.createPost = function (req, res) {
+	console.log('server createPost has been called');
 	var postObj = req.body;
+	console.log('chk postObj');
+	console.log(postObj);
+
+	console.log('chk postObj.postUnderGroupType');
+	console.log(postObj.postUnderGroupType);
+
+	console.log('chk postObj.postUnderGroupId');
+	console.log(postObj.postUnderGroupId);
+
+	console.log('chk postObj.postType');
+	console.log(postObj.postType);
+
 	if (!commFunc.isGroupMember(postObj.postUnderGroupType, req.user, postObj.postUnderGroupId)) {
 		return res.json({status: "fail", message: "you are not allowed to create post on this wall which you're not a member of."});
 	}
 
 	postObj = deleteKey(postObj, ['comments', 'updatedOn', 'postBy']);
+
+	//var postTypeArray = ['general','testimony','question','prayer','event'];
 	if (_.has(postObj, 'postType')) {
 		if (postObj.postType === 'question') {
 			return createQuestionPost(postObj, req, res);

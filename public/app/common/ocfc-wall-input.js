@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcWallInput', function (PostSvc) {
+angular.module('app').directive('ocfcWallInput', function (PostSvc,$routeParams) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -19,21 +19,23 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc) {
 
 
 			//save post input data
-			$scope.postInput=function(selectedPostType){
-				console.log('front-end postInput is being called');
+			$scope.createPost=function(selectedPostType){
+				console.log('front-end createPost is being called');
 
 				console.log('chk selectedPostType value');
 				console.log(selectedPostType);
 
 				if (selectedPostType=='General'){
-					var postTypeInt=0;
+					var postType='general';
 				}else{
-					//default as 0
-					var postTypeInt=0;
+					//default as general post
+					var postType=general;
 				}
 
-				var post=new PostSvc({postType:postTypeInt,
-									  general:[{content:$scope.content}]}
+				var post=new PostSvc({postType:postType,
+									  general:[{content:$scope.content}],
+									  postUnderGroupType:'fellowship',
+									  postUnderGroupId:$routeParams.id}
 				);
 
 				console.log('chk post obj before saving it');
