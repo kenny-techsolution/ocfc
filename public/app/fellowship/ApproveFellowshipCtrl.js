@@ -17,6 +17,7 @@ angular.module('app').controller('ApproveFellowshipCtrl', function ($http, $scop
 			console.log($scope.fellowships);
 		}
 	);
+
 	$scope.approveFellowship=function(fellowship){
 		console.log('front-end approveFellowship has been called');
 		console.log('chk fellowship');
