@@ -86,15 +86,15 @@ module.exports = function (app, io) {
 	app.delete('/api/churches/:church_id/users/:user_id', churches.removeUserFromChurch);
 
 	/* ------ Post related API -------- */
-	app.post('/app/posts', posts.createPost);// put Socket IO emit.
-	app.get('/app/posts/:id', posts.getPost);
-	app.get('/app/posts', posts.queryPost);
-	app.put('/app/posts/:id', posts.updatePost);
-	app.delete('/app/posts/:id', posts.removePost);
+	app.post('/api/posts', posts.createPost);// put Socket IO emit.
+	app.get('/api/posts/:id', posts.getPost);
+	app.get('/api/posts', posts.queryPost);
+	app.put('/api/posts/:id', posts.updatePost);
+	app.delete('/api/posts/:id', posts.removePost);
 
-	app.post('/app/posts/:post_id/comments', posts.addCommentToPost);
-	app.put('/app/posts/:post_id/comments/:comment_id', posts.updateCommentFromPost);
-	app.delete('/app/posts/:post_id/comments/:comment_id', posts.deleteCommentFromPost);
+	app.post('/api/posts/:post_id/comments', posts.addCommentToPost);
+	app.put('/api/posts/:post_id/comments/:comment_id', posts.updateCommentFromPost);
+	app.delete('/api/posts/:post_id/comments/:comment_id', posts.deleteCommentFromPost);
 
 	/* ------ Calendar related API -------- */
 	app.post('/api/calendars', calendars.createCalendar);
