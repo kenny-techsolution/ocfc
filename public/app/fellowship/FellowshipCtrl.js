@@ -11,6 +11,7 @@ angular.module('app').controller('FellowshipCtrl', function ($scope,PostSvc,Fell
 
 	//query post data here
 	$scope.posts = PostSvc.query(function () {
+			console.log('front-end $scope.posts has been called');
 			console.log('chk $scope.posts');
 			console.log($scope.posts);
 		}

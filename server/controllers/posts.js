@@ -236,12 +236,23 @@ exports.getPost = function (req, res) {
 
 //get Round-1
 exports.queryPost = function (req, res) {
+	console.log('server queryPost has been called');
+
 	var postObj = req.query;
+
+	console.log('chk postObj query obj');
+	console.log(postObj);
+
 	var errors = commFunc.checkRequiredFields(postObj, ['postUnderGroupType', 'postUnderGroupId']);
+	console.log('chk errors obj where postUnderGroupType & postUnderGroupId are required fields');
+	console.log(errors);
+
 	if (errors.length > 0) {
+		console.log('errors.length>0 conditon is met');
 		return res.json({statue: "failed", errors: errors});
 	}
 	if (!commFunc.isGroupMember(postObj.postUnderGroupType, req.user, postObj.postUnderGroupId)) {
+		console.log('check if you are a member of this group');
 		return res.json({status: "fail", message: "you are not allowed to query posts on this wall which you're not a member of."});
 	}
 
@@ -258,6 +269,7 @@ exports.queryPost = function (req, res) {
 		}
 	});
 	Post.find(condition).where(whereClause).exec(function (err, posts) {
+		console.log('server Post.find has been called that returns post result data set');
 		if (err) return res.json(err);
 		return res.json(posts);
 	});
@@ -267,12 +279,16 @@ exports.queryPost = function (req, res) {
 //put . need to provide postType
 exports.updatePost = function (req, res) {
 	console.log('server updatePost function has been called');
-
 	var postObj = req.body;
 
 	postObj = deleteKey(postObj, ['comments', 'updatedOn', 'postBy']);
+
+	console.log('chk postObj after some keys have been deleted');
+	console.log(postObj);
+
 	if (_.has(postObj, 'postType')) {
 		if (postObj.postType === 'question') {
+			console.log('postType of question has been met');
 			var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
 			if (errors.length > 0) {
 				return res.json({statue: "failed", errors: errors});
@@ -284,6 +300,7 @@ exports.updatePost = function (req, res) {
 			return _updatePost(req.params.id, commFunc.reqSessionUserId(req), postObj, res);
 		}
 		if (postObj.postType === 'prayer') {
+			console.log('postType of prayer has been met');
 			var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
 			if (errors.length > 0) {
 				return res.json({statue: "failed", errors: errors});
@@ -295,6 +312,7 @@ exports.updatePost = function (req, res) {
 			return _updatePost(req.params.id, commFunc.reqSessionUserId(req), postObj, res);
 		}
 		if (postObj.postType === 'general') {
+			console.log('postType of general has been met');
 			//step1-makes sure content entry exist
 			var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
 			if (errors.length > 0) {
@@ -322,6 +340,7 @@ console.log(postObj);
 								   });
 		}
 		if (postObj.postType === 'testimony') {
+			console.log('postType of testimony has been met');
 			var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content', 'title']);
 			if (errors.length > 0) {
 				return res.json({statue: "failed", errors: errors});
@@ -341,6 +360,7 @@ console.log(postObj);
 				});
 		}
 		if (postObj.postType === 'event') {
+			console.log('postType of event has been met');
 			delete postObj.postType;
 			Post.findOne({_id: req.params.id, postBy: commFunc.reqSessionUserId(req)}).exec(function (err, post) {
 				if (err) return res.json(err);

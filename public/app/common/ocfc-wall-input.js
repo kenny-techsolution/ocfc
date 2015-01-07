@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcWallInput', function () {
+angular.module('app').directive('ocfcWallInput', function (PostSvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -35,6 +35,10 @@ angular.module('app').directive('ocfcWallInput', function () {
 				var post=new PostSvc({postType:postTypeInt,
 									  general:[{content:$scope.content}]}
 				);
+
+				console.log('chk post obj before saving it');
+				console.log(post);
+
 				post.$save().then(function(){
 					console.log('chk if post data has been saved in Post dataset');
 					console.log(post);
