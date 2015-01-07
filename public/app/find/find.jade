@@ -9,23 +9,40 @@
 						span.caret
 					input.form-control.inline-block.search-box(type="text", ng-model="userAddress", placeholder="Search by address or zip.")
 					button.btn.btn-primary.inline-block(ng-click="getLatlng(userAddress)") FIND
-			.row
+			.row.search-section__autocomplete-result
 				.col-xs-12
-					ul.list-group.search-section__autocomplete-result
+					ul.list-group(ng-show="showAutocomplete")
 						li.list-group-item(ng-repeat="address in matchedAddresses")
 							a(ng-click="getLatlng(address.description)") {{address.description}}
 			.row
 				.col-xs-12
 					//div.search-section__geo-code
 						//div coordinate: lat: {{lat}}, lng: {{lng}}
-			.row
-				.col-xs-12.search-section__fellowships-result
+			.row.search-section__search-result
+				.col-xs-12
 					div.panel.panel-default(ng-repeat="fellowship in fellowships")
-						div.panel-body
+						div.panel-body(ng-click="openSummary()")
 							div {{fellowship.name | uppercase}}
 							div {{fellowship.address|capitalize}}, {{fellowship.city|capitalize}}, {{fellowship.state|uppercase}}, {{fellowship.zipcode}}, {{fellowship.country|uppercase}}
 							div {{address}} {{city}} {{state}} {{country}}
 							button.btn.btn-success.pull-right JOIN
-		.summary-section.container
-			
+		.summary-section.container(ng-if="isSummaryOn")
+			.row
+				.col-xs-12
+					.summary-section__modal
+						.summary-section__modal-header
+							h5 Summary
+							.close(ng-click="closeSummary()")
+						.summary-section__group-header
+							.letter-icon C
+							h5 Chinese Church In Christ
+							button.btn.btn-success.pull-right.form-control JOIN
+						.summary-section__group-detail
+							h6 Mission
+							p This is the mission of our church, we have to undrestand the meaning of the mission. This is the mission of our church, we have to undrestand the meaning of the mission.
+							h6 Vision
+							p This is the mission of our church, we have to undrestand the meaning of the mission. This is the mission of our church, we have to undrestand the meaning of the mission.
+							h6 Faith Statement
+							p This is the mission of our church, we have to undrestand the meaning of the mission. This is the mission of our church, we have to undrestand the meaning of the mission.
+							
 	ocfc-map#find-map(latlngs="latlngs")
