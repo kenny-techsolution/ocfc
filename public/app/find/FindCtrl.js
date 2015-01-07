@@ -10,13 +10,15 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 	$scope.lng= 0;
 	$scope.fellowships = [];
 	$scope.latlngs = [];
-
+	$scope.showAutocomplete = false;
+	$scope.isSummaryOn = false;
 
 	$scope.$watch('userAddress', function(newVal, oldVal){
 		if(!newVal) return;
 		console.log(newVal);
 		GoogleMapPlacesSvc.getQueryPredictions({ input: newVal },function(data){
 			$scope.matchedAddresses = data;
+			$scope.showAutocomplete = true;
 			console.log($scope.matchedAddresses.length);
 			console.log(data);
 		});
@@ -24,6 +26,7 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 	});
 
 	$scope.getLatlng = function(address){
+		$scope.showAutocomplete = false;
 		console.log("get address");
 		console.log(address);
 		GoogleMapGeocoderSvc.geocode( { 'address': address}, function(results, status) {
@@ -39,7 +42,7 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 	      		$scope.lng = $scope.resultLatlng.lng();
 	      	});
 
-			$scope.fellowships = FellowshipSvc.query({lat:$scope.lat,lng: $scope.lng,maxDistance: 20 },function () {
+			$scope.fellowships = FellowshipSvc.query({lat:$scope.lat,lng: $scope.lng,maxDistance: 200 },function () {
 					console.log('chk $scope.fellowships');
 					console.log($scope.fellowships);
 					var latlngs = [];
@@ -58,6 +61,11 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 	    });
 	};
 
-
+	$scope.openSummary = function(){
+		$scope.isSummaryOn = true;
+	};
+	$scope.closeSummary = function(){
+		$scope.isSummaryOn = false;
+	};
 
 });

@@ -15,42 +15,137 @@
   left: 0px;
   padding-top: 70px;
 }
-.summary-section {
-  width: 510px;
-  height: 45%;
-  border: 1px solid #f00;
-  bottom: 0px;
-  display: block;
-  float: right;
-}
 .search-section {
   width: 510px;
   height: 55%;
+  position: relative;
   float: right;
 }
-.search-section .btn-default {
-  height: 34px;
-  border-left: 2px solid #c5c5c5 !important;
+.search-section__search-bar {
+  z-index: 500;
+  position: absolute;
+  top: 0px;
 }
-.search-section .choose-type {
+.search-section__search-bar .btn-default {
+  height: 34px;
+}
+.search-section__search-bar .choose-type {
   width: 100px;
 }
-.search-section .search-box {
-  width: 306px;
+.search-section__search-bar .search-box {
+  width: 302px;
 }
-.search-section__search-bar,
 .search-section__autocomplete-result {
   color: #000;
   position: absolute;
-  top: 50px;
+  top: 36px;
+  left: 116px;
+  width: 332px;
+  z-index: 1000;
+  font-size: 12px;
 }
 .search-section__geo-code {
   color: #000;
 }
-.search-section__fellowships-result {
+.search-section__search-result {
   color: #000;
   overflow-y: scroll;
-  height: 206px;
+  height: calc(100% - 40px);
+  width: 100%;
+  top: 40px;
+  position: absolute;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+.summary-section {
+  width: 510px;
+  height: 45%;
+  bottom: 0px;
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  float: right;
+}
+.summary-section .row {
+  height: 100%;
+}
+.summary-section .row .col-xs-12 {
+  height: 100%;
+}
+.summary-section__modal {
+  height: 100%;
+  padding: 10px 10px 20px 10px;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 1px 1px 5px 0px rgba(50,50,50,0.75);
+}
+.summary-section__modal-header {
+  height: 30px;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  color: #333;
+}
+.summary-section__modal-header h5 {
+  line-height: 30px;
+  margin: 0px auto;
+  font-size: 14px;
+}
+.summary-section__modal-header .close {
+  background-image: url("./images/cross_icon.svg");
+  background-size: 15px 15px;
+  margin-top: 7px;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  opacity: 0.8;
+}
+.summary-section__modal-header .close:hover {
+  opacity: 1;
+}
+.summary-section__group-header {
+  height: 40px;
+  position: relative;
+  border-bottom: 1px solid #ccc;
+}
+.summary-section__group-header .letter-icon {
+  width: 30px;
+  height: 30px;
+  background-color: #a83936;
+  color: #fff;
+  line-height: 30px;
+  text-align: center;
+  position: absolute;
+  top: 5px;
+  left: 0px;
+}
+.summary-section__group-header h5 {
+  color: #333;
+  position: absolute;
+  top: 4px;
+  left: 40px;
+  line-height: 30px;
+  margin: 0px auto;
+}
+.summary-section__group-header .btn {
+  margin-top: 3px;
+  width: 87px;
+}
+.summary-section__group-detail {
+  height: calc(100% - 70px);
+  position: relative;
+  color: #333;
+  overflow-y: scroll;
+  padding: 8px;
+}
+.summary-section__group-detail h6 {
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 0px;
+}
+.summary-section__group-detail p {
+  font-size: 13px;
 }
 #map-container {
   position: absolute;
