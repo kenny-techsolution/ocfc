@@ -132,4 +132,12 @@ exports.checkRequiredFields = function (obj, fields) {
 	return errors;
 };
 
-
+exports.checkRequiredFieldsForPostType = function (postType, obj, fields) {
+	var errors = []
+	_.forEach(fields, function (key) {
+		if (!_.has(obj, key)) {
+			errors.push(key + " is required field for postType=" + postType);
+		}
+	});
+	return errors;
+};

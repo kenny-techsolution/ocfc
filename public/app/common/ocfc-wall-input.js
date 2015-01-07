@@ -25,11 +25,13 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc,$routeParams)
 				console.log('chk selectedPostType value');
 				console.log(selectedPostType);
 
+				var postType;
+
 				if (selectedPostType=='General'){
-					var postType='general';
+					postType='general';
 				}else{
 					//default as general post
-					var postType=general;
+					postType='general';
 				}
 
 				var post=new PostSvc({postType:postType,

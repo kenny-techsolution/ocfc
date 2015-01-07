@@ -7,15 +7,6 @@ var Post = require('mongoose').model('Post'),
 	async = require('async'),
 	_ = require('lodash');
 
-var checkRequiredFieldsForPostType = function (postType, obj, fields) {
-	var errors = []
-	_.forEach(fields, function (key) {
-		if (!_.has(obj, key)) {
-			errors.push(key + " is required field for postType=" + postType);
-		}
-	});
-	return errors;
-};
 
 var stripHtmlforFields = function (obj, fields) {
 	_.forEach(fields, function (key) {
@@ -64,7 +55,14 @@ var createPrayerPost = function (postObj, req, res) {
 
 //round-1
 var createGeneralPost = function (postObj, req, res) {
+	console.log('server createGeneralPost has been called');
+	console.log('chk postObj');
+	console.log(postObj);
+
 	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'content']);
+	console.log('chk errors obj');
+	console.log(errors);
+
 	if (errors.length > 0) {
 		return res.json({statue: "failed", errors: errors});
 	}
@@ -222,18 +220,23 @@ exports.createPost = function (req, res) {
 	//var postTypeArray = ['general','testimony','question','prayer','event'];
 	if (_.has(postObj, 'postType')) {
 		if (postObj.postType === 'question') {
+			console.log('question postType is met');
 			return createQuestionPost(postObj, req, res);
 		}
 		if (postObj.postType === 'prayer') {
+			console.log('prayer postType is met');
 			return createPrayerPost(postObj, req, res);
 		}
 		if (postObj.postType === 'general') {
+			console.log('general postType is met');
 			return createGeneralPost(postObj, req, res);
 		}
 		if (postObj.postType === 'testimony') {
+			console.log('testimony postType is met');
 			return createTestimonyPost(postObj, req, res);
 		}
 		if (postObj.postType === 'event') {
+			console.log('event postType is met');
 			return createEventPost(postObj, req, res);
 		}
 	}
