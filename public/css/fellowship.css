@@ -161,14 +161,13 @@
   height: 1500px;
 }
 .dynamic-content__wall {
-  height: 245px;
+  height: 275px;
   color: #000;
-  background-color: #d3d3d3;
+  background-color: transparent;
 }
 .dynamic-content__wall .post-msg-box {
   border: 1px solid #000;
-  height: 182px;
-  margin-bottom: 32px;
+  height: 240px;
 }
 .dynamic-content__wall .post-msg-box .header {
   border-bottom: 1px solid #000;
@@ -184,20 +183,29 @@
   height: 20px;
   margin: 5px;
   display: inline-block;
+  position: absolute;
+  top: 44px;
 }
 .dynamic-content__wall .share {
   display: inline-block;
   margin-right: 2px;
   font-size: 12px;
+  position: absolute;
+  top: 53px;
+  left: 44px;
 }
 .dynamic-content__wall .share img.share-icon {
   width: 15px;
   height: 15px;
   margin-left: 5px;
+  position: absolute;
 }
 .dynamic-content__wall .post-type {
   display: inline-block;
   font-size: 12px;
+  position: absolute;
+  top: 53px;
+  left: 99px;
 }
 .dynamic-content__wall .post-type-dropdown {
   display: inline-block;

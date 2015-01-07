@@ -7,6 +7,13 @@ angular.module('app').directive('ocfcWallInput', function () {
 		templateUrl: '/partials/common/ocfc-wall-input',
 		controller: function ($scope) {
 
+			$scope.selectedPostType = "General";
+			$scope.postTypes = [{value:'General',label:'General'},
+							 {value:'Testimony',label:'Testimony'},
+							 {value:'Prayer',label:'Prayer'},
+							 {value:'Question',label:'Question'},
+							 {value:'Event',label:'Event'},
+							 {value:'Announcement',label:'Announcement'}];
 
 
 

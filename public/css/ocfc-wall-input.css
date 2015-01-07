@@ -1,0 +1,51 @@
+#ocfc-wall-input.post-msg-box {
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+#ocfc-wall-input .wall-header {
+  height: 44px;
+}
+.wall-img {
+  width: 555px;
+}
+.wall-img__images {
+  padding: 0px;
+  position: absolute;
+  top: 215px;
+  left: 25px;
+  width: 537px;
+  background-color: #fff;
+}
+.wall-img__images img {
+  width: 35px;
+  height: 35px;
+  margin-right: 5px;
+}
+.wall-header__post-type-dropdown button {
+  position: absolute;
+  top: 38px;
+  right: 98px;
+  height: 37px;
+}
+.wall-header__post-button {
+  position: absolute;
+  left: 487px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-right: 45px;
+  top: 38px;
+  height: 37px;
+}
+.wall-header__textbox {
+  width: 539px;
+  height: 122px;
+  position: absolute;
+  left: 24px;
+  border-radius: 0px;
+  box-shadow: none;
+  border: none;
+  font-size: 12px;
+  margin-top: 7px;
+  margin-bottom: 0px;
+  background-color: #dddcdc;
+}

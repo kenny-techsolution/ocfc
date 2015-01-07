@@ -1,11 +1,19 @@
-.post-msg-box
-	.header
+#ocfc-wall-input.post-msg-box
+	.wall-header
 		img.camera-icon(ng-src='/css/images/camera-logo.png')
 		.share Share
 			img.share-icon(ng-src='/css/images/share-icon.png')
 		.post-type Type
-		.post-type-dropdown
-			select
-				option(value='general') General
-		button.post Post
-	textarea.textbox
+		.wall-header__post-type-dropdown
+			button.btn.btn-primary.pull-right.inline-block.choose-type(type='button', ng-model='selectedPostType', ng-options='postType.value as postType.label for postType in postTypes', bs-select='')
+				| Action
+				span.caret
+		button.wall-header__post-button.btn.btn-primary.pull-right Post
+	textarea.wall-header__textbox
+
+	.wall-img.row
+		.wall-img__images.col-md-12
+			img(ng-src='/css/images/kenny_face.jpg')
+			img(ng-src='/css/images/kenny_face.jpg')
+			img(ng-src='/css/images/kenny_face.jpg')
+
