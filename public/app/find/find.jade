@@ -1,7 +1,7 @@
 //--http://onechurchforchrist.org/find--
 #find-on-map
 	.container
-		.search-section.container
+		.search-section.container(ng-class="{'modal-open':isSummaryOn}")
 			.row.search-section__search-bar
 				.col-xs-12
 					button.btn.btn-default.inline-block.choose-type(type='button', ng-model='selectedGroup', ng-options='group.value as group.label for group in groups', bs-select='')
@@ -20,13 +20,23 @@
 						//div coordinate: lat: {{lat}}, lng: {{lng}}
 			.row.search-section__search-result
 				.col-xs-12
-					div.panel.panel-default(ng-repeat="fellowship in fellowships")
-						div.panel-body(ng-click="openSummary()")
-							div {{fellowship.name | uppercase}}
-							div {{fellowship.address|capitalize}}, {{fellowship.city|capitalize}}, {{fellowship.state|uppercase}}, {{fellowship.zipcode}}, {{fellowship.country|uppercase}}
-							div {{address}} {{city}} {{state}} {{country}}
+					div.panel.panel-default(ng-repeat="fellowship in fellowships",ng-class="{selectedGroup:$index === groupIndex}")
+						div.panel-body(ng-click="openSummary($index, 'F', fellowship)")
+							h5 {{fellowship.name | capitalize}}
+							a.view-summary
+								.glyphicon.glyphicon-th-list
+								| &nbsp;&nbsp;View Summary
+							div.info-box-left
+								div.info-value {{fellowship.address|capitalize}}
+								div.info-value {{fellowship.city|capitalize}}, {{fellowship.state|uppercase}}, {{fellowship.zipcode}}, {{fellowship.country|uppercase}}
+								div.info-value Meet every Sat 3:30 ~ 5:30PM
+							div.info-box-right
+								div.info-value For: Singles or Young professionals.
+								div.info-value Languages: Chinese & English
+								div.info-value Church: CCIC Mountain View
 							button.btn.btn-success.pull-right JOIN
-		.summary-section.container(ng-if="isSummaryOn")
+							
+		.summary-section.container(ng-if="isSummaryOn", ng-class="{'modal-open':isSummaryOn}")
 			.row
 				.col-xs-12
 					.summary-section__modal
@@ -34,8 +44,8 @@
 							h5 Summary
 							.close(ng-click="closeSummary()")
 						.summary-section__group-header
-							.letter-icon C
-							h5 Chinese Church In Christ
+							.letter-icon {{currentGroup.type}}
+							h5 {{currentGroup.name|capitalize}}
 							button.btn.btn-success.pull-right.form-control JOIN
 						.summary-section__group-detail
 							h6 Mission
@@ -45,4 +55,4 @@
 							h6 Faith Statement
 							p This is the mission of our church, we have to undrestand the meaning of the mission. This is the mission of our church, we have to undrestand the meaning of the mission.
 							
-	ocfc-map#find-map(latlngs="latlngs")
+	ocfc-map#find-map(latlngs="latlngs", fellowships="fellowships" selected="groupIndex")

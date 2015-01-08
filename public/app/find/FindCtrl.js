@@ -1,7 +1,7 @@
 angular.module('app').controller('FindCtrl', function ($scope,$http,$location,GoogleMapPlacesSvc, GoogleMapGeocoderSvc, google, FellowshipSvc) {
 
-	$scope.selectedGroup = "Fellowship";
-	$scope.groups = [{value:'Fellowship',label:'Fellowship'},{value:'Church',label:'Church'}];
+	$scope.selectedGroup = "FELLOWSHIP";
+	$scope.groups = [{value:'FELLOWSHIP',label:'FELLOWSHIP'},{value:'CHURCH',label:'CHURCH'}];
 
 	$scope.userAddress="";
 	$scope.matchedAddresses = [];
@@ -12,6 +12,8 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 	$scope.latlngs = [];
 	$scope.showAutocomplete = false;
 	$scope.isSummaryOn = false;
+	$scope.currentGroup = {name:''};
+	$scope.groupIndex = -1;
 
 	$scope.$watch('userAddress', function(newVal, oldVal){
 		if(!newVal) return;
@@ -61,7 +63,10 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 	    });
 	};
 
-	$scope.openSummary = function(){
+	$scope.openSummary = function(index, type, group){
+		$scope.groupIndex = index;
+		$scope.currentGroup = group;
+		$scope.currentGroup.type = type;
 		$scope.isSummaryOn = true;
 	};
 	$scope.closeSummary = function(){
