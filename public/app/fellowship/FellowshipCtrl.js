@@ -7,6 +7,7 @@ angular.module('app').controller('FellowshipCtrl', function ($scope,PostSvc,Fell
 	//	console.log("controller  kdfj;lakdjfl;askdjf;aklsj");
 	$scope.FellowshipDataSvc=FellowshipDataSvc;
 	$scope.FellowshipDataSvc.initialize($routeParams.id);
+	$scope.posts=[];
 
 
 	//query post data here

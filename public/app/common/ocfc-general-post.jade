@@ -1,11 +1,16 @@
-.post-msg-box()
-	.header
-		img.camera-icon(ng-src='/css/images/camera-logo.png')
-		.share Share
-			img.share-icon(ng-src='/css/images/share-icon.png')
-		.post-type Type
-		.post-type-dropdown
-			select
-				option(value='general') General
-		button.post Post
-	textarea.textbox
+.general-header
+	img.general-header__profile-icon(ng-src='/css/images/kenny_face.jpg')
+	.general-header__user-info
+		.general-header__user-name {{post.postBy.fullName}}
+		.general-header__post-date {{post.createdOn | date}}
+	.general-header__post-type-dropdown
+		button.btn.btn-primary.pull-right.inline-block.choose-type General
+//.general-header__output {{post.general[0].content}}
+//.general-header__comment-output
+//	img.general-header__comment-icon(ng-src='/css/images/kenny_face.jpg')
+//	.general-header__user-comment-name Mei Chung
+//	.general-header__post-comment-date 10/12/2023 8PM
+//	.general-header__post-comment-output xxxxoutputxxxx
+//.general-header__comment-input
+//	textarea
+//button.general-header__button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid Comment

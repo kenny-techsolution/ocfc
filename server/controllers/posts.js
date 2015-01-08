@@ -9,8 +9,13 @@ var Post = require('mongoose').model('Post'),
 
 
 var stripHtmlforFields = function (obj, fields) {
+	console.log('var stripHtmlforFields is being called');
+	console.log(stripHtmlforFields);
+
 	_.forEach(fields, function (key) {
 		obj[key] = html_strip.html_strip(obj[key], commFunc.htmlStripOptions);
+		console.log('chk obj[key] in stripHtmlforFields');
+		console.log(obj[key]);
 	});
 	return obj;
 };
@@ -59,22 +64,29 @@ var createGeneralPost = function (postObj, req, res) {
 	console.log('chk postObj');
 	console.log(postObj);
 
-	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'content']);
-	console.log('chk errors obj');
+	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'general']);
+	console.log('chk errors obj within createGeneralPost');
 	console.log(errors);
 
 	if (errors.length > 0) {
+		console.log('errors.length > 0');
 		return res.json({statue: "failed", errors: errors});
 	}
-	postObj = stripHtmlforFields(postObj, ['content']);
+	//TODO need to implement stripHTML
+	//postObj = stripHtmlforFields(postObj, ['general']);
+	//	console.log('chk postObj after stripHtmlforFields');
+	//	console.log(postObj);
+
 	//TODO: perform image validation.
-	postObj.general = [
-		{ content: postObj.content}
-	];
+
 	postObj.postBy = commFunc.reqSessionUserId(req);
 	var post = new Post(postObj);
 
-	var imageIds = postObj.imageIds;
+	console.log('chk post obj after new Post creation');
+	console.log(post);
+
+	//if undefined then set to empty array
+	var imageIds = postObj.imageIds||[];
 
 	//update all images for post.
 	if (imageIds.length > 0) {
@@ -286,7 +298,7 @@ exports.queryPost = function (req, res) {
 			condition[key] = req.query[key];
 		}
 	});
-	Post.find(condition).where(whereClause).exec(function (err, posts) {
+	Post.find(condition).where(whereClause).populate('postBy').exec(function (err, posts) {
 		console.log('server Post.find has been called that returns post result data set');
 		if (err) return res.json(err);
 		return res.json(posts);

@@ -133,10 +133,19 @@ exports.checkRequiredFields = function (obj, fields) {
 };
 
 exports.checkRequiredFieldsForPostType = function (postType, obj, fields) {
+	console.log('chk postType from checkRequiredFieldsForPostType function');
+	console.log(postType);
+	console.log('chk obj');
+	console.log(obj);
+	console.log('chk fields');
+	console.log(fields);
+
 	var errors = []
 	_.forEach(fields, function (key) {
 		if (!_.has(obj, key)) {
 			errors.push(key + " is required field for postType=" + postType);
+			console.log('chk errors.push result');
+			console.log(errors);
 		}
 	});
 	return errors;
