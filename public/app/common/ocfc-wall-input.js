@@ -46,7 +46,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc,$routeParams)
 					console.log('chk if post data has been saved in Post dataset');
 					console.log(post);
 
-					$scope.posts.push[post];
+					$scope.posts.push(post);
 					console.log('chk $scope.posts');
 					console.log($scope.posts);
 
