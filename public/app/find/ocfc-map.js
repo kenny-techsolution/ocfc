@@ -3,7 +3,9 @@ angular.module('app').directive('ocfcMap', function (L) {
 	return{
 		restrict: 'EA',
 		scope: {
-			latlngs: "="
+			latlngs: "=",
+			fellowships: "=",
+			selected: '='
 		},
 		replace: true,
 		templateUrl: "/partials/find/ocfc-map",
@@ -36,6 +38,7 @@ angular.module('app').directive('ocfcMap', function (L) {
 		},
 		controller: function ($scope) {
 			$scope.markers = [];
+			/*
 			$scope.$watchCollection("latlngs", function(newVal){
 				if(!newVal||newVal.length==0) return;
 				$scope.markers = [];
@@ -47,6 +50,29 @@ angular.module('app').directive('ocfcMap', function (L) {
 				console.log($scope.markers);
 				var bounds = L.featureGroup($scope.markers).addTo($scope.map).getBounds();
 				$scope.map.fitBounds(bounds);
+			});
+			*/
+			$scope.markers = [];
+			$scope.$watchCollection("fellowships", function(newVal){
+				if(!newVal||newVal.length==0) return;
+				console.log(";ajsdf;lkasjdfl;kasjdf;lkasjdfl;kasjdf");
+				for(var i=0; i<newVal.length; i++) {
+					console.log(newVal[i]);
+					console.log(newVal[i].name);
+					var marker = L.marker(newVal[i].geo).bindPopup('<h5>'+newVal[i].name+ '</h5><div>'+newVal[i].address+'</div>')
+						.addTo($scope.map);
+					$scope.markers.push(marker);
+				}
+				console.log("$scope.markers");
+				console.log($scope.markers);
+				var bounds = L.featureGroup($scope.markers).addTo($scope.map).getBounds();
+				$scope.map.fitBounds(bounds);
+			});
+			$scope.$watch('selected', function(newVal){
+				if(newVal==-1) return;
+				console.log("testsetset");
+				console.log(newVal);
+				$scope.markers[newVal].openPopup();
 			});
 		}
 	};
