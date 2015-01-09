@@ -33,7 +33,7 @@
 			.col-md-6.dynamic-content__wall
 				.widget-title-wo-link Write to Wall
 				ocfc-wall-input
-				div(ng-repeat='post in posts',ng-switch, on='{{post.postType}}')
+				div.post(ng-repeat='post in posts',ng-switch, on='{{post.postType}}')
 					ocfc-general-post(ng-switch-when='0',post='post')
 					ocfc-testimony-post(ng-switch-when='1',post='post')
 					ocfc-question-post(ng-switch-when='2',post='post')

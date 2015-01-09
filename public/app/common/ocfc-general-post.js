@@ -8,9 +8,15 @@ angular.module('app').directive('ocfcGeneralPost', function () {
 		templateUrl: '/partials/common/ocfc-general-post',
 		controller: function ($scope) {
 
+			$scope.postTypeStr=function(){
 
-
-
+				if($scope.postType===0){
+					return 'General'
+				}else{
+					//default to General
+					return 'General'
+				}
+			};
 
 		}
 	};
