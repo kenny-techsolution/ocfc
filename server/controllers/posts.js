@@ -26,7 +26,7 @@ var savePost = function (post, res) {
 	post.save(function (err) {
 		console.log('post.save function has been called');
 		if (err) return res.json(err);
-		Post.populate(post, 'eventId general testimony', function (err, post) {
+		Post.populate(post, 'eventId general testimony postBy', function (err, post) {
 			if (err) return res.json(err);
 			return res.json(post);
 			console.log('chk post obj');
@@ -294,7 +294,12 @@ exports.queryPost = function (req, res) {
 	var filteredKeys=commFunc.removeInvalidKeys(req.query,['postType', 'postBy', 'postUnderGroupType', 'postUnderGroupId']);
 	var condition = {};
 	var whereClause = {};
-	_.forEach(filteredKeys, function (key) {
+	console.log('chk filteredKeys obj');
+	console.log(filteredKeys);
+	var keys=_.keys(filteredKeys)
+	_.forEach(keys, function (key) {
+		console.log('chk key obj');
+		console.log(key);
 		if (key == 'postUnderGroupType') {
 			whereClause.postUnderGroupType = req.query[key];
 		} else if (key == 'postUnderGroupId') {
@@ -303,6 +308,12 @@ exports.queryPost = function (req, res) {
 			condition[key] = req.query[key];
 		}
 	});
+	console.log('chk condition obj');
+	console.log(condition);
+
+	console.log('chk whereClause obj');
+	console.log(whereClause);
+
 	Post.find(condition).where(whereClause).populate('postBy').exec(function (err, posts) {
 		console.log('server Post.find has been called that returns post result data set');
 		if (err) return res.json(err);
@@ -451,7 +462,8 @@ exports.addCommentToPost = function (req, res) {
 		post.save(function (err) {
 			console.log('post.save function has been called');
 			if (err) return res.json(err);
-			return res.json(commentObj);
+			//return last array element
+			return res.json(post.comments[post.comments.length-1]);
 		});
 	});
 };
@@ -479,8 +491,12 @@ exports.updateCommentFromPost = function (req, res) {
 };
 
 exports.deleteCommentFromPost = function (req, res) {
+	console.log('server deleteCommentFromPost has been called');
 	Post.findById(req.params.post_id).exec(function (err, post) {
+		console.log('server Post.findById has been called');
 		var comment = post.comments.id(req.params.comment_id);
+		console.log('chk comment obj');
+		console.log(comment);
 		if (comment.userId.toString() === commFunc.reqSessionUserId(req).toString()) {
 			comment.remove();
 		} else {
