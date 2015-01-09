@@ -1,6 +1,6 @@
 #ocfc-wall-input.post-msg-box
 	.wall-header
-		img.camera-icon(ng-src='/css/images/camera-logo.png')
+		img.camera-icon(ng-src='/css/images/camera-logo.png', ng-file-select='onFileSelect($files)', data-multiple='false', title='profile', onclick='this.value = null')
 		.share Share
 			img.share-icon(ng-src='/css/images/share-icon.png')
 		.post-type Type
@@ -13,7 +13,5 @@
 
 	.wall-img.row
 		.wall-img__images.col-md-12
-			img(ng-src='/css/images/kenny_face.jpg')
-			img(ng-src='/css/images/kenny_face.jpg')
-			img(ng-src='/css/images/kenny_face.jpg')
+			img(ng-style="{'background-image':backgroundImgPath}")
 

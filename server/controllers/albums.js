@@ -57,6 +57,7 @@ exports.deleteAlbum= function (req, res) {
 
 //Post - Round1
 exports.createImage= function (req, res) {
+	console.log('server createImage has been called');
 	//grab album path from Cloudinary
 	var path=req.body.path;
 	var image=new Image();
@@ -64,12 +65,19 @@ exports.createImage= function (req, res) {
 
 	//TODO make sure user can post to this album
 	image.save(function(err){
+		console.log('server image.save has been called');
 		if (err) return res.json(err);
+
+		console.log('chk req.params.album_id');
+		console.log(req.params.album_id);
+
 		Album.findById(req.params.album_id).exec(function(err, album){
+			console.log('server Album.findById has been called');
 			album.imageIds.push(image._id);
 			album.save(function(err){
+				console.log('album.save has been called');
 				if (err) return res.json(err);
-				return res.json({status:'success',album:album})
+				return res.json(image);
 			});
 		});
 	});

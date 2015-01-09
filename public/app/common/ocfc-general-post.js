@@ -99,9 +99,6 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 				});
 			};
 
-			//update comment
-
-
 		}
 	};
 });
