@@ -18,6 +18,5 @@ angular.module('app').factory('PostSvc', function ($resource) {
 		}
 	}
 	);
-
 	return postResource;
 });

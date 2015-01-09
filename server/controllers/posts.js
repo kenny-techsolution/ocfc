@@ -110,7 +110,7 @@ var createGeneralPost = function (postObj, req, res) {
 };
 //round-1
 var createTestimonyPost = function (postObj, req, res) {
-	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'content', 'title']);
+	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'content', 'title']);
 	if (errors.length > 0) {
 		return res.json({statue: "failed", errors: errors});
 	}
@@ -141,7 +141,7 @@ var createTestimonyPost = function (postObj, req, res) {
 };
 
 var createEventPost = function (postObj, req, res) {
-	var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'title', 'description', 'fromDate', 'toDate', 'where', 'hostBy', 'invitees']);
+	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'title', 'description', 'fromDate', 'toDate', 'where', 'hostBy', 'invitees']);
 	if (errors.length > 0) {
 		return res.json({statue: "failed", errors: errors});
 	}
@@ -188,6 +188,7 @@ var createEventPost = function (postObj, req, res) {
 };
 
 var _updatePost = function (id, userId, postObj, res) {
+	console.log('server _updatePost has been called');
 	Post.findOneAndUpdate({_id: id, postBy: userId}, postObj, function (err, post) {
 		if (err) return res.json(err);
 		return res.json(post);
@@ -326,6 +327,8 @@ exports.queryPost = function (req, res) {
 exports.updatePost = function (req, res) {
 	console.log('server updatePost function has been called');
 	var postObj = req.body;
+	console.log('chk postObj');
+	console.log(postObj);
 
 	postObj = deleteKey(postObj, ['comments', 'updatedOn', 'postBy']);
 
@@ -333,21 +336,25 @@ exports.updatePost = function (req, res) {
 	console.log(postObj);
 
 	if (_.has(postObj, 'postType')) {
-		if (postObj.postType === 'question') {
+		//var postTypeArray = ['general','testimony','question','prayer','event'];
+		if (postObj.postType === 'general') {
 			console.log('postType of question has been met');
-			var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
+			var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['general']);
+			console.log('chk errors');
+			console.log(errors);
 			if (errors.length > 0) {
 				return res.json({statue: "failed", errors: errors});
 			}
 			delete postObj.postType;
-			postObj = stripHtmlforFields(postObj, ['content']);
-			postObj.question = postObj.content;
+			//TODO update htmlstrip
+			//postObj = stripHtmlforFields(postObj, ['general']);
+			//postObj.general = postObj.content;
 			postObj.updatedOn = new Date();
 			return _updatePost(req.params.id, commFunc.reqSessionUserId(req), postObj, res);
 		}
 		if (postObj.postType === 'prayer') {
 			console.log('postType of prayer has been met');
-			var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
+			var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
 			if (errors.length > 0) {
 				return res.json({statue: "failed", errors: errors});
 			}
@@ -360,7 +367,7 @@ exports.updatePost = function (req, res) {
 		if (postObj.postType === 'general') {
 			console.log('postType of general has been met');
 			//step1-makes sure content entry exist
-			var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
+			var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
 			if (errors.length > 0) {
 				return res.json({statue: "failed", errors: errors});
 			}
@@ -387,7 +394,7 @@ console.log(postObj);
 		}
 		if (postObj.postType === 'testimony') {
 			console.log('postType of testimony has been met');
-			var errors = checkRequiredFieldsForPostType(postObj.postType, postObj, ['content', 'title']);
+			var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['content', 'title']);
 			if (errors.length > 0) {
 				return res.json({statue: "failed", errors: errors});
 			}

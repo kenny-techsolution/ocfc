@@ -41,12 +41,13 @@ var postSchema = mongoose.Schema({
 var postTypeArray = ['general','testimony','question','prayer','event'];
 
 function postTypeGetter (postType) {
-	console.log("post type");
+	console.log("post type postTypeGetter****************************************************************************");
 	console.log(postType);
 	console.log(postTypeArray);
 	return postTypeArray[postType];
 }
 function postTypeSetter(val) {
+	console.log("post type postTypeSetter=====================================================");
 	val.toLowerCase();
 	return postTypeArray.indexOf(val);
 }

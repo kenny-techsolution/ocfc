@@ -92,3 +92,24 @@
   top: -36px !important;
   left: -5px !important;
 }
+.general-header__delete-comment {
+  position: relative;
+  left: 525px;
+  top: -37px;
+}
+.general-header__edit-delete {
+  position: absolute !important;
+  top: 0px !important;
+  left: 537px !important;
+  padding: 2px 3px !important;
+}
+.general-header__output-edit {
+  border: 1px solid #8b008b;
+  padding-left: 19px;
+  font-size: 12px;
+}
+.general-header__options-btn {
+  position: relative !important;
+  left: 378px !important;
+  padding: 6px 17px !important;
+}

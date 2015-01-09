@@ -4,13 +4,20 @@
 		.general-header__user-name {{post.postBy.fullName}}
 		.general-header__post-date {{post.createdOn | date}}
 	.general-header__post-type {{post.postType | PostTypeStrFilter}}
-.general-header__output {{post.general[0].content}}
+.general-header__output(ng-show='!showEdit') {{post.general[0].content}}
+	button.btn.btn-lg.btn-primary.general-header__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown')
+		span.caret
+.general-header__output-edit(ng-show='showEdit') {{showEdit}}
+	textarea(ng-model='newGenPostContent')
+	.general-header__options
+		button.btn.btn-lg.btn-primary.general-header__options-btn(ng-click='hideEditPost()') Cancel
+		button.btn.btn-lg.btn-primary.general-header__options-btn(ng-click='updateEditedPost()')  Done Editing
 .general-header__comment-output(ng-repeat='comment in post.comments')
 	img(ng-src='{{comment.profileImg}}')
 	.general-header__user-comment-name {{comment.fullName}}
 	.general-header__post-comment-date {{comment.createdOn | date}}
 	.general-header__post-comment-output {{comment.comment}}
-		button.general-header__delete-comment(ng-click='deleteComment(comment)',ng-if='comment.userId===IdentitySvc.currentUser._id')
+	button.general-header__delete-comment(ng-click='deleteComment(comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
 .general-header__comment-input
 	textarea(placeholder='type your comment here',ng-model='comment')
 button.general-header__button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment()') Comment
