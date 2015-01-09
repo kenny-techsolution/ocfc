@@ -32,7 +32,7 @@
 				ocfc-members(users='FellowshipDataSvc.users')
 			.col-md-6.dynamic-content__wall
 				.widget-title-wo-link Write to Wall
-				ocfc-wall-input
+				ocfc-wall-input(posts='posts')
 				div.post(ng-repeat='post in posts',ng-switch, on='{{post.postType}}')
 					ocfc-general-post(ng-switch-when='0',post='post')
 					ocfc-testimony-post(ng-switch-when='1',post='post')

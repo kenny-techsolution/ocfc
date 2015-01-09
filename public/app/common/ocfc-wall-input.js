@@ -7,7 +7,6 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc,$routeParams)
 		},
 		templateUrl: '/partials/common/ocfc-wall-input',
 		controller: function ($scope) {
-
 			$scope.selectedPostType = "General";
 			$scope.postTypes = [{value:'General',label:'General'},
 							 {value:'Testimony',label:'Testimony'},
@@ -45,10 +44,10 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc,$routeParams)
 				post.$save().then(function(){
 					console.log('chk if post data has been saved in Post dataset');
 					console.log(post);
-
-					$scope.posts.push(post);
 					console.log('chk $scope.posts');
 					console.log($scope.posts);
+					$scope.posts.unshift(post);
+
 
 
 				});

@@ -22,14 +22,19 @@ var stripHtmlforFields = function (obj, fields) {
 
 //round-1
 var savePost = function (post, res) {
+	console.log('server savePost has been called');
 	post.save(function (err) {
+		console.log('post.save function has been called');
 		if (err) return res.json(err);
 		Post.populate(post, 'eventId general testimony', function (err, post) {
 			if (err) return res.json(err);
 			return res.json(post);
+			console.log('chk post obj');
+			console.log(post);
 		});
 	});
 };
+
 
 //round-1
 var createQuestionPost = function (postObj, req, res) {
@@ -419,7 +424,12 @@ exports.removePost = function (req, res) {
 
 /*---Comment related-----*/
 exports.addCommentToPost = function (req, res) {
+	console.log('server addCommentToPost function has been called');
+	console.log('chk req obj');
+	console.log(req);
+
 	Post.findById(req.params.post_id).exec(function (err, post) {
+		console.log('server Post.findById has been called');
 		if (err) return res.json(err);
 
 		if (!commFunc.isGroupMember(post.postUnderGroupType.toString(), req.user, post.postUnderGroupId.toString())) {
@@ -427,16 +437,22 @@ exports.addCommentToPost = function (req, res) {
 		}
 		commentObj = req.body;
 		errors = commFunc.checkRequiredFields(commentObj, ['comment']);
+		console.log('chk errors after checking required fields');
+		console.log(errors);
+
 		if (errors > 0) return res.json(errors);
 		commentObj = {
 			userId: commFunc.reqSessionUserId(req),
 			comment: html_strip.html_strip(commentObj.comment, commFunc.htmlStripOptions),
 			profileImg: req.user.profileImg,
-			firstName: req.user.firstName,
-			lastName: req.user.lastName
+			fullName: req.user.fullName
 		};
 		post.comments.push(commentObj);
-		return savePost(post, res);
+		post.save(function (err) {
+			console.log('post.save function has been called');
+			if (err) return res.json(err);
+			return res.json(commentObj);
+		});
 	});
 };
 

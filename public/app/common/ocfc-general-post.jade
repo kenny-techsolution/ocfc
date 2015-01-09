@@ -5,11 +5,11 @@
 		.general-header__post-date {{post.createdOn | date}}
 	.general-header__post-type {{post.postType | PostTypeStrFilter}}
 .general-header__output {{post.general[0].content}}
-.general-header__comment-output
+.general-header__comment-output(ng-repeat='comment in post.comments')
 	img(ng-src='/css/images/kenny_face.jpg')
-	.general-header__user-comment-name Mei Chung
-	.general-header__post-comment-date 10/12/2023 8PM
-	.general-header__post-comment-output xxxxoutput goes herexxxx
+	.general-header__user-comment-name {{comment.fullName}}
+	.general-header__post-comment-date {{comment.createdOn | date}}
+	.general-header__post-comment-output {{comment.comment}}
 .general-header__comment-input
-	textarea(placeholder='type your comment here')
-button.general-header__button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid Comment
+	textarea(placeholder='type your comment here',ng-model='comment')
+button.general-header__button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment()') Comment
