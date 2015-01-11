@@ -62,7 +62,10 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc,$routeParams,
 			});
 
 			$scope.onFileSelect = function($files) {
-				var file = $files[0]; // we're not interested in multiple file uploads here
+				var file = $files;
+				console.log('chk file confirm that it is an array');
+				console.log(file);
+
 				$scope.upload = $upload.upload({
 					url: "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/upload",
 					data: $scope.cloudinarySignedParams,
@@ -87,15 +90,26 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc,$routeParams,
 					$scope.$apply();
 
 					//call create image
-					console.log('front-end createFellowship is being called');
+					console.log('front-end new image creation has been called');
 					var image=new ImageSvc({path:data.url,
 											album_id:FellowshipDataSvc.fellowship.defaultAlbumId});
 					image.$save(function(){
 						console.log('image has been created');
 						console.log(image);
 
-						//append image ids onto post object
-						imageArray.push(image._id);
+						console.log('chk image');
+						console.log(image);
+						//if more than 1 img then
+
+						if (image._id.length()>0){
+							for (var i;i<image._id.length();i++){
+								imageArray.push(image._id[i]);
+							}
+						}else {
+
+							//append image ids onto post object
+							imageArray.push(image._id);
+						}
 
 						console.log('chk $scope.post');
 						console.log($scope.post);
