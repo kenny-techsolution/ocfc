@@ -44,6 +44,31 @@ exports.deleteImage= function (req, res) {
 		if (err) return res.json(err);
 		return res.json({status: "successfully removed from Image"});
 	});
+
+	Album.findById(req.params.album_id).exec(function(err, album){
+		console.log('server Album.findById has been called');
+		console.log('chk album obj');
+		console.log(album);
+
+		var index = album.imageIds.indexOf(req.params.image_id);
+		console.log('chk index');
+		console.log(index);
+
+		console.log('remove this image._id');
+		console.log(req.params.image_id);
+
+		album.imageIds.splice(index,1);
+
+		console.log('chk if id has been removed from album.imageIds');
+		console.log(album.imageIds);
+
+		album.save(function(err){
+			console.log('album.save has been called');
+			if (err) return res.json(err);
+			return res.json(album);
+		});
+	});
+
 };
 
 //Post - Round1
