@@ -141,6 +141,8 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc,$routeParams,
 						removedImage.album_id=FellowshipDataSvc.fellowship.defaultAlbumId;
 						removedImage.image_id=removedImage._id;
 
+						var removeImgFromPost=removedImage.image_id;
+
 						removedImage.$delete(function(){
 							console.log('delete callback is called');
 
@@ -150,19 +152,30 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc,$routeParams,
 							return image !== $scope.backgroundImgPaths[$index];
 						});
 
-							console.log('chk $scope.backgroundImgPaths');
-							console.log($scope.backgroundImgPaths);
-
-							console.log('chk imageObjs');
-							console.log(imageObjs);
-
-							console.log('chk $index');
-							console.log($index);
+//							console.log('chk $scope.backgroundImgPaths');
+//							console.log($scope.backgroundImgPaths);
+//
+//							console.log('chk imageObjs');
+//							console.log(imageObjs);
+//
+//							console.log('chk $index');
+//							console.log($index);
 
 							imageObjs.splice($index, 1);
 
-							console.log('chk imageObjs after splice');
-							console.log(imageObjs);
+							console.log('chk removeImgFromPost');
+							console.log(removeImgFromPost);
+
+
+							var index=imageArray.indexOf(removeImgFromPost);
+							imageArray.splice(index,1);
+
+							console.log('chk imageArray after splice');
+							console.log(imageArray);
+
+
+//							console.log('chk imageObjs after splice');
+//							console.log(imageObjs);
 
 						});
 
