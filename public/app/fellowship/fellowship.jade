@@ -34,7 +34,7 @@
 				.widget-title-wo-link Write to Wall
 				ocfc-wall-input(posts='posts')
 				div.post(ng-repeat='post in posts',ng-switch, on='{{post.postType}}')
-					ocfc-general-post(ng-switch-when='0',post='post')
+					ocfc-general-post(ng-switch-when='0',post='post',backgroundImgPaths='backgroundImgPaths')
 					ocfc-testimony-post(ng-switch-when='1',post='post')
 					ocfc-question-post(ng-switch-when='2',post='post')
 					ocfc-prayer-post(ng-switch-when='3',post='post')

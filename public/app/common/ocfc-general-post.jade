@@ -7,6 +7,8 @@
 .general-header__output(ng-show='!showEdit') {{post.general[0].content}}
 	button.btn.btn-lg.btn-primary.general-header__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
 		span.caret
+.general-header__image-output(ng-repeat='backgroundImgPath in backgroundImgPaths')
+	img.general-header__images(ng-src='{{backgroundImgPath}}')
 .general-header__output-edit(ng-show='showEdit')
 	textarea(ng-model='newGenPostContent')
 	.general-header__options
