@@ -9,8 +9,9 @@
 angular.module('app').factory('ImageSvc', function ($resource) {
 	// rest api standard, for GET, if id is specified, it will grab specific
 	// user by id
-	var imageResource = $resource('/api/albums/:album_id/images', {
-		album_id: '@album_id'
+	var imageResource = $resource('/api/albums/:album_id/images/:image_id', {
+		album_id: '@album_id',
+		image_id:'@image_id'
 	}, {
 		'update': {
 			method: 'PUT',

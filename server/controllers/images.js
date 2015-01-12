@@ -10,10 +10,18 @@ var Image = require('mongoose').model('Image'),
 
 //Get - Round1
 exports.getImage= function (req, res) {
-	Image.find({_id:req.params.image_id}).exec(function(err,getImage){
+	console.log('server getImage has been called');
+
+	console.log('chk req.params');
+	console.log(req.params);
+
+	Image.findOne({_id:req.params.image_id}).exec(function(err,image){
 		if (err) return res.json(err);
-		return res.json({status:"success",getImage:getImage});
+		console.log('chk image');
+		console.log(image);
+		return res.json(image);
 	});
+
 };
 
 //Put - Round1
@@ -28,6 +36,10 @@ exports.updateImage= function (req, res) {
 
 //Delete - Round1
 exports.deleteImage= function (req, res) {
+	console.log('server deleteImage has been called');
+	console.log('chk req.params');
+	console.log(req.params);
+
 	Image.findOneAndRemove({_id:req.params.image_id},function (err) {
 		if (err) return res.json(err);
 		return res.json({status: "successfully removed from Image"});

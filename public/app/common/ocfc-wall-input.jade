@@ -11,7 +11,7 @@
 		button.wall-header__post-button.btn.btn-primary.pull-right(ng-click='createPost(selectedPostType)') Post
 	textarea.wall-header__textbox(ng-model='content')
 	.wall-img.row
-		.wall-img__image-section(ng-repeat='backgroundImgPath in backgroundImgPaths')
+		.wall-img__image-section(ng-repeat='backgroundImgPath in backgroundImgPaths track by $index')
 			img.wall-img__images(ng-src='{{backgroundImgPath}}')
-			.wall-img__image-delete X
+			button.wall-img__image-delete(ng-click='deleteImage($index,backgroundImgPath)') X
 

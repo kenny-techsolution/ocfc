@@ -9,9 +9,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc,$routeParams,
 		controller: function ($scope) {
 			var imageArray=[];
 			$scope.backgroundImgPaths = [];
-			var imageObjs=[imageArray,$scope.backgroundImgPaths];
-			console.log('chk imageObjs');
-			console.log(imageObjs);
+			var imageObjs=[];
 
 			$scope.selectedPostType = "General";
 			$scope.postTypes = [{value:'General',label:'General'},
@@ -120,14 +118,98 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc,$routeParams,
 							//append image ids onto post object
 							imageArray.push(image._id);
 
-							console.log('chk $scope.post');
-							console.log($scope.post);
+							console.log('chk imageArray');
+							console.log(imageArray);
+
+							imageObjs.push({image_id:image._id,image_path:image.path});
+							console.log('chk imageObjs within new image creation');
+							console.log(imageObjs);
 
 						});
 					});
 				}
 			};
+			$scope.deleteImage=function($index,backgroundImgPath){
+				console.log('front-end $scope.deleteImage has been called');
 
+				if (imageObjs[$index].image_path===backgroundImgPath){
+					console.log('if statement condition met');
+
+					var removedImage = ImageSvc.get({album_id:FellowshipDataSvc.fellowship.defaultAlbumId,
+						image_id:imageObjs[$index].image_id}, function() {
+						console.log('image delete resource API called');
+
+						removedImage.album_id=FellowshipDataSvc.fellowship.defaultAlbumId;
+						removedImage.image_id=removedImage._id;
+
+//						console.log('chk removedImage');
+//						console.log(removedImage);
+
+						removedImage.$delete(function(){
+							console.log('delete callback is called');
+
+						//remove image from front-end
+						$scope.backgroundImgPaths=_.filter($scope.backgroundImgPaths, function(image){
+
+//							console.log('chk $scope.backgroundImgPaths[$index]');
+//							console.log($scope.backgroundImgPaths[$index]);
+//
+//							console.log('chk image');
+//							console.log(image);
+
+							return image !== $scope.backgroundImgPaths[$index];
+						});
+
+						console.log('chk $scope.backgroundImgPaths');
+						console.log($scope.backgroundImgPaths);
+
+						console.log('chk imageObjs');
+						console.log(imageObjs);
+
+						console.log('chk $index');
+						console.log($index);
+
+						imageObjs.splice($index, 1);
+
+						console.log('chk imageObjs after splice');
+						console.log(imageObjs);
+
+							//TODO also need to delete image from album
+
+						});
+
+					});
+
+
+				}
+
+
+//
+//				for (var i=0;i<imageObjs.length;i++){
+//					if (backgroundImgPath===imageObjs[i].image_path){
+//						console.log('if statement condition met');
+//
+//					var removedImage = ImageSvc.get({album_id:FellowshipDataSvc.fellowship.defaultAlbumId,
+//											  image_id:imageObjs[i].image_id}, function() {
+//						console.log('image delete resource API called');
+//						console.log('chk removedImage for album id');
+//						console.log(removedImage);
+//
+//						console.log('chk imageObjs within removedImage call');
+//						//console.log(imageObjs[i]);
+//
+//						removedImage.album_id=FellowshipDataSvc.fellowship.defaultAlbumId;
+//						removedImage.image_id=removedImage._id;
+//
+//						removedImage.$delete(function(){
+//							console.log('delete callback is called');
+//						});
+//					});
+//
+//					}
+//				}
+
+			};
 		}
 	};
 });
