@@ -6,20 +6,30 @@
   height: 44px;
 }
 .wall-img {
-  width: 555px;
+  border: 1px solid;
+  position: relative;
+  top: 144px;
+  left: 22px;
+  width: 539px;
+  height: 37px;
+}
+.wall-img__image-section {
+  position: relative;
+  height: 36px;
+  width: 40px;
+  display: inline-block;
 }
 .wall-img__images {
-  padding: 0px;
-  position: absolute;
-  top: 215px;
-  left: 25px;
-  width: 537px;
-  background-color: #fff;
-}
-.wall-img__images img {
   width: 35px;
   height: 35px;
   margin-right: 5px;
+  position: absolute;
+}
+.wall-img__image-delete {
+  position: absolute;
+  left: 27px;
+  font-size: 10px;
+  color: #ffe6e6;
 }
 .wall-header__post-type-dropdown button {
   position: absolute;

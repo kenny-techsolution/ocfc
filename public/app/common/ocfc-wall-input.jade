@@ -10,8 +10,8 @@
 				span.caret
 		button.wall-header__post-button.btn.btn-primary.pull-right(ng-click='createPost(selectedPostType)') Post
 	textarea.wall-header__textbox(ng-model='content')
-
 	.wall-img.row
-		.wall-img__images.col-md-12
-			img(ng-style="{'background-image':backgroundImgPath}")
+		.wall-img__image-section(ng-repeat='backgroundImgPath in backgroundImgPaths')
+			img.wall-img__images(ng-src='{{backgroundImgPath}}')
+			.wall-img__image-delete X
 
