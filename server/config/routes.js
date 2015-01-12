@@ -123,9 +123,9 @@ module.exports = function (app, io) {
 
 	app.post('/api/albums/:album_id/images', albums.createImage);
 	app.get('/api/albums/:album_id/images', albums.queryImages);
-	app.get('/api/images/:image_id', images.getImage);
-	app.put('/api/images/:image_id', images.updateImage);
-	app.delete('/api/images/:image_id', images.deleteImage);
+	app.get('/api/albums/:album_id/images/:image_id', images.getImage);
+	app.put('/api/albums/:album_id/images/:image_id', images.updateImage);
+	app.delete('/api/albums/:album_id/images/:image_id', images.deleteImage);
 
 	app.post('/api/images/:image_id/comments', images.addCommentToImage);
 	app.put('/api/images/:image_id/comments/:comment_id', images.updateCommentFromImage);

@@ -10,10 +10,18 @@ var Image = require('mongoose').model('Image'),
 
 //Get - Round1
 exports.getImage= function (req, res) {
-	Image.find({_id:req.params.image_id}).exec(function(err,getImage){
+	console.log('server getImage has been called');
+
+	console.log('chk req.params');
+	console.log(req.params);
+
+	Image.findOne({_id:req.params.image_id}).exec(function(err,image){
 		if (err) return res.json(err);
-		return res.json({status:"success",getImage:getImage});
+		console.log('chk image');
+		console.log(image);
+		return res.json(image);
 	});
+
 };
 
 //Put - Round1
@@ -28,10 +36,39 @@ exports.updateImage= function (req, res) {
 
 //Delete - Round1
 exports.deleteImage= function (req, res) {
+	console.log('server deleteImage has been called');
+	console.log('chk req.params');
+	console.log(req.params);
+
 	Image.findOneAndRemove({_id:req.params.image_id},function (err) {
 		if (err) return res.json(err);
 		return res.json({status: "successfully removed from Image"});
 	});
+
+	Album.findById(req.params.album_id).exec(function(err, album){
+		console.log('server Album.findById has been called');
+		console.log('chk album obj');
+		console.log(album);
+
+		var index = album.imageIds.indexOf(req.params.image_id);
+		console.log('chk index');
+		console.log(index);
+
+		console.log('remove this image._id');
+		console.log(req.params.image_id);
+
+		album.imageIds.splice(index,1);
+
+		console.log('chk if id has been removed from album.imageIds');
+		console.log(album.imageIds);
+
+		album.save(function(err){
+			console.log('album.save has been called');
+			if (err) return res.json(err);
+			return res.json(album);
+		});
+	});
+
 };
 
 //Post - Round1
