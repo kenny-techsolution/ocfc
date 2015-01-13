@@ -3,11 +3,11 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 	return{
 		restrict: 'E',
 		scope: {
-			post:'=',
-			backgroundImgPaths:'='
+			post:'='
 		},
 		templateUrl: '/partials/common/ocfc-general-post',
 		controller: function ($scope) {
+
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;
 			$scope.newGenPostContent;

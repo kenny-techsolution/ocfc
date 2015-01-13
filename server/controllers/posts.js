@@ -314,8 +314,8 @@ exports.queryPost = function (req, res) {
 
 	console.log('chk whereClause obj');
 	console.log(whereClause);
-
-	Post.find(condition).where(whereClause).populate('postBy').exec(function (err, posts) {
+	//01.13.2015 add to populate imageIds
+	Post.find(condition).where(whereClause).populate('postBy imageIds').exec(function (err, posts) {
 		console.log('server Post.find has been called that returns post result data set');
 		if (err) return res.json(err);
 		return res.json(posts);

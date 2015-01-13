@@ -7,6 +7,9 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, $routeParams
 		},
 		templateUrl: '/partials/common/ocfc-wall-input',
 		controller: function ($scope) {
+			console.log('chk $scope.posts array');
+			console.log($scope.posts);
+
 			var imageArray = [];
 			$scope.backgroundImgPaths = [];
 			var imageObjs = [];
