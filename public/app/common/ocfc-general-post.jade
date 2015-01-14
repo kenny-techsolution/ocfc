@@ -7,13 +7,12 @@
 .general-header__output(ng-show='!showEdit') {{post.general[0].content}}
 	button.btn.btn-lg.btn-primary.general-header__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
 		span.caret
-.test test {{post.imageIds.length}}
-.general-header__image-display.row(ng-swtich, on='{{post.imageIds.length}}')
-	ocfc-one-image-display(post='post',ng-switch-when='1')
-	ocfc-two-image-display(post='post',ng-switch-when='2')
-	ocfc-three-image-display(post='post',ng-switch-when='3')
-	ocfc-four-image-display(post='post',ng-switch-when='4')
-	ocfc-five-image-display(post='post',ng-switch-when='5')
+.general-header__image-display.row
+	ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post')
+	ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post')
+	ocfc-three-image-display(ng-if='post.imageIds.length===3',post='post')
+	ocfc-four-image-display(ng-if='post.imageIds.length===4',post='post')
+	ocfc-five-image-display(ng-if='post.imageIds.length===5',post='post')
 .general-header__output-edit(ng-show='showEdit')
 	textarea(ng-model='newGenPostContent')
 	.general-header__options

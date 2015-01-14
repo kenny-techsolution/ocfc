@@ -1,3 +1,2 @@
-.general-header__two-img.row
-	.general-header__two-image-output(ng-repeat='image in post.imageIds')
-		img.general-header__two-images(ng-src='{{image.path}}')
+.two-img-layout.row
+	img(class='pic-{{$index}}',ng-repeat='image in post.imageIds',ng-src='{{image.path}}')
