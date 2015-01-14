@@ -1,0 +1,7 @@
+.general-header__three-img.row
+	.general-header__three-image-output(ng-repeat='image in post.imageIds track by $index')
+		.general-header__main
+			img.general-header__first-img(ng-src='{{image.path}}')
+		.general-header__secondary
+			img.general-header__first-img(ng-src='{{image.path}}')
+			img.general-header__first-img(ng-src='{{image.path}}')

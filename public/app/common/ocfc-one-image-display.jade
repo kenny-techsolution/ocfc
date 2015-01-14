@@ -1,0 +1,3 @@
+.general-header__one-img.row
+	.general-header__one-image-output(ng-repeat='image in post.imageIds track by $index')
+		img.general-header__one-image(ng-src='{{image.path}}')
