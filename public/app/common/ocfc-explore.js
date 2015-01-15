@@ -14,15 +14,15 @@ angular.module('app').directive('ocfcExplore', function (IdentitySvc) {
 			//watch checks changes of a scope variable
 			$scope.$watch('users.currentUser', function(){
 				if(typeof $scope.users.currentUser != 'undefined' && $scope.users.currentUser != null){
-					console.log('chk $scope.users.currentUser');
-					console.log($scope.users.currentUser)
+					//console.log('chk $scope.users.currentUser');
+					//console.log($scope.users.currentUser)
 					$scope.userFellowships=$scope.users.currentUser.fellowships;
 					$scope.userChurches=$scope.users.currentUser.churches;
 				}
 			});
 
 			$scope.toggleExploreDropdown=function(){
-				console.log('test $scope.exploreDropDown');
+				//console.log('test $scope.exploreDropDown');
 				$scope.exploreDropDown=!$scope.exploreDropDown;
 			};
 		}

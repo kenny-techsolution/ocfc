@@ -31,10 +31,10 @@
 				.widget-title-wo-link Members
 				ocfc-members(users='FellowshipDataSvc.users')
 			.col-md-6.dynamic-content__wall
-				.widget-title-wo-link Write to Wall
+				.widget-title-wo-link Write to Wall {{popup}}
 				ocfc-wall-input(posts='posts')
 				div.post(ng-repeat='post in posts',ng-switch, on='{{post.postType}}')
-					ocfc-general-post(ng-switch-when='0',post='post')
+					ocfc-general-post(ng-switch-when='0',post='post',image-popup='imagePopup')
 					ocfc-testimony-post(ng-switch-when='1',post='post')
 					ocfc-question-post(ng-switch-when='2',post='post')
 					ocfc-prayer-post(ng-switch-when='3',post='post')
@@ -46,3 +46,5 @@
 				ocfc-event(users='FellowshipDataSvc.users')
 				.widget-title-wo-link Birthday
 				ocfc-birthday(users='FellowshipDataSvc.users')
+
+ocfc-full-image-viewer(ng-show='imagePopup.isPopupOpen',image-popup='imagePopup')

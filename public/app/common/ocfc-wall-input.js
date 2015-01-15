@@ -7,8 +7,8 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, $routeParams
 		},
 		templateUrl: '/partials/common/ocfc-wall-input',
 		controller: function ($scope) {
-			console.log('chk $scope.posts array');
-			console.log($scope.posts);
+			//console.log('chk $scope.posts array');
+			//console.log($scope.posts);
 
 			var imageArray = [];
 			$scope.backgroundImgPaths = [];
@@ -54,8 +54,8 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, $routeParams
 			$scope.cloudinarySignedParams;
 			$http.get("/cloudinarySigned?type=avatar").success(function (data) {
 				$scope.cloudinarySignedParams = data;
-				console.log('chk $.cloudinary.config()');
-				console.log($.cloudinary.config());
+				//console.log('chk $.cloudinary.config()');
+				//console.log($.cloudinary.config());
 			});
 
 			$scope.onFileSelect = function ($files) {

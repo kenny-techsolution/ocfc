@@ -21,11 +21,11 @@ angular.module('app').controller('SignupCtrl', function ($scope,$http,$routePara
 							success(function(data, status, headers, config) {
 								// this callback will be called asynchronously
 								// when the response is available
-								console.log('userId is successful, chk data');
-								console.log(data);
+								//console.log('userId is successful, chk data');
+								//console.log(data);
 								//then re-direct first time setup screen
-								console.log('chk underscore');
-								console.log(_);
+								//console.log('chk underscore');
+								//console.log(_);
 								if (_.isEmpty(data)){
 									$location.url('/personal');
 								}else{

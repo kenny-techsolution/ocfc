@@ -2,7 +2,8 @@ angular.module('app').directive('ocfcFiveImageDisplay', function () {
 	return{
 		restrict: 'E',
 		scope: {
-			post:'='
+			post:'=',
+			selectedPost:'='
 		},
 		replace: false,
 		templateUrl: '/partials/common/ocfc-five-image-display',

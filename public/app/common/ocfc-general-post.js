@@ -3,14 +3,18 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 	return{
 		restrict: 'E',
 		scope: {
-			post:'='
+			post:'=',
+			imagePopup:'='
 		},
 		templateUrl: '/partials/common/ocfc-general-post',
 		controller: function ($scope) {
 
+			//console.log('chk $scope.imagePopup ');
+			//console.log($scope.imagePopup);
+
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;
-			$scope.newGenPostContent;
+			$scope.newGenPostContent=$scope.post.general[0].content;
 
 			$scope.dropdown=[{
 				"text": "Edit",
@@ -60,12 +64,12 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 				$scope.showEdit=false;
 			};
 
-			console.log('chk $scope.post obj');
-			console.log($scope.post);
+			//console.log('chk $scope.post obj');
+			//console.log($scope.post);
 
 			$scope.updateEditedPost=function(){
-				console.log('chk $scope.post obj');
-				console.log($scope.post);
+				//console.log('chk $scope.post obj');
+				//console.log($scope.post);
 				console.log('updateEditedPost function called');
 				$scope.post.general[0].content=$scope.newGenPostContent;
 				$scope.post.postType='general';
@@ -97,6 +101,15 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 						$scope.post.comments=_.filter($scope.post.comments, function(comment){ return comment._id !== input._id; });
 					});
 				});
+			};
+
+			$scope.selectPost=function(){
+				console.log('function selectPost called from ocfc-general-post');
+				$scope.imagePopup.isPopupOpen=true;
+				$scope.imagePopup.selectedPost=$scope.post;
+
+				console.log('chk $scope.imagePopup obj');
+				console.log($scope.imagePopup);
 			};
 
 		}
