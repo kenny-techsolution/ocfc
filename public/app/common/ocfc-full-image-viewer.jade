@@ -5,8 +5,9 @@
 			button.right-click(ng-click='nextImage()') >
 			.current-image-viewer
 				img(ng-src='{{selectedImage}}')
+			.close-popup(ng-click='closePopup()') X
 			.image-comment
-				img(ng-src='{{post.postBy.profileImg}}')
+				img(ng-src='{{imagePopup.selectedPost.postBy.profileImg}}')
 				.image-comment__user-info
-					.image-comment__user-name {{post.postBy.fullName}} Mei Zhang
-					.image-comment__post-date {{post.createdOn | date}} 7/22/2013
+					.image-comment__user-name {{imagePopup.selectedPost.postBy.fullName}}
+					.image-comment__post-date {{imagePopup.selectedPost.createdOn | date}}
