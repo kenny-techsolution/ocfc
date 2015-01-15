@@ -26,7 +26,7 @@ angular.module('app').service('FellowshipDataSvc', function(FellowshipUserSvc,Fe
 		);
 		//grab one fellowship
 		that.fellowship=FellowshipSvc.get({id:fellowId}, function() {
-			console.log('front-end that.fellowship has been called to grab a fellowship obj');
+			//console.log('front-end that.fellowship has been called to grab a fellowship obj');
 		});
 
 

@@ -314,8 +314,9 @@ exports.queryPost = function (req, res) {
 
 	console.log('chk whereClause obj');
 	console.log(whereClause);
-	//01.13.2015 add to populate imageIds
-	Post.find(condition).where(whereClause).populate('postBy imageIds').exec(function (err, posts) {
+	//01.13.2015 added to populate imageIds
+	//01.14.2015 added sort({createdOn: 'descending'})
+	Post.find(condition).sort({createdOn: 'descending'}).where(whereClause).populate('postBy imageIds').exec(function (err, posts) {
 		console.log('server Post.find has been called that returns post result data set');
 		if (err) return res.json(err);
 		return res.json(posts);

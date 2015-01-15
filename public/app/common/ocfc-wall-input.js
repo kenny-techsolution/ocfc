@@ -52,11 +52,12 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, $routeParams
 			};
 
 			$scope.cloudinarySignedParams;
-			$http.get("/cloudinarySigned?type=avatar").success(function (data) {
+			$http.get("/cloudinarySigned?type=fullSizeImg").success(function (data) {
 				$scope.cloudinarySignedParams = data;
 				//console.log('chk $.cloudinary.config()');
 				//console.log($.cloudinary.config());
 			});
+
 
 			$scope.onFileSelect = function ($files) {
 				var file = $files;

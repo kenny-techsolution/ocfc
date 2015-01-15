@@ -162,6 +162,12 @@ module.exports = function (app, io) {
 			format: "jpg",
 			public_id:req.user._id+'avatar'
 			};
+		}else if(req.query.type==="fullSizeImg") {
+			configurationObj = {
+				timestamp: cloudinary.utils.timestamp(),
+				transformation: "c_limit,h_435,w_465",
+				format: "jpg"
+			};
 		}
 		var params = cloudinary.utils.sign_request(configurationObj,
 			{
