@@ -1,8 +1,8 @@
 .jumbotron
 	.container
 		.row
-			button.left-click(ng-click='backImage()') <
-			button.right-click(ng-click='nextImage()') >
+			button.left-click(ng-click='backImage()',ng-hide='imagePopup.selectedPost.imageIds.length===1') <
+			button.right-click(ng-click='nextImage()',ng-hide='imagePopup.selectedPost.imageIds.length===1') >
 			.current-image-viewer
 				img(ng-src='{{selectedImage}}')
 			.close-popup(ng-click='closePopup()') X

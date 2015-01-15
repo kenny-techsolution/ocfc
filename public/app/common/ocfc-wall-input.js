@@ -13,6 +13,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, $routeParams
 			var imageArray = [];
 			$scope.backgroundImgPaths = [];
 			var imageObjs = [];
+			$scope.content='';
 
 			$scope.selectedPostType = "General";
 			$scope.postTypes = [
@@ -36,6 +37,9 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, $routeParams
 					postType = 'general';
 				}
 
+				console.log('chk if imageArray have images');
+				console.log(imageArray);
+
 				var post = new PostSvc({postType: postType,
 						general: [
 							{content: $scope.content}
@@ -48,6 +52,10 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, $routeParams
 				post.$save().then(function () {
 					$scope.posts.unshift(post);
 
+					//reset content and image(s) to blank
+					$scope.content='';
+					$scope.backgroundImgPaths=[];
+					imageArray=[];
 				});
 			};
 
@@ -135,6 +143,16 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, $routeParams
 					});
 
 				}
+
+			};
+
+			$scope.isPostDisable=function(){
+				console.log('front-end isPostDisable has been called');
+				if ($scope.content.trim()===""){
+					return true;
+				}else{
+					return false;
+				};
 
 			};
 		}

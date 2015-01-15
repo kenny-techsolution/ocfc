@@ -4,7 +4,8 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 		restrict: 'E',
 		scope: {
 			post:'=',
-			imagePopup:'='
+			imagePopup:'=',
+			posts:'='
 		},
 		templateUrl: '/partials/common/ocfc-general-post',
 		controller: function ($scope) {
@@ -21,7 +22,7 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 				"click": "editPost()"
 			},{
 				"text": "Delete",
-				"click": "$alert(\"Delete!\")"
+				"click": "deletePost()"
 				}];
 
 			$scope.comment;
@@ -58,6 +59,34 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 				console.log('editPost function called');
 				$scope.showEdit=true;
 			};
+
+			//delete post
+			$scope.deletePost=function(){
+				console.log('deletePost function called');
+				console.log('chk post obj');
+				console.log($scope.post);
+
+				var post = PostSvc.get({id:$scope.post._id}, function() {
+					console.log('chk variable post obj');
+					console.log(post);
+					post.$delete({id:$scope.post._id},function(){
+						console.log(post._id +' post has been deleted');
+
+						//remove post id from posts array
+						for(var i=0;i<$scope.posts.length;i++){
+							if ($scope.posts[i]._id===$scope.post._id){
+								$scope.posts.splice(i, 1);
+								console.log('chk index to be spliced/removed');
+								console.log(i);
+							}
+						}
+
+					});
+				});
+
+			};
+
+
 
 			$scope.hideEditPost=function(){
 				console.log('hideEditPost function called');

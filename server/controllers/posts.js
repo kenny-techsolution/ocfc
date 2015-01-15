@@ -23,10 +23,13 @@ var stripHtmlforFields = function (obj, fields) {
 //round-1
 var savePost = function (post, res) {
 	console.log('server savePost has been called');
+	console.log('chk if image paths exist');
+	console.log(post);
+
 	post.save(function (err) {
 		console.log('post.save function has been called');
 		if (err) return res.json(err);
-		Post.populate(post, 'eventId general testimony postBy', function (err, post) {
+		Post.populate(post, 'eventId general testimony postBy imageIds', function (err, post) {
 			if (err) return res.json(err);
 			return res.json(post);
 			console.log('chk post obj');
@@ -434,11 +437,12 @@ console.log(postObj);
 
 // Round 1
 exports.removePost = function (req, res) {
-
+	console.log('server removePost has been called');
 	Post.where().findOneAndRemove({_id: req.params.id, postBy: commFunc.reqSessionUserId(req)}, function (err) {
 		if (err) return res.json(err);
 		return res.json({status: req.params.id + "removed successfully."});
 	});
+	//TODO need to remove images from Image data set
 };
 
 /*---Comment related-----*/

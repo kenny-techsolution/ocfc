@@ -8,7 +8,7 @@
 			button.btn.btn-primary.pull-right.inline-block.choose-type(type='button', ng-model='selectedPostType', ng-options='postType.value as postType.label for postType in postTypes', bs-select='')
 				| Action
 				span.caret
-		button.wall-header__post-button.btn.btn-primary.pull-right(ng-click='createPost(selectedPostType)') Post
+		button.wall-header__post-button.btn.btn-primary.pull-right(ng-click='createPost(selectedPostType)',ng-disabled='isPostDisable()') Post
 	textarea.wall-header__textbox(ng-model='content')
 	.wall-img.row
 		.wall-img__image-section(ng-repeat='backgroundImgPath in backgroundImgPaths')
