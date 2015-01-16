@@ -23,16 +23,16 @@ var stripHtmlforFields = function (obj, fields) {
 //round-1
 var savePost = function (post, res) {
 	console.log('server savePost has been called');
-	console.log('chk if testimony fields exist');
+	console.log('chk if question field exist');
 	console.log(post);
 
 	post.save(function (err) {
 		console.log('post.save function has been called');
 		if (err) return res.json(err);
-		Post.populate(post, 'eventId general testimony postBy imageIds', function (err, post) {
+		Post.populate(post, 'eventId general testimony question postBy imageIds', function (err, post) {
 			if (err) return res.json(err);
 			return res.json(post);
-			console.log('chk fiinal post obj');
+			console.log('chk final post obj');
 			console.log(post);
 		});
 	});
@@ -41,12 +41,17 @@ var savePost = function (post, res) {
 
 //round-1
 var createQuestionPost = function (postObj, req, res) {
-	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'content']);
+	console.log('server createQuestionPost has been called');
+	console.log('chk postObj for question post');
+	console.log(postObj);
+
+	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'question']);
 	if (errors.length > 0) {
 		return res.json({statue: "failed", errors: errors});
 	}
-	postObj = stripHtmlforFields(postObj, ['content']);
-	postObj.question = postObj.content;
+//	postObj = stripHtmlforFields(postObj, ['content']);
+//	postObj.question = postObj.content;
+
 	postObj.postBy = commFunc.reqSessionUserId(req);
 	//TODO: perform image validation.
 	var post = new Post(postObj);
@@ -247,11 +252,8 @@ exports.createPost = function (req, res) {
 	console.log('chk postObj.testimony');
 	console.log(postObj.testimony);
 
-	console.log('chk postObj.testimony title');
-	console.log(postObj.testimony[0].title);
-
-	console.log('chk postObj.testimony content');
-	console.log(postObj.testimony[0].content);
+	console.log('chk postObj.question');
+	console.log(postObj.question);
 
 	if (!commFunc.isGroupMember(postObj.postUnderGroupType, req.user, postObj.postUnderGroupId)) {
 		return res.json({status: "fail", message: "you are not allowed to create post on this wall which you're not a member of."});

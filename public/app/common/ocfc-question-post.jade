@@ -1,11 +1,29 @@
-.post-msg-box
-	.header
-		img.camera-icon(ng-src='/css/images/camera-logo.png')
-		.share Share
-			img.share-icon(ng-src='/css/images/share-icon.png')
-		.post-type Type
-		.post-type-dropdown
-			select
-				option(value='question') Question
-		button.post Post
-	textarea.textbox
+.question-header
+	img.question-header__profile-icon(ng-src='{{post.postBy.profileImg}}')
+	.question-header__user-info
+		.question-header__user-name {{post.postBy.fullName}}
+		.question-header__post-date {{post.createdOn | date}}
+	.question-header__post-type {{post.postType | PostTypeStrFilter}}
+	.question-header__output(ng-show='!showEdit') {{post.question}}
+		button.btn.btn-lg.btn-primary.question-header__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
+			span.caret
+	.question-header__output-edit(ng-show='showEdit')
+		textarea.post-content(ng-model='newQuestPostContent')
+		.question-header__options
+			button.btn.btn-lg.btn-primary.question-header__options-btn(ng-click='hideEditPost()') Cancel
+			button.btn.btn-lg.btn-primary.question-header__options-btn(ng-click='updateEditedPost()')  Done Editing
+	.question-header__image-display.row(ng-click='selectPost()')
+		ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post')
+		ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post')
+		ocfc-three-image-display(ng-if='post.imageIds.length===3',post='post')
+		ocfc-four-image-display(ng-if='post.imageIds.length===4',post='post')
+		ocfc-five-image-display(ng-if='post.imageIds.length===5',post='post')
+	.question-header__comment-output(ng-repeat='comment in post.comments')
+		img(ng-src='{{comment.profileImg}}')
+		.question-header__user-comment-name {{comment.fullName}}
+		.question-header__post-comment-date {{comment.createdOn | date}}
+		.question-header__post-comment-output {{comment.comment}}
+		button.question-header__delete-comment(ng-click='deleteComment(comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
+	.question-header__comment-input
+		textarea(placeholder='type your comment here',ng-model='comment')
+	button.question-header__button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment()') Comment

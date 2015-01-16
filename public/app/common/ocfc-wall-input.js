@@ -53,7 +53,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, $routeParams
 						console.log(post);
 
 					} else if (selectedPostType === 'Testimony'){
-						console.log('Testimony else statement is met on ocfc-wall-input');
+						console.log('Testimony else if statement is met on ocfc-wall-input');
 
 						postType = 'testimony';
 						post = new PostSvc({postType: postType,
@@ -70,6 +70,21 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, $routeParams
 						console.log(post);
 
 					//Default setting
+					}else if (selectedPostType === 'Question'){
+						console.log('Question else if statement is met on ocfc-wall-input');
+
+						postType = 'question';
+						post = new PostSvc({postType: postType,
+								question:  $scope.content,
+								postUnderGroupType: 'fellowship',
+								postUnderGroupId: $routeParams.id,
+								imageIds: imageArray}
+						);
+
+						console.log('chk post input within for type question in ocfc-wall-input, createPost func');
+						console.log(post);
+
+						//Default setting
 					}else {
 						//default as general post
 						postType = 'general';

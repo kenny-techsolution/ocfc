@@ -36,7 +36,7 @@
 				div.post(ng-repeat='post in posts')
 					ocfc-general-post(ng-if='post.postType ===0',post='post',image-popup='imagePopup',posts='posts')
 					ocfc-testimony-post(ng-if='post.postType ===1',post='post',image-popup='imagePopup',posts='posts')
-					ocfc-question-post(ng-if='post.postType ===2',post='post')
+					ocfc-question-post(ng-if='post.postType ===2',post='post',image-popup='imagePopup',posts='posts')
 					ocfc-prayer-post(ng-if='post.postType ===3',post='post')
 					ocfc-event-post(ng-if='post.postType ===4',post='post')
 			.col-md-3.dynamic-content__right-sidebar
