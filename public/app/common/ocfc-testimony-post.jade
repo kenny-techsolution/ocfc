@@ -1,11 +1,30 @@
-.post-msg-box
-	.header
-		img.camera-icon(ng-src='/css/images/camera-logo.png')
-		.share Share
-			img.share-icon(ng-src='/css/images/share-icon.png')
-		.post-type Type
-		.post-type-dropdown
-			select
-				option(value='testimony') Testimony
-		button.post Post
-	textarea.textbox
+.testimony-header
+	img.testimony-header__profile-icon(ng-src='{{post.postBy.profileImg}}')
+	.testimony-header__user-info
+		.testimony-header__user-name {{post.postBy.fullName}}
+		.testimony-header__post-date {{post.createdOn | date}}
+	.testimony-header__post-type {{post.postType | PostTypeStrFilter}}
+	.testimony-header__title title goes here {{post.testimony[0].title}}
+	.testimony-header__output(ng-show='!showEdit') {{post.testimony[1].content}}
+		button.btn.btn-lg.btn-primary.testimony-header__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
+			span.caret
+	.testimony-header__output-edit(ng-show='showEdit')
+		textarea(ng-model='newTestPostContent')
+		.testimony-header__options
+			button.btn.btn-lg.btn-primary.testimony-header__options-btn(ng-click='hideEditPost()') Cancel
+			button.btn.btn-lg.btn-primary.testimony-header__options-btn(ng-click='updateEditedPost()')  Done Editing
+	.testimony-header__image-display.row(ng-click='selectPost()')
+		ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post')
+		ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post')
+		ocfc-three-image-display(ng-if='post.imageIds.length===3',post='post')
+		ocfc-four-image-display(ng-if='post.imageIds.length===4',post='post')
+		ocfc-five-image-display(ng-if='post.imageIds.length===5',post='post')
+	.testimony-header__comment-output(ng-repeat='comment in post.comments')
+		img(ng-src='{{comment.profileImg}}')
+		.testimony-header__user-comment-name {{comment.fullName}}
+		.testimony-header__post-comment-date {{comment.createdOn | date}}
+		.testimony-header__post-comment-output {{comment.comment}}
+		button.testimony-header__delete-comment(ng-click='deleteComment(comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
+	.testimony-header__comment-input
+		textarea(placeholder='type your comment here',ng-model='comment')
+	button.testimony-header__button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment()') Comment

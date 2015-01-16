@@ -10,6 +10,8 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 		templateUrl: '/partials/common/ocfc-general-post',
 		controller: function ($scope) {
 
+			console.log('ocfcGeneralPost has been called');
+
 			//console.log('chk $scope.imagePopup ');
 			//console.log($scope.imagePopup);
 

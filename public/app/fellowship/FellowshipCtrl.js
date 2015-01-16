@@ -18,6 +18,9 @@ angular.module('app').controller('FellowshipCtrl', function ($scope,PostSvc,Fell
 
 	$scope.selectedPost;
 
+	console.log('chk $scope.posts for postType value');
+	console.log($scope.posts);
+
 	//Set default value for imagePopup
 	$scope.imagePopup={selectedPost:{
 		postBy:{profileImg:''},

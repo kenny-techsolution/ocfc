@@ -4,11 +4,13 @@
 		.share Share
 			img.share-icon(ng-src='/css/images/share-icon.png')
 		.post-type Type
+		.test title: {{title}} content: {{content}}
 		.wall-header__post-type-dropdown
 			button.btn.btn-primary.pull-right.inline-block.choose-type(type='button', ng-model='selectedPostType', ng-options='postType.value as postType.label for postType in postTypes', bs-select='')
 				| Action
 				span.caret
 		button.wall-header__post-button.btn.btn-primary.pull-right(ng-click='createPost(selectedPostType)',ng-disabled='isPostDisable()') Post
+	textarea.wall-header__title(ng-model='title',ng-show='selectedPostType === "Testimony"',placeholder='Testimony title goes here')
 	textarea.wall-header__textbox(ng-model='content')
 	.wall-img.row
 		.wall-img__image-section(ng-repeat='backgroundImgPath in backgroundImgPaths')

@@ -113,12 +113,16 @@ var createGeneralPost = function (postObj, req, res) {
 };
 //round-1
 var createTestimonyPost = function (postObj, req, res) {
-	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'content', 'title']);
+	//update 'title' & 'content' to 'testimony'
+	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'testimony']);
 	if (errors.length > 0) {
 		return res.json({statue: "failed", errors: errors});
 	}
-	postObj = stripHtmlforFields(postObj, ['content', 'title']);
+	//postObj = stripHtmlforFields(postObj, ['content', 'title']);
 	//TODO: perform image validation.
+	console.log('chk postObj for title & content');
+	console.log(postObj);
+
 	postObj.testimony = [
 		{ title: postObj.title, content: postObj.content}
 	];
@@ -231,6 +235,9 @@ exports.createPost = function (req, res) {
 
 	console.log('chk postObj.postType');
 	console.log(postObj.postType);
+
+	console.log('chk postObj.testimony');
+	console.log(postObj.testimony);
 
 	if (!commFunc.isGroupMember(postObj.postUnderGroupType, req.user, postObj.postUnderGroupId)) {
 		return res.json({status: "fail", message: "you are not allowed to create post on this wall which you're not a member of."});
