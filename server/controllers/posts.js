@@ -23,18 +23,67 @@ var stripHtmlforFields = function (obj, fields) {
 //round-1
 var savePost = function (post, res) {
 	console.log('server savePost has been called');
-	console.log('chk if question field exist');
+	console.log('chk post from savePost field');
 	console.log(post);
 
 	post.save(function (err) {
 		console.log('post.save function has been called');
+		console.log('chk post within savePost');
+		console.log(post);
 		if (err) return res.json(err);
-		Post.populate(post, 'eventId general testimony question postBy imageIds', function (err, post) {
-			if (err) return res.json(err);
-			return res.json(post);
-			console.log('chk final post obj');
-			console.log(post);
-		});
+
+		if (post.postType==='general'){
+			console.log('general post type has been created');
+			Post.populate(post, 'eventId general postBy imageIds', function (err, post) {
+				if (err) return res.json(err);
+				console.log('chk final post obj');
+				console.log(post);
+				return res.json(post);
+			});
+		}else if (post.postType==='testimony'){
+			console.log('testimony post type has been created');
+			Post.populate(post, 'eventId testimony postBy imageIds', function (err, post) {
+				if (err) return res.json(err);
+				console.log('chk final post obj');
+				console.log(post);
+				return res.json(post);
+			});
+
+		}else if (post.postType==='question'){
+			console.log('question post type has been created');
+			Post.populate(post, 'eventId postBy imageIds', function (err, post) {
+				if (err) return res.json(err);
+				console.log('chk final post obj');
+				console.log(post);
+				return res.json(post);
+			});
+		}else if (post.postType==='prayer'){
+			console.log('prayer post type has been created');
+			Post.populate(post, 'eventId prayer postBy imageIds', function (err, post) {
+				if (err) return res.json(err);
+				console.log('chk final post obj');
+				console.log(post);
+				return res.json(post);
+			});
+		}else if (post.postType==='event'){
+			console.log('event post type has been created');
+			Post.populate(post, 'eventId event postBy imageIds', function (err, post) {
+				if (err) return res.json(err);
+				console.log('chk final post obj');
+				console.log(post);
+				return res.json(post);
+			});
+		}else{
+			//Default as general post
+			console.log('default general post type has been created');
+			Post.populate(post, 'eventId general postBy imageIds', function (err, post) {
+				if (err) return res.json(err);
+				console.log('chk final post obj');
+				console.log(post);
+				return res.json(post);
+			});
+		}
+
 	});
 };
 
@@ -46,7 +95,11 @@ var createQuestionPost = function (postObj, req, res) {
 	console.log(postObj);
 
 	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'question']);
+	console.log('chk errors obj within createQuestionPost');
+	console.log(errors);
+
 	if (errors.length > 0) {
+		console.log('errors condition met');
 		return res.json({statue: "failed", errors: errors});
 	}
 //	postObj = stripHtmlforFields(postObj, ['content']);
@@ -55,7 +108,28 @@ var createQuestionPost = function (postObj, req, res) {
 	postObj.postBy = commFunc.reqSessionUserId(req);
 	//TODO: perform image validation.
 	var post = new Post(postObj);
-	return savePost(post, res);
+
+	console.log('chk var post obj after new post creation');
+	console.log(post);
+
+	//if undefined then set to empty array
+	var imageIds = postObj.imageIds||[];
+
+	//update all images for post.
+	if (imageIds.length > 0) {
+		async.forEachLimit(imageIds, 3, function (imageId, callback) {
+			Image.findByIdAndUpdate(imageId, {used: true}, function (err) {
+				if (err) return callback(err)
+				callback();
+			});
+		}, function (err) {
+			if (err) return res.json(err);
+			return savePost(post, res);
+		});
+	} else {
+		return savePost(post, res);
+	}
+
 };
 //round-1
 var createPrayerPost = function (postObj, req, res) {
@@ -68,6 +142,7 @@ var createPrayerPost = function (postObj, req, res) {
 	postObj.postBy = commFunc.reqSessionUserId(req);
 	//TODO: perform image validation.
 	var post = new Post(postObj);
+
 	return savePost(post, res);
 };
 
@@ -125,21 +200,26 @@ var createTestimonyPost = function (postObj, req, res) {
 
 	//update 'title' & 'content' to 'testimony'
 	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'testimony']);
+	console.log('chk errors obj withing createTestimonyPost');
+	console.log(errors);
+
 	if (errors.length > 0) {
+		console.log('errors.length > 0');
 		return res.json({statue: "failed", errors: errors});
 	}
 	//postObj = stripHtmlforFields(postObj, ['content', 'title']);
 	//TODO: perform image validation.
-	console.log('chk postObj for testimony');
-	console.log(postObj);
-
 	//	postObj.testimony = [
 	//		{ title: postObj.title, content: postObj.content}
 	//	];
 
 	postObj.postBy = commFunc.reqSessionUserId(req);
-	post = new Post(postObj);
+	var post = new Post(postObj);
 
+	console.log('chk var post obj after new post creation');
+	console.log(post);
+
+	//if undefined then set to empty array
 	var imageIds = postObj.imageIds;
 
 	//update all images for post.
@@ -209,35 +289,75 @@ var createEventPost = function (postObj, req, res) {
 
 var _updatePost = function (id, userId, postObj, res) {
 	console.log('server _updatePost has been called');
-	Post.findOneAndUpdate({_id: id, postBy: userId}, postObj, function (err, post) {
-		if (err) return res.json(err);
-		return res.json(post);
-	});
+
+	console.log('chk id');
+	console.log(id);
+
+	console.log('chk userId');
+	console.log(userId);
+
+	console.log('chk postObj');
+	console.log(postObj);
+
+	if (postObj.postType==='general'){
+
+		Post.findOneAndUpdate({_id: id, postBy: userId}, postObj, function (err, post) {
+			console.log('Post.findOneAndUpdate has been called before error');
+			if (err) return res.json(err);
+			console.log('chk post from Post.findOneAndUpdate func after error condition');
+			console.log(post);
+			return res.json(post);
+		});
+
+	};
+
+//	Post.findOneAndUpdate({_id: id, postBy: userId},{ "$set": {"general.0.content": postObj.content,"imageIds": postObj.imageIds }},
+//		function(err, post){
+//			console.log('Post.findOneAndUpdate has been called before error');
+//			console.log('chk post from Post.findOneAndUpdate func before error');
+//			console.log(post)
+//			if (err) return res.json(err);
+//			console.log('chk post from Post.findOneAndUpdate func after error');
+//			console.log(post);
+//			return postFollowByImageUpdate(req,res,post);
+//		});
+
 };
 
 var postFollowByImageUpdate=function(req,res,post){
+	console.log('server postFollowByImageUpdate has been called');
+	console.log('chk req.body obj');
+	console.log(req.body);
+
 	var imageIds = req.body.imageIds;
 
 	//update all images for post.
 	if(imageIds.length > 0){
+		console.log('if(imageIds.length > 0) condition is met');
 		async.forEachLimit(imageIds, 3, function(imageId, callback) {
 			Image.findByIdAndUpdate(imageId, {used: true}, function(err){
+				console.log('Image.findByIdAndUpdate func called');
+				console.log('chk imageId');
+				console.log(imageId);
 				if (err) return callback(err)
 				callback();
 			});
 		}, function(err) {
+			console.log('callback is called');
 			if (err) return res.json(err);
 			return res.json(post);
 		});
 	} else {
+		console.log('else condition is met');
 		return res.json(post);
 	}
+
 };
 
 exports.createPost = function (req, res) {
 	console.log('server createPost has been called');
 	var postObj = req.body;
-	console.log('chk postObj');
+	console.log('chk postObj from createPost');
 	console.log(postObj);
 
 	console.log('chk postObj.postUnderGroupType');
@@ -249,11 +369,11 @@ exports.createPost = function (req, res) {
 	console.log('chk postObj.postType');
 	console.log(postObj.postType);
 
-	console.log('chk postObj.testimony');
-	console.log(postObj.testimony);
-
-	console.log('chk postObj.question');
-	console.log(postObj.question);
+//	console.log('chk postObj.testimony');
+//	console.log(postObj.testimony);
+//
+//	console.log('chk postObj.question');
+//	console.log(postObj.question);
 
 	if (!commFunc.isGroupMember(postObj.postUnderGroupType, req.user, postObj.postUnderGroupId)) {
 		return res.json({status: "fail", message: "you are not allowed to create post on this wall which you're not a member of."});
@@ -343,7 +463,9 @@ exports.queryPost = function (req, res) {
 	//01.13.2015 added to populate imageIds
 	//01.14.2015 added sort({createdOn: 'descending'})
 	Post.find(condition).sort({createdOn: 'descending'}).where(whereClause).populate('postBy imageIds').exec(function (err, posts) {
-		console.log('server Post.find has been called that returns post result data set');
+		console.log('server Post.find has been called within queryPost func');
+		console.log('chk posts arrary');
+		console.log(posts);
 		if (err) return res.json(err);
 		return res.json(posts);
 	});
@@ -372,6 +494,38 @@ exports.updatePost = function (req, res) {
 			if (errors.length > 0) {
 				return res.json({statue: "failed", errors: errors});
 			}
+			//delete postObj.postType;
+			//TODO update htmlstrip
+			//postObj = stripHtmlforFields(postObj, ['general']);
+			//postObj.general = postObj.content;
+			postObj.updatedOn = new Date();
+
+			return _updatePost(req.params.id, commFunc.reqSessionUserId(req), postObj, res);
+		}
+
+		if (postObj.postType === 'testimony') {
+			console.log('postType of testimony has been met');
+			var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['testimony']);
+			console.log('chk errors');
+			console.log(errors);
+			if (errors.length > 0) {
+				return res.json({statue: "failed", errors: errors});
+			}
+			delete postObj.postType;
+			//TODO update htmlstrip
+			//postObj = stripHtmlforFields(postObj, ['general']);
+			//postObj.general = postObj.content;
+			postObj.updatedOn = new Date();
+			return _updatePost(req.params.id, commFunc.reqSessionUserId(req), postObj, res);
+		}
+		if (postObj.postType === 'question') {
+			console.log('postType of question has been met');
+			var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['question']);
+			console.log('chk errors');
+			console.log(errors);
+			if (errors.length > 0) {
+				return res.json({statue: "failed", errors: errors});
+			}
 			delete postObj.postType;
 			//TODO update htmlstrip
 			//postObj = stripHtmlforFields(postObj, ['general']);
@@ -381,64 +535,17 @@ exports.updatePost = function (req, res) {
 		}
 		if (postObj.postType === 'prayer') {
 			console.log('postType of prayer has been met');
-			var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
+			var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['prayer']);
 			if (errors.length > 0) {
 				return res.json({statue: "failed", errors: errors});
 			}
 			delete postObj.postType;
-			postObj = stripHtmlforFields(postObj, ['content']);
-			postObj.prayer = postObj.content;
+			//postObj = stripHtmlforFields(postObj, ['content']);
+			//postObj.prayer = postObj.content;
 			postObj.updatedOn = new Date();
 			return _updatePost(req.params.id, commFunc.reqSessionUserId(req), postObj, res);
 		}
-		if (postObj.postType === 'general') {
-			console.log('postType of general has been met');
-			//step1-makes sure content entry exist
-			var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['content']);
-			if (errors.length > 0) {
-				return res.json({statue: "failed", errors: errors});
-			}
 
-			//Remove postType field
-			delete postObj.postType;
-
-			//Format content for protection
-			postObj = stripHtmlforFields(postObj, ['content']);
-
-			//insert content into appropriate postType
-			postObj.general = {
-				content: postObj.content
-			}
-			//grab latest postObj and assign to post
-			var post = new Post(postObj);
-			console.log("postObj");
-console.log(postObj);
-			Post.findOneAndUpdate({_id: req.params.id, postBy: commFunc.reqSessionUserId(req)},{ "$set": {"general.0.content": postObj.content,"imageIds": postObj.imageIds }},
-								   function(err, post){
-									   if (err) return res.json(err);
-									   return postFollowByImageUpdate(req,res,post);
-								   });
-		}
-		if (postObj.postType === 'testimony') {
-			console.log('postType of testimony has been met');
-			var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['content', 'title']);
-			if (errors.length > 0) {
-				return res.json({statue: "failed", errors: errors});
-			}
-			delete postObj.postType;
-			postObj = stripHtmlforFields(postObj, ['content', 'title']);
-			var testimony = {
-				title: postObj.title,
-				content: postObj.content
-			};
-//			post = new Post(postObj);
-
-			Post.findOneAndUpdate({_id: req.params.id, postBy: commFunc.reqSessionUserId(req)},{ "$set": {"testimony.0" : testimony, "imageIds": postObj.imageIds}},
-									function(err, post){
-										if (err) return res.json(err);
-										return postFollowByImageUpdate(req,res,post);
-				});
-		}
 		if (postObj.postType === 'event') {
 			console.log('postType of event has been met');
 			delete postObj.postType;
@@ -496,6 +603,7 @@ exports.addCommentToPost = function (req, res) {
 		post.comments.push(commentObj);
 		post.save(function (err) {
 			console.log('post.save function has been called');
+			console.log('chk within addCommentToPost before error');
 			if (err) return res.json(err);
 			//return last array element
 			return res.json(post.comments[post.comments.length-1]);

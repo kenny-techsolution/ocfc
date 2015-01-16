@@ -22,7 +22,7 @@ var postSchema = mongoose.Schema({
 		{
 			groupId: {type: ObjectId, Required:'(groupId) in shareTo, is required!', index: true},
 			groupType: {type: String, Required:'(grouptype) in shareTo, is required!'},
-			status: {type: String, equired:'(status) in status�, is required!'}
+			status: {type: String, Required:'(status) in shareTo, is required!'}
 		}
 	],
 	testimony:		[testimonySchema], //mongoose only allows array for subDocument to be included.

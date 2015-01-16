@@ -11,7 +11,6 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 		controller: function ($scope) {
 
 			console.log('ocfcQuestionPost has been called');
-
 			console.log('chk on $scope.post obj for question');
 			console.log($scope.post);
 
@@ -103,7 +102,7 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 			$scope.updateEditedPost=function(){
 				//console.log('chk $scope.post obj');
 				//console.log($scope.post);
-				console.log('updateEditedPost function called');
+				console.log('updateEditedPost function called for question post');
 				$scope.post.question=$scope.newQuestPostContent;
 				$scope.post.postType='question';
 				console.log('chk $scope.post.question obj');

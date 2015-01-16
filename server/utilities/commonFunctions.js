@@ -60,10 +60,16 @@ exports.htmlStripOptions = {
 
 exports.isGroupMember = function(groupType, sessionUser, groupId) {
 	var groups = sessionUser[groupType + "s"];
-	console.log("isGroupMember");
-	console.log(groupType);
+	console.log("chk isGroupMember func");
+	console.log('chk groups obj');
 	console.log(groups);
+	console.log('chk groupType');
+	console.log(groupType);
+	console.log('chk sessionUser');
+	console.log(sessionUser);
+	console.log('chk groupId');
 	console.log(groupId);
+
 	var permissions = [];
 	for(var i=0; i< groups.length; i++) {
 		if(String(groups[i][groupType + 'Id']) === groupId){

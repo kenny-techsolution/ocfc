@@ -49,6 +49,17 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, $routeParams
 								postUnderGroupId: $routeParams.id,
 								imageIds: imageArray}
 						);
+
+						post.$save().then(function () {
+							$scope.posts.unshift(post);
+
+							//reset content and image(s) to blank
+							$scope.content='';
+							$scope.title='';
+							$scope.backgroundImgPaths=[];
+							imageArray=[];
+						});
+
 						console.log('chk post input within for type General in ocfc-wall-input, createPost func');
 						console.log(post);
 
@@ -66,6 +77,16 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, $routeParams
 								imageIds: imageArray}
 						);
 
+						post.$save().then(function () {
+							$scope.posts.unshift(post);
+
+							//reset content and image(s) to blank
+							$scope.content='';
+							$scope.title='';
+							$scope.backgroundImgPaths=[];
+							imageArray=[];
+						});
+
 						console.log('chk post input within for type Testimony in ocfc-wall-input, createPost func');
 						console.log(post);
 
@@ -81,6 +102,15 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, $routeParams
 								imageIds: imageArray}
 						);
 
+						post.$save().then(function () {
+							$scope.posts.unshift(post);
+
+							//reset content and image(s) to blank
+							$scope.content='';
+							$scope.title='';
+							$scope.backgroundImgPaths=[];
+							imageArray=[];
+						});
 						console.log('chk post input within for type question in ocfc-wall-input, createPost func');
 						console.log(post);
 
@@ -96,23 +126,21 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, $routeParams
 								postUnderGroupId: $routeParams.id,
 								imageIds: imageArray}
 						);
+						post.$save().then(function () {
+							$scope.posts.unshift(post);
+
+							//reset content and image(s) to blank
+							$scope.content='';
+							$scope.title='';
+							$scope.backgroundImgPaths=[];
+							imageArray=[];
+						});
 						console.log('chk post input within for type General in ocfc-wall-input, createPost func');
 						console.log(post);
 					}
 
 					console.log('chk if imageArray have images');
 					console.log(imageArray);
-
-
-					post.$save().then(function () {
-						$scope.posts.unshift(post);
-
-						//reset content and image(s) to blank
-						$scope.content='';
-						$scope.title='';
-						$scope.backgroundImgPaths=[];
-						imageArray=[];
-					});
 
 				};
 

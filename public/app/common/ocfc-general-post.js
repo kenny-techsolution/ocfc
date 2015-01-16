@@ -88,8 +88,6 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 
 			};
 
-
-
 			$scope.hideEditPost=function(){
 				console.log('hideEditPost function called');
 				$scope.showEdit=false;
@@ -109,13 +107,12 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 
 				//cannot update post other than your own
 				if ($scope.post.postBy._id===IdentitySvc.currentUser._id){
+					console.log('if condition is met, this post is made by current user');
 					//update post obj on the server side
 					PostSvc.update({id:$scope.post._id},$scope.post,function(){
 						console.log('front-end PostSvc.update has completed');
 					});
-
 					$scope.showEdit=false;
-
 				}else{
 					alert('Sorry, you do no have rights to update post other than your own');
 				}
