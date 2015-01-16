@@ -1,6 +1,7 @@
 .general-header
-	height 52px
+	height auto
 	border 1px solid
+
 .general-header__profile-icon
 	width 45px
 	height 45px
@@ -12,7 +13,11 @@
 
 .general-header__user-info
 	height 50px
+	width 553px
 	display inline-block
+	border-bottom 1px solid
+	position relative
+	top -14px
 
 .general-header__user-name
 	margin-left 51px
@@ -29,19 +34,17 @@
 	width 68px
 	text-align center
 	position relative
-	top -40px
+	top -54px
 	left 483px
-
 
 .general-header__output
 	height auto
 	position relative
-	border-left 1px solid
-	border-right 1px solid
 	width 555px
 	padding-left 15px
 	font-size 12px
 	padding 15px 20px
+	top -41px
 
 .general-header__comment-output
 	border-left 1px solid
@@ -68,9 +71,6 @@
 	left 27px
 	width 523px
 .general-header__comment-input
-	border-left 1px solid
-	border-right 1px solid
-	border-bottom 1px solid
 	width 555px
 	height auto
 	position relative
@@ -97,9 +97,14 @@
 	padding 2px 3px !important
 
 .general-header__output-edit
-	border 1px solid darkmagenta
 	padding-left 19px
 	font-size 12px
+	position relative
+	bottom: 41px
+	textarea
+		margin 0px
+		width 511px
+		height 40px
 
 .general-header__options-btn
 	position relative!important
@@ -114,8 +119,6 @@
 	height 443px
 	position relative
 	left 30px
-	border-left 1px solid #000000
-	border-right 1px solid #000000
 	img
 		height 435px
 		width 465px
@@ -126,8 +129,6 @@
 	position relative
 	left 30px
 	height 504px
-	border-left 1px solid black
-	border-right 1px solid black
 	width 555px
 	img
 		width 532px
@@ -138,8 +139,6 @@
 	position relative
 	left 30px
 	height 430px
-	border-left 1px solid black
-	border-right 1px solid black
 	width 555px
 	.pic-0
 		position absolute
@@ -162,8 +161,6 @@
 	position relative
 	left 30px
 	height 440px
-	border-left 1px solid black
-	border-right 1px solid black
 	width 555px
 	.pic-0
 		position absolute
@@ -192,8 +189,6 @@
 
 .five-img-layout
 	padding-left 23px
-	border-left 1px solid black
-	border-right 1px solid black
 	width 555px
 	position relative
 	left 30px
@@ -226,3 +221,8 @@
 		left 297px
 		width 232px
 
+.general-header__title
+	position relative
+	left 12px
+	padding-left 5px
+	width 461px

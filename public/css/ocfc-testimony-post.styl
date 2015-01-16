@@ -1,6 +1,7 @@
 .testimony-header
-	height 52px
+	height auto
 	border 1px solid
+
 .testimony-header__profile-icon
 	width 45px
 	height 45px
@@ -12,7 +13,9 @@
 
 .testimony-header__user-info
 	height 50px
+	width 553px
 	display inline-block
+	border-bottom 1px solid
 
 .testimony-header__user-name
 	margin-left 51px
@@ -32,16 +35,14 @@
 	top -40px
 	left 483px
 
-
 .testimony-header__output
 	height auto
 	position relative
-	border-left 1px solid
-	border-right 1px solid
 	width 555px
 	padding-left 15px
 	font-size 12px
 	padding 15px 20px
+	top -35px
 
 .testimony-header__comment-output
 	border-left 1px solid
@@ -68,9 +69,6 @@
 	left 27px
 	width 523px
 .testimony-header__comment-input
-	border-left 1px solid
-	border-right 1px solid
-	border-bottom 1px solid
 	width 555px
 	height auto
 	position relative
@@ -92,19 +90,39 @@
 
 .testimony-header__edit-delete
 	position absolute !important
-	top 0px !important
+	top -12px !important
 	left 537px !important
 	padding 2px 3px !important
 
 .testimony-header__output-edit
-	border 1px solid darkmagenta
+	position relative
+	top -47px
+	height 103px
 	padding-left 19px
 	font-size 12px
+	.post-title
+		position relative
+		top 2px
+		left 31px
+		height 24px
+		margin 0px
+		width 370px
+	.post-content
+		position relative
+		left 31px
+		margin 0px
+		height 41px
+		width 370px
+
+.testimony-header__options
+	width 159px
+	position relative
+	left 375px
 
 .testimony-header__options-btn
-	position relative!important
-	left 378px!important
-	padding 6px 17px!important
+	position: relative !important;
+	left: 1px !important;
+	padding: 6px 17px !important;
 
 
 //image directives
@@ -114,8 +132,6 @@
 	height 443px
 	position relative
 	left 30px
-	border-left 1px solid #000000
-	border-right 1px solid #000000
 	img
 		height 435px
 		width 465px
@@ -126,8 +142,6 @@
 	position relative
 	left 30px
 	height 504px
-	border-left 1px solid black
-	border-right 1px solid black
 	width 555px
 	img
 		width 532px
@@ -138,8 +152,6 @@
 	position relative
 	left 30px
 	height 430px
-	border-left 1px solid black
-	border-right 1px solid black
 	width 555px
 	.pic-0
 		position absolute
@@ -162,8 +174,6 @@
 	position relative
 	left 30px
 	height 440px
-	border-left 1px solid black
-	border-right 1px solid black
 	width 555px
 	.pic-0
 		position absolute
@@ -192,8 +202,6 @@
 
 .five-img-layout
 	padding-left 23px
-	border-left 1px solid black
-	border-right 1px solid black
 	width 555px
 	position relative
 	left 30px
@@ -226,3 +234,9 @@
 		left 297px
 		width 232px
 
+.testimony-header__title
+	position relative
+	left 12px
+	padding-left 5px
+	width 461px
+	top -23px

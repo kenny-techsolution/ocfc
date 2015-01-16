@@ -4,12 +4,13 @@
 		.testimony-header__user-name {{post.postBy.fullName}}
 		.testimony-header__post-date {{post.createdOn | date}}
 	.testimony-header__post-type {{post.postType | PostTypeStrFilter}}
-	.testimony-header__title title goes here {{post.testimony[0].title}}
-	.testimony-header__output(ng-show='!showEdit') {{post.testimony[1].content}}
+	.testimony-header__title Title: {{post.testimony[0].title}}
+	.testimony-header__output(ng-show='!showEdit') {{post.testimony[0].content}}
 		button.btn.btn-lg.btn-primary.testimony-header__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
 			span.caret
 	.testimony-header__output-edit(ng-show='showEdit')
-		textarea(ng-model='newTestPostContent')
+		textarea.post-title(ng-model='newTestPostTitle')
+		textarea.post-content(ng-model='newTestPostContent')
 		.testimony-header__options
 			button.btn.btn-lg.btn-primary.testimony-header__options-btn(ng-click='hideEditPost()') Cancel
 			button.btn.btn-lg.btn-primary.testimony-header__options-btn(ng-click='updateEditedPost()')  Done Editing

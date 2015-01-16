@@ -23,7 +23,7 @@ var stripHtmlforFields = function (obj, fields) {
 //round-1
 var savePost = function (post, res) {
 	console.log('server savePost has been called');
-	console.log('chk if image paths exist');
+	console.log('chk if testimony fields exist');
 	console.log(post);
 
 	post.save(function (err) {
@@ -32,7 +32,7 @@ var savePost = function (post, res) {
 		Post.populate(post, 'eventId general testimony postBy imageIds', function (err, post) {
 			if (err) return res.json(err);
 			return res.json(post);
-			console.log('chk post obj');
+			console.log('chk fiinal post obj');
 			console.log(post);
 		});
 	});
@@ -113,6 +113,11 @@ var createGeneralPost = function (postObj, req, res) {
 };
 //round-1
 var createTestimonyPost = function (postObj, req, res) {
+	console.log('server createTestimonyPost has been called');
+
+	console.log('chk postObj obj');
+	console.log(postObj);
+
 	//update 'title' & 'content' to 'testimony'
 	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'testimony']);
 	if (errors.length > 0) {
@@ -120,12 +125,13 @@ var createTestimonyPost = function (postObj, req, res) {
 	}
 	//postObj = stripHtmlforFields(postObj, ['content', 'title']);
 	//TODO: perform image validation.
-	console.log('chk postObj for title & content');
+	console.log('chk postObj for testimony');
 	console.log(postObj);
 
-	postObj.testimony = [
-		{ title: postObj.title, content: postObj.content}
-	];
+	//	postObj.testimony = [
+	//		{ title: postObj.title, content: postObj.content}
+	//	];
+
 	postObj.postBy = commFunc.reqSessionUserId(req);
 	post = new Post(postObj);
 
@@ -145,6 +151,8 @@ var createTestimonyPost = function (postObj, req, res) {
 	} else {
 		return savePost(post, res);
 	}
+
+
 };
 
 var createEventPost = function (postObj, req, res) {
@@ -238,6 +246,12 @@ exports.createPost = function (req, res) {
 
 	console.log('chk postObj.testimony');
 	console.log(postObj.testimony);
+
+	console.log('chk postObj.testimony title');
+	console.log(postObj.testimony[0].title);
+
+	console.log('chk postObj.testimony content');
+	console.log(postObj.testimony[0].content);
 
 	if (!commFunc.isGroupMember(postObj.postUnderGroupType, req.user, postObj.postUnderGroupId)) {
 		return res.json({status: "fail", message: "you are not allowed to create post on this wall which you're not a member of."});

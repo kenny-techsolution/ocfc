@@ -3,6 +3,8 @@
 
 angular.module('app').controller('FellowshipCtrl', function ($scope,PostSvc,FellowshipDataSvc,$routeParams) {
 
+	console.log('FellowshipCtrl has been called');
+
 	//include FellowshipDataSvc which captures all data needed for Fellowship widgets
 	$scope.FellowshipDataSvc=FellowshipDataSvc;
 	$scope.FellowshipDataSvc.initialize($routeParams.id);

@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcTestimonyPost', function () {
+angular.module('app').directive('ocfcTestimonyPost', function (IdentitySvc,CommentSvc,_,PostSvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -8,14 +8,18 @@ angular.module('app').directive('ocfcTestimonyPost', function () {
 			posts:'='
 		},
 		templateUrl: '/partials/common/ocfc-testimony-post',
-		controller: function () {
+		controller: function ($scope) {
 
 			console.log('ocfcTestimonyPost has been called');
+
+			console.log('chk on $scope.post obj for testimony');
+			console.log($scope.post);
 
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;
 			$scope.newTestPostTitle=$scope.post.testimony[0].title;
 			$scope.newTestPostContent=$scope.post.testimony[0].content;
+
 
 			$scope.dropdown=[{
 				"text": "Edit",
@@ -142,7 +146,6 @@ angular.module('app').directive('ocfcTestimonyPost', function () {
 				console.log('chk $scope.imagePopup obj');
 				console.log($scope.imagePopup);
 			};
-
 		}
 	};
 });
