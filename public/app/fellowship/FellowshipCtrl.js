@@ -36,6 +36,15 @@ angular.module('app').controller('FellowshipCtrl', function ($scope,PostSvc,Fell
 	//console.log('chk $scope.imagePopup.isPopupOpen on FellowshipCtrl');
 	//console.log($scope.imagePopup.isPopupOpen);
 
+	$scope.comingAnnouncements = function(post){
+		var currDate=new Date();
+		var announcementDate=new Date(post.createdOn);
+		var announcementPostType=post.postType;
+		var onSameMonth=(announcementDate.getMonth())===(currDate.getMonth());
+		var btw0And7Days=((currDate.getDate())-(announcementDate.getDate()))>=0 && ((currDate.getDate())-(announcementDate.getDate()))<=7;
+
+		return (announcementPostType===5&&onSameMonth&&(btw0And7Days));
+	};
 
 });
 

@@ -10,6 +10,9 @@ angular.module('app').directive('ocfcAnnouncementPost', function (IdentitySvc,Co
 		templateUrl: '/partials/common/ocfc-announcement-post',
 		controller: function ($scope) {
 			console.log('ocfcAnnouncementPost has been called');
+			console.log('chk $scope.post.postType value');
+			console.log($scope.post.postType);
+
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;
 			$scope.newAnnoucePostContent=$scope.post.announcement[0].content;
@@ -23,9 +26,9 @@ angular.module('app').directive('ocfcAnnouncementPost', function (IdentitySvc,Co
 			}];
 
 			$scope.comment;
-			$scope.postTypeStr=function(){
 
-				if($scope.postType===5){
+			$scope.postTypeStr=function(){
+				if($scope.post.postType===5){
 					return 'Announcement'
 				}else{
 					//default to General

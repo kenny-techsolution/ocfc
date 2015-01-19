@@ -11,6 +11,8 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 		controller: function ($scope) {
 
 			console.log('ocfcGeneralPost has been called');
+			console.log('chk $scope.post.postType value');
+			console.log($scope.post.postType);
 
 			//console.log('chk $scope.imagePopup ');
 			//console.log($scope.imagePopup);
@@ -30,7 +32,7 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 			$scope.comment;
 			$scope.postTypeStr=function(){
 
-				if($scope.postType===0){
+				if($scope.post.postType===0){
 					return 'General'
 				}else{
 					//default to General

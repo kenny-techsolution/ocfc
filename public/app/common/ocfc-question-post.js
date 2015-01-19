@@ -14,6 +14,9 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 			console.log('chk on $scope.post obj for question');
 			console.log($scope.post);
 
+			console.log('chk $scope.post.postType value');
+			console.log($scope.post.postType);
+
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;
 			$scope.newQuestPostContent=$scope.post.question;
@@ -30,10 +33,10 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 			$scope.comment;
 
 			$scope.postTypeStr=function(){
-				console.log('chk $scope.postType value');
-				console.log($scope.postType);
+				console.log('chk $scope.post.postType value');
+				console.log($scope.post.postType);
 
-				if($scope.postType===2){
+				if($scope.post.postType===2){
 					return 'Question'
 				}else{
 					//default to General

@@ -3,7 +3,7 @@
 	.announcement-header__user-info
 		.announcement-header__user-name {{post.postBy.fullName}}
 		.announcement-header__post-date {{post.createdOn | date}}
-	.announcement-header__post-type {{post.postType | PostTypeStrFilter}}
+	.announcement-header__post-type {{post.postType}}
 	.announcement-header__output(ng-show='!showEdit') {{post.announcement[0].content}}
 		button.btn.btn-lg.btn-primary.announcement-header__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
 			span.caret

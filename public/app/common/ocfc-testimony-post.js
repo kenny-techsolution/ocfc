@@ -15,6 +15,9 @@ angular.module('app').directive('ocfcTestimonyPost', function (IdentitySvc,Comme
 			console.log('chk on $scope.post obj for testimony');
 			console.log($scope.post);
 
+			console.log('chk $scope.post.postType value');
+			console.log($scope.post.postType);
+
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;
 			$scope.newTestPostTitle=$scope.post.testimony[0].title;
@@ -32,10 +35,7 @@ angular.module('app').directive('ocfcTestimonyPost', function (IdentitySvc,Comme
 			$scope.comment;
 
 			$scope.postTypeStr=function(){
-				console.log('chk $scope.postType value');
-				console.log($scope.postType);
-
-				if($scope.postType===1){
+				if($scope.post.postType===1){
 					return 'Testimony'
 				}else{
 					//default to General
