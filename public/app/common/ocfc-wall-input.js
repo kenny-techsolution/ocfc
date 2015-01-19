@@ -63,6 +63,30 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, $routeParams
 						console.log('chk post input within for type General in ocfc-wall-input, createPost func');
 						console.log(post);
 
+					}else if (selectedPostType === 'Announcement') {
+						postType = 'announcement';
+						post = new PostSvc({postType: postType,
+								announcement: [
+									{content: $scope.content}
+								],
+								postUnderGroupType: 'fellowship',
+								postUnderGroupId: $routeParams.id,
+								imageIds: imageArray}
+						);
+
+						post.$save().then(function () {
+							$scope.posts.unshift(post);
+
+							//reset content and image(s) to blank
+							$scope.content='';
+							$scope.title='';
+							$scope.backgroundImgPaths=[];
+							imageArray=[];
+						});
+
+						console.log('chk post input within for type General in ocfc-wall-input, createPost func');
+						console.log(post);
+
 					} else if (selectedPostType === 'Testimony'){
 						console.log('Testimony else if statement is met on ocfc-wall-input');
 

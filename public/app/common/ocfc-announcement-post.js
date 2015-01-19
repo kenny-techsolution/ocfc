@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,CommentSvc,_,PostSvc) {
+angular.module('app').directive('ocfcAnnouncementPost', function (IdentitySvc,CommentSvc,_,PostSvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -7,17 +7,12 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 			imagePopup:'=',
 			posts:'='
 		},
-		templateUrl: '/partials/common/ocfc-general-post',
+		templateUrl: '/partials/common/ocfc-announcement-post',
 		controller: function ($scope) {
-
-			console.log('ocfcGeneralPost has been called');
-
-			//console.log('chk $scope.imagePopup ');
-			//console.log($scope.imagePopup);
-
+			console.log('ocfcAnnouncementPost has been called');
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;
-			$scope.newGenPostContent=$scope.post.general[0].content;
+			$scope.newAnnoucePostContent=$scope.post.announcement[0].content;
 
 			$scope.dropdown=[{
 				"text": "Edit",
@@ -25,13 +20,13 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 			},{
 				"text": "Delete",
 				"click": "deletePost()"
-				}];
+			}];
 
 			$scope.comment;
 			$scope.postTypeStr=function(){
 
-				if($scope.postType===0){
-					return 'General'
+				if($scope.postType===5){
+					return 'Announcement'
 				}else{
 					//default to General
 					return 'General'
@@ -100,7 +95,7 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 				//console.log('chk $scope.post obj');
 				//console.log($scope.post);
 				console.log('updateEditedPost function called');
-				$scope.post.general[0].content=$scope.newGenPostContent;
+				$scope.post.announcement[0].content=$scope.newAnnouncePostContent;
 				//$scope.post.postType='general';
 				//console.log('chk $scope.post.general[0].content obj');
 				//console.log($scope.post.general[0].content);
@@ -112,7 +107,7 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 					var updatePost=angular.copy($scope.post);
 					//do not allow update on images
 					delete updatePost.imageIds;
-					updatePost.postType="general";
+					updatePost.postType="announcement";
 
 					//update post obj on the server side
 					PostSvc.update({id:updatePost._id},updatePost,function(){
@@ -138,14 +133,13 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 			};
 
 			$scope.selectPost=function(){
-				console.log('function selectPost called from ocfc-general-post');
+				console.log('function selectPost called from ocfc-announcement-post');
 				$scope.imagePopup.isPopupOpen=true;
 				$scope.imagePopup.selectedPost=$scope.post;
 
 				console.log('chk $scope.imagePopup obj');
 				console.log($scope.imagePopup);
 			};
-
 		}
 	};
 });

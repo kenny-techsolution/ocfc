@@ -1,0 +1,29 @@
+.announcement-header
+	img.announcement-header__profile-icon(ng-src='{{post.postBy.profileImg}}')
+	.announcement-header__user-info
+		.announcement-header__user-name {{post.postBy.fullName}}
+		.announcement-header__post-date {{post.createdOn | date}}
+	.announcement-header__post-type {{post.postType | PostTypeStrFilter}}
+	.announcement-header__output(ng-show='!showEdit') {{post.announcement[0].content}}
+		button.btn.btn-lg.btn-primary.announcement-header__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
+			span.caret
+	.announcement-header__output-edit(ng-show='showEdit')
+		textarea(ng-model='newAnnoucePostContent')
+		.announcement-header__options
+			button.btn.btn-lg.btn-primary.announcement-header__options-btn(ng-click='hideEditPost()') Cancel
+			button.btn.btn-lg.btn-primary.announcement-header__options-btn(ng-click='updateEditedPost()')  Done Editing
+	.announcement-header__image-display.row(ng-click='selectPost()')
+		ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post')
+		ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post')
+		ocfc-three-image-display(ng-if='post.imageIds.length===3',post='post')
+		ocfc-four-image-display(ng-if='post.imageIds.length===4',post='post')
+		ocfc-five-image-display(ng-if='post.imageIds.length===5',post='post')
+	.announcement-header__comment-output(ng-repeat='comment in post.comments')
+		img(ng-src='{{comment.profileImg}}')
+		.announcement-header__user-comment-name {{comment.fullName}}
+		.announcement-header__post-comment-date {{comment.createdOn | date}}
+		.announcement-header__post-comment-output {{comment.comment}}
+		button.announcement-header__delete-comment(ng-click='deleteComment(comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
+	.announcement-header__comment-input
+		textarea(placeholder='type your comment here',ng-model='comment')
+	button.announcement-header__button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment()') Comment

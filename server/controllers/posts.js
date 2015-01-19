@@ -40,6 +40,14 @@ var savePost = function (post, res) {
 				console.log(post);
 				return res.json(post);
 			});
+		}else if (post.postType==='announcement'){
+			console.log('announcement post type has been created');
+			Post.populate(post, 'eventId announcement postBy imageIds', function (err, post) {
+				if (err) return res.json(err);
+				console.log('chk final post obj');
+				console.log(post);
+				return res.json(post);
+			});
 		}else if (post.postType==='testimony'){
 			console.log('testimony post type has been created');
 			Post.populate(post, 'eventId testimony postBy imageIds', function (err, post) {
@@ -68,6 +76,14 @@ var savePost = function (post, res) {
 		}else if (post.postType==='event'){
 			console.log('event post type has been created');
 			Post.populate(post, 'eventId event postBy imageIds', function (err, post) {
+				if (err) return res.json(err);
+				console.log('chk final post obj');
+				console.log(post);
+				return res.json(post);
+			});
+		}else if (post.postType==='announcement'){
+			console.log('announcement post type has been created');
+			Post.populate(post, 'eventId announcement postBy imageIds', function (err, post) {
 				if (err) return res.json(err);
 				console.log('chk final post obj');
 				console.log(post);
@@ -286,6 +302,51 @@ var createEventPost = function (postObj, req, res) {
 		}
 	});
 };
+//Added on 11-19-2015
+var createAnnouncementPost = function (postObj, req, res) {
+	console.log('server createAnnouncementPost has been called');
+	console.log('chk postObj');
+	console.log(postObj);
+
+	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'announcement']);
+	console.log('chk errors obj within createAnnouncementPost');
+	console.log(errors);
+
+	if (errors.length > 0) {
+		console.log('errors.length > 0');
+		return res.json({statue: "failed", errors: errors});
+	}
+	//TODO need to implement stripHTML
+	//postObj = stripHtmlforFields(postObj, ['announcement']);
+	//	console.log('chk postObj after stripHtmlforFields');
+	//	console.log(postObj);
+
+	//TODO: perform image validation.
+
+	postObj.postBy = commFunc.reqSessionUserId(req);
+	var post = new Post(postObj);
+
+	console.log('chk post obj after new Post creation');
+	console.log(post);
+
+	//if undefined then set to empty array
+	var imageIds = postObj.imageIds||[];
+
+	//update all images for post.
+	if (imageIds.length > 0) {
+		async.forEachLimit(imageIds, 3, function (imageId, callback) {
+			Image.findByIdAndUpdate(imageId, {used: true}, function (err) {
+				if (err) return callback(err)
+				callback();
+			});
+		}, function (err) {
+			if (err) return res.json(err);
+			return savePost(post, res);
+		});
+	} else {
+		return savePost(post, res);
+	}
+};
 
 var _updatePost = function (id, userId, postObj, res) {
 	console.log('server _updatePost has been called');
@@ -377,7 +438,7 @@ exports.createPost = function (req, res) {
 
 	postObj = deleteKey(postObj, ['comments', 'updatedOn', 'postBy']);
 
-	//var postTypeArray = ['general','testimony','question','prayer','event'];
+	//var postTypeArray = ['general','testimony','question','prayer','event','announcement'];
 	if (_.has(postObj, 'postType')) {
 		if (postObj.postType === 'question') {
 			console.log('question postType is met');
@@ -398,6 +459,10 @@ exports.createPost = function (req, res) {
 		if (postObj.postType === 'event') {
 			console.log('event postType is met');
 			return createEventPost(postObj, req, res);
+		}
+		if (postObj.postType === 'announcement') {
+			console.log('announcement postType is met');
+			return createAnnouncementPost(postObj, req, res);
 		}
 	}
 };
@@ -493,6 +558,23 @@ exports.updatePost = function (req, res) {
 			//delete postObj.postType;
 			//TODO update htmlstrip
 			//postObj = stripHtmlforFields(postObj, ['general']);
+			//postObj.general = postObj.content;
+			postObj.updatedOn = new Date();
+
+			return _updatePost(req.params.id, commFunc.reqSessionUserId(req), postObj, res);
+		}
+
+		if (postObj.postType === 'announcement') {
+			console.log('postType of announcement has been met');
+			var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['announcement']);
+			console.log('chk errors');
+			console.log(errors);
+			if (errors.length > 0) {
+				return res.json({statue: "failed", errors: errors});
+			}
+			//delete postObj.postType;
+			//TODO update htmlstrip
+			//postObj = stripHtmlforFields(postObj, ['announcement']);
 			//postObj.general = postObj.content;
 			postObj.updatedOn = new Date();
 
