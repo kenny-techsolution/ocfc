@@ -299,17 +299,13 @@ var _updatePost = function (id, userId, postObj, res) {
 	console.log('chk postObj');
 	console.log(postObj);
 
-	if (postObj.postType==='general'){
-
-		Post.findOneAndUpdate({_id: id, postBy: userId}, postObj, function (err, post) {
-			console.log('Post.findOneAndUpdate has been called before error');
-			if (err) return res.json(err);
-			console.log('chk post from Post.findOneAndUpdate func after error condition');
-			console.log(post);
-			return res.json(post);
-		});
-
-	};
+	Post.findOneAndUpdate({_id: id, postBy: userId},postObj, function (err, post) {
+		console.log('Post.findOneAndUpdate has been called before error');
+		if (err) return res.json(err);
+		console.log('chk post from Post.findOneAndUpdate func after error condition');
+		console.log(post);
+		return res.json(post);
+	});
 
 //	Post.findOneAndUpdate({_id: id, postBy: userId},{ "$set": {"general.0.content": postObj.content,"imageIds": postObj.imageIds }},
 //		function(err, post){

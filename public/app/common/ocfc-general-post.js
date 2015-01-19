@@ -101,15 +101,21 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 				//console.log($scope.post);
 				console.log('updateEditedPost function called');
 				$scope.post.general[0].content=$scope.newGenPostContent;
-				$scope.post.postType='general';
-				console.log('chk $scope.post.general[0].content obj');
-				console.log($scope.post.general[0].content);
+				//$scope.post.postType='general';
+				//console.log('chk $scope.post.general[0].content obj');
+				//console.log($scope.post.general[0].content);
 
 				//cannot update post other than your own
 				if ($scope.post.postBy._id===IdentitySvc.currentUser._id){
 					console.log('if condition is met, this post is made by current user');
+
+					var updatePost=angular.copy($scope.post);
+					//do not allow update on images
+					delete updatePost.imageIds;
+					updatePost.postType="general";
+					
 					//update post obj on the server side
-					PostSvc.update({id:$scope.post._id},$scope.post,function(){
+					PostSvc.update({id:updatePost._id},updatePost,function(){
 						console.log('front-end PostSvc.update has completed');
 					});
 					$scope.showEdit=false;

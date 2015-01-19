@@ -104,14 +104,21 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 				//console.log($scope.post);
 				console.log('updateEditedPost function called for question post');
 				$scope.post.question=$scope.newQuestPostContent;
-				$scope.post.postType='question';
-				console.log('chk $scope.post.question obj');
-				console.log($scope.post.question);
+				//$scope.post.postType='question';
+				//console.log('chk $scope.post.question obj');
+				//console.log($scope.post.question);
+
+				//TODO make postType a string value on both front & back end
 
 				//cannot update post other than your own
 				if ($scope.post.postBy._id===IdentitySvc.currentUser._id){
 					//update post obj on the server side
-					PostSvc.update({id:$scope.post._id},$scope.post,function(){
+					var updatePost=angular.copy($scope.post);
+					//do not allow update on images
+					delete updatePost.imageIds;
+					updatePost.postType="question";
+
+					PostSvc.update({id:updatePost._id},updatePost,function(){
 						console.log('front-end PostSvc.update has completed');
 					});
 

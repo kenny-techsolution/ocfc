@@ -107,14 +107,21 @@ angular.module('app').directive('ocfcTestimonyPost', function (IdentitySvc,Comme
 				console.log('updateEditedPost function called');
 				$scope.post.testimony[0].title=$scope.newTestPostTitle;
 				$scope.post.testimony[0].content=$scope.newTestPostContent;
-				$scope.post.postType='testimony';
-				console.log('chk $scope.post.testimony[1].content obj');
-				console.log($scope.post.testimony[1].content);
+
+				//$scope.post.postType='testimony';
+				//console.log('chk $scope.post.testimony[1].content obj');
+				//console.log($scope.post.testimony[1].content);
 
 				//cannot update post other than your own
 				if ($scope.post.postBy._id===IdentitySvc.currentUser._id){
+
+					var updatePost=angular.copy($scope.post);
+					//do not allow update on images
+					delete updatePost.imageIds;
+					updatePost.postType="testimony";
+
 					//update post obj on the server side
-					PostSvc.update({id:$scope.post._id},$scope.post,function(){
+					PostSvc.update({id:updatePost._id},updatePost,function(){
 						console.log('front-end PostSvc.update has completed');
 					});
 
