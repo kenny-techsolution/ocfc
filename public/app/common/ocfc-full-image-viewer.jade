@@ -11,3 +11,20 @@
 				.image-comment__user-info
 					.image-comment__user-name {{imagePopup.selectedPost.postBy.fullName}}
 					.image-comment__post-date {{imagePopup.selectedPost.createdOn | date}}
+				.image-comment__links
+					.comment Comment
+					.share Share
+				.image-comment__outputs
+					.image-comment__commentor-img
+						img(ng-src='{{imagePopup.selectedPost.postBy.profileImg}}')
+					.user-info
+						.user-info__user-name {{imagePopup.selectedPost.postBy.fullName}}
+						.user-info__user-comment Comment goes here
+						.user-info__timestamp	22 hrs
+				.comment-outputs
+					img(ng-src='{{imagePopup.selectedPost.postBy.profileImg}}')
+					textarea(placeholder='Write a comment...')
+					button Submit
+
+
+
