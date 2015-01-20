@@ -18,7 +18,11 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentSv
 
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;
-			$scope.newEventPostContent=$scope.post.eventId;
+			$scope.newEventPostContent=$scope.post.eventId.description;
+			$scope.newEventPostTitle=$scope.post.eventId.title;
+			$scope.newEventPostFromDate=$scope.post.eventId.fromDate;
+			$scope.newEventPostToDate=$scope.post.eventId.toDate;
+			$scope.newEventPostWhere=$scope.post.eventId.where;
 
 			$scope.dropdown=[{
 				"text": "Edit",
@@ -50,7 +54,7 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentSv
 
 			//edit post
 			$scope.editPost=function(){
-				console.log('editPost function called');
+				console.log('editPost function for Event post has been called');
 				$scope.showEdit=true;
 			};
 
@@ -92,7 +96,12 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentSv
 				//console.log('chk $scope.post obj');
 				//console.log($scope.post);
 				console.log('updateEditedPost function called');
-				$scope.post.eventId=$scope.newEventPostContent;
+				$scope.post.eventId.description=$scope.newEventPostContent;
+				$scope.post.eventId.title=$scope.newEventPostTitle;
+				$scope.post.eventId.fromDate=$scope.newEventPostFromDate;
+				$scope.post.eventId.toDate=$scope.newEventPostToDate;
+				$scope.post.eventId.where=$scope.newEventPostWhere;
+
 				//$scope.post.postType='general';
 				//console.log('chk $scope.post.general[0].content obj');
 				//console.log($scope.post.general[0].content);
