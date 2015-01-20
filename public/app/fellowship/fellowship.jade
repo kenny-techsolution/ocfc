@@ -38,13 +38,13 @@
 					ocfc-testimony-post(ng-if='post.postType ===1',post='post',image-popup='imagePopup',posts='posts')
 					ocfc-question-post(ng-if='post.postType ===2',post='post',image-popup='imagePopup',posts='posts')
 					ocfc-prayer-post(ng-if='post.postType ===3',post='post')
-					ocfc-event-post(ng-if='post.postType ===4',post='post')
+					ocfc-event-post(ng-if='post.postType ===4',post='post',image-popup='imagePopup',posts='posts')
 					ocfc-announcement-post(ng-if='post.postType ===5',post='post',image-popup='imagePopup',posts='posts')
 			.col-md-3.dynamic-content__right-sidebar
 				.widget-title-wo-link Calendar
 				ocfc-calendar(users='FellowshipDataSvc.users')
 				.widget-title-wo-link Event
-				ocfc-event(users='FellowshipDataSvc.users')
+				ocfc-event(users='FellowshipDataSvc.users',post='post',image-popup='imagePopup',posts='posts')
 				.widget-title-wo-link Birthday
 				ocfc-birthday(users='FellowshipDataSvc.users')
 

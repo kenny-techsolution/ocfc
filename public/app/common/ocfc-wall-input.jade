@@ -11,6 +11,11 @@
 				span.caret
 		button.wall-header__post-button.btn.btn-primary.pull-right(ng-click='createPost(selectedPostType)',ng-disabled='isPostDisable()') Post
 	textarea.wall-header__title(ng-model='title',ng-show='selectedPostType === "Testimony"',placeholder='Testimony title goes here')
+	textarea.wall-header__event-title(ng-model='eventTitle',ng-show='selectedPostType === "Event"',placeholder='Event title goes here')
+	input.wall-header__event-fromDate(ng-model='fromDate',ng-show='selectedPostType === "Event"',type='date')
+	input.wall-header__event-toDate(ng-model='toDate',ng-show='selectedPostType === "Event"',type='date')
+	textarea.wall-header__event-where(ng-model='eventWhere',ng-show='selectedPostType === "Event"',placeholder='Event location goes here')
+	textarea.wall-header__event-hostBy(ng-model='eventHostBy',ng-show='selectedPostType === "Event"',placeholder='Event host name goes here')
 	textarea.wall-header__textbox(ng-model='content')
 	.wall-img.row
 		.wall-img__image-section(ng-repeat='backgroundImgPath in backgroundImgPaths')

@@ -19,7 +19,7 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;
-			$scope.newGenPostContent=$scope.post.general[0].content;
+			$scope.newEventPostContent=$scope.post.general[0].content;
 
 			$scope.dropdown=[{
 				"text": "Edit",

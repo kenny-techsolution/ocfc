@@ -257,11 +257,15 @@ var createTestimonyPost = function (postObj, req, res) {
 };
 
 var createEventPost = function (postObj, req, res) {
-	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'title', 'description', 'fromDate', 'toDate', 'where', 'hostBy', 'invitees']);
-	if (errors.length > 0) {
-		return res.json({statue: "failed", errors: errors});
-	}
-	postObj = stripHtmlforFields(postObj, ['title', 'description', 'where']);
+	//var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'title', 'description', 'fromDate', 'toDate', 'where', 'hostBy', 'invitees']);
+	//if (errors.length > 0) {
+	//	return res.json({statue: "failed", errors: errors});
+	//}
+	//postObj = stripHtmlforFields(postObj, ['title', 'description', 'where']);
+
+	console.log('chk createEventPost, postObj obj');
+	console.log(postObj);
+
 	//TODO: perform image validation.
 	event = new Event({
 		title: postObj.title,
@@ -633,7 +637,7 @@ exports.updatePost = function (req, res) {
 															   'description', 'fromDate', 'toDate', 'where', 'banner']);
 				Event.findOneAndUpdate({_id: post.eventId}, event, function (err, NumberUpdated, raw) {
 					if (err) return res.json(err);
-					Post.populate(post, 'eventId general testimony', function (err, post) {
+					Post.populate(post, 'eventId', function (err, post) {
 						if (err) return res.json(err);
 						return postFollowByImageUpdate(req,res,post);
 					});
