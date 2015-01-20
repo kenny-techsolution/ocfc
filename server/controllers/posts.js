@@ -274,11 +274,12 @@ var createEventPost = function (postObj, req, res) {
 		fromDate: postObj.fromDate,
 		toDate: postObj.toDate,
 		where: postObj.where,
-		hostBy: postObj.hostBy,
-		invitees: postObj.invitees
+		hostBy: postObj.hostBy
+		//invitees: postObj.invitees
 	});
 	event.save(function (err) {
 		if (err) return res.json(err);
+		console.log('event has been created');
 		var imageIds = postObj.imageIds;
 
 		var post = new Post({
@@ -527,9 +528,9 @@ exports.queryPost = function (req, res) {
 	console.log(whereClause);
 	//01.13.2015 added to populate imageIds
 	//01.14.2015 added sort({createdOn: 'descending'})
-	Post.find(condition).sort({createdOn: 'descending'}).where(whereClause).populate('postBy imageIds').exec(function (err, posts) {
+	Post.find(condition).sort({createdOn: 'descending'}).where(whereClause).populate('postBy imageIds eventId eventId.hostBy').exec(function (err, posts) {
 		console.log('server Post.find has been called within queryPost func');
-		console.log('chk posts arrary');
+		console.log('chk posts array');
 		console.log(posts);
 		if (err) return res.json(err);
 		return res.json(posts);

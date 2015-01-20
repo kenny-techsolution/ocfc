@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$routeParams, $http, $upload, ImageSvc, FellowshipDataSvc) {
+angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$routeParams, $http, $upload, ImageSvc, FellowshipDataSvc,IdentitySvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -32,7 +32,6 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 
 				var postType;
 				var post;
-
 
 				//save post input data
 				$scope.createPost = function (selectedPostType) {
@@ -90,57 +89,25 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 
 					} else if (selectedPostType === 'Event') {
 						postType = 'event';
-
-						//create an event
-						$scope.createEvent=function(){
-							console.log('front-end createEvent is being called');
-							var event=new EventSvc({
-								title: $scope.eventTitle,
-								description: $scope.content,
-								fromDate:$scope.fromDate,
-								toDate: $scope.toDate,
-								where:$scope.eventWhere,
-								hostBy: $scope.eventHostBy
-
-								//banner:			{type: String, index: false, unique: false},
-								//invitees:		[{type: ObjectId,ref:'User'}],
-								//gos:			[{type: ObjectId,ref:'User'}],
-								//noGos:			[{type: ObjectId,ref:'User'}],
-								//maybes:			[{type: ObjectId,ref:'User'}]
-							});
-							event.$save().then(function(){
-								console.log('new event has been created');
-								console.log('chk event obj being sent to server');
-								console.log(event);
-							});
-
-						};
-
-
-						$scope.createFellowship=function(){
-							console.log('front-end createFellowship is being called');
-							var fellowship=new FellowshipSvc({name:$scope.fellowshipName,
-								address:$scope.street,
-								city:$scope.city,
-								state:$scope.state,
-								country:$scope.country,
-								zipcode:$scope.zipcode,
-								phone:$scope.phone,
-								about:$scope.aboutFellowship});
-
-							fellowship.$save();
-							//TODO need to link Fellowship to it's associated church with $scope.churchName
-						};
-
+						console.log('postType of event condition is met');
 
 						post = new PostSvc({postType: postType,
-								eventId: event._id,
 								postUnderGroupType: 'fellowship',
 								postUnderGroupId: $routeParams.id,
-								imageIds: imageArray}
+								imageIds: imageArray,
+								title:$scope.eventTitle,
+								description:$scope.content,
+								fromDate:$scope.fromDate,
+								toDate:$scope.toDate,
+								where:$scope.eventWhere,
+								hostBy:IdentitySvc.currentUser._id
+							}
 						);
 
 						post.$save().then(function () {
+							console.log('chk post obj within event func');
+							console.log(post);
+
 							$scope.posts.unshift(post);
 
 							//reset content and image(s) to blank
@@ -150,8 +117,10 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 							imageArray = [];
 						});
 
-						console.log('chk post input within for type General in ocfc-wall-input, createPost func');
+						console.log('chk post input within for type Event in ocfc-wall-input, createPost func');
 						console.log(post);
+
+
 
 					} else if (selectedPostType === 'Testimony') {
 						console.log('Testimony else if statement is met on ocfc-wall-input');
@@ -229,8 +198,8 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 						console.log(post);
 					}
 
-					console.log('chk if imageArray have images');
-					console.log(imageArray);
+					//console.log('chk if imageArray have images');
+					//console.log(imageArray);
 
 				};
 
@@ -322,7 +291,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 			};
 
 			$scope.isPostDisable = function () {
-				console.log('front-end isPostDisable has been called');
+				//console.log('front-end isPostDisable has been called');
 				if ($scope.content.trim() === "") {
 					return true;
 				} else {

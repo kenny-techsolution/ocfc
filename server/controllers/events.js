@@ -8,28 +8,6 @@ var Event = require('mongoose').model('Event'),
 
 
 //Get - Round1
-exports.createEvent = function (req, res) {
-	console.log('server createEvent has been called');
-	console.log('chk req obj');
-	console.log(req);
-
-	var event = req.body;
-	event={
-		title: event.title,
-		description:event.description,
-		fromDate:event.fromDate,
-		toDate:event.toDate,
-		where:event.where,
-		hostBy:event.hostBy
-	}
-	var event = new Event(event);
-	event.save(function (err,event) {
-		if (err) return res.json(err);
-		return res.json(event)
-	})
-
-};
-
 exports.getEvent= function (req, res) {
 	Event.findOne({_id:req.params.event_id}).exec(function(err,event){
 		if (err) return res.json(err);
