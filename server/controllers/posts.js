@@ -372,18 +372,6 @@ var _updatePost = function (id, userId, postObj, res) {
 		console.log(post);
 		return res.json(post);
 	});
-
-//	Post.findOneAndUpdate({_id: id, postBy: userId},{ "$set": {"general.0.content": postObj.content,"imageIds": postObj.imageIds }},
-//		function(err, post){
-//			console.log('Post.findOneAndUpdate has been called before error');
-//			console.log('chk post from Post.findOneAndUpdate func before error');
-//			console.log(post)
-//			if (err) return res.json(err);
-//			console.log('chk post from Post.findOneAndUpdate func after error');
-//			console.log(post);
-//			return postFollowByImageUpdate(req,res,post);
-//		});
-
 };
 
 var postFollowByImageUpdate=function(req,res,post){
@@ -562,7 +550,7 @@ exports.updatePost = function (req, res) {
 			if (errors.length > 0) {
 				return res.json({statue: "failed", errors: errors});
 			}
-			//delete postObj.postType;
+			delete postObj.postType;
 			//TODO update htmlstrip
 			//postObj = stripHtmlforFields(postObj, ['general']);
 			//postObj.general = postObj.content;
@@ -573,13 +561,16 @@ exports.updatePost = function (req, res) {
 
 		if (postObj.postType === 'announcement') {
 			console.log('postType of announcement has been met');
+			console.log('chk postObj for announcement post');
+			console.log(postObj);
+
 			var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['announcement']);
 			console.log('chk errors');
 			console.log(errors);
 			if (errors.length > 0) {
 				return res.json({statue: "failed", errors: errors});
 			}
-			//delete postObj.postType;
+			delete postObj.postType;
 			//TODO update htmlstrip
 			//postObj = stripHtmlforFields(postObj, ['announcement']);
 			//postObj.general = postObj.content;

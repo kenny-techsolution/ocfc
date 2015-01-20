@@ -14,17 +14,17 @@
 				.image-comment__links
 					.comment Comment
 					.share Share
-				.image-comment__outputs
+				.image-comment__outputs(ng-repeat='imageComment in imageComments')
 					.image-comment__commentor-img
-						img(ng-src='{{imagePopup.selectedPost.postBy.profileImg}}')
+						img(ng-src='{{imageComment.profileImg}}')
 					.user-info
-						.user-info__user-name {{imagePopup.selectedPost.postBy.fullName}}
-						.user-info__user-comment Comment goes here
+						.user-info__user-name {{imageComment.userId.fullName}}
+						.user-info__user-comment {{imageComment.comment}}
 						.user-info__timestamp	22 hrs
-				.comment-outputs
+				.comment-inputs
 					img(ng-src='{{imagePopup.selectedPost.postBy.profileImg}}')
-					textarea(placeholder='Write a comment...')
-					button Submit
+					textarea(ng-model='imageComment',placeholder='Write a comment...')
+					button(ng-click='addCommentToImage(imageComment)') Submit
 
 
 

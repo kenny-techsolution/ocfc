@@ -98,10 +98,11 @@
   font-size: 11px;
 }
 .image-comment__outputs {
-  position: absolute;
-  top: 90px;
-  width: 323px;
-  height: 47px;
+  position: relative;
+  top: 89px;
+  left: -1px;
+  width: 325px;
+  height: 49px;
   background-color: #e8f3f7;
 }
 .image-comment__commentor-img {
@@ -137,26 +138,26 @@
   width: 35px;
   top: 3px;
 }
-.comment-outputs {
+.comment-inputs {
   position: absolute;
-  top: 486px;
+  top: 455px;
   width: 323px;
 }
-.comment-outputs img {
+.comment-inputs img {
   width: 35px;
   height: 35px;
   position: absolute;
   top: 0px;
   left: 1px;
 }
-.comment-outputs button {
+.comment-inputs button {
   font-size: 10px;
   position: absolute;
   left: 274px;
   top: 5px;
   height: 25px;
 }
-.comment-outputs textarea {
+.comment-inputs textarea {
   margin-left: 43px;
   margin-right: 0px;
   margin-top: 5px;

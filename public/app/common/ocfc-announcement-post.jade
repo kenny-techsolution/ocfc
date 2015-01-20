@@ -8,7 +8,7 @@
 		button.btn.btn-lg.btn-primary.announcement-header__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
 			span.caret
 	.announcement-header__output-edit(ng-show='showEdit')
-		textarea(ng-model='newAnnoucePostContent')
+		textarea(ng-model='newAnnouncePostContent')
 		.announcement-header__options
 			button.btn.btn-lg.btn-primary.announcement-header__options-btn(ng-click='hideEditPost()') Cancel
 			button.btn.btn-lg.btn-primary.announcement-header__options-btn(ng-click='updateEditedPost()')  Done Editing

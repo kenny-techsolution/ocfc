@@ -15,7 +15,7 @@ angular.module('app').directive('ocfcAnnouncementPost', function (IdentitySvc,Co
 
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;
-			$scope.newAnnoucePostContent=$scope.post.announcement[0].content;
+			$scope.newAnnouncePostContent=$scope.post.announcement[0].content;
 
 			$scope.dropdown=[{
 				"text": "Edit",
