@@ -112,24 +112,24 @@
 }
 .event-post-header__output-edit .title {
   position: absolute;
-  bottom: 281px;
+  bottom: 150px;
   height: 22px;
   left: 50px;
-  width: 479px;
+  width: 481px;
 }
 .event-post-header__output-edit .from {
   position: absolute;
-  bottom: 215px;
+  bottom: 131px;
   height: 22px;
   left: 50px;
-  width: 479px;
+  width: 481px;
 }
 .event-post-header__output-edit .to {
   position: absolute;
-  bottom: 153px;
+  bottom: 109px;
   height: 22px;
   left: 41px;
-  width: 487px;
+  width: 490px;
 }
 .event-post-header__output-edit .where {
   position: absolute;

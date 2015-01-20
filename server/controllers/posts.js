@@ -391,7 +391,7 @@ var postFollowByImageUpdate=function(req,res,post){
 	console.log('chk req.body obj');
 	console.log(req.body);
 
-	var imageIds = req.body.imageIds;
+	var imageIds = req.body.imageIds||[];
 
 	//update all images for post.
 	if(imageIds.length > 0){
@@ -411,6 +411,8 @@ var postFollowByImageUpdate=function(req,res,post){
 		});
 	} else {
 		console.log('else condition is met');
+		console.log('chk post obj being returned');
+		console.log(post);
 		return res.json(post);
 	}
 
@@ -634,11 +636,22 @@ exports.updatePost = function (req, res) {
 			delete postObj.postType;
 			Post.findOne({_id: req.params.id, postBy: commFunc.reqSessionUserId(req)}).exec(function (err, post) {
 				if (err) return res.json(err);
-				var event=commFunc.removeInvalidKeys(req.body,['albumId', 'imageIds', 'title',
-															   'description', 'fromDate', 'toDate', 'where', 'banner']);
-				Event.findOneAndUpdate({_id: post.eventId}, event, function (err, NumberUpdated, raw) {
+
+				//TODO need to fix this
+				//var event=commFunc.removeInvalidKeys(req.body,['albumId', 'imageIds', 'title',
+				//											   'description', 'fromDate', 'toDate', 'where', 'banner']);
+				//console.log('chk event obj after key removal');
+				//console.log(event);
+
+				console.log('chk postObj.eventId._id');
+				console.log(postObj.eventId._id);
+
+
+				Event.findOneAndUpdate({_id: postObj.eventId._id}, postObj.eventId, function (err, NumberUpdated, raw) {
+					console.log('Event.findOneAndUpdate has been called before error');
 					if (err) return res.json(err);
-					Post.populate(post, 'eventId', function (err, post) {
+					Post.populate(postObj, 'eventId', function (err, post) {
+						console.log('chk post from Post.populate func after error condition');
 						if (err) return res.json(err);
 						return postFollowByImageUpdate(req,res,post);
 					});

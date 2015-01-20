@@ -111,6 +111,10 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentSv
 					console.log('if condition is met, this post is made by current user');
 
 					var updatePost=angular.copy($scope.post);
+
+					console.log('chk updatePost obj');
+					console.log(updatePost);
+
 					//do not allow update on images
 					delete updatePost.imageIds;
 					updatePost.postType="event";
