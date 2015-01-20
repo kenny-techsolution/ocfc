@@ -30,15 +30,7 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 				}];
 
 			$scope.comment;
-			$scope.postTypeStr=function(){
 
-				if($scope.post.postType===0){
-					return 'General'
-				}else{
-					//default to General
-					return 'General'
-				}
-			};
 
 			//create
 			$scope.createComment=function(){

@@ -27,15 +27,6 @@ angular.module('app').directive('ocfcAnnouncementPost', function (IdentitySvc,Co
 
 			$scope.comment;
 
-			$scope.postTypeStr=function(){
-				if($scope.post.postType===5){
-					return 'Announcement'
-				}else{
-					//default to General
-					return 'General'
-				}
-			};
-
 			//create
 			$scope.createComment=function(){
 				console.log('front-end createComment is being called');

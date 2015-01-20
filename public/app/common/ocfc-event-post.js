@@ -29,15 +29,6 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentSv
 			}];
 
 			$scope.comment;
-			$scope.postTypeStr=function(){
-
-				if($scope.post.postType===4){
-					return 'Event'
-				}else{
-					//default to General
-					return 'General'
-				}
-			};
 
 			//create
 			$scope.createComment=function(){

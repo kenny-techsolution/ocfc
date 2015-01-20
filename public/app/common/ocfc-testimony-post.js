@@ -34,14 +34,6 @@ angular.module('app').directive('ocfcTestimonyPost', function (IdentitySvc,Comme
 
 			$scope.comment;
 
-			$scope.postTypeStr=function(){
-				if($scope.post.postType===1){
-					return 'Testimony'
-				}else{
-					//default to General
-					return 'General'
-				}
-			};
 
 			//create
 			$scope.createComment=function(){

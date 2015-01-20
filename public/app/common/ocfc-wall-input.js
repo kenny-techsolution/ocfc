@@ -111,10 +111,14 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 							$scope.posts.unshift(post);
 
 							//reset content and image(s) to blank
-							$scope.content = '';
-							$scope.title = '';
+							$scope.eventTitle = '';
+							$scope.fromDate = '';
+							$scope.toDate='';
+							$scope.eventWhere='';
+							$scope.content='';
 							$scope.backgroundImgPaths = [];
 							imageArray = [];
+
 						});
 
 						console.log('chk post input within for type Event in ocfc-wall-input, createPost func');

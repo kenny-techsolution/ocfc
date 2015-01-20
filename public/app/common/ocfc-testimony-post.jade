@@ -3,7 +3,7 @@
 	.testimony-header__user-info
 		.testimony-header__user-name {{post.postBy.fullName}}
 		.testimony-header__post-date {{post.createdOn | date}}
-	.testimony-header__post-type {{post.postType | PostTypeStrFilter}}
+	.testimony-header__post-type Testimony
 	.testimony-header__title Title: {{post.testimony[0].title}}
 	.testimony-header__output(ng-show='!showEdit') {{post.testimony[0].content}}
 		button.btn.btn-lg.btn-primary.testimony-header__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
