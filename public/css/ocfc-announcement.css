@@ -41,17 +41,28 @@
   color: #2f2f2f;
 }
 .announcement-widget__output-edit {
-  height: 20px;
+  height: 28px;
   position: relative;
   top: -17px;
 }
+.announcement-widget__output-edit textarea {
+  position: relative;
+  height: 26px;
+  width: 255px;
+}
+.announcement-widget__options {
+  position: relative;
+  top: -31px;
+  width: 173px;
+  left: 260px;
+}
 .announcement-widget__options .cancel {
   position: relative !important;
-  left: 262px !important;
+  left: 15px !important;
   padding: 6px 17px !important;
 }
 .announcement-widget__options .done {
   position: relative !important;
-  left: 262px !important;
+  left: 15px !important;
   padding: 6px 17px !important;
 }

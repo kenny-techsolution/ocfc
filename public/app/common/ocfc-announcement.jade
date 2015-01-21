@@ -3,11 +3,11 @@
 	.announcement-widget__annouce-profile-desc
 		.name {{post.postBy.fullName}}
 		.date {{post.createdOn | date}}
-	.announcement-widget__announcement-description {{post.announcement[0].content}}
-		button.btn.btn-lg.btn-primary.announcement-widget__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
+	.announcement-widget__announcement-description(ng-show='!showEdit') {{post.announcement[0].content}}
+		button(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
 			span.caret
-	.announcement-widget__output-edit
-		textarea(ng-model='newAnnouncePostContent')
+	.announcement-widget__output-edit(ng-show='showEdit')
+		textarea.text-black(ng-model='newAnnouncePostContent')
 		.announcement-widget__options
 			button.btn.btn-lg.btn-primary.cancel(ng-click='hideEditPost()') Cancel
 			button.btn.btn-lg.btn-primary.done(ng-click='updateEditedPost()')  Done Editing
