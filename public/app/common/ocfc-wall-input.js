@@ -241,7 +241,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 					}).success(function (data, status, headers, config) {
 						console.log('chk data obj within onFileSelect');
 						console.log(data);
-						$scope.backgroundImgPaths.push(public_id);
+						$scope.backgroundImgPaths.push(data.public_id);
 						$scope.$apply();
 
 						//call create image
