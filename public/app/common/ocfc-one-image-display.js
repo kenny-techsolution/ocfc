@@ -4,10 +4,9 @@ angular.module('app').directive('ocfcOneImageDisplay', function () {
 		scope: {
 			post:'='
 		},
-		replace: false,
+		replace: true,
 		templateUrl: '/partials/common/ocfc-one-image-display',
 		controller: function ($scope) {
-
 		}
 	};
 });

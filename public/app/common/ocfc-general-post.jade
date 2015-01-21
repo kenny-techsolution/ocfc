@@ -1,29 +1,30 @@
-.general-header
-	img.general-header__profile-icon(ng-src='{{post.postBy.profileImg}}')
-	.general-header__user-info
-		.general-header__user-name {{post.postBy.fullName}}
-		.general-header__post-date {{post.createdOn | date}}
-	.general-header__post-type {{post.postType | PostTypeStrFilter}}
-	.general-header__output(ng-show='!showEdit') {{post.general[0].content}}
-		button.btn.btn-lg.btn-primary.general-header__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
+.general-post
+	.general-post__header
+		img(ng-src='{{post.postBy.profileImg}}')
+		.name {{post.postBy.fullName | capitalize}}
+		.date {{post.createdOn | date}}
+		.type {{post.postType | PostTypeStrFilter}}
+	.general-post__output(ng-show='!showEdit') 開放式辦公室是許多公司採用的工作環境，但最新的研究指出，在開放式辦公室工作的員工，不僅效率不足、生產力較低， {{post.general[0].content}}
+		button.btn.btn-lg.btn-primary.general-post__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
 			span.caret
-	.general-header__output-edit(ng-show='showEdit')
+	.general-post__output-edit(ng-show='showEdit')
 		textarea(ng-model='newGenPostContent')
-		.general-header__options
-			button.btn.btn-lg.btn-primary.general-header__options-btn(ng-click='hideEditPost()') Cancel
-			button.btn.btn-lg.btn-primary.general-header__options-btn(ng-click='updateEditedPost()')  Done Editing
-	.general-header__image-display.row(ng-click='selectPost()')
+		.general-post__options
+			button.btn.btn-lg.btn-primary.general-post__options-btn(ng-click='hideEditPost()') Cancel
+			button.btn.btn-lg.btn-primary.general-post__options-btn(ng-click='updateEditedPost()')  Done Editing
+	.general-post__image-display(ng-click='selectPost()')
 		ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post')
 		ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post')
 		ocfc-three-image-display(ng-if='post.imageIds.length===3',post='post')
 		ocfc-four-image-display(ng-if='post.imageIds.length===4',post='post')
 		ocfc-five-image-display(ng-if='post.imageIds.length===5',post='post')
-	.general-header__comment-output(ng-repeat='comment in post.comments')
+	.general-post__comment-output(ng-repeat='comment in post.comments')
+		.text
+			span.name {{comment.fullName|capitalize}}
+			.date {{comment.createdOn | date}}
+			span.output {{comment.comment}}
 		img(ng-src='{{comment.profileImg}}')
-		.general-header__user-comment-name {{comment.fullName}}
-		.general-header__post-comment-date {{comment.createdOn | date}}
-		.general-header__post-comment-output {{comment.comment}}
-		button.general-header__delete-comment(ng-click='deleteComment(comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
-	.general-header__comment-input
+		//button.general-post__delete-comment(ng-click='deleteComment(comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
+	.general-post__comment-input
 		textarea(placeholder='type your comment here',ng-model='comment')
-	button.general-header__button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment()') Comment
+		button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment()') Comment
