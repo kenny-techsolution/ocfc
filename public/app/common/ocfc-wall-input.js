@@ -13,7 +13,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 			var imageArray = [];
 			var imageObjs = [];
 			$scope.backgroundImgPaths = [];
-
+			$scope.selectedPostType ="General";
 			$scope.postTypes = [
 				{value: 'General', label: 'General'},
 				{value: 'Testimony', label: 'Testimony'},

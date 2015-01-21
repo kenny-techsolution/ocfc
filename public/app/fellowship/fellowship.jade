@@ -39,6 +39,7 @@
 				div Prayer
 				div Question
 				div Event
+			ocfc-wall-input(posts='posts')
 			div.post(ng-repeat='post in posts')
 					ocfc-general-post(ng-if='post.postType ===0',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown')
 					//ocfc-testimony-post(ng-if='post.postType ===1',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown')
