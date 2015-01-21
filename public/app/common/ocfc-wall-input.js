@@ -246,7 +246,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 
 						//call create image
 						console.log('front-end new image creation has been called');
-						var image = new ImageSvc({path: data.url,
+						var image = new ImageSvc({path: data.public_id,
 							album_id: FellowshipDataSvc.fellowship.defaultAlbumId});
 						image.$save(function () {
 							console.log('image has been created');
