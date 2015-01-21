@@ -1,11 +1,29 @@
-.post-msg-box
-	.header
-		img.camera-icon(ng-src='/css/images/camera-logo.png')
-		.share Share
-			img.share-icon(ng-src='/css/images/share-icon.png')
-		.post-type Type
-		.post-type-dropdown
-			select
-				option(value='prayer') Prayer
-		button.post Post
-	textarea.textbox
+.prayer-header
+	img.prayer-header__profile-icon(ng-src='{{post.postBy.profileImg}}')
+	.prayer-header__user-info
+		.prayer-header__user-name {{post.postBy.fullName}}
+		.prayer-header__post-date {{post.createdOn | date}}
+	.prayer-header__post-type Prayer
+	.prayer-header__output(ng-show='!showEdit') {{post.prayer}}
+		button.btn.btn-lg.btn-primary.prayer-header__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
+			span.caret
+	.prayer-header__output-edit(ng-show='showEdit')
+		textarea.post-content(ng-model='newPrayPostContent')
+		.prayer-header__options
+			button.btn.btn-lg.btn-primary.prayer-header__options-btn(ng-click='hideEditPost()') Cancel
+			button.btn.btn-lg.btn-primary.prayer-header__options-btn(ng-click='updateEditedPost()')  Done Editing
+	.prayer-header__image-display.row(ng-click='selectPost()')
+		ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post')
+		ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post')
+		ocfc-three-image-display(ng-if='post.imageIds.length===3',post='post')
+		ocfc-four-image-display(ng-if='post.imageIds.length===4',post='post')
+		ocfc-five-image-display(ng-if='post.imageIds.length===5',post='post')
+	.prayer-header__comment-output(ng-repeat='comment in post.comments')
+		img(ng-src='{{comment.profileImg}}')
+		.prayer-header__user-comment-name {{comment.fullName}}
+		.prayer-header__post-comment-date {{comment.createdOn | date}}
+		.prayer-header__post-comment-output {{comment.comment}}
+		button.prayer-header__delete-comment(ng-click='deleteComment(post,comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
+	.prayer-header__comment-input
+		textarea(placeholder='type your comment here',ng-model='comment')
+	button.prayer-header__button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment(post._id,comment,post.comments)') Comment

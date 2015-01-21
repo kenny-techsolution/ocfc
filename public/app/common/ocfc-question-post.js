@@ -24,18 +24,6 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 
 			$scope.comment;
 
-			$scope.postTypeStr=function(){
-				console.log('chk $scope.post.postType value');
-				console.log($scope.post.postType);
-
-				if($scope.post.postType===2){
-					return 'Question'
-				}else{
-					//default to General
-					return 'General'
-				}
-			};
-
 			//create
 			$scope.createComment=PostCommentSvc.createComment;
 
@@ -110,17 +98,7 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 			};
 
 			//delete comment
-			$scope.deleteComment=function(input){
-				console.log('chk $scope.post');
-				console.log($scope.post);
-
-				var removedComment = CommentSvc.get({postId:$scope.post._id,id:input._id}, function() {
-					removedComment.$delete(function(){
-						console.log('delete callback is called');
-						$scope.post.comments=_.filter($scope.post.comments, function(comment){ return comment._id !== input._id; });
-					});
-				});
-			};
+			$scope.deleteComment=PostCommentSvc.deleteComment;
 
 			$scope.selectPost=function(){
 				console.log('function selectPost called from ocfc-question-post');

@@ -108,17 +108,7 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentSv
 			};
 
 			//delete comment
-			$scope.deleteComment=function(input){
-				console.log('chk $scope.post');
-				console.log($scope.post);
-
-				var removedComment = CommentSvc.get({postId:$scope.post._id,id:input._id}, function() {
-					removedComment.$delete(function(){
-						console.log('delete callback is called');
-						$scope.post.comments=_.filter($scope.post.comments, function(comment){ return comment._id !== input._id; });
-					});
-				});
-			};
+			$scope.deleteComment=PostCommentSvc.deleteComment;
 
 			$scope.selectPost=function(){
 				console.log('function selectPost called from ocfc-event-post');
