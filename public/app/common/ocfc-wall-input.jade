@@ -18,6 +18,6 @@
 	textarea.wall-header__textbox(ng-model='content')
 	.wall-img.row
 		.wall-img__image-section(ng-repeat='backgroundImgPath in backgroundImgPaths')
-			img.wall-img__images(ng-src='{{backgroundImgPath}}')
+			img.wall-img__images(ng-src='https://res.cloudinary.com/ocfc/image/upload/{{backgroundImgPath}}')
 			button.wall-img__image-delete(ng-click='deleteImage($index,backgroundImgPath)') X
 

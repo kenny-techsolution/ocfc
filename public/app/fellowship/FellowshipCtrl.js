@@ -33,9 +33,6 @@ angular.module('app').controller('FellowshipCtrl', function ($scope,PostSvc,Fell
 		console.log(newVal);
 	});
 
-	//console.log('chk $scope.imagePopup.isPopupOpen on FellowshipCtrl');
-	//console.log($scope.imagePopup.isPopupOpen);
-
 	$scope.comingAnnouncements = function(post){
 		var currDate=new Date();
 		var announcementDate=new Date(post.createdOn);
@@ -45,6 +42,14 @@ angular.module('app').controller('FellowshipCtrl', function ($scope,PostSvc,Fell
 
 		return (announcementPostType===5&&onSameMonth&&(btw0And7Days));
 	};
+
+	$scope.dropdown=[{
+		"text": "Edit",
+		"click": "editPost()"
+	},{
+		"text": "Delete",
+		"click": "deletePost()"
+	}];
 
 });
 

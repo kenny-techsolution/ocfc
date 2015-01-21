@@ -97,17 +97,17 @@ angular.module('app').directive('ocfcFullImageViewer', function (IdentitySvc, Co
 
 				//get image data here
 				//app.get('/api/albums/:album_id/images/:image_id', images.getImage);
-				var getImageObj=ImageSvc.get({image_id: $scope.selectedImageId,
-					album_id: FellowshipDataSvc.fellowship.defaultAlbumId}, function () {
-					console.log('front-end post has been called to grab a getImageObj from server');
-					console.log('chk getImageObj');
-					console.log(getImageObj);
-
-					$scope.imageComments=getImageObj.comments;
-					console.log('chk $scope.imageComments array');
-					console.log($scope.imageComments);
-
-				});
+//				var getImageObj=ImageSvc.get({image_id: $scope.selectedImageId,
+//					album_id: FellowshipDataSvc.fellowship.defaultAlbumId}, function () {
+//					console.log('front-end post has been called to grab a getImageObj from server');
+//					console.log('chk getImageObj');
+//					console.log(getImageObj);
+//
+//					$scope.imageComments=getImageObj.comments;
+//					console.log('chk $scope.imageComments array');
+//					console.log($scope.imageComments);
+//
+//				});
 
 
 				$scope.addCommentToImage = function (imageComment) {

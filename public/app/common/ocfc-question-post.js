@@ -1,11 +1,12 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,CommentSvc,_,PostSvc) {
+angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,CommentSvc,_,PostSvc,PostCommentSvc) {
 	return{
 		restrict: 'E',
 		scope: {
 			post:'=',
 			imagePopup:'=',
-			posts:'='
+			posts:'=',
+			dropdown:'='
 		},
 		templateUrl: '/partials/common/ocfc-question-post',
 		controller: function ($scope) {
@@ -20,15 +21,6 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;
 			$scope.newQuestPostContent=$scope.post.question;
-
-
-			$scope.dropdown=[{
-				"text": "Edit",
-				"click": "editPost()"
-			},{
-				"text": "Delete",
-				"click": "deletePost()"
-			}];
 
 			$scope.comment;
 
@@ -45,22 +37,7 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 			};
 
 			//create
-			$scope.createComment=function(){
-				console.log('front-end createComment is being called');
-				var comment=new CommentSvc({userId:IdentitySvc.currentUser._id,
-					post_id:$scope.post._id,
-					comment:$scope.comment,
-					fullName:IdentitySvc.currentUser.fullName});
-
-				comment.$save(function(){
-					console.log('comment has been saved');
-					$scope.post.comments.push(comment);
-
-					console.log('chk $scope.comments');
-					console.log($scope.comments);
-
-				});
-			};
+			$scope.createComment=PostCommentSvc.createComment;
 
 			//edit post
 			$scope.editPost=function(){
