@@ -24,7 +24,7 @@
 			.date {{comment.createdOn | date}}
 			span.output {{comment.comment}}
 		img(ng-src='{{comment.profileImg}}')
-		//button.general-post__delete-comment(ng-click='deleteComment(comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
+		button.general-post__delete-comment(ng-click='deleteComment(post,comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
 	.general-post__comment-input
 		textarea(placeholder='type your comment here',ng-model='comment')
 		button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment(post._id,comment,post.comments)') Comment

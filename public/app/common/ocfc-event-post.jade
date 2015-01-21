@@ -32,7 +32,7 @@
 		.event-post-header__user-comment-name {{comment.fullName}}
 		.event-post-header__post-comment-date {{comment.createdOn | date}}
 		.event-post-header__post-comment-output {{comment.comment}}
-		button.event-post-header__delete-comment(ng-click='deleteComment(comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
+		button.event-post-header__delete-comment(ng-click='deleteComment(post,comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
 	.event-post-header__comment-input
 		textarea(placeholder='type your comment here',ng-model='comment')
 	button.event-post-header__button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment(post._id,comment,post.comments)') Comment

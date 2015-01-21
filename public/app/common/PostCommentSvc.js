@@ -1,4 +1,4 @@
-angular.module('app').service('PostCommentSvc', function (CommentSvc,IdentitySvc) {
+angular.module('app').service('PostCommentSvc', function (CommentSvc,IdentitySvc,PostSvc) {
 	return{
 		createComment: function(postId,newComment,postComments){
 			console.log('front-end PostCommentSvc is being called');
@@ -15,9 +15,21 @@ angular.module('app').service('PostCommentSvc', function (CommentSvc,IdentitySvc
 				console.log('chk postComments');
 				console.log(postComments);
 			});
+		},
+
+		deleteComment:function(post,comment){
+			console.log('post');
+			console.log(post);
+
+			var removedComment = CommentSvc.get({postId: post._id, id: comment._id}, function () {
+				removedComment.$delete(function () {
+					console.log('delete callback is called');
+					post.comments = _.filter(post.comments, function (commentObj) {
+						return commentObj._id !== comment._id;
+					});
+				});
+			});
 		}
-
-
 	}
 
 });

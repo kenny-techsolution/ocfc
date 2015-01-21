@@ -3,7 +3,7 @@
 	.question-header__user-info
 		.question-header__user-name {{post.postBy.fullName}}
 		.question-header__post-date {{post.createdOn | date}}
-	.question-header__post-type {{post.postType | PostTypeStrFilter}}
+	.question-header__post-type Question
 	.question-header__output(ng-show='!showEdit') {{post.question}}
 		button.btn.btn-lg.btn-primary.question-header__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
 			span.caret
@@ -23,7 +23,7 @@
 		.question-header__user-comment-name {{comment.fullName}}
 		.question-header__post-comment-date {{comment.createdOn | date}}
 		.question-header__post-comment-output {{comment.comment}}
-		button.question-header__delete-comment(ng-click='deleteComment(comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
+		button.question-header__delete-comment(ng-click='deleteComment(post,comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
 	.question-header__comment-input
 		textarea(placeholder='type your comment here',ng-model='comment')
 	button.question-header__button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment(post._id,comment,post.comments)') Comment
