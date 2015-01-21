@@ -60,17 +60,11 @@ angular.module('app').directive('ocfcAnnouncementPost', function (IdentitySvc, C
 				$scope.showEdit = false;
 			};
 
-			//console.log('chk $scope.post obj');
-			//console.log($scope.post);
-
 			$scope.updateEditedPost = function () {
 				//console.log('chk $scope.post obj');
 				//console.log($scope.post);
 				console.log('updateEditedPost function called');
 				$scope.post.announcement[0].content = $scope.newAnnouncePostContent;
-				//$scope.post.postType='general';
-				//console.log('chk $scope.post.general[0].content obj');
-				//console.log($scope.post.general[0].content);
 
 				//cannot update post other than your own
 				if ($scope.post.postBy._id === IdentitySvc.currentUser._id) {
@@ -105,6 +99,7 @@ angular.module('app').directive('ocfcAnnouncementPost', function (IdentitySvc, C
 					});
 				});
 			};
+
 
 			$scope.selectPost = function () {
 				console.log('function selectPost called from ocfc-announcement-post');

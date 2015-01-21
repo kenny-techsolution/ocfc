@@ -15,6 +15,8 @@ angular.module('app').filter('PostTypeStrFilter', function () {
 			output='Prayer';
 		}else if (input===4){
 			output='Event';
+		}else if (input===5){
+			output='Announcement';
 		}
 		return output;
 	};

@@ -1,4 +1,4 @@
-angular.module('app').service('PostCommentSvc', function (CommentSvc,IdentitySvc) {
+angular.module('app').service('PostCommentSvc', function (CommentSvc,IdentitySvc,PostSvc) {
 	return{
 		createComment: function(postId,newComment,postComments){
 			console.log('front-end PostCommentSvc is being called');
@@ -16,6 +16,7 @@ angular.module('app').service('PostCommentSvc', function (CommentSvc,IdentitySvc
 				console.log(postComments);
 			});
 		}
+
 
 
 	}
