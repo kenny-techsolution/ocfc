@@ -1,11 +1,12 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcTestimonyPost', function (IdentitySvc,CommentSvc,_,PostSvc) {
+angular.module('app').directive('ocfcTestimonyPost', function (IdentitySvc,CommentSvc,_,PostSvc,PostCommentSvc) {
 	return{
 		restrict: 'E',
 		scope: {
 			post:'=',
 			imagePopup:'=',
-			posts:'='
+			posts:'=',
+			dropdown:'='
 		},
 		templateUrl: '/partials/common/ocfc-testimony-post',
 		controller: function ($scope) {
@@ -15,51 +16,19 @@ angular.module('app').directive('ocfcTestimonyPost', function (IdentitySvc,Comme
 			console.log('chk on $scope.post obj for testimony');
 			console.log($scope.post);
 
+			console.log('chk $scope.post.postType value');
+			console.log($scope.post.postType);
+
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;
 			$scope.newTestPostTitle=$scope.post.testimony[0].title;
 			$scope.newTestPostContent=$scope.post.testimony[0].content;
 
-
-			$scope.dropdown=[{
-				"text": "Edit",
-				"click": "editPost()"
-			},{
-				"text": "Delete",
-				"click": "deletePost()"
-			}];
-
 			$scope.comment;
 
-			$scope.postTypeStr=function(){
-				console.log('chk $scope.postType value');
-				console.log($scope.postType);
-
-				if($scope.postType===1){
-					return 'Testimony'
-				}else{
-					//default to General
-					return 'General'
-				}
-			};
 
 			//create
-			$scope.createComment=function(){
-				console.log('front-end createComment is being called');
-				var comment=new CommentSvc({userId:IdentitySvc.currentUser._id,
-					post_id:$scope.post._id,
-					comment:$scope.comment,
-					fullName:IdentitySvc.currentUser.fullName});
-
-				comment.$save(function(){
-					console.log('comment has been saved');
-					$scope.post.comments.push(comment);
-
-					console.log('chk $scope.comments');
-					console.log($scope.comments);
-
-				});
-			};
+			$scope.createComment=PostCommentSvc.createComment;
 
 			//edit post
 			$scope.editPost=function(){

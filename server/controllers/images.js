@@ -15,7 +15,7 @@ exports.getImage= function (req, res) {
 	console.log('chk req.params');
 	console.log(req.params);
 
-	Image.findOne({_id:req.params.image_id}).exec(function(err,image){
+	Image.findOne({_id:req.params.image_id}).populate('comments.userId').exec(function(err,image){
 		if (err) return res.json(err);
 		console.log('chk image');
 		console.log(image);
@@ -26,6 +26,9 @@ exports.getImage= function (req, res) {
 
 //Put - Round1
 exports.updateImage= function (req, res) {
+	console.log('chk req body');
+	console.log(req.body);
+
 	var image=commFunc.removeInvalidKeys(req.body,['path','caption','comments']);
 
 	Image.update({ _id:req.params.image_id }, image, { multi: true }, function (err, numberAffected, raw) {

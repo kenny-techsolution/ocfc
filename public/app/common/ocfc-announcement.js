@@ -1,16 +1,16 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcAnnouncement', function ($routeParams) {
+angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc,CommentSvc,_,PostSvc) {
 	return{
 		restrict: 'E',
-		scope: true,
+		scope: {
+			post:'=',
+			imagePopup:'=',
+			posts:'='
+		},
 		templateUrl: '/partials/common/ocfc-announcement',
 		controller: function ($scope) {
+			console.log('ocfcAnnouncement has been called');
 
-//			console.log('chk $routeParam');
-//			console.log($routeParams);
-//
-//			console.log('chk $scope.FellowshipDataSvc');
-//			console.log($scope.FellowshipDataSvc);
 
 
 		}

@@ -11,3 +11,20 @@
 				.image-comment__user-info
 					.image-comment__user-name {{imagePopup.selectedPost.postBy.fullName}}
 					.image-comment__post-date {{imagePopup.selectedPost.createdOn | date}}
+				.image-comment__links
+					.comment Comment
+					.share Share
+				.image-comment__outputs(ng-repeat='imageComment in imageComments')
+					.image-comment__commentor-img
+						img(ng-src='{{imageComment.profileImg}}')
+					.user-info
+						.user-info__user-name {{imageComment.userId.fullName}}
+						.user-info__user-comment {{imageComment.comment}}
+						.user-info__timestamp	22 hrs
+				.comment-inputs
+					img(ng-src='{{imagePopup.selectedPost.postBy.profileImg}}')
+					textarea(ng-model='imageComment',placeholder='Write a comment...')
+					button(ng-click='addCommentToImage(imageComment)') Submit
+
+
+

@@ -7,12 +7,16 @@ var commentSchema=require('./Comment').commentSchema;
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var testimonySchema = mongoose.Schema({
-	title:{type: String, Required:'(title) is required!',index: false, unique: false,lowercase: true},
-	content: {type: String, Required:'(content) is required!',index: false, unique: false,lowercase: true}
+	title:{type: String, Required:'(title) is required!',index: false, unique: false},
+	content: {type: String, Required:'(content) is required!',index: false, unique: false}
 });
 
 var generalSchema = mongoose.Schema({
-	content:{type: String, Required:'(content) is required!',index: false, unique: false,lowercase: true}
+	content:{type: String, Required:'(general content) is required!',index: false, unique: false}
+});
+
+var announcementSchema = mongoose.Schema({
+	content:{type: String, Required:'(announcement content) is required!',index: false, unique: false}
 });
 
 var postSchema = mongoose.Schema({
@@ -27,6 +31,7 @@ var postSchema = mongoose.Schema({
 	],
 	testimony:		[testimonySchema], //mongoose only allows array for subDocument to be included.
 	general:		[generalSchema],
+	announcement:	[announcementSchema],
 	question:		{type: String, index: false, unique: false},
 	prayer:			{type: String, index: false, unique: false},
 	eventId:		{type: ObjectId, ref:'Event', index: false, unique: false},
@@ -38,7 +43,7 @@ var postSchema = mongoose.Schema({
 	updatedOn:		{type: Date,index: true, unique: false, default: Date.now}
 });
 
-var postTypeArray = ['general','testimony','question','prayer','event'];
+var postTypeArray = ['general','testimony','question','prayer','event','announcement'];
 
 function postTypeGetter (postType) {
 	console.log("post type postTypeGetter****************************************************************************");

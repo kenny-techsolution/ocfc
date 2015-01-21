@@ -84,9 +84,13 @@ exports.createImage= function (req, res) {
 };
 //Get - Round1
 exports.queryImages= function (req, res) {
+	console.log('server queryImages has been called');
+	console.log('chk req.query');
+	console.log(req.query);
+
 	var validKeys=commFunc.removeInvalidKeys(req.query,['name','description']);
 	Album.find(validKeys).exec(function (err, queryAlbumImgs) {
 		if (err) return res.json(err);
-		return res.json({status:"success",queryAlbumImgs: _.pluck(queryAlbumImgs,'imageIds')});
+		return res.json(_.pluck(queryAlbumImgs,'imageIds'));
 	});
 };

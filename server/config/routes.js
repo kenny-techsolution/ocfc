@@ -105,6 +105,7 @@ module.exports = function (app, io) {
 
 	app.post('/api/calendars/:calendar_id/events', calendars.createEventToCalendar);
 	app.get('/api/calendars/:calendar_id/events', calendars.queryEventsFromCalendar);
+
 	app.get('/api/events/:event_id', events.getEvent);
 	app.put('/api/events/:event_id', events.updateEvent);
 	app.delete('/api/events/:event_id', events.deleteEvent);

@@ -1,11 +1,38 @@
-.post-msg-box
-	.header
-		img.camera-icon(ng-src='/css/images/camera-logo.png')
-		.share Share
-			img.share-icon(ng-src='/css/images/share-icon.png')
-		.post-type Type
-		.post-type-dropdown
-			select
-				option(value='event') Event
-		button.post Post
-	textarea.textbox
+.event-post-header
+	img.event-post-header__profile-icon(ng-src='{{post.postBy.profileImg}}')
+	.event-post-header__user-info
+		.event-post-header__user-name {{post.postBy.fullName}}
+		.event-post-header__post-date {{post.createdOn | date}}
+	.event-post-header__post-type Event
+	.event-post-header__title Title: {{post.eventId.title}}
+	.event-post-header__fromDate From: {{post.eventId.fromDate | date}}
+	.event-post-header__toDate To: {{post.eventId.toDate | date}}
+	.event-post-header__where Location: {{post.eventId.where}}
+	.event-post-header__hostBy Host By: {{post.postBy.fullName}}
+	.event-post-header__output(ng-show='!showEdit') {{post.eventId.description}}
+		button.btn.btn-lg.btn-primary.event-post-header__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
+			span.caret
+	.event-post-header__output-edit(ng-show='showEdit')
+		textarea.title(ng-model='newEventPostTitle')
+		textarea.from(ng-model='newEventPostFromDate')
+		textarea.to(ng-model='newEventPostToDate')
+		textarea.where(ng-model='newEventPostWhere')
+		textarea.content(ng-model='newEventPostContent')
+		.event-post-header__options
+			button.btn.btn-lg.btn-primary.event-post-header__options-btn(ng-click='hideEditPost()') Cancel
+			button.btn.btn-lg.btn-primary.event-post-header__options-btn(ng-click='updateEditedPost()')  Done Editing
+	.event-post-header__image-display.row(ng-click='selectPost()')
+		ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post')
+		ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post')
+		ocfc-three-image-display(ng-if='post.imageIds.length===3',post='post')
+		ocfc-four-image-display(ng-if='post.imageIds.length===4',post='post')
+		ocfc-five-image-display(ng-if='post.imageIds.length===5',post='post')
+	.event-post-header__comment-output(ng-repeat='comment in post.comments')
+		img(ng-src='{{comment.profileImg}}')
+		.event-post-header__user-comment-name {{comment.fullName}}
+		.event-post-header__post-comment-date {{comment.createdOn | date}}
+		.event-post-header__post-comment-output {{comment.comment}}
+		button.event-post-header__delete-comment(ng-click='deleteComment(comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
+	.event-post-header__comment-input
+		textarea(placeholder='type your comment here',ng-model='comment')
+	button.event-post-header__button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment(post._id,comment,post.comments)') Comment

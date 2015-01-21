@@ -25,8 +25,8 @@
   background-color: #fff;
 }
 .image-comment img {
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   position: absolute;
   top: 10px;
   left: 10px;
@@ -44,7 +44,7 @@
   width: 240px;
   right: 1px;
   bottom: 22px;
-  font-size: 12px;
+  font-size: 13px;
 }
 .image-comment__post-date {
   height: 20px;
@@ -82,4 +82,85 @@
   height: 50px;
   text-align: center;
   color: #fff;
+}
+.image-comment__links {
+  position: absolute;
+  top: 61px;
+  width: 323px;
+}
+.image-comment__links .comment {
+  display: inline-block;
+  margin-right: 5px;
+  font-size: 11px;
+}
+.image-comment__links .share {
+  display: inline-block;
+  font-size: 11px;
+}
+.image-comment__outputs {
+  position: relative;
+  top: 89px;
+  left: -1px;
+  width: 325px;
+  height: 49px;
+  background-color: #e8f3f7;
+}
+.image-comment__commentor-img {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+.image-comment__commentor-img img {
+  width: 35px;
+  height: 35px;
+  left: -1px;
+  top: -1px;
+}
+.user-info__user-name {
+  position: absolute;
+  left: 45px;
+  top: 5px;
+  font-size: 11px;
+  font-weight: 800;
+}
+.user-info__user-comment {
+  position: absolute;
+  top: 5px;
+  left: 95px;
+  font-size: 11px;
+}
+.user-info__timestamp {
+  position: absolute;
+  left: 287px;
+  font-size: 10px;
+  width: 35px;
+  top: 3px;
+}
+.comment-inputs {
+  position: absolute;
+  top: 455px;
+  width: 323px;
+}
+.comment-inputs img {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 0px;
+  left: 1px;
+}
+.comment-inputs button {
+  font-size: 10px;
+  position: absolute;
+  left: 274px;
+  top: 5px;
+  height: 25px;
+}
+.comment-inputs textarea {
+  margin-left: 43px;
+  margin-right: 0px;
+  margin-top: 5px;
+  width: 278px;
+  height: 25px;
 }

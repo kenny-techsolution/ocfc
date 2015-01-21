@@ -27,4 +27,5 @@
 		//button.general-post__delete-comment(ng-click='deleteComment(comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
 	.general-post__comment-input
 		textarea(placeholder='type your comment here',ng-model='comment')
-		button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment()') Comment
+		button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment(post._id,comment,post.comments)') Comment
+

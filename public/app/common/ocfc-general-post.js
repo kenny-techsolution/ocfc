@@ -1,16 +1,19 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,CommentSvc,_,PostSvc) {
+angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,CommentSvc,_,PostSvc,PostCommentSvc) {
 	return{
 		restrict: 'E',
 		scope: {
 			post:'=',
 			imagePopup:'=',
-			posts:'='
+			posts:'=',
+			dropdown:'='
 		},
 		templateUrl: '/partials/common/ocfc-general-post',
 		controller: function ($scope) {
 
 			console.log('ocfcGeneralPost has been called');
+			console.log('chk $scope.post.postType value');
+			console.log($scope.post.postType);
 
 			//console.log('chk $scope.imagePopup ');
 			//console.log($scope.imagePopup);
@@ -19,42 +22,11 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 			$scope.showEdit=false;
 			$scope.newGenPostContent=$scope.post.general[0].content;
 
-			$scope.dropdown=[{
-				"text": "Edit",
-				"click": "editPost()"
-			},{
-				"text": "Delete",
-				"click": "deletePost()"
-				}];
-
 			$scope.comment;
-			$scope.postTypeStr=function(){
 
-				if($scope.postType===0){
-					return 'General'
-				}else{
-					//default to General
-					return 'General'
-				}
-			};
 
 			//create
-			$scope.createComment=function(){
-				console.log('front-end createComment is being called');
-				var comment=new CommentSvc({userId:IdentitySvc.currentUser._id,
-					post_id:$scope.post._id,
-					comment:$scope.comment,
-					fullName:IdentitySvc.currentUser.fullName});
-
-				comment.$save(function(){
-					console.log('comment has been saved');
-					$scope.post.comments.push(comment);
-
-					console.log('chk $scope.comments');
-					console.log($scope.comments);
-
-				});
-			};
+			$scope.createComment=PostCommentSvc.createComment;
 
 			//edit post
 			$scope.editPost=function(){
@@ -113,7 +85,7 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 					//do not allow update on images
 					delete updatePost.imageIds;
 					updatePost.postType="general";
-					
+
 					//update post obj on the server side
 					PostSvc.update({id:updatePost._id},updatePost,function(){
 						console.log('front-end PostSvc.update has completed');

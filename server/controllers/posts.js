@@ -40,6 +40,14 @@ var savePost = function (post, res) {
 				console.log(post);
 				return res.json(post);
 			});
+		}else if (post.postType==='announcement'){
+			console.log('announcement post type has been created');
+			Post.populate(post, 'eventId announcement postBy imageIds', function (err, post) {
+				if (err) return res.json(err);
+				console.log('chk final post obj');
+				console.log(post);
+				return res.json(post);
+			});
 		}else if (post.postType==='testimony'){
 			console.log('testimony post type has been created');
 			Post.populate(post, 'eventId testimony postBy imageIds', function (err, post) {
@@ -68,6 +76,14 @@ var savePost = function (post, res) {
 		}else if (post.postType==='event'){
 			console.log('event post type has been created');
 			Post.populate(post, 'eventId event postBy imageIds', function (err, post) {
+				if (err) return res.json(err);
+				console.log('chk final post obj');
+				console.log(post);
+				return res.json(post);
+			});
+		}else if (post.postType==='announcement'){
+			console.log('announcement post type has been created');
+			Post.populate(post, 'eventId announcement postBy imageIds', function (err, post) {
 				if (err) return res.json(err);
 				console.log('chk final post obj');
 				console.log(post);
@@ -241,11 +257,15 @@ var createTestimonyPost = function (postObj, req, res) {
 };
 
 var createEventPost = function (postObj, req, res) {
-	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'title', 'description', 'fromDate', 'toDate', 'where', 'hostBy', 'invitees']);
-	if (errors.length > 0) {
-		return res.json({statue: "failed", errors: errors});
-	}
-	postObj = stripHtmlforFields(postObj, ['title', 'description', 'where']);
+	//var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'title', 'description', 'fromDate', 'toDate', 'where', 'hostBy', 'invitees']);
+	//if (errors.length > 0) {
+	//	return res.json({statue: "failed", errors: errors});
+	//}
+	//postObj = stripHtmlforFields(postObj, ['title', 'description', 'where']);
+
+	console.log('chk createEventPost, postObj obj');
+	console.log(postObj);
+
 	//TODO: perform image validation.
 	event = new Event({
 		title: postObj.title,
@@ -254,11 +274,12 @@ var createEventPost = function (postObj, req, res) {
 		fromDate: postObj.fromDate,
 		toDate: postObj.toDate,
 		where: postObj.where,
-		hostBy: postObj.hostBy,
-		invitees: postObj.invitees
+		hostBy: postObj.hostBy
+		//invitees: postObj.invitees
 	});
 	event.save(function (err) {
 		if (err) return res.json(err);
+		console.log('event has been created');
 		var imageIds = postObj.imageIds;
 
 		var post = new Post({
@@ -286,6 +307,51 @@ var createEventPost = function (postObj, req, res) {
 		}
 	});
 };
+//Added on 11-19-2015
+var createAnnouncementPost = function (postObj, req, res) {
+	console.log('server createAnnouncementPost has been called');
+	console.log('chk postObj');
+	console.log(postObj);
+
+	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'announcement']);
+	console.log('chk errors obj within createAnnouncementPost');
+	console.log(errors);
+
+	if (errors.length > 0) {
+		console.log('errors.length > 0');
+		return res.json({statue: "failed", errors: errors});
+	}
+	//TODO need to implement stripHTML
+	//postObj = stripHtmlforFields(postObj, ['announcement']);
+	//	console.log('chk postObj after stripHtmlforFields');
+	//	console.log(postObj);
+
+	//TODO: perform image validation.
+
+	postObj.postBy = commFunc.reqSessionUserId(req);
+	var post = new Post(postObj);
+
+	console.log('chk post obj after new Post creation');
+	console.log(post);
+
+	//if undefined then set to empty array
+	var imageIds = postObj.imageIds||[];
+
+	//update all images for post.
+	if (imageIds.length > 0) {
+		async.forEachLimit(imageIds, 3, function (imageId, callback) {
+			Image.findByIdAndUpdate(imageId, {used: true}, function (err) {
+				if (err) return callback(err)
+				callback();
+			});
+		}, function (err) {
+			if (err) return res.json(err);
+			return savePost(post, res);
+		});
+	} else {
+		return savePost(post, res);
+	}
+};
 
 var _updatePost = function (id, userId, postObj, res) {
 	console.log('server _updatePost has been called');
@@ -306,18 +372,6 @@ var _updatePost = function (id, userId, postObj, res) {
 		console.log(post);
 		return res.json(post);
 	});
-
-//	Post.findOneAndUpdate({_id: id, postBy: userId},{ "$set": {"general.0.content": postObj.content,"imageIds": postObj.imageIds }},
-//		function(err, post){
-//			console.log('Post.findOneAndUpdate has been called before error');
-//			console.log('chk post from Post.findOneAndUpdate func before error');
-//			console.log(post)
-//			if (err) return res.json(err);
-//			console.log('chk post from Post.findOneAndUpdate func after error');
-//			console.log(post);
-//			return postFollowByImageUpdate(req,res,post);
-//		});
-
 };
 
 var postFollowByImageUpdate=function(req,res,post){
@@ -325,7 +379,7 @@ var postFollowByImageUpdate=function(req,res,post){
 	console.log('chk req.body obj');
 	console.log(req.body);
 
-	var imageIds = req.body.imageIds;
+	var imageIds = req.body.imageIds||[];
 
 	//update all images for post.
 	if(imageIds.length > 0){
@@ -345,6 +399,8 @@ var postFollowByImageUpdate=function(req,res,post){
 		});
 	} else {
 		console.log('else condition is met');
+		console.log('chk post obj being returned');
+		console.log(post);
 		return res.json(post);
 	}
 
@@ -377,7 +433,7 @@ exports.createPost = function (req, res) {
 
 	postObj = deleteKey(postObj, ['comments', 'updatedOn', 'postBy']);
 
-	//var postTypeArray = ['general','testimony','question','prayer','event'];
+	//var postTypeArray = ['general','testimony','question','prayer','event','announcement'];
 	if (_.has(postObj, 'postType')) {
 		if (postObj.postType === 'question') {
 			console.log('question postType is met');
@@ -398,6 +454,10 @@ exports.createPost = function (req, res) {
 		if (postObj.postType === 'event') {
 			console.log('event postType is met');
 			return createEventPost(postObj, req, res);
+		}
+		if (postObj.postType === 'announcement') {
+			console.log('announcement postType is met');
+			return createAnnouncementPost(postObj, req, res);
 		}
 	}
 };
@@ -458,9 +518,9 @@ exports.queryPost = function (req, res) {
 	console.log(whereClause);
 	//01.13.2015 added to populate imageIds
 	//01.14.2015 added sort({createdOn: 'descending'})
-	Post.find(condition).sort({createdOn: 'descending'}).where(whereClause).populate('postBy imageIds').exec(function (err, posts) {
+	Post.find(condition).sort({createdOn: 'descending'}).where(whereClause).populate('postBy imageIds eventId eventId.hostBy').exec(function (err, posts) {
 		console.log('server Post.find has been called within queryPost func');
-		console.log('chk posts arrary');
+		console.log('chk posts array');
 		console.log(posts);
 		if (err) return res.json(err);
 		return res.json(posts);
@@ -490,9 +550,29 @@ exports.updatePost = function (req, res) {
 			if (errors.length > 0) {
 				return res.json({statue: "failed", errors: errors});
 			}
-			//delete postObj.postType;
+			delete postObj.postType;
 			//TODO update htmlstrip
 			//postObj = stripHtmlforFields(postObj, ['general']);
+			//postObj.general = postObj.content;
+			postObj.updatedOn = new Date();
+
+			return _updatePost(req.params.id, commFunc.reqSessionUserId(req), postObj, res);
+		}
+
+		if (postObj.postType === 'announcement') {
+			console.log('postType of announcement has been met');
+			console.log('chk postObj for announcement post');
+			console.log(postObj);
+
+			var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['announcement']);
+			console.log('chk errors');
+			console.log(errors);
+			if (errors.length > 0) {
+				return res.json({statue: "failed", errors: errors});
+			}
+			delete postObj.postType;
+			//TODO update htmlstrip
+			//postObj = stripHtmlforFields(postObj, ['announcement']);
 			//postObj.general = postObj.content;
 			postObj.updatedOn = new Date();
 
@@ -547,11 +627,22 @@ exports.updatePost = function (req, res) {
 			delete postObj.postType;
 			Post.findOne({_id: req.params.id, postBy: commFunc.reqSessionUserId(req)}).exec(function (err, post) {
 				if (err) return res.json(err);
-				var event=commFunc.removeInvalidKeys(req.body,['albumId', 'imageIds', 'title',
-															   'description', 'fromDate', 'toDate', 'where', 'banner']);
-				Event.findOneAndUpdate({_id: post.eventId}, event, function (err, NumberUpdated, raw) {
+
+				//TODO need to fix this
+				//var event=commFunc.removeInvalidKeys(req.body,['albumId', 'imageIds', 'title',
+				//											   'description', 'fromDate', 'toDate', 'where', 'banner']);
+				//console.log('chk event obj after key removal');
+				//console.log(event);
+
+				console.log('chk postObj.eventId._id');
+				console.log(postObj.eventId._id);
+
+
+				Event.findOneAndUpdate({_id: postObj.eventId._id}, postObj.eventId, function (err, NumberUpdated, raw) {
+					console.log('Event.findOneAndUpdate has been called before error');
 					if (err) return res.json(err);
-					Post.populate(post, 'eventId general testimony', function (err, post) {
+					Post.populate(postObj, 'eventId', function (err, post) {
+						console.log('chk post from Post.populate func after error condition');
 						if (err) return res.json(err);
 						return postFollowByImageUpdate(req,res,post);
 					});
