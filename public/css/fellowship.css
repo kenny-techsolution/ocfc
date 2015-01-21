@@ -6,28 +6,35 @@
   padding-right: 0px;
   padding-top: 60px;
 }
-#fellowship .container,
-#fellowship .widget-title-wo-link {
-  margin-top: 5px;
+.tool-bar {
+  height: 30px;
+  background-color: #2d2d2d;
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+.info-section {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.wall-section {
+  height: 100px;
 }
 .fellow-banner {
   position: relative;
-  width: 980px;
-  height: 300px;
+  width: 100%;
   border: 1px solid #fff;
   border-right: none;
   border-top: none;
 }
-.fellow-banner__group-pic {
-  height: 274px;
-  padding-left: 0px;
-  padding-right: 0px;
+.fellow-banner__background {
+  width: 100%;
+  height: 243px;
   overflow: hidden;
 }
-.fellow-banner__group-pic img {
-  margin-top: -150px;
-  width: 100%;
-  height: auto;
+.fellow-banner__background>img {
+  width: 132%;
+  margin-top: -88px;
+  margin-left: -50px;
 }
 .fellow-banner__overlay {
   background-color: #fff;
@@ -39,126 +46,58 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
-.fellow-banner__summary {
-  width: 100%;
-  height: 80px;
-  bottom: 0px;
-  position: absolute;
-  padding-top: 10px;
-  padding-bottom: 20px;
-}
-.fellow-banner__title-section {
-  display: inline-block;
-  width: 70%;
-  height: 60px;
-  padding-left: 40px;
-  padding-right: 20px;
-  vertical-align: top;
-}
 .fellow-banner__title {
-  font-size: 28px;
-  color: #000;
+  position: relative;
+  background-color: #2d2d2d;
+  height: 93px;
+  color: #fff;
 }
-.fellow-banner__slogan {
-  font-size: 13px;
-  color: #000;
-}
-.fellow-banner__admin-section {
-  display: inline-block;
-  width: 30%;
-  height: 60px;
-  vertical-align: top;
-  padding-left: 10px;
-}
-.fellow-banner__profile-img {
-  display: inline-block;
-  vertical-align: top;
-}
-.fellow-banner__profile-img img {
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
-  border: 3px solid #407f8e;
+.fellow-banner__title img {
+  position: absolute;
+  top: -35px;
+  left: 26px;
+  width: 110px;
+  height: 110px;
+  border-radius: 108px;
+  border: 3px solid #32a0df;
   margin-top: 0px;
 }
-.fellow-banner__profile-desc {
-  padding-left: 10px;
+.fellow-banner__title h3 {
+  color: #fff;
+  font-weight: normal;
+  position: absolute;
+  top: 14px;
+  left: 151px;
+  font-size: 27px;
+  margin-top: 0px;
+}
+.fellow-banner__title p {
+  color: #fff;
+  position: absolute;
+  top: 50px;
+  left: 151px;
+  font-size: 14px;
+}
+.wall-filter {
+  border-bottom: 1px solid #b3b3b3;
+  padding-bottom: 5px;
+  width: 100%;
+}
+.wall-filter>div {
+  color: #808080;
   display: inline-block;
   vertical-align: top;
+  font-size: 12px;
+  border-radius: 3px;
+  margin-left: 5px;
+  padding: 3px 13px;
+  margin-right: 5px;
+  cursor: pointer;
+  opacity: 0.8;
 }
-.fellow-banner__role {
-  font-size: 14px;
-  color: #000;
-  margin-top: 7px;
-}
-.fellow-banner__name {
-  font-size: 16px;
-  color: #000;
-}
-.fellow-banner__about-us {
-  height: 100%;
-  background-color: #fff;
-  padding: 20px 30px;
-  color: #000;
-}
-.fellow-banner__about-us:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-width: 0 16px 16px 0;
-  border-style: solid;
-  border-color: #696969 #696969 #d3d3d3 #d3d3d3;
-  background: #d3d3d3;
-  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
-  -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
-  box-shadow: 0 1px 1px rgba(0,0,0,0.3), -1px 1px 1px rgba(0,0,0,0.2);
-/* Firefox 3.0 damage limitation */
-  display: block;
-  width: 0;
-}
-.fellow-banner__about-us.rounded {
-  -moz-border-radius: 5px 0 5px 5px;
-  border-radius: 5px 0 5px 5px;
-}
-.fellow-banner__about-us.rounded:before {
-  border-width: 8px;
-  border-color: #fff #fff transparent transparent;
-  -moz-border-radius: 0 0 0 5px;
-  border-radius: 0 0 0 5px;
-}
-.fellow-banner__logo {
-  display: inline-block;
-}
-.fellow-banner__logo img.fellow-logo {
-  border: 1px solid #0a0a0a;
-  width: 28px;
-  height: 28px;
-  border-radius: 14px;
-  padding: 5px;
-  margin-right: 6px;
-}
-.fellow-banner__logo__title {
-  color: #339db6;
-  font-size: 18px;
-  display: inline-block;
-  position: relative;
-  top: 7px;
-}
-.fellow-banner__logo__border {
-  border-bottom: 1px solid #000;
-  padding-top: 4px;
-}
-.fellow-banner__logo__description {
-  margin-top: 10px;
-  font-size: 13px;
-}
-.fellow-banner__logo__description:first-letter {
-  font-size: 20px;
-  font-weight: bold;
-}
-.dynamic-content {
-  height: 1500px;
+.wall-filter>div.active {
+  background-color: #32a0df;
+  color: #fff;
 }
 .dynamic-content__wall {
   height: 275px;
@@ -233,6 +172,7 @@
 .dynamic-content__announcement img {
   width: 35px;
   height: 35px;
+  border-radius: 5px;
   vertical-align: top;
   display: inline-block;
   margin-right: 6px;
@@ -242,28 +182,28 @@
   display: inline-block;
 }
 .dynamic-content__annouce-profile-desc .name {
-  font-size: 11px;
+  font-size: 14px;
   color: #000;
 }
 .dynamic-content__annouce-profile-desc .date {
+  margin-top: -2px;
   font-size: 10px;
-  color: #000;
+  color: rgba(53,53,53,0.81);
 }
 .dynamic-content__announcement__description {
   font-size: 13px;
   margin-top: 5px;
-  color: #000;
+  color: #2f2f2f;
 }
 .dynamic-content__new-friend {
   width: 100%;
-  height: 200px;
 }
 .dynamic-content__new-friend__wrapper img {
-  width: 35px;
-  height: 35px;
+  width: 58px;
+  height: 58px;
   vertical-align: top;
   display: inline-block;
-  margin: 5px;
+  margin: 1px;
 }
 .dynamic-content__new-friend-desc {
   vertical-align: top;
