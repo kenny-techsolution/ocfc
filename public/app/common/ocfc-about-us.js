@@ -18,8 +18,12 @@ angular.module('app').directive('ocfcAboutUs', function (IdentitySvc, CommentSvc
 
 			$scope.IdentitySvc = IdentitySvc;
 			$scope.showEdit = false;
-			$scope.newAboutContent = $scope.fellowship.about;
 
+			$scope.$watch('$scope.fellowship',function(newVal,oldVal){
+				if(!newVal){
+					$scope.newAboutContent = $scope.fellowship.about;
+				}
+			});
 
 			$scope.hideEditPost = function () {
 				console.log('hideEditPost function called');
