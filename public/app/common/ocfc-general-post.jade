@@ -1,31 +1,31 @@
-.general-post
-	.general-post__header
+.post-widget
+	.post-widget__header
 		img(ng-src='{{post.postBy.profileImg}}')
 		.name {{post.postBy.fullName | capitalize}}
 		.date {{post.createdOn | date}}
 		.type {{post.postType | PostTypeStrFilter}}
-	.general-post__output(ng-show='!showEdit') 開放式辦公室是許多公司採用的工作環境，但最新的研究指出，在開放式辦公室工作的員工，不僅效率不足、生產力較低， {{post.general[0].content}}
-		button.btn.btn-lg.btn-primary.general-post__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
+	.post-widget__output(ng-show='!showEdit') 開放式辦公室是許多公司採用的工作環境，但最新的研究指出，在開放式辦公室工作的員工，不僅效率不足、生產力較低， {{post.general[0].content}}
+		button.btn.btn-lg.btn-primary.edit(type='button', data-animation='am-flip-x', data-placement='bottom-right', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
 			span.caret
-	.general-post__output-edit(ng-show='showEdit')
+	.post-widget__output-edit(ng-show='showEdit')
 		textarea(ng-model='newGenPostContent')
-		.general-post__options
-			button.btn.btn-lg.btn-primary.general-post__options-btn(ng-click='hideEditPost()') Cancel
-			button.btn.btn-lg.btn-primary.general-post__options-btn(ng-click='updateEditedPost()')  Done Editing
-	.general-post__image-display(ng-click='selectPost()')
+		.post-widget__options
+			button.btn.btn-lg.btn-primary.post-widget__options-btn(ng-click='hideEditPost()') Cancel
+			button.btn.btn-lg.btn-primary.post-widget__options-btn(ng-click='updateEditedPost()')  Done Editing
+	.post-widget__image-display(ng-click='selectPost()')
 		ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post')
 		ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post')
 		ocfc-three-image-display(ng-if='post.imageIds.length===3',post='post')
 		ocfc-four-image-display(ng-if='post.imageIds.length===4',post='post')
 		ocfc-five-image-display(ng-if='post.imageIds.length===5',post='post')
-	.general-post__comment-output(ng-repeat='comment in post.comments')
+	.post-widget__comment-output(ng-repeat='comment in post.comments')
 		.text
 			span.name {{comment.fullName|capitalize}}
 			.date {{comment.createdOn | date}}
 			span.output {{comment.comment}}
 		img(ng-src='{{comment.profileImg}}')
-		button.general-post__delete-comment(ng-click='deleteComment(post,comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
-	.general-post__comment-input
+		span.glyphicon.glyphicon-remove(ng-click='deleteComment(post,comment)',ng-if='comment.userId===IdentitySvc.currentUser._id')
+	.post-widget__comment-input
 		textarea(placeholder='type your comment here',ng-model='comment')
 		button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment(post._id,comment,post.comments)') Comment
 
