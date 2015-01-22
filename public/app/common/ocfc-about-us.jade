@@ -1,0 +1,9 @@
+.test.text-black Check Fellowship About: {{fellowship.about}}
+.about-us-widget.text-black(ng-show='!showEdit'){{fellowship.about}}
+	button(type='button', data-animation='am-flip-x', bs-dropdown='dropdown')
+		span.caret
+	.about-us-widget__output-edit(ng-show='!showEdit')
+		textarea.text-black(ng-model='newAboutContent')
+		.about-us-widget__options
+			button.btn.btn-lg.btn-primary.cancel(ng-click='hideEditPost()') Cancel
+			button.btn.btn-lg.btn-primary.done(ng-click='updateEditedPost()')  Done Editing

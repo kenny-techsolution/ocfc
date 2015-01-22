@@ -1,0 +1,69 @@
+.about-us-widget {
+  width: 100%;
+  height: auto;
+  margin-top: 5px;
+}
+.about-us-widget button {
+  position: relative;
+  top: -12px;
+  left: 243px;
+  height: 20px;
+}
+.about-us-widget__annouce-profile-desc {
+  width: 100%;
+  height: auto;
+  margin-top: 5px;
+  vertical-align: top;
+  display: inline-block;
+}
+.about-us-widget__annouce-profile-desc img {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  vertical-align: top;
+  display: inline-block;
+  margin-right: 6px;
+}
+.about-us-widget__annouce-profile-desc .name {
+  font-size: 14px;
+  color: #000;
+}
+.about-us-widget__annouce-profile-desc .date {
+  margin-top: -2px;
+  font-size: 10px;
+  color: rgba(53,53,53,0.81);
+}
+.about-us-widget__about-us-description {
+  font-size: 13px;
+  margin-top: 5px;
+  color: #2f2f2f;
+}
+.about-us-widget__output-edit {
+  height: 28px;
+  position: relative;
+  top: -17px;
+}
+.about-us-widget__output-edit textarea {
+  position: relative;
+  height: 26px;
+  width: 223px;
+}
+.about-us-widget__options {
+  position: relative;
+  top: -31px;
+  width: 190px;
+  height: 26px;
+  left: 228px;
+}
+.about-us-widget__options .cancel {
+  position: relative !important;
+  left: 32px !important;
+  padding: 6px 17px !important;
+  top: 0px !important;
+}
+.about-us-widget__options .done {
+  position: relative !important;
+  left: 32px !important;
+  padding: 6px 17px !important;
+  top: 0px !important;
+}

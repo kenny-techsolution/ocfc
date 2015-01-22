@@ -174,46 +174,67 @@ var approveFellowship = function (fellowshipId,req,res) {
 	});
 };
 
-//Put - Round1
-exports.updateFellowshipById = function (req, res) {
-	//Scenario: site admin approves the fellowship.
-	if (req.user && req.user.userName === 'butterfly43026@gmail.com' && req.body.approved ===true) {
-		console.log('site admin approval criteria has been met');
-		return approveFellowship(req.params.id, req,res);
-	}
-
+//added on 01.21.2015
+exports.approveFellowshipById = function (req, res) {
+	console.log('server approveFellowshipById has been called');
 	//TODO test this scenario after creation of church
 	//Scenario: church admin approves the fellowship.
 	if (req.body.approved ===true) {
+		console.log('church admin condition met');
 		//1. find out the churchId it associated with this fellowship.
 		//if user userName=butterfly43026@gmail.com then we can bypass admin church approval
 		ChurchFellowship.findOne({fellowshipId:req.params.id}).exec(function (err, churchFellowship) {
 			console.log('ChurchFellowship.findOne has been called');
+
+			console.log('chk req.user');
+			console.log(req.user);
+
+			console.log('chk churchFellowship obj');
+			console.log(churchFellowship);
+
 			if (err) return res.json(err);
 			//2. check current user is the church admin.
 			if(commFunc.isChurchAdmin(req.user, churchFellowship.churchId)) {
+				console.log('isChurchAdmin condition met');
 				//3. approve the fellowship and add approve fellowship admin user.
 				return approveFellowship(req.params.id, req,res);
 			} else {
 				return res.json({status: "fail", message: 'your are not allowed to approve the fellowship'});
 			}
 		});
-	} else {
-		//regular fellowship content update by fellowship admin
-		FellowshipUser.count({userId: req.user._id, fellowshipId: req.params.id, role: 'admin', status: 'approved'}, function (err, count) {
-			console.log('FellowshipUser.count has been called');
-			if (err) return res.json(err);
-			if (count > 0) {
-				var fellowship=commFunc.removeInvalidKeys(req.body,['name','about','address','city','state',
-					'country','zipcode','phone']);
-				Fellowship.update({ _id: req.params.id}, fellowship, { multi: true }, function (err, numberAffected, raw) {
-					if (err) return res.json(err);
-					return res.json({status: "success", raw: raw});
-				});
-			}
-			;
-		});
 	}
+
+};
+
+//Put - Round1
+exports.updateFellowshipById = function (req, res) {
+	console.log('server updateFellowshipById has been called');
+	//Scenario: site admin approves the fellowship.
+	if (req.user && req.user.userName === 'butterfly43026@gmail.com' && req.body.approved ===true) {
+		console.log('site admin approval criteria has been met');
+		return approveFellowship(req.params.id, req,res);
+	}
+	//regular fellowship content update by fellowship admin
+	FellowshipUser.count({userId: req.user._id, fellowshipId: req.params.id, role: 'admin', status: 'approved'}, function (err, count) {
+		console.log('FellowshipUser.count has been called');
+		if (err) return res.json(err);
+		if (count > 0) {
+			console.log('count > 0 has been met');
+			var fellowship=commFunc.removeInvalidKeys(req.body,['name','about','address','city','state',
+				'country','zipcode','phone']);
+
+			console.log('chk fellowship obj');
+			console.log(fellowship);
+
+			Fellowship.update({ _id: req.params.id}, fellowship, { multi: true }, function (err, numberAffected, raw) {
+				console.log('chk fellowship obj within Fellowship.update call');
+				console.log(fellowship);
+				if (err) return res.json(err);
+				return res.json({status: "success", raw: raw});
+			});
+		}
+		;
+	});
 };
 
 //Get - Round1

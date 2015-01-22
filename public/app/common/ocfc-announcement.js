@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, CommentSvc, _, PostSvc, PostCommentSvc) {
+angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, CommentSvc, _, PostSvc) {
 	return{
 		restrict: 'E',
 		scope: {
