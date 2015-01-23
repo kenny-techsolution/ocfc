@@ -3,6 +3,7 @@
   margin-bottom: 0px;
   font-family: Fantasy;
   padding-bottom: 5px;
+  font-weight: bold;
   font-size: 18;
   color: #2f2f2f;
   border-bottom: 1px dotted rgba(210,210,210,0.39);
@@ -11,6 +12,6 @@
   margin-top: 2px;
   color: #2f2f2f;
 }
-.type.testimony {
-  border-color: #c8d351;
+.type.announcement {
+  border-color: #55cb5b;
 }

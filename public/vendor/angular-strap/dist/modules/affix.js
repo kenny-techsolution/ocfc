@@ -111,6 +111,8 @@ angular.module('mgcrea.ngStrap.affix', ['mgcrea.ngStrap.helpers.dimensions', 'mg
             }
             element.css('top', '');
           } else if(affix === 'bottom') {
+          	//kenny edit;
+          	return;
             if (options.offsetUnpin) {
               unpin = -(options.offsetUnpin * 1);
             }
@@ -137,7 +139,7 @@ angular.module('mgcrea.ngStrap.affix', ['mgcrea.ngStrap.helpers.dimensions', 'mg
 
         $affix.$onResize = function() {
           $affix.$parseOffsets();
-          $affix.checkPosition();
+          //$affix.checkPosition();
         };
         $affix.$debouncedOnResize = debounce($affix.$onResize, 50);
 

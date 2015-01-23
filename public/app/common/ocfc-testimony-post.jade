@@ -7,14 +7,14 @@
 	.post-widget__output(ng-show='!showEdit') 
 		h4.title {{post.testimony[0].title| capitalize}}
 		p{{post.testimony[0].content}}
-		button.btn.btn-lg.btn-primary.edit(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
+		button.btn.btn-lg.btn-primary.edit(type='button', data-placement='bottom-right', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
 			span.caret
 	.post-widget__output-edit(ng-show='showEdit')
-		textarea.post-title(ng-model='newTestPostTitle')
+		input.form-control.post-title(type="text",ng-model='newTestPostTitle')
 		textarea.post-content(ng-model='newTestPostContent')
 		.post-widget__options
-			button.btn.btn-lg.btn-primary.post-widget__options-btn(ng-click='hideEditPost()') Cancel
-			button.btn.btn-lg.btn-primary.post-widget__options-btn(ng-click='updateEditedPost()')  Done Editing
+			button.btn.btn-lg.btn-default.post-widget__options-btn(ng-click='hideEditPost()') Cancel
+			button.btn.btn-lg.btn-primary.post-widget__options-btn(ng-click='updateEditedPost()')  Save
 	.post-widget__image-display.row(ng-click='selectPost()')
 		ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post')
 		ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post')

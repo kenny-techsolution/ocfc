@@ -6,14 +6,19 @@
 			.find-group Go to My Personal Page >
 		.explore-menu__content-section
 			.title Fellowship
-			a.group(href='/fellowship/{{userFellowship.fellowshipId}}',ng-click='toggleExploreDropdown()',ng-repeat='userFellowship in userFellowships') {{userFellowship.name}}
+			a.group(href='/fellowship/{{userFellowship.fellowshipId}}',ng-click='toggleExploreDropdown()',ng-repeat='userFellowship in userFellowships') {{userFellowship.name|capitalize}}
 			a.find-group.label.label-primary(href="/find", ng-click='toggleExploreDropdown()') Find a Fellowship >
 			a.create-group.label.label-success(href='/createFellowship',ng-click='toggleExploreDropdown()') Create Fellowship >
 		.explore-menu__content-section
 			.title Church
-			a.group(href='/church/{{userChurch._id}}',ng-click='toggleExploreDropdown()',ng-repeat='userChurch in userChurches') {{userChurch.name}}
-			.find-group Find a Church >
-			a.find-group(href='/createChurch',ng-click='toggleExploreDropdown()') Create Church >
+			.coming-soon.church
+				div 
+				span coming soon			
+			//a.group(href='/church/{{userChurch._id}}',ng-click='toggleExploreDropdown()',ng-repeat='userChurch in userChurches') {{userChurch.name}}
+			//.find-group Find a Church >
+			//a.find-group(href='/createChurch',ng-click='toggleExploreDropdown()') Create Church >
 		.explore-menu__content-section
 			.title World
-			.coming-soon coming soon
+			.coming-soon.world
+				div 
+				span coming soon

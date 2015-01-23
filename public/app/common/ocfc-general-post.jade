@@ -3,15 +3,15 @@
 		img(ng-src='{{post.postBy.profileImg}}')
 		.name {{post.postBy.fullName | capitalize}}
 		.date {{post.createdOn | date}}
-		.type {{post.postType | PostTypeStrFilter}}
-	.post-widget__output(ng-show='!showEdit') 開放式辦公室是許多公司採用的工作環境，但最新的研究指出，在開放式辦公室工作的員工，不僅效率不足、生產力較低， {{post.general[0].content}}
+		.type General
+	.post-widget__output(ng-show='!showEdit') {{post.general[0].content}}
 		button.btn.btn-lg.btn-primary.edit(type='button', data-animation='am-flip-x', data-placement='bottom-right', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
 			span.caret
 	.post-widget__output-edit(ng-show='showEdit')
 		textarea(ng-model='newGenPostContent')
 		.post-widget__options
-			button.btn.btn-lg.btn-primary.post-widget__options-btn(ng-click='hideEditPost()') Cancel
-			button.btn.btn-lg.btn-primary.post-widget__options-btn(ng-click='updateEditedPost()')  Done Editing
+			button.btn.btn-lg.btn-default.cancel(ng-click='hideEditPost()') Cancel
+			button.btn.btn-lg.btn-primary.save(ng-click='updateEditedPost()')  Save
 	.post-widget__image-display(ng-click='selectPost()')
 		ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post')
 		ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post')
@@ -28,4 +28,3 @@
 	.post-widget__comment-input
 		textarea(placeholder='type your comment here',ng-model='comment')
 		button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment(post._id,comment,post.comments)') Comment
-

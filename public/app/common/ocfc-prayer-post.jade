@@ -1,29 +1,30 @@
-.prayer-header
-	img.prayer-header__profile-icon(ng-src='{{post.postBy.profileImg}}')
-	.prayer-header__user-info
-		.prayer-header__user-name {{post.postBy.fullName}}
-		.prayer-header__post-date {{post.createdOn | date}}
-	.prayer-header__post-type Prayer
-	.prayer-header__output(ng-show='!showEdit') {{post.prayer}}
-		button.btn.btn-lg.btn-primary.prayer-header__edit-delete(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
+.post-widget
+	.post-widget__header
+		img(ng-src='{{post.postBy.profileImg}}')
+		.name {{post.postBy.fullName | capitalize}}
+		.date {{post.createdOn | date}}
+		.type.prayer Prayer
+	.post-widget__output(ng-show='!showEdit') {{post.prayer}}
+		button.btn.btn-lg.btn-primary.edit(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
 			span.caret
-	.prayer-header__output-edit(ng-show='showEdit')
+	.post-widget__output-edit(ng-show='showEdit')
 		textarea.post-content(ng-model='newPrayPostContent')
-		.prayer-header__options
-			button.btn.btn-lg.btn-primary.prayer-header__options-btn(ng-click='hideEditPost()') Cancel
-			button.btn.btn-lg.btn-primary.prayer-header__options-btn(ng-click='updateEditedPost()')  Done Editing
-	.prayer-header__image-display.row(ng-click='selectPost()')
+		.post-widget__options
+			button.btn.btn-lg.btn-primary.cancel(ng-click='hideEditPost()') Cancel
+			button.btn.btn-lg.btn-primary.save(ng-click='updateEditedPost()')  Done Editing
+	.post-widget__image-display(ng-click='selectPost()')
 		ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post')
 		ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post')
 		ocfc-three-image-display(ng-if='post.imageIds.length===3',post='post')
 		ocfc-four-image-display(ng-if='post.imageIds.length===4',post='post')
 		ocfc-five-image-display(ng-if='post.imageIds.length===5',post='post')
-	.prayer-header__comment-output(ng-repeat='comment in post.comments')
+	.post-widget__comment-output(ng-repeat='comment in post.comments')
+		.text
+			span.name {{comment.fullName|capitalize}}
+			.date {{comment.createdOn | date}}
+			span.output {{comment.comment}}
 		img(ng-src='{{comment.profileImg}}')
-		.prayer-header__user-comment-name {{comment.fullName}}
-		.prayer-header__post-comment-date {{comment.createdOn | date}}
-		.prayer-header__post-comment-output {{comment.comment}}
-		button.prayer-header__delete-comment(ng-click='deleteComment(post,comment)',ng-if='comment.userId===IdentitySvc.currentUser._id') X
-	.prayer-header__comment-input
+		span.glyphicon.glyphicon-remove(ng-click='deleteComment(post,comment)',ng-if='comment.userId===IdentitySvc.currentUser._id')
+	.post-widget__comment-input
 		textarea(placeholder='type your comment here',ng-model='comment')
-	button.prayer-header__button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment(post._id,comment,post.comments)') Comment
+		button.btn.btn-primary.pull-right.inline-block.choose-type.ng-pristine.ng-valid(ng-click='createComment(post._id,comment,post.comments)') Comment

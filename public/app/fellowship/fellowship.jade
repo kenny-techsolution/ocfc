@@ -11,26 +11,28 @@
 					img(ng-src='http://res.cloudinary.com/ocfc/image/upload/v1421100477/54a0f90399b81bbbb99a0091avatar.jpg')
 					h3 提摩太團契
 					p 作信徒的榜樣，要剛強壯膽。
-			.widget-title-wo-link
-				h3 About Us
-			.widget-title-wo-link
-				h3 Announcement
-			ocfc-announcement(ng-repeat='post in posts |filter:comingAnnouncements',users='FellowshipDataSvc.users',post='post',image-popup='imagePopup',posts='posts')
-			.widget-title-wo-link 
-				h3 New Friend
-			ocfc-new-friend(users='FellowshipDataSvc.users')
-			.widget-title-wo-link 
-				h3 Members
-			ocfc-members(users='FellowshipDataSvc.users')
-			.widget-title-wo-link 
-				h3 Calendar
-			ocfc-calendar(users='FellowshipDataSvc.users')
-			.widget-title-wo-link 
-				h3 Event
-			ocfc-event(users='FellowshipDataSvc.users',post='post',image-popup='imagePopup',posts='posts')
-			.widget-title-wo-link 
-				h3 Birthday
-			ocfc-birthday(users='FellowshipDataSvc.users')
+			div(data-offset-top="-50", bs-affix)
+				div.fix-sidebar
+					.widget-title-wo-link
+						h3 About Us
+					.widget-title-wo-link
+						h3 Announcement
+					ocfc-announcement(ng-repeat='post in posts |filter:comingAnnouncements',users='FellowshipDataSvc.users',post='post',image-popup='imagePopup',posts='posts')
+					.widget-title-wo-link
+						h3 New Friend
+					ocfc-new-friend(users='FellowshipDataSvc.users')
+					.widget-title-wo-link 
+						h3 Members
+					ocfc-members(users='FellowshipDataSvc.users')
+					//.widget-title-wo-link 
+					//	h3 Calendar
+					//ocfc-calendar(users='FellowshipDataSvc.users')
+					.widget-title-wo-link 
+						h3 Event
+					ocfc-event(users='FellowshipDataSvc.users',post='post',image-popup='imagePopup',posts='posts')
+					.widget-title-wo-link 
+						h3 Birthday
+					ocfc-birthday(users='FellowshipDataSvc.users')
 		.col-xs-7.wall-section
 			div.wall-filter
 				div.active All
@@ -47,8 +49,5 @@
 					ocfc-prayer-post(ng-if='post.postType ===3',post='post')
 					ocfc-event-post(ng-if='post.postType ===4',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown')
 					ocfc-announcement-post(ng-if='post.postType ===5',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown')
-			.widget-title-wo-link Write to
-				h3 Wall
-			ocfc-wall-input(posts='posts')
 
 ocfc-full-image-viewer(ng-show='imagePopup.isPopupOpen',image-popup='imagePopup')
