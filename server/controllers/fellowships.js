@@ -231,7 +231,7 @@ exports.updateFellowshipById = function (req, res) {
 		if (count > 0) {
 			console.log('count > 0 has been met');
 			var fellowship=commFunc.removeInvalidKeys(req.body,['name','about','address','city','state',
-				'country','zipcode','phone','bannerImage']);
+				'country','zipcode','phone','bannerImage','logoImage']);
 
 			Fellowship.update({ _id: req.params.id}, fellowship, { multi: true }, function (err, numberAffected, raw) {
 				console.log('chk fellowship obj within Fellowship.update call');

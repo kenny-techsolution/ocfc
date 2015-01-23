@@ -9,7 +9,9 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 	$scope.FellowshipDataSvc = FellowshipDataSvc;
 	$scope.FellowshipDataSvc.initialize($routeParams.id);
 	//default banner image
-	FellowshipDataSvc.fellowship.bannerImage='h9wvhxsfi0prxrg0nipr';
+	$scope.FellowshipDataSvc.fellowship.bannerImage='h9wvhxsfi0prxrg0nipr';
+	$scope.FellowshipDataSvc.fellowship.logoImage='h9wvhxsfi0prxrg0nipr';
+
 	$scope.posts = [];
 	//query post data here
 	$scope.posts = PostSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id});
@@ -54,15 +56,24 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 	$scope.bannerDropDown = [
 		{
 			"text": "Delete This Photo",
-			"click": "deleteBannerImage()"
+			"click": "deleteFellowshipImage('banner')"
 		}
 	];
+
+
+	$scope.logoDropDown = [
+		{
+			"text": "Delete This Photo",
+			"click": "deleteFellowshipImage('logo')"
+		}
+	];
+
 
 	$http.get("/cloudinarySigned?type=fullSizeImg").success(function (data) {
 		$scope.cloudinarySignedParams = data;
 	});
 
-	$scope.editBannerImage = function ($files) {
+	$scope.editFellowshipImage = function ($files,type) {
 		console.log('editBannerImage within FellowshipCtrl has been triggered');
 		var file = $files[0];//allow 1 image upload only
 		console.log('for loop has been triggered');
@@ -94,35 +105,74 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 			///api/fellowships/:id
 			//update certain fields
 			var fellowship = new FellowshipSvc();
-			fellowship.bannerImage = data.public_id;
+
+			if (type==='banner'){
+				console.log('type equates to banner');
+
+				fellowship.bannerImage = data.public_id;
+
+				FellowshipSvc.update(
+					{id: $routeParams.id}
+					, fellowship, function () {
+						console.log('front-end updateFellowshipImage from FellowshipCtrl has completed');
+						//bind latest data onto $scope.FellowshipDataSvc.fellowship
+						$scope.FellowshipDataSvc.fellowship.bannerImage = fellowship.bannerImage;
+						console.log('chk fellowship obj');
+						console.log(fellowship);
+					}
+				);
+
+			}else{
+				console.log('type equates to logo');
+				fellowship.logoImage = data.public_id;
+
+				FellowshipSvc.update(
+					{id: $routeParams.id}
+					, fellowship, function () {
+						console.log('front-end updateFellowshipImage from FellowshipCtrl has completed');
+						//bind latest data onto $scope.FellowshipDataSvc.fellowship
+						$scope.FellowshipDataSvc.fellowship.logoImage = fellowship.logoImage;
+						console.log('chk fellowship obj');
+						console.log(fellowship);
+					}
+				);
+			}
+
+		});
+	};
+
+	$scope.deleteFellowshipImage = function (type) {
+		console.log('deleteBannerImage has been called');
+		var fellowship = new FellowshipSvc();
+		//default image
+		if (type==='banner'){
+			console.log('type equates to banner');
+			fellowship.bannerImage = 'h9wvhxsfi0prxrg0nipr';
 
 			FellowshipSvc.update(
 				{id: $routeParams.id}
 				, fellowship, function () {
-					console.log('front-end updateFellowshipImage from FellowshipCtrl has completed');
-					//bind latest data onto $scope.FellowshipDataSvc.fellowship
-					$scope.FellowshipDataSvc.fellowship = fellowship;
+					console.log('front-end removeFellowshipImage from FellowshipCtrl has completed');
+					$scope.FellowshipDataSvc.fellowship.bannerImage = fellowship.bannerImage;
+					console.log('chk fellowship obj');
+					console.log(fellowship);
 				}
 			);
-		});
-	};
+		}else{
+			console.log('type equates to logo');
+			fellowship.logoImage = 'h9wvhxsfi0prxrg0nipr';
 
-	$scope.deleteBannerImage = function () {
-		console.log('deleteBannerImage has been called');
-		var fellowship = new FellowshipSvc();
-		//default image
-		fellowship.bannerImage = 'h9wvhxsfi0prxrg0nipr';
+			FellowshipSvc.update(
+				{id: $routeParams.id}
+				, fellowship, function () {
+					console.log('front-end removeFellowshipImage from FellowshipCtrl has completed');
+					$scope.FellowshipDataSvc.fellowship.logoImage = fellowship.logoImage;
+					console.log('chk fellowship obj');
+					console.log(fellowship);
+				}
+			);
+		}
 
-		console.log('chk fellowship obj');
-		console.log(fellowship);
-
-		FellowshipSvc.update(
-			{id: $routeParams.id}
-			, fellowship, function () {
-				console.log('front-end removeFellowshipImage from FellowshipCtrl has completed');
-				$scope.FellowshipDataSvc.fellowship = fellowship;
-			}
-		);
 	};
 });
 
