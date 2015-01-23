@@ -10,9 +10,9 @@ block main-content
 				|Explore
 				span.icon.explore.animate-icon(ng-show="!exploreDropDown")
 				span.icon.cross.animate-icon(ng-show='exploreDropDown', ng-cloak, class="ng-cloak")
-			.global-header__gh-tab__notification(href="/",ng-click='notificationFlyout = !notificationFlyout',ng-show='IdentitySvc.currentUser',ng-cloak,class="ng-cloak",bs-popover,data-placement="bottom",
+			.global-header__gh-tab__notification(href="/",ng-click='notificationFlyout = !notificationFlyout',ng-show='IdentitySvc.currentUser',ng-cloak,class="ng-cloak",bs-popover, data-animation="am-flip-x", data-placement="bottom-right",
 									data-template='/partials/common/profile_popover', data-auto-close="1")
-			img.global-header__gh-tab__account(href="/",ng-show='IdentitySvc.currentUser',ng-cloak,class="ng-cloak",bs-popover,data-placement="bottom",
+			img.global-header__gh-tab__account(href="/",ng-show='IdentitySvc.currentUser',ng-cloak,class="ng-cloak",bs-popover,data-placement="bottom-right", data-animation="am-flip-x",
 									data-template='/partials/common/profile_popover', data-auto-close="1",ng-src='{{IdentitySvc.currentUser.profileImg}}')
 	ocfc-explore(explore-drop-down='exploreDropDown')
 	#wrapper(ng-view)

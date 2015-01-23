@@ -1,4 +1,4 @@
-.general-post
+.post-widget
 	height auto
 	border 1px solid
 	background-color white
@@ -6,7 +6,7 @@
 	//box-shadow 0 1px 1px rgba(0, 0, 0, .5)
 	border-radius 5px
 
-.general-post__header
+.post-widget__header
 	position relative
 	height 48px
 	border-bottom 1px solid rgba(210, 210, 210, 0.39)
@@ -38,25 +38,40 @@
 		padding 5px 24px
 		color rgba(53,53,53,0.81)
 		top 9px
-		right -3px
-		border-right 2px solid #32a0df
+		right -5px
+		border-right 4px solid #32a0df
 
-.general-post__image-display
+.post-widget__image-display
 	padding 5px
 	border-bottom 1px solid rgba(210, 210, 210, 0.39)
 
-.general-post__output
+.post-widget__output
 	height auto
 	width 555px
 	padding-left 15px
 	font-size 14px
 	padding 17px 19px
 	color #2f2f2f
-
-.general-post__comment-output
+	position relative
+	.edit
+		background-color #E8E8E8
+		position absolute
+		padding 0px 4px
+		top 0px
+		right 0px
+.post-widget__comment-output
 	background-color #E8E8E8
 	padding 6px 5px
 	position relative
+	.glyphicon-remove
+		color #D5D5D5
+		font-weight 100
+		position absolute
+		top 12px
+		right 10px
+		cursor pointer
+		&:hover
+			color #818181
 	img
 		width 30px
 		height 30px
@@ -81,13 +96,13 @@
 		.output
 			margin-left 5px
 			font-size 12px
-			color black
-.general-post__comment-input
+			color #2f2f2f
+.post-widget__comment-input
 	width 555px
 	height auto
 	position relative
 	background-color #E8E8E8
-	padding 5px
+	padding 5px 5px 0px 5px
 	textarea
 		width 478px
 		height 28px
@@ -100,31 +115,48 @@
 		padding 7px 11px !important
 		position relative !important
 
-.general-post__delete-comment
+.post-widget__delete-comment
 	position relative
 	left 525px
 	top -37px
 
-.general-post__edit-delete
+.post-widget__edit-delete
 	position absolute !important
 	top 0px !important
 	left 537px !important
 	padding 2px 3px !important
 
-.general-post__output-edit
-	padding-left 19px
-	font-size 12px
+.post-widget__output-edit
+	font-size 14px
 	position relative
-	bottom: 41px
+	border 1px solid rgba(179,179,179,0.22)
+	margin-left 1%
+	margin-top 5px
+	padding 5px
+	width 98%
+	input
+		width 100%
+		background-color #e8e8e8
+		font-size 14px
+		color #2f2f2f
+		margin-bottom 3px
 	textarea
-		margin 0px
-		width 511px
-		height 40px
+		background-color #e8e8e8
+		width 100%
+		border none
+		color #2f2f2f
+		padding 5px
+		padding-left 12px
+		&:focus
+			border-left 4px solid #428bca
+			outline none
 
-.general-post__options-btn
-	position relative!important
-	left 378px!important
-	padding 6px 17px!important
+.post-widget__options
+	.btn
+		position relative!important
+		left 408px!important
+		padding 6px 17px!important
+		margin-left 2px
 
 
 //image directives
@@ -231,7 +263,7 @@
 		left 297px
 		width 232px
 
-.general-post__title
+.post-widget__title
 	position relative
 	left 12px
 	padding-left 5px

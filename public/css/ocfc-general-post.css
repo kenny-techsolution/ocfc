@@ -1,16 +1,16 @@
-.general-post {
+.post-widget {
   height: auto;
   border: 1px solid;
   background-color: #fff;
   box-shadow: 0 1px 5px rgba(0,0,0,0.25);
   border-radius: 5px;
 }
-.general-post__header {
+.post-widget__header {
   position: relative;
   height: 48px;
   border-bottom: 1px solid rgba(210,210,210,0.39);
 }
-.general-post__header >img {
+.post-widget__header >img {
   width: 35px;
   height: 35px;
   border-radius: 5px;
@@ -19,21 +19,21 @@
   left: 5px;
   top: 5px;
 }
-.general-post__header >.name {
+.post-widget__header >.name {
   position: absolute;
   left: 48px;
   top: 5px;
   font-size: 14px;
   color: #000;
 }
-.general-post__header >.date {
+.post-widget__header >.date {
   font-size: 10px;
   left: 48px;
   position: absolute;
   top: 24px;
   color: rgba(53,53,53,0.81);
 }
-.general-post__header >.type {
+.post-widget__header >.type {
   position: absolute;
   font-size: 12px;
   background-color: #e8e8e8;
@@ -41,27 +41,46 @@
   padding: 5px 24px;
   color: rgba(53,53,53,0.81);
   top: 9px;
-  right: -3px;
-  border-right: 2px solid #32a0df;
+  right: -5px;
+  border-right: 4px solid #32a0df;
 }
-.general-post__image-display {
+.post-widget__image-display {
   padding: 5px;
   border-bottom: 1px solid rgba(210,210,210,0.39);
 }
-.general-post__output {
+.post-widget__output {
   height: auto;
   width: 555px;
   padding-left: 15px;
   font-size: 14px;
   padding: 17px 19px;
   color: #2f2f2f;
+  position: relative;
 }
-.general-post__comment-output {
+.post-widget__output .edit {
+  background-color: #e8e8e8;
+  position: absolute;
+  padding: 0px 4px;
+  top: 0px;
+  right: 0px;
+}
+.post-widget__comment-output {
   background-color: #e8e8e8;
   padding: 6px 5px;
   position: relative;
 }
-.general-post__comment-output img {
+.post-widget__comment-output .glyphicon-remove {
+  color: #d5d5d5;
+  font-weight: 100;
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  cursor: pointer;
+}
+.post-widget__comment-output .glyphicon-remove:hover {
+  color: #818181;
+}
+.post-widget__comment-output img {
   width: 30px;
   height: 30px;
   border-radius: 2px;
@@ -69,36 +88,36 @@
   top: 6px;
   left: 5px;
 }
-.general-post__comment-output .text {
+.post-widget__comment-output .text {
   padding-left: 40px;
   padding-right: 30px;
 }
-.general-post__comment-output .text .name {
+.post-widget__comment-output .text .name {
   font-size: 12px;
   display: inline-block;
   font-weight: bold;
   margin-right: 2px;
   color: #007cc3;
 }
-.general-post__comment-output .text .date {
+.post-widget__comment-output .text .date {
   font-size: 12px;
   color: rgba(53,53,53,0.81);
   display: inline-block;
   margin-left: 5px;
 }
-.general-post__comment-output .text .output {
+.post-widget__comment-output .text .output {
   margin-left: 5px;
   font-size: 12px;
-  color: #000;
+  color: #2f2f2f;
 }
-.general-post__comment-input {
+.post-widget__comment-input {
   width: 555px;
   height: auto;
   position: relative;
   background-color: #e8e8e8;
-  padding: 5px;
+  padding: 5px 5px 0px 5px;
 }
-.general-post__comment-input textarea {
+.post-widget__comment-input textarea {
   width: 478px;
   height: 28px;
   padding: 5px;
@@ -107,36 +126,54 @@
   resize: none;
   color: #000;
 }
-.general-post__comment-input button {
+.post-widget__comment-input button {
   padding: 7px 11px !important;
   position: relative !important;
 }
-.general-post__delete-comment {
+.post-widget__delete-comment {
   position: relative;
   left: 525px;
   top: -37px;
 }
-.general-post__edit-delete {
+.post-widget__edit-delete {
   position: absolute !important;
   top: 0px !important;
   left: 537px !important;
   padding: 2px 3px !important;
 }
-.general-post__output-edit {
-  padding-left: 19px;
-  font-size: 12px;
+.post-widget__output-edit {
+  font-size: 14px;
   position: relative;
-  bottom: 41px;
+  border: 1px solid rgba(179,179,179,0.22);
+  margin-left: 1%;
+  margin-top: 5px;
+  padding: 5px;
+  width: 98%;
 }
-.general-post__output-edit textarea {
-  margin: 0px;
-  width: 511px;
-  height: 40px;
+.post-widget__output-edit input {
+  width: 100%;
+  background-color: #e8e8e8;
+  font-size: 14px;
+  color: #2f2f2f;
+  margin-bottom: 3px;
 }
-.general-post__options-btn {
+.post-widget__output-edit textarea {
+  background-color: #e8e8e8;
+  width: 100%;
+  border: none;
+  color: #2f2f2f;
+  padding: 5px;
+  padding-left: 12px;
+}
+.post-widget__output-edit textarea:focus {
+  border-left: 4px solid #428bca;
+  outline: none;
+}
+.post-widget__options .btn {
   position: relative !important;
-  left: 378px !important;
+  left: 408px !important;
   padding: 6px 17px !important;
+  margin-left: 2px;
 }
 .one-img-layout {
   width: 100%;
@@ -254,7 +291,7 @@
   left: 297px;
   width: 232px;
 }
-.general-post__title {
+.post-widget__title {
   position: relative;
   left: 12px;
   padding-left: 5px;

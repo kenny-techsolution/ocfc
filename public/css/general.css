@@ -119,9 +119,11 @@ button.btn {
   right: 100px;
   top: 0px;
   text-decoration: none;
+  cursor: pointer;
 }
 .global-header__gh-tab__explore:hover {
   text-decoration: none;
+  cursor: pointer;
 }
 .global-header__gh-tab__explore .icon {
   display: block;
@@ -191,8 +193,27 @@ button.btn {
   margin-top: 5px;
   line-height: 120px;
   color: #fff;
+  background-size: 100% auto;
   background-color: #808080;
   text-align: center;
+  position: relative;
+}
+.explore-menu__content-section .coming-soon.church {
+  background-image: url("./images/church_splash.jpeg");
+}
+.explore-menu__content-section .coming-soon.world {
+  background-image: url("./images/world_splash.jpeg");
+}
+.explore-menu__content-section .coming-soon>div {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.25;
+}
+.explore-menu__content-section .coming-soon>span {
+  position: absolute;
+  top: 0px;
+  left: 72px;
 }
 .explore-menu__content-section .description {
   margin-top: 5px;
