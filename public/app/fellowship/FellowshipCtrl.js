@@ -8,7 +8,8 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 	//include FellowshipDataSvc which captures all data needed for Fellowship widgets
 	$scope.FellowshipDataSvc = FellowshipDataSvc;
 	$scope.FellowshipDataSvc.initialize($routeParams.id);
-	$scope.backgroundImgPath;
+	//default banner image
+	FellowshipDataSvc.fellowship.bannerImage='h9wvhxsfi0prxrg0nipr';
 	$scope.posts = [];
 	//query post data here
 	$scope.posts = PostSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id});
@@ -86,7 +87,6 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 		}).success(function (data, status, headers, config) {
 			console.log('chk success data obj of editBannerImage within FellowshipCtrl');
 			console.log(data);
-			$scope.backgroundImgPath = data.public_id;
 			$scope.$apply();
 
 			//update fellowship image
