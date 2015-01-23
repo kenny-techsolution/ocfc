@@ -1,7 +1,14 @@
-.dynamic-content__announcement
+.announcement-widget
 	img(ng-src='{{post.postBy.profileImg}}')
-	.dynamic-content__annouce-profile-desc
+	.announcement-widget__annouce-profile-desc
 		.name {{post.postBy.fullName}}
 		.date {{post.createdOn | date}}
-	.dynamic-content__announcement__description {{post.announcement[0].content}}
+	.announcement-widget__announcement-description(ng-show='!showEdit') {{post.announcement[0].content}}
+		button(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
+			span.caret
+	.announcement-widget__output-edit(ng-show='showEdit')
+		textarea.text-black(ng-model='newAnnouncePostContent')
+		.announcement-widget__options
+			button.btn.btn-lg.btn-primary.cancel(ng-click='hideEditPost()') Cancel
+			button.btn.btn-lg.btn-primary.done(ng-click='updateEditedPost()')  Done Editing
 			

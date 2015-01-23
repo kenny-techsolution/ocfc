@@ -23,7 +23,8 @@ var fellowshipSchema = mongoose.Schema({
 	startDate: 	{type: Date, required: '(startDate) is required!', index: false, unique: false,default: Date.now},
 	updateDate: {type: Date, required: '(updateDate) is required!', index: false, unique: false,default: Date.now},
 	geo: 		{type: [Number], index: '2d'},
-	active:     {type:Boolean,required: '(active) is required!',default:true}
+	active:     {type:Boolean,required: '(active) is required!',default:true},
+	bannerImage:{type: String}
 });
 
 var Fellowship = mongoose.model('Fellowship', fellowshipSchema);

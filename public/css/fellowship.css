@@ -67,7 +67,7 @@
   position: absolute;
   top: 14px;
   left: 151px;
-  font-size: 27px;
+  font-size: 24px;
   margin-top: 0px;
 }
 .fellow-banner__title p {
@@ -324,4 +324,9 @@
 .post {
   margin-bottom: 10px;
   margin-top: 10px;
+}
+.fellow-banner__edit-delete {
+  position: absolute;
+  top: 0px;
+  left: 393px;
 }

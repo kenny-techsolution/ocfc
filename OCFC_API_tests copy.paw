@@ -979,7 +979,7 @@
         <relationship name="urlparameters" type="0/0" destination="LMKEYVALUE"></relationship>
     </object>
     <object type="LMREQUEST" id="z180">
-        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Wah Wah Christ Church",true],["message","xxx",true],["vision","dfdf",true],["mission","etetet",true],["faithStatement","nnhmmh",true],["phone","344444444",true],["zipcode","45432",true],["country","xxx",true],["city","olean",true],["address","3554 kdfjdkf lane",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Church Created on Jan 21",true],["message","xxx",true],["vision","dfdf",true],["mission","etetet",true],["faithStatement","nnhmmh",true],["phone","344444444",true],["zipcode","45432",true],["country","xxx",true],["city","olean",true],["address","3554 kdfjdkf lane",true],["state","ohio",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">6C207051-DA96-4227-9E01-BD1ACC6FF948</attribute>
         <attribute name="url" type="string">http://localhost:3030/api/churches</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
