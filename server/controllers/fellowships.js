@@ -214,6 +214,16 @@ exports.updateFellowshipById = function (req, res) {
 		console.log('site admin approval criteria has been met');
 		return approveFellowship(req.params.id, req,res);
 	}
+
+	console.log('chk req.user obj to check role & status');
+	console.log(req.user);
+
+	console.log('chk req.user._id obj');
+	console.log(req.user._id);
+
+	console.log('chk req.params.id obj');
+	console.log(req.params.id);
+
 	//regular fellowship content update by fellowship admin
 	FellowshipUser.count({userId: req.user._id, fellowshipId: req.params.id, role: 'admin', status: 'approved'}, function (err, count) {
 		console.log('FellowshipUser.count has been called');
@@ -221,10 +231,7 @@ exports.updateFellowshipById = function (req, res) {
 		if (count > 0) {
 			console.log('count > 0 has been met');
 			var fellowship=commFunc.removeInvalidKeys(req.body,['name','about','address','city','state',
-				'country','zipcode','phone']);
-
-			console.log('chk fellowship obj');
-			console.log(fellowship);
+				'country','zipcode','phone','bannerImage']);
 
 			Fellowship.update({ _id: req.params.id}, fellowship, { multi: true }, function (err, numberAffected, raw) {
 				console.log('chk fellowship obj within Fellowship.update call');

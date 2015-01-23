@@ -6,10 +6,14 @@
 		.col-xs-5.info-section
 			div.fellow-banner
 				.fellow-banner__background
-					img(ng-src='/css/images/TimothyFellowship1.jpg')
+					img(ng-src='https://res.cloudinary.com/ocfc/image/upload/{{FellowshipDataSvc.fellowship.bannerImage}}')
+				.fellow-banner__edit-delete(ng-show='!showEdit')
+					span.glyphicon.glyphicon-camera.camera-icon.text-black(ng-file-select='editBannerImage($files)', data-multiple='false', title='profile', onclick='this.value = null')
+					button(type='button', data-animation='am-flip-x', bs-dropdown='bannerDropDown',ng-if='FellowshipDataSvc.isAdmin')
+						span.caret.text-black
 				.fellow-banner__title
 					img(ng-src='http://res.cloudinary.com/ocfc/image/upload/v1421100477/54a0f90399b81bbbb99a0091avatar.jpg')
-					h3 提摩太團契
+					h3 {{FellowshipDataSvc.fellowship.name}}
 					p 作信徒的榜樣，要剛強壯膽。
 			.widget-title-wo-link
 				h3 About Us
