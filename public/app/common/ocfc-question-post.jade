@@ -5,7 +5,7 @@
 		.date {{post.createdOn | date}}
 		.type.question Question
 	.post-widget__output(ng-show='!showEdit') {{post.question}}
-		button.btn.btn-lg.btn-primary.edit(type='button', data-animation='am-flip-x', data-placement='bottom-right', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
+		button.btn.btn-lg.btn-primary.edit(type='button', data-animation='am-flip-x', data-placement='bottom-right', bs-dropdown='dropdown',ng-if='isPoster')
 			span.caret
 	.post-widget__output-edit(ng-show='showEdit')
 		textarea(ng-model='newQuestPostContent')

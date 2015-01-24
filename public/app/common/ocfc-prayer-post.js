@@ -24,6 +24,13 @@ angular.module('app').directive('ocfcPrayerPost', function (IdentitySvc,CommentA
 
 			$scope.comment;
 
+
+			if ($scope.post.postBy._id===IdentitySvc.currentUser._id) {
+				$scope.isPoster=true;
+			}else {
+				$scope.isPoster=false;
+			};
+
 			//create
 			$scope.createComment=PostCommentSvc.createComment;
 

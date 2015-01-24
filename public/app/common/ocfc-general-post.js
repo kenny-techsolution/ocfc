@@ -18,6 +18,12 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 			//console.log('chk $scope.imagePopup ');
 			//console.log($scope.imagePopup);
 
+			if ($scope.post.postBy._id===IdentitySvc.currentUser._id) {
+				$scope.isPoster=true;
+			}else {
+				$scope.isPoster=false;
+			};
+
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;
 			$scope.newGenPostContent=$scope.post.general[0].content;

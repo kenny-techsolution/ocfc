@@ -5,7 +5,7 @@
 		.date {{post.createdOn | date}}
 		.type.prayer Prayer
 	.post-widget__output(ng-show='!showEdit') {{post.prayer}}
-		button.btn.btn-lg.btn-primary.edit(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
+		button.btn.btn-lg.btn-primary.edit(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='isPoster')
 			span.caret
 	.post-widget__output-edit(ng-show='showEdit')
 		textarea.post-content(ng-model='newPrayPostContent')

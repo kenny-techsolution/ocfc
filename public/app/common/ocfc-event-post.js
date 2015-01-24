@@ -26,6 +26,13 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentAp
 			$scope.newEventPostWhere=$scope.post.eventId.where;
 
 			$scope.comment;
+
+			if ($scope.post.postBy._id===IdentitySvc.currentUser._id) {
+				$scope.isPoster=true;
+			}else {
+				$scope.isPoster=false;
+			};
+
 			//create
 			$scope.createComment=PostCommentSvc.createComment;
 

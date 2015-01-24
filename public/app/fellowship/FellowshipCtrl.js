@@ -18,6 +18,7 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 	$scope.selectedPost;
 	$scope.selectedPostType='';
 
+
 	//console.log('chk $scope.posts array from FellowshipCtrl');
 	//console.log($scope.posts);
 
