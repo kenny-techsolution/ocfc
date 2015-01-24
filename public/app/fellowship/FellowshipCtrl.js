@@ -16,7 +16,7 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 	//query post data here
 	$scope.posts = PostSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id});
 	$scope.selectedPost;
-	$scope.selectedPostType;
+	$scope.selectedPostType=6;
 
 	//console.log('chk $scope.posts array from FellowshipCtrl');
 	//console.log($scope.posts);
@@ -164,8 +164,9 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 		}
 	};
 
-	selectPostType=function(type) {
+	$scope.selectPostType=function(type) {
 		$scope.selectedPostType = type;
+
 	};
 
 
