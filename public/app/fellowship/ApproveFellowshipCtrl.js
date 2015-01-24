@@ -1,5 +1,5 @@
 angular.module('app').controller('ApproveFellowshipCtrl', function ($http, $scope,
-                                                             IdentitySvc, FellowshipSvc,FellowshipDataSvc,FellowshipUserSvc, $routeParams,
+                                                             IdentitySvc, FellowshipApiSvc,FellowshipDataSvc,FellowshipUserApiSvc, $routeParams,
                                                              mySocket, $timeout) {
 	$scope.fellowshipName;
 	$scope.churchName;
@@ -12,7 +12,7 @@ angular.module('app').controller('ApproveFellowshipCtrl', function ($http, $scop
 	$scope.aboutFellowship;
 
 	//Populate all fellowships to approve
-	$scope.fellowships = FellowshipSvc.query(function () {
+	$scope.fellowships = FellowshipApiSvc.query(function () {
 			console.log('chk $scope.fellowships');
 			console.log($scope.fellowships);
 		}
@@ -24,7 +24,7 @@ angular.module('app').controller('ApproveFellowshipCtrl', function ($http, $scop
 		console.log(fellowship);
 		//call updateFellowshipById
 		fellowship.approved=true;
-		FellowshipSvc.update({id:fellowship._id},fellowship);
+		FellowshipApiSvc.update({id:fellowship._id},fellowship);
 
 	};
 

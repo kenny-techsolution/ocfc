@@ -6,24 +6,17 @@
 
 // factory, is a singleton, that contains data or function that can be used
 // across controllers
-angular.module('app').factory('ChurchSvc', function ($resource, $http) {
+angular.module('app').factory('EventApiSvc', function ($resource) {
 	// rest api standard, for GET, if id is specified, it will grab specific
 	// user by id
-	var churchResource = $resource('/api/churches/:id', {
-		_id: '@id'
+	var eventResource = $resource('/api/events/:event_id', {
+		_id: '@event_id'
 	}, {
 		'update': {
 			method: 'PUT',
 			isArray: false
 		}
-	},
-		{
-		'create':{
-			method:'POST',
-			params:{create:true}
-		}
-		}
+	}
 	);
-
-	return churchResource;
+	return eventResource;
 });

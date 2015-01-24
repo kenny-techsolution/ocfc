@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentSvc,_,PostSvc,PostCommentSvc) {
+angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentApiSvc,_,PostApiSvc,PostCommentSvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -42,7 +42,7 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentSv
 				console.log('chk post obj');
 				console.log($scope.post);
 
-				var post = PostSvc.get({id:$scope.post._id}, function() {
+				var post = PostApiSvc.get({id:$scope.post._id}, function() {
 					console.log('chk variable post obj');
 					console.log(post);
 					post.$delete({id:$scope.post._id},function(){
@@ -98,7 +98,7 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentSv
 					updatePost.postType="event";
 
 					//update post obj on the server side
-					PostSvc.update({id:updatePost._id},updatePost,function(){
+					PostApiSvc.update({id:updatePost._id},updatePost,function(){
 						console.log('front-end PostSvc.update has completed');
 					});
 					$scope.showEdit=false;

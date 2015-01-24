@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcFellowships', function (FellowshipUserSvc,$routeParams) {
+angular.module('app').directive('ocfcFellowships', function () {
 	return{
 		restrict: 'E',
 		scope: {},

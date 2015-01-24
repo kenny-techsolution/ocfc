@@ -6,14 +6,14 @@
 
 // factory, is a singleton, that contains data or function that can be used
 // across controllers
-angular.module('app').factory('FellowshipUserSvc', function ($resource) {
+angular.module('app').factory('ChurchFellowshipApiSvc', function ($resource) {
 	// rest api standard, for GET, if id is specified, it will grab specific
 	// user by id
-	var fellowshipUserResource = $resource('/api/fellowships/:fellowship_id/users/:user_id', {
+	var churchFellowshipResource = $resource('/api/churches/:church_id/fellowships/:fellowship_id', {
 		fellowship_id: '@fellowship_id',
-		user_id:'@user_id'
-	},{
-		'getAllMembers':{
+		church_id:'@church_id'
+	}, {
+		'getAllFellowships':{
 			method: 'GET',
 			isArray: true
 		},
@@ -21,10 +21,10 @@ angular.module('app').factory('FellowshipUserSvc', function ($resource) {
 			method: 'PUT',
 			isArray: false
 		},
-		'deleteFellowUsers': {
+		'deleteFellowships': {
 			method: 'DELETE',
 			params: {}
 		}
 	});
-	return fellowshipUserResource;
+	return churchFellowshipResource;
 });

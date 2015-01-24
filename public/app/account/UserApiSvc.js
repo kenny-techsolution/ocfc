@@ -7,7 +7,7 @@
  4.29.2014, added new code to check for churchAdmin and worldAdmin against Mongodb
  ***************************************************************************************/
 
-angular.module('app').factory('UserSvc', function ($resource) {
+angular.module('app').factory('UserApiSvc', function ($resource) {
 	//rest api standard, for GET, if id is specified, it will grab specific user by id
 	var UserResource = $resource('/api/users/:id', {_id: "@id"}, {
 		update: {method: 'PUT', isArray: false}

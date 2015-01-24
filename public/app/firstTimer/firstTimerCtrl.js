@@ -1,5 +1,5 @@
 
-angular.module('app').controller('firstTimerCtrl', function ($scope,$http,$timeout,$animate, $routeParams,$rootScope, $upload, UserSvc, NotifierSvc, $location, AuthSvc) {
+angular.module('app').controller('firstTimerCtrl', function ($scope,$http,$timeout,$animate, $routeParams,$rootScope, $upload, UserApiSvc, NotifierSvc, $location, AuthSvc) {
 	$timeout(function() {
 		return $animate.enabled(false, angular.element(".carousel"));
 	});

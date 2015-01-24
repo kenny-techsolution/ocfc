@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcAboutUs', function (IdentitySvc, CommentSvc, _, FellowshipSvc) {
+angular.module('app').directive('ocfcAboutUs', function (IdentitySvc, CommentApiSvc, _, FellowshipApiSvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -57,7 +57,7 @@ angular.module('app').directive('ocfcAboutUs', function (IdentitySvc, CommentSvc
 					console.log(updateAboutUs);
 
 					//update post obj on the server side
-					FellowshipSvc.update({id: updateAboutUs._id}, updateAboutUs, function () {
+					FellowshipApiSvc.update({id: updateAboutUs._id}, updateAboutUs, function () {
 						console.log('front-end FellowshipSvc.update has completed');
 					});
 					$scope.showEdit = false;

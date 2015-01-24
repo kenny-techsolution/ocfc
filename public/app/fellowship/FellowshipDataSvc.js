@@ -6,7 +6,7 @@
 
 // factory, is a singleton, that contains data or function that can be used
 // across controllers
-angular.module('app').service('FellowshipDataSvc', function(FellowshipUserSvc,FellowshipSvc,IdentitySvc) {
+angular.module('app').service('FellowshipDataSvc', function(FellowshipUserApiSvc,FellowshipApiSvc,IdentitySvc) {
 	// rest api standard, for GET, if id is specified, it will grab specific
 	// user by id
 	this.users=[];
@@ -16,7 +16,7 @@ angular.module('app').service('FellowshipDataSvc', function(FellowshipUserSvc,Fe
 	this.initialize=function(fellowId){
 //		console.log("this.initialize");
 //		console.log(fellowId);
-		that.users = FellowshipUserSvc.getAllMembers(
+		that.users = FellowshipUserApiSvc.getAllMembers(
 			{
 				fellowship_id:fellowId
 			}
@@ -26,7 +26,7 @@ angular.module('app').service('FellowshipDataSvc', function(FellowshipUserSvc,Fe
 			}
 		);
 		//grab one fellowship
-		that.fellowship=FellowshipSvc.get({id:fellowId}, function() {
+		that.fellowship=FellowshipApiSvc.get({id:fellowId}, function() {
 			for (var i = 0; i < IdentitySvc.currentUser.fellowships.length; i++) {
 				//console.log('chk IdentitySvc.currentUser.fellowships[i].fellowshipId');
 				//console.log(IdentitySvc.currentUser.fellowships[i].fellowshipId);

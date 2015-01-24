@@ -1,5 +1,5 @@
 angular.module('app').controller('FellowshipMembersCtrl', function ($http, $scope,
-                                                                   IdentitySvc, FellowshipSvc,FellowshipUserSvc,FellowshipDataSvc,$routeParams) {
+                                                                   IdentitySvc, FellowshipApiSvc,FellowshipUserApiSvc,FellowshipDataSvc,$routeParams) {
 
 	//setup approve function here
 	//update the FellowshipUsers status from 'pending' to 'approved'
@@ -14,7 +14,7 @@ angular.module('app').controller('FellowshipMembersCtrl', function ($http, $scop
 		console.log(fellowshipUser);
 		//call updateFellowshipById
 		fellowshipUser.status = 'approved';
-		FellowshipUserSvc.update({fellowship_id: $routeParams.id, user_id:fellowshipUser.userId._id}, fellowshipUser).then(
+		FellowshipUserApiSvc.update({fellowship_id: $routeParams.id, user_id:fellowshipUser.userId._id}, fellowshipUser).then(
 			function(){
 				$scope.FellowshipDataSvc.initialize($routeParams.id);
 			}

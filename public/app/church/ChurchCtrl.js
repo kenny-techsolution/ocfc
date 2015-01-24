@@ -1,7 +1,7 @@
 /*******************************************************************************
  ******************************************************************************/
 
-angular.module('app').controller('ChurchCtrl', function ($http, $scope,ChurchSvc) {
+angular.module('app').controller('ChurchCtrl', function ($http, $scope,ChurchApiSvc) {
 	$scope.churchName;
 	$scope.churchWebsite;
 	$scope.street;
@@ -20,7 +20,7 @@ angular.module('app').controller('ChurchCtrl', function ($http, $scope,ChurchSvc
 		console.log('front-end createChurch has been called');
 
 
-		var church=new ChurchSvc({name:$scope.churchName,
+		var church=new ChurchApiSvc({name:$scope.churchName,
 									url:$scope.churchWebsite,
 									address:$scope.street,
 									city:$scope.city,
@@ -38,7 +38,7 @@ angular.module('app').controller('ChurchCtrl', function ($http, $scope,ChurchSvc
 	};
 
 	//Populate all fellowships to approve
-	$scope.churches = ChurchSvc.query(function () {
+	$scope.churches = ChurchApiSvc.query(function () {
 			console.log('chk $scope.churches');
 			console.log($scope.churches);
 		}
@@ -50,7 +50,7 @@ angular.module('app').controller('ChurchCtrl', function ($http, $scope,ChurchSvc
 		console.log(church);
 		//call updateFellowshipById
 		church.approved=true;
-		ChurchSvc.update({id:church._id},church);
+		ChurchApiSvc.update({id:church._id},church);
 
 	};
 });

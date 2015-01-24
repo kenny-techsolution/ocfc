@@ -8,7 +8,7 @@
  Checks data against AuthSvc.js to insure data is correct
  *************** ************************************************************************/
 
-angular.module('app').controller('SignupCtrl', function ($scope,$http,$routeParams,$location,IdentitySvc,UserSvc, NotifierSvc, $location, AuthSvc) {
+angular.module('app').controller('SignupCtrl', function ($scope,$http,$routeParams,$location,IdentitySvc,UserApiSvc, NotifierSvc, $location, AuthSvc) {
 
 			$scope.signin = function (username, password) {
 				AuthSvc.authenticateUser(username, password).then(function (success) {

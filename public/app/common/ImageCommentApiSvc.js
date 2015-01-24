@@ -6,11 +6,12 @@
 
 // factory, is a singleton, that contains data or function that can be used
 // across controllers
-angular.module('app').factory('CalendarSvc', function ($resource) {
+angular.module('app').factory('ImageCommentApiSvc', function ($resource) {
 	// rest api standard, for GET, if id is specified, it will grab specific
 	// user by id
-	var calendarResource = $resource('/api/calendars/:calendar_id/events', {
-		_id: '@calendar_id'
+
+	var imageCommentResource = $resource('/api/images/:image_id/comments', {
+		image_id:'@image_id'
 	}, {
 		'update': {
 			method: 'PUT',
@@ -18,5 +19,6 @@ angular.module('app').factory('CalendarSvc', function ($resource) {
 		}
 	}
 	);
-	return calendarResource;
+
+	return imageCommentResource;
 });

@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$routeParams, $http, $upload, ImageSvc, FellowshipDataSvc,IdentitySvc) {
+angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiSvc,$routeParams, $http, $upload, ImageApiSvc, FellowshipDataSvc,IdentitySvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -41,7 +41,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 
 					if (selectedPostType === 'General') {
 						postType = 'general';
-						post = new PostSvc({postType: postType,
+						post = new PostApiSvc({postType: postType,
 								general: [
 									{content: $scope.content}
 								],
@@ -65,7 +65,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 
 					} else if (selectedPostType === 'Announcement') {
 						postType = 'announcement';
-						post = new PostSvc({postType: postType,
+						post = new PostApiSvc({postType: postType,
 								announcement: [
 									{content: $scope.content}
 								],
@@ -91,7 +91,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 						postType = 'event';
 						console.log('postType of event condition is met');
 
-						post = new PostSvc({postType: postType,
+						post = new PostApiSvc({postType: postType,
 								postUnderGroupType: 'fellowship',
 								postUnderGroupId: $routeParams.id,
 								imageIds: imageArray,
@@ -130,7 +130,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 						console.log('Testimony else if statement is met on ocfc-wall-input');
 
 						postType = 'testimony';
-						post = new PostSvc({postType: postType,
+						post = new PostApiSvc({postType: postType,
 								testimony: [
 									{title: $scope.title,
 										content: $scope.content}
@@ -158,7 +158,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 						console.log('Question else if statement is met on ocfc-wall-input');
 
 						postType = 'question';
-						post = new PostSvc({postType: postType,
+						post = new PostApiSvc({postType: postType,
 								question: $scope.content,
 								postUnderGroupType: 'fellowship',
 								postUnderGroupId: $routeParams.id,
@@ -181,7 +181,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 					} else {
 						//default as general post
 						postType = 'general';
-						post = new PostSvc({postType: postType,
+						post = new PostApiSvc({postType: postType,
 								general: [
 									{content: $scope.content}
 								],
@@ -246,7 +246,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 
 						//call create image
 						console.log('front-end new image creation has been called');
-						var image = new ImageSvc({path: data.public_id,
+						var image = new ImageApiSvc({path: data.public_id,
 							album_id: FellowshipDataSvc.fellowship.defaultAlbumId});
 						image.$save(function () {
 							console.log('image has been created');
@@ -266,7 +266,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 				if (imageObjs[$index].image_path === backgroundImgPath) {
 					console.log('if statement condition met');
 
-					var removedImage = ImageSvc.get({album_id: FellowshipDataSvc.fellowship.defaultAlbumId,
+					var removedImage = ImageApiSvc.get({album_id: FellowshipDataSvc.fellowship.defaultAlbumId,
 						image_id: imageObjs[$index].image_id}, function () {
 						console.log('image delete resource API called');
 
