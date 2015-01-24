@@ -15,10 +15,10 @@ angular.module('app').factory('UserApiSvc', function ($resource) {
 
 	UserResource.prototype.isAdmin = function () {
 		//check role column to check if 'admin' value exist
+		//console.log("test this.roles && this.roles.indexOf('admin')>-1");
+		//console.log(this.roles);
+		//console.log(this.roles.indexOf('admin'));
 		return this.roles && this.roles.indexOf('admin') > -1;
-		console.log("test this.roles && this.roles.indexOf('admin')>-1");
-		console.log(this.roles);
-		console.log(this.roles.indexOf('admin'));
 	}
 	return UserResource;
 });

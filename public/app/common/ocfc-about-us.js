@@ -44,8 +44,8 @@ angular.module('app').directive('ocfcAboutUs', function (IdentitySvc, CommentApi
 				console.log('updateEditedPost function called');
 				$scope.fellowship.about = $scope.newAboutContent;
 
-				console.log('chk IdentitySvc obj');
-				console.log(IdentitySvc);
+				//console.log('chk IdentitySvc obj');
+				//console.log(IdentitySvc);
 
 				//cannot update post other than your own
 				if ($scope.isAdmin) {
@@ -53,8 +53,8 @@ angular.module('app').directive('ocfcAboutUs', function (IdentitySvc, CommentApi
 
 					var updateAboutUs = angular.copy($scope.fellowship);
 
-					console.log('chk updatePost obj whether about has been updated');
-					console.log(updateAboutUs);
+					//console.log('chk updatePost obj whether about has been updated');
+					//console.log(updateAboutUs);
 
 					//update post obj on the server side
 					FellowshipApiSvc.update({id: updateAboutUs._id}, updateAboutUs, function () {

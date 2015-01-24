@@ -23,7 +23,7 @@ var albums = require('../controllers/albums'),
 
 	/*--Others--*/
 	auth = require('./auth'),
-	eventsOld = require('../controllers/events-old'),
+	//eventsOld = require('../controllers/events-old'),
 	cloudinary = require('cloudinary');
 
 module.exports = function (app, io) {

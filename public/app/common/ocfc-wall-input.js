@@ -29,7 +29,6 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 			$scope.$watch('selectedPostType', function (newVal, oldVal) {
 				//console.log('chk $scope.selectedPostType value');
 				//console.log($scope.selectedPostType);
-
 				var postType;
 				var post;
 
@@ -60,8 +59,8 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 							imageArray = [];
 						});
 
-						console.log('chk post input within for type General in ocfc-wall-input, createPost func');
-						console.log(post);
+						//console.log('chk post input within for type General in ocfc-wall-input, createPost func');
+						//console.log(post);
 
 					} else if (selectedPostType === 'Announcement') {
 						postType = 'announcement';
@@ -84,8 +83,8 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 							imageArray = [];
 						});
 
-						console.log('chk post input within for type General in ocfc-wall-input, createPost func');
-						console.log(post);
+						//console.log('chk post input within for type General in ocfc-wall-input, createPost func');
+						//console.log(post);
 
 					} else if (selectedPostType === 'Event') {
 						postType = 'event';
@@ -121,8 +120,8 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 
 						});
 
-						console.log('chk post input within for type Event in ocfc-wall-input, createPost func');
-						console.log(post);
+						//console.log('chk post input within for type Event in ocfc-wall-input, createPost func');
+						//console.log(post);
 
 
 
@@ -150,8 +149,8 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 							imageArray = [];
 						});
 
-						console.log('chk post input within for type Testimony in ocfc-wall-input, createPost func');
-						console.log(post);
+						//console.log('chk post input within for type Testimony in ocfc-wall-input, createPost func');
+						//console.log(post);
 
 						//Default setting
 					} else if (selectedPostType === 'Question') {
@@ -174,8 +173,8 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 							$scope.backgroundImgPaths = [];
 							imageArray = [];
 						});
-						console.log('chk post input within for type question in ocfc-wall-input, createPost func');
-						console.log(post);
+						//console.log('chk post input within for type question in ocfc-wall-input, createPost func');
+						//console.log(post);
 
 						//Default setting
 					} else {
@@ -198,8 +197,8 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 							$scope.backgroundImgPaths = [];
 							imageArray = [];
 						});
-						console.log('chk post input within for type General in ocfc-wall-input, createPost func');
-						console.log(post);
+						//console.log('chk post input within for type General in ocfc-wall-input, createPost func');
+						//console.log(post);
 					}
 
 					//console.log('chk if imageArray have images');
@@ -211,8 +210,6 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 
 			$http.get("/cloudinarySigned?type=fullSizeImg").success(function (data) {
 				$scope.cloudinarySignedParams = data;
-				//console.log('chk $.cloudinary.config()');
-				//console.log($.cloudinary.config());
 			});
 
 			$scope.onFileSelect = function ($files) {

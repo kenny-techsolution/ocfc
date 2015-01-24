@@ -17,12 +17,9 @@ angular.module('app').directive('ocfcAnnouncementPost', function (IdentitySvc, C
 			$scope.IdentitySvc = IdentitySvc;
 			$scope.showEdit = false;
 			$scope.newAnnouncePostContent = $scope.post.announcement[0].content;
-
 			$scope.comment;
-
 			//create
 			$scope.createComment = PostCommentSvc.createComment;
-
 			//edit post derived from dropdown
 			$scope.editPost = function () {
 				console.log('editPost function called');

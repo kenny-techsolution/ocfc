@@ -20,8 +20,8 @@ angular.module('app').factory('IdentitySvc', function ($window, UserApiSvc) {
 	var currentUser;
 	if (!!$window.bootstrappedUserObject) {
 		currentUser = new UserApiSvc();
-		console.log('chk $window.bootstrappedUserObject');
-		console.log($window.bootstrappedUserObject);
+		//console.log('chk $window.bootstrappedUserObject');
+		//console.log($window.bootstrappedUserObject);
 		angular.extend(currentUser, $window.bootstrappedUserObject);
 	}
 	return{

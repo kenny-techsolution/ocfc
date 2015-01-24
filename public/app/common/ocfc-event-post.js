@@ -26,7 +26,6 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentAp
 			$scope.newEventPostWhere=$scope.post.eventId.where;
 
 			$scope.comment;
-
 			//create
 			$scope.createComment=PostCommentSvc.createComment;
 

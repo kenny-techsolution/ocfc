@@ -18,8 +18,6 @@ angular.module('app').controller('ChurchCtrl', function ($http, $scope,ChurchApi
 
 	$scope.createChurch=function(){
 		console.log('front-end createChurch has been called');
-
-
 		var church=new ChurchApiSvc({name:$scope.churchName,
 									url:$scope.churchWebsite,
 									address:$scope.street,

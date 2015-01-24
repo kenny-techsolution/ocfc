@@ -15,7 +15,6 @@ angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, Comme
 
 			$scope.IdentitySvc = IdentitySvc;
 			$scope.showEdit = false;
-
 			$scope.newAnnouncePostContent = $scope.post.announcement[0].content;
 
 

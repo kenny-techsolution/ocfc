@@ -6,7 +6,6 @@ var mongoose = require('mongoose'),
 	deleteKey = require('key-del'),
 	_ = require('lodash');//Library for Array
 
-
 /* ------ Invite Other To Fellowships related API -------- */
 //Post - Round1
 exports.createInvite = function (req, res) {
@@ -43,32 +42,32 @@ exports.queryInvites = function (req, res) {
 	//query from a particular fellowship
 	//user parameter passes as search criteria
 	//filter out any non-qualified parameter keys using lo-dash
-	var validKeys=commFunc.removeInvalidKeys(req.query,["fellowshipId","inviter","invitee","email","welcomeMessage","invitedOn"]);
+	var validKeys = commFunc.removeInvalidKeys(req.query, ["fellowshipId", "inviter", "invitee", "email", "welcomeMessage", "invitedOn"]);
 	InviteOtherToFellowship.find(validKeys).exec(function (err, invitedUsers) {
 		if (err) return res.json(err);
-		return res.json({status:"success",invitedUsers:invitedUsers});
+		return res.json({status: "success", invitedUsers: invitedUsers});
 	});
 
 };
 
 //Get - Round1
 exports.getInvite = function (req, res) {
-	InviteOtherToFellowship.find({_id:req.params.id}).exec(function (err, invitedUser) {
+	InviteOtherToFellowship.find({_id: req.params.id}).exec(function (err, invitedUser) {
 		if (err) return res.json(err);
-		return res.json({status:"success",invitedUser:invitedUser});
+		return res.json({status: "success", invitedUser: invitedUser});
 	});
 };
-
 
 //Delete - Round1
 exports.deleteInvite = function (req, res) {
 	//Delete if session user is the inviter
-	if (req.user._id==req.body.inviter){
-		InviteOtherToFellowship.remove({_id:req.params.id},function (err) {
+	if (req.user._id == req.body.inviter) {
+		InviteOtherToFellowship.remove({_id: req.params.id}, function (err) {
 			if (err) return res.json(err);
-			return res.json({status:"successfully removed from InviteOtherToFellowship"});
+			return res.json({status: "successfully removed from InviteOtherToFellowship"});
 		});
 
-	};
+	}
+	;
 
 };

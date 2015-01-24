@@ -21,9 +21,7 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;
 			$scope.newGenPostContent=$scope.post.general[0].content;
-
 			$scope.comment;
-
 
 			//create
 			$scope.createComment=PostCommentSvc.createComment;

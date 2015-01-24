@@ -6,8 +6,6 @@ angular.module('app').directive('ocfcFellowships', function () {
 		replace: true,
 		templateUrl: '/partials/common/ocfc-fellowships',
 		controller: function ($scope) {
-
-
 		}
 	};
 });
