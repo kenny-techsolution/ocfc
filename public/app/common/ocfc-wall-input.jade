@@ -17,8 +17,37 @@
 		input.wall-header__event-toDate(ng-model='toDate',ng-show='selectedPostType === "Event"',type='date')
 		textarea.wall-header__event-where(ng-model='eventWhere',ng-show='selectedPostType === "Event"',placeholder='Event location goes here')
 		textarea.textbox(ng-model='content', placeholder='What do you want to write about?')
-	.ocfc-wall-input__media.wall-img.row
-		.wall-img__image-section(ng-repeat='backgroundImgPath in backgroundImgPaths')
-			img.wall-img__images(ng-src='https://res.cloudinary.com/ocfc/image/upload/{{backgroundImgPath}}')
-			button.wall-img__image-delete(ng-click='deleteImage($index,backgroundImgPath)') X
+	.ocfc-wall-input__media
+		.inner
+			.scrollable
+				.wall-img__image-section
+					img(ng-src='https://res.cloudinary.com/ocfc/image/upload/l4hqb0qqpwgnkttbl1ca')
+					button.delete X
+				.wall-img__image-section
+					img(ng-src='https://res.cloudinary.com/ocfc/image/upload/l4hqb0qqpwgnkttbl1ca')
+					button.delete X
+				.wall-img__image-section
+					img(ng-src='https://res.cloudinary.com/ocfc/image/upload/l4hqb0qqpwgnkttbl1ca')
+					button.delete X
+				.wall-img__image-section
+					img(ng-src='https://res.cloudinary.com/ocfc/image/upload/l4hqb0qqpwgnkttbl1ca')
+					button.delete X
+				.wall-img__image-section
+					img(ng-src='https://res.cloudinary.com/ocfc/image/upload/l4hqb0qqpwgnkttbl1ca')
+					button.delete X
+				.wall-img__image-section
+					img(ng-src='https://res.cloudinary.com/ocfc/image/upload/l4hqb0qqpwgnkttbl1ca')
+					button.delete X
+				.wall-img__image-section
+					img(ng-src='https://res.cloudinary.com/ocfc/image/upload/l4hqb0qqpwgnkttbl1ca')
+					button.delete X
+				.wall-img__image-section
+					img(ng-src='https://res.cloudinary.com/ocfc/image/upload/l4hqb0qqpwgnkttbl1ca')
+					button.delete X
+				.wall-img__image-section
+					img(ng-src='https://res.cloudinary.com/ocfc/image/upload/l4hqb0qqpwgnkttbl1ca')
+					button.delete X
+		//.wall-img__image-section(ng-repeat='backgroundImgPath in backgroundImgPaths')
+		//	img.wall-img__images(ng-src='https://res.cloudinary.com/ocfc/image/upload/{{backgroundImgPath}}')
+		//	button.wall-img__image-delete(ng-click='deleteImage($index,backgroundImgPath)') X
 
