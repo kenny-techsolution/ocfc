@@ -27,8 +27,8 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 			$scope.content = '';
 
 			$scope.$watch('selectedPostType', function (newVal, oldVal) {
-				console.log('chk $scope.selectedPostType value');
-				console.log($scope.selectedPostType);
+				//console.log('chk $scope.selectedPostType value');
+				//console.log($scope.selectedPostType);
 
 				var postType;
 				var post;

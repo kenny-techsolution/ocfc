@@ -12,11 +12,11 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 		controller: function ($scope) {
 
 			console.log('ocfcQuestionPost has been called');
-			console.log('chk on $scope.post obj for question');
-			console.log($scope.post);
+			//console.log('chk on $scope.post obj for question');
+			//console.log($scope.post);
 
-			console.log('chk $scope.post.postType value');
-			console.log($scope.post.postType);
+			//console.log('chk $scope.post.postType value');
+			//console.log($scope.post.postType);
 
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;

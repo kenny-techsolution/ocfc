@@ -11,8 +11,8 @@ angular.module('app').directive('ocfcAnnouncementPost', function (IdentitySvc, C
 		templateUrl: '/partials/common/ocfc-announcement-post',
 		controller: function ($scope) {
 			console.log('ocfcAnnouncementPost has been called');
-			console.log('chk $scope.post.postType value');
-			console.log($scope.post.postType);
+			//console.log('chk $scope.post.postType value');
+			//console.log($scope.post.postType);
 
 			$scope.IdentitySvc = IdentitySvc;
 			$scope.showEdit = false;

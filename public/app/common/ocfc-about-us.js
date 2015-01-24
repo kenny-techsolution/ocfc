@@ -13,18 +13,18 @@ angular.module('app').directive('ocfcAboutUs', function (IdentitySvc, CommentSvc
 		templateUrl: '/partials/common/ocfc-about-us',
 		controller: function ($scope) {
 			console.log('ocfcAboutUs has been called');
-			console.log('chk $scope.fellowship obj');
-			console.log($scope.fellowship);
+			//console.log('chk $scope.fellowship obj');
+			//console.log($scope.fellowship);
 
 			$scope.IdentitySvc = IdentitySvc;
 			$scope.showEdit = false;
 
 			$scope.$watch('fellowship',function(newVal,oldVal){
-				console.log('chk newVal');
-				console.log(newVal);
+				//console.log('chk newVal');
+				//console.log(newVal);
 				if(!newVal){
-					console.log('chk newVal within if condition');
-					console.log(newVal);
+					//console.log('chk newVal within if condition');
+					//console.log(newVal);
 					$scope.newAboutContent = $scope.fellowship.about;
 				}
 			});

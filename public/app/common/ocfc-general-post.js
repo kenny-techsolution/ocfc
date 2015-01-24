@@ -12,8 +12,8 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 		controller: function ($scope) {
 
 			console.log('ocfcGeneralPost has been called');
-			console.log('chk $scope.post.postType value');
-			console.log($scope.post.postType);
+			//console.log('chk $scope.post.postType value');
+			//console.log($scope.post.postType);
 
 			//console.log('chk $scope.imagePopup ');
 			//console.log($scope.imagePopup);

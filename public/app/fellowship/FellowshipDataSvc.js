@@ -28,23 +28,23 @@ angular.module('app').service('FellowshipDataSvc', function(FellowshipUserSvc,Fe
 		//grab one fellowship
 		that.fellowship=FellowshipSvc.get({id:fellowId}, function() {
 			for (var i = 0; i < IdentitySvc.currentUser.fellowships.length; i++) {
-				console.log('chk IdentitySvc.currentUser.fellowships[i].fellowshipId');
-				console.log(IdentitySvc.currentUser.fellowships[i].fellowshipId);
+				//console.log('chk IdentitySvc.currentUser.fellowships[i].fellowshipId');
+				//console.log(IdentitySvc.currentUser.fellowships[i].fellowshipId);
 
-				console.log('chk that.fellowship._id');
-				console.log(that.fellowship._id);
+				//console.log('chk that.fellowship._id');
+				//console.log(that.fellowship._id);
 
-				console.log('chk IdentitySvc.currentUser.fellowships[i].role');
-				console.log(IdentitySvc.currentUser.fellowships[i].role);
+				//console.log('chk IdentitySvc.currentUser.fellowships[i].role');
+				//console.log(IdentitySvc.currentUser.fellowships[i].role);
 
 				if (IdentitySvc.currentUser.fellowships[i].fellowshipId === that.fellowship._id && IdentitySvc.currentUser.fellowships[i].role === 'admin') {
 					that.isAdmin =true;
-					console.log('chk that.isAdmin');
-					console.log(that.isAdmin);
+					//console.log('chk that.isAdmin');
+					//console.log(that.isAdmin);
 				} else {
 					that.isAdmin =false;
-					console.log('chk that.isAdmin');
-					console.log(that.isAdmin);
+					//console.log('chk that.isAdmin');
+					//console.log(that.isAdmin);
 				}
 			}
 		});

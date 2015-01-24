@@ -7,12 +7,15 @@ angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, Comme
 			imagePopup: '=',
 			posts: '=',
 			dropdown: '='
+
 		},
 		templateUrl: '/partials/common/ocfc-announcement',
 		controller: function ($scope) {
 			console.log('ocfcAnnouncement has been called');
+
 			$scope.IdentitySvc = IdentitySvc;
 			$scope.showEdit = false;
+
 			$scope.newAnnouncePostContent = $scope.post.announcement[0].content;
 
 
@@ -58,7 +61,6 @@ angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, Comme
 				//console.log($scope.post);
 				console.log('updateEditedPost function called');
 				$scope.post.announcement[0].content = $scope.newAnnouncePostContent;
-
 				//cannot update post other than your own
 				if ($scope.post.postBy._id === IdentitySvc.currentUser._id) {
 					console.log('if condition is met, this post is made by current user');

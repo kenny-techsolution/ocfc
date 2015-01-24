@@ -13,11 +13,11 @@ angular.module('app').directive('ocfcTestimonyPost', function (IdentitySvc,Comme
 
 			console.log('ocfcTestimonyPost has been called');
 
-			console.log('chk on $scope.post obj for testimony');
-			console.log($scope.post);
+			//console.log('chk on $scope.post obj for testimony');
+			//console.log($scope.post);
 
-			console.log('chk $scope.post.postType value');
-			console.log($scope.post.postType);
+			//console.log('chk $scope.post.postType value');
+			//console.log($scope.post.postType);
 
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;

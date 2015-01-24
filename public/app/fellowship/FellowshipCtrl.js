@@ -9,13 +9,14 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 	$scope.FellowshipDataSvc = FellowshipDataSvc;
 	$scope.FellowshipDataSvc.initialize($routeParams.id);
 	//default banner image
-	$scope.FellowshipDataSvc.fellowship.bannerImage='h9wvhxsfi0prxrg0nipr';
-	$scope.FellowshipDataSvc.fellowship.logoImage='h9wvhxsfi0prxrg0nipr';
+	$scope.FellowshipDataSvc.fellowship.bannerImage = 'h9wvhxsfi0prxrg0nipr';
+	$scope.FellowshipDataSvc.fellowship.logoImage = 'h9wvhxsfi0prxrg0nipr';
 
 	$scope.posts = [];
 	//query post data here
 	$scope.posts = PostSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id});
 	$scope.selectedPost;
+	$scope.selectedPostType;
 
 	//console.log('chk $scope.posts array from FellowshipCtrl');
 	//console.log($scope.posts);
@@ -32,15 +33,6 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 		console.log(newVal);
 	});
 
-	$scope.comingAnnouncements = function (post) {
-		var currDate = new Date();
-		var announcementDate = new Date(post.createdOn);
-		var announcementPostType = post.postType;
-		var onSameMonth = (announcementDate.getMonth()) === (currDate.getMonth());
-		var btw0And7Days = ((currDate.getDate()) - (announcementDate.getDate())) >= 0 && ((currDate.getDate()) - (announcementDate.getDate())) <= 7;
-
-		return (announcementPostType === 5 && onSameMonth && (btw0And7Days));
-	};
 
 	$scope.dropdown = [
 		{
@@ -60,7 +52,6 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 		}
 	];
 
-
 	$scope.logoDropDown = [
 		{
 			"text": "Delete This Photo",
@@ -68,12 +59,11 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 		}
 	];
 
-
 	$http.get("/cloudinarySigned?type=fullSizeImg").success(function (data) {
 		$scope.cloudinarySignedParams = data;
 	});
 
-	$scope.editFellowshipImage = function ($files,type) {
+	$scope.editFellowshipImage = function ($files, type) {
 		console.log('editBannerImage within FellowshipCtrl has been triggered');
 		var file = $files[0];//allow 1 image upload only
 		console.log('for loop has been triggered');
@@ -106,7 +96,7 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 			//update certain fields
 			var fellowship = new FellowshipSvc();
 
-			if (type==='banner'){
+			if (type === 'banner') {
 				console.log('type equates to banner');
 
 				fellowship.bannerImage = data.public_id;
@@ -122,7 +112,7 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 					}
 				);
 
-			}else{
+			} else {
 				console.log('type equates to logo');
 				fellowship.logoImage = data.public_id;
 
@@ -145,7 +135,7 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 		console.log('deleteBannerImage has been called');
 		var fellowship = new FellowshipSvc();
 		//default image
-		if (type==='banner'){
+		if (type === 'banner') {
 			console.log('type equates to banner');
 			fellowship.bannerImage = 'h9wvhxsfi0prxrg0nipr';
 
@@ -158,7 +148,7 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 					console.log(fellowship);
 				}
 			);
-		}else{
+		} else {
 			console.log('type equates to logo');
 			fellowship.logoImage = 'h9wvhxsfi0prxrg0nipr';
 
@@ -172,7 +162,12 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 				}
 			);
 		}
-
 	};
+
+	selectPostType=function(type) {
+		$scope.selectedPostType = type;
+	};
+
+
 });
 

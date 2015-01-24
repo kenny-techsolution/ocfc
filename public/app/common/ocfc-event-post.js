@@ -11,8 +11,8 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentSv
 		templateUrl: '/partials/common/ocfc-event-post',
 		controller: function ($scope) {
 			console.log('ocfcEventPost has been called');
-			console.log('chk $scope.post.postType value');
-			console.log($scope.post.postType);
+			//console.log('chk $scope.post.postType value');
+			//console.log($scope.post.postType);
 
 			//console.log('chk $scope.imagePopup ');
 			//console.log($scope.imagePopup);
