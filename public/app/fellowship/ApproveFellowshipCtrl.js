@@ -1,6 +1,5 @@
 angular.module('app').controller('ApproveFellowshipCtrl', function ($http, $scope,
-                                                             IdentitySvc, FellowshipApiSvc,FellowshipDataSvc,FellowshipUserApiSvc, $routeParams,
-                                                             mySocket, $timeout) {
+                                                             IdentitySvc, FellowshipApiSvc) {
 	$scope.fellowshipName;
 	$scope.churchName;
 	$scope.street="";
