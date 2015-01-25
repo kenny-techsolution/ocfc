@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcAboutUs', function (IdentitySvc, CommentSvc, _, FellowshipSvc) {
+angular.module('app').directive('ocfcAboutUs', function (IdentitySvc, CommentApiSvc, _, FellowshipApiSvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -44,8 +44,8 @@ angular.module('app').directive('ocfcAboutUs', function (IdentitySvc, CommentSvc
 				console.log('updateEditedPost function called');
 				$scope.fellowship.about = $scope.newAboutContent;
 
-				console.log('chk IdentitySvc obj');
-				console.log(IdentitySvc);
+				//console.log('chk IdentitySvc obj');
+				//console.log(IdentitySvc);
 
 				//cannot update post other than your own
 				if ($scope.isAdmin) {
@@ -53,11 +53,11 @@ angular.module('app').directive('ocfcAboutUs', function (IdentitySvc, CommentSvc
 
 					var updateAboutUs = angular.copy($scope.fellowship);
 
-					console.log('chk updatePost obj whether about has been updated');
-					console.log(updateAboutUs);
+					//console.log('chk updatePost obj whether about has been updated');
+					//console.log(updateAboutUs);
 
 					//update post obj on the server side
-					FellowshipSvc.update({id: updateAboutUs._id}, updateAboutUs, function () {
+					FellowshipApiSvc.update({id: updateAboutUs._id}, updateAboutUs, function () {
 						console.log('front-end FellowshipSvc.update has completed');
 					});
 					$scope.showEdit = false;

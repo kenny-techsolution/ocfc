@@ -16,12 +16,12 @@
  factory or service are used as single copy known as singleton
  factory returns objects
  ***************************************************************************************/
-angular.module('app').factory('IdentitySvc', function ($window, UserSvc) {
+angular.module('app').factory('IdentitySvc', function ($window, UserApiSvc) {
 	var currentUser;
 	if (!!$window.bootstrappedUserObject) {
-		currentUser = new UserSvc();
-		console.log('chk $window.bootstrappedUserObject');
-		console.log($window.bootstrappedUserObject);
+		currentUser = new UserApiSvc();
+		//console.log('chk $window.bootstrappedUserObject');
+		//console.log($window.bootstrappedUserObject);
 		angular.extend(currentUser, $window.bootstrappedUserObject);
 	}
 	return{

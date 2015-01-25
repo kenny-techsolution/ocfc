@@ -1,5 +1,5 @@
-angular.module('app').controller('DummyCtrl', function ($http, $scope,UserSvc,ChurchSvc,
-                                                         IdentitySvc, FellowshipSvc,FellowshipUserSvc, ChurchFellowshipSvc) {
+angular.module('app').controller('DummyCtrl', function ($http, $scope,UserApiSvc,ChurchApiSvc,
+                                                         IdentitySvc, FellowshipApiSvc,FellowshipUserApiSvc, ChurchFellowshipApiSvc) {
 
 var Users=[{fullName:'Mariah Carey',
 	userName:'mc@gmail.com',
@@ -254,7 +254,7 @@ $scope.createDummyData=function(){
 
 	for (var i = 0; i < Users.length; i++){
 		console.log('for loop has been called');
-		userObj[i]=new UserSvc(Users[i]);
+		userObj[i]=new UserApiSvc(Users[i]);
 
 		userObj[i].$save(function(user){
 			console.log(user);
@@ -345,7 +345,7 @@ $scope.createDummyData=function(){
 			var fellowshipIds=[];
 			fellowships[i].userId=userIds[i];
 			console.log(fellowships[i]);
-			fellowshipObj[i]=new FellowshipSvc(fellowships[i]);
+			fellowshipObj[i]=new FellowshipApiSvc(fellowships[i]);
 
 			fellowshipObj[i].$save(function(fellowship){
 				console.log(fellowship);
@@ -360,7 +360,7 @@ $scope.createDummyData=function(){
 			console.log('create 14 Fellowship Users with Pending status');
 			for (var i = 5; i < 19; i++) {
 				console.log('for loop has been called');
-				fellowUsers[i] = new FellowshipUserSvc({
+				fellowUsers[i] = new FellowshipUserApiSvc({
 					userId: userIds[i],
 					fellowshipId: fellowshipIds[0],
 					status: "Pending",
@@ -375,7 +375,7 @@ $scope.createDummyData=function(){
 			setTimeout(function(){
 				for (var i = 19; i < 28; i++) {
 					console.log('for loop has been called');
-					fellowUsers[i] = new FellowshipUserSvc({
+					fellowUsers[i] = new FellowshipUserApiSvc({
 						userId: userIds[i],
 						fellowshipId: fellowshipIds[1],
 						status: "approved",
@@ -493,7 +493,7 @@ $scope.createDummyData=function(){
 					var churchIds = [];
 					console.log(churches[j]);
 					churches[j].userId=userIds[j];
-					churchObj[j] = new ChurchSvc(churches[j]);
+					churchObj[j] = new ChurchApiSvc(churches[j]);
 
 					churchObj[j].$save(function (church) {
 						console.log(church);
@@ -527,7 +527,7 @@ $scope.createDummyData=function(){
 						console.log('chk churchFellowshipObj');
 						console.log(churchFellowshipObj);
 
-						var churchFellowship = new ChurchFellowshipSvc(churchFellowshipObj);
+						var churchFellowship = new ChurchFellowshipApiSvc(churchFellowshipObj);
 
 						console.log('chk churchFellowship');
 						console.log(churchFellowship);

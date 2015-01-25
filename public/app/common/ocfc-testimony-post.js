@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcTestimonyPost', function (IdentitySvc,CommentSvc,_,PostSvc,PostCommentSvc) {
+angular.module('app').directive('ocfcTestimonyPost', function (IdentitySvc,CommentApiSvc,_,PostApiSvc,PostCommentSvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -26,6 +26,11 @@ angular.module('app').directive('ocfcTestimonyPost', function (IdentitySvc,Comme
 
 			$scope.comment;
 
+			if ($scope.post.postBy._id===IdentitySvc.currentUser._id) {
+				$scope.isPoster=true;
+			}else {
+				$scope.isPoster=false;
+			};
 
 			//create
 			$scope.createComment=PostCommentSvc.createComment;
@@ -42,7 +47,7 @@ angular.module('app').directive('ocfcTestimonyPost', function (IdentitySvc,Comme
 				console.log('chk post obj');
 				console.log($scope.post);
 
-				var post = PostSvc.get({id:$scope.post._id}, function() {
+				var post = PostApiSvc.get({id:$scope.post._id}, function() {
 					console.log('chk variable post obj');
 					console.log(post);
 					post.$delete({id:$scope.post._id},function(){
@@ -90,7 +95,7 @@ angular.module('app').directive('ocfcTestimonyPost', function (IdentitySvc,Comme
 					updatePost.postType="testimony";
 
 					//update post obj on the server side
-					PostSvc.update({id:updatePost._id},updatePost,function(){
+					PostApiSvc.update({id:updatePost._id},updatePost,function(){
 						console.log('front-end PostSvc.update has completed');
 					});
 

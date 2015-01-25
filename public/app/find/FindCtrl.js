@@ -1,4 +1,4 @@
-angular.module('app').controller('FindCtrl', function ($scope,$http,$location,GoogleMapPlacesSvc, GoogleMapGeocoderSvc, google, FellowshipSvc) {
+angular.module('app').controller('FindCtrl', function ($scope,$http,$location,GoogleMapPlacesSvc, GoogleMapGeocoderSvc, google, FellowshipApiSvc) {
 
 	$scope.selectedGroup = "FELLOWSHIP";
 	$scope.groups = [{value:'FELLOWSHIP',label:'FELLOWSHIP'},{value:'CHURCH',label:'CHURCH'}];
@@ -44,7 +44,7 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 	      		$scope.lng = $scope.resultLatlng.lng();
 	      	});
 
-			$scope.fellowships = FellowshipSvc.query({lat:$scope.lat,lng: $scope.lng,maxDistance: 200 },function () {
+			$scope.fellowships = FellowshipApiSvc.query({lat:$scope.lat,lng: $scope.lng,maxDistance: 200 },function () {
 					console.log('chk $scope.fellowships');
 					console.log($scope.fellowships);
 					var latlngs = [];

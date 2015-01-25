@@ -2,7 +2,7 @@
  ******************************************************************************/
 
 angular.module('app').controller('CreateFellowshipCtrl', function ($http, $scope,
-                                                             IdentitySvc, FellowshipSvc,FellowshipUserSvc, $routeParams,
+                                                             IdentitySvc, FellowshipApiSvc,FellowshipUserApiSvc, $routeParams,
                                                              mySocket, $timeout, GoogleMapGeocoderSvc) {
 	$scope.agree = false;
 	$scope.fellowshipName;
@@ -31,7 +31,7 @@ angular.module('app').controller('CreateFellowshipCtrl', function ($http, $scope
 
 	$scope.createFellowship=function(){
 		console.log('front-end createFellowship is being called');
-		var fellowship=new FellowshipSvc({name:$scope.fellowshipName,
+		var fellowship=new FellowshipApiSvc({name:$scope.fellowshipName,
 										  address:$scope.street,
 										  city:$scope.city,
 										  state:$scope.state,

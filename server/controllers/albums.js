@@ -4,77 +4,77 @@ var Album = require('mongoose').model('Album'),
 	FellowshipUser = require('mongoose').model('FellowshipUser'),
 	deleteKey = require('key-del'),
 	commFunc = require('../utilities/commonFunctions'),
-	_=require('lodash');//Library for Array
-
+	_ = require('lodash');//Library for Array
 
 //Post - Round1
 exports.createAlbum = function (req, res) {
 	var album = req.body;
-	album={
-		name:album.name,
-		createdOn:new Date(),
-		createdBy:req.user.id
+	album = {
+		name: album.name,
+		createdOn: new Date(),
+		createdBy: req.user.id
 	}
 	var album = new Album(album);
-	album.save(function (err,album) {
+	album.save(function (err, album) {
 		if (err) return res.json(err);
 		return res.json({status: "success", album: album})
 	})
 };
+
 //Get - Round1
-exports.getAlbum= function (req, res) {
+exports.getAlbum = function (req, res) {
 	//Album id must associate to your fellowship
 	//match by album id against fellowship
 	//grab fellowship_id, chk against fellowshipUser and chk if it matches session user's fellowship_id
-	Album.findOne({_id:req.params.id}).exec(function(err,album){
+	Album.findOne({_id: req.params.id}).exec(function (err, album) {
 		if (err) return res.json(err);
-		Fellowship.find({}).where('albumIds',{$elemMatch:{$in: [album._id]}}).exec(function(err,fellowship) {
+		Fellowship.find({}).where('albumIds', {$elemMatch: {$in: [album._id]}}).exec(function (err, fellowship) {
 			if (err) return res.json(err);
-			FellowshipUser.findOne({fellowshipId:req.params.fellowship_id,userId:commFunc.reqSessionUserId(req)}).exec(function(err,fellowshipUser){
+			FellowshipUser.findOne({fellowshipId: req.params.fellowship_id, userId: commFunc.reqSessionUserId(req)}).exec(function (err, fellowshipUser) {
 				if (err) return res.json(err);
-				return res.json({status:"success",album:album});
+				return res.json({status: "success", album: album});
 			})
 		});
 	})
 };
 
 //Put - Round1
-exports.updateAlbum= function (req, res) {
-	var album = commFunc.removeInvalidKeys(req.body,['name','description']);
-	Album.update({ _id:req.params.id }, album, { multi: true }, function (err, numberAffected, raw) {
+exports.updateAlbum = function (req, res) {
+	var album = commFunc.removeInvalidKeys(req.body, ['name', 'description']);
+	Album.update({ _id: req.params.id }, album, { multi: true }, function (err, numberAffected, raw) {
 		if (err) return res.json(err);
-		return res.json({status:"success",raw:raw});
+		return res.json({status: "success", raw: raw});
 	});
 };
 
 //Delete - Round1
-exports.deleteAlbum= function (req, res) {
-	Album.findOneAndRemove({createdBy:commFunc.reqSessionUserId(req),_id:req.params.id}, function (err) {
+exports.deleteAlbum = function (req, res) {
+	Album.findOneAndRemove({createdBy: commFunc.reqSessionUserId(req), _id: req.params.id}, function (err) {
 		if (err) return res.json(err);
 		return res.json({status: "successfully removed from Album"});
 	});
 };
 
 //Post - Round1
-exports.createImage= function (req, res) {
+exports.createImage = function (req, res) {
 	console.log('server createImage has been called');
 	//grab album path from Cloudinary
-	var path=req.body.path;
-	var image=new Image();
-	image.path=path;
+	var path = req.body.path;
+	var image = new Image();
+	image.path = path;
 
 	//TODO make sure user can post to this album
-	image.save(function(err){
+	image.save(function (err) {
 		console.log('server image.save has been called');
 		if (err) return res.json(err);
 
 		console.log('chk req.params.album_id');
 		console.log(req.params.album_id);
 
-		Album.findById(req.params.album_id).exec(function(err, album){
+		Album.findById(req.params.album_id).exec(function (err, album) {
 			console.log('server Album.findById has been called');
 			album.imageIds.push(image._id);
-			album.save(function(err){
+			album.save(function (err) {
 				console.log('album.save has been called');
 				if (err) return res.json(err);
 				return res.json(image);
@@ -83,14 +83,14 @@ exports.createImage= function (req, res) {
 	});
 };
 //Get - Round1
-exports.queryImages= function (req, res) {
+exports.queryImages = function (req, res) {
 	console.log('server queryImages has been called');
 	console.log('chk req.query');
 	console.log(req.query);
 
-	var validKeys=commFunc.removeInvalidKeys(req.query,['name','description']);
+	var validKeys = commFunc.removeInvalidKeys(req.query, ['name', 'description']);
 	Album.find(validKeys).exec(function (err, queryAlbumImgs) {
 		if (err) return res.json(err);
-		return res.json(_.pluck(queryAlbumImgs,'imageIds'));
+		return res.json(_.pluck(queryAlbumImgs, 'imageIds'));
 	});
 };

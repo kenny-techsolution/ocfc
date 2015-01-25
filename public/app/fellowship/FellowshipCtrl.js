@@ -1,7 +1,7 @@
 /*******************************************************************************
  ******************************************************************************/
 
-angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, FellowshipDataSvc, $routeParams, FellowshipSvc, $http, $upload) {
+angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc, FellowshipDataSvc, $routeParams, FellowshipApiSvc, $http, $upload) {
 
 	console.log('FellowshipCtrl has been called');
 
@@ -14,9 +14,13 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 
 	$scope.posts = [];
 	//query post data here
-	$scope.posts = PostSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id});
+	$scope.posts = PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id});
 	$scope.selectedPost;
 	$scope.selectedPostType='';
+
+
+	$scope.imagePrefix='https://res.cloudinary.com/ocfc/image/upload/';
+
 
 	//console.log('chk $scope.posts array from FellowshipCtrl');
 	//console.log($scope.posts);
@@ -94,14 +98,14 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 			console.log('updateFellowshipImage has been called');
 			///api/fellowships/:id
 			//update certain fields
-			var fellowship = new FellowshipSvc();
+			var fellowship = new FellowshipApiSvc();
 
 			if (type === 'banner') {
 				console.log('type equates to banner');
 
 				fellowship.bannerImage = data.public_id;
 
-				FellowshipSvc.update(
+				FellowshipApiSvc.update(
 					{id: $routeParams.id}
 					, fellowship, function () {
 						console.log('front-end updateFellowshipImage from FellowshipCtrl has completed');
@@ -116,7 +120,7 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 				console.log('type equates to logo');
 				fellowship.logoImage = data.public_id;
 
-				FellowshipSvc.update(
+				FellowshipApiSvc.update(
 					{id: $routeParams.id}
 					, fellowship, function () {
 						console.log('front-end updateFellowshipImage from FellowshipCtrl has completed');
@@ -133,13 +137,13 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 
 	$scope.deleteFellowshipImage = function (type) {
 		console.log('deleteBannerImage has been called');
-		var fellowship = new FellowshipSvc();
+		var fellowship = new FellowshipApiSvc();
 		//default image
 		if (type === 'banner') {
 			console.log('type equates to banner');
 			fellowship.bannerImage = 'h9wvhxsfi0prxrg0nipr';
 
-			FellowshipSvc.update(
+			FellowshipApiSvc.update(
 				{id: $routeParams.id}
 				, fellowship, function () {
 					console.log('front-end removeFellowshipImage from FellowshipCtrl has completed');
@@ -152,7 +156,7 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostSvc, Fe
 			console.log('type equates to logo');
 			fellowship.logoImage = 'h9wvhxsfi0prxrg0nipr';
 
-			FellowshipSvc.update(
+			FellowshipApiSvc.update(
 				{id: $routeParams.id}
 				, fellowship, function () {
 					console.log('front-end removeFellowshipImage from FellowshipCtrl has completed');

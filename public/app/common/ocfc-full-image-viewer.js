@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcFullImageViewer', function (IdentitySvc, CommentSvc, _, PostSvc, ImageCommentSvc, ImageSvc, FellowshipDataSvc) {
+angular.module('app').directive('ocfcFullImageViewer', function (IdentitySvc, CommentApiSvc, _, PostApiSvc, ImageCommentApiSvc, ImageApiSvc, FellowshipDataSvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -95,26 +95,11 @@ angular.module('app').directive('ocfcFullImageViewer', function (IdentitySvc, Co
 				};
 
 
-				//get image data here
-				//app.get('/api/albums/:album_id/images/:image_id', images.getImage);
-//				var getImageObj=ImageSvc.get({image_id: $scope.selectedImageId,
-//					album_id: FellowshipDataSvc.fellowship.defaultAlbumId}, function () {
-//					console.log('front-end post has been called to grab a getImageObj from server');
-//					console.log('chk getImageObj');
-//					console.log(getImageObj);
-//
-//					$scope.imageComments=getImageObj.comments;
-//					console.log('chk $scope.imageComments array');
-//					console.log($scope.imageComments);
-//
-//				});
-
-
 				$scope.addCommentToImage = function (imageComment) {
 					//app.post('/api/images/:image_id/comments', images.addCommentToImage);
 
 					console.log('front-end addCommentToImage is being called');
-					var commentObj = new ImageCommentSvc({userId: IdentitySvc.currentUser._id,
+					var commentObj = new ImageCommentApiSvc({userId: IdentitySvc.currentUser._id,
 						comment: imageComment,
 						fullName: IdentitySvc.currentUser.fullName,
 						image_id: $scope.selectedImageId
@@ -123,8 +108,8 @@ angular.module('app').directive('ocfcFullImageViewer', function (IdentitySvc, Co
 					commentObj.$save(function () {
 						console.log('comment has been created on comment dataset, follow by updating image dataset');
 						//update certain fields
-						var image = new ImageSvc();
-						ImageSvc.update(
+						var image = new ImageApiSvc();
+						ImageApiSvc.update(
 							{id: commentObj.image_id}
 							, image, function () {
 								///api/albums/:album_id/images/:image_id
@@ -133,7 +118,7 @@ angular.module('app').directive('ocfcFullImageViewer', function (IdentitySvc, Co
 
 								//get image data here
 								//app.get('/api/albums/:album_id/images/:image_id', images.getImage);
-								var getImageObj=ImageSvc.get({image_id: $scope.selectedImageId,
+								var getImageObj=ImageApiSvc.get({image_id: $scope.selectedImageId,
 									album_id: FellowshipDataSvc.fellowship.defaultAlbumId}, function () {
 									console.log('front-end post has been called to grab a getImageObj from server');
 									console.log('chk getImageObj');

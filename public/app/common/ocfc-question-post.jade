@@ -5,7 +5,7 @@
 		.date {{post.createdOn | date}}
 		.type.question Question
 	.post-widget__output(ng-show='!showEdit') {{post.question}}
-		button.btn.btn-lg.btn-primary.edit(type='button', data-animation='am-flip-x', data-placement='bottom-right', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
+		button.btn.btn-lg.btn-primary.edit(type='button', data-animation='am-flip-x', data-placement='bottom-right', bs-dropdown='dropdown',ng-if='isPoster')
 			span.caret
 	.post-widget__output-edit(ng-show='showEdit')
 		textarea(ng-model='newQuestPostContent')
@@ -13,11 +13,11 @@
 			button.btn.btn-lg.btn-default.cancel(ng-click='hideEditPost()') Cancel
 			button.btn.btn-lg.btn-primary.save(ng-click='updateEditedPost()')  Save
 	.post-widget__image-display(ng-click='selectPost()')
-		ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post')
-		ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post')
-		ocfc-three-image-display(ng-if='post.imageIds.length===3',post='post')
-		ocfc-four-image-display(ng-if='post.imageIds.length===4',post='post')
-		ocfc-five-image-display(ng-if='post.imageIds.length===5',post='post')
+		ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post',image-prefix='imagePrefix')
+		ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post',image-prefix='imagePrefix')
+		ocfc-three-image-display(ng-if='post.imageIds.length===3',post='post',image-prefix='imagePrefix')
+		ocfc-four-image-display(ng-if='post.imageIds.length===4',post='post',image-prefix='imagePrefix')
+		ocfc-five-image-display(ng-if='post.imageIds.length===5',post='post',image-prefix='imagePrefix')
 	.post-widget__comment-output(ng-repeat='comment in post.comments')
 		.text
 			span.name {{comment.fullName|capitalize}}

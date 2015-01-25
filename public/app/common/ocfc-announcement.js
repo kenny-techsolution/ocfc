@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, CommentSvc, _, PostSvc) {
+angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, CommentApiSvc, _, PostApiSvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -7,7 +7,6 @@ angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, Comme
 			imagePopup: '=',
 			posts: '=',
 			dropdown: '='
-
 		},
 		templateUrl: '/partials/common/ocfc-announcement',
 		controller: function ($scope) {
@@ -15,9 +14,13 @@ angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, Comme
 
 			$scope.IdentitySvc = IdentitySvc;
 			$scope.showEdit = false;
-
 			$scope.newAnnouncePostContent = $scope.post.announcement[0].content;
 
+			if ($scope.post.postBy._id===IdentitySvc.currentUser._id) {
+				$scope.isPoster=true;
+			}else {
+				$scope.isPoster=false;
+			};
 
 			$scope.hideEditPost = function () {
 				console.log('hideEditPost function called');
@@ -37,7 +40,7 @@ angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, Comme
 				console.log('chk post obj');
 				console.log($scope.post);
 
-				var post = PostSvc.get({id: $scope.post._id}, function () {
+				var post = PostApiSvc.get({id: $scope.post._id}, function () {
 					console.log('chk variable post obj');
 					console.log(post);
 					post.$delete({id: $scope.post._id}, function () {
@@ -71,7 +74,7 @@ angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, Comme
 					updatePost.postType = "announcement";
 
 					//update post obj on the server side
-					PostSvc.update({id: updatePost._id}, updatePost, function () {
+					PostApiSvc.update({id: updatePost._id}, updatePost, function () {
 						console.log('front-end PostSvc.update has completed');
 					});
 					$scope.showEdit = false;

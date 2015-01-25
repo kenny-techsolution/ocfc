@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$routeParams, $http, $upload, ImageSvc, FellowshipDataSvc,IdentitySvc) {
+angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiSvc, $routeParams, $http, $upload, ImageApiSvc, FellowshipDataSvc, IdentitySvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -13,7 +13,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 			$scope.imageArray = [];
 			$scope.imageObjs = [];
 			$scope.backgroundImgPaths = [];
-			$scope.selectedPostType ="General";
+			$scope.selectedPostType = "General";
 			$scope.postTypes = [
 				{value: 'General', label: 'General'},
 				{value: 'Testimony', label: 'Testimony'},
@@ -29,7 +29,6 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 			$scope.$watch('selectedPostType', function (newVal, oldVal) {
 				//console.log('chk $scope.selectedPostType value');
 				//console.log($scope.selectedPostType);
-
 				var postType;
 				var post;
 
@@ -41,7 +40,7 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 
 					if (selectedPostType === 'General') {
 						postType = 'general';
-						post = new PostSvc({postType: postType,
+						post = new PostApiSvc({postType: postType,
 								general: [
 									{content: $scope.content}
 								],
@@ -60,12 +59,12 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 							$scope.imageArray = [];
 						});
 
-						console.log('chk post input within for type General in ocfc-wall-input, createPost func');
-						console.log(post);
+						//console.log('chk post input within for type General in ocfc-wall-input, createPost func');
+						//console.log(post);
 
 					} else if (selectedPostType === 'Announcement') {
 						postType = 'announcement';
-						post = new PostSvc({postType: postType,
+						post = new PostApiSvc({postType: postType,
 								announcement: [
 									{content: $scope.content}
 								],
@@ -84,14 +83,14 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 							$scope.imageArray = [];
 						});
 
-						console.log('chk post input within for type General in ocfc-wall-input, createPost func');
-						console.log(post);
+						//console.log('chk post input within for type General in ocfc-wall-input, createPost func');
+						//console.log(post);
 
 					} else if (selectedPostType === 'Event') {
 						postType = 'event';
 						console.log('postType of event condition is met');
 
-						post = new PostSvc({postType: postType,
+						post = new PostApiSvc({postType: postType,
 								postUnderGroupType: 'fellowship',
 								postUnderGroupId: $routeParams.id,
 								imageIds: $scope.imageArray,
@@ -113,24 +112,22 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 							//reset content and image(s) to blank
 							$scope.eventTitle = '';
 							$scope.fromDate = '';
-							$scope.toDate='';
-							$scope.eventWhere='';
-							$scope.content='';
+							$scope.toDate = '';
+							$scope.eventWhere = '';
+							$scope.content = '';
 							$scope.backgroundImgPaths = [];
 							$scope.imageArray = [];
 
 						});
 
-						console.log('chk post input within for type Event in ocfc-wall-input, createPost func');
-						console.log(post);
-
-
+						//console.log('chk post input within for type Event in ocfc-wall-input, createPost func');
+						//console.log(post);
 
 					} else if (selectedPostType === 'Testimony') {
 						console.log('Testimony else if statement is met on ocfc-wall-input');
 
 						postType = 'testimony';
-						post = new PostSvc({postType: postType,
+						post = new PostApiSvc({postType: postType,
 								testimony: [
 									{title: $scope.title,
 										content: $scope.content}
@@ -150,15 +147,15 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 							$scope.imageArray = [];
 						});
 
-						console.log('chk post input within for type Testimony in ocfc-wall-input, createPost func');
-						console.log(post);
+						//console.log('chk post input within for type Testimony in ocfc-wall-input, createPost func');
+						//console.log(post);
 
 						//Default setting
 					} else if (selectedPostType === 'Question') {
 						console.log('Question else if statement is met on ocfc-wall-input');
 
 						postType = 'question';
-						post = new PostSvc({postType: postType,
+						post = new PostApiSvc({postType: postType,
 								question: $scope.content,
 								postUnderGroupType: 'fellowship',
 								postUnderGroupId: $routeParams.id,
@@ -174,14 +171,38 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 							$scope.backgroundImgPaths = [];
 							$scope.imageArray = [];
 						});
-						console.log('chk post input within for type question in ocfc-wall-input, createPost func');
-						console.log(post);
+						//console.log('chk post input within for type question in ocfc-wall-input, createPost func');
+						//console.log(post);
 
 						//Default setting
-					} else {
+					} else if (selectedPostType === 'Prayer') {
+						console.log('Prayer else if statement is met on ocfc-wall-input');
+
+						postType = 'prayer';
+						post = new PostApiSvc({postType: postType,
+								prayer: $scope.content,
+								postUnderGroupType: 'fellowship',
+								postUnderGroupId: $routeParams.id,
+								imageIds: imageArray}
+						);
+
+						post.$save().then(function () {
+							$scope.posts.unshift(post);
+
+							//reset content and image(s) to blank
+							$scope.content = '';
+							$scope.title = '';
+							$scope.backgroundImgPaths = [];
+							imageArray = [];
+						});
+						//console.log('chk post input within for type question in ocfc-wall-input, createPost func');
+						//console.log(post);
+
+						//Default setting
+					}else {
 						//default as general post
 						postType = 'general';
-						post = new PostSvc({postType: postType,
+						post = new PostApiSvc({postType: postType,
 								general: [
 									{content: $scope.content}
 								],
@@ -198,8 +219,8 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 							$scope.backgroundImgPaths = [];
 							$scope.imageArray = [];
 						});
-						console.log('chk post input within for type General in ocfc-wall-input, createPost func');
-						console.log(post);
+						//console.log('chk post input within for type General in ocfc-wall-input, createPost func');
+						//console.log(post);
 					}
 
 					//console.log('chk if imageArray have images');
@@ -211,8 +232,6 @@ angular.module('app').directive('ocfcWallInput', function (PostSvc, EventSvc,$ro
 
 			$http.get("/cloudinarySigned?type=fullSizeImg").success(function (data) {
 				$scope.cloudinarySignedParams = data;
-				//console.log('chk $.cloudinary.config()');
-				//console.log($.cloudinary.config());
 			});
 
 			$scope.files = [];

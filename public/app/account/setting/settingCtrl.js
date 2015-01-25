@@ -1,4 +1,4 @@
-angular.module('app').controller('SettingCtrl', function ($scope, $http,IdentitySvc,UserSvc) {
+angular.module('app').controller('SettingCtrl', function ($scope, $http,IdentitySvc,UserApiSvc) {
 	$scope.oldPassword;
 	$scope.newPassword;
 	$scope.fullName;
@@ -39,11 +39,11 @@ angular.module('app').controller('SettingCtrl', function ($scope, $http,Identity
 
 	//Set Ng-Click on UPDATE button & assign to updateUser API call
 	$scope.updateUser = function() {
-		var user=new UserSvc();
+		var user=new UserApiSvc();
 		user.fullName=$scope.fullName;
 		user.userName=$scope.email;
 
-		UserSvc.update(
+		UserApiSvc.update(
 			{id: currentUser._id}
 			, user
 		);

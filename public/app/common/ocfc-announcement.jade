@@ -4,7 +4,7 @@
 		.name {{post.postBy.fullName}}
 		.date {{post.createdOn | date}}
 	.announcement-widget__announcement-description(ng-show='!showEdit') {{post.announcement[0].content}}
-		button(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='post.postBy._id===IdentitySvc.currentUser._id')
+		button(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='isPoster')
 			span.caret
 	.announcement-widget__output-edit(ng-show='showEdit')
 		textarea.text-black(ng-model='newAnnouncePostContent')

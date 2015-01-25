@@ -7,7 +7,6 @@ exports.getInit = function (req, res) {
 	console.log("getFellowMemByUser");
 	console.log(userId);
 
-
 	FellowUser.find({userId: userId, status: 'Approved'}).populate('fellowship').exec(function (err, collection) {
 		var fellows = [];
 		console.log("test init.js");

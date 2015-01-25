@@ -1,12 +1,13 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,CommentSvc,_,PostSvc,PostCommentSvc) {
+angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,CommentApiSvc,_,PostApiSvc,PostCommentSvc) {
 	return{
 		restrict: 'E',
 		scope: {
 			post:'=',
 			imagePopup:'=',
 			posts:'=',
-			dropdown:'='
+			dropdown:'=',
+			imagePrefix:'='
 		},
 		templateUrl: '/partials/common/ocfc-general-post',
 		controller: function ($scope) {
@@ -18,12 +19,16 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 			//console.log('chk $scope.imagePopup ');
 			//console.log($scope.imagePopup);
 
+			if ($scope.post.postBy._id===IdentitySvc.currentUser._id) {
+				$scope.isPoster=true;
+			}else {
+				$scope.isPoster=false;
+			};
+
 			$scope.IdentitySvc= IdentitySvc;
 			$scope.showEdit=false;
 			$scope.newGenPostContent=$scope.post.general[0].content;
-
 			$scope.comment;
-
 
 			//create
 			$scope.createComment=PostCommentSvc.createComment;
@@ -40,7 +45,7 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 				console.log('chk post obj');
 				console.log($scope.post);
 
-				var post = PostSvc.get({id:$scope.post._id}, function() {
+				var post = PostApiSvc.get({id:$scope.post._id}, function() {
 					console.log('chk variable post obj');
 					console.log(post);
 					post.$delete({id:$scope.post._id},function(){
@@ -87,7 +92,7 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 					updatePost.postType="general";
 
 					//update post obj on the server side
-					PostSvc.update({id:updatePost._id},updatePost,function(){
+					PostApiSvc.update({id:updatePost._id},updatePost,function(){
 						console.log('front-end PostSvc.update has completed');
 					});
 					$scope.showEdit=false;

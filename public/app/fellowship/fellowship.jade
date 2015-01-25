@@ -47,17 +47,17 @@
 				div(ng-class='{active: selectedPostType===""}',ng-click='selectPostType("")') All
 				div(ng-class='{active: selectedPostType===0}',ng-click='selectPostType(0)') General
 				div(ng-class='{active: selectedPostType===1}',ng-click='selectPostType(1)') Testimony
-				div(ng-class='{active: selectedPostType===2}',ng-click='selectPostType(2)') Prayer
-				div(ng-class='{active: selectedPostType===3}',ng-click='selectPostType(3)') Question
+				div(ng-class='{active: selectedPostType===2}',ng-click='selectPostType(2)') Question
+				div(ng-class='{active: selectedPostType===3}',ng-click='selectPostType(3)') Prayer
 				div(ng-class='{active: selectedPostType===4}',ng-click='selectPostType(4)') Event
 				div(ng-class='{active: selectedPostType===5}',ng-click='selectPostType(5)') Announcement
 			ocfc-wall-input(posts='posts')
 			div.post(ng-repeat='post in posts|filter:{postType:selectedPostType}')
-				ocfc-general-post(ng-if='post.postType ===0',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown')
-				ocfc-testimony-post(ng-if='post.postType ===1',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown')
-				ocfc-question-post(ng-if='post.postType ===2',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown')
-				ocfc-prayer-post(ng-if='post.postType ===3',post='post')
-				ocfc-event-post(ng-if='post.postType ===4',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown')
-				ocfc-announcement-post(ng-if='post.postType ===5',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown')
+				ocfc-general-post(ng-if='post.postType ===0',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown',image-prefix='imagePrefix')
+				ocfc-testimony-post(ng-if='post.postType ===1',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown',image-prefix='imagePrefix')
+				ocfc-question-post(ng-if='post.postType ===2',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown',image-prefix='imagePrefix')
+				ocfc-prayer-post(ng-if='post.postType ===3',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown',image-prefix='imagePrefix')
+				ocfc-event-post(ng-if='post.postType ===4',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown',image-prefix='imagePrefix')
+				ocfc-announcement-post(ng-if='post.postType ===5',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown',image-prefix='imagePrefix')
 
 ocfc-full-image-viewer(ng-show='imagePopup.isPopupOpen',image-popup='imagePopup')

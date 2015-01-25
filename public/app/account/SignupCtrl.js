@@ -8,7 +8,7 @@
  Checks data against AuthSvc.js to insure data is correct
  *************** ************************************************************************/
 
-angular.module('app').controller('SignupCtrl', function ($scope,$http,$routeParams,$location,IdentitySvc,UserSvc, NotifierSvc, $location, AuthSvc) {
+angular.module('app').controller('SignupCtrl', function ($scope,$http,$routeParams,$location,IdentitySvc,UserApiSvc, NotifierSvc, AuthSvc) {
 
 			$scope.signin = function (username, password) {
 				AuthSvc.authenticateUser(username, password).then(function (success) {
@@ -19,13 +19,6 @@ angular.module('app').controller('SignupCtrl', function ($scope,$http,$routePara
 						console.log(IdentitySvc.currentUser._id);
 						$http.get('/api/getActivation?&userId='+IdentitySvc.currentUser._id).
 							success(function(data, status, headers, config) {
-								// this callback will be called asynchronously
-								// when the response is available
-								//console.log('userId is successful, chk data');
-								//console.log(data);
-								//then re-direct first time setup screen
-								//console.log('chk underscore');
-								//console.log(_);
 								if (_.isEmpty(data)){
 									$location.url('/personal');
 								}else{
@@ -34,8 +27,6 @@ angular.module('app').controller('SignupCtrl', function ($scope,$http,$routePara
 
 							}).
 							error(function(data, status, headers, config) {
-								// called asynchronously if an error occurs
-								// or server returns response with an error status.
 								console.log('userId not found in Activation tbl');
 
 							});
@@ -59,8 +50,8 @@ angular.module('app').controller('SignupCtrl', function ($scope,$http,$routePara
 				//newUser creates new instance of UserSvc service resource object
 				//it then gets saved & data is passed into IdentitySvc.currentUser
 				AuthSvc.createUser(newUserData).then(function () {
-						console.log('test newUserData dataset for signup');
-						console.log(newUserData);
+						//console.log('test newUserData dataset for signup');
+						//console.log(newUserData);
 						NotifierSvc.notify('User account created!');
 						$location.path('/registrationComplete');
 					}
