@@ -19,6 +19,8 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 	$scope.selectedPostType='';
 
 
+
+
 	$scope.imagePrefix='https://res.cloudinary.com/ocfc/image/upload/';
 
 
