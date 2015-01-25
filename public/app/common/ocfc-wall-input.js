@@ -249,7 +249,7 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 				if ($scope.imageObjs[$index].image_path === backgroundImgPath) {
 					console.log('if statement condition met');
 
-					var removedImage = ImageSvc.get({album_id: FellowshipDataSvc.fellowship.defaultAlbumId,
+					var removedImage = ImageApiSvc.get({album_id: FellowshipDataSvc.fellowship.defaultAlbumId,
 						image_id: $scope.imageObjs[$index].image_id}, function () {
 						console.log('image delete resource API called');
 

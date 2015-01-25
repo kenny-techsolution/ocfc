@@ -1,4 +1,4 @@
-angular.module('app').directive('ocfcUploadImage', function ($upload, ImageSvc,FellowshipDataSvc) {
+angular.module('app').directive('ocfcUploadImage', function ($upload, ImageApiSvc,FellowshipDataSvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -37,7 +37,7 @@ angular.module('app').directive('ocfcUploadImage', function ($upload, ImageSvc,F
 
 				//call create image
 				console.log('front-end new image creation has been called');
-				var image = new ImageSvc({path: data.public_id,
+				var image = new ImageApiSvc({path: data.public_id,
 					album_id: FellowshipDataSvc.fellowship.defaultAlbumId});
 				image.$save(function () {
 					$scope.imageId = image._id;

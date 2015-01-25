@@ -113,7 +113,7 @@ angular.module('app').directive('ocfcFullImageViewer', function (IdentitySvc, Co
 							{id: commentObj.image_id}
 							, image, function () {
 								///api/albums/:album_id/images/:image_id
-								console.log('ImageSvc.update has been called');
+								console.log('ImageApiSvc.update has been called');
 								console.log('front-end updateImage from ocfc-full-image-viewer has completed');
 
 								//get image data here
