@@ -5,8 +5,8 @@
 		.event-post-header__post-date {{post.createdOn | date}}
 	.event-post-header__post-type Event
 	.event-post-header__title Title: {{post.eventId.title}}
-	.event-post-header__fromDate From: {{post.eventId.fromDate | date}}
-	.event-post-header__toDate To: {{post.eventId.toDate | date}}
+	.event-post-header__fromDate From: {{post.eventId.fromDate}}
+	.event-post-header__toDate To: {{post.eventId.toDate}}
 	.event-post-header__where Location: {{post.eventId.where}}
 	.event-post-header__hostBy Host By: {{post.postBy.fullName}}
 	.event-post-header__output(ng-show='!showEdit') {{post.eventId.description}}

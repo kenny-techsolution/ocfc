@@ -18,16 +18,16 @@
 				i.fa.fa-calendar
 				|  From {{endTimeSelected}}
 			.form-group
-				input.form-control__fromDate(type='text', size='10', ng-model='fromDate', data-autoclose='1', placeholder='From Date', bs-datepicker='')
-				input.form-control__fromDate(type='text', size='8', ng-model='fromDate', data-autoclose='1', placeholder='Add a time?', bs-timepicker='')
-				.event__fromDate-endTime.text-black(ng-click='endTime()') End time?
+				input.form-control__fromDate(type='text', size='10', ng-model='fromDate', data-max-date="{{toDate}}", data-autoclose='1', placeholder='From Date', bs-datepicker='')
+				input.form-control__fromDate(type='text', size='8', ng-model='fromDate', data-max-date="{{toDate}}", data-autoclose='1', placeholder='Add a time?', bs-timepicker='')
+				.event__fromDate-endTime.text-black(ng-click='endTime()',ng-show='endTimeSelected===false') End time?
 		.event-datetime-picker__toDate(ng-show='selectedPostType === "Event"')
 			label.control-label.text-black
 				i.fa.fa-calendar
 				.event-datetime-picker__toDate-title(ng-show='endTimeSelected===true')  To
 			.form-group
-				input.form-control__toDate(type='text', size='10', ng-model='toDate', data-autoclose='1', placeholder='To Date', bs-datepicker='',ng-show='endTimeSelected===true')
-				input.form-control__toDate(type='text', size='8', ng-model='toDate', data-autoclose='1', placeholder='To Time', bs-timepicker='',ng-show='endTimeSelected===true')
+				input.form-control__toDate(type='text', size='10', ng-model='toDate', data-min-date="{{fromDate}}",data-autoclose='1', placeholder='To Date', bs-datepicker='',ng-show='endTimeSelected===true')
+				input.form-control__toDate(type='text', size='8', ng-model='toDate', data-min-date="{{fromDate}}",data-autoclose='1', placeholder='To Time', bs-timepicker='',ng-show='endTimeSelected===true')
 				.event__toDate-removeEndTime.text-black(ng-click='removeEndTime()',ng-show='endTimeSelected===true') X
 		textarea.wall-header__event-where(ng-model='eventWhere',ng-show='selectedPostType === "Event"',placeholder='Event location goes here')
 		textarea.textbox(ng-model='content', placeholder='What do you want to write about?')
