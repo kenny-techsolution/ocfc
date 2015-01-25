@@ -46,18 +46,27 @@ angular.module('app').directive('ocfcUploadImage', function ($upload, ImageApiSv
 				});
 			});
 			$scope.removeImage = function(){
-				$scope.imageArray.splice($scope.imageArray.indexOf($scope.imageId),1);
-				for(var i=0;i<$scope.imageObjs.length;i++) {
-					if($scope.imageObjs[i]['image_id']===$scope.imageId) {
-						$scope.imageObjs.splice(i, 1);
-					}
-				}
-				for(var i=0;i<$scope.files.length;i++) {
-					if($scope.files[i].name===$scope.file.name) {
-						$scope.files.splice(i, 1);
-						return;
-					}
-				}
+				var removedImage = ImageApiSvc.get({album_id: FellowshipDataSvc.fellowship.defaultAlbumId,
+					image_id: $scope.imageId}, function () {
+					console.log('image delete resource API called');
+					removedImage.album_id = FellowshipDataSvc.fellowship.defaultAlbumId;
+					removedImage.image_id = removedImage._id;
+					var removeImgFromPost = removedImage.image_id;
+					removedImage.$delete(function () {
+						$scope.imageArray.splice($scope.imageArray.indexOf($scope.imageId),1);
+						for(var i=0;i<$scope.imageObjs.length;i++) {
+							if($scope.imageObjs[i]['image_id']===$scope.imageId) {
+								$scope.imageObjs.splice(i, 1);
+							}
+						}
+						for(var i=0;i<$scope.files.length;i++) {
+							if($scope.files[i].name===$scope.file.name) {
+								$scope.files.splice(i, 1);
+								return;
+							}
+						}
+					});
+				});
 			};
 		}
 	};

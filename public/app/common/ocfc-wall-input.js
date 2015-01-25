@@ -242,12 +242,14 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 					$scope.files.push(file[i]);
 				}
 			};
-
+/*
 			$scope.deleteImage = function ($index, backgroundImgPath) {
 				console.log('front-end $scope.deleteImage has been called');
 
 				if ($scope.imageObjs[$index].image_path === backgroundImgPath) {
 					console.log('if statement condition met');
+					//try to remove from the backend.
+
 
 					var removedImage = ImageApiSvc.get({album_id: FellowshipDataSvc.fellowship.defaultAlbumId,
 						image_id: $scope.imageObjs[$index].image_id}, function () {
@@ -263,7 +265,6 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 
 							//remove image from front-end
 							$scope.backgroundImgPaths = _.filter($scope.backgroundImgPaths, function (image) {
-
 								return image !== $scope.backgroundImgPaths[$index];
 							});
 							$scope.imageObjs.splice($index, 1);
@@ -278,7 +279,7 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 				}
 
 			};
-
+*/
 			$scope.isPostDisable = function () {
 				//console.log('front-end isPostDisable has been called');
 				if ($scope.content.trim() === "") {

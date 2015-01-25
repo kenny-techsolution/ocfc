@@ -1,2 +1,2 @@
-.four-img-layout.row
-	img(class='pic-{{$index}}',ng-repeat='image in post.imageIds',ng-src='imagePrefix{{image.path}}')
+.four-img-layout
+	img(class='pic-{{$index}}',ng-repeat='image in post.imageIds',ng-src='https://res.cloudinary.com/ocfc/image/upload/w_274,h_150,c_fill,g_faces/{{image.path}}')
