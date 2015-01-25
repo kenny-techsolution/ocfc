@@ -51,13 +51,6 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 		}
 	];
 
-	$scope.bannerDropDown = [
-		{
-			"text": "Delete This Photo",
-			"click": "deleteFellowshipImage('banner')"
-		}
-	];
-
 	$scope.logoDropDown = [
 		{
 			"text": "Delete This Photo",

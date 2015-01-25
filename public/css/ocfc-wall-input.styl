@@ -85,6 +85,7 @@
 			white-space nowrap
 			overflow-x auto
 .wall-img__image-section
+	vertical-align top
 	height 100px
 	width 100px
 	margin-right 5px
@@ -97,6 +98,7 @@
 		height 100px
 		margin-right 5px
 		position absolute
+		opacity 0.7
 	span.glyphicon-remove
 		position absolute
 		color #FFFFFF
@@ -116,6 +118,28 @@
 		bottom 0px
 		margin-bottom 0px
 		border-radius 0px
+
+.upload-image
+	vertical-align top
+	height 100px
+	width 100px
+	margin-right 5px
+	display inline-block
+	position relative
+	background-color #848484
+	cursor pointer
+	border 2px dashed white
+	text-align center
+	.glyphicon-plus
+		vertical-align middle
+		line-height 89px
+		font-size 24px
+		opacity 0.7
+	&:hover
+		background-color #B8B8B8
+	&:hover	.glyphicon-plus
+		opacity 1
+			
 //old
 
 .wall-header__event-title

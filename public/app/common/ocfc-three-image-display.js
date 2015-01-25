@@ -5,7 +5,7 @@ angular.module('app').directive('ocfcThreeImageDisplay', function () {
 			post:'=',
 			imagePrefix:'='
 		},
-		replace: false,
+		replace: true,
 		templateUrl: '/partials/common/ocfc-three-image-display',
 		controller: function ($scope) {
 
