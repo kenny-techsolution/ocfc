@@ -66,7 +66,7 @@ var savePost = function (post, res) {
 			});
 		} else if (post.postType === 'prayer') {
 			console.log('prayer post type has been created');
-			Post.populate(post, 'eventId prayer postBy imageIds', function (err, post) {
+			Post.populate(post, 'eventId postBy imageIds', function (err, post) {
 				if (err) return res.json(err);
 				console.log('chk final post obj');
 				console.log(post);
@@ -147,17 +147,40 @@ var createQuestionPost = function (postObj, req, res) {
 };
 //round-1
 var createPrayerPost = function (postObj, req, res) {
-	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'content']);
+	console.log('server createPrayerPost has been called');
+
+	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'prayer']);
 	if (errors.length > 0) {
 		return res.json({statue: "failed", errors: errors});
 	}
-	postObj = stripHtmlforFields(postObj, ['content']);
-	postObj.prayer = postObj.content;
+
+
+	//postObj = stripHtmlforFields(postObj, ['content']);
+	//postObj.prayer = postObj.content;
 	postObj.postBy = commFunc.reqSessionUserId(req);
 	//TODO: perform image validation.
 	var post = new Post(postObj);
 
-	return savePost(post, res);
+	console.log('chk var post obj after new post creation');
+	console.log(post);
+
+	//if undefined then set to empty array
+	var imageIds = postObj.imageIds || [];
+
+	//update all images for post.
+	if (imageIds.length > 0) {
+		async.forEachLimit(imageIds, 3, function (imageId, callback) {
+			Image.findByIdAndUpdate(imageId, {used: true}, function (err) {
+				if (err) return callback(err)
+				callback();
+			});
+		}, function (err) {
+			if (err) return res.json(err);
+			return savePost(post, res);
+		});
+	} else {
+		return savePost(post, res);
+	}
 };
 
 //round-1
