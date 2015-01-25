@@ -13,8 +13,20 @@
 	.ocfc-wall-input__body
 		input.title.form-control(type='text',ng-model='title',ng-show='selectedPostType === "Testimony"',placeholder='Testimony title goes here')
 		textarea.event-title(ng-model='eventTitle',ng-show='selectedPostType === "Event"',placeholder='Event title goes here')
-		input.wall-header__event-fromDate(ng-model='fromDate',ng-show='selectedPostType === "Event"',type='date')
-		input.wall-header__event-toDate(ng-model='toDate',ng-show='selectedPostType === "Event"',type='date')
+		.datetime-picker__fromDate(ng-show='selectedPostType === "Event"')
+			label.control-label.text-black
+				i.fa.fa-calendar
+				|  From Datetime picker
+			.form-group
+				input.form-control__fromDate(type='text', size='10', ng-model='fromDate', data-autoclose='1', placeholder='From Date', bs-datepicker='')
+				input.form-control__fromDate(type='text', size='8', ng-model='fromDate', data-autoclose='1', placeholder='From Time', bs-timepicker='')
+		.datetime-picker__toDate(ng-show='selectedPostType === "Event"')
+			label.control-label.text-black
+				i.fa.fa-calendar
+				|  To Datetime picker
+			.form-group
+				input.form-control__toDate(type='text', size='10', ng-model='toDate', data-autoclose='1', placeholder='To Date', bs-datepicker='')
+				input.form-control__toDate(type='text', size='8', ng-model='toDate', data-autoclose='1', placeholder='To Time', bs-timepicker='')
 		textarea.wall-header__event-where(ng-model='eventWhere',ng-show='selectedPostType === "Event"',placeholder='Event location goes here')
 		textarea.textbox(ng-model='content', placeholder='What do you want to write about?')
 	.ocfc-wall-input__media(ng-if="files.length>0")
