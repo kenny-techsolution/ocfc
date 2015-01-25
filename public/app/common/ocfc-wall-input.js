@@ -90,6 +90,8 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 						postType = 'event';
 						console.log('postType of event condition is met');
 
+
+
 						post = new PostApiSvc({postType: postType,
 								postUnderGroupType: 'fellowship',
 								postUnderGroupId: $routeParams.id,
