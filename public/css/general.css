@@ -314,6 +314,7 @@ textarea.form-control {
   color: #000;
   margin-bottom: 10px;
   margin-top: 12px;
+  padding-bottom: 6px;
   height: auto;
   border-bottom: 1px solid #b3b3b3;
 }

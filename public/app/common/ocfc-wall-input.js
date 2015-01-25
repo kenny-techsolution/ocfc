@@ -10,8 +10,8 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 			//console.log('chk $scope.posts array');
 			//console.log($scope.posts);
 
-			var imageArray = [];
-			var imageObjs = [];
+			$scope.imageArray = [];
+			$scope.imageObjs = [];
 			$scope.backgroundImgPaths = [];
 			$scope.selectedPostType = "General";
 			$scope.postTypes = [
@@ -46,7 +46,7 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 								],
 								postUnderGroupType: 'fellowship',
 								postUnderGroupId: $routeParams.id,
-								imageIds: imageArray}
+								imageIds: $scope.imageArray}
 						);
 
 						post.$save().then(function () {
@@ -56,7 +56,7 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 							$scope.content = '';
 							$scope.title = '';
 							$scope.backgroundImgPaths = [];
-							imageArray = [];
+							$scope.imageArray = [];
 						});
 
 						//console.log('chk post input within for type General in ocfc-wall-input, createPost func');
@@ -70,7 +70,7 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 								],
 								postUnderGroupType: 'fellowship',
 								postUnderGroupId: $routeParams.id,
-								imageIds: imageArray}
+								imageIds: $scope.imageArray}
 						);
 
 						post.$save().then(function () {
@@ -80,7 +80,7 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 							$scope.content = '';
 							$scope.title = '';
 							$scope.backgroundImgPaths = [];
-							imageArray = [];
+							$scope.imageArray = [];
 						});
 
 						//console.log('chk post input within for type General in ocfc-wall-input, createPost func');
@@ -93,13 +93,13 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 						post = new PostApiSvc({postType: postType,
 								postUnderGroupType: 'fellowship',
 								postUnderGroupId: $routeParams.id,
-								imageIds: imageArray,
-								title: $scope.eventTitle,
-								description: $scope.content,
-								fromDate: $scope.fromDate,
-								toDate: $scope.toDate,
-								where: $scope.eventWhere,
-								hostBy: IdentitySvc.currentUser._id
+								imageIds: $scope.imageArray,
+								title:$scope.eventTitle,
+								description:$scope.content,
+								fromDate:$scope.fromDate,
+								toDate:$scope.toDate,
+								where:$scope.eventWhere,
+								hostBy:IdentitySvc.currentUser._id
 							}
 						);
 
@@ -116,7 +116,7 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 							$scope.eventWhere = '';
 							$scope.content = '';
 							$scope.backgroundImgPaths = [];
-							imageArray = [];
+							$scope.imageArray = [];
 
 						});
 
@@ -134,7 +134,7 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 								],
 								postUnderGroupType: 'fellowship',
 								postUnderGroupId: $routeParams.id,
-								imageIds: imageArray}
+								imageIds: $scope.imageArray}
 						);
 
 						post.$save().then(function () {
@@ -144,7 +144,7 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 							$scope.content = '';
 							$scope.title = '';
 							$scope.backgroundImgPaths = [];
-							imageArray = [];
+							$scope.imageArray = [];
 						});
 
 						//console.log('chk post input within for type Testimony in ocfc-wall-input, createPost func');
@@ -159,7 +159,7 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 								question: $scope.content,
 								postUnderGroupType: 'fellowship',
 								postUnderGroupId: $routeParams.id,
-								imageIds: imageArray}
+								imageIds: $scope.imageArray}
 						);
 
 						post.$save().then(function () {
@@ -169,7 +169,7 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 							$scope.content = '';
 							$scope.title = '';
 							$scope.backgroundImgPaths = [];
-							imageArray = [];
+							$scope.imageArray = [];
 						});
 						//console.log('chk post input within for type question in ocfc-wall-input, createPost func');
 						//console.log(post);
@@ -208,7 +208,7 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 								],
 								postUnderGroupType: 'fellowship',
 								postUnderGroupId: $routeParams.id,
-								imageIds: imageArray}
+								imageIds: $scope.imageArray}
 						);
 						post.$save().then(function () {
 							$scope.posts.unshift(post);
@@ -217,7 +217,7 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 							$scope.content = '';
 							$scope.title = '';
 							$scope.backgroundImgPaths = [];
-							imageArray = [];
+							$scope.imageArray = [];
 						});
 						//console.log('chk post input within for type General in ocfc-wall-input, createPost func');
 						//console.log(post);
@@ -234,59 +234,23 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 				$scope.cloudinarySignedParams = data;
 			});
 
+			$scope.files = [];
+
 			$scope.onFileSelect = function ($files) {
 				var file = $files;
-
 				for (var i = 0; i < file.length; i++) {
-					console.log('for loop has been triggered');
-					$scope.upload = $upload.upload({
-						url: "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/upload",
-						data: $scope.cloudinarySignedParams,
-						file: file[i]
-					}).progress(function (e) {
-						console.log('progress method is being called');
-						$scope.progress = Math.round((e.loaded * 100.0) / e.total);
-						console.log('chk $scope.progress');
-						console.log($scope.progress);
-						if ($scope.progress == 100) {
-							console.log('$scope.progress==100 IF statement has been called');
-							setTimeout(function () {
-								$scope.progress = 0;
-							}, 10000);
-							console.log('chk $scope.upload');
-							console.log($scope.upload);
-						}
-						$scope.$apply();
-					}).success(function (data, status, headers, config) {
-						console.log('chk data obj within onFileSelect');
-						console.log(data);
-						$scope.backgroundImgPaths.push(data.public_id);
-						$scope.$apply();
-
-						//call create image
-						console.log('front-end new image creation has been called');
-						var image = new ImageApiSvc({path: data.public_id,
-							album_id: FellowshipDataSvc.fellowship.defaultAlbumId});
-						image.$save(function () {
-							console.log('image has been created');
-							console.log(image);
-
-							//append image ids onto post object
-							imageArray.push(image._id);
-							imageObjs.push({image_id: image._id, image_path: image.path});
-
-						});
-					});
+					$scope.files.push(file[i]);
 				}
 			};
+
 			$scope.deleteImage = function ($index, backgroundImgPath) {
 				console.log('front-end $scope.deleteImage has been called');
 
-				if (imageObjs[$index].image_path === backgroundImgPath) {
+				if ($scope.imageObjs[$index].image_path === backgroundImgPath) {
 					console.log('if statement condition met');
 
-					var removedImage = ImageApiSvc.get({album_id: FellowshipDataSvc.fellowship.defaultAlbumId,
-						image_id: imageObjs[$index].image_id}, function () {
+					var removedImage = ImageSvc.get({album_id: FellowshipDataSvc.fellowship.defaultAlbumId,
+						image_id: $scope.imageObjs[$index].image_id}, function () {
 						console.log('image delete resource API called');
 
 						removedImage.album_id = FellowshipDataSvc.fellowship.defaultAlbumId;
@@ -302,10 +266,10 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 
 								return image !== $scope.backgroundImgPaths[$index];
 							});
-							imageObjs.splice($index, 1);
+							$scope.imageObjs.splice($index, 1);
 
-							var index = imageArray.indexOf(removeImgFromPost);
-							imageArray.splice(index, 1);
+							var index = $scope.imageArray.indexOf(removeImgFromPost);
+							$scope.imageArray.splice(index, 1);
 
 						});
 
