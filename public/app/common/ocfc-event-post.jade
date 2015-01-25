@@ -22,11 +22,11 @@
 			button.btn.btn-lg.btn-primary.event-post-header__options-btn(ng-click='hideEditPost()') Cancel
 			button.btn.btn-lg.btn-primary.event-post-header__options-btn(ng-click='updateEditedPost()')  Done Editing
 	.event-post-header__image-display.row(ng-click='selectPost()')
-		ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post')
-		ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post')
-		ocfc-three-image-display(ng-if='post.imageIds.length===3',post='post')
-		ocfc-four-image-display(ng-if='post.imageIds.length===4',post='post')
-		ocfc-five-image-display(ng-if='post.imageIds.length===5',post='post')
+		ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post',image-prefix='imagePrefix')
+		ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post',image-prefix='imagePrefix')
+		ocfc-three-image-display(ng-if='post.imageIds.length===3',post='post',image-prefix='imagePrefix')
+		ocfc-four-image-display(ng-if='post.imageIds.length===4',post='post',image-prefix='imagePrefix')
+		ocfc-five-image-display(ng-if='post.imageIds.length===5',post='post',image-prefix='imagePrefix')
 	.event-post-header__comment-output(ng-repeat='comment in post.comments')
 		img(ng-src='{{comment.profileImg}}')
 		.event-post-header__user-comment-name {{comment.fullName}}

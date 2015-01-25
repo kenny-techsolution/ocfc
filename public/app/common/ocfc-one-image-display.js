@@ -2,7 +2,8 @@ angular.module('app').directive('ocfcOneImageDisplay', function () {
 	return{
 		restrict: 'E',
 		scope: {
-			post:'='
+			post:'=',
+			imagePrefix:'='
 		},
 		replace: true,
 		templateUrl: '/partials/common/ocfc-one-image-display',

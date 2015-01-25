@@ -7,7 +7,6 @@ angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, Comme
 			imagePopup: '=',
 			posts: '=',
 			dropdown: '='
-
 		},
 		templateUrl: '/partials/common/ocfc-announcement',
 		controller: function ($scope) {
@@ -17,6 +16,11 @@ angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, Comme
 			$scope.showEdit = false;
 			$scope.newAnnouncePostContent = $scope.post.announcement[0].content;
 
+			if ($scope.post.postBy._id===IdentitySvc.currentUser._id) {
+				$scope.isPoster=true;
+			}else {
+				$scope.isPoster=false;
+			};
 
 			$scope.hideEditPost = function () {
 				console.log('hideEditPost function called');

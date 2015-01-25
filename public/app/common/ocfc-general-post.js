@@ -6,7 +6,8 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc,Comment
 			post:'=',
 			imagePopup:'=',
 			posts:'=',
-			dropdown:'='
+			dropdown:'=',
+			imagePrefix:'='
 		},
 		templateUrl: '/partials/common/ocfc-general-post',
 		controller: function ($scope) {

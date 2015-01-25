@@ -13,11 +13,11 @@
 			button.btn.btn-lg.btn-primary.cancel(ng-click='hideEditPost()') Cancel
 			button.btn.btn-lg.btn-primary.save(ng-click='updateEditedPost()')  Done Editing
 	.post-widget__image-display(ng-click='selectPost()')
-		ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post')
-		ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post')
-		ocfc-three-image-display(ng-if='post.imageIds.length===3',post='post')
-		ocfc-four-image-display(ng-if='post.imageIds.length===4',post='post')
-		ocfc-five-image-display(ng-if='post.imageIds.length===5',post='post')
+		ocfc-one-image-display(ng-if='post.imageIds.length===1',post='post',image-prefix='imagePrefix')
+		ocfc-two-image-display(ng-if='post.imageIds.length===2',post='post',image-prefix='imagePrefix')
+		ocfc-three-image-display(ng-if='post.imageIds.length===3',post='post',image-prefix='imagePrefix')
+		ocfc-four-image-display(ng-if='post.imageIds.length===4',post='post',image-prefix='imagePrefix')
+		ocfc-five-image-display(ng-if='post.imageIds.length===5',post='post',image-prefix='imagePrefix')
 	.post-widget__comment-output(ng-repeat='comment in post.comments')
 		.text
 			span.name {{comment.fullName|capitalize}}
