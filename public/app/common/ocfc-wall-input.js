@@ -9,7 +9,7 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 		controller: function ($scope) {
 			//console.log('chk $scope.posts array');
 			//console.log($scope.posts);
-
+			$scope.endTimeSelected=false;
 			$scope.imageArray = [];
 			$scope.imageObjs = [];
 			$scope.backgroundImgPaths = [];
@@ -89,8 +89,6 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 					} else if (selectedPostType === 'Event') {
 						postType = 'event';
 						console.log('postType of event condition is met');
-
-
 
 						post = new PostApiSvc({postType: postType,
 								postUnderGroupType: 'fellowship',
@@ -287,10 +285,17 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 					return true;
 				} else {
 					return false;
-				}
-				;
-
+				};
 			};
+
+			$scope.endTime=function(){
+				$scope.endTimeSelected=true;
+				$scope.toDate=$scope.fromDate;
+			}
+
+			$scope.removeEndTime=function(){
+				$scope.endTimeSelected=true;
+			}
 		}
 	};
 });
