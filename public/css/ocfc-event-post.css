@@ -1,145 +1,55 @@
-.event-post-header {
-  height: auto;
-  border: 1px solid;
-  position: relative;
-}
-.event-post-header__profile-icon {
-  width: 45px;
-  height: 45px;
-  border-radius: 30px;
+.post-event-widget__calendar {
+  width: 80px;
+  color: #000;
   display: inline-block;
-  position: absolute;
-  margin-top: 2px;
-  margin-left: 2px;
+  vertical-align: top;
 }
-.event-post-header__user-info {
-  height: 63px;
-  width: 553px;
-  display: inline-block;
-  border-bottom: 1px solid;
-  position: relative;
-  top: -14px;
-}
-.event-post-header__user-name {
-  margin-left: 51px;
-  font-size: 11px;
-  margin-top: 23px;
-}
-.event-post-header__post-date {
-  margin-left: 51px;
-  font-size: 10px;
-}
-.event-post-header__post-type {
-  font-size: 12px;
-  padding: 5px;
-  width: 68px;
+.post-event-widget__calendar .month {
+  background-color: #d64951;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
   text-align: center;
-  position: relative;
-  top: -54px;
-  left: 483px;
+  color: #fff;
+  font-weight: bold;
 }
-.event-post-header__output {
-  height: auto;
-  position: relative;
-  width: 555px;
-  padding-left: 15px;
-  font-size: 12px;
-  padding: 15px 20px;
-  top: -41px;
+.post-event-widget__calendar .date {
+  border: 1px solid #d2d2d2;
+  font-size: 50px;
+  text-align: center;
+  height: 61px;
+  line-height: 61px;
 }
-.event-post-header__comment-output {
-  border-left: 1px solid;
-  border-right: 1px solid;
-  background-color: #a9a9a9;
+.post-event-widget__calendar .time {
+  border: 1px solid #d2d2d2;
+  background-color: #e8e8e8;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  text-align: center;
+  font-size: 10px;
+  font-weight: bold;
 }
-.event-post-header__comment-output img {
-  width: 25px;
-  height: 25px;
+.post-event-widget__desc {
   display: inline-block;
-  margin-right: 2px;
-  margin-top: 4px;
-  margin-left: 4px;
+  width: 415px;
+  margin-left: 15px;
+  vertical-align: top;
 }
-.event-post-header__user-comment-name {
-  font-size: 10px;
-  display: inline-block;
-  margin-right: 2px;
+.post-event-widget__desc .title {
+  font-size: 18px;
+  border-bottom: 1px dotted rgba(210,210,210,0.39);
 }
-.event-post-header__post-comment-date {
-  font-size: 10px;
-  display: inline-block;
+.post-event-widget__desc .desc {
+  margin-bottom: 5px;
 }
-.event-post-header__post-comment-output {
-  font-size: 10px;
-  height: auto;
-  position: relative;
-  left: 27px;
-  width: 523px;
+.post-event-widget__desc .date .glyphicon,
+.post-event-widget__desc .where .glyphicon,
+.post-event-widget__desc .host-by .glyphicon {
+  font-size: 18px;
 }
-.event-post-header__comment-input {
-  width: 555px;
-  height: auto;
-  position: relative;
-}
-.event-post-header__comment-input textarea {
-  width: 459px;
-  font-size: 10px;
-  margin-left: 7px;
-  margin-top: 4px;
-}
-.event-post-header__button {
-  padding: 7px 11px !important;
-  position: relative !important;
-  top: -36px !important;
-  left: -5px !important;
-}
-.event-post-header__delete-comment {
-  position: relative;
-  left: 525px;
-  top: -37px;
-}
-.event-post-header__edit-delete {
-  position: absolute !important;
-  top: -100px !important;
-  left: 537px !important;
-  padding: 2px 3px !important;
-}
-.event-post-header__output-edit {
-  padding-left: 19px;
-  font-size: 12px;
-  position: relative;
-  bottom: 41px;
-}
-.event-post-header__output-edit .title {
-  position: absolute;
-  bottom: 150px;
-  height: 22px;
-  left: 50px;
-  width: 481px;
-}
-.event-post-header__output-edit .from {
-  position: absolute;
-  bottom: 131px;
-  height: 22px;
-  left: 50px;
-  width: 481px;
-}
-.event-post-header__output-edit .to {
-  position: absolute;
-  bottom: 109px;
-  height: 22px;
-  left: 41px;
-  width: 490px;
-}
-.event-post-header__output-edit .where {
-  position: absolute;
-  bottom: 86px;
-  height: 22px;
-  left: 76px;
-  width: 455px;
-}
-.event-post-header__options-btn {
-  position: relative !important;
-  left: 378px !important;
-  padding: 6px 17px !important;
+.post-event-widget__desc .date span,
+.post-event-widget__desc .where span,
+.post-event-widget__desc .host-by span {
+  vertical-align: top;
+  margin-left: 5px;
+  line-height: 20px;
 }
