@@ -4,7 +4,7 @@
 			button.left-click(ng-click='backImage()',ng-hide='imagePopup.selectedPost.imageIds.length===1') <
 			button.right-click(ng-click='nextImage()',ng-hide='imagePopup.selectedPost.imageIds.length===1') >
 			.current-image-viewer
-				img(ng-src='{{selectedImage}}')
+				img(ng-src='{{imagePrefix}}{{selectedImage}}')
 			.close-popup(ng-click='closePopup()') X
 			.image-comment
 				img(ng-src='{{imagePopup.selectedPost.postBy.profileImg}}')

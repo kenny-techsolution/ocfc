@@ -9,7 +9,7 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 		controller: function ($scope) {
 			//console.log('chk $scope.posts array');
 			//console.log($scope.posts);
-
+			$scope.endTimeSelected=false;
 			$scope.imageArray = [];
 			$scope.imageObjs = [];
 			$scope.backgroundImgPaths = [];
@@ -89,8 +89,6 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 					} else if (selectedPostType === 'Event') {
 						postType = 'event';
 						console.log('postType of event condition is met');
-
-
 
 						post = new PostApiSvc({postType: postType,
 								postUnderGroupType: 'fellowship',
@@ -244,54 +242,25 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 					$scope.files.push(file[i]);
 				}
 			};
-/*
-			$scope.deleteImage = function ($index, backgroundImgPath) {
-				console.log('front-end $scope.deleteImage has been called');
 
-				if ($scope.imageObjs[$index].image_path === backgroundImgPath) {
-					console.log('if statement condition met');
-					//try to remove from the backend.
-
-
-					var removedImage = ImageApiSvc.get({album_id: FellowshipDataSvc.fellowship.defaultAlbumId,
-						image_id: $scope.imageObjs[$index].image_id}, function () {
-						console.log('image delete resource API called');
-
-						removedImage.album_id = FellowshipDataSvc.fellowship.defaultAlbumId;
-						removedImage.image_id = removedImage._id;
-
-						var removeImgFromPost = removedImage.image_id;
-
-						removedImage.$delete(function () {
-							console.log('delete callback is called');
-
-							//remove image from front-end
-							$scope.backgroundImgPaths = _.filter($scope.backgroundImgPaths, function (image) {
-								return image !== $scope.backgroundImgPaths[$index];
-							});
-							$scope.imageObjs.splice($index, 1);
-
-							var index = $scope.imageArray.indexOf(removeImgFromPost);
-							$scope.imageArray.splice(index, 1);
-
-						});
-
-					});
-
-				}
-
-			};
-*/
 			$scope.isPostDisable = function () {
 				//console.log('front-end isPostDisable has been called');
 				if ($scope.content.trim() === "") {
 					return true;
 				} else {
 					return false;
-				}
-				;
-
+				};
 			};
+
+			$scope.endTime=function(){
+				$scope.endTimeSelected=true;
+				$scope.toDate=$scope.fromDate;
+			}
+
+			$scope.removeEndTime=function(){
+				$scope.toDate=$scope.fromDate;
+				$scope.endTimeSelected=false;
+			}
 		}
 	};
 });
