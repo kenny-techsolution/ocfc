@@ -13,8 +13,40 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 	$scope.FellowshipDataSvc.fellowship.logoImage = 'h9wvhxsfi0prxrg0nipr';
 
 	$scope.posts = [];
-	//query post data here
-	$scope.posts = PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id});
+
+
+	$scope.posts = PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id},function(){
+
+		$scope.viewNextPage=function(){
+			console.log('front-end test viewNextPage function');
+			//grab CreatedOn date from last element of posts array
+			//query post data here
+			var lastPostIndex=$scope.posts.length-1;
+			var lastPostObj=$scope.posts[lastPostIndex];
+
+			console.log('chk $scope.posts');
+			console.log($scope.posts);
+
+			console.log('chk lastPostObj');
+			console.log(lastPostObj);
+
+			//load and append next query onto post
+			PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id,createdOn:lastPostObj.createdOn},function(posts){
+				console.log('entering callback of PostApiSvc.query');
+				for(var i=0;i<posts.length;i++){
+					console.log('chk posts array grabbed from server');
+					console.log(posts);
+					$scope.posts.push(posts[i]);
+
+				}
+				console.log('chk front-end $scope.posts array');
+				console.log($scope.posts);
+			});
+
+		};
+
+	});
+
 	$scope.selectedPost;
 	$scope.selectedPostType = '';
 
@@ -162,6 +194,8 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 		$scope.selectedPostType = type;
 
 	};
+
+
 
 });
 
