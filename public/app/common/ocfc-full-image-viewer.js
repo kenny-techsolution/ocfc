@@ -38,8 +38,8 @@ angular.module('app').directive('ocfcFullImageViewer', function (IdentitySvc, Co
 					ImageApiSvc.get({image_id: $scope.selectedImageId,
 						album_id: FellowshipDataSvc.fellowship.defaultAlbumId}, function (getImageObj) {
 						console.log('front-end post has been called to grab a getImageObj from server');
-						console.log('chk getImageObj');
-						console.log(getImageObj);
+						//console.log('chk getImageObj');
+						//console.log(getImageObj);
 
 						$scope.imageComments = getImageObj.comments;
 						console.log('chk $scope.imageComments array');

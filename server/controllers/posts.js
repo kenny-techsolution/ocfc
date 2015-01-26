@@ -514,7 +514,7 @@ exports.queryPost = function (req, res) {
 		return res.json({status: "fail", message: "you are not allowed to query posts on this wall which you're not a member of."});
 	}
 
-	var filteredKeys = commFunc.removeInvalidKeys(req.query, ['postType', 'postBy', 'postUnderGroupType', 'postUnderGroupId']);
+	var filteredKeys = commFunc.removeInvalidKeys(req.query, ['postType', 'postBy', 'postUnderGroupType', 'postUnderGroupId','createdOn']);
 	var condition = {};
 	var whereClause = {};
 	console.log('chk filteredKeys obj');
@@ -527,7 +527,9 @@ exports.queryPost = function (req, res) {
 			whereClause.postUnderGroupType = req.query[key];
 		} else if (key == 'postUnderGroupId') {
 			whereClause.postUnderGroupId = req.query[key];
-		} else {
+		} else if (key == 'createdOn') {
+			whereClause.createdOn = {$lt: req.query[key]};
+		}else {
 			condition[key] = req.query[key];
 		}
 	});
@@ -538,7 +540,7 @@ exports.queryPost = function (req, res) {
 	console.log(whereClause);
 	//01.13.2015 added to populate imageIds
 	//01.14.2015 added sort({createdOn: 'descending'})
-	Post.find(condition).sort({createdOn: 'descending'}).where(whereClause).populate('postBy imageIds eventId eventId.hostBy').exec(function (err, posts) {
+	Post.find(condition).sort({createdOn: 'descending'}).limit(20).where(whereClause).populate('postBy imageIds eventId eventId.hostBy').exec(function (err, posts) {
 		console.log('server Post.find has been called within queryPost func');
 		console.log('chk posts array');
 		console.log(posts);
