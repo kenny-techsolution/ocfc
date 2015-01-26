@@ -8,7 +8,7 @@ angular.module('app').service('PostCommentSvc', function (CommentApiSvc,Identity
 				comment:newComment,
 				fullName:IdentitySvc.currentUser.fullName});
 
-			comment.$save(function(){
+			 comment.$save(function(){
 				console.log('comment has been saved');
 				postComments.push(comment);
 
