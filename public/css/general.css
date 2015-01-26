@@ -274,6 +274,7 @@ button.btn {
   margin-top: 25px;
   margin-bottom: 15px;
 }
+input[type='text'].ocfc,
 textarea.ocfc {
   background-color: #e8e8e8;
   border: none;
@@ -281,6 +282,7 @@ textarea.ocfc {
   padding: 5px;
   padding-left: 12px;
 }
+input[type='text'].ocfc:focus,
 textarea.ocfc:focus {
   border-left: 4px solid #428bca;
   outline: none;

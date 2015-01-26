@@ -54,10 +54,67 @@
 		font-size 14px
 		color #2f2f2f
 		margin-top 3px
+		width 98%
 	textarea
 		margin-left 1%
 		margin-top 3px
 		width 98%
+	.time-selector
+		//border-left 4px solid rgba(0,0,0,0.7)
+		margin-left 1%
+		width 98%	
+	.from
+		border-left 4px solid rgba(0,0,0,0.7)
+		height 37px
+		position relative
+		.to
+			display inline-block
+			//position relative
+			width 50%
+			height 30px
+			margin-left 17px
+			.to-text
+				width 30px
+				color rgba(0,0,0,0.7)
+		.glyphicon-calendar
+			position relative
+			color rgba(0,0,0,0.7)
+			margin-left 15px
+			font-size 16px
+			line-height 20px
+			width 27px
+			height 20px
+		.date-picker
+			position relative
+			width 100px
+			display inline-block
+			background-color #e8e8e8
+			border none
+			border-radius 0px
+			height 34px
+			padding 6px 12px
+		.time-picker
+			position relative
+			margin-left 4px
+			width 90px
+			display inline-block
+			background-color #e8e8e8
+			border none
+			border-radius 0px
+			height 34px
+			padding 6px 12px
+		.add-endtime
+			position relative
+			margin-left 20px
+			display inline-block
+			color rgba(0,0,0,0.7)
+			cursor pointer
+		.glyphicon-remove
+			color rgba(0,0,0,0.7)
+			position relative
+			left 10px
+			top 1px
+			cursor pointer
 
 .ocfc-wall-input__media
 	position relative
@@ -131,43 +188,3 @@
 		background-color #B8B8B8
 	&:hover	.glyphicon-plus
 		opacity 1
-			
-//old
-
-.wall-header__event-title
-	width 539px
-	height 25px
-	margin-left 7px
-
-.wall-header__event-fromDate
-	position relative
-	bottom 3px
-	height 25px
-	margin-left 7px
-
-.wall-header__event-toDate
-	position relative
-	bottom 3px
-	height 25px
-	margin-left 7px
-
-.wall-header__event-where
-	margin 0px
-	width 539px
-	height 25px
-	margin-left 7px
-
-.wall-header__event-hostBy
-	width 539px
-	height 25px
-	margin-left 7px
-
-.event__fromDate-endTime
-	display: inline-block;
-
-.event__toDate-removeEndTime
-	position: relative;
-	left: 541px;
-	top: -23px;
-	font-size: 10px;
-	width 10px
