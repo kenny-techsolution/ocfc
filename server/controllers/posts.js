@@ -529,6 +529,8 @@ exports.queryPost = function (req, res) {
 			whereClause.postUnderGroupId = req.query[key];
 		} else if (key == 'createdOn') {
 			whereClause.createdOn = {$lt: req.query[key]};
+		}else if (key == 'postType') {
+			whereClause.postType=req.query[key]
 		}else {
 			condition[key] = req.query[key];
 		}
