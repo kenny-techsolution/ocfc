@@ -16,13 +16,9 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 	//query post data here
 	$scope.posts = PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id});
 	$scope.selectedPost;
-	$scope.selectedPostType='';
+	$scope.selectedPostType = '';
 
-
-
-
-	$scope.imagePrefix='https://res.cloudinary.com/ocfc/image/upload/';
-
+	$scope.imagePrefix = 'https://res.cloudinary.com/ocfc/image/upload/';
 
 	//console.log('chk $scope.posts array from FellowshipCtrl');
 	//console.log($scope.posts);
@@ -38,7 +34,6 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 	$scope.$watch('imagePopup.isPopupOpen', function (newVal, oldVal) {
 		console.log(newVal);
 	});
-
 
 	$scope.dropdown = [
 		{
@@ -163,11 +158,10 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 		}
 	};
 
-	$scope.selectPostType=function(type) {
+	$scope.selectPostType = function (type) {
 		$scope.selectedPostType = type;
 
 	};
-
 
 });
 
