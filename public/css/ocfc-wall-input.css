@@ -62,18 +62,9 @@
   margin-top: 3px;
 }
 .ocfc-wall-input__body textarea {
-  background-color: #e8e8e8;
   margin-left: 1%;
   margin-top: 3px;
   width: 98%;
-  border: none;
-  color: #2f2f2f;
-  padding: 5px;
-  padding-left: 12px;
-}
-.ocfc-wall-input__body textarea:focus {
-  border-left: 4px solid #428bca;
-  outline: none;
 }
 .ocfc-wall-input__media {
   position: relative;

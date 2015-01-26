@@ -274,8 +274,16 @@ button.btn {
   margin-top: 25px;
   margin-bottom: 15px;
 }
-textarea.form-control {
-  height: 170px;
+textarea.ocfc {
+  background-color: #e8e8e8;
+  border: none;
+  color: #2f2f2f;
+  padding: 5px;
+  padding-left: 12px;
+}
+textarea.ocfc:focus {
+  border-left: 4px solid #428bca;
+  outline: none;
 }
 .profile-popover {
   background-color: #f7f7f7;
@@ -333,12 +341,28 @@ textarea.form-control {
 }
 .members-widget {
   display: inline-block;
-  color: #000;
 }
 .members-widget img {
   width: 58px;
   height: 58px;
   margin: 1px;
+  display: inline-block;
+  vertical-align: top;
+}
+.members-widget .all {
+  display: inline-block;
+  width: 58px;
+  height: 58px;
+  margin: 1px;
+  background-color: #32a0df;
+  vertical-align: top;
+  line-height: 58px;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+}
+.members-widget .all:hover {
+  font-weight: bold;
 }
 .signin-section input {
   font-size: 12px;

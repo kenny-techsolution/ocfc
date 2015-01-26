@@ -269,8 +269,15 @@ button.btn
 	margin-bottom 15px
 
 //standard textarea for create fellowship
-textarea.form-control
-	height 170px
+textarea.ocfc
+	background-color #e8e8e8
+	border none
+	color #2f2f2f
+	padding 5px
+	padding-left 12px
+	&:focus
+		border-left 4px solid #428bca
+		outline none
 
 //profile popover
 .profile-popover
@@ -329,8 +336,21 @@ textarea.form-control
 		width 58px
 		height 58px
 		margin 1px
-	color #000000
-
+		display inline-block
+		vertical-align top
+	.all
+		display inline-block
+		width 58px
+		height 58px
+		margin 1px
+		background-color #32a0df
+		vertical-align top
+		line-height 58px
+		text-align center
+		color white
+		cursor pointer
+		&:hover
+			font-weight bold
 //login section
 .signin-section
 	input

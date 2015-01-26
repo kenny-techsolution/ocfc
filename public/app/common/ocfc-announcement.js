@@ -13,6 +13,9 @@ angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, Comme
 			console.log('ocfcAnnouncement has been called');
 
 			$scope.IdentitySvc = IdentitySvc;
+			$scope.setEditHover = function(onOff){
+				$scope.isEditHover = onOff;
+			};
 			$scope.showEdit = false;
 			$scope.newAnnouncePostContent = $scope.post.announcement[0].content;
 

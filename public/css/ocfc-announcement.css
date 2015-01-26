@@ -3,13 +3,36 @@
   height: auto;
   margin-top: 5px;
 }
-.announcement-widget img {
+.announcement-widget .announcement-widget__output .edit-hover {
+  position: relative;
+  border: 1px solid #32a0df;
+}
+.announcement-widget__header {
+  position: relative;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.announcement-widget__header img {
   width: 35px;
   height: 35px;
   border-radius: 5px;
   vertical-align: top;
   display: inline-block;
   margin-right: 6px;
+}
+.announcement-widget__header .name {
+  position: absolute;
+  left: 43px;
+  top: 0px;
+  font-size: 14px;
+  color: #000;
+}
+.announcement-widget__header .date {
+  font-size: 10px;
+  left: 43px;
+  position: absolute;
+  top: 19px;
+  color: rgba(53,53,53,0.81);
 }
 .announcement-widget__annouce-profile-desc {
   width: 100%;
@@ -26,43 +49,35 @@
   display: inline-block;
   margin-right: 6px;
 }
-.announcement-widget__annouce-profile-desc .name {
-  font-size: 14px;
-  color: #000;
-}
-.announcement-widget__annouce-profile-desc .date {
-  margin-top: -2px;
-  font-size: 10px;
-  color: rgba(53,53,53,0.81);
-}
 .announcement-widget__announcement-description {
   font-size: 13px;
-  margin-top: 5px;
   color: #2f2f2f;
 }
 .announcement-widget__output-edit {
-  height: 28px;
   position: relative;
-  top: -17px;
+  background-color: #fff;
+  padding: 3px;
 }
 .announcement-widget__output-edit textarea {
   position: relative;
-  height: 26px;
-  width: 255px;
+  height: 70px;
+  width: 100%;
 }
 .announcement-widget__options {
   position: relative;
-  top: -31px;
-  width: 173px;
-  left: 260px;
+  width: 190px;
+  height: 26px;
+  left: 228px;
 }
 .announcement-widget__options .cancel {
   position: relative !important;
-  left: 15px !important;
+  left: 64px !important;
   padding: 6px 17px !important;
+  top: 0px !important;
 }
 .announcement-widget__options .done {
   position: relative !important;
-  left: 15px !important;
+  left: 64px !important;
   padding: 6px 17px !important;
+  top: 0px !important;
 }

@@ -17,11 +17,12 @@
 				.fellow-banner__logo-edit-delete(ng-show='!showEdit', ng-if='FellowshipDataSvc.isAdmin')
 					span.glyphicon.glyphicon-camera.camera-icon(ng-file-select='editFellowshipImage($files,"logo")', data-multiple='false', title='profile', onclick='this.value = null')
 					span.glyphicon.glyphicon-trash(ng-click="deleteFellowshipImage('banner')")
+
+			.widget-title-wo-link
+				h3 About Us
+			ocfc-about-us(fellowship='FellowshipDataSvc.fellowship',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown',is-admin='FellowshipDataSvc.isAdmin')
 			div(data-offset-top="-50", bs-affix)
 				div.fix-sidebar
-					.widget-title-wo-link
-						h3 About Us
-					ocfc-about-us(fellowship='FellowshipDataSvc.fellowship',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown',is-admin='FellowshipDataSvc.isAdmin')
 					.widget-title-wo-link
 						h3 Announcement
 					ocfc-announcement(ng-repeat="post in posts|filter:{postType:5}|limitTo:1",users='FellowshipDataSvc.users',post='post',image-popup='imagePopup',dropdown='dropdown')

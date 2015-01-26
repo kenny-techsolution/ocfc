@@ -1,14 +1,16 @@
 .announcement-widget
-	img(ng-src='{{post.postBy.profileImg}}')
-	.announcement-widget__annouce-profile-desc
-		.name {{post.postBy.fullName}}
+	.announcement-widget__header
+		img(ng-src='{{post.postBy.profileImg}}')
+		.name {{post.postBy.fullName| capitalize}}
 		.date {{post.createdOn | date}}
-	.announcement-widget__announcement-description(ng-show='!showEdit') {{post.announcement[0].content}}
-		button(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='isPoster')
-			span.caret
+	.announcement-widget__output(ng-show='!showEdit',ng-mouseenter="setEditHover(true)", ng-mouseleave="setEditHover(false)")
+		.announcement-widget__announcement-description(ng-class="{'edit-hover':isEditHover}") {{post.announcement[0].content}}
+		div.glyphicon.glyphicon-pencil(ng-show="isEditHover", ng-click="editPost()")
+		//	button(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='isPoster')
+		//		span.caret
 	.announcement-widget__output-edit(ng-show='showEdit')
-		textarea.text-black(ng-model='newAnnouncePostContent')
+		textarea.ocfc(ng-model='newAnnouncePostContent')
 		.announcement-widget__options
-			button.btn.btn-lg.btn-primary.cancel(ng-click='hideEditPost()') Cancel
-			button.btn.btn-lg.btn-primary.done(ng-click='updateEditedPost()')  Done Editing
+			button.btn.btn-lg.btn-default.cancel(ng-click='hideEditPost()') Cancel
+			button.btn.btn-lg.btn-primary.done(ng-click='updateEditedPost()')  Save
 			

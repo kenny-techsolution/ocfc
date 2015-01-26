@@ -28,7 +28,7 @@
 				input.form-control__toDate(type='text', size='10', ng-model='toDate', data-autoclose='1', placeholder='To Date', bs-datepicker='')
 				input.form-control__toDate(type='text', size='8', ng-model='toDate', data-autoclose='1', placeholder='To Time', bs-timepicker='')
 		textarea.wall-header__event-where(ng-model='eventWhere',ng-show='selectedPostType === "Event"',placeholder='Event location goes here')
-		textarea.textbox(ng-model='content', placeholder='What do you want to write about?')
+		textarea.textbox.ocfc(ng-model='content', placeholder='What do you want to write about?')
 	.ocfc-wall-input__media(ng-if="files.length>0")
 		.inner
 			.scrollable

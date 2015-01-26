@@ -1,6 +1,5 @@
-.dynamic-content__right-sidebar__birthday
-	.dynamic-content__birthday__wrapper(ng-repeat='user in users |filter:comingBirthdays')
-		img.dynamic-content__wrapper__new-birthday-profile(ng-src='{{user.userId.profileImg}}')
-		.dynamic-content__wrapper__new-birthday-desc
-			.dynamic-content__new-birthday-desc__name {{user.userId.fullName}}
-			.dynamic-content__new-birthday-desc__date {{user.userId.birthday|date:'MM/dd/yyyy'}}
+.birthday-widget(ng-repeat='user in users |filter:comingBirthdays')
+	img(ng-src='{{user.userId.profileImg}}')
+	.name {{user.userId.fullName|capitalize}}
+	.glyphicon.glyphicon-gift
+	.date {{user.userId.birthday|date:'MMMM d'}}

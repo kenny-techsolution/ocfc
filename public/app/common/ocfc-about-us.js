@@ -15,17 +15,17 @@ angular.module('app').directive('ocfcAboutUs', function (IdentitySvc, CommentApi
 			console.log('ocfcAboutUs has been called');
 			//console.log('chk $scope.fellowship obj');
 			//console.log($scope.fellowship);
-
+			$scope.newAboutContent;
+			//$scope.aboutInput.
 			$scope.IdentitySvc = IdentitySvc;
+			$scope.setEditHover = function(onOff){
+				$scope.isEditHover = onOff;
+			};
 			$scope.showEdit = false;
 
-			$scope.$watch('fellowship',function(newVal,oldVal){
-				//console.log('chk newVal');
-				//console.log(newVal);
-				if(!newVal){
-					//console.log('chk newVal within if condition');
-					//console.log(newVal);
-					$scope.newAboutContent = $scope.fellowship.about;
+			$scope.$watch('fellowship.about',function(newVal,oldVal){
+				if(newVal){
+					$scope.newAboutContent = newVal;
 				}
 			});
 
