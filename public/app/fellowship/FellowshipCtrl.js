@@ -9,8 +9,8 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 	$scope.FellowshipDataSvc = FellowshipDataSvc;
 	$scope.FellowshipDataSvc.initialize($routeParams.id);
 	//default banner image
-	$scope.FellowshipDataSvc.fellowship.bannerImage = 'h9wvhxsfi0prxrg0nipr';
-	$scope.FellowshipDataSvc.fellowship.logoImage = 'h9wvhxsfi0prxrg0nipr';
+	$scope.FellowshipDataSvc.fellowship.bannerImage = 'onechurch_rpslb3';
+	$scope.FellowshipDataSvc.fellowship.logoImage = '293817_10151098311011098_970711788_n_rdhuj7';
 
 	$scope.posts = [];
 

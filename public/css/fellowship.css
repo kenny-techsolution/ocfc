@@ -31,9 +31,7 @@
   overflow: hidden;
 }
 .fellow-banner__background>img {
-  width: 132%;
-  margin-top: -88px;
-  margin-left: -50px;
+  width: 100%;
 }
 .fellow-banner__overlay {
   background-color: #fff;
