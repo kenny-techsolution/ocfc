@@ -339,3 +339,12 @@
 .fellow-banner__logo-edit-delete .glyphicon:hover {
   opacity: 0.9;
 }
+.infinite-scroll {
+  display: block;
+  min-height: 500px;
+  position: relative;
+}
+.infinite-scroll .loading-spinner {
+  top: 50px;
+  left: 45%;
+}
