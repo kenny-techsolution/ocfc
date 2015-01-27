@@ -13,6 +13,9 @@ angular.module('app').directive('ocfcEvent', function (PostApiSvc,$routeParams,$
 				$scope.post=postArray[0];
 			});
 
+			console.log('chk $scope.post within ocfc-event');
+			console.log($scope.post);
+
 			$rootScope.$on('newEvent', function (event, data) {
 				console.log('chk latest post data after emit within ocfc-event.js');
 				console.log(data);
