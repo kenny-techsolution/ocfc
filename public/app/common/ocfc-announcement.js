@@ -1,12 +1,10 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, CommentApiSvc, _, PostApiSvc) {
+angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, CommentApiSvc, _, PostApiSvc,$routeParams,$rootScope) {
 	return{
 		restrict: 'E',
 		scope: {
-			post: '=',
-			imagePopup: '=',
-			posts: '=',
-			dropdown: '='
+			dropdown: '=',
+			posts:'='
 		},
 		templateUrl: '/partials/common/ocfc-announcement',
 		controller: function ($scope) {
@@ -17,13 +15,30 @@ angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, Comme
 				$scope.isEditHover = onOff;
 			};
 			$scope.showEdit = false;
-			$scope.newAnnouncePostContent = $scope.post.announcement[0].content;
 
-			if ($scope.post.postBy._id===IdentitySvc.currentUser._id) {
-				$scope.isPoster=true;
-			}else {
-				$scope.isPoster=false;
-			};
+
+
+			var postArray=PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id,postType:5,limit:1},function(post){
+				console.log('chk $scope.post obj with query API');
+				console.log($scope.post);
+				$scope.post=postArray[0];
+				$scope.newAnnouncePostContent = $scope.post.announcement[0].content;
+
+				if ($scope.post.postBy._id===IdentitySvc.currentUser._id) {
+					$scope.isPoster=true;
+				}else {
+					$scope.isPoster=false;
+				};
+
+			});
+
+			//this is triggered by ocfoc-wall-input, so that whenever a post is made, announcement
+			//widget will also be triggered
+			$rootScope.$on('newAnnouncement', function (event, data) {
+				console.log('chk latest post data after emit within ocfc-announcement.js');
+				console.log(data);
+				$scope.post=data;
+			});
 
 			$scope.hideEditPost = function () {
 				console.log('hideEditPost function called');
@@ -40,7 +55,7 @@ angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, Comme
 			//delete post derived from dropdown
 			$scope.deletePost = function () {
 				console.log('deletePost function called');
-				console.log('chk post obj');
+				console.log('chk post[0] obj');
 				console.log($scope.post);
 
 				var post = PostApiSvc.get({id: $scope.post._id}, function () {

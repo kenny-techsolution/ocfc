@@ -519,6 +519,10 @@ exports.queryPost = function (req, res) {
 	var whereClause = {};
 	console.log('chk filteredKeys obj');
 	console.log(filteredKeys);
+
+	console.log('chk req.query.limit value');
+	console.log(req.query.limit);
+
 	var keys = _.keys(filteredKeys)
 	_.forEach(keys, function (key) {
 		console.log('chk key obj');
@@ -535,6 +539,8 @@ exports.queryPost = function (req, res) {
 			condition[key] = req.query[key];
 		}
 	});
+	var limit= req.query.limit||20;
+
 	console.log('chk condition obj');
 	console.log(condition);
 
@@ -542,7 +548,7 @@ exports.queryPost = function (req, res) {
 	console.log(whereClause);
 	//01.13.2015 added to populate imageIds
 	//01.14.2015 added sort({createdOn: 'descending'})
-	Post.find(condition).sort({createdOn: 'descending'}).limit(20).where(whereClause).populate('postBy imageIds eventId eventId.hostBy').exec(function (err, posts) {
+	Post.find(condition).sort({createdOn: 'descending'}).limit(limit).where(whereClause).populate('postBy imageIds eventId eventId.hostBy').exec(function (err, posts) {
 		console.log('server Post.find has been called within queryPost func');
 		console.log('chk posts array');
 		console.log(posts);
