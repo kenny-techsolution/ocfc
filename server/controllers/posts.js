@@ -524,6 +524,12 @@ exports.queryPost = function (req, res) {
 	console.log('chk req.query.limit value');
 	console.log(req.query.limit);
 
+	console.log('chk req.query obj');
+	console.log(req.query);
+
+	console.log('chk req.query["postType"] value');
+	console.log(req.query['postType']);
+
 	var keys = _.keys(filteredKeys)
 	_.forEach(keys, function (key) {
 		console.log('chk key obj');
@@ -533,7 +539,11 @@ exports.queryPost = function (req, res) {
 		} else if (key == 'postUnderGroupId') {
 			whereClause.postUnderGroupId = req.query[key];
 		} else if (key == 'createdOn') {
-			whereClause.createdOn = {$lt: req.query[key]};
+			if(req.query['postType']===4){
+				whereClause.createdOn = {$gte: req.query[key]};
+			}else{
+				whereClause.createdOn = {$lt: req.query[key]};
+			}
 		}else if (key == 'postType') {
 			whereClause.postType=req.query[key]
 		}else {

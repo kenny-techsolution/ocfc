@@ -6,28 +6,32 @@ angular.module('app').directive('ocfcEvent', function (PostApiSvc,$routeParams,$
 		},
 		templateUrl: '/partials/common/ocfc-event',
 		controller: function ($scope) {
+			console.log('front-end ocfc-event has been called');
 
-			var postArray=PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id,postType:4,limit:1},function(post){
-				//console.log('chk $scope.post obj query API within ocfc-event directive');
-				//console.log($scope.post);
-				$scope.post=postArray[0];
-			});
+			var queryEventWidget=function(){
+				var postArray=PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id,postType:4,createdOn:new Date()},function(){
+					//console.log('chk $scope.post obj query API within ocfc-event directive');
+					//console.log($scope.post);
+					$scope.posts=postArray;
+					console.log('chk $scope.posts');
+					console.log($scope.posts);
+				});
 
-			console.log('chk $scope.post within ocfc-event');
-			console.log($scope.post);
+			};
+
+			queryEventWidget();
 
 			$rootScope.$on('ocfcWallInput: newEvent', function (event, data) {
 				console.log('chk latest post data after emit within ocfc-event.js');
 				console.log(data);
-				$scope.post=data;
+				queryEventWidget();
 			});
 
 			$rootScope.$on('ocfcEventPost: newEvent', function (event, data) {
 				console.log('chk latest post data after emit within ocfc-event.js');
 				console.log(data);
-				$scope.post=data;
+				queryEventWidget();
 			});
-
 
 		}
 	};
