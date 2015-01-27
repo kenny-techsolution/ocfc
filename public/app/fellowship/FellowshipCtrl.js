@@ -14,12 +14,12 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 
 	$scope.posts = [];
 
-
+	$scope.isLoading = true;
 
 
 
 	$scope.posts = PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id},function(){
-
+		$scope.isLoading = false;
 		$scope.viewNextPage=function(type){
 			console.log('front-end test viewNextPage function');
 			//grab CreatedOn date from last element of posts array
@@ -215,9 +215,10 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 		$scope.selectedPostType = type;
 		console.log('chk selectedPostType');
 		console.log($scope.selectedPostType);
-
+		$scope.isLoading = true;
 		if (type===''){
 			$scope.posts = PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id},function(){
+				$scope.isLoading = false;
 				console.log('chk $scope.posts obj');
 				console.log($scope.posts);
 
@@ -226,7 +227,7 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 			$scope.posts = PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id, postType:type},function(){
 				console.log('chk $scope.posts obj');
 				console.log($scope.posts);
-
+				$scope.isLoading = false;
 			});
 		}
 
