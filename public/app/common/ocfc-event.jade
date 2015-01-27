@@ -1,7 +1,6 @@
-.dynamic-content__event
-	img(ng-src='{{post.postBy.profileImg}}')
-	.dynamic-content__annouce-profile-desc
-		.name.text-black {{post.postBy.fullName }}
-		.date.text-black {{post.createdOn | date}}
-	.dynamic-content__event__description.text-black {{post.eventId.description}}
-			
+.event-widget
+	.mini-calendar
+		.date {{post.eventId.fromDate|date:'dd'}}
+		.month {{post.eventId.fromDate|date:'MMM'}}
+	.title {{post.eventId.title|capitalize}}
+	.location {{post.eventId.where}}
