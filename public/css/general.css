@@ -1,14 +1,14 @@
 * {
   font-family: Helvetica, sans-serif;
 }
-html,
 body {
   background-image: url("./images/vintage_speckles.png");
   color: #fff;
   background-color: transparent;
   height: 100%;
+  width: 100%;
+  position: absolute;
 }
-html #wrapper,
 body #wrapper {
   height: 100%;
 }
@@ -373,12 +373,22 @@ textarea.ocfc:focus {
 .members-widget .all:hover {
   font-weight: bold;
 }
-.signin-section input {
+.page-content__welcome {
+  text-shadow: 1px 1px 8px #000;
+}
+.signin-section .container,
+.signup-section .container {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.signin-section input,
+.signup-section input {
   font-size: 12px;
   color: #a9a9a9;
   margin-bottom: 5px;
 }
-.signin-section label {
+.signin-section label,
+.signup-section label {
   font-size: 11px;
   margin-left: 4px;
   margin-bottom: 0px;
@@ -387,7 +397,7 @@ textarea.ocfc:focus {
 }
 .signin-section__second-row input {
   float: left;
-  width: 99px;
+  width: 129px;
 }
 .signin-section__second-row button {
   float: left;

@@ -8,11 +8,11 @@
 			button.btn.btn-default.pull-right.inline-block.choose-type(type='button', ng-model='selectedPostType', ng-options='postType.value as postType.label for postType in postTypes', bs-select='')
 				| Action
 				span.caret
-	.ocfc-wall-input__body
-		input.title.form-control(type='text',ng-model='title',ng-show='selectedPostType === "Testimony"',placeholder='Testimony title goes here')
-		input.event-title.form-control(ng-model='eventTitle',ng-show='selectedPostType === "Event"',placeholder='Event title goes here')
-		.time-selector
-			.from(ng-show='selectedPostType === "Event"')
+	.ocfc-wall-input__body(ng-cloak,class="ng-cloak")
+		input.title.form-control(type='text',ng-model='title',ng-show='selectedPostType === "Testimony"',placeholder='Testimony title goes here',ng-cloak,class="ng-cloak")
+		input.event-title.form-control(ng-model='eventTitle',ng-show='selectedPostType === "Event"',placeholder='Event title goes here',ng-cloak,class="ng-cloak")
+		.time-selector 
+			.from(ng-show='selectedPostType === "Event"',ng-cloak,class="ng-cloak")
 				span.glyphicon.glyphicon-calendar 
 				input.form-control.date-picker(type='text', size='10', ng-model='fromDate', data-max-date="{{toDate}}", data-autoclose='1', placeholder='From Date', bs-datepicker='')
 				input.form-control.time-picker(type='text', size='8', ng-model='fromDate', data-max-date="{{toDate}}", data-autoclose='1', placeholder='Add a time?', bs-timepicker='')
@@ -23,8 +23,8 @@
 					input.date-picker(type='text', size='10', ng-model='toDate', data-min-date="{{fromDate}}",data-autoclose='1', placeholder='To Date', bs-datepicker='',ng-show='endTimeSelected===true')
 					input.time-picker(type='text', size='8', ng-model='toDate', data-min-date="{{fromDate}}",data-autoclose='1', placeholder='To Time', bs-timepicker='',ng-show='endTimeSelected===true')
 					span.glyphicon.glyphicon-remove(ng-click='removeEndTime()',ng-show='endTimeSelected===true')
-		input.form-control.wall-header__event-where(ng-model='eventWhere',ng-show='selectedPostType === "Event"',placeholder='Event location goes here')
-		textarea.textbox.ocfc(ng-model='content', placeholder='What do you want to write about?')
+		input.form-control.wall-header__event-where(ng-model='eventWhere',ng-show='selectedPostType === "Event"',placeholder='Event location goes here',ng-cloak,class="ng-cloak")
+		textarea.textbox.ocfc(ng-model='content', placeholder='What do you want to write about?',ng-cloak,class="ng-cloak")
 	.ocfc-wall-input__media(ng-if="files.length>0")
 		.inner
 			.scrollable
