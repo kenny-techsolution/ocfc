@@ -9,7 +9,7 @@ angular.module('app').directive('ocfcEvent', function (PostApiSvc,$routeParams,$
 			console.log('front-end ocfc-event has been called');
 
 			var queryEventWidget=function(){
-				var postArray=PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id,postType:4,createdOn:new Date()},function(){
+				var postArray=PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id,postType:4},function(){
 					//console.log('chk $scope.post obj query API within ocfc-event directive');
 					//console.log($scope.post);
 					$scope.posts=postArray;
@@ -32,6 +32,24 @@ angular.module('app').directive('ocfcEvent', function (PostApiSvc,$routeParams,$
 				console.log(data);
 				queryEventWidget();
 			});
+
+			$scope.upcomingEvents=function(post){
+				console.log('chk post.eventId.fromDate');
+				console.log(post.eventId.fromDate);
+
+				console.log('chk new Date()');
+				console.log(new Date());
+
+				var today=new Date();
+				var fromDate=new Date(post.eventId.fromDate);
+
+				//if (fromDate>=today){
+					//console.log('fromDate is greater');
+				//}else{
+					//console.log('fromDate is smaller');
+				//}
+				return fromDate>=today;
+			};
 
 		}
 	};
