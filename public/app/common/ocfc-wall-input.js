@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiSvc, $routeParams, $http, $upload, ImageApiSvc, FellowshipDataSvc, IdentitySvc) {
+angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc, EventApiSvc, $routeParams, $http, $upload, ImageApiSvc, FellowshipDataSvc, IdentitySvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -35,8 +35,8 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 				//save post input data
 				$scope.createPost = function (selectedPostType) {
 					console.log('front-end createPost is being called');
-					console.log('chk selectedPostType param');
-					console.log(selectedPostType);
+					//console.log('chk selectedPostType param');
+					//console.log(selectedPostType);
 
 					if (selectedPostType === 'General') {
 						postType = 'general';
@@ -76,6 +76,9 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 						post.$save().then(function () {
 							$scope.posts.unshift(post);
 
+							//fire $rootscope.emit to trigger announcement.js directive
+							$rootScope.$emit('newAnnouncement', post); // $rootScope.$on
+
 							//reset content and image(s) to blank
 							$scope.content = '';
 							$scope.title = '';
@@ -108,6 +111,9 @@ angular.module('app').directive('ocfcWallInput', function (PostApiSvc, EventApiS
 							console.log(post);
 
 							$scope.posts.unshift(post);
+
+							//fire $rootscope.emit to trigger event.js directive
+							$rootScope.$emit('newEvent', post); // $rootScope.$on
 
 							//reset content and image(s) to blank
 							$scope.eventTitle = '';

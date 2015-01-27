@@ -112,8 +112,8 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 				$scope.imagePopup.isPopupOpen=true;
 				$scope.imagePopup.selectedPost=$scope.post;
 
-				console.log('chk $scope.imagePopup obj');
-				console.log($scope.imagePopup);
+				//console.log('chk $scope.imagePopup obj');
+				//console.log($scope.imagePopup);
 			};
 		}
 	};

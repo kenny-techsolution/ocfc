@@ -25,7 +25,7 @@
 				div.fix-sidebar
 					.widget-title-wo-link
 						h3 Announcement
-					ocfc-announcement(ng-repeat="post in posts|filter:{postType:5}|limitTo:1",users='FellowshipDataSvc.users',post='post',image-popup='imagePopup',dropdown='dropdown')
+					ocfc-announcement(dropdown='dropdown',posts='posts')
 					.widget-title-wo-link
 						h3 New Friend
 					ocfc-new-friend(users='FellowshipDataSvc.users')
