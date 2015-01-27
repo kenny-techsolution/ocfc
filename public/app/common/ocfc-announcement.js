@@ -32,7 +32,15 @@ angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, Comme
 
 			//this is triggered by ocfoc-wall-input, so that whenever a post is made, announcement
 			//widget will also be triggered
-			$rootScope.$on('newAnnouncement', function (event, data) {
+			$rootScope.$on('ocfcWallInput: newAnnouncement', function (event, data) {
+				console.log('chk latest post data after emit within ocfc-announcement.js');
+				console.log(data);
+				$scope.post=data;
+			});
+
+			//this is triggered by ocfoc-wall-input, so that whenever a post is made, announcement
+			//widget will also be triggered
+			$rootScope.$on('ocfcAnnouncementPost: newAnnouncement', function (event, data) {
 				console.log('chk latest post data after emit within ocfc-announcement.js');
 				console.log(data);
 				$scope.post=data;
@@ -90,7 +98,10 @@ angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, Comme
 					updatePost.postType = "announcement";
 
 					//update post obj on the server side
-					PostApiSvc.update({id: updatePost._id}, updatePost, function () {
+					var post=PostApiSvc.update({id: updatePost._id}, updatePost, function () {
+						console.log('front-end PostSvc.update has completed');
+						//fire $rootscope.emit to trigger announcement.js directive
+						$rootScope.$emit('ocfcAnnouncement: newAnnouncement', post); // $rootScope.$on
 						console.log('front-end PostSvc.update has completed');
 					});
 					$scope.showEdit = false;

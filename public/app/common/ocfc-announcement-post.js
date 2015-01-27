@@ -14,6 +14,15 @@ angular.module('app').directive('ocfcAnnouncementPost', function (IdentitySvc, C
 			//console.log('chk $scope.post.postType value');
 			//console.log($scope.post.postType);
 
+			//this is triggered by ocfoc-announcement, so that whenever a post is made,
+			// announcement post will also be triggered
+			$rootScope.$on('ocfcAnnouncement: newAnnouncement', function (event, data) {
+				console.log('chk latest post data after emit within ocfc-announcement.js');
+				console.log(data);
+				$scope.post=data;
+			});
+
+
 			$scope.IdentitySvc = IdentitySvc;
 			$scope.showEdit = false;
 			$scope.newAnnouncePostContent = $scope.post.announcement[0].content;
@@ -83,7 +92,7 @@ angular.module('app').directive('ocfcAnnouncementPost', function (IdentitySvc, C
 					//update post obj on the server side
 					var post=PostApiSvc.update({id: updatePost._id}, updatePost, function () {
 						//fire $rootscope.emit to trigger announcement.js directive
-						$rootScope.$emit('newAnnouncement', post); // $rootScope.$on
+						$rootScope.$emit('ocfcAnnouncementPost: newAnnouncement', post); // $rootScope.$on
 						console.log('front-end PostSvc.update has completed');
 					});
 					$scope.showEdit = false;

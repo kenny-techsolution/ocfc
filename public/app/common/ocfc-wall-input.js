@@ -77,7 +77,7 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 							$scope.posts.unshift(post);
 
 							//fire $rootscope.emit to trigger announcement.js directive
-							$rootScope.$emit('newAnnouncement', post); // $rootScope.$on
+							$rootScope.$emit('ocfcWallInput: newAnnouncement', post); // $rootScope.$on
 
 							//reset content and image(s) to blank
 							$scope.content = '';
@@ -113,7 +113,7 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 							$scope.posts.unshift(post);
 
 							//fire $rootscope.emit to trigger event.js directive
-							$rootScope.$emit('newEvent', post); // $rootScope.$on
+							$rootScope.$emit('ocfcWallInput: newEvent', post); // $rootScope.$on
 
 							//reset content and image(s) to blank
 							$scope.eventTitle = '';

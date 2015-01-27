@@ -108,7 +108,7 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentAp
 						console.log('chk post obj');
 						console.log(post);
 						//fire $rootscope.emit to trigger announcement.js directive
-						$rootScope.$emit('newEvent', post); // $rootScope.$on
+						$rootScope.$emit('ocfcEventPost: newEvent', post); // $rootScope.$on
 						console.log('front-end PostSvc.update has completed');
 					});
 					$scope.showEdit=false;
