@@ -112,6 +112,9 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 
 							$scope.posts.unshift(post);
 
+							//fire $rootscope.emit to trigger event.js directive
+							$rootScope.$emit('newEvent', post); // $rootScope.$on
+
 							//reset content and image(s) to blank
 							$scope.eventTitle = '';
 							$scope.fromDate = '';
