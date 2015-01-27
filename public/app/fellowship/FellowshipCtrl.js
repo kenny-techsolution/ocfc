@@ -21,47 +21,47 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 	$scope.posts = PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id},function(){
 
 		$scope.viewNextPage=function(type){
-			console.log('front-end test viewNextPage function');
+			//console.log('front-end test viewNextPage function');
 			//grab CreatedOn date from last element of posts array
 			//query post data here
 			var lastPostIndex=$scope.posts.length-1;
 			var lastPostObj=$scope.posts[lastPostIndex];
 
-			console.log('chk $scope.posts');
-			console.log($scope.posts);
+			//console.log('chk $scope.posts');
+			//console.log($scope.posts);
 
-			console.log('chk lastPostObj');
-			console.log(lastPostObj);
+			//console.log('chk lastPostObj');
+			//console.log(lastPostObj);
 
-			console.log('chk type value');
-			console.log(type);
+			//console.log('chk type value');
+			//console.log(type);
 
 			if(type===''){
 				//load and append next query onto post
 				PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id,createdOn:lastPostObj.createdOn},function(posts){
-					console.log('entering callback of PostApiSvc.query');
+					//console.log('entering callback of PostApiSvc.query');
 					for(var i=0;i<posts.length;i++){
-						console.log('chk posts array grabbed from server');
-						console.log(posts);
+						//console.log('chk posts array grabbed from server');
+						//console.log(posts);
 						$scope.posts.push(posts[i]);
 
 					}
-					console.log('chk front-end $scope.posts array');
-					console.log($scope.posts);
+					//console.log('chk front-end $scope.posts array');
+					//console.log($scope.posts);
 				});
 
 			}else{
 				//load and append next query onto post
 				PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id,createdOn:lastPostObj.createdOn,postType:type},function(posts){
-					console.log('entering callback of PostApiSvc.query');
+					//console.log('entering callback of PostApiSvc.query');
 					for(var i=0;i<posts.length;i++){
-						console.log('chk posts array grabbed from server');
-						console.log(posts);
+						//console.log('chk posts array grabbed from server');
+						//console.log(posts);
 						$scope.posts.push(posts[i]);
 
 					}
-					console.log('chk front-end $scope.posts array');
-					console.log($scope.posts);
+					//console.log('chk front-end $scope.posts array');
+					//console.log($scope.posts);
 				});
 			}
 		};
@@ -85,6 +85,7 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 	}, isPopupOpen: false};
 
 	$scope.$watch('imagePopup.isPopupOpen', function (newVal, oldVal) {
+		console.log('watch newVal on imagePopup.isPopupOpen');
 		console.log(newVal);
 	});
 
@@ -213,8 +214,8 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 
 	$scope.selectPostType = function (type) {
 		$scope.selectedPostType = type;
-		console.log('chk selectedPostType');
-		console.log($scope.selectedPostType);
+		//console.log('chk selectedPostType');
+		//console.log($scope.selectedPostType);
 
 		if (type===''){
 			$scope.posts = PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id},function(){

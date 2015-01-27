@@ -1,5 +1,5 @@
 angular.module('app').filter('PostTypeStrFilter', function () {
-	console.log('front-end PostTypeStrFilter has been called');
+	//console.log('front-end PostTypeStrFilter has been called');
 
 	// rest api standard, for GET, if id is specified, it will grab specific
 	//var postTypeArray = ['general','testimony','question','prayer','event'];

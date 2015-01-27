@@ -17,8 +17,8 @@ angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, Comme
 			$scope.showEdit = false;
 
 			var postArray=PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id,postType:5,limit:1},function(post){
-				console.log('chk $scope.post obj with query API');
-				console.log($scope.post);
+				//console.log('chk $scope.post obj with query API');
+				//console.log($scope.post);
 				$scope.post=postArray[0];
 				$scope.newAnnouncePostContent = $scope.post.announcement[0].content;
 

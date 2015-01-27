@@ -8,8 +8,8 @@ angular.module('app').directive('ocfcEvent', function (PostApiSvc,$routeParams,$
 		controller: function ($scope) {
 
 			var postArray=PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id,postType:4,limit:1},function(post){
-				console.log('chk $scope.post obj query API within ocfc-event directive');
-				console.log($scope.post);
+				//console.log('chk $scope.post obj query API within ocfc-event directive');
+				//console.log($scope.post);
 				$scope.post=postArray[0];
 			});
 

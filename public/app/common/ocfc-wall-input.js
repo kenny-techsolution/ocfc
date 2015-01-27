@@ -35,8 +35,8 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 				//save post input data
 				$scope.createPost = function (selectedPostType) {
 					console.log('front-end createPost is being called');
-					console.log('chk selectedPostType param');
-					console.log(selectedPostType);
+					//console.log('chk selectedPostType param');
+					//console.log(selectedPostType);
 
 					if (selectedPostType === 'General') {
 						postType = 'general';

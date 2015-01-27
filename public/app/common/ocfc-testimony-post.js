@@ -114,8 +114,8 @@ angular.module('app').directive('ocfcTestimonyPost', function (IdentitySvc,Comme
 				$scope.imagePopup.isPopupOpen=true;
 				$scope.imagePopup.selectedPost=$scope.post;
 
-				console.log('chk $scope.imagePopup obj');
-				console.log($scope.imagePopup);
+				//console.log('chk $scope.imagePopup obj');
+				//console.log($scope.imagePopup);
 			};
 		}
 	};
