@@ -3,9 +3,10 @@ angular.module('app').controller('SettingCtrl', function ($scope, $http,Identity
 	$scope.newPassword;
 	$scope.fullName;
 	$scope.email;
-	$scope.year;
-	$scope.month;
-	$scope.day;
+//	$scope.year;
+//	$scope.month;
+//	$scope.day;
+	$scope.birthday = '';
 	$scope.disableFullName=true;
 	$scope.disableEmail=true;
 
