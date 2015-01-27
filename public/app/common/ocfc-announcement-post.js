@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcAnnouncementPost', function (IdentitySvc, CommentApiSvc, _, PostApiSvc, PostCommentSvc) {
+angular.module('app').directive('ocfcAnnouncementPost', function (IdentitySvc, CommentApiSvc, _, PostApiSvc, PostCommentSvc,$rootScope) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -81,7 +81,9 @@ angular.module('app').directive('ocfcAnnouncementPost', function (IdentitySvc, C
 					updatePost.postType = "announcement";
 
 					//update post obj on the server side
-					PostApiSvc.update({id: updatePost._id}, updatePost, function () {
+					var post=PostApiSvc.update({id: updatePost._id}, updatePost, function () {
+						//fire $rootscope.emit to trigger announcement.js directive
+						$rootScope.$emit('newAnnouncement', post); // $rootScope.$on
 						console.log('front-end PostSvc.update has completed');
 					});
 					$scope.showEdit = false;

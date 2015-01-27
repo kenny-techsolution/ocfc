@@ -94,6 +94,7 @@ angular.module('app').directive('ocfcAnnouncement', function (IdentitySvc, Comme
 						console.log('front-end PostSvc.update has completed');
 					});
 					$scope.showEdit = false;
+
 				} else {
 					alert('Sorry, you do no have rights to update post other than your own');
 				}

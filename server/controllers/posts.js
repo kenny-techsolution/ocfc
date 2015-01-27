@@ -375,7 +375,6 @@ var createAnnouncementPost = function (postObj, req, res) {
 
 var _updatePost = function (id, userId, postObj, res) {
 	console.log('server _updatePost has been called');
-
 	console.log('chk id');
 	console.log(id);
 
@@ -387,6 +386,8 @@ var _updatePost = function (id, userId, postObj, res) {
 
 	Post.findOneAndUpdate({_id: id, postBy: userId}, postObj, function (err, post) {
 		console.log('Post.findOneAndUpdate has been called before error');
+		console.log('chk post');
+		console.log(post);
 		if (err) return res.json(err);
 		console.log('chk post from Post.findOneAndUpdate func after error condition');
 		console.log(post);
@@ -654,9 +655,14 @@ exports.updatePost = function (req, res) {
 		if (postObj.postType === 'event') {
 			console.log('postType of event has been met');
 			delete postObj.postType;
-			Post.findOne({_id: req.params.id, postBy: commFunc.reqSessionUserId(req)}).exec(function (err, post) {
-				if (err) return res.json(err);
 
+			console.log('chk req.params.id');
+			console.log(req.params.id);
+
+			Post.findOne({_id: req.params.id, postBy: commFunc.reqSessionUserId(req)}).exec(function (err, post) {
+				console.log('before err return call');
+				if (err) return res.json(err);
+				console.log('passed err return call');
 				//TODO need to fix this
 				//var event=commFunc.removeInvalidKeys(req.body,['albumId', 'imageIds', 'title',
 				//											   'description', 'fromDate', 'toDate', 'where', 'banner']);
@@ -667,11 +673,17 @@ exports.updatePost = function (req, res) {
 				console.log(postObj.eventId._id);
 
 				Event.findOneAndUpdate({_id: postObj.eventId._id}, postObj.eventId, function (err, NumberUpdated, raw) {
-					console.log('Event.findOneAndUpdate has been called before error');
+					console.log('Event.findOneAndUpdate has been called before error return call');
 					if (err) return res.json(err);
-					Post.populate(postObj, 'eventId', function (err, post) {
-						console.log('chk post from Post.populate func after error condition');
+					Post.populate(post, 'eventId', function (err, post) {
+						console.log('method called to populate Post table');
+						console.log('chk post obj');
+						console.log(post);
+
+						console.log('before err return call');
 						if (err) return res.json(err);
+						console.log('passed err return call');
+						console.log('return postFollowByImageUpdate func called');
 						return postFollowByImageUpdate(req, res, post);
 					});
 				});
