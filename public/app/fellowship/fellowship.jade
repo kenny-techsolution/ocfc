@@ -48,7 +48,7 @@
 				div(ng-class='{active: selectedPostType===4}',ng-click='selectPostType(4)') Event
 				div(ng-class='{active: selectedPostType===5}',ng-click='selectPostType(5)') Announcement
 			ocfc-wall-input(posts='posts')
-			div.infinite-scroll(infinite-scroll='viewNextPage(selectedPostType)', infinite-scroll-distance='0')
+			div.infinite-scroll(infinite-scroll='viewNextPage(selectedPostType)', infinite-scroll-disabled='isLoadingNext', infinite-scroll-distance='0')
 				.loading-spinner(ng-show="isLoading")
 				div.post(ng-repeat='post in posts')
 					ocfc-general-post(ng-if='post.postType ===0',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown',image-prefix='imagePrefix')
