@@ -8,29 +8,11 @@
 				.form-label FULL NAME {{fullName}}
 				input.form-control(ng-model='fullName')
 			.basic-info-edit__bday-input.col-md-6
-				.form-label DATE OF BIRTH {{month}} {{day}} {{year}}
-				.dropdown.select-box.month.inline
-					button.btn.text-grey(focus-when='focusStates["Campaign Dates"]', type='button', data-toggle='dropdown',ng-model='month')
-						| Month
-						span.caret
-					ul.dropdown-menu.text-right
-						li(ng-repeat='choice in form.campaignLengthOptions')
-							a(ng-click='$parent.onChangeNumWeeks(choice)') {{choice}}
-				.dropdown.select-box.date.inline
-					button.btn.text-grey(focus-when='focusStates["Campaign Dates"]', type='button', data-toggle='dropdown',ng-model='day')
-						| Day
-						span.caret
-					ul.dropdown-menu.text-right
-						li(ng-repeat='choice in form.campaignLengthOptions')
-							a(ng-click='$parent.onChangeNumWeeks(choice)') {{choice}}
-				.dropdown.select-box.year.inline
-					button.btn.text-grey(focus-when='focusStates["Campaign Dates"]', type='button', data-toggle='dropdown',ng-model='year')
-						| Year
-						span.caret
-					ul.dropdown-menu.text-right
-						li(ng-repeat='choice in form.campaignLengthOptions')
-							a(ng-click='$parent.onChangeNumWeeks(choice)') {{choice}}
-		.row
+				.form-label DATE OF BIRTH {{selectedMonth}}{{selectedDay}}{{selectedYear}}
+				select(name='DOBMonth',ng-model='selectedMonth',ng-options='selectedMonth.value as selectedMonth.text for selectedMonth in selectedMonths')
+				select(name='DOBDay',ng-model='selectedDay',ng-options='selectedDay.value as selectedDay.text for selectedDay in selectedDays')
+				select(name='DOBYear',ng-model='selectedYear',ng-options='selectedYear.value as selectedYear.text for selectedYear in selectedYears')
+			.row
 			.col-md-6
 				.form-label EMAIL {{email}}
 				input.form-control(ng-model='email')
