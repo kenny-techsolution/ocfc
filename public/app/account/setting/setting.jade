@@ -8,9 +8,11 @@
 				.form-label FULL NAME {{fullName}}
 				input.form-control(ng-model='fullName')
 			.basic-info-edit__bday-input.col-md-6
-				.form-label DATE OF BIRTH {{birthday}}
-				input.form-control(type='text', ng-model='birthday', data-date-format='yyyy-MM-dd', data-date-type='date',data-min-data-min-date="01/01/40" data-max-date="today" data-autoclose="1" name="date" bs-datepicker)
-		.row
+				.form-label DATE OF BIRTH {{selectedMonth}}{{selectedDay}}{{selectedYear}}
+				select(name='DOBMonth',ng-model='selectedMonth',ng-options='selectedMonth.value as selectedMonth.text for selectedMonth in selectedMonths')
+				select(name='DOBDay',ng-model='selectedDay',ng-options='selectedDay.value as selectedDay.text for selectedDay in selectedDays')
+				select(name='DOBYear',ng-model='selectedYear',ng-options='selectedYear.value as selectedYear.text for selectedYear in selectedYears')
+			.row
 			.col-md-6
 				.form-label EMAIL {{email}}
 				input.form-control(ng-model='email')
