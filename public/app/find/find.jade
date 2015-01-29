@@ -20,6 +20,20 @@
 						//div coordinate: lat: {{lat}}, lng: {{lng}}
 			.row.search-section__search-result
 				.col-xs-12
+					div.introduction-section(ng-show="latlngs.length===0")
+						div.sideline
+						div.introduction-section__point
+							.point.first 1
+							.title Find Your Fellowship
+							.description Type in the city and state, or zip of where you want to locate your fellowship. 
+						div.introduction-section__point
+							.point.second 2
+							.title Browse the results
+							.description View the search results and find the fellowship that you're belonged to. 
+						div.introduction-section__point
+							.point.third 3
+							.title Click Join
+							.description Join your fellowship, waited to be approved by your fellowship admin.						
 					div.panel.panel-default(ng-repeat="fellowship in fellowships",ng-class="{selectedGroup:$index === groupIndex}")
 						div.panel-body(ng-click="openSummary($index, 'F', fellowship)")
 							h5 {{fellowship.name | capitalize}}
@@ -35,7 +49,13 @@
 								div.info-value Languages: Chinese & English
 								div.info-value Church: CCIC Mountain View
 							button.btn.btn-success.pull-right JOIN
-							
+					div.create-fellowship
+						.glyphicon.glyphicon-question-sign
+						.title Can't Find Your Fellowship?
+						.description If you can't find your fellowship, you can ask your fellowship leader to create a fellowship on OCFC. It's very easy. send an email to your group leader now.
+						.form-group
+							input.form-control.inline-block(type='text')
+							button.btn.btn-primary.inline-block INVITE		
 		.summary-section.container(ng-if="isSummaryOn", ng-class="{'modal-open':isSummaryOn}")
 			.row
 				.col-xs-12
