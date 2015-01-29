@@ -1,9 +1,14 @@
 /*******************************************************************************
  ******************************************************************************/
 
-angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc, FellowshipDataSvc, $routeParams, FellowshipApiSvc, $http, $upload) {
+angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc, FellowshipDataSvc, $routeParams, FellowshipApiSvc, $http, $upload, mySocket) {
 
 	console.log('FellowshipCtrl has been called');
+	//console.log(mySocket);
+	 mySocket.on('newpost', function(data) {
+		console.log("new POST~!!!!!!");
+		console.log(data);
+	});
 
 	//include FellowshipDataSvc which captures all data needed for Fellowship widgets
 	$scope.FellowshipDataSvc = FellowshipDataSvc;

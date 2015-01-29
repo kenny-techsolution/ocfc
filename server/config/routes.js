@@ -29,9 +29,13 @@ var albums = require('../controllers/albums'),
 module.exports = function (app, io) {
 	/* ------ Socket IO setup -------- */
 	var ioSocket;
+	var groupRooms = [];
 	io.on('connection', function (socket) {
 		ioSocket = socket;
-		ioSocket.emit('testSocket', {result: "Socket test complete"});
+		//ioSocket.emit('testSocket', {result: "Socket test complete"});
+		ioSocket.join('123');
+		//ioSocket.broadcast.to('123').emit("newpost", {success:true});
+		io.sockets.to('123').emit("newpost", {success:true});
 	});
 
 	/* ------ Standard User related API -------- */
@@ -87,7 +91,10 @@ module.exports = function (app, io) {
 	app.delete('/api/churches/:church_id/users/:user_id', churches.removeUserFromChurch);
 
 	/* ------ Post related API -------- */
-	app.post('/api/posts', posts.createPost);// put Socket IO emit.
+	app.post('/api/posts', posts.createPost, function(req,res){
+		io.sockets.emit(res.$_fellowshipId,{type:"newPost", data:res.$_emitPost});
+		res.send(res.$_emitPost);
+	});
 	app.get('/api/posts/:id', posts.getPost);
 	app.get('/api/posts', posts.queryPost);
 	app.put('/api/posts/:id', posts.updatePost);
