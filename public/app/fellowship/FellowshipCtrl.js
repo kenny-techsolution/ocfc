@@ -1,8 +1,6 @@
 /*******************************************************************************
  ******************************************************************************/
-
-angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc, FellowshipDataSvc, $routeParams, FellowshipApiSvc, $http, $upload, mySocket) {
-
+angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc, FellowshipDataSvc, $routeParams, FellowshipApiSvc, $http, $upload,NotificationDataSvc,IdentitySvc,mySocket) {
 	console.log('FellowshipCtrl has been called');
 	//console.log(mySocket);
 	 mySocket.on('newpost', function(data) {
@@ -18,6 +16,7 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 	$scope.FellowshipDataSvc.fellowship.logoImage = '293817_10151098311011098_970711788_n_rdhuj7';
 
 	$scope.posts = [];
+
 
 	$scope.isLoading = true;
 	$scope.isLoadingNext = false;

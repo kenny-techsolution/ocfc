@@ -105,14 +105,33 @@ exports.isFellowshipMember = function(sessionUser, fellowshipId) {
 };
 
 exports.isChurchAdmin = function(sessionUser, churchId) {
+	console.log('server isChurchAdmin has been called');
+	console.log('chk sessionUser');
+	console.log(sessionUser);
+
+	console.log('chk churchId');
+	console.log(churchId);
+
 	var churches = sessionUser['churches'];
+
+	console.log('chk churches variable');
+	console.log(churches);
+
 	var permissions = [];
 	for(var i=0; i< churches.length; i++) {
 		if(String(churches[i].churchId) == String(churchId) && String(churches[i].role) == "admin"){
 			permissions.push(churches[i]);
 		}
 	}
+	console.log('chk permissions array');
+	console.log(permissions);
+
 	var resultBoolean = (permissions.length == 0)? false: true;
+
+	console.log('chk resultBoolean');
+	console.log(resultBoolean);
+
+	console.log('server isChurchAdmin complete');
 	return resultBoolean;
 };
 

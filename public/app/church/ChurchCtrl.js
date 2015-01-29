@@ -48,6 +48,7 @@ angular.module('app').controller('ChurchCtrl', function ($http, $scope,ChurchApi
 		console.log(church);
 		//call updateFellowshipById
 		church.approved=true;
+
 		ChurchApiSvc.update({id:church._id},church);
 
 	};

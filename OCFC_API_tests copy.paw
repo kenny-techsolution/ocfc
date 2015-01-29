@@ -5,7 +5,7 @@
     <databaseInfo>
         <version>134481920</version>
         <UUID>85169B30-4DCA-4B31-B36E-8760CDF22A00</UUID>
-        <nextObjectID>318</nextObjectID>
+        <nextObjectID>331</nextObjectID>
         <metadata>
             <plist version="1.0">
                 <dict>
@@ -120,7 +120,7 @@
         <attribute name="order" type="int64">0</attribute>
         <attribute name="name" type="string">OCFC API test suit</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM"></relationship>
-        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM" idrefs="z113 z234 z283 z141 z208 z225 z316 z104 z248 z179 z154"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM" idrefs="z154 z208 z113 z225 z179 z141 z316 z248 z283 z330 z104 z234"></relationship>
         <relationship name="bodyparameters" type="0/0" destination="LMKEYVALUE"></relationship>
         <relationship name="headers" type="0/0" destination="LMKEYVALUE"></relationship>
         <relationship name="urlparameters" type="0/0" destination="LMKEYVALUE"></relationship>
@@ -973,13 +973,13 @@
         <attribute name="order" type="int64">7</attribute>
         <attribute name="name" type="string">Church</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z108"></relationship>
-        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM" idrefs="z196 z202 z186 z190 z184 z180 z182 z198 z206 z204 z194 z200 z188"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM" idrefs="z194 z188 z190 z319 z204 z182 z202 z321 z206 z180 z186 z325 z200 z198 z184 z196 z324"></relationship>
         <relationship name="bodyparameters" type="0/0" destination="LMKEYVALUE"></relationship>
         <relationship name="headers" type="0/0" destination="LMKEYVALUE"></relationship>
         <relationship name="urlparameters" type="0/0" destination="LMKEYVALUE"></relationship>
     </object>
     <object type="LMREQUEST" id="z180">
-        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Church Created on Jan 21",true],["message","xxx",true],["vision","dfdf",true],["mission","etetet",true],["faithStatement","nnhmmh",true],["phone","344444444",true],["zipcode","45432",true],["country","xxx",true],["city","olean",true],["address","3554 kdfjdkf lane",true],["state","ohio",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["name","New Church Created on Jan 28",true],["message","welcome to New Church",true],["vision","dfdf",true],["mission","Hi Hi",true],["faithStatement","Faith Statement",true],["phone","5555555555",true],["zipcode","45432",true],["country","xxx",true],["city","Michigan",true],["address","3554 kdfjdkf lane",true],["state","ohio",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">6C207051-DA96-4227-9E01-BD1ACC6FF948</attribute>
         <attribute name="url" type="string">http://localhost:3030/api/churches</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
@@ -1006,16 +1006,16 @@
     </object>
     <object type="LMREQUEST" id="z182">
         <attribute name="uuid" type="string">F6C449FE-C4D9-4E2D-946B-CE3310301ED0</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/churches/546d0d4cd0b5cd7d27a5da52</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/churches/54c9516466a335022f0fc5d7/approve</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">PUT</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Once Christ Church Updated Again",true],["vision","dfdf",true],["mission","etetet",true],["faithStatement","nnhmmh",true],["phone","344444444",true],["zipcode","45432",true],["country","xxx",true],["city","olean",true],["address","3554 kdfjdkf lane",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\/*\\"name\\":\\"Once Christ Church Updated Again\\",\\"vision\\":\\"dfdf\\",\\"mission\\":\\"etetet\\",\\"faithStatement\\":\\"nnhmmh\\",\\"phone\\":\\"344444444\\",\\"zipcode\\":\\"45432\\",\\"country\\":\\"xxx\\",\\"city\\":\\"olean\\",\\"address\\":\\"3554 kdfjdkf lane\\",*\\/\\"approved\\":true}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="order" type="int64">1</attribute>
-        <attribute name="name" type="string">updateChurchById</attribute>
+        <attribute name="name" type="string">approveChurchById</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z183"></relationship>
@@ -1032,7 +1032,7 @@
     </object>
     <object type="LMREQUEST" id="z184">
         <attribute name="uuid" type="string">3BA32FB8-2220-4C6A-B425-E3437E7E946A</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/churches/54913bedbe3ca300003f67d0</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/churches/54c9516466a335022f0fc5d7</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -1040,7 +1040,7 @@
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[["name","Once Christ Church Updated Again",true],["vision","dfdf",true],["mission","etetet",true],["faithStatement","nnhmmh",true],["phone","344444444",true],["zipcode","45432",true],["country","xxx",true],["city","olean",true],["address","3554 kdfjdkf lane",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">2</attribute>
+        <attribute name="order" type="int64">3</attribute>
         <attribute name="name" type="string">getChurchById</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -1066,7 +1066,7 @@
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[["name","Once Christ Church Updated Again",true],["vision","dfdf",true],["mission","etetet",true],["faithStatement","nnhmmh",true],["phone","344444444",true],["zipcode","45432",true],["country","xxx",true],["city","olean",true],["address","3554 kdfjdkf lane",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">3</attribute>
+        <attribute name="order" type="int64">4</attribute>
         <attribute name="name" type="string">queryChurches</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -1092,7 +1092,7 @@
         <attribute name="method" type="string">DELETE</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[["name","Once Christ Church Updated Again",true],["vision","dfdf",true],["mission","etetet",true],["faithStatement","nnhmmh",true],["phone","344444444",true],["zipcode","45432",true],["country","xxx",true],["city","olean",true],["address","3554 kdfjdkf lane",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">4</attribute>
+        <attribute name="order" type="int64">5</attribute>
         <attribute name="name" type="string">deleteChurchById</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -1110,7 +1110,7 @@
     </object>
     <object type="LMREQUEST" id="z190">
         <attribute name="uuid" type="string">FAEFA6D4-AC17-4A1F-B45B-D27B7642E297</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/churches/54913bedbe3ca300003f67d0/fellowships/54913941aa6f4e0000642ae6</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/churches/54c9516466a335022f0fc5d7/fellowships/54a0f90799b81bbbb99a00cf</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -1118,7 +1118,7 @@
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[["name","Once Christ Church Updated Again",true],["vision","dfdf",true],["mission","etetet",true],["faithStatement","nnhmmh",true],["phone","344444444",true],["zipcode","45432",true],["country","xxx",true],["city","olean",true],["address","3554 kdfjdkf lane",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">5</attribute>
+        <attribute name="order" type="int64">6</attribute>
         <attribute name="name" type="string">addFellowshipToChurch</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -1136,16 +1136,16 @@
     </object>
     <object type="LMREQUEST" id="z194">
         <attribute name="uuid" type="string">3CF4D9E5-DC00-4850-8F56-F665E26949D0</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/churches/546d0d4cd0b5cd7d27a5da52/fellowships/546ed962d8ba79e667d1f5f7</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/churches/54c9516466a335022f0fc5d7/fellowships/54a0f90799b81bbbb99a00cf/approve</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">PUT</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Once Christ Church xxxx",false],["vision","dfdf",false],["mission","etetet",false],["faithStatement","nnhmmh",false],["phone","344444444",false],["zipcode","45432",false],["country","xxx",false],["city","olean",false],["address","3554 kdfjdkf lane",false],["rejReason","hahkkdjfaha",true],["status","approved",false]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">6</attribute>
-        <attribute name="name" type="string">updateFellowshipToChurch</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Once Christ Church xxxx",false],["vision","dfdf",false],["mission","etetet",false],["faithStatement","nnhmmh",false],["phone","344444444",false],["zipcode","45432",false],["country","xxx",false],["city","olean",false],["address","3554 kdfjdkf lane",false],["rejReason","hahkkdjfaha",false],["status","approved",false]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">7</attribute>
+        <attribute name="name" type="string">approveFellowshipToChurch</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z195"></relationship>
@@ -1170,7 +1170,7 @@
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[["name","Once Christ Church xxxx",false],["vision","dfdf",false],["mission","etetet",false],["faithStatement","nnhmmh",false],["phone","344444444",false],["zipcode","45432",false],["country","xxx",false],["city","olean",false],["address","3554 kdfjdkf lane",false],["rejReason","hahkkdjfaha",true],["status","approved",false]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">7</attribute>
+        <attribute name="order" type="int64">10</attribute>
         <attribute name="name" type="string">getFellowships</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -1196,7 +1196,7 @@
         <attribute name="method" type="string">DELETE</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[["name","Once Christ Church xxxx",false],["vision","dfdf",false],["mission","etetet",false],["faithStatement","nnhmmh",false],["phone","344444444",false],["zipcode","45432",false],["country","xxx",false],["city","olean",false],["address","3554 kdfjdkf lane",false],["rejReason","hahkkdjfaha",true],["status","approved",false]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">8</attribute>
+        <attribute name="order" type="int64">11</attribute>
         <attribute name="name" type="string">removeFellowshipFromChurremoveFellowshipFromChurch</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -1222,7 +1222,7 @@
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[["role","admin",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">9</attribute>
+        <attribute name="order" type="int64">12</attribute>
         <attribute name="name" type="string">addUserToChurch</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -1240,7 +1240,7 @@
     </object>
     <object type="LMREQUEST" id="z202">
         <attribute name="uuid" type="string">A57877CE-E4C6-4AD4-9997-EF025580BEC6</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/churches/546d0d4cd0b5cd7d27a5da52/users/546ed15442b5ae255f9d8061</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/churches/546d0d4cd0b5cd7d27a5da52/users/546ed15442b5ae255f9d8061/approve</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -1248,8 +1248,8 @@
         <attribute name="method" type="string">PUT</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[["role","superadmin",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">10</attribute>
-        <attribute name="name" type="string">updateUserToChurch</attribute>
+        <attribute name="order" type="int64">13</attribute>
+        <attribute name="name" type="string">approveUserToChurch</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z203"></relationship>
@@ -1274,7 +1274,7 @@
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[["role","superadmin",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">11</attribute>
+        <attribute name="order" type="int64">15</attribute>
         <attribute name="name" type="string">getUsers</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -1300,7 +1300,7 @@
         <attribute name="method" type="string">DELETE</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[["role","superadmin",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">12</attribute>
+        <attribute name="order" type="int64">16</attribute>
         <attribute name="name" type="string">removeUserFromChurch</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -1321,7 +1321,7 @@
         <attribute name="order" type="int64">6</attribute>
         <attribute name="name" type="string">Fellowship</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z108"></relationship>
-        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM" idrefs="z221 z210 z220 z213 z223 z217 z211 z216"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM" idrefs="z221 z216 z328 z217 z220 z211 z223 z210 z213"></relationship>
         <relationship name="bodyparameters" type="0/0" destination="LMKEYVALUE"></relationship>
         <relationship name="headers" type="0/0" destination="LMKEYVALUE"></relationship>
         <relationship name="urlparameters" type="0/0" destination="LMKEYVALUE"></relationship>
@@ -1337,7 +1337,7 @@
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z210"></relationship>
     </object>
     <object type="LMREQUEST" id="z210">
-        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Wah Wah Fellowship",true],["about","welcome to our fellowship",true],["address","3934 lnn drive",true],["city","michigan",true],["country","usa",true],["zipcode","24245",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Ken Ken Fellowship",true],["about","welcome to our fellowship",true],["address","3934 lnn drive",true],["city","michigan",true],["country","usa",true],["zipcode","24245",true],["state","ohio",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="uuid" type="string">00491139-3E6D-4D64-B902-63A68399B2C2</attribute>
         <attribute name="url" type="string">http://localhost:3030/api/fellowships</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
@@ -1354,16 +1354,16 @@
     </object>
     <object type="LMREQUEST" id="z211">
         <attribute name="uuid" type="string">FF7B5EF5-409C-4798-8EC9-6061CFA74B93</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/fellowships/54913941aa6f4e0000642ae6</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/fellowships/54c9a7d18b585a027f092b22/approve</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">PUT</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Mei Fellowship Updated",false],["about","dsfsdfd",false],["address","3934 lnn drive",false],["city","michigan",false],["country","usa",false],["zipcode","24245",false],["status","approved",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{"json":"{\\/*\\"name\\":\\"Mei Fellowship Updated\\",\\"about\\":\\"dsfsdfd\\",\\"address\\":\\"3934 lnn drive\\",\\"city\\":\\"michigan\\",\\"country\\":\\"usa\\",\\"zipcode\\":\\"24245\\",*\\/\\"approved\\":true}"},"identifier":"com.luckymarmot.JSONDynamicValue"}]</attribute>
         <attribute name="order" type="int64">1</attribute>
-        <attribute name="name" type="string">updateFellowshipById</attribute>
+        <attribute name="name" type="string">approveFellowshipById</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z208"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
         <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z212"></relationship>
@@ -1380,7 +1380,7 @@
     </object>
     <object type="LMREQUEST" id="z213">
         <attribute name="uuid" type="string">5F8463A5-1331-49FB-BDD7-1B957C4D86E3</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/fellowships/5475597f1bad85f58a2e7b4e</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/fellowships/54c9a7d18b585a027f092b22</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
@@ -1388,7 +1388,7 @@
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[["name","fellowshi udpdated",true],["about","dsfsdfd",false],["address","3934 lnn drive",false],["city","michigan",false],["country","usa",false],["zipcode","24245",false]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">2</attribute>
+        <attribute name="order" type="int64">3</attribute>
         <attribute name="name" type="string">getFellowshipById</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z208"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -1424,7 +1424,7 @@
         <attribute name="method" type="string">DELETE</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[["name","fellowshi udpdated",true],["about","dsfsdfd",false],["address","3934 lnn drive",false],["city","michigan",false],["country","usa",false],["zipcode","24245",false]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">3</attribute>
+        <attribute name="order" type="int64">4</attribute>
         <attribute name="name" type="string">deleteFellowshipById</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z208"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -1440,7 +1440,7 @@
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">4</attribute>
+        <attribute name="order" type="int64">5</attribute>
         <attribute name="name" type="string">addUserToFellowship</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z208"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -1476,7 +1476,7 @@
         <attribute name="method" type="string">GET</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
         <attribute name="body" type="string">[{"data":{"keyValues":[["role","admin",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
-        <attribute name="order" type="int64">5</attribute>
+        <attribute name="order" type="int64">6</attribute>
         <attribute name="name" type="string">getUsersFromFellowship</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z208"></relationship>
         <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
@@ -2420,5 +2420,170 @@
         <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
         <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z317"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z319">
+        <attribute name="uuid" type="string">05C60100-C06C-40E5-9F9F-852AF31F0958</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/churches/54c9516466a335022f0fc5d7</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">PUT</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Once Christ Church Updated Again",true],["vision","dfdf",true],["mission","etetet",true],["faithStatement","nnhmmh",true],["phone","344444444",true],["zipcode","45432",true],["country","xxx",true],["city","olean",true],["address","3554 kdfjdkf lane",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">2</attribute>
+        <attribute name="name" type="string">updateChurchById</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z320"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z320">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z319"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z321">
+        <attribute name="uuid" type="string">1DB13170-9368-4C43-A887-3EB12BAF7AAC</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/churches/546d0d4cd0b5cd7d27a5da52/users/546ed15442b5ae255f9d8061</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">PUT</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["role","superadmin",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">14</attribute>
+        <attribute name="name" type="string">updateUserToChurch</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z322"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z322">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z321"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z323">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z324"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z324">
+        <attribute name="uuid" type="string">696B8C86-1CC3-4FBD-9BF3-00EB1671ED6D</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/churches/546d0d4cd0b5cd7d27a5da52/fellowships/546ed962d8ba79e667d1f5f7</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">PUT</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Once Christ Church xxxx",false],["vision","dfdf",false],["mission","etetet",false],["faithStatement","nnhmmh",false],["phone","344444444",false],["zipcode","45432",false],["country","xxx",false],["city","olean",false],["address","3554 kdfjdkf lane",false],["rejReason","hahkkdjfaha",true],["status","approved",false]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">9</attribute>
+        <attribute name="name" type="string">updateFellowshipToChurch</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z323"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z325">
+        <attribute name="uuid" type="string">B715338A-02BC-4747-B30E-E058F18A7CD1</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/churches/546d0d4cd0b5cd7d27a5da52/fellowships/546ed962d8ba79e667d1f5f7/reject</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">PUT</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Once Christ Church xxxx",false],["vision","dfdf",false],["mission","etetet",false],["faithStatement","nnhmmh",false],["phone","344444444",false],["zipcode","45432",false],["country","xxx",false],["city","olean",false],["address","3554 kdfjdkf lane",false],["rejReason","hahkkdjfaha",true],["status","approved",false]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">8</attribute>
+        <attribute name="name" type="string">rejectFellowshipToChurch</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z179"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z326"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z326">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z325"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z327">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z328"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z328">
+        <attribute name="uuid" type="string">8130E9F0-F925-484C-9134-7674D3FA853C</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/fellowships/54913941aa6f4e0000642ae6</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">PUT</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="body" type="string">[{"data":{"keyValues":[["name","Mei Fellowship Updated",false],["about","dsfsdfd",false],["address","3934 lnn drive",false],["city","michigan",false],["country","usa",false],["zipcode","24245",false],["status","approved",true]]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="order" type="int64">2</attribute>
+        <attribute name="name" type="string">updateFellowshipById</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z208"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z327"></relationship>
+    </object>
+    <object type="LMKEYVALUE" id="z329">
+        <attribute name="value" type="string"></attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string"></attribute>
+        <attribute name="enabled" type="bool">1</attribute>
+        <relationship name="groupforbodyparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforheaders" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="groupforurlparameters" type="0/1" destination="LMREQUESTGROUP"></relationship>
+        <relationship name="request" type="0/1" destination="LMREQUEST" idrefs="z331"></relationship>
+    </object>
+    <object type="LMREQUESTGROUP" id="z330">
+        <attribute name="uuid" type="string">99BB2030-729E-4E06-99C8-891F43AF502F</attribute>
+        <attribute name="order" type="int64">11</attribute>
+        <attribute name="name" type="string">Notification</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z108"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM" idrefs="z331"></relationship>
+        <relationship name="bodyparameters" type="0/0" destination="LMKEYVALUE"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE"></relationship>
+        <relationship name="urlparameters" type="0/0" destination="LMKEYVALUE"></relationship>
+    </object>
+    <object type="LMREQUEST" id="z331">
+        <attribute name="uuid" type="string">1BFE3894-B053-4FBE-AABC-601CE34D7104</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/notification?recipient=54a0f90599b81bbbb99a00ba</attribute>
+        <attribute name="storecookies" type="bool">1</attribute>
+        <attribute name="sendcookies" type="bool">1</attribute>
+        <attribute name="redirectmethod" type="bool">0</attribute>
+        <attribute name="redirectauthorization" type="bool">0</attribute>
+        <attribute name="method" type="string">GET</attribute>
+        <attribute name="followredirects" type="bool">0</attribute>
+        <attribute name="order" type="int64">0</attribute>
+        <attribute name="name" type="string">queryNotification</attribute>
+        <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z330"></relationship>
+        <relationship name="children" type="0/0" destination="LMREQUESTTREEITEM"></relationship>
+        <relationship name="headers" type="0/0" destination="LMKEYVALUE" idrefs="z329"></relationship>
     </object>
 </database>

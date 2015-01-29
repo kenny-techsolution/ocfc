@@ -3,6 +3,7 @@ var Church = require('mongoose').model('Church'),
 	Membership = require('mongoose').model('Membership'),
 	ChurchFellowship = require('mongoose').model('ChurchFellowship'),
 	FellowshipUser = require('mongoose').model('FellowshipUser'),
+	Notification = require('mongoose').model('Notification'),
 	commFunc = require('../utilities/commonFunctions'),
 	deleteKey = require('key-del'),
 	_ = require('lodash');//Library for Array
@@ -100,14 +101,35 @@ var approveChurch = function (churchId, res) {
 	});
 };
 
-//Put - Round1 (retest required)
-exports.updateChurchById = function (req, res) {
-	console.log('server updateChurchById has been called');
+//Added 01.28.2015, extract approval logic into its own route
+exports.approveChurchById=function(req, res){
+	console.log('server approveChurchById has been called');
 	//Scenario: site admin approves the church.
-	if (req.user.userName === 'butterfly43026@gmail.com' && req.body.approved === true) {
+	console.log('chk req.user');
+	console.log(req.user);
+
+	console.log('chk req.user.userName');
+	console.log(req.user.userName);
+
+
+	console.log('chk req.body.approved');
+	console.log(req.body.approved);
+
+	if (req.user.userName === 'lc@gmail.com' && req.body.approved === true) {
 		console.log('site admin criteria has been met');
 		return approveChurch(req.params.id, res);
 	}
+};
+
+
+//Put - Round1 (retest required)
+exports.updateChurchById = function (req, res) {
+//	console.log('server updateChurchById has been called');
+//	//Scenario: site admin approves the church.
+//	if (req.user.userName === 'butterfly43026@gmail.com' && req.body.approved === true) {
+//		console.log('site admin criteria has been met');
+//		return approveChurch(req.params.id, res);
+//	}
 	if (!commFunc.isChurchAdmin(req.user, req.params.id)) {
 		console.log('church admin criteria has been met');
 		return res.json({status: 'fail', message: 'you are not an admin for this church.'});
@@ -211,6 +233,78 @@ exports.addFellowshipToChurchTest = function (req, res) {
 	});
 };
 
+//Added 01.28.2015, extract approval logic into its own route
+exports.approveFellowshipToChurch=function(req, res){
+	ChurchFellowship.findOne({ churchId: req.params.church_id, fellowshipId: req.params.fellowship_id}).exec(function (err, churchFellowship) {
+		if (err) return res.json(err);
+		if (churchFellowship.status == "pending") {
+			churchFellowship.status = "approved";
+			churchFellowship.updateDate = new Date();
+			churchFellowship.save(function (err) {
+				if (err) return res.json(err);
+				//add all fellowshipsUsers to churchUsers
+				FellowshipUser.find({fellowshipId: churchFellowship.fellowshipId}).exec(function (err, fellowshipUsers) {
+					if (err) return res.json(err);
+					var userIds = _.pluck(fellowshipUsers, 'userId');
+					var churchUserArray = [];
+					_.forEach(userIds, function (userId) {
+						churchUserArray.push({
+							churchId: req.params.church_id,
+							userId: userId,
+							status: "approved",
+							role: "member"
+						});
+					});
+					ChurchUser.create(churchUserArray, function (err) {
+						if (err) return res.json(err);
+						//add church to membership where user has this fellowship.
+						Church.findOne({_id: req.params.church_id}, 'name').exec(function (err, church) {
+							console.log('chk church');
+							console.log(church);
+
+							if (err) return res.json(err);
+							Membership.update({'fellowships.fellowshipId': req.params.fellowship_id, 'churches.churchId': {$ne: req.params.church_id}}, {$push: {churches: {churchId: req.params.church_id, name: church.name, role: "member"}}}, function (err) {
+								if (err) return res.json(err);
+								//locate fellowship admin record
+								//find will always return array
+								//findOne will return object
+								FellowshipUser.findOne({fellowshipId:req.params.fellowship_id,role:'admin'}).populate('fellowshipId').exec(function(err,fellowAdmin){
+									if (err) return res.json(err);
+									console.log('chk fellowAdmin obj');
+									console.log(fellowAdmin);
+
+									var notification = new Notification({recipient:fellowAdmin.userId,url:'http://localhost:3030/church/'+req.params.church_id, message:fellowAdmin.fellowshipId.name +'has been approved by your Church, '+church.name});
+									notification.save(function (err) {
+										console.log('notification.save has been called');
+										if (err) return res.json(err);
+										return res.json(notification);
+									});
+								});
+								return res.json({status: "success"});
+							});
+						});
+					});
+				});
+			});
+		}
+	});
+};
+
+exports.rejectFellowshipToChurch=function(req, res){
+	ChurchFellowship.findOne({ churchId: req.params.church_id, fellowshipId: req.params.fellowship_id}).exec(function (err, churchFellowship) {
+		if (err) return res.json(err);
+		if (churchFellowship.status === "pending") {
+			churchFellowship.status = "rejected";
+			churchFellowship.rejReason = req.body.rejReason;
+			churchFellowship.updateDate = new Date();
+			churchFellowship.save(function (err) {
+				if (err) return res.json(err);
+				return res.json({status: "success"});
+			});
+		}
+	});
+};
+
 //Put -Round 1
 exports.updateFellowshipToChurch = function (req, res) {
 	//Only admin privilege allowed to update from ChurchFellowship tbl
@@ -307,6 +401,14 @@ exports.addUserToChurch = function (req, res) {
 		}
 	});
 };
+
+//Added 01.28.2015, extract approval logic into its own route
+exports.approveUserToChurch=function(req, res){
+	console.log('server approveUserToChurch has been called');
+
+};
+
+
 //Put
 exports.updateUserToChurch = function (req, res) {
 	//Only admin privilege allowed to update from ChurchUser tbl
