@@ -20,6 +20,7 @@ var albums = require('../controllers/albums'),
 	posts = require('../controllers/posts'),
 	stats = require('../controllers/stats'),
 	users = require('../controllers/users'),
+	notifications=require('../controllers/notifications'),
 
 	/*--Others--*/
 	auth = require('./auth'),
@@ -61,6 +62,8 @@ module.exports = function (app, io) {
 	app.post('/api/fellowships/:fellowship_id/users', fellowships.addUserToFellowship);
 	app.get('/api/fellowships/:fellowship_id/users', fellowships.getUsersFromFellowship);
 	app.put('/api/fellowships/:fellowship_id/users/:user_id', fellowships.updateUserToFellowship);
+	//TODO add approveUserToFellowship
+	app.put('/api/fellowships/:fellowship_id/users/:user_id/approve', fellowships.approveUserToFellowship);
 	app.delete('/api/fellowships/:fellowship_id/users/:user_id', fellowships.removeUserFromFellowship);
 
 	/* ------ Invite Other To Fellowships related API -------- */
@@ -72,17 +75,22 @@ module.exports = function (app, io) {
 	/* ------ Church related API -------- */
 	app.post('/api/churches', churches.createChurch);
 	app.put('/api/churches/:id', churches.updateChurchById);
+	app.put('/api/churches/:id/approve', churches.approveChurchById);
 	app.get('/api/churches/:id', churches.getChurchById);
 	app.get('/api/churches', churches.queryChurches);
 	app.delete('/api/churches/:id', churches.deleteChurchById);
 
 	app.post('/api/churches/:church_id/fellowships/:fellowship_id', churches.addFellowshipToChurch );
 	app.put('/api/churches/:church_id/fellowships/:fellowship_id', churches.updateFellowshipToChurch);
+	app.put('/api/churches/:church_id/fellowships/:fellowship_id/approve', churches.approveFellowshipToChurch);
+	app.put('/api/churches/:church_id/fellowships/:fellowship_id/reject', churches.rejectFellowshipToChurch);
 	app.get('/api/churches/:church_id/fellowships', churches.getFellowships);
 	app.delete('/api/churches/:church_id/fellowships/:fellowship_id', churches.removeFellowshipFromChurch);
 
 	app.post('/api/churches/:church_id/users/:user_id', churches.addUserToChurch);
 	app.put('/api/churches/:church_id/users/:user_id', churches.updateUserToChurch);
+	//TODO add approveUserToChurch
+	app.put('/api/churches/:church_id/users/:user_id/approve', churches.approveUserToChurch);
 	app.get('/api/churches/:church_id/users', churches.getUsers);
 	app.delete('/api/churches/:church_id/users/:user_id', churches.removeUserFromChurch);
 
@@ -149,6 +157,9 @@ module.exports = function (app, io) {
 	app.post('/api/files/:file_id/comments', files.addCommentToFile);
 	app.put('/api/files/:file_id/comments/:comment_id', files.updateCommentFromFile);
 	app.delete('/api/files/:file_id/comments/:comment_id', files.deleteCommentFromFile);
+
+	/*Notfication*/
+	app.get('/api/notification', notifications.queryNotification);
 
 	/*------Init, Stat----- */
 	app.get('/api/inits',inits.getInit);

@@ -20,7 +20,7 @@
 
  authorizedAuthenticatedUserForRoute: Check if isAuthenticated is true in IdentitySvc.js
  ***************************************************************************************/
-angular.module('app').factory('AuthSvc', function ($http, IdentitySvc, $q, UserApiSvc) {
+angular.module('app').factory('AuthSvc', function ($http, IdentitySvc, $q, UserApiSvc,NotificationDataSvc) {
 	return{
 		//Update data by calling $http post service
 		//Also returns with response data using extend method
@@ -31,6 +31,8 @@ angular.module('app').factory('AuthSvc', function ($http, IdentitySvc, $q, UserA
 					var user = new UserApiSvc();
 					angular.extend(user, response.data.user);
 					IdentitySvc.currentUser = user;
+					NotificationDataSvc.refresh();
+					console.log('authenticateUser called containing NotificationDataSvc.refresh');
 					//console.log("authenticateUser has been called in AuthSvc");
 					console.log("chk currentUser");
 					console.log(IdentitySvc.currentUser);

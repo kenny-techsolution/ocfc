@@ -6,6 +6,7 @@ var Fellowship = require('mongoose').model('Fellowship'),
 	Membership = require('mongoose').model('Membership'),
 	Album = require('mongoose').model('Album'),
 	Calendar = require('mongoose').model('Calendar'),
+	Notification = require('mongoose').model('Notification'),
 	commFunc = require('../utilities/commonFunctions'),
 	deleteKey = require('key-del'),
 	async = require('async'),
@@ -14,7 +15,6 @@ var Fellowship = require('mongoose').model('Fellowship'),
 //Post - Round1
 exports.createFellowship = function (req, res) {
 	console.log('server createFellowship function has been called');
-
 	var fellowship = req.body;
 
 	//TODO, prevent duplicate fellowship
@@ -144,7 +144,10 @@ var approveFellowship = function (fellowshipId, req, res) {
 				console.log(fellowship);
 				if (err) return res.json(err);
 				//approve the fellowship admin as well.
-				FellowshipUser.findOne({fellowshipId: fellowship._id, role: "admin"}, function (err, fellowshipUser) {
+				//locate fellowship admin record
+				//find will always return array
+				//findOne will return object
+				FellowshipUser.findOne({fellowshipId: fellowship._id, role: "admin"}).populate('fellowshipId').exec(function (err, fellowshipUser) {
 					console.log('chk fellowshipUser');
 					console.log(fellowshipUser);
 					if (err) return res.json(err);
@@ -154,18 +157,26 @@ var approveFellowship = function (fellowshipId, req, res) {
 						console.log('chk fellowshipUser after save');
 						console.log(fellowshipUser);
 						if (err) return res.json(err);
-						var pushObj = {
-							fellowshipId: fellowship._id,
-							name: fellowship.name,
-							role: "admin"
-						};
-						//Update membership table
-						Membership.update({userId: fellowshipUser.userId, 'fellowships.fellowshipId': {$ne: fellowship._id}},
-							{$push: {fellowships: pushObj}}, function (err) {
-								console.log('Membership.update has been called');
-								if (err) return res.json(err);
-								return res.json({status: "fellowship is approved"});
-							});
+
+						var notification = new Notification({recipient: fellowshipUser.userId, message: fellowshipUser.fellowshipId.name + 'has been approved'});
+						notification.save(function (err) {
+							console.log('notification.save has been called');
+							if (err) return res.json(err);
+
+							var pushObj = {
+								fellowshipId: fellowship._id,
+								name: fellowship.name,
+								role: "admin"
+							};
+							//Update membership table
+							Membership.update({userId: fellowshipUser.userId, 'fellowships.fellowshipId': {$ne: fellowship._id}},
+								{$push: {fellowships: pushObj}}, function (err) {
+									console.log('Membership.update has been called');
+									if (err) return res.json(err);
+									return res.json(notification);
+								});
+						});
+
 					});
 				});
 			});
@@ -396,7 +407,14 @@ exports.getUsersFromFellowship = function (req, res) {
 	}
 };
 
+//Added 01.28.2015, extract approval logic into its own route
+exports.approveUserToFellowship = function (req, res) {
+	console.log('server approveUserToFellowship has been called');
+
+};
+
 //Put - Round 1
+//TODO this function needs re-writing & separated into individual functions
 exports.updateUserToFellowship = function (req, res) {
 	console.log('server updateUserToFellowship has been called');
 

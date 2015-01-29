@@ -1,7 +1,7 @@
 /*******************************************************************************
  ******************************************************************************/
 
-angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc, FellowshipDataSvc, $routeParams, FellowshipApiSvc, $http, $upload) {
+angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc, FellowshipDataSvc, $routeParams, FellowshipApiSvc, $http, $upload,NotificationDataSvc,IdentitySvc) {
 
 	console.log('FellowshipCtrl has been called');
 
@@ -13,6 +13,27 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 	$scope.FellowshipDataSvc.fellowship.logoImage = '293817_10151098311011098_970711788_n_rdhuj7';
 
 	$scope.posts = [];
+	$scope.NotificationDataSvc=NotificationDataSvc;
+
+
+	//watch for array object
+	$scope.$watchCollection('NotificationDataSvc.notifications',function(newVal,oldVal){
+		if (newVal){
+			console.log('chk NotificationDataSvc.notifications');
+			console.log(NotificationDataSvc.notifications);
+
+		}
+
+	});
+
+	//to capture notification alert after user refresh page.
+	//bc user won't have to go through login step
+	//since user is still in session
+	//_.isEmpty is only used for object
+	if (!_.isEmpty(IdentitySvc.currentUser)){
+		$scope.NotificationDataSvc.refresh();
+	}
+
 
 	$scope.isLoading = true;
 	$scope.isLoadingNext = false;
