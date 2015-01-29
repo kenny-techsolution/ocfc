@@ -7,7 +7,9 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 var albumSchema = mongoose.Schema({
 	message:	 {type: String, Required:'(message) is required!', index: false, unique: false},
 	recipient:	 {type: ObjectId, ref:'User', Required:'(recipient) is required!',index: false, unique: false},
-	createdOn:	 {type: Date, Required:'(createdOn) is required!', index: true, unique: false,default:Date.now}
+	createdOn:	 {type: Date, Required:'(createdOn) is required!', index: true, unique: false,default:Date.now},
+	viewed:	     {type: Boolean, index: false, unique: false},
+	url:	     {type: String, Required:'(url) is required!', index: false, unique: false}
 });
 
 var Notification = mongoose.model('Notification', albumSchema);

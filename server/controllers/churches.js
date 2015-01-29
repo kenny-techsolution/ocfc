@@ -273,7 +273,7 @@ exports.approveFellowshipToChurch=function(req, res){
 									console.log('chk fellowAdmin obj');
 									console.log(fellowAdmin);
 
-									var notification = new Notification({recipient:fellowAdmin.userId,message:fellowAdmin.fellowshipId.name +'has been approved by your Church, '+church.name});
+									var notification = new Notification({recipient:fellowAdmin.userId,url:'http://localhost:3030/church/'+req.params.church_id, message:fellowAdmin.fellowshipId.name +'has been approved by your Church, '+church.name});
 									notification.save(function (err) {
 										console.log('notification.save has been called');
 										if (err) return res.json(err);

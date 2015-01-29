@@ -158,7 +158,7 @@ var approveFellowship = function (fellowshipId, req, res) {
 						console.log(fellowshipUser);
 						if (err) return res.json(err);
 
-						var notification = new Notification({recipient: fellowshipUser.userId, message: fellowshipUser.fellowshipId.name + 'has been approved'});
+						var notification = new Notification({recipient: fellowshipUser.userId, url:'http://localhost:3030/fellowship/'+fellowshipUser.fellowshipId._id,message: fellowshipUser.fellowshipId.name + 'has been approved'});
 						notification.save(function (err) {
 							console.log('notification.save has been called');
 							if (err) return res.json(err);

@@ -17,9 +17,6 @@
 				.fellow-banner__logo-edit-delete(ng-show='showLogoImgEdit', ng-if='FellowshipDataSvc.isAdmin')
 					span.glyphicon.glyphicon-camera.camera-icon(ng-file-select='editFellowshipImage($files,"logo")', data-multiple='false', title='profile', onclick='this.value = null')
 					span.glyphicon.glyphicon-trash(ng-click="deleteFellowshipImage('banner')")
-			.notification(ng-repeat='notification in NotificationDataSvc.notifications')
-				div.text-black notficiation recipient {{notification.recipient.fullName}}
-				div.text-black notficiation message {{notification.message}}
 			.widget-title-wo-link
 				h3 About Us
 			ocfc-about-us(fellowship='FellowshipDataSvc.fellowship',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown',is-admin='FellowshipDataSvc.isAdmin')
