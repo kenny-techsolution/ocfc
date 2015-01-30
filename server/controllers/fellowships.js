@@ -414,7 +414,7 @@ exports.approveUserToFellowship = function (req, res) {
 };
 
 //Put - Round 1
-//TODO this function needs re-writing & separated into individual functions
+//TODO this function needs re-write
 exports.updateUserToFellowship = function (req, res) {
 	console.log('server updateUserToFellowship has been called');
 
@@ -520,6 +520,26 @@ exports.updateUserToFellowship = function (req, res) {
 	], function (err) {
 		console.log("finally done");
 		if (err) return res.json(err);
+
+		console.log('chk recipient, req.user._id');
+		console.log(req.user._id);
+
+		console.log('chk fellowship id, fellowshipUserInstance.fellowshipId._id');
+		console.log(fellowshipUserInstance.fellowshipId._id);
+
+		console.log('chk fellowship name, fellowshipUserInstance.fellowshipId.name');
+		console.log(fellowshipUserInstance.fellowshipId.name);
+
+
+		var notification = new Notification({recipient:req.user._id,url:'http://localhost:3030/fellowship/'+fellowshipUserInstance.fellowshipId._id, message:fellowshipUserInstance.fellowshipId.name +'has been approved'});
+		notification.save(function (err) {
+			console.log('notification.save has been called within updateUserToFellowship');
+			console.log('chk notification');
+			console.log(notification);
+
+			if (err) return res.json(err);
+			return res.json(notification);
+		});
 		return res.json({status: "success", message: "user is updated on the fellowship."});
 	});
 };

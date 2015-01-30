@@ -1432,14 +1432,14 @@
     </object>
     <object type="LMREQUEST" id="z217">
         <attribute name="uuid" type="string">333DBC0A-0D67-4885-AF93-184CEFCFF21B</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/fellowships/54913941aa6f4e0000642ae6/users/</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/fellowships/54a0f90799b81bbbb99a00ce/users/</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
         <attribute name="redirectauthorization" type="bool">0</attribute>
         <attribute name="method" type="string">POST</attribute>
         <attribute name="followredirects" type="bool">0</attribute>
-        <attribute name="body" type="string">[{"data":{"keyValues":[]},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
+        <attribute name="body" type="string">[{"data":{},"identifier":"com.luckymarmot.BodyFormKeyValueDynamicValue"}]</attribute>
         <attribute name="order" type="int64">5</attribute>
         <attribute name="name" type="string">addUserToFellowship</attribute>
         <relationship name="parent" type="0/1" destination="LMREQUESTTREEITEM" idrefs="z208"></relationship>
@@ -1484,7 +1484,7 @@
     </object>
     <object type="LMREQUEST" id="z221">
         <attribute name="uuid" type="string">FA70F693-3B29-4ECF-92F9-702042DCE440</attribute>
-        <attribute name="url" type="string">http://localhost:3030/api/fellowships/54740066abf5dde2d6cf71de/users/5474043430152094da01f832</attribute>
+        <attribute name="url" type="string">http://localhost:3030/api/fellowships/54a0f90799b81bbbb99a00cf/users/54a0f90599b81bbbb99a00b6</attribute>
         <attribute name="storecookies" type="bool">1</attribute>
         <attribute name="sendcookies" type="bool">1</attribute>
         <attribute name="redirectmethod" type="bool">0</attribute>
