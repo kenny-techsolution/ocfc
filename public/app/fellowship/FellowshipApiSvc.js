@@ -25,4 +25,6 @@ angular.module('app').factory('FellowshipApiSvc', function ($resource) {
 	);
 
 	return fellowshipResource;
+
+
 });

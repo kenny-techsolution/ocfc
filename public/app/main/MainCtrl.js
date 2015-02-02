@@ -18,8 +18,8 @@ angular.module('app').controller('MainCtrl', function ($scope, IdentitySvc, $htt
 	//watch for array object
 	$scope.$watchCollection('NotificationDataSvc.notifications',function(newVal,oldVal){
 		if (newVal){
-			console.log('chk NotificationDataSvc.notifications');
-			console.log(NotificationDataSvc.notifications);
+			//console.log('chk NotificationDataSvc.notifications');
+			//console.log(NotificationDataSvc.notifications);
 
 		}
 

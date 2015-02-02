@@ -18,7 +18,7 @@ var userSchema = mongoose.Schema({
 	userName: 	{type: String, required: '(userName uses email) is required!', index: true, unique: true,lowercase: true},
 	hashedPwd: 	{type: String, required: '(hashedPwd) is required!',index: true, unique: false,lowercase: true, select: false},
 	salt: 		{type: String, required: '(salt) is required!',index: true, unique: true, select: false},
-	birthday:	{type: Date,index: true, unique: false,lowercase: true},
+	birthday:	{type: Date,index: true, unique: false},
 	gender: 	{type: String, index: false, unique: false,lowercase: true},
 	profileImg: {type: String, index: false, unique: false},
 	phone: 	    {type: String, index: true, unique: false,lowercase: true},

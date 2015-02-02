@@ -48,7 +48,7 @@
 								div.info-value For: Singles or Young professionals.
 								div.info-value Languages: Chinese & English
 								div.info-value Church: CCIC Mountain View
-							button.btn.btn-success.pull-right JOIN
+							button.btn.btn-success.pull-right(ng-click='joinFellowship(fellowship)') JOIN
 					div.create-fellowship
 						.glyphicon.glyphicon-question-sign
 						.title Can't Find Your Fellowship?
@@ -66,7 +66,7 @@
 						.summary-section__group-header
 							.letter-icon {{currentGroup.type}}
 							h5 {{currentGroup.name|capitalize}}
-							button.btn.btn-success.pull-right.form-control JOIN
+							button.btn.btn-success.pull-right.form-control(ng-click='joinFellowship(currentGroup)') JOIN
 						.summary-section__group-detail
 							h6 Mission
 							p This is the mission of our church, we have to undrestand the meaning of the mission. This is the mission of our church, we have to undrestand the meaning of the mission.
