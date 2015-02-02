@@ -1,4 +1,4 @@
 .members-widget
-	a.members-widget__link(ng-repeat='user in users', href="http://onechurchforchrist.org/fellowship/{{user.fellowshipId}}/members")
+	a.members-widget__link(ng-repeat='user in users', href="/fellowship/{{user.fellowshipId}}/members")
 		img.members-widget__profile(ng-src='{{user.userId.profileImg}}')
 	.all {{users.length}}+

@@ -3,6 +3,7 @@
 		img(ng-src='{{post.postBy.profileImg}}')
 		.name {{post.postBy.fullName | capitalize}}
 		.date {{post.createdOn | date}}
+		span.label.label-danger.new(ng-if="isNew") new
 		.type General
 	.post-widget__output(ng-show='!showEdit') {{post.general[0].content}}
 		button.btn.btn-lg.btn-primary.edit(type='button', data-animation='am-flip-x', data-placement='bottom-right', bs-dropdown='dropdown',ng-if='isPoster')
@@ -23,6 +24,7 @@
 			span.name {{comment.fullName|capitalize}}
 			.date {{comment.createdOn | date}}
 			span.output {{comment.comment}}
+			span.new(ng-if="comment.new===true") new
 		img(ng-src='{{comment.profileImg}}')
 		span.glyphicon.glyphicon-remove(ng-click='deleteComment(post,comment)',ng-if='comment.userId===IdentitySvc.currentUser._id')
 	.post-widget__comment-input

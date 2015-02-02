@@ -50,7 +50,8 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 						);
 
 						post.$save().then(function () {
-							$scope.posts.unshift(post);
+							//replace by socket io operation.
+							//$scope.posts.unshift(post);
 
 							//reset content and image(s) to blank
 							$scope.content = '';
@@ -74,7 +75,8 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 						);
 
 						post.$save().then(function () {
-							$scope.posts.unshift(post);
+							//replace by socket io operation.
+							//$scope.posts.unshift(post);
 
 							//fire $rootscope.emit to trigger announcement.js directive
 							$rootScope.$emit('ocfcWallInput: newAnnouncement', post); // $rootScope.$on
@@ -109,8 +111,8 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 						post.$save().then(function () {
 							console.log('chk post obj within event func');
 							console.log(post);
-
-							$scope.posts.unshift(post);
+							//replace by socket io operation.
+							//$scope.posts.unshift(post);
 
 							//fire $rootscope.emit to trigger event.js directive
 							$rootScope.$emit('ocfcWallInput: newEvent', post); // $rootScope.$on
@@ -144,7 +146,8 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 						);
 
 						post.$save().then(function () {
-							$scope.posts.unshift(post);
+							//replace by socket io operation.
+							//$scope.posts.unshift(post);
 
 							//reset content and image(s) to blank
 							$scope.content = '';
@@ -169,7 +172,8 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 						);
 
 						post.$save().then(function () {
-							$scope.posts.unshift(post);
+							//replace by socket io operation.
+							//$scope.posts.unshift(post);
 
 							//reset content and image(s) to blank
 							$scope.content = '';
@@ -193,7 +197,8 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 						);
 
 						post.$save().then(function () {
-							$scope.posts.unshift(post);
+							//replace by socket io operation.
+							//$scope.posts.unshift(post);
 
 							//reset content and image(s) to blank
 							$scope.content = '';
@@ -217,7 +222,8 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 								imageIds: $scope.imageArray}
 						);
 						post.$save().then(function () {
-							$scope.posts.unshift(post);
+							//replace by socket io operation.
+							//$scope.posts.unshift(post);
 
 							//reset content and image(s) to blank
 							$scope.content = '';

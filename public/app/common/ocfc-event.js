@@ -13,8 +13,8 @@ angular.module('app').directive('ocfcEvent', function (PostApiSvc,$routeParams,$
 					//console.log('chk $scope.post obj query API within ocfc-event directive');
 					//console.log($scope.post);
 					$scope.posts=postArray;
-					console.log('chk $scope.posts');
-					console.log($scope.posts);
+					//console.log('chk $scope.posts');
+					// dconsole.log($scope.posts);
 				});
 
 			};
@@ -22,23 +22,23 @@ angular.module('app').directive('ocfcEvent', function (PostApiSvc,$routeParams,$
 			queryEventWidget();
 
 			$rootScope.$on('ocfcWallInput: newEvent', function (event, data) {
-				console.log('chk latest post data after emit within ocfc-event.js');
-				console.log(data);
+				//console.log('chk latest post data after emit within ocfc-event.js');
+				//console.log(data);
 				queryEventWidget();
 			});
 
 			$rootScope.$on('ocfcEventPost: newEvent', function (event, data) {
-				console.log('chk latest post data after emit within ocfc-event.js');
-				console.log(data);
+				//console.log('chk latest post data after emit within ocfc-event.js');
+				//console.log(data);
 				queryEventWidget();
 			});
 
 			$scope.upcomingEvents=function(post){
-				console.log('chk post.eventId.fromDate');
-				console.log(post.eventId.fromDate);
+				//console.log('chk post.eventId.fromDate');
+				//console.log(post.eventId.fromDate);
 
-				console.log('chk new Date()');
-				console.log(new Date());
+				//console.log('chk new Date()');
+				//console.log(new Date());
 
 				var today=new Date();
 				var fromDate=new Date(post.eventId.fromDate);

@@ -15,17 +15,24 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 	$scope.currentGroup = {name:''};
 	$scope.groupIndex = -1;
 
-	$scope.$watch('userAddress', function(newVal, oldVal){
-		if(!newVal) return;
-		console.log(newVal);
-		GoogleMapPlacesSvc.getQueryPredictions({ input: newVal },function(data){
-			$scope.matchedAddresses = data;
-			$scope.showAutocomplete = true;
-			console.log($scope.matchedAddresses.length);
-			console.log(data);
-		});
-
-	});
+	$scope.getAddress = function(viewValue){
+		var params = {address: viewValue, sensor: false};
+	    return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {params: params})
+	    .then(function(res) {
+	    	console.log(res.data.results);
+	      return res.data.results;
+	    });
+	};
+	// $scope.$watch('userAddress', function(newVal, oldVal){
+		// if(!newVal) return;
+		// console.log(newVal);
+		// GoogleMapPlacesSvc.getQueryPredictions({ input: newVal },function(data){
+			// $scope.matchedAddresses = data;
+			// $scope.showAutocomplete = true;
+			// console.log($scope.matchedAddresses.length);
+			// console.log(data);
+		// });
+	// });
 
 	$scope.getLatlng = function(address){
 		$scope.showAutocomplete = false;

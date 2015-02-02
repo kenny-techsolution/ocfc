@@ -1,7 +1,16 @@
 //fellowship.jade
 #fellowship.container
-	.row
-		.col-xs-12.tool-bar
+	.row.tool-bar
+		.col-xs-12
+			div.glyphicon.glyphicon-home
+			div.tool-bar__fellow-name {{FellowshipDataSvc.fellowship.name| capitalize}}
+			div.tool-bar__links
+				a(ng-href="#" ng-click="goto('')") Home
+				a(ng-href="#" ng-click="goto('members')") Members
+				a(ng-href="#") Albums
+				a(ng-href="#") Resource
+			a.tool-bar_setting.glyphicon.glyphicon-cog(ng-href="#")
+				
 	.row
 		.col-xs-5.info-section
 			div.fellow-banner
@@ -25,15 +34,15 @@
 					.widget-title-wo-link
 						h3 Announcement
 					ocfc-announcement(dropdown='dropdown',posts='posts')
+					.widget-title-wo-link 
+						h3 Event
+					ocfc-event(post='post')
 					.widget-title-wo-link
 						h3 New Friend
 					ocfc-new-friend(users='FellowshipDataSvc.users')
 					.widget-title-wo-link 
 						h3 Members
 					ocfc-members(users='FellowshipDataSvc.users')
-					.widget-title-wo-link 
-						h3 Event
-					ocfc-event(post='post')
 					.widget-title-wo-link 
 						h3 Birthday
 					ocfc-birthday(users='FellowshipDataSvc.users')
@@ -50,7 +59,7 @@
 			div.infinite-scroll(infinite-scroll='viewNextPage(selectedPostType)', infinite-scroll-disabled='isLoadingNext', infinite-scroll-distance='0')
 				.loading-spinner(ng-show="isLoading")
 				div.post(ng-repeat='post in posts')
-					ocfc-general-post(ng-if='post.postType ===0',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown',image-prefix='imagePrefix')
+					ocfc-general-post(ng-if='post.postType ===0',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown',image-prefix='imagePrefix',entry-time='entryTime')
 					ocfc-testimony-post(ng-if='post.postType ===1',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown',image-prefix='imagePrefix')
 					ocfc-question-post(ng-if='post.postType ===2',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown',image-prefix='imagePrefix')
 					ocfc-prayer-post(ng-if='post.postType ===3',post='post',image-popup='imagePopup',posts='posts',dropdown='dropdown',image-prefix='imagePrefix')

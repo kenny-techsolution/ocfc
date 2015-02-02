@@ -10,9 +10,9 @@ angular.module('app').factory('CommentApiSvc', function ($resource) {
 	// rest api standard, for GET, if id is specified, it will grab specific
 	// user by id
 
-	var commentResource = $resource('/api/posts/:post_id/comments/:id', {
+	var commentResource = $resource('/api/posts/:post_id/comments/:comment_id', {
 		post_id: '@post_id',
-		_id:'@id'
+		comment_id:'@comment_id'
 	}, {
 		'update': {
 			method: 'PUT',

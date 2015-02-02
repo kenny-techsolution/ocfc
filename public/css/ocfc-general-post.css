@@ -33,6 +33,11 @@
   top: 24px;
   color: rgba(53,53,53,0.81);
 }
+.post-widget__header >.new {
+  position: absolute;
+  top: 14px;
+  right: 100px;
+}
 .post-widget__header >.type {
   position: absolute;
   font-size: 12px;
@@ -91,6 +96,17 @@
 .post-widget__comment-output .text {
   padding-left: 40px;
   padding-right: 30px;
+}
+.post-widget__comment-output .text .new {
+  opacity: 0.8;
+  display: block;
+  background: #d64951;
+  border-radius: 5px;
+  top: 13px;
+  position: absolute;
+  right: 33px;
+  font-size: 9px;
+  padding: 0px 5px;
 }
 .post-widget__comment-output .text .name {
   font-size: 12px;

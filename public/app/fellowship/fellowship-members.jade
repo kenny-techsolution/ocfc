@@ -1,5 +1,41 @@
-#members-page.jumbotron
+#members-page
 	.member-card-section.container
+		.row.tool-bar
+			.col-xs-12
+				div.glyphicon.glyphicon-home
+				div.tool-bar__fellow-name {{FellowshipDataSvc.fellowship.name| capitalize}}
+				div.tool-bar__links
+					a(ng-href="#" ng-click="goto('')") Home
+					a(ng-href="#" ng-click="goto('members')") Members
+					a(ng-href="#") Albums
+					a(ng-href="#") Resource
+				a.tool-bar_setting.glyphicon.glyphicon-cog(ng-href="#")
+		.row
+			button.form-control.btn.btn-primary.invite-friends(ng-click="showInviteFriend = true;") 
+				span.glyphicon.glyphicon-user
+				| INVITE FRIENDS
+			a(ng-click="showInviteFriend = false;") close
+			.invite-widget.am-fade-and-slide-top(ng-if='showInviteFriend')
+				.invite-widget__title
+					h3
+						span.glyphicon.glyphicon-user
+						| Please provide emails to invite people to join.
+				.invite-widget__add-emails
+					.input-bar
+						input.form-control(type="text", placeholder="add email here.")
+						button.form-control.btn.btn-default
+							span.glyphicon.glyphicon-plus
+					ul.email-lists.list-group
+						li.list-group-item yoyocicada@gmail.com
+						li.list-group-item butterfly43026@gmail.com
+				.invite-widget__message
+						textarea.ocfc.form-control.message(placeholder="Include a welcome message here.")
+				.invite-widget__bottom
+					button.pull-right.form-control.btn.btn-primary
+						span.glyphicon.glyphicon-send
+						| SEND
+					
+				
 		.row
 			.text-dark-grey(ng-style="{'position':'relative', 'top':'39px','font-size':'18px'}") Require Admin Approval
 			.col-md-3(ng-style="{'margin-top': '50px'}",ng-repeat='user in FellowshipDataSvc.users |filter:notApproved')

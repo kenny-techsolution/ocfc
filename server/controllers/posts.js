@@ -20,7 +20,7 @@ var stripHtmlforFields = function (obj, fields) {
 };
 
 //round-1
-var savePost = function (post, res) {
+var savePost = function (post, res, next) {
 	console.log('server savePost has been called');
 	console.log('chk post from savePost field');
 	console.log(post);
@@ -37,7 +37,8 @@ var savePost = function (post, res) {
 				if (err) return res.json(err);
 				console.log('chk final post obj');
 				console.log(post);
-				return res.json(post);
+				res.$_emitPost = post;
+        		next();
 			});
 		} else if (post.postType === 'announcement') {
 			console.log('announcement post type has been created');
@@ -45,7 +46,8 @@ var savePost = function (post, res) {
 				if (err) return res.json(err);
 				console.log('chk final post obj');
 				console.log(post);
-				return res.json(post);
+				res.$_emitPost = post;
+        		next();
 			});
 		} else if (post.postType === 'testimony') {
 			console.log('testimony post type has been created');
@@ -53,7 +55,8 @@ var savePost = function (post, res) {
 				if (err) return res.json(err);
 				console.log('chk final post obj');
 				console.log(post);
-				return res.json(post);
+				res.$_emitPost = post;
+        		next();
 			});
 
 		} else if (post.postType === 'question') {
@@ -62,7 +65,8 @@ var savePost = function (post, res) {
 				if (err) return res.json(err);
 				console.log('chk final post obj');
 				console.log(post);
-				return res.json(post);
+				res.$_emitPost = post;
+        		next();
 			});
 		} else if (post.postType === 'prayer') {
 			console.log('prayer post type has been created');
@@ -70,7 +74,8 @@ var savePost = function (post, res) {
 				if (err) return res.json(err);
 				console.log('chk final post obj');
 				console.log(post);
-				return res.json(post);
+				res.$_emitPost = post;
+        		next();
 			});
 		} else if (post.postType === 'event') {
 			console.log('event post type has been created');
@@ -78,7 +83,8 @@ var savePost = function (post, res) {
 				if (err) return res.json(err);
 				console.log('chk final post obj');
 				console.log(post);
-				return res.json(post);
+				res.$_emitPost = post;
+        		next();
 			});
 		} else if (post.postType === 'announcement') {
 			console.log('announcement post type has been created');
@@ -86,7 +92,8 @@ var savePost = function (post, res) {
 				if (err) return res.json(err);
 				console.log('chk final post obj');
 				console.log(post);
-				return res.json(post);
+				res.$_emitPost = post;
+        		next();
 			});
 		} else {
 			//Default as general post
@@ -95,7 +102,9 @@ var savePost = function (post, res) {
 				if (err) return res.json(err);
 				console.log('chk final post obj');
 				console.log(post);
-				return res.json(post);
+				//return res.json(post);
+				res.$_emitPost = post;
+        		next();
 			});
 		}
 
@@ -103,7 +112,7 @@ var savePost = function (post, res) {
 };
 
 //round-1
-var createQuestionPost = function (postObj, req, res) {
+var createQuestionPost = function (postObj, req, res, next) {
 	console.log('server createQuestionPost has been called');
 	console.log('chk postObj for question post');
 	console.log(postObj);
@@ -138,15 +147,15 @@ var createQuestionPost = function (postObj, req, res) {
 			});
 		}, function (err) {
 			if (err) return res.json(err);
-			return savePost(post, res);
+			return savePost(post, res, next);
 		});
 	} else {
-		return savePost(post, res);
+		return savePost(post, res, next);
 	}
 
 };
 //round-1
-var createPrayerPost = function (postObj, req, res) {
+var createPrayerPost = function (postObj, req, res, next) {
 	console.log('server createPrayerPost has been called');
 
 	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'prayer']);
@@ -176,15 +185,15 @@ var createPrayerPost = function (postObj, req, res) {
 			});
 		}, function (err) {
 			if (err) return res.json(err);
-			return savePost(post, res);
+			return savePost(post, res, next);
 		});
 	} else {
-		return savePost(post, res);
+		return savePost(post, res, next);
 	}
 };
 
 //round-1
-var createGeneralPost = function (postObj, req, res) {
+var createGeneralPost = function (postObj, req, res, next) {
 	console.log('server createGeneralPost has been called');
 	console.log('chk postObj');
 	console.log(postObj);
@@ -222,14 +231,14 @@ var createGeneralPost = function (postObj, req, res) {
 			});
 		}, function (err) {
 			if (err) return res.json(err);
-			return savePost(post, res);
+			return savePost(post, res, next);
 		});
 	} else {
-		return savePost(post, res);
+		return savePost(post, res, next);
 	}
 };
 //round-1
-var createTestimonyPost = function (postObj, req, res) {
+var createTestimonyPost = function (postObj, req, res, next) {
 	console.log('server createTestimonyPost has been called');
 
 	console.log('chk postObj obj');
@@ -268,15 +277,15 @@ var createTestimonyPost = function (postObj, req, res) {
 			});
 		}, function (err) {
 			if (err) return res.json(err);
-			return savePost(post, res);
+			return savePost(post, res, next);
 		});
 	} else {
-		return savePost(post, res);
+		return savePost(post, res, next);
 	}
 
 };
 
-var createEventPost = function (postObj, req, res) {
+var createEventPost = function (postObj, req, res, next) {
 	//var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'title', 'description', 'fromDate', 'toDate', 'where', 'hostBy', 'invitees']);
 	//if (errors.length > 0) {
 	//	return res.json({statue: "failed", errors: errors});
@@ -320,15 +329,15 @@ var createEventPost = function (postObj, req, res) {
 			}, function (err) {
 				if (err) return res.json(err);
 				post.imageIds = imageIds;
-				return savePost(post, res);
+				return savePost(post, res, next);
 			});
 		} else {
-			return savePost(post, res);
+			return savePost(post, res, next);
 		}
 	});
 };
 //Added on 11-19-2015
-var createAnnouncementPost = function (postObj, req, res) {
+var createAnnouncementPost = function (postObj, req, res, next) {
 	console.log('server createAnnouncementPost has been called');
 	console.log('chk postObj');
 	console.log(postObj);
@@ -366,14 +375,14 @@ var createAnnouncementPost = function (postObj, req, res) {
 			});
 		}, function (err) {
 			if (err) return res.json(err);
-			return savePost(post, res);
+			return savePost(post, res, next);
 		});
 	} else {
-		return savePost(post, res);
+		return savePost(post, res, next);
 	}
 };
 
-var _updatePost = function (id, userId, postObj, res) {
+var _updatePost = function (id, userId, postObj, res, next) {
 	console.log('server _updatePost has been called');
 	console.log('chk id');
 	console.log(id);
@@ -391,11 +400,12 @@ var _updatePost = function (id, userId, postObj, res) {
 		if (err) return res.json(err);
 		console.log('chk post from Post.findOneAndUpdate func after error condition');
 		console.log(post);
-		return res.json(post);
+		res.$_emitPost = post;
+		next();
 	});
 };
 
-var postFollowByImageUpdate = function (req, res, post) {
+var postFollowByImageUpdate = function (req, res, post, next) {
 	console.log('server postFollowByImageUpdate has been called');
 	console.log('chk req.body obj');
 	console.log(req.body);
@@ -427,7 +437,7 @@ var postFollowByImageUpdate = function (req, res, post) {
 
 };
 
-exports.createPost = function (req, res) {
+exports.createPost = function (req, res, next) {
 	console.log('server createPost has been called');
 	var postObj = req.body;
 	console.log('chk postObj from createPost');
@@ -458,27 +468,27 @@ exports.createPost = function (req, res) {
 	if (_.has(postObj, 'postType')) {
 		if (postObj.postType === 'question') {
 			console.log('question postType is met');
-			return createQuestionPost(postObj, req, res);
+			return createQuestionPost(postObj, req, res, next);
 		}
 		if (postObj.postType === 'prayer') {
 			console.log('prayer postType is met');
-			return createPrayerPost(postObj, req, res);
+			return createPrayerPost(postObj, req, res, next);
 		}
 		if (postObj.postType === 'general') {
 			console.log('general postType is met');
-			return createGeneralPost(postObj, req, res);
+			return createGeneralPost(postObj, req, res, next);
 		}
 		if (postObj.postType === 'testimony') {
 			console.log('testimony postType is met');
-			return createTestimonyPost(postObj, req, res);
+			return createTestimonyPost(postObj, req, res, next);
 		}
 		if (postObj.postType === 'event') {
 			console.log('event postType is met');
-			return createEventPost(postObj, req, res);
+			return createEventPost(postObj, req, res, next);
 		}
 		if (postObj.postType === 'announcement') {
 			console.log('announcement postType is met');
-			return createAnnouncementPost(postObj, req, res);
+			return createAnnouncementPost(postObj, req, res, next);
 		}
 	}
 };
@@ -565,7 +575,7 @@ exports.queryPost = function (req, res) {
 };
 
 //put . need to provide postType
-exports.updatePost = function (req, res) {
+exports.updatePost = function (req, res, next) {
 	console.log('server updatePost function has been called');
 	var postObj = req.body;
 	console.log('chk postObj');
@@ -612,7 +622,7 @@ exports.updatePost = function (req, res) {
 			//postObj.general = postObj.content;
 			postObj.updatedOn = new Date();
 
-			return _updatePost(req.params.id, commFunc.reqSessionUserId(req), postObj, res);
+			return _updatePost(req.params.id, commFunc.reqSessionUserId(req), postObj, res, next);
 		}
 
 		if (postObj.postType === 'testimony') {
@@ -628,7 +638,7 @@ exports.updatePost = function (req, res) {
 			//postObj = stripHtmlforFields(postObj, ['general']);
 			//postObj.general = postObj.content;
 			postObj.updatedOn = new Date();
-			return _updatePost(req.params.id, commFunc.reqSessionUserId(req), postObj, res);
+			return _updatePost(req.params.id, commFunc.reqSessionUserId(req), postObj, res, next);
 		}
 		if (postObj.postType === 'question') {
 			console.log('postType of question has been met');
@@ -643,7 +653,7 @@ exports.updatePost = function (req, res) {
 			//postObj = stripHtmlforFields(postObj, ['general']);
 			//postObj.general = postObj.content;
 			postObj.updatedOn = new Date();
-			return _updatePost(req.params.id, commFunc.reqSessionUserId(req), postObj, res);
+			return _updatePost(req.params.id, commFunc.reqSessionUserId(req), postObj, res, next);
 		}
 		if (postObj.postType === 'prayer') {
 			console.log('postType of prayer has been met');
@@ -655,7 +665,7 @@ exports.updatePost = function (req, res) {
 			//postObj = stripHtmlforFields(postObj, ['content']);
 			//postObj.prayer = postObj.content;
 			postObj.updatedOn = new Date();
-			return _updatePost(req.params.id, commFunc.reqSessionUserId(req), postObj, res);
+			return _updatePost(req.params.id, commFunc.reqSessionUserId(req), postObj, res, next);
 		}
 
 		if (postObj.postType === 'event') {
@@ -690,7 +700,7 @@ exports.updatePost = function (req, res) {
 						if (err) return res.json(err);
 						console.log('passed err return call');
 						console.log('return postFollowByImageUpdate func called');
-						return postFollowByImageUpdate(req, res, post);
+						return postFollowByImageUpdate(req, res, post, next);
 					});
 				});
 			});
@@ -699,17 +709,19 @@ exports.updatePost = function (req, res) {
 };
 
 // Round 1
-exports.removePost = function (req, res) {
+exports.removePost = function (req, res, next) {
 	console.log('server removePost has been called');
-	Post.where().findOneAndRemove({_id: req.params.id, postBy: commFunc.reqSessionUserId(req)}, function (err) {
+	Post.where().findOneAndRemove({_id: req.params.id, postBy: commFunc.reqSessionUserId(req)}, function (err, post) {
 		if (err) return res.json(err);
-		return res.json({status: req.params.id + "removed successfully."});
+		console.log("findone and remove");
+		res.$_emitPost = post;
+		next();
 	});
 	//TODO need to remove images from Image data set
 };
 
 /*---Comment related-----*/
-exports.addCommentToPost = function (req, res) {
+exports.addCommentToPost = function (req, res, next) {
 	console.log('server addCommentToPost function has been called');
 	console.log('chk req obj');
 	console.log(req);
@@ -739,12 +751,15 @@ exports.addCommentToPost = function (req, res) {
 			console.log('chk within addCommentToPost before error');
 			if (err) return res.json(err);
 			//return last array element
-			return res.json(post.comments[post.comments.length - 1]);
+			res.$_emitPost = post;
+			res.$_emitComment = post.comments[post.comments.length - 1];
+			next();
+			//return res.json(post.comments[post.comments.length - 1]);
 		});
 	});
 };
 
-exports.updateCommentFromPost = function (req, res) {
+exports.updateCommentFromPost = function (req, res, next) {
 	Post.findById(req.params.post_id).exec(function (err, post) {
 		if (err) return res.json(err);
 		commentObj = req.body;
@@ -762,11 +777,11 @@ exports.updateCommentFromPost = function (req, res) {
 		} else {
 			return res.json({status: "you are not allowed to modify the comment of not yours."});
 		}
-		return savePost(post, res);
+		return savePost(post, res, next);
 	});
 };
 
-exports.deleteCommentFromPost = function (req, res) {
+exports.deleteCommentFromPost = function (req, res, next) {
 	console.log('server deleteCommentFromPost has been called');
 	Post.findById(req.params.post_id).exec(function (err, post) {
 		console.log('server Post.findById has been called');
@@ -778,6 +793,7 @@ exports.deleteCommentFromPost = function (req, res) {
 		} else {
 			return res.json({status: "you are not allowed to remove the comment of not yours."});
 		}
-		return savePost(post, res);
+		res.$_emitComment = comment;
+		return savePost(post, res, next);
 	});
 };

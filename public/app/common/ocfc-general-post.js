@@ -7,11 +7,12 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc, Commen
 			imagePopup: '=',
 			posts: '=',
 			dropdown: '=',
-			imagePrefix: '='
+			imagePrefix: '=',
+			entryTime:'='
 		},
 		templateUrl: '/partials/common/ocfc-general-post',
 		controller: function ($scope) {
-
+			$scope.isNew = (new Date($scope.post.createdOn)).getTime() > $scope.entryTime.getTime();
 			console.log('ocfcGeneralPost has been called');
 			//console.log('chk $scope.post.postType value');
 			//console.log($scope.post.postType);
@@ -53,13 +54,14 @@ angular.module('app').directive('ocfcGeneralPost', function (IdentitySvc, Commen
 						console.log(post._id + ' post has been deleted');
 
 						//remove post id from posts array
-						for (var i = 0; i < $scope.posts.length; i++) {
-							if ($scope.posts[i]._id === $scope.post._id) {
-								$scope.posts.splice(i, 1);
-								console.log('chk index to be spliced/removed');
-								console.log(i);
-							}
-						}
+						//replace by socket io operation.
+						// for (var i = 0; i < $scope.posts.length; i++) {
+							// if ($scope.posts[i]._id === $scope.post._id) {
+								// $scope.posts.splice(i, 1);
+								// console.log('chk index to be spliced/removed');
+								// console.log(i);
+							// }
+						// }
 
 					});
 				});

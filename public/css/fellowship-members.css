@@ -1,3 +1,77 @@
+#members-page {
+  padding-top: 60px;
+}
+#members-page .row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.member-card-section {
+  width: 980px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.invite-friends {
+  width: auto;
+}
+.invite-widget {
+  margin-top: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+.invite-widget__title {
+  background-color: #808080;
+  padding: 10px 12px;
+}
+.invite-widget__title h3 {
+  color: #fff;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 15px;
+}
+.invite-widget__add-emails {
+  width: 50%;
+  float: left;
+  padding: 10px;
+}
+.invite-widget__add-emails .input-bar input {
+  display: inline-block;
+  width: 89%;
+  vertical-align: top;
+}
+.invite-widget__add-emails .input-bar button {
+  display: inline-block;
+  width: 10%;
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+}
+.invite-widget__add-emails .email-lists {
+  margin-top: 10px;
+}
+.invite-widget__add-emails .email-lists li {
+  color: #000;
+}
+.invite-widget__message {
+  padding: 10px;
+  width: 50%;
+  float: left;
+}
+.invite-widget__message textarea {
+  height: 160px;
+}
+.invite-widget__bottom {
+  clear: both;
+  padding: 5px;
+  height: 46px;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  background-color: #f9f9f9;
+}
+.invite-widget__bottom button {
+  width: auto;
+}
+.invite-widget__bottom button .glyphicon {
+  margin-right: 10px;
+}
 .member-card {
   background-color: #fff;
   width: 225px;
@@ -20,7 +94,7 @@
 .member-card__triangle-bottomright {
   width: 0;
   height: 0;
-  border-bottom: 55px solid #fbfafa;
+  border-bottom: 55px solid #fff;
   border-left: 62px solid transparent;
   position: absolute;
   top: 95px;

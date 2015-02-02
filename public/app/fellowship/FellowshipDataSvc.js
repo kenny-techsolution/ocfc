@@ -10,7 +10,7 @@ angular.module('app').service('FellowshipDataSvc', function(FellowshipUserApiSvc
 	// rest api standard, for GET, if id is specified, it will grab specific
 	// user by id
 	this.users=[];
-	this.fellowship={};
+	this.fellowship=null;
 	this.isAdmin=false;
 	var that=this;
 	this.initialize=function(fellowId){
