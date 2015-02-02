@@ -291,9 +291,10 @@ exports.deleteFellowshipById = function (req, res) {
 
 //Post - Round1
 exports.addUserToFellowship = function (req, res) {
+	console.log('server addUserToFellowship has been called');
 	//Populate data onto FellowshipUsers tbl
 	Fellowship.count({ _id: req.params.fellowship_id}, function (err, count) {
-
+		console.log('Chk count against Fellowship tbl, chk if fellowship exist');
 		if (count == 1) {
 			var fellowshipUser = req.body;
 			fellowshipUser.userId = req.user._id;
@@ -304,6 +305,7 @@ exports.addUserToFellowship = function (req, res) {
 			fellowshipUser = new FellowshipUser(fellowshipUser);
 			fellowshipUser.save(function (err) {
 				if (err) return res.json(err);
+				console.log('fellowship user has been saved');
 				return res.json({status: "success", fellowshipUser: fellowshipUser});
 			})
 		}

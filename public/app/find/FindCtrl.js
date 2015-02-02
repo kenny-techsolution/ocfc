@@ -1,4 +1,4 @@
-angular.module('app').controller('FindCtrl', function ($scope,$http,$location,GoogleMapPlacesSvc, GoogleMapGeocoderSvc, google, FellowshipApiSvc) {
+angular.module('app').controller('FindCtrl', function ($scope,$http,$location,GoogleMapPlacesSvc, GoogleMapGeocoderSvc, google, FellowshipApiSvc,FellowshipUserApiSvc,IdentitySvc) {
 
 	$scope.selectedGroup = "FELLOWSHIP";
 	$scope.groups = [{value:'FELLOWSHIP',label:'FELLOWSHIP'},{value:'CHURCH',label:'CHURCH'}];
@@ -71,6 +71,21 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 	};
 	$scope.closeSummary = function(){
 		$scope.isSummaryOn = false;
+	};
+
+	$scope.joinFellowship=function(fellowship){
+	//ROUTE: app.post('/api/fellowships/:fellowship_id/users', fellowships.addUserToFellowship);
+	//Request for the following: User ID,
+		console.log('front-end joinFellowship is being called');
+		var user=new FellowshipUserApiSvc({
+			fellowship_id:fellowship._id,
+			user_id:IdentitySvc.currentUser._id
+		});
+
+		user.$save(function(){
+			console.log('$scope.joinFellowship has been called within FindCtrl');
+		});
+
 	};
 
 });
