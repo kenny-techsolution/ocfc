@@ -66,6 +66,10 @@ angular.module('app').controller('FindCtrl', function ($scope,$http,$location,Go
 	$scope.openSummary = function(index, type, group){
 		$scope.groupIndex = index;
 		$scope.currentGroup = group;
+
+//		console.log('chk $scope.currentGroup');
+//		console.log($scope.currentGroup);
+
 		$scope.currentGroup.type = type;
 		$scope.isSummaryOn = true;
 	};
