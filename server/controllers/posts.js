@@ -339,7 +339,7 @@ var createEventPost = function (postObj, req, res, next) {
 //Added on 11-19-2015
 var createAnnouncementPost = function (postObj, req, res, next) {
 	console.log('server createAnnouncementPost has been called');
-	console.log('chk postObj');
+	console.log('chk postObj from createAnnouncementPost');
 	console.log(postObj);
 
 	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'announcement']);
@@ -360,7 +360,7 @@ var createAnnouncementPost = function (postObj, req, res, next) {
 	postObj.postBy = commFunc.reqSessionUserId(req);
 	var post = new Post(postObj);
 
-	console.log('chk post obj after new Post creation');
+	console.log('chk announcement post obj after new Post creation');
 	console.log(post);
 
 	//if undefined then set to empty array
