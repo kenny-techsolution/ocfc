@@ -1,13 +1,9 @@
 /*******************************************************************************
  ******************************************************************************/
-angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc, FellowshipDataSvc, $routeParams, FellowshipApiSvc, $http, $upload,NotificationDataSvc,IdentitySvc,mySocket) {
+angular.module('app').controller('FellowshipCtrl', function ($scope, $location,PostApiSvc, FellowshipDataSvc, $routeParams, FellowshipApiSvc, $http, $upload,NotificationDataSvc,IdentitySvc,mySocket) {
 	console.log('FellowshipCtrl has been called');
 	//console.log(mySocket);
-	 mySocket.on('newpost', function(data) {
-		console.log("new POST~!!!!!!");
-		console.log(data);
-	});
-
+	$scope.entryTime = new Date();
 	//include FellowshipDataSvc which captures all data needed for Fellowship widgets
 	$scope.FellowshipDataSvc = FellowshipDataSvc;
 	$scope.FellowshipDataSvc.initialize($routeParams.id);
@@ -17,7 +13,74 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 
 	$scope.posts = [];
 
+	$scope.goto = function(subpage){
+		$location.path('/fellowship/'+ $routeParams.id + '/' + subpage);
+	};
 
+	$scope.$watch('FellowshipDataSvc.fellowship', function(newValue){
+		if(newValue){
+			mySocket.on('fellowship'+newValue._id, function(data) {
+				if(data.type==='newPost') {
+					$scope.posts.unshift(data.post);
+					return;
+				}
+				if(data.type==='removePost') {
+					console.log("remove post");
+					for (var i = 0; i < $scope.posts.length; i++) {
+						console.log(data.postId);
+						if ($scope.posts[i]._id === data.postId) {
+							$scope.posts.splice(i, 1);
+							console.log('chk index to be spliced/removed');
+							console.log(i);
+						}
+					}
+					return;
+				}
+				if(data.type==='updatePost') {
+					console.log("update post");
+					for (var i = 0; i < $scope.posts.length; i++) {
+						console.log(data.postId);
+						if ($scope.posts[i]._id === data.postId) {
+							$scope.posts.splice(i, 1);
+							console.log('chk index to be spliced/removed');
+							console.log(i);
+						}
+					}
+					return;
+				}
+				if(data.type==='newComment') {
+					console.log("new comment");
+					for (var i = 0; i < $scope.posts.length; i++) {
+						console.log(data.postId);
+						if ($scope.posts[i]._id === data.postId) {
+							data.comment.new = true;
+							$scope.posts[i].comments.push(data.comment);
+							console.log('chk index to be spliced/removed');
+							console.log(i);
+						}
+					}
+					return;
+				}
+				if(data.type==='removeComment') {
+					console.log("remove comment");
+					for (var i = 0; i < $scope.posts.length; i++) {
+						console.log(data.postId);
+						if ($scope.posts[i]._id === data.postId) {
+
+							console.log("post ---> "+ data.postId);
+							for (var j = 0; j < $scope.posts[i].comments.length; j++) {
+								console.log($scope.posts[i].comments[j]._id);
+								if($scope.posts[i].comments[j]._id === data.commentId){
+									$scope.posts[i].comments.splice(j, 1);
+								}
+							}
+						}
+					}
+					return;
+				}
+			});
+		}
+	}, true);
 	$scope.isLoading = true;
 	$scope.isLoadingNext = false;
 	$scope.viewNextPage=function(type){
@@ -57,7 +120,9 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, PostApiSvc,
 		}
 	};
 
-
+	$scope.posts = PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id},function(){
+		$scope.isLoading=false;
+	});
 
 	$scope.selectedPost;
 	$scope.selectedPostType = '';

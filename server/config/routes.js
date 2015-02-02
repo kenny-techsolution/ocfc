@@ -99,17 +99,39 @@ module.exports = function (app, io) {
 
 	/* ------ Post related API -------- */
 	app.post('/api/posts', posts.createPost, function(req,res){
-		io.sockets.emit(res.$_fellowshipId,{type:"newPost", data:res.$_emitPost});
-		res.send(res.$_emitPost);
+		console.log("socket io connection channel");
+		console.log(res.$_emitPost.postUnderGroupType + res.$_emitPost.postUnderGroupId);
+		io.sockets.emit(res.$_emitPost.postUnderGroupType + res.$_emitPost.postUnderGroupId, {type:"newPost", post:res.$_emitPost});
+		return res.send(res.$_emitPost);
 	});
 	app.get('/api/posts/:id', posts.getPost);
 	app.get('/api/posts', posts.queryPost);
-	app.put('/api/posts/:id', posts.updatePost);
-	app.delete('/api/posts/:id', posts.removePost);
+	app.put('/api/posts/:id', posts.updatePost, function(req,res){
+		console.log("socket io connection channel");
+		console.log(res.$_emitPost.postUnderGroupType + res.$_emitPost.postUnderGroupId);
+		io.sockets.emit(res.$_emitPost.postUnderGroupType + res.$_emitPost.postUnderGroupId, {type:"updatePost", post:res.$_emitPost});
+		return res.send(res.$_emitPost);
+	});
+	app.delete('/api/posts/:id', posts.removePost, function(req,res){
+		console.log("socket io connection channel");
+		console.log(res.$_emitPost.postUnderGroupType + res.$_emitPost.postUnderGroupId);
+		io.sockets.emit(res.$_emitPost.postUnderGroupType + res.$_emitPost.postUnderGroupId, {type:"removePost", postId:res.$_emitPost._id});
+		return res.json({status: res.$_emitPost._id + "removed successfully."});
+	});
 
-	app.post('/api/posts/:post_id/comments', posts.addCommentToPost);
+	app.post('/api/posts/:post_id/comments', posts.addCommentToPost,function(req,res){
+		console.log("socket io connection channel");
+		console.log(res.$_emitPost.postUnderGroupType + res.$_emitPost.postUnderGroupId);
+		io.sockets.emit(res.$_emitPost.postUnderGroupType + res.$_emitPost.postUnderGroupId, {type:"newComment", postId:res.$_emitPost._id, comment:res.$_emitComment});
+		return res.send(res.$_emitComment);
+	});
 	app.put('/api/posts/:post_id/comments/:comment_id', posts.updateCommentFromPost);
-	app.delete('/api/posts/:post_id/comments/:comment_id', posts.deleteCommentFromPost);
+	app.delete('/api/posts/:post_id/comments/:comment_id', posts.deleteCommentFromPost, function(req,res){
+		console.log("remove comment from post");
+		console.log(res.$_emitPost.postUnderGroupType + res.$_emitPost.postUnderGroupId);
+		io.sockets.emit(res.$_emitPost.postUnderGroupType + res.$_emitPost.postUnderGroupId, {type:"removeComment", postId:res.$_emitPost._id, commentId:res.$_emitComment._id});
+		return res.send(res.$_emitComment);
+	});
 
 	/* ------ Calendar related API -------- */
 	app.post('/api/calendars', calendars.createCalendar);

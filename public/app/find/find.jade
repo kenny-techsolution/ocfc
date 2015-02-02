@@ -7,13 +7,13 @@
 					button.btn.btn-default.inline-block.choose-type(type='button', ng-model='selectedGroup', ng-options='group.value as group.label for group in groups', bs-select='')
 						| Action
 						span.caret
-					input.form-control.inline-block.search-box(type="text", ng-model="userAddress", placeholder="Search by address or zip.")
+					input.form-control.inline-block.search-box(type="text", ng-model="userAddress", placement='bottom-left', placeholder="Search by address or zip.", ng-options="address.formatted_address as address.formatted_address for address in getAddress($viewValue)", data-animation="am-fade", bs-typeahead)
 					button.btn.btn-primary.inline-block(ng-click="getLatlng(userAddress)") FIND
-			.row.search-section__autocomplete-result
-				.col-xs-12
-					ul.list-group(ng-show="showAutocomplete")
-						li.list-group-item(ng-repeat="address in matchedAddresses")
-							a(ng-click="getLatlng(address.description)") {{address.description}}
+			//.row.search-section__autocomplete-result
+			//	.col-xs-12
+			//		ul.list-group(ng-show="showAutocomplete")
+			//			li.list-group-item(ng-repeat="address in matchedAddresses")
+			//				a(ng-click="getLatlng(address.description)") {{address.description}}
 			.row
 				.col-xs-12
 					//div.search-section__geo-code
