@@ -7,9 +7,6 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 		},
 		templateUrl: '/partials/common/ocfc-wall-input',
 		controller: function ($scope) {
-
-			var sendgrid = require('sendgrid')('yoyocicada', 'SendGrid1006');
-
 			//console.log('chk $scope.posts array');
 			//console.log($scope.posts);
 			$scope.FellowshipDataSvc=FellowshipDataSvc;
@@ -69,38 +66,7 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 
 					} else if (selectedPostType === 'Announcement') {
 						postType = 'announcement';
-
-						//Query users from a fellowship to grab emails
-						//app.get('/api/fellowships/:fellowship_id/users', fellowships.getUsersFromFellowship);
-
-						console.log('chk $scope.FellowshipDataSvc.users');
-						console.log($scope.FellowshipDataSvc.users);
-						var emails=[];
-						for(var i=0;i<$scope.FellowshipDataSvc.users.length;i++){
-							emails[i]=$scope.FellowshipDataSvc.users[i].userId.userName;
-						};
-
-						console.log('chk emails');
-						console.log(emails);
-
-						var sendEmail = function (emails) {
-							console.log('front-end sendEmail has been called');
-							var email = new sendgrid.Email({to: emails});
-							email.subject = 'New Announcement';
-							email.setFrom('support@onechurchforchrist.org');
-							sendgrid.send(email, function (err, json) {
-								if (err) {
-									return res.json(err);
-								}
-								return res.json(json);
-
-							});
-						};
-
-						//used as test, to be removed later
-						sendEmail(['butterfly43026@hotmail.com','meix.zhang55@gmail.com']);
-
-						//app.post('/api/posts', posts.createPost)
+						//Route: app.post('/api/posts', posts.createPost)
 						post = new PostApiSvc({
 								postType: postType,
 								announcement: [
@@ -108,7 +74,8 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 								],
 								postUnderGroupType: 'fellowship',
 								postUnderGroupId: $routeParams.id,
-								imageIds: $scope.imageArray}
+								imageIds: $scope.imageArray
+								}
 						);
 
 						console.log('chk post obj');
