@@ -94,6 +94,7 @@ angular.module('app').config(function ($routeProvider, $locationProvider, $httpP
 		.when('/fellowship2/:id', {templateUrl: '/partials/fellowship/fellowship2', controller: 'FellowshipCtrl',resolve: { checklogin: checkLogin}})
 		.when('/church/:id', {templateUrl: '/partials/church/church', controller: 'ChurchCtrl'})
 		.when('/find', {templateUrl: '/partials/find/find', controller: 'FindCtrl'})
+		.when('/album', {templateUrl: '/partials/album/album', controller: 'AlbumCtrl'})
 		.when('/registrationComplete', {templateUrl: '/partials/account/registration-complete', controller: 'RegistrationCompleteCtrl'})
 		.when('/dummy', {templateUrl: '/partials/common/dummy', controller: 'DummyCtrl'});
 
