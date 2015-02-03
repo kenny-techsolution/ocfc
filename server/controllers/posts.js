@@ -98,9 +98,9 @@ var savePost = function (post, res, next) {
 					email.subject = "Upcoming Week Fellowship Announcement";
 					email.setFrom('support@onechurchforchrist.org');
 					email.setHtml(post.announcement[0].content);
-					email.fromname=post.postBy.fullName;
+					email.fromname = post.postBy.fullName;
 
-					for (var i = 0; i <fellowshipUsers.length; i++) {
+					for (var i = 0; i < fellowshipUsers.length; i++) {
 						email.addTo(fellowshipUsers[i].userId.userName);
 					}
 
