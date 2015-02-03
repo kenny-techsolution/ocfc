@@ -3,6 +3,7 @@
 		img(ng-src='{{post.postBy.profileImg}}')
 		.name {{post.postBy.fullName | capitalize}}
 		.date {{post.createdOn | date}}
+		span.label.label-danger.new-prayer(ng-if="isNew") new
 		.type.prayer Prayer
 	.post-widget__output(ng-show='!showEdit') {{post.prayer}}
 		button.btn.btn-lg.btn-primary.edit(type='button', data-animation='am-flip-x', data-placement='bottom-right', bs-dropdown='dropdown',ng-if='isPoster')

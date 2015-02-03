@@ -6,11 +6,14 @@ angular.module('app').directive('ocfcAnnouncementPost', function (IdentitySvc, C
 			post: '=',
 			imagePopup: '=',
 			posts: '=',
-			dropdown: '='
+			dropdown: '=',
+			entryTime:'='
 		},
 		templateUrl: '/partials/common/ocfc-announcement-post',
 		controller: function ($scope) {
 			console.log('ocfcAnnouncementPost has been called');
+			$scope.isNew = (new Date($scope.post.createdOn)).getTime() > $scope.entryTime.getTime();
+
 			//console.log('chk $scope.post.postType value');
 			//console.log($scope.post.postType);
 

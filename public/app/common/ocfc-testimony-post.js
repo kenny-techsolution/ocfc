@@ -6,13 +6,14 @@ angular.module('app').directive('ocfcTestimonyPost', function (IdentitySvc,Comme
 			post:'=',
 			imagePopup:'=',
 			posts:'=',
-			dropdown:'='
+			dropdown:'=',
+			entryTime:'='
 		},
 		templateUrl: '/partials/common/ocfc-testimony-post',
 		controller: function ($scope) {
 
 			console.log('ocfcTestimonyPost has been called');
-
+			$scope.isNew = (new Date($scope.post.createdOn)).getTime() > $scope.entryTime.getTime();
 			//console.log('chk on $scope.post obj for testimony');
 			//console.log($scope.post);
 

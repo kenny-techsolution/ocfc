@@ -200,7 +200,7 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 								prayer: $scope.content,
 								postUnderGroupType: 'fellowship',
 								postUnderGroupId: $routeParams.id,
-								imageIds: imageArray}
+								imageIds: $scope.imageArray}
 						);
 
 						post.$save().then(function () {

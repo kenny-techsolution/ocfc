@@ -6,12 +6,13 @@ angular.module('app').directive('ocfcPrayerPost', function (IdentitySvc,CommentA
 			post:'=',
 			imagePopup:'=',
 			posts:'=',
-			dropdown:'='
+			dropdown:'=',
+			entryTime:'='
 		},
 		templateUrl: '/partials/common/ocfc-prayer-post',
 		controller: function ($scope) {
-
 			console.log('ocfcPrayerPost has been called');
+			$scope.isNew = (new Date($scope.post.createdOn)).getTime() > $scope.entryTime.getTime();
 			//console.log('chk on $scope.post obj for prayer');
 			//console.log($scope.post);
 

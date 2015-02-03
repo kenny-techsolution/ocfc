@@ -3,7 +3,8 @@
 		img(ng-src='{{post.postBy.profileImg}}')
 		.name {{post.postBy.fullName | capitalize}}
 		.date {{post.createdOn | date}}
-		.type.testimony {{post.postType | PostTypeStrFilter}}
+		span.label.label-danger.new-testimony(ng-if="isNew") new
+		.type.testimony Testimony
 	.post-widget__output(ng-show='!showEdit') 
 		h4.title {{post.testimony[0].title| capitalize}}
 		p{{post.testimony[0].content}}

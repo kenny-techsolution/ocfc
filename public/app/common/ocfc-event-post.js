@@ -6,11 +6,13 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentAp
 			post:'=',
 			imagePopup:'=',
 			posts:'=',
-			dropdown:'='
+			dropdown:'=',
+			entryTime:'='
 		},
 		templateUrl: '/partials/common/ocfc-event-post',
 		controller: function ($scope) {
 			console.log('ocfcEventPost has been called');
+			$scope.isNew = (new Date($scope.post.createdOn)).getTime() > $scope.entryTime.getTime();
 			//console.log('chk $scope.post obj');
 			//console.log($scope.post);
 

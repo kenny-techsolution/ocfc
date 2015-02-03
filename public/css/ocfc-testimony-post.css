@@ -15,3 +15,8 @@
 .type.announcement {
   border-color: #55cb5b;
 }
+.new-testimony {
+  position: absolute;
+  top: 14px;
+  right: 100px;
+}
