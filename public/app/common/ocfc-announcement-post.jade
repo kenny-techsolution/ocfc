@@ -1,8 +1,10 @@
+//ocfc-announcement-post.jade
 .post-widget
 	.post-widget__header
 		img(ng-src='{{post.postBy.profileImg}}')
 		.name {{post.postBy.fullName | capitalize}}
 		.date {{post.createdOn | date}}
+		span.label.label-danger.new-announcement(ng-if="isNew") new
 		.type.announcement Announcement
 	.post-widget__output(ng-show='!showEdit') {{post.announcement[0].content}}
 		button.btn.btn-lg.btn-primary.edit(type='button', data-animation='am-flip-x', bs-dropdown='dropdown',ng-if='isPoster')

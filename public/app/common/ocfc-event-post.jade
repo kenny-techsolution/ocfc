@@ -1,8 +1,10 @@
+//ocfc-event-post.jade
 .post-widget
 	.post-widget__header
 		img(ng-src='{{post.postBy.profileImg}}')
 		.name {{post.postBy.fullName | capitalize}}
 		.date {{post.createdOn | date}}
+		span.label.label-danger.new-event(ng-if="isNew") new
 		.type Event
 	.post-widget__output(ng-show='!showEdit')
 		.post-event-widget__calendar

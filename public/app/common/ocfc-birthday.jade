@@ -1,3 +1,4 @@
+//ocfc-birthday.jade
 .birthday-widget(ng-repeat='user in users |filter:comingBirthdays')
 	img(ng-src='{{user.userId.profileImg}}')
 	.name {{user.userId.fullName|capitalize}}

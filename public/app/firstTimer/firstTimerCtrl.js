@@ -1,5 +1,7 @@
 
-angular.module('app').controller('firstTimerCtrl', function ($scope,$http,$timeout,$animate, $routeParams,$rootScope, $upload, UserApiSvc, NotifierSvc, $location) {
+angular.module('app').controller('firstTimerCtrl', function ($scope,$http,$timeout,$animate, $routeParams,$rootScope, $upload, UserApiSvc, NotifierSvc, $location,IdentitySvc) {
+	$scope.IdentitySvc=IdentitySvc;
+
 	$timeout(function() {
 		return $animate.enabled(false, angular.element(".carousel"));
 	});
@@ -23,7 +25,8 @@ angular.module('app').controller('firstTimerCtrl', function ($scope,$http,$timeo
 			}
 			$scope.$apply();
 		}).success(function (data, status, headers, config) {
-			console.log(data);
+//			console.log('chk data obj');
+//			console.log(data);
 			$rootScope.photos = $rootScope.photos || [];
 			data.context = {custom: {photo: $scope.title}};
 			$scope.result = data;

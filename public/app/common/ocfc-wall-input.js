@@ -9,6 +9,7 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 		controller: function ($scope) {
 			//console.log('chk $scope.posts array');
 			//console.log($scope.posts);
+			$scope.FellowshipDataSvc=FellowshipDataSvc;
 			$scope.endTimeSelected=false;
 			$scope.imageArray = [];
 			$scope.imageObjs = [];
@@ -65,14 +66,20 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 
 					} else if (selectedPostType === 'Announcement') {
 						postType = 'announcement';
-						post = new PostApiSvc({postType: postType,
+						//Route: app.post('/api/posts', posts.createPost)
+						post = new PostApiSvc({
+								postType: postType,
 								announcement: [
 									{content: $scope.content}
 								],
 								postUnderGroupType: 'fellowship',
 								postUnderGroupId: $routeParams.id,
-								imageIds: $scope.imageArray}
+								imageIds: $scope.imageArray
+								}
 						);
+
+						console.log('chk post obj');
+						console.log(post);
 
 						post.$save().then(function () {
 							//replace by socket io operation.
@@ -193,7 +200,7 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 								prayer: $scope.content,
 								postUnderGroupType: 'fellowship',
 								postUnderGroupId: $routeParams.id,
-								imageIds: imageArray}
+								imageIds: $scope.imageArray}
 						);
 
 						post.$save().then(function () {

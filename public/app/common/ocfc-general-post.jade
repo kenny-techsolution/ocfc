@@ -3,7 +3,7 @@
 		img(ng-src='{{post.postBy.profileImg}}')
 		.name {{post.postBy.fullName | capitalize}}
 		.date {{post.createdOn | date}}
-		span.label.label-danger.new(ng-if="isNew") new
+		span.label.label-danger.new-general(ng-if="isNew") new
 		.type General
 	.post-widget__output(ng-show='!showEdit') {{post.general[0].content}}
 		button.btn.btn-lg.btn-primary.edit(type='button', data-animation='am-flip-x', data-placement='bottom-right', bs-dropdown='dropdown',ng-if='isPoster')

@@ -1,11 +1,13 @@
 var Post = require('mongoose').model('Post'),
 	Event = require('mongoose').model('Event'),
 	Image = require('mongoose').model('Image'),
+	FellowshipUser = require('mongoose').model('FellowshipUser'),
 	commFunc = require('../utilities/commonFunctions'),
 	deleteKey = require('key-del'),
 	html_strip = require('htmlstrip-native'),
 	async = require('async'),
-	_ = require('lodash');
+	_ = require('lodash'),
+	sendgrid = require('sendgrid')('yoyocicada', 'SendGrid1006');
 
 var stripHtmlforFields = function (obj, fields) {
 	console.log('var stripHtmlforFields is being called');
@@ -38,16 +40,7 @@ var savePost = function (post, res, next) {
 				console.log('chk final post obj');
 				console.log(post);
 				res.$_emitPost = post;
-        		next();
-			});
-		} else if (post.postType === 'announcement') {
-			console.log('announcement post type has been created');
-			Post.populate(post, 'eventId announcement postBy imageIds', function (err, post) {
-				if (err) return res.json(err);
-				console.log('chk final post obj');
-				console.log(post);
-				res.$_emitPost = post;
-        		next();
+				next();
 			});
 		} else if (post.postType === 'testimony') {
 			console.log('testimony post type has been created');
@@ -56,7 +49,7 @@ var savePost = function (post, res, next) {
 				console.log('chk final post obj');
 				console.log(post);
 				res.$_emitPost = post;
-        		next();
+				next();
 			});
 
 		} else if (post.postType === 'question') {
@@ -66,7 +59,7 @@ var savePost = function (post, res, next) {
 				console.log('chk final post obj');
 				console.log(post);
 				res.$_emitPost = post;
-        		next();
+				next();
 			});
 		} else if (post.postType === 'prayer') {
 			console.log('prayer post type has been created');
@@ -75,7 +68,7 @@ var savePost = function (post, res, next) {
 				console.log('chk final post obj');
 				console.log(post);
 				res.$_emitPost = post;
-        		next();
+				next();
 			});
 		} else if (post.postType === 'event') {
 			console.log('event post type has been created');
@@ -84,16 +77,48 @@ var savePost = function (post, res, next) {
 				console.log('chk final post obj');
 				console.log(post);
 				res.$_emitPost = post;
-        		next();
+				next();
 			});
 		} else if (post.postType === 'announcement') {
-			console.log('announcement post type has been created');
+			console.log('announcement post xxxxxxxxxx type has been created');
 			Post.populate(post, 'eventId announcement postBy imageIds', function (err, post) {
 				if (err) return res.json(err);
 				console.log('chk final post obj');
 				console.log(post);
+
+				console.log('query FellowshipUser');
+				//query fellowshipUsers to grab emails
+				FellowshipUser.find({fellowshipId: post.postUnderGroupId}).populate("userId").exec(function (err, fellowshipUsers) {
+					console.log('FellowshipUser.find has been called and populate data depending on admin/user condition');
+					if (err) return res.json(err);
+					console.log('chk fellowshipUsers');
+					console.log(fellowshipUsers);
+
+					var email = new sendgrid.Email();
+					email.subject = "Upcoming Week Fellowship Announcement";
+					email.setFrom('support@onechurchforchrist.org');
+					email.setHtml(post.announcement[0].content);
+					email.fromname = post.postBy.fullName;
+
+					for (var i = 0; i < fellowshipUsers.length; i++) {
+						email.addTo(fellowshipUsers[i].userId.userName);
+					}
+
+					sendgrid.send(email, function (err, json) {
+						if (err) {
+							return res.json(err);
+						}
+						console.log('chk final email obj');
+						console.log(email);
+						console.log('sendgrid.send callback triggered');
+						console.log('chk json');
+						console.log(json);
+						return res.json(json);
+					});
+
+				});
 				res.$_emitPost = post;
-        		next();
+				next();
 			});
 		} else {
 			//Default as general post
@@ -104,7 +129,7 @@ var savePost = function (post, res, next) {
 				console.log(post);
 				//return res.json(post);
 				res.$_emitPost = post;
-        		next();
+				next();
 			});
 		}
 
@@ -162,7 +187,6 @@ var createPrayerPost = function (postObj, req, res, next) {
 	if (errors.length > 0) {
 		return res.json({statue: "failed", errors: errors});
 	}
-
 
 	//postObj = stripHtmlforFields(postObj, ['content']);
 	//postObj.prayer = postObj.content;
@@ -339,7 +363,7 @@ var createEventPost = function (postObj, req, res, next) {
 //Added on 11-19-2015
 var createAnnouncementPost = function (postObj, req, res, next) {
 	console.log('server createAnnouncementPost has been called');
-	console.log('chk postObj');
+	console.log('chk postObj from createAnnouncementPost');
 	console.log(postObj);
 
 	var errors = commFunc.checkRequiredFieldsForPostType(postObj.postType, postObj, ['postUnderGroupType', 'postUnderGroupId', 'announcement']);
@@ -360,7 +384,7 @@ var createAnnouncementPost = function (postObj, req, res, next) {
 	postObj.postBy = commFunc.reqSessionUserId(req);
 	var post = new Post(postObj);
 
-	console.log('chk post obj after new Post creation');
+	console.log('chk announcement post obj after new Post creation');
 	console.log(post);
 
 	//if undefined then set to empty array
@@ -525,7 +549,7 @@ exports.queryPost = function (req, res) {
 		return res.json({status: "fail", message: "you are not allowed to query posts on this wall which you're not a member of."});
 	}
 
-	var filteredKeys = commFunc.removeInvalidKeys(req.query, ['postType', 'postBy', 'postUnderGroupType', 'postUnderGroupId','createdOn']);
+	var filteredKeys = commFunc.removeInvalidKeys(req.query, ['postType', 'postBy', 'postUnderGroupType', 'postUnderGroupId', 'createdOn']);
 	var condition = {};
 	var whereClause = {};
 	console.log('chk filteredKeys obj');
@@ -550,13 +574,13 @@ exports.queryPost = function (req, res) {
 			whereClause.postUnderGroupId = req.query[key];
 		} else if (key == 'createdOn') {
 			whereClause.createdOn = {$lt: req.query[key]};
-		}else if (key == 'postType') {
-			whereClause.postType=req.query[key]
-		}else {
+		} else if (key == 'postType') {
+			whereClause.postType = req.query[key]
+		} else {
 			condition[key] = req.query[key];
 		}
 	});
-	var limit= req.query.limit||20;
+	var limit = req.query.limit || 20;
 
 	console.log('chk condition obj');
 	console.log(condition);

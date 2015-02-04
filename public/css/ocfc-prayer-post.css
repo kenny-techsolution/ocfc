@@ -1,3 +1,8 @@
 .type.prayer {
   border-color: #d64951;
 }
+.new-prayer {
+  position: absolute;
+  top: 14px;
+  right: 85px;
+}

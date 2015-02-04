@@ -1,3 +1,4 @@
+//ocfc-event.jade
 .event-widget(ng-repeat='post in posts |filter:upcomingEvents')
 	.mini-calendar
 		.date {{post.eventId.fromDate|date:'dd'}}

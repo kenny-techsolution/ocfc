@@ -1,3 +1,4 @@
+//ocfc-about-us.jade
 div(ng-show='!showEdit', ng-mouseenter="setEditHover(true)", ng-mouseleave="setEditHover(false)")
 	.about-us-widget.text-black(ng-class="{'edit-hover':isEditHover}"){{fellowship.about}}
 	div.glyphicon.glyphicon-pencil(ng-show="isEditHover", ng-click="editPost()")

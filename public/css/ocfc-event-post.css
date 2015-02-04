@@ -53,3 +53,8 @@
   margin-left: 5px;
   line-height: 20px;
 }
+.new-event {
+  position: absolute;
+  top: 14px;
+  right: 80px;
+}

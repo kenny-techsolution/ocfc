@@ -33,7 +33,7 @@
   top: 24px;
   color: rgba(53,53,53,0.81);
 }
-.post-widget__header >.new {
+.post-widget__header >.new-general {
   position: absolute;
   top: 14px;
   right: 100px;
