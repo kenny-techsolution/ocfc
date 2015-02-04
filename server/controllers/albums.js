@@ -8,6 +8,10 @@ var Album = require('mongoose').model('Album'),
 
 //Post - Round1
 exports.createAlbum = function (req, res) {
+	console.log('server createAlbum has been called');
+	console.log('chk req.body');
+	console.log(req.body);
+
 	var album = req.body;
 	album = {
 		name: album.name,
