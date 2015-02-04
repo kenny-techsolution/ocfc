@@ -10,6 +10,36 @@
   padding-left: 0px;
   padding-right: 0px;
 }
+.member-menu {
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  border: 1px solid rgba(179,179,179,0.54);
+  padding: 20px 20px 10px 20px;
+  margin-bottom: 10px;
+}
+.member-menu .member-menu__title h3 {
+  font-size: 14px;
+  color: #777;
+  margin-top: 0px;
+  margin-botto: 0px;
+}
+.member-menu .member-menu__title h3 .glyphicon {
+  margin-right: 10px;
+}
+.member-menu .member-menu__links a {
+  margin-right: 20px;
+  font-size: 12px;
+  line-height: 18px;
+}
+.member-menu .member-menu__links a .badge {
+  margin-left: 10px;
+  border: 1px solid #777;
+  color: #777;
+  background-color: #fff;
+  line-height: 10px;
+  font-size: 10px;
+}
 .invite-friends {
   width: auto;
 }
@@ -73,12 +103,35 @@
   margin-right: 10px;
 }
 .member-card {
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-bottom: 10px;
   background-color: #fff;
-  width: 225px;
-  height: 267px;
+  width: 186px;
+  height: 220px;
   padding-top: 20px;
-  box-shadow: 4px 4px 12px #888;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.25);
   display: inline-block;
+  position: relative;
+}
+.member-card .dropdown-arrow {
+  top: 7px;
+  right: 7px;
+  position: absolute;
+  color: #908e8e;
+  border: 1px solid #908e8e;
+  border-radius: 3px;
+  font-size: 10px;
+  padding: 3px;
+}
+.member-card .admin {
+  position: absolute;
+  top: 7px;
+  right: 147px;
+  font-size: 10px;
+  padding: 2px 8px;
+  background-color: #d64951;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.25);
 }
 .member-card__img-size {
   width: 130px;
@@ -87,6 +140,9 @@
 .member-card__more-info {
   font-size: 10px;
   padding-bottom: 4px;
+  cursor: pointer;
+  width: 200px;
+  height: 14px;
 }
 .member-card__name {
   font-size: 17px;
@@ -98,12 +154,12 @@
   border-left: 62px solid transparent;
   position: absolute;
   top: 95px;
-  left: 130px;
+  left: 96px;
 }
 .member-card__role {
   position: absolute;
   top: 122px;
-  left: 170px;
+  left: 137px;
   font-style: italic;
   font-size: 17px;
   font-weight: 900;

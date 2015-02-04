@@ -1,0 +1,10 @@
+div.popover.notification-popover
+	h3.popover-title 
+		.glyphicon.glyphicon-flag
+		|Notification
+	div.popover-content
+		ul
+			li(ng-repeat='notification in NotificationDataSvc.notifications') 
+				.glyphicon.glyphicon-ok
+				a(href="{{notification.url}}" ng-click="") {{notification.message}}
+				.time at {{notification.createdOn|date:'shortDate'}}

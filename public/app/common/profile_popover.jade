@@ -1,11 +1,11 @@
 div.popover.profile-popover
 	div.arrow
 	h3.popover-title
+		.glyphicon.glyphicon-wrench 
+		| Hi, Kenny!
 	div.popover-content
 		ul
-			li(ng-repeat='notification in NotificationDataSvc.notifications') )
-				a(href="{{notification.url}}" ng-click="") {{notification.message}}
 			li
-				a(href="" ng-click="$location.path('/setting');") Setting
+				a(href="",ng-click="$hide();$location.path('/setting');") Setting
 			li 
 				a(ng-click="$hide();logout();") Logout

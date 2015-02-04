@@ -290,7 +290,5 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, $location,P
 
 	};
 
-
-
 });
 
