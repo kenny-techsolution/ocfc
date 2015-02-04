@@ -299,7 +299,17 @@ textarea.ocfc:focus {
   top: 35px !important;
 }
 .profile-popover .popover-title {
-  padding-top: 5px;
+  padding-top: 10px;
+  padding-left: 20px;
+  width: 100%;
+  background-color: #ebebeb;
+  color: rgba(0,0,0,0.63);
+  display: inline-block;
+}
+.profile-popover .popover-title .glyphicon {
+  color: rgba(0,0,0,0.63);
+  display: inline-block;
+  margin-right: 5px;
 }
 .profile-popover .popover-content {
   padding: 0px;
@@ -312,20 +322,77 @@ textarea.ocfc:focus {
   background-color: #f7f7f7;
   border-bottom: 1px solid #ebebeb;
   height: 30px;
-  width: 110px;
+  width: 100%;
 }
 .profile-popover .popover-content ul li a {
   font-size: 12px;
   display: block;
   height: 30px;
-  padding-left: 30px;
-  padding-top: 6px;
+  width: 100%;
+  text-align: center;
+  padding: 7px;
   text-decoration: none;
   color: #000;
 }
 .profile-popover .popover-content ul li a:hover {
   background-color: #08c;
   color: #fff;
+}
+.notification-popover {
+  background-color: #f7f7f7;
+  top: 35px !important;
+}
+.notification-popover .popover-title {
+  padding-top: 10px;
+  padding-left: 20px;
+  width: 100%;
+  background-color: #ebebeb;
+  color: rgba(0,0,0,0.63);
+  display: inline-block;
+}
+.notification-popover .popover-title .glyphicon {
+  color: rgba(0,0,0,0.63);
+  display: inline-block;
+  margin-right: 5px;
+}
+.notification-popover .popover-content {
+  padding: 0px;
+  height: 230px;
+  overflow-y: auto;
+}
+.notification-popover .popover-content ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+.notification-popover .popover-content ul li {
+  cursor: pointer;
+  border-bottom: 1px solid #ebebeb;
+  padding: 6px 20px;
+  font-size: 12px;
+}
+.notification-popover .popover-content ul li .time {
+  color: rgba(0,0,0,0.63);
+  padding-left: 21px;
+  font-size: 11px;
+}
+.notification-popover .popover-content ul li a {
+  display: inline-block;
+  width: 90%;
+}
+.notification-popover .popover-content ul li .glyphicon {
+  display: inline-block;
+  margin-right: 10px;
+  color: #5cb85c;
+  vertical-align: top;
+}
+.notification-popover .popover-content ul li:hover {
+  background-color: #08c;
+  color: #fff;
+}
+.notification-popover .popover-content ul li:hover a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
 }
 .widget-title-wo-link {
   color: #000;

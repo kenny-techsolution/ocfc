@@ -1,0 +1,9 @@
+.member-card
+	img.member-card__img-size.text-black.img-circle.center-block(ng-src='{{user.userId.profileImg}}')
+	.member-card__triangle-bottomright
+	.member-card__role {{user.role|UserRoleFilter}}
+	.member-card__name.text-black.text-center  {{user.userId.fullName}}
+	.member-card__more-info.text-dark-grey.text-center(data-trigger="hover",data-title="美國中西部一直到東北部，從上週開始就被暴風雪籠罩，從芝加哥一直到紐約，波士頓等大城市，全面陷入冰封狀態，陸空交通嚴重受影響。而在歐洲的阿爾巴尼亞跟保加利亞，是遇上水災。 從空中鳥瞰芝加哥的州際公路，車流全部被暴風雪所引發的交通意外給困住", data-placement="bottom", bs-tooltip) FULL PROFILE
+	//button.btn.btn-danger.center-block(ng-if='user.status=="pending"', ng-click="approveFellowshipUser(user)") APPROVE
+	div.glyphicon.glyphicon-menu-down.dropdown-arrow(ng-if="isCurrentUserAdmin=='admin'", data-animation='am-flip-x', data-placement='bottom', bs-dropdown='memberDropdown')
+	div.admin(ng-if="user.role=='admin'") Admin

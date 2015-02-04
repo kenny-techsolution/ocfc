@@ -16,7 +16,6 @@ angular.module('app').directive('ocfcEvent', function (PostApiSvc,$routeParams,$
 					//console.log('chk $scope.posts');
 					// dconsole.log($scope.posts);
 				});
-
 			};
 
 			queryEventWidget();

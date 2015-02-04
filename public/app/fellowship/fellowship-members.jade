@@ -12,6 +12,28 @@
 					a(ng-href="#") Resource
 				a.tool-bar_setting.glyphicon.glyphicon-cog(ng-href="#")
 		.row
+			.member-menu
+				.member-menu__title
+					h3 
+						.glyphicon.glyphicon-user
+						| 23 Members
+				.member-menu__links
+					a(ng-click='setMemberFilter("all")')
+						| All
+						span.badge 23
+					a(ng-click='setMemberFilter("admin")')
+						| Admin
+						span.badge 4
+					a(ng-click='setMemberFilter("new")')
+						| New
+						span.badge 2
+					a(ng-click='setMemberFilter("pending")')
+						| Pending
+						span.badge 3
+					a Invite Others
+		.row
+			ocfc-member-card(user="user", is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat='user in FellowshipDataSvc.users |filter:membersCondition')
+		.row(ng-show='false')
 			button.form-control.btn.btn-primary.invite-friends(ng-click="showInviteFriend = true;") 
 				span.glyphicon.glyphicon-user
 				| INVITE FRIENDS
@@ -37,24 +59,3 @@
 						| SEND
 					
 				
-		.row
-			.text-dark-grey(ng-style="{'position':'relative', 'top':'39px','font-size':'18px'}") Require Admin Approval
-			.col-md-3(ng-style="{'margin-top': '50px'}",ng-repeat='user in FellowshipDataSvc.users |filter:notApproved')
-				.member-card
-					img.member-card__img-size.text-black.img-circle.center-block(ng-src='{{user.userId.profileImg}}')
-					.member-card__triangle-bottomright
-					.member-card__role {{user.role|UserRoleFilter}}
-					.member-card__name.text-black.text-center  {{user.userId.fullName}}
-					.member-card__more-info.text-dark-grey.text-center FULL PROFILE
-					button.btn.btn-danger.center-block(ng-if='user.status=="pending"', ng-click="approveFellowshipUser(user)") APPROVE
-
-		.row
-			.Title.text-dark-grey(ng-style="{'position':'relative', 'top':'39px','font-size':'18px'}") Approved Members
-			.col-md-3(ng-style="{'margin-top': '50px'}",ng-repeat='user in FellowshipDataSvc.users |filter:approved')
-				.member-card
-					img.member-card__img-size.text-black.img-circle.center-block(ng-src='{{user.userId.profileImg}}')
-					.member-card__triangle-bottomright
-					.member-card__role {{user.role|UserRoleFilter}}
-					.member-card__name.text-black.text-center  {{user.userId.fullName}}
-					.member-card__more-info.text-dark-grey.text-center FULL PROFILE
-					button.btn.btn-danger.center-block(ng-if='user.status=="pending"', ng-click="approveFellowshipUser(user)") APPROVE

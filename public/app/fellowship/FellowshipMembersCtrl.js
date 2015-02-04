@@ -34,7 +34,31 @@ angular.module('app').controller('FellowshipMembersCtrl', function ($http, $scop
 		return fellowshipUser.status==='approved';
 	};
 
-
+	//fellowship members
+	$scope.membersCondition = "";
+	$scope.setMemberFilter = function(type) {
+		if(type==='all'){
+			$scope.membersCondition = {'status':'approved'};
+			return;
+		}
+		if(type==='admin'){
+			console.log('admin');
+			$scope.membersCondition = {'role':'admin'};
+			return;
+		}
+		if(type==='pending'){
+			$scope.membersCondition = {'status':'pending'};
+			return;
+		}
+		if(type==='new') {
+			$scope.membersCondition = function(user){
+				var currDate=new Date();
+				var signupDate=new Date(user.userId.signupDate);
+				return ((currDate.getTime())-(signupDate.getTime())<=2629743830)&&user.status==='approved';
+			};
+			return;
+		}
+	};
 
 });
 
