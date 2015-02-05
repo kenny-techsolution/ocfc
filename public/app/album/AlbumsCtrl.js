@@ -76,7 +76,11 @@ angular.module('app').controller('AlbumsCtrl', function ($scope,$http,AlbumsApiS
 		$scope.albums=albumArray;
 		console.log('chk $scope.albums');
 		console.log($scope.albums);
+
+
 	});
+
+
 
 
 });

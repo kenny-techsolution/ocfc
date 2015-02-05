@@ -1,5 +1,6 @@
 var Album = require('mongoose').model('Album'),
 	Image = require('mongoose').model('Image'),
+	User = require('mongoose').model('User'),
 	Fellowship = require('mongoose').model('Fellowship'),
 	FellowshipUser = require('mongoose').model('FellowshipUser'),
 	deleteKey = require('key-del'),
@@ -84,7 +85,7 @@ exports.queryAlbum=function(req, res){
 			async.forEachLimit(fellowship.albumIds, 3, function (albumId, callback) {
 				console.log('chk albumId');
 				console.log(albumId);
-				Album.findOne({_id:albumId}, function (err,album) {
+				Album.findOne({_id:albumId}).populate('imageIds createdBy').exec(function (err,album) {
 					console.log('chk albums before being pushed');
 					console.log(album);
 					if (err) return callback(err)

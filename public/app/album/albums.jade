@@ -21,12 +21,26 @@
 		.col-xs-12.album-section
 			div.album-section
 				div.album-section__album-img-upload(ng-repeat='album in albums')
-					div.album-section__name.text-black {{album.name}}
-					div.album-section__description.text-black {{album.description}}
-					div.album-section__created-on.text-black {{album.createdOn}}
+					img.album-section__image(ng-src='https://res.cloudinary.com/ocfc/image/upload/w_248,h_192,c_fill,g_faces/{{album.imageIds[0].path}}')
+					div.album-section__name.text-black Title: {{album.name}}
+					div.album-section__description.text-black Description: {{album.description}}
+					div.album-section__created-by.text-black Created By: {{album.createdBy.fullName}}
+					div.album-section__created-on.text-black Created On: {{album.createdOn | date}}
 				div.album-section__album-upload(ng-file-select='openAlbum($files)', data-multiple='false', title='profile', onclick='this.value = null')
 					div.album-section__plus.text-dark-grey +
 					div.album-section__add-album.text-dark-grey Create Album
+
+	.row
+		.col-xs-12.album-section
+			div.album-section
+				div.album-section__album-img-upload(ng-repeat='image in album.imageIds')
+					img.album-section__image(ng-src='https://res.cloudinary.com/ocfc/image/upload/w_248,h_192,c_fill,g_faces/{{image.path}}')
+					div.album-section__name.text-black Title: {{image.caption}}
+					div.album-section__created-on.text-black Created On: {{image.createdOn | date}}
+				div.album-section__album-upload(ng-file-select='openAlbum($files)', data-multiple='false', title='profile', onclick='this.value = null')
+					div.album-section__plus.text-dark-grey +
+					div.album-section__add-album.text-dark-grey Create Album
+
 .album-input__media(ng-if="files.length>0",ng-show='clickedPost')
 	.create-album-header
 		div.create-album-header__title.text-dark-grey Create Album
@@ -34,7 +48,7 @@
 		div.create-album-header__close(ng-click='cancelAlbumUpload()',ng-show='clickedPost') X
 	.row
 		.album-section-left.col-md-4
-			div {{name}} {{description}} {{location}} {{clickedPost}}
+			div
 				textarea.album-section-left__title.text-black(placeholder='Untitled Album',ng-model='albumObj.name')
 				textarea.album-section-left__description.text-black(placeholder='Say something about this album',ng-model='albumObj.description')
 			textarea.album-section-left__location.text-black(placeholder='Where were these taken?',ng-model='albumObj.location')
