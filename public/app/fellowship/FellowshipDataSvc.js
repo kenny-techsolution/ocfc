@@ -6,12 +6,13 @@
 
 // factory, is a singleton, that contains data or function that can be used
 // across controllers
-angular.module('app').service('FellowshipDataSvc', function(FellowshipUserApiSvc,FellowshipApiSvc,IdentitySvc) {
+angular.module('app').service('FellowshipDataSvc', function(FellowshipUserApiSvc,FellowshipApiSvc,IdentitySvc,AlbumsApiSvc) {
 	// rest api standard, for GET, if id is specified, it will grab specific
 	// user by id
 	this.users=[];
 	this.fellowship=null;
 	this.isAdmin=false;
+	this.album=null;
 	var that=this;
 	this.initialize=function(fellowId){
 //		console.log("this.initialize");

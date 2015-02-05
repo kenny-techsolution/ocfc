@@ -12,16 +12,38 @@ exports.createAlbum = function (req, res) {
 	console.log('chk req.body');
 	console.log(req.body);
 
-	var album = req.body;
-	album = {
-		name: album.name,
+	console.log('chk req.user');
+	console.log(req.user);
+
+	var albumObj = req.body;
+	albumObj = {
+		name: albumObj.name,
+		description: albumObj.description,
+		location: albumObj.location,
 		createdOn: new Date(),
-		createdBy: req.user.id
+		createdBy: req.user._id
 	}
-	var album = new Album(album);
+	var album = new Album(albumObj);
 	album.save(function (err, album) {
 		if (err) return res.json(err);
-		return res.json({status: "success", album: album})
+		console.log('chk album obj');
+		console.log(album);
+
+		console.log('chk req.body.fellowshipId');
+		console.log(req.body.fellowshipId);
+
+		//Added 02.04.2015 Need to update album ID onto Fellowship
+		Fellowship.findById(req.body.fellowshipId).exec(function (err, fellowship) {
+			console.log('chk fellowship obj');
+			console.log(fellowship);
+			console.log('server Fellowship.findById has been called');
+			fellowship.albumIds.push(album._id);
+			fellowship.save(function (err) {
+				console.log('fellowship.save has been called');
+				if (err) return res.json(err);
+				return res.json(album);
+			});
+		});
 	})
 };
 
@@ -63,9 +85,16 @@ exports.deleteAlbum = function (req, res) {
 exports.createImage = function (req, res) {
 	console.log('server createImage has been called');
 	//grab album path from Cloudinary
+	console.log('chk req.body');
+	console.log(req.body);
+
 	var path = req.body.path;
 	var image = new Image();
 	image.path = path;
+	image.caption = req.body.caption;
+
+	console.log('chk image before save');
+	console.log(image);
 
 	//TODO make sure user can post to this album
 	image.save(function (err) {
@@ -84,6 +113,7 @@ exports.createImage = function (req, res) {
 				return res.json(image);
 			});
 		});
+
 	});
 };
 //Get - Round1

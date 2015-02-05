@@ -1,0 +1,46 @@
+//album.jade
+.container.album-page
+	.row.album-page__tool-bar
+		.col-xs-12
+			div.glyphicon.glyphicon-home
+			div.tool-bar__fellow-name {{FellowshipDataSvc.fellowship.name| capitalize}}
+			div.tool-bar__links
+				a(ng-href="#" ng-click="goto('')") Home
+				a(ng-href="#" ng-click="goto('members')") Members
+				a(ng-href="/album") Albums
+				a(ng-href="#") Resource
+			a.tool-bar_setting.glyphicon.glyphicon-cog(ng-href="#")
+	.row
+		.col-xs-12.column
+			div.album-header
+				div.album-header__photos.text-black Photos
+					div
+						div.album-header__font-size.text-black Fellowship Photos
+						div.album-header__font-size.text-black Albums
+	.row
+		.col-xs-12.album-section
+			div.album-section(ng-file-select='openAlbum($files)', data-multiple='false', title='profile', onclick='this.value = null')
+				div.album-section__album-upload
+				div.album-section__plus.text-dark-grey +
+				div.album-section__add-album.text-dark-grey Create Album
+
+
+.album-input__media(ng-if="files.length>0",ng-show='clickedPost')
+	.create-album-header
+		div.create-album-header__title.text-dark-grey Create Album
+		button.create-album-header__add.text-dark-grey.pull-right(ng-file-select='openAlbum($files)', data-multiple='false', title='profile', onclick='this.value = null') + Add More Photos
+		div.create-album-header__close(ng-click='cancelAlbumUpload()',ng-show='clickedPost') X
+	.row
+		.album-section-left.col-md-4
+			div {{name}} {{description}} {{location}} {{clickedPost}}
+				textarea.album-section-left__title.text-black(placeholder='Untitled Album',ng-model='albumObj.name')
+				textarea.album-section-left__description.text-black(placeholder='Say something about this album',ng-model='albumObj.description')
+			textarea.album-section-left__location.text-black(placeholder='Where were these taken?',ng-model='albumObj.location')
+			button.album-section-left__post.text-dark-grey(ng-click='createAlbum()') Post
+		.album-inner-right.col-md-8
+			ocfc-upload-albums-image(file="file", files="files",image-array="imageArray", image-objs="imageObjs", cloudinary-params="cloudinarySignedParams", ng-repeat='file in files',name='name',description='description')
+			.album-inner-right__upload-image(ng-file-select='openAlbum($files)', data-multiple='false', title='profile', onclick='this.value = null')
+			div.glyphicon.glyphicon-plus.album-inner-right__more(ng-file-select='openAlbum($files)', data-multiple='false', title='profile', onclick='this.value = null')
+
+
+
