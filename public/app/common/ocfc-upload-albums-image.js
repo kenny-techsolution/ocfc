@@ -1,4 +1,4 @@
-angular.module('app').directive('ocfcUploadAlbumImage', function ($upload, ImageApiSvc,FellowshipDataSvc,AlbumApiSvc) {
+angular.module('app').directive('ocfcUploadAlbumsImage', function ($upload, ImageApiSvc,FellowshipDataSvc,AlbumsApiSvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -11,8 +11,15 @@ angular.module('app').directive('ocfcUploadAlbumImage', function ($upload, Image
 			imageObjs:'='
 		},
 		replace: true,
-		templateUrl: '/partials/common/ocfc-upload-album-image',
+		templateUrl: '/partials/common/ocfc-upload-albums-image',
 		controller: function ($scope) {
+
+			$scope.imageObj={
+				public_id:'',
+				caption:''
+			}
+
+
 			console.log("scope file .............");
 			console.log($scope.file);
 			$scope.imageId = '';
@@ -36,6 +43,16 @@ angular.module('app').directive('ocfcUploadAlbumImage', function ($upload, Image
 			}).success(function (data, status, headers, config) {
 				$scope.path = 'https://res.cloudinary.com/ocfc/image/upload/' + data.public_id;
 				$scope.$apply();
+
+				//use object to keep reference so it could be reused in other areas
+				$scope.imageObj={
+					public_id:'',
+					caption:''
+				}
+
+				$scope.imageObj.public_id=data.public_id;
+				$scope.imageArray.push($scope.imageObj);
+
 
 				//call create image
 //				console.log('front-end new image creation has been called');
