@@ -33,7 +33,7 @@ angular.module('app').controller('FellowshipMembersCtrl', function ($http, $scop
 	$scope.approved = function(fellowshipUser){
 		return fellowshipUser.status==='approved';
 	};
-
+	$scope.selectedMemberType = 'all';
 	//fellowship members
 	$scope.membersCondition = "";
 	$scope.setMemberFilter = function(type) {
@@ -51,15 +51,15 @@ angular.module('app').controller('FellowshipMembersCtrl', function ($http, $scop
 			return;
 		}
 		if(type==='new') {
-			$scope.membersCondition = function(user){
-				var currDate=new Date();
-				var signupDate=new Date(user.userId.signupDate);
-				return ((currDate.getTime())-(signupDate.getTime())<=2629743830)&&user.status==='approved';
-			};
+
 			return;
 		}
 	};
-
+	$scope.newCondition = function(user){
+		var currDate=new Date();
+		var signupDate=new Date(user.userId.signupDate);
+		return ((currDate.getTime())-(signupDate.getTime())<=2629743830)&&user.status==='approved';
+	};
 });
 
 
