@@ -1,5 +1,7 @@
-angular.module('app').controller('AlbumsCtrl', function ($scope,$http,AlbumsApiSvc,ImageApiSvc,FellowshipDataSvc) {
+angular.module('app').controller('AlbumsCtrl', function ($scope,$http,AlbumsApiSvc,ImageApiSvc,FellowshipDataSvc,$routeParams) {
 	$scope.files = [];
+	$scope.FellowshipDataSvc=FellowshipDataSvc;
+	$scope.FellowshipDataSvc.initialize($routeParams.id);
 	$scope.imageArray=[];
 	$scope.imageObjs = [];
 	$scope.cloudinarySignedParams;
@@ -34,7 +36,7 @@ angular.module('app').controller('AlbumsCtrl', function ($scope,$http,AlbumsApiS
 		var album=new AlbumsApiSvc({name:$scope.albumObj.name,
 								   description:$scope.albumObj.description,
 								   location:$scope.albumObj.location,
-								   fellowshipId:FellowshipDataSvc.fellowship._id});
+								   fellowshipId:$routeParams.id});
 		console.log('chk album');
 		console.log(album);
 		album.$save(function(){
@@ -68,7 +70,13 @@ angular.module('app').controller('AlbumsCtrl', function ($scope,$http,AlbumsApiS
 		$scope.clickedPost=false;
 	};
 
-
+	//query albums to capture all album pertaining to a fellowship
+	//app.get('/api/albums', albums.queryAlbum);
+	var albumArray=AlbumsApiSvc.query({fellowshipId: $routeParams.id},function(){
+		$scope.albums=albumArray;
+		console.log('chk $scope.albums');
+		console.log($scope.albums);
+	});
 
 
 });

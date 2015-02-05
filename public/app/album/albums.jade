@@ -19,12 +19,14 @@
 						div.album-header__font-size.text-black Albums
 	.row
 		.col-xs-12.album-section
-			div.album-section(ng-file-select='openAlbum($files)', data-multiple='false', title='profile', onclick='this.value = null')
-				div.album-section__album-upload
-				div.album-section__plus.text-dark-grey +
-				div.album-section__add-album.text-dark-grey Create Album
-
-
+			div.album-section
+				div.album-section__album-img-upload(ng-repeat='album in albums')
+					div.album-section__name.text-black {{album.name}}
+					div.album-section__description.text-black {{album.description}}
+					div.album-section__created-on.text-black {{album.createdOn}}
+				div.album-section__album-upload(ng-file-select='openAlbum($files)', data-multiple='false', title='profile', onclick='this.value = null')
+					div.album-section__plus.text-dark-grey +
+					div.album-section__add-album.text-dark-grey Create Album
 .album-input__media(ng-if="files.length>0",ng-show='clickedPost')
 	.create-album-header
 		div.create-album-header__title.text-dark-grey Create Album
