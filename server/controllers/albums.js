@@ -64,6 +64,27 @@ exports.getAlbum = function (req, res) {
 	})
 };
 
+//Added queryAlbum on 02.04.2015
+exports.queryAlbum=function(req, res){
+	//Lookup albumIds for a Fellowship
+	Fellowship.findOne({fellowshipId:req.body.fellowshipId}).exec(function(err,fellowship){
+		if (err) return res.json(err);
+		console.log('chk fellowship');
+		console.log(fellowship);
+		for(var i=0;i<fellowship.albumIds.length;i++){
+
+			Album.find({_id:fellowship.albumIds[i]._id}).populate('imageIds').exec(function (err, queryAlbum) {
+				if (err) return res.json(err);
+				return res.json(queryAlbum);
+			});
+		}
+
+	});
+
+
+};
+
+
 //Put - Round1
 exports.updateAlbum = function (req, res) {
 	var album = commFunc.removeInvalidKeys(req.body, ['name', 'description']);

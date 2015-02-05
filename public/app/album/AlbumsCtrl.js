@@ -68,6 +68,8 @@ angular.module('app').controller('AlbumsCtrl', function ($scope,$http,AlbumsApiS
 		$scope.clickedPost=false;
 	};
 
+	//query albums to capture all album pertaining to a fellowship
+
 
 
 
