@@ -20,6 +20,16 @@ angular.module('app').directive('ocfcMemberCard', function () {
 					"click": "deletePost()"
 				}
 			];
+			$scope.pendingDropdown = [
+				{
+					"text": "Approve Join",
+					"click": "editPost()"
+				},
+				{
+					"text": "Deny Join",
+					"click": "deletePost()"
+				}
+			];
 		}
 	};
 });

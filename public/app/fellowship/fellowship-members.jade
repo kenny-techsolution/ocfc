@@ -16,23 +16,29 @@
 				.member-menu__title
 					h3 
 						.glyphicon.glyphicon-user
-						| 23 Members
+						| {{allMembers.length}} Members
 				.member-menu__links
-					a(ng-click='setMemberFilter("all")')
+					a(ng-click='selectedMemberType="all"')
 						| All
-						span.badge 23
-					a(ng-click='setMemberFilter("admin")')
+						span.badge {{allMembers.length}}
+					a(ng-click='selectedMemberType="admin"')
 						| Admin
-						span.badge 4
-					a(ng-click='setMemberFilter("new")')
+						span.badge {{adminMembers.length}}
+					a(ng-click='selectedMemberType="new"')
 						| New
-						span.badge 2
-					a(ng-click='setMemberFilter("pending")')
+						span.badge {{newMembers.length}}
+					a(ng-click='selectedMemberType="pending"')
 						| Pending
-						span.badge 3
+						span.badge {{pendingMembers.length}}
 					a Invite Others
-		.row
-			ocfc-member-card(user="user", is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat='user in FellowshipDataSvc.users |filter:membersCondition')
+		.row(ng-show="selectedMemberType=='all'")
+			ocfc-member-card(user="user", is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.allMembers=(FellowshipDataSvc.users |filter:{'status':'approved'})")
+		.row(ng-show="selectedMemberType=='admin'")
+			ocfc-member-card(user="user", is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.adminMembers=(FellowshipDataSvc.users |filter:{'role':'admin'})")
+		.row(ng-show="selectedMemberType=='pending'")
+			ocfc-member-card(user="user", is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.newMembers=(FellowshipDataSvc.users |filter:{'status':'pending'})")
+		.row(ng-show="selectedMemberType=='new'")
+			ocfc-member-card(user="user", is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.pendingMembers=(FellowshipDataSvc.users |filter:newCondition)")			
 		.row(ng-show='false')
 			button.form-control.btn.btn-primary.invite-friends(ng-click="showInviteFriend = true;") 
 				span.glyphicon.glyphicon-user
