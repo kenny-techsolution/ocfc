@@ -60,6 +60,12 @@ angular.module('app').controller('FellowshipMembersCtrl', function ($http, $scop
 		var signupDate=new Date(user.userId.signupDate);
 		return ((currDate.getTime())-(signupDate.getTime())<=2629743830)&&user.status==='approved';
 	};
+
+	$scope.inputEmail = '';
+	$scope.inputEmails = [];
+	$scope.enterEmail = function(){
+		$scope.inputEmails.push($scope.inputEmail);
+	};
 });
 
 

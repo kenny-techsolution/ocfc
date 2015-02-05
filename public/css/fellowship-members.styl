@@ -39,7 +39,7 @@
 	width auto
 	
 .invite-widget
-	margin-top 10px
+	margin-top 2px
 	background-color white
 	border 1px solid #ddd
 
@@ -66,6 +66,9 @@
 			width 10%
 			padding 6px 12px
 			border 1px solid #ddd
+			&:hover
+				background-color white
+				border 1px solid #337ab7
 	.email-lists
 		margin-top 10px
 		li
@@ -89,7 +92,9 @@
 		width auto
 		.glyphicon
 			margin-right 10px
-
+	.cancel
+		border none
+		margin-right 5px
 .member-card
 	margin-right 5px
 	margin-left 5px
@@ -148,3 +153,29 @@
 	font-size 17px
 	font-weight 900
 	color #337ab7
+.invite-friend
+	.jumbotron
+		border-radius 2px
+		background-position -179px -296px
+		background-image url("./images/balloonsky.jpg")
+		margin-bottom 0px
+	h4
+		font-size 14px
+		color #222
+		font-weight normal
+.invited-list
+	margin-top 10px
+	border 1px solid #ddd
+	th
+		color #908e8e
+		&.action
+			width 200px
+		&.status
+			width 160px
+		&.invited-on
+			width 124px
+	td
+		color #908e8e
+	.btn
+		border 1px solid #ddd
+		padding 4px 10px

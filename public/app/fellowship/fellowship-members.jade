@@ -39,31 +39,59 @@
 			ocfc-member-card(user="user", is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.newMembers=(FellowshipDataSvc.users |filter:{'status':'pending'})")
 		.row(ng-show="selectedMemberType=='new'")
 			ocfc-member-card(user="user", is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.pendingMembers=(FellowshipDataSvc.users |filter:newCondition)")			
-		.row(ng-show="selectedMemberType=='invite'")
-			h3 invite!!!
-		.row(ng-show='false')
-			button.form-control.btn.btn-primary.invite-friends(ng-click="showInviteFriend = true;") 
-				span.glyphicon.glyphicon-user
-				| INVITE FRIENDS
-			a(ng-click="showInviteFriend = false;") close
-			.invite-widget.am-fade-and-slide-top(ng-if='showInviteFriend')
-				.invite-widget__title
-					h3
-						span.glyphicon.glyphicon-user
-						| Please provide emails to invite people to join.
+		.row.invite-friend(ng-show="selectedMemberType=='invite'")
+			.jumbotron
+				h3 Invite others to join!
+				button.form-control.btn.btn-primary.invite-friends(ng-click="showInviteFriend = true;") 
+					span.glyphicon.glyphicon-user
+					| INVITE FRIENDS
+			.invite-widget.am-fade-and-slide-top(ng-show='showInviteFriend')
 				.invite-widget__add-emails
 					.input-bar
-						input.form-control(type="text", placeholder="add email here.")
-						button.form-control.btn.btn-default
+						input.form-control(type="text", ng-model='inputEmail' placeholder="add email here.")
+						button.form-control.btn.btn-default(ng-click='enterEmail()')
 							span.glyphicon.glyphicon-plus
 					ul.email-lists.list-group
-						li.list-group-item yoyocicada@gmail.com
-						li.list-group-item butterfly43026@gmail.com
+						li.list-group-item(ng-repeat="email in inputEmails") 
+							|{{email}}
+							.glyphicon.glyphicon-remove.pull-right
 				.invite-widget__message
 						textarea.ocfc.form-control.message(placeholder="Include a welcome message here.")
 				.invite-widget__bottom
 					button.pull-right.form-control.btn.btn-primary
 						span.glyphicon.glyphicon-send
 						| SEND
-					
+					a.btn.btn-default.cancel.pull-right(ng-click="showInviteFriend = false;") close
+
+			h4 You have invited 3 friends.
+			table.table.table-striped.invited-list
+				tr
+					th.invitee Invitee
+					th.invited-on Invited on
+					th.status Status
+					th.action Action
+				tr
+					td butterfly4302@gmail.com
+					td 10/20/2014
+					td yet responded
+					td 
+						.btn-group
+							button.btn.btn-default(type='button') CANCEL
+							button.btn.btn-default(type='button') INVITE AGAIN
+				tr
+					td yoyocicada@gmail.com
+					td 10/31/2015
+					td yet responded
+					td 
+						.btn-group
+							button.btn.btn-default(type='button') CANCEL
+							button.btn.btn-default(type='button') INVITE AGAIN
+				tr
+					td tommy4302@gmail.com
+					td 11/22/2014
+					td account created
+					td 
+						.btn-group
+							button.btn.btn-default(type='button') CANCEL
+							button.btn.btn-default(type='button') INVITE AGAIN					
 				

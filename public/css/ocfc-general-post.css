@@ -55,7 +55,7 @@
 }
 .post-widget__output {
   height: auto;
-  width: 555px;
+  width: 541px;
   padding-left: 15px;
   font-size: 14px;
   padding: 17px 19px;
@@ -127,14 +127,14 @@
   color: #2f2f2f;
 }
 .post-widget__comment-input {
-  width: 555px;
+  width: 541px;
   height: auto;
   position: relative;
   background-color: #e8e8e8;
   padding: 5px 5px 0px 5px;
 }
 .post-widget__comment-input textarea {
-  width: 478px;
+  width: 465px;
   height: 28px;
   padding: 5px;
   border: 1px solid #b3b3b3;
