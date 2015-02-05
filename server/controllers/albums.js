@@ -4,6 +4,7 @@ var Album = require('mongoose').model('Album'),
 	FellowshipUser = require('mongoose').model('FellowshipUser'),
 	deleteKey = require('key-del'),
 	commFunc = require('../utilities/commonFunctions'),
+	async = require('async'),
 	_ = require('lodash');//Library for Array
 
 //Post - Round1
@@ -67,18 +68,40 @@ exports.getAlbum = function (req, res) {
 //Added queryAlbum on 02.04.2015
 exports.queryAlbum=function(req, res){
 	//Lookup albumIds for a Fellowship
-	Fellowship.findOne({fellowshipId:req.body.fellowshipId}).exec(function(err,fellowship){
+	console.log('server queryAlbum has been called');
+	console.log('chk req.query.fellowshipId');
+	console.log(req.query.fellowshipId);
+
+	Fellowship.findOne({_id:req.query.fellowshipId}).exec(function(err,fellowship){
 		if (err) return res.json(err);
 		console.log('chk fellowship');
 		console.log(fellowship);
-		for(var i=0;i<fellowship.albumIds.length;i++){
-
-			Album.find({_id:fellowship.albumIds[i]._id}).populate('imageIds').exec(function (err, queryAlbum) {
+		console.log('chk fellowship.albumIds.length');
+		console.log(fellowship.albumIds.length);
+		var albums=[];
+		if (fellowship.albumIds.length > 0) {
+			console.log('length condition pass');
+			async.forEachLimit(fellowship.albumIds, 3, function (albumId, callback) {
+				console.log('chk albumId');
+				console.log(albumId);
+				Album.findOne({_id:albumId}, function (err,album) {
+					console.log('chk albums before being pushed');
+					console.log(album);
+					if (err) return callback(err)
+					albums.push(album);
+					console.log('chk albums being pushed');
+					console.log(album);
+					callback();
+				});
+			}, function (err) {
 				if (err) return res.json(err);
-				return res.json(queryAlbum);
+				console.log('chk albums array');
+				console.log(albums);
+				return res.json(albums);
 			});
+		} else {
+			return res.json ({message: 'no albumIds found', album: albums});
 		}
-
 	});
 
 

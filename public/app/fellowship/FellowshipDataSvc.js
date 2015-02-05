@@ -28,6 +28,8 @@ angular.module('app').service('FellowshipDataSvc', function(FellowshipUserApiSvc
 		);
 		//grab one fellowship
 		that.fellowship=FellowshipApiSvc.get({id:fellowId}, function() {
+			//console.log('chk that.fellowship obj after initialization');
+			//console.log(that.fellowship);
 			for (var i = 0; i < IdentitySvc.currentUser.fellowships.length; i++) {
 				if (IdentitySvc.currentUser.fellowships[i].fellowshipId === that.fellowship._id) {
 					if(IdentitySvc.currentUser.fellowships[i].role === 'admin') {
