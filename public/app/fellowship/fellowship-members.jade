@@ -4,10 +4,11 @@
 		.row.tool-bar
 			.col-xs-12
 				div.glyphicon.glyphicon-home
+				div.tool-bar__fellow-name {{FellowshipDataSvc.fellowship.name| capitalize}}
 				div.tool-bar__links
 					a(ng-href="#" ng-click="goto('')") Home
 					a(ng-href="#" ng-click="goto('members')") Members
-					a(ng-href="/album") Albums
+					a(ng-href="#" ng-click="goto('album')") Albums
 					a(ng-href="#") Resource
 				a.tool-bar_setting.glyphicon.glyphicon-cog(ng-href="#")
 		.row
@@ -29,7 +30,7 @@
 					a(ng-click='selectedMemberType="pending"')
 						| Pending
 						span.badge {{pendingMembers.length}}
-					a Invite Others
+					a(ng-click='selectedMemberType="invite"') Invite Others
 		.row(ng-show="selectedMemberType=='all'")
 			ocfc-member-card(user="user", is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.allMembers=(FellowshipDataSvc.users |filter:{'status':'approved'})")
 		.row(ng-show="selectedMemberType=='admin'")
@@ -38,6 +39,8 @@
 			ocfc-member-card(user="user", is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.newMembers=(FellowshipDataSvc.users |filter:{'status':'pending'})")
 		.row(ng-show="selectedMemberType=='new'")
 			ocfc-member-card(user="user", is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.pendingMembers=(FellowshipDataSvc.users |filter:newCondition)")			
+		.row(ng-show="selectedMemberType=='invite'")
+			h3 invite!!!
 		.row(ng-show='false')
 			button.form-control.btn.btn-primary.invite-friends(ng-click="showInviteFriend = true;") 
 				span.glyphicon.glyphicon-user
