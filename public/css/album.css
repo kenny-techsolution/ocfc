@@ -1,35 +1,19 @@
-.photos {
+.album-header__photos {
   display: inline-block;
   width: 50%;
   font-size: 20px;
   font-weight: 600;
   margin-top: 28px;
 }
-.buttons {
-  display: inline-block;
-  width: 50%;
-  height: 58px;
-  vertical-align: top;
-  margin-top: 28px;
-}
-.button {
-  position: relative;
-  left: 275px;
-  top: 11px;
-}
-.font-size {
+.album-header__font-size {
   font-size: 16px;
   font-weight: 500;
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 20px;
   left: 275px;
   top: 11px;
 }
-.edit {
-  left: -8px;
-  top: 27px;
-}
-.album-upload {
+.album-section__album-upload {
   height: 250px;
   width: 250px;
   margin-top: 15px;
@@ -38,15 +22,131 @@
 .column {
   border-bottom: 1px solid #cdc3c3;
 }
-.plus {
+.album-section__plus {
   position: absolute;
   top: 65px;
   left: 120px;
   font-size: 70px;
 }
-.add-album {
+.album-section__add-album {
   font-size: 28px;
   top: 148px;
   left: 56px;
   position: absolute;
+}
+.album-inner {
+  height: 1148px;
+}
+.album-wall-img__image-section {
+  vertical-align: top;
+  width: 300px !important;
+  margin-right: 5px;
+  position: relative;
+  background-color: #e8e8e8;
+  cursor: pointer;
+  margin-top: 10px;
+  display: inline-block;
+}
+.album-wall-img__image-section img {
+  width: 300px !important;
+  height: 200px !important;
+}
+.album-inner-right__upload-image {
+  overflow: hidden;
+  border: 3px dashed #fff;
+  display: inline-block;
+  margin-top: 10px;
+  height: 255px !important;
+  background-color: #a9a9a9;
+  width: 299px !important;
+}
+.album-inner-right__upload-image .glyphicon-plus {
+  line-height: 43px !important;
+}
+.album-inner-right__more {
+  overflow: hidden;
+  position: relative;
+  font-size: 50px;
+  left: -172px;
+  top: -122px;
+}
+.album-input__media {
+  border: 1px solid #000;
+  position: absolute;
+  top: 50px;
+  width: 1304px;
+  height: 1200px;
+  background-color: #dae8ed;
+}
+.create-album-header__title {
+  font-weight: 600;
+  margin-top: 10px;
+  display: inline-block;
+}
+.create-album-header__add {
+  position: relative;
+  left: -45px;
+  margin-top: 14px;
+}
+.create-album-header__close {
+  position: relative;
+  left: 1275px;
+  top: -13px;
+}
+.create-album-header {
+  border-bottom: 1px solid #b9b5b5;
+  height: 50px;
+}
+.album-section-left__title {
+  margin-top: 12px;
+  margin-left: 10px;
+  display: block;
+  width: 300px;
+  height: 28px;
+  border-bottom: 1px dashed #a9a9a9;
+}
+.album-section-left__description {
+  display: block;
+  margin-left: 10px;
+  width: 300px;
+  height: 28px;
+  border: none;
+}
+.album-left-section {
+  height: 1148px;
+}
+.album-section-left__location {
+  margin-left: 10px;
+  margin-top: 20px;
+  width: 300px;
+  height: 28px;
+  display: block;
+  border: none;
+}
+.album-section-left__post {
+  margin-top: 25px;
+  margin-left: 205px;
+  width: 103px;
+  background-color: #0d52cb;
+  color: #fff;
+}
+.album-wall-img__caption {
+  margin-top: -38px;
+  width: 300px;
+  display: block;
+  height: 46px;
+  margin-bottom: 10px;
+}
+.album-wall-img__remove {
+  top: -226px;
+  left: 284px;
+}
+.progress {
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  width: 100%;
+  background-color: #8892d0;
+  height: 8px;
+  border-radius: 0px;
 }

@@ -1,0 +1,5 @@
+.album-wall-img__image-section
+	img(ng-src='{{path}}')
+	.progress(ng-style="{'width':progress +'%'}")
+	span.glyphicon.glyphicon-remove.album-wall-img__remove(ng-click="removeImage()")
+	textarea.album-wall-img__caption.text-black(placeholder='Say something about this photo',ng-model='caption')
