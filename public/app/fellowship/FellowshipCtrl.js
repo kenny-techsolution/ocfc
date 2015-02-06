@@ -1,12 +1,14 @@
 /*******************************************************************************
  ******************************************************************************/
-angular.module('app').controller('FellowshipCtrl', function ($scope, $location,PostApiSvc, FellowshipDataSvc, $routeParams, FellowshipApiSvc, $http, $upload,NotificationDataSvc,IdentitySvc,mySocket) {
+angular.module('app').controller('FellowshipCtrl', function ($scope, $location,PostApiSvc, FellowshipDataSvc, $routeParams, FellowshipApiSvc, $http, $upload,NotificationDataSvc,IdentitySvc,mySocket,CloudinaryDataSvc) {
 	console.log('FellowshipCtrl has been called');
 	//console.log(mySocket);
 	$scope.entryTime = new Date();
 	//include FellowshipDataSvc which captures all data needed for Fellowship widgets
 	$scope.FellowshipDataSvc = FellowshipDataSvc;
 	$scope.FellowshipDataSvc.initialize($routeParams.id);
+	$scope.CloudinaryDataSvc=CloudinaryDataSvc;
+	$scope.CloudinaryDataSvc.cloudinary();
 	//default banner image
 	$scope.FellowshipDataSvc.fellowship.bannerImage = 'logo-01_800px_1x_q2s8as';
 	$scope.FellowshipDataSvc.fellowship.logoImage = '293817_10151098311011098_970711788_n_rdhuj7';
@@ -163,17 +165,13 @@ angular.module('app').controller('FellowshipCtrl', function ($scope, $location,P
 		}
 	];
 
-	$http.get("/cloudinarySigned?type=fullSizeImg").success(function (data) {
-		$scope.cloudinarySignedParams = data;
-	});
-
 	$scope.editFellowshipImage = function ($files, type) {
 		console.log('editBannerImage within FellowshipCtrl has been triggered');
 		var file = $files[0];//allow 1 image upload only
 		console.log('for loop has been triggered');
 		$scope.upload = $upload.upload({
 			url: "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/upload",
-			data: $scope.cloudinarySignedParams,
+			data: $scope.FellowshipDataSvc.cloudinarySignedParams,
 			file: file
 		}).progress(function (e) {
 			console.log('progress method is being called');

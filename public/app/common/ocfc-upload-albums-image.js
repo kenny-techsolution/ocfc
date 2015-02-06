@@ -1,4 +1,4 @@
-angular.module('app').directive('ocfcUploadAlbumsImage', function ($upload, ImageApiSvc,FellowshipDataSvc,AlbumsApiSvc) {
+angular.module('app').directive('ocfcUploadAlbumsImage', function ($upload, ImageApiSvc,FellowshipDataSvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -18,7 +18,6 @@ angular.module('app').directive('ocfcUploadAlbumsImage', function ($upload, Imag
 				public_id:'',
 				caption:''
 			}
-
 
 			console.log("scope file .............");
 			console.log($scope.file);
@@ -53,26 +52,6 @@ angular.module('app').directive('ocfcUploadAlbumsImage', function ($upload, Imag
 				$scope.imageObj.public_id=data.public_id;
 				$scope.imageArray.push($scope.imageObj);
 
-
-				//call create image
-//				console.log('front-end new image creation has been called');
-//				console.log('chk data.public_id');
-//				console.log(data.public_id);
-//
-//				console.log('chk FellowshipDataSvc.fellowship.defaultAlbumId');
-//				console.log(FellowshipDataSvc.fellowship.defaultAlbumId);
-//
-//				var image = new ImageApiSvc({path: data.public_id,
-//					album_id: FellowshipDataSvc.fellowship.defaultAlbumId});
-//				image.$save(function () {
-//					$scope.imageId = image._id;
-//					$scope.caption=image.caption;
-//					$scope.imageArray.push(image._id);
-//					$scope.imageObjs.push({image_id: image._id, image_path: image.path});
-//				});
-//
-//				console.log('chk image object saved to server');
-//				console.log(image);
 
 			});
 			$scope.removeImage = function(){

@@ -1,22 +1,22 @@
-angular.module('app').controller('AlbumsCtrl', function ($scope,$http,AlbumsApiSvc,ImageApiSvc,FellowshipDataSvc,$routeParams) {
+angular.module('app').controller('AlbumsCtrl', function ($scope,$http,AlbumsApiSvc,ImageApiSvc,FellowshipDataSvc,$routeParams,CloudinaryDataSvc) {
 	$scope.files = [];
 	$scope.FellowshipDataSvc=FellowshipDataSvc;
 	$scope.FellowshipDataSvc.initialize($routeParams.id);
+	$scope.CloudinaryDataSvc=CloudinaryDataSvc;
+	$scope.CloudinaryDataSvc.cloudinary();
 	$scope.imageArray=[];
 	$scope.imageObjs = [];
-	$scope.cloudinarySignedParams;
+
+//	$scope.cloudinarySignedParams;
 	$scope.clickedPost=true;
 	$scope.fellowshipId=$routeParams.id;
-
+	//grab albums pertaining to a fellowship
+	$scope.albums=$scope.FellowshipDataSvc.albums;
 	$scope.albumObj={
 		name: '',
 		description: '',
 		location:''
 	}
-
-	$http.get("/cloudinarySigned?type=fullSizeImg").success(function (data) {
-		$scope.cloudinarySignedParams = data;
-	});
 
 	$scope.openAlbum=function($files){
 		console.log('front-end $scope.openAlbum has been called')
@@ -58,6 +58,10 @@ angular.module('app').controller('AlbumsCtrl', function ($scope,$http,AlbumsApiS
 					console.log(image);
 					$scope.clickedPost=false;
 
+					//Grab latest album status
+					$scope.FellowshipDataSvc.initialize($routeParams.id);
+					$scope.albums=$scope.FellowshipDataSvc.albums;
+
 				});
 
 
@@ -70,14 +74,5 @@ angular.module('app').controller('AlbumsCtrl', function ($scope,$http,AlbumsApiS
 	$scope.cancelAlbumUpload=function(){
 		$scope.clickedPost=false;
 	};
-
-	//query albums to capture all album pertaining to a fellowship
-	//app.get('/api/albums', albums.queryAlbum);
-	var albumArray=AlbumsApiSvc.query({fellowshipId: $scope.fellowshipId},function(){
-		$scope.albums=albumArray;
-		console.log('chk $scope.albums');
-		console.log($scope.albums);
-	});
-
 
 });

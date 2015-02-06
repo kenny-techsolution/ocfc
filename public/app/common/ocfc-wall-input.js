@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc, EventApiSvc, $routeParams, $http, $upload, ImageApiSvc, FellowshipDataSvc, IdentitySvc) {
+angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc, EventApiSvc, $routeParams, $http, $upload, ImageApiSvc, FellowshipDataSvc, IdentitySvc,CloudinaryDataSvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -10,6 +10,8 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 			//console.log('chk $scope.posts array');
 			//console.log($scope.posts);
 			$scope.FellowshipDataSvc=FellowshipDataSvc;
+			$scope.CloudinaryDataSvc=CloudinaryDataSvc;
+			$scope.CloudinaryDataSvc.cloudinary();
 			$scope.endTimeSelected=false;
 			$scope.imageArray = [];
 			$scope.imageObjs = [];
@@ -23,8 +25,6 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 				{value: 'Event', label: 'Event'},
 				{value: 'Announcement', label: 'Announcement'}
 			];
-
-			$scope.cloudinarySignedParams;
 			$scope.content = '';
 
 			$scope.$watch('selectedPostType', function (newVal, oldVal) {
@@ -249,9 +249,9 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 
 			});
 
-			$http.get("/cloudinarySigned?type=fullSizeImg").success(function (data) {
-				$scope.cloudinarySignedParams = data;
-			});
+//			$http.get("/cloudinarySigned?type=fullSizeImg").success(function (data) {
+//				$scope.cloudinarySignedParams = data;
+//			});
 
 			$scope.files = [];
 

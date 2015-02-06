@@ -44,7 +44,7 @@
 			textarea.album-section-left__location.text-black(placeholder='Where were these taken?',ng-model='albumObj.location')
 			button.album-section-left__post.text-dark-grey(ng-click='createAlbum()') Post
 		.album-inner-right.col-md-8
-			ocfc-upload-albums-image(file="file", files="files",image-array="imageArray", image-objs="imageObjs", cloudinary-params="cloudinarySignedParams", ng-repeat='file in files',name='name',description='description')
+			ocfc-upload-albums-image(file="file", files="files",image-array="imageArray", image-objs="imageObjs", cloudinary-params="CloudinaryDataSvc.cloudinarySignedParams", ng-repeat='file in files',name='name',description='description')
 			.album-inner-right__upload-image(ng-file-select='openAlbum($files)', data-multiple='false', title='profile', onclick='this.value = null')
 			div.glyphicon.glyphicon-plus.album-inner-right__more(ng-file-select='openAlbum($files)', data-multiple='false', title='profile', onclick='this.value = null')
 

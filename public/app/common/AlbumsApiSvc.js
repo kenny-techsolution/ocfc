@@ -9,7 +9,7 @@
 angular.module('app').factory('AlbumsApiSvc', function ($resource) {
 	// rest api standard, for GET, if id is specified, it will grab specific
 	// user by id
-	var albumsResource = $resource('/api/albums/:id', {
+	var albumsResource = $resource('/api/albums/:album_id', {
 		album_id: '@album_id'
 	}, {
 		'update': {

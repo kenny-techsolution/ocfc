@@ -12,7 +12,7 @@ angular.module('app').service('FellowshipDataSvc', function(FellowshipUserApiSvc
 	this.users=[];
 	this.fellowship=null;
 	this.isAdmin=false;
-	this.album=null;
+	this.albums=null;
 	var that=this;
 	this.initialize=function(fellowId){
 //		console.log("this.initialize");
@@ -39,9 +39,11 @@ angular.module('app').service('FellowshipDataSvc', function(FellowshipUserApiSvc
 					//console.log('chk that.isAdmin');
 					//console.log(that.isAdmin);
 				}
-				that.isAdmin =false;
 			}
 		});
-
+		that.albums=AlbumsApiSvc.query({fellowshipId: fellowId},function(){
+			console.log('chk that.albums');
+			console.log(that.albums);
+		});
 	};
 });
