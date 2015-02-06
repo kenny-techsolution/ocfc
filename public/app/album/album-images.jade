@@ -1,0 +1,23 @@
+.container.album-image-page
+	.row.album-img-page__tool-bar
+		.col-xs-12
+			div.glyphicon.glyphicon-home
+			div.tool-bar__fellow-name {{FellowshipDataSvc.fellowship.name| capitalize}}
+			div.tool-bar__links
+				a(ng-href="#", ng-click="goto('')") Home
+				a(ng-href="#", ng-click="goto('members')") Members
+				a(ng-href="#", ng-click="goto('albums')") Albums
+				a(ng-href="#") Resource
+			a.tool-bar_setting.glyphicon.glyphicon-cog(ng-href="#")
+	.row
+		.col-xs-12.column
+			div.album-header
+				div.album-header__photos.text-black Photos
+	.row
+		.col-xs-12.album-img-section
+			div.album-img-section
+				div.album-img-section__album-img-upload(ng-repeat='image in images')
+					img.album-img-section__image(ng-src='https://res.cloudinary.com/ocfc/image/upload/w_248,h_192,c_fill,g_faces/{{image.path}}')
+					div.album-img-section__edit.glyphicon.glyphicon-pencil(ng-show='clickedPost',ng-click='editAlbum()')
+					div.album-img-section__name.text-black Title: {{image.caption}}
+					div.album-img-section__created-on.text-black Created On: {{image.createdOn | date}}

@@ -4,9 +4,25 @@
   padding-left: 0px;
   padding-right: 0px;
 }
+.album-img-page {
+  margin-top: 60px;
+  width: 980px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
 .album-page__tool-bar {
   background-color: #2d2d2d;
   border-radius: 4px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #888;
+  padding: 9px 15px;
+  margin-right: 0px;
+}
+.album-img-page__tool-bar {
+  background-color: #2d2d2d;
+  border-radius: 4px;
+  margin-top: 58px;
   margin-bottom: 20px;
   font-weight: bold;
   color: #888;
@@ -35,6 +51,22 @@
 div.album-section {
   background-color: #fff;
   margin-top: 10px;
+}
+.album-img-section {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+div.album-img-section {
+  background-color: #fff;
+}
+.album-img-section__album-img-upload {
+  height: auto;
+  width: 250px;
+  margin-top: 15px;
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid #a9a9a9;
+  margin-right: 10px;
 }
 .row {
   margin-right: 0px;

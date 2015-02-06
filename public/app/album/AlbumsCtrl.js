@@ -6,6 +6,7 @@ angular.module('app').controller('AlbumsCtrl', function ($scope,$http,AlbumsApiS
 	$scope.imageObjs = [];
 	$scope.cloudinarySignedParams;
 	$scope.clickedPost=true;
+	$scope.fellowshipId=$routeParams.id;
 
 	$scope.albumObj={
 		name: '',
@@ -36,7 +37,7 @@ angular.module('app').controller('AlbumsCtrl', function ($scope,$http,AlbumsApiS
 		var album=new AlbumsApiSvc({name:$scope.albumObj.name,
 								   description:$scope.albumObj.description,
 								   location:$scope.albumObj.location,
-								   fellowshipId:$routeParams.id});
+								   fellowshipId:$scope.fellowshipId});
 		console.log('chk album');
 		console.log(album);
 		album.$save(function(){
@@ -72,15 +73,11 @@ angular.module('app').controller('AlbumsCtrl', function ($scope,$http,AlbumsApiS
 
 	//query albums to capture all album pertaining to a fellowship
 	//app.get('/api/albums', albums.queryAlbum);
-	var albumArray=AlbumsApiSvc.query({fellowshipId: $routeParams.id},function(){
+	var albumArray=AlbumsApiSvc.query({fellowshipId: $scope.fellowshipId},function(){
 		$scope.albums=albumArray;
 		console.log('chk $scope.albums');
 		console.log($scope.albums);
-
-
 	});
-
-
 
 
 });
