@@ -54,7 +54,7 @@ exports.getAlbum = function (req, res) {
 	//Album id must associate to your fellowship
 	//match by album id against fellowship
 	//grab fellowship_id, chk against fellowshipUser and chk if it matches session user's fellowship_id
-	Album.findOne({_id: req.params.id}).exec(function (err, album) {
+	Album.findOne({_id: req.params.id}).populate('imageIds').exec(function (err, album) {
 		if (err) return res.json(err);
 		Fellowship.find({}).where('albumIds', {$elemMatch: {$in: [album._id]}}).exec(function (err, fellowship) {
 			if (err) return res.json(err);

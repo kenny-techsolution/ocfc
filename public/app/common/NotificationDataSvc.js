@@ -16,23 +16,23 @@ angular.module('app').service('NotificationDataSvc', function(IdentitySvc,$http)
 	//then you can access variables such as this.notifications
 	this.refresh=function(){
 //		console.log("this.initialize");
-		console.log('chk IdentitySvc.currentUser._id');
-		console.log(IdentitySvc.currentUser._id);
+		//console.log('chk IdentitySvc.currentUser._id');
+		//console.log(IdentitySvc.currentUser._id);
 
 		$http.get('/api/notification?recipient=' + IdentitySvc.currentUser._id).success(function (data, status, headers, config) {
-			console.log('fire up NotificationDataSvc');
+			//console.log('fire up NotificationDataSvc');
 			// this callback will be called asynchronously
 			// when the response is available
 			that.notifications =data;
-			console.log('notification success');
-			console.log('chk that.notifications');
-			console.log(that.notifications);
+			//console.log('notification success');
+			//console.log('chk that.notifications');
+			//console.log(that.notifications);
 		}).error(function (data, status, headers, config) {
 			// called asynchronously if an error occurs
 			// or server returns response with an error status.
-			console.log('notification error');
-			console.log('chk data');
-			console.log(data);
+			//console.log('notification error');
+			//console.log('chk data');
+			//console.log(data);
 		});
 	};
 });

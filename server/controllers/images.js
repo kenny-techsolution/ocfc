@@ -10,7 +10,6 @@ var Image = require('mongoose').model('Image'),
 //Get - Round1
 exports.getImage = function (req, res) {
 	console.log('server getImage has been called');
-
 	console.log('chk req.params');
 	console.log(req.params);
 

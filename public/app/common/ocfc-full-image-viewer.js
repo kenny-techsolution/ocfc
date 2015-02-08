@@ -129,7 +129,7 @@ angular.module('app').directive('ocfcFullImageViewer', function (IdentitySvc, Co
 				};
 
 				$scope.closePopup = function () {
-					console.log('function closePopup called from ocfc-full-image-viewer');
+					//console.log('function closePopup called from ocfc-full-image-viewer');
 					$scope.imagePopup.isPopupOpen = false;
 
 				};
@@ -137,7 +137,7 @@ angular.module('app').directive('ocfcFullImageViewer', function (IdentitySvc, Co
 				$scope.addCommentToImage = function (imageComment) {
 					//app.post('/api/images/:image_id/comments', images.addCommentToImage);
 
-					console.log('front-end addCommentToImage is being called');
+					//console.log('front-end addCommentToImage is being called');
 					var commentObj = new ImageCommentApiSvc({userId: IdentitySvc.currentUser._id,
 						comment: imageComment,
 						fullName: IdentitySvc.currentUser.fullName,
@@ -145,10 +145,10 @@ angular.module('app').directive('ocfcFullImageViewer', function (IdentitySvc, Co
 					});
 
 					commentObj.$save(function () {
-						console.log('comment has been created on comment dataset, follow by updating image dataset');
+						//console.log('comment has been created on comment dataset, follow by updating image dataset');
 
-						console.log('chk which imageId got saved for image comments');
-						console.log(commentObj);
+						//console.log('chk which imageId got saved for image comments');
+						//console.log(commentObj);
 
 						//update certain fields
 						var image = new ImageApiSvc();
@@ -156,8 +156,8 @@ angular.module('app').directive('ocfcFullImageViewer', function (IdentitySvc, Co
 							{id: commentObj.image_id}
 							, image, function () {
 								///api/albums/:album_id/images/:image_id
-								console.log('ImageApiSvc.update has been called');
-								console.log('front-end updateImage from ocfc-full-image-viewer has completed');
+								//console.log('ImageApiSvc.update has been called');
+								//console.log('front-end updateImage from ocfc-full-image-viewer has completed');
 
 								//get image data here
 								//app.get('/api/albums/:album_id/images/:image_id', images.getImage);

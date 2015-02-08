@@ -11,16 +11,16 @@ angular.module('app').controller('SettingCtrl', function ($scope, $http,Identity
 
 	//Get user info & populate it on the input fields
 	var currentUser=IdentitySvc.currentUser;
-	console.log('chk currentUser obj');
-	console.log(currentUser);
+	//console.log('chk currentUser obj');
+	//console.log(currentUser);
 
 	$scope.fullName=currentUser.fullName;
 	$scope.email=currentUser.userName;
 
 	var birthday=new Date($scope.selectedYear, $scope.selectedMonth, $scope.selectedDay);
 
-	console.log('chk birthday');
-	console.log(birthday);
+	//console.log('chk birthday');
+	//console.log(birthday);
 
 	//$watch function used to enable UPDATE button
 	//only if there are difference in values against
@@ -56,9 +56,9 @@ angular.module('app').controller('SettingCtrl', function ($scope, $http,Identity
 
 	$scope.updateUserPassword = function() {
 		$http.put('/api/updatePassword',{oldPassword:$scope.oldPassword,newPassword:$scope.newPassword}).success(function(){
-			console.log('front-end updateUserPassword call successful');
+			//console.log('front-end updateUserPassword call successful');
 		}).error(function(){
-			console.log('front-end updateUserPassword call failed');
+			//console.log('front-end updateUserPassword call failed');
 		})
 	}
 });

@@ -11,7 +11,7 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 		templateUrl: '/partials/common/ocfc-question-post',
 		controller: function ($scope) {
 
-			console.log('ocfcQuestionPost has been called');
+			//console.log('ocfcQuestionPost has been called');
 			//console.log('chk on $scope.post obj for question');
 			//console.log($scope.post);
 
@@ -36,28 +36,28 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 
 			//edit post
 			$scope.editPost=function(){
-				console.log('editPost function called');
+				//console.log('editPost function called');
 				$scope.showEdit=true;
 			};
 
 			//delete post
 			$scope.deletePost=function(){
-				console.log('deletePost function called');
-				console.log('chk post obj');
-				console.log($scope.post);
+				//console.log('deletePost function called');
+				//console.log('chk post obj');
+				//console.log($scope.post);
 
 				var post = PostApiSvc.get({id:$scope.post._id}, function() {
-					console.log('chk variable post obj');
-					console.log(post);
+					//console.log('chk variable post obj');
+					//console.log(post);
 					post.$delete({id:$scope.post._id},function(){
-						console.log(post._id +' post has been deleted');
+						//console.log(post._id +' post has been deleted');
 
 						//remove post id from posts array
 						for(var i=0;i<$scope.posts.length;i++){
 							if ($scope.posts[i]._id===$scope.post._id){
 								$scope.posts.splice(i, 1);
-								console.log('chk index to be spliced/removed');
-								console.log(i);
+								//console.log('chk index to be spliced/removed');
+								//console.log(i);
 							}
 						}
 
@@ -67,7 +67,7 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 			};
 
 			$scope.hideEditPost=function(){
-				console.log('hideEditPost function called');
+				//console.log('hideEditPost function called');
 				$scope.showEdit=false;
 			};
 
@@ -77,7 +77,7 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 			$scope.updateEditedPost=function(){
 				//console.log('chk $scope.post obj');
 				//console.log($scope.post);
-				console.log('updateEditedPost function called for question post');
+				//console.log('updateEditedPost function called for question post');
 				$scope.post.question=$scope.newQuestPostContent;
 				//$scope.post.postType='question';
 				//console.log('chk $scope.post.question obj');
@@ -94,7 +94,7 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 					updatePost.postType="question";
 
 					PostApiSvc.update({id:updatePost._id},updatePost,function(){
-						console.log('front-end PostSvc.update has completed');
+						//console.log('front-end PostSvc.update has completed');
 					});
 
 					$scope.showEdit=false;
@@ -108,7 +108,7 @@ angular.module('app').directive('ocfcQuestionPost', function (IdentitySvc,Commen
 			$scope.deleteComment=PostCommentSvc.deleteComment;
 
 			$scope.selectPost=function(){
-				console.log('function selectPost called from ocfc-question-post');
+				//console.log('function selectPost called from ocfc-question-post');
 				$scope.imagePopup.isPopupOpen=true;
 				$scope.imagePopup.selectedPost=$scope.post;
 

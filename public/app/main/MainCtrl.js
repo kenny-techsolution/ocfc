@@ -1,6 +1,6 @@
 //This code stores all records into mvMainCtrl controller
 angular.module('app').controller('MainCtrl', function ($scope, IdentitySvc, $http, $location,NotificationDataSvc,FellowshipDataSvc) {
-	console.log('front-end MainCtrl has been called');
+	//console.log('front-end MainCtrl has been called');
 
 	$scope.IdentitySvc = IdentitySvc;
 

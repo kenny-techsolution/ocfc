@@ -12,7 +12,7 @@ angular.module('app').directive('ocfcAboutUs', function (IdentitySvc, CommentApi
 		}, //isolated scope
 		templateUrl: '/partials/common/ocfc-about-us',
 		controller: function ($scope) {
-			console.log('ocfcAboutUs has been called');
+			//console.log('ocfcAboutUs has been called');
 			//console.log('chk $scope.fellowship obj');
 			//console.log($scope.fellowship);
 			$scope.newAboutContent;
@@ -30,18 +30,18 @@ angular.module('app').directive('ocfcAboutUs', function (IdentitySvc, CommentApi
 			});
 
 			$scope.hideEditPost = function () {
-				console.log('hideEditPost function called');
+				//console.log('hideEditPost function called');
 				$scope.showEdit = false;
 			};
 
 			//edit post derived from dropdown
 			$scope.editPost = function () {
-				console.log('editPost function called');
+				//console.log('editPost function called');
 				$scope.showEdit = true;
 			};
 
 			$scope.updateEditedPost = function () {
-				console.log('updateEditedPost function called');
+				//console.log('updateEditedPost function called');
 				$scope.fellowship.about = $scope.newAboutContent;
 
 				//console.log('chk IdentitySvc obj');
@@ -49,7 +49,7 @@ angular.module('app').directive('ocfcAboutUs', function (IdentitySvc, CommentApi
 
 				//cannot update post other than your own
 				if ($scope.isAdmin) {
-					console.log('if condition is met, this post is made by current user');
+					//console.log('if condition is met, this post is made by current user');
 
 					var updateAboutUs = angular.copy($scope.fellowship);
 
@@ -58,7 +58,7 @@ angular.module('app').directive('ocfcAboutUs', function (IdentitySvc, CommentApi
 
 					//update post obj on the server side
 					FellowshipApiSvc.update({id: updateAboutUs._id}, updateAboutUs, function () {
-						console.log('front-end FellowshipSvc.update has completed');
+						//console.log('front-end FellowshipSvc.update has completed');
 					});
 					$scope.showEdit = false;
 				} else {

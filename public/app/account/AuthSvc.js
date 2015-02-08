@@ -32,10 +32,10 @@ angular.module('app').factory('AuthSvc', function ($http, IdentitySvc, $q, UserA
 					angular.extend(user, response.data.user);
 					IdentitySvc.currentUser = user;
 					NotificationDataSvc.refresh();
-					console.log('authenticateUser called containing NotificationDataSvc.refresh');
+					//console.log('authenticateUser called containing NotificationDataSvc.refresh');
 					//console.log("authenticateUser has been called in AuthSvc");
-					console.log("chk currentUser");
-					console.log(IdentitySvc.currentUser);
+					//console.log("chk currentUser");
+					//console.log(IdentitySvc.currentUser);
 					dfd.resolve(true);
 				} else {
 					dfd.resolve(false);
@@ -82,7 +82,7 @@ angular.module('app').factory('AuthSvc', function ($http, IdentitySvc, $q, UserA
 		},
 		authorizedCurrentUserForRoute: function (role) {
 			if (IdentitySvc.isAuthorized(role)) {
-				console.log("IdentitySvc.isAuthorized(role) returned as TRUE in AuthSvc");
+				//console.log("IdentitySvc.isAuthorized(role) returned as TRUE in AuthSvc");
 				return true;
 			} else {
 				return $q.reject('not authorized');
@@ -90,7 +90,7 @@ angular.module('app').factory('AuthSvc', function ($http, IdentitySvc, $q, UserA
 		},
 		authorizedAuthenticatedUserForRoute: function () {
 			if (IdentitySvc.isAuthenticated()) {
-				console.log("IdentitySvc.isAuthenticated() returned as TRUE in AuthSvc");
+				//console.log("IdentitySvc.isAuthenticated() returned as TRUE in AuthSvc");
 				return true;
 			} else {
 				return $q.reject('not authenticated');

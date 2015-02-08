@@ -6,15 +6,19 @@
 
 // factory, is a singleton, that contains data or function that can be used
 // across controllers
-angular.module('app').service('AlbumDataSvc', function(ImageApiSvc) {
+angular.module('app').service('AlbumDataSvc', function(ImageApiSvc,AlbumsApiSvc) {
 	// rest api standard, for GET, if id is specified, it will grab specific
 	// user by id
 	this.albumImages=null;
+	this.album=null;
 	var that=this;
 	this.initializeAlbum=function(album_id){
 		that.albumImages=ImageApiSvc.query({album_id:album_id},function(){
-			console.log('chk that.albumImages');
-			console.log(that.albumImages);
+			//console.log('chk that.albumImages');
+			//console.log(that.albumImages);
+		});
+		//app.get('/api/albums/:id', albums.getAlbum);
+		that.album=AlbumsApiSvc.get({album_id:album_id},function(){
 		});
 	};
 });

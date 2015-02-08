@@ -68,7 +68,9 @@ angular.module('app').config(function ($routeProvider, $locationProvider, $httpP
 		} else {
 			console.log("already login");
 			defer.reject('logged in');
-			$location.path("/fellowship/54a0f90799b81bbbb99a00ce");
+			$location.path("/personal/"+IdentitySvc.currentUser._id);
+			console.log('chkFellowshipDataSvc.fellowship');
+			console.log(FellowshipDataSvc.fellowship);
 		}
 		return defer.promise;
 	};

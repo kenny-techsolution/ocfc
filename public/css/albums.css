@@ -92,6 +92,13 @@ div.album-img-section {
   border: 1px solid #b3abab;
   background-color: #fff;
 }
+.edit-column {
+  background-color: #fff;
+}
+.edit-column button {
+  margin-top: 5px;
+  border-radius: 5px;
+}
 .album-section__plus {
   font-size: 70px;
   display: block;

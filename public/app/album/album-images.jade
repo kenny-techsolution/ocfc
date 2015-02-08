@@ -14,10 +14,19 @@
 			div.album-header
 				div.album-header__photos.text-black Photos
 	.row
+		.col-xs-12.edit-column
+			button.deleteAlbum.text-black.pull-right Delete Album
+			button.edit.text-black.pull-right(ng-click='getAlbum()') Edit
+	.row
 		.col-xs-12.album-img-section
 			div.album-img-section
+				div.title.text-black Album Title:
+				input.album-input.text-black(ng-model='AlbumDataSvc.album.album.name')
+				div.title.text-black Album Description:
+				input.album-input.text-black(ng-model='AlbumDataSvc.album.album.description')
+				div.title.text-black Album Location:
+				input.album-input.text-black(ng-model='AlbumDataSvc.album.album.location')
 				div.album-img-section__album-img-upload(ng-repeat='image in AlbumDataSvc.albumImages')
 					img.album-img-section__image(ng-src='https://res.cloudinary.com/ocfc/image/upload/w_248,h_192,c_fill,g_faces/{{image.path}}')
-					div.album-img-section__edit.glyphicon.glyphicon-pencil(ng-show='clickedPost',ng-click='editAlbum()')
 					div.album-img-section__name.text-black Title: {{image.caption}}
 					div.album-img-section__created-on.text-black Created On: {{image.createdOn | date}}

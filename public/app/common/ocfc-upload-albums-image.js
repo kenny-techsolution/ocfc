@@ -6,34 +6,33 @@ angular.module('app').directive('ocfcUploadAlbumsImage', function ($upload, Imag
 			files:'=',
 			name:'=',
 			description:'=',
-			cloudinaryParams:'=',
 			imageArray:'=',
-			imageObjs:'='
+			imageObjs:'=',
+			cloudinaryParams:'='
 		},
 		replace: true,
 		templateUrl: '/partials/common/ocfc-upload-albums-image',
 		controller: function ($scope) {
-
 			$scope.imageObj={
 				public_id:'',
 				caption:''
 			}
 
-			console.log("scope file .............");
-			console.log($scope.file);
+			//console.log("scope file .............");
+			//console.log($scope.file);
 			$scope.imageId = '';
 			$scope.path = '/css/images/image_placeholder.png';
 			$scope.progress = 0;
-			console.log($scope.cloudinaryParams);
+			//console.log($scope.cloudinaryParams);
 			$scope.upload = $upload.upload({
 				url: "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/upload",
 				data: $scope.cloudinaryParams,
 				file: $scope.file
 			}).progress(function (e) {
-				console.log('progress method is being called');
+				//console.log('progress method is being called');
 				$scope.progress = Math.round((e.loaded * 100.0) / e.total);
 				if ($scope.progress == 100) {
-					console.log('$scope.progress==100 IF statement has been called');
+					//console.log('$scope.progress==100 IF statement has been called');
 					setTimeout(function () {
 						$scope.progress = 0;
 					}, 10000);
@@ -57,7 +56,7 @@ angular.module('app').directive('ocfcUploadAlbumsImage', function ($upload, Imag
 			$scope.removeImage = function(){
 				var removedImage = ImageApiSvc.get({album_id: FellowshipDataSvc.fellowship.defaultAlbumId,
 					image_id: $scope.imageId}, function () {
-					console.log('image delete resource API called');
+					//console.log('image delete resource API called');
 					removedImage.album_id = FellowshipDataSvc.fellowship.defaultAlbumId;
 					removedImage.image_id = removedImage._id;
 					var removeImgFromPost = removedImage.image_id;

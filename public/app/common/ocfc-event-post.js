@@ -11,7 +11,7 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentAp
 		},
 		templateUrl: '/partials/common/ocfc-event-post',
 		controller: function ($scope) {
-			console.log('ocfcEventPost has been called');
+			//console.log('ocfcEventPost has been called');
 			$scope.isNew = (new Date($scope.post.createdOn)).getTime() > $scope.entryTime.getTime();
 			//console.log('chk $scope.post obj');
 			//console.log($scope.post);
@@ -40,28 +40,28 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentAp
 
 			//edit post
 			$scope.editPost=function(){
-				console.log('editPost function for Event post has been called');
+				//console.log('editPost function for Event post has been called');
 				$scope.showEdit=true;
 			};
 
 			//delete post
 			$scope.deletePost=function(){
-				console.log('deletePost function called');
-				console.log('chk post obj');
-				console.log($scope.post);
+				//console.log('deletePost function called');
+				//console.log('chk post obj');
+				//console.log($scope.post);
 
 				var post = PostApiSvc.get({id:$scope.post._id}, function() {
-					console.log('chk variable post obj');
-					console.log(post);
+					//console.log('chk variable post obj');
+					//console.log(post);
 					post.$delete({id:$scope.post._id},function(){
-						console.log(post._id +' post has been deleted');
+						//console.log(post._id +' post has been deleted');
 
 						//remove post id from posts array
 						for(var i=0;i<$scope.posts.length;i++){
 							if ($scope.posts[i]._id===$scope.post._id){
 								$scope.posts.splice(i, 1);
-								console.log('chk index to be spliced/removed');
-								console.log(i);
+								//console.log('chk index to be spliced/removed');
+								//console.log(i);
 							}
 						}
 
@@ -71,7 +71,7 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentAp
 			};
 
 			$scope.hideEditPost=function(){
-				console.log('hideEditPost function called');
+				//console.log('hideEditPost function called');
 				$scope.showEdit=false;
 			};
 
@@ -81,7 +81,7 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentAp
 			$scope.updateEditedPost=function(){
 				//console.log('chk $scope.post obj');
 				//console.log($scope.post);
-				console.log('updateEditedPost function called');
+				//console.log('updateEditedPost function called');
 				$scope.post.eventId.description=$scope.newEventPostContent;
 				$scope.post.eventId.title=$scope.newEventPostTitle;
 				$scope.post.eventId.fromDate=$scope.newEventPostFromDate;
@@ -94,12 +94,12 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentAp
 
 				//cannot update post other than your own
 				if ($scope.post.postBy._id===IdentitySvc.currentUser._id){
-					console.log('if condition is met, this post is made by current user');
+					//console.log('if condition is met, this post is made by current user');
 
 					var updatePost=angular.copy($scope.post);
 
-					console.log('chk updatePost obj');
-					console.log(updatePost);
+					//console.log('chk updatePost obj');
+					//console.log(updatePost);
 
 					//do not allow update on images
 					delete updatePost.imageIds;
@@ -107,11 +107,11 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentAp
 
 					//update post obj on the server side
 					var post=PostApiSvc.update({id: updatePost._id}, updatePost, function () {
-						console.log('chk post obj');
-						console.log(post);
+						//console.log('chk post obj');
+						//console.log(post);
 						//fire $rootscope.emit to trigger announcement.js directive
 						$rootScope.$emit('ocfcEventPost: newEvent', post); // $rootScope.$on
-						console.log('front-end PostSvc.update has completed');
+						//console.log('front-end PostSvc.update has completed');
 					});
 					$scope.showEdit=false;
 				}else{
@@ -123,7 +123,7 @@ angular.module('app').directive('ocfcEventPost', function (IdentitySvc,CommentAp
 			$scope.deleteComment=PostCommentSvc.deleteComment;
 
 			$scope.selectPost=function(){
-				console.log('function selectPost called from ocfc-event-post');
+				//console.log('function selectPost called from ocfc-event-post');
 				$scope.imagePopup.isPopupOpen=true;
 				$scope.imagePopup.selectedPost=$scope.post;
 
