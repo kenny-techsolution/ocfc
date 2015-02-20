@@ -61,10 +61,72 @@ angular.module('app').controller('FellowshipMembersCtrl', function ($http, $scop
 		return ((currDate.getTime())-(signupDate.getTime())<=2629743830)&&user.status==='approved';
 	};
 
-	$scope.inputEmail = '';
-	$scope.inputEmails = [];
+	//email invitation
+
+	$scope.$watch('FellowshipDataSvc.fellowship',function(newVal){
+		if(newVal){
+			$scope.reloadInviteHistory();
+		}
+	}, true);
+	$scope.nameEmailObj = {
+		inputNameEmail:'',
+	};
+	$scope.inputNameEmailError = '';
+	$scope.nameEmails = [];
+	$scope.message;
+	$scope.savedInvites = [];
+	$scope.reloadInviteHistory = function () {
+		console.log("$scope.reloadInviteHistory");
+		console.log($scope.FellowshipDataSvc.fellowship);
+		$http.get('/api/inviteOtherToFellowships?fellowshipId=' + $scope.FellowshipDataSvc.fellowship._id).success(function(invites){
+			console.log("savedInvites");
+			console.log(invites);
+			$scope.savedInvites = invites;
+		});
+	};
 	$scope.enterEmail = function(){
-		$scope.inputEmails.push($scope.inputEmail);
+		//validate first
+		console.log($scope.nameEmailObj.inputNameEmail);
+		var commaPos = $scope.nameEmailObj.inputNameEmail.indexOf(',');
+		console.log("commaPos");
+		console.log(commaPos);
+		if(commaPos==-1||commaPos==0) {
+			$scope.inputNameEmailError = "Please provided name to the email.";
+			return;
+		}
+		var inputNameEmailSplite = $scope.nameEmailObj.inputNameEmail.split(',');
+		var name = inputNameEmailSplite[0].trim();
+		var email =  inputNameEmailSplite[1].trim();
+		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+   		if(!re.test(email)) {
+			$scope.inputNameEmailError = "Please provided valid email.";
+			return;
+   		}
+		var nameEmail = {
+			name: name,
+			email: email
+		};
+		$scope.inputNameEmailError='';
+		$scope.nameEmailObj = '';
+		$scope.nameEmails.push(nameEmail);
+	};
+	$scope.removeEmail = function(index) {
+		$scope.nameEmails.splice(index, 1);
+	};
+	$scope.sendInvite = function() {
+		var postData = {
+			fellowshipId : $scope.FellowshipDataSvc.fellowship._id,
+			nameEmails : $scope.nameEmails,
+			message: $scope.message
+		};
+		$http.post("/api/inviteOtherToFellowships/batch",postData).success(function(data){
+			console.log("data");
+			console.log(data);
+			$scope.reloadInviteHistory();
+		}).error(function(data){
+			console.log("data");
+			console.log(data);
+		});
 	};
 });
 

@@ -70,7 +70,7 @@ module.exports = function (app, io) {
 	app.delete('/api/fellowships/:fellowship_id/users/:user_id', fellowships.removeUserFromFellowship);
 
 	/* ------ Invite Other To Fellowships related API -------- */
-	app.post('/api/inviteOtherToFellowships/:fellowship_id', inviteOtherToFellowship.createInvite);
+	app.post('/api/inviteOtherToFellowships/batch', inviteOtherToFellowship.createInvites);
 	app.get('/api/inviteOtherToFellowships', inviteOtherToFellowship.queryInvites);
 	app.get('/api/inviteOtherToFellowships/:id', inviteOtherToFellowship.getInvite);
 	app.delete('/api/inviteOtherToFellowships/:id', inviteOtherToFellowship.deleteInvite);

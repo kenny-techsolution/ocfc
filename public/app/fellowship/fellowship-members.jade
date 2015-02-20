@@ -48,19 +48,21 @@
 			.invite-widget.am-fade-and-slide-top(ng-show='showInviteFriend')
 				.invite-widget__add-emails
 					.input-bar
-						input.form-control(type="text", ng-model='inputEmail' placeholder="add email here.")
+						input.form-control(type="text", ng-model='nameEmailObj.inputNameEmail', placeholder="name, email")
 						button.form-control.btn.btn-default(ng-click='enterEmail()')
 							span.glyphicon.glyphicon-plus
-					ul.email-lists.list-group
-						li.list-group-item(ng-repeat="email in inputEmails") 
-							|{{email}}
-							.glyphicon.glyphicon-remove.pull-right
+					.error.alert.alert-danger(ng-show="inputNameEmailError!==''") {{inputNameEmailError}}
+					.message(ng-if='nameEmails.length==0') You have not added any invitees.
+					ul.email-lists.list-group(ng-if='nameEmails.length!=0')
+						li.list-group-item(ng-repeat="nameEmail in nameEmails") 
+							|{{nameEmail.name}}, {{nameEmail.email}}
+							span.glyphicon.glyphicon-remove.pull-right(ng-click='removeEmail($index)')
 				.invite-widget__message
-						textarea.ocfc.form-control.message(placeholder="Include a welcome message here.")
+						textarea.ocfc.form-control.message(placeholder="Include a welcome message here." ng-model="message")
 				.invite-widget__bottom
-					button.pull-right.form-control.btn.btn-primary
+					button.pull-right.form-control.btn.btn-primary(ng-click='sendInvite()')
 						span.glyphicon.glyphicon-send
-						| SEND
+						| SEND ({{nameEmails.length}})
 					a.btn.btn-default.cancel.pull-right(ng-click="showInviteFriend = false;") close
 
 			h4 You have invited 3 friends.
@@ -70,28 +72,12 @@
 					th.invited-on Invited on
 					th.status Status
 					th.action Action
-				tr
-					td butterfly4302@gmail.com
-					td 10/20/2014
-					td yet responded
+				tr(ng-repeat="invite in savedInvites")
+					td {{invite.email}}
+					td {{invite.invitedOn|date:mediumDate}}
+					td {{invite.status}}
 					td 
 						.btn-group
 							button.btn.btn-default(type='button') CANCEL
-							button.btn.btn-default(type='button') INVITE AGAIN
-				tr
-					td yoyocicada@gmail.com
-					td 10/31/2015
-					td yet responded
-					td 
-						.btn-group
-							button.btn.btn-default(type='button') CANCEL
-							button.btn.btn-default(type='button') INVITE AGAIN
-				tr
-					td tommy4302@gmail.com
-					td 11/22/2014
-					td account created
-					td 
-						.btn-group
-							button.btn.btn-default(type='button') CANCEL
-							button.btn.btn-default(type='button') INVITE AGAIN					
+							button.btn.btn-default(type='button') INVITE AGAIN				
 				
