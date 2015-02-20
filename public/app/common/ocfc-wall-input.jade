@@ -28,7 +28,7 @@
 	.ocfc-wall-input__media(ng-if="files.length>0")
 		.inner
 			.scrollable
-				ocfc-upload-image(file="file", files="files", image-array="imageArray", image-objs="imageObjs", cloudinary-params="cloudinarySignedParams", ng-repeat='file in files')
+				ocfc-upload-image(file="file", files="files", image-array="imageArray", image-objs="imageObjs", cloudinary-params="CloudinaryDataSvc.cloudinarySignedParams", ng-repeat='file in files')
 				.upload-image(ng-file-select='onFileSelect($files)', data-multiple='false', title='profile', onclick='this.value = null')
 					div.glyphicon.glyphicon-plus
 

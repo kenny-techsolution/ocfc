@@ -1,20 +1,19 @@
 
-angular.module('app').controller('firstTimerCtrl', function ($scope,$http,$timeout,$animate, $routeParams,$rootScope, $upload, UserApiSvc, NotifierSvc, $location,IdentitySvc) {
+angular.module('app').controller('firstTimerCtrl', function ($scope,$http,$timeout,$animate, $routeParams,$rootScope, $upload, UserApiSvc, NotifierSvc, $location,IdentitySvc,FellowshipDataSvc,CloudinaryDataSvc) {
 	$scope.IdentitySvc=IdentitySvc;
+	$scope.FellowshipDataSvc=FellowshipDataSvc;
+	$scope.CloudinaryDataSvc=CloudinaryDataSvc;
+	$scope.CloudinaryDataSvc.cloudinary();
 
 	$timeout(function() {
 		return $animate.enabled(false, angular.element(".carousel"));
 	});
-	$scope.cloudinarySignedParams;
-	$http.get("/cloudinarySigned?type=avatar").success(function(data){
-		$scope.cloudinarySignedParams = data;
-		console.log($.cloudinary.config());
-	});
+
 	$scope.onFileSelect = function($files) {
 		var file = $files[0]; // we're not interested in multiple file uploads here
 		$scope.upload = $upload.upload({
 			url: "https://api.cloudinary.com/v1_1/" + $.cloudinary.config().cloud_name + "/upload",
-			data: $scope.cloudinarySignedParams,
+			data: $scope.FellowshipDataSvc.cloundinarySignedAvatar,
 			file: file
 		}).progress(function (e) {
 			$scope.progress = Math.round((e.loaded * 100.0) / e.total);

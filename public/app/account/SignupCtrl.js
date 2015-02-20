@@ -15,8 +15,8 @@ angular.module('app').controller('SignupCtrl', function ($scope,$http,$routePara
 					if (success) {
 						NotifierSvc.notify('You have successfully signed in!');
 						//chk activation table if entry exist given userId
-						console.log('chk IdentitySvc.currentUser._id');
-						console.log(IdentitySvc.currentUser._id);
+						//console.log('chk IdentitySvc.currentUser._id');
+						//console.log(IdentitySvc.currentUser._id);
 						$http.get('/api/getActivation?&userId='+IdentitySvc.currentUser._id).
 							success(function(data, status, headers, config) {
 								if (_.isEmpty(data)){
@@ -27,7 +27,7 @@ angular.module('app').controller('SignupCtrl', function ($scope,$http,$routePara
 
 							}).
 							error(function(data, status, headers, config) {
-								console.log('userId not found in Activation tbl');
+								//console.log('userId not found in Activation tbl');
 
 							});
 

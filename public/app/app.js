@@ -68,7 +68,9 @@ angular.module('app').config(function ($routeProvider, $locationProvider, $httpP
 		} else {
 			console.log("already login");
 			defer.reject('logged in');
-			$location.path("/fellowship/54a0f90799b81bbbb99a00ce");
+			$location.path("/personal/"+IdentitySvc.currentUser._id);
+			console.log('chkFellowshipDataSvc.fellowship');
+			console.log(FellowshipDataSvc.fellowship);
 		}
 		return defer.promise;
 	};
@@ -95,6 +97,7 @@ angular.module('app').config(function ($routeProvider, $locationProvider, $httpP
 		.when('/church/:id', {templateUrl: '/partials/church/church', controller: 'ChurchCtrl'})
 		.when('/find', {templateUrl: '/partials/find/find', controller: 'FindCtrl'})
 		.when('/fellowship/:id/albums', {templateUrl: '/partials/album/albums', controller: 'AlbumsCtrl'})
+		.when('/fellowship/:id/album/:album_id', {templateUrl: '/partials/album/album-images', controller: 'AlbumImagesCtrl'})
 		.when('/registrationComplete', {templateUrl: '/partials/account/registration-complete', controller: 'RegistrationCompleteCtrl'})
 		.when('/dummy', {templateUrl: '/partials/common/dummy', controller: 'DummyCtrl'});
 

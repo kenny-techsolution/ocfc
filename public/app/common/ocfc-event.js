@@ -6,7 +6,7 @@ angular.module('app').directive('ocfcEvent', function (PostApiSvc,$routeParams,$
 		},
 		templateUrl: '/partials/common/ocfc-event',
 		controller: function ($scope) {
-			console.log('front-end ocfc-event has been called');
+			//console.log('front-end ocfc-event has been called');
 
 			var queryEventWidget=function(){
 				var postArray=PostApiSvc.query({postUnderGroupType: 'fellowship', postUnderGroupId: $routeParams.id,postType:4},function(){

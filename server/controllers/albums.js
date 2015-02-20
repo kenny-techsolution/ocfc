@@ -1,5 +1,6 @@
 var Album = require('mongoose').model('Album'),
 	Image = require('mongoose').model('Image'),
+	User = require('mongoose').model('User'),
 	Fellowship = require('mongoose').model('Fellowship'),
 	FellowshipUser = require('mongoose').model('FellowshipUser'),
 	deleteKey = require('key-del'),
@@ -53,7 +54,7 @@ exports.getAlbum = function (req, res) {
 	//Album id must associate to your fellowship
 	//match by album id against fellowship
 	//grab fellowship_id, chk against fellowshipUser and chk if it matches session user's fellowship_id
-	Album.findOne({_id: req.params.id}).exec(function (err, album) {
+	Album.findOne({_id: req.params.id}).populate('imageIds').exec(function (err, album) {
 		if (err) return res.json(err);
 		Fellowship.find({}).where('albumIds', {$elemMatch: {$in: [album._id]}}).exec(function (err, fellowship) {
 			if (err) return res.json(err);
@@ -84,7 +85,7 @@ exports.queryAlbum=function(req, res){
 			async.forEachLimit(fellowship.albumIds, 3, function (albumId, callback) {
 				console.log('chk albumId');
 				console.log(albumId);
-				Album.findOne({_id:albumId}, function (err,album) {
+				Album.findOne({_id:albumId}).populate('imageIds createdBy').exec(function (err,album) {
 					console.log('chk albums before being pushed');
 					console.log(album);
 					if (err) return callback(err)
@@ -163,12 +164,15 @@ exports.createImage = function (req, res) {
 //Get - Round1
 exports.queryImages = function (req, res) {
 	console.log('server queryImages has been called');
-	console.log('chk req.query');
-	console.log(req.query);
+	console.log('chk req.params');
+	console.log(req.params);
 
-	var validKeys = commFunc.removeInvalidKeys(req.query, ['name', 'description']);
-	Album.find(validKeys).exec(function (err, queryAlbumImgs) {
+	//var validKeys = commFunc.removeInvalidKeys(req.params, ['album_id','name', 'description']);
+	Album.findOne({_id:req.params.album_id}).populate('imageIds').exec(function (err, queryAlbumImgs) {
 		if (err) return res.json(err);
-		return res.json(_.pluck(queryAlbumImgs, 'imageIds'));
+		//console.log('chk queryAlbumImgs');
+		//console.log(queryAlbumImgs);
+
+		return res.json(queryAlbumImgs.imageIds);
 	});
 };

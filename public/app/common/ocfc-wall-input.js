@@ -1,5 +1,5 @@
 //6.26.2014, create directive that displays user image
-angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc, EventApiSvc, $routeParams, $http, $upload, ImageApiSvc, FellowshipDataSvc, IdentitySvc) {
+angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc, EventApiSvc, $routeParams, $http, $upload, ImageApiSvc, FellowshipDataSvc, IdentitySvc,CloudinaryDataSvc) {
 	return{
 		restrict: 'E',
 		scope: {
@@ -10,6 +10,8 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 			//console.log('chk $scope.posts array');
 			//console.log($scope.posts);
 			$scope.FellowshipDataSvc=FellowshipDataSvc;
+			$scope.CloudinaryDataSvc=CloudinaryDataSvc;
+			$scope.CloudinaryDataSvc.cloudinary();
 			$scope.endTimeSelected=false;
 			$scope.imageArray = [];
 			$scope.imageObjs = [];
@@ -23,8 +25,6 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 				{value: 'Event', label: 'Event'},
 				{value: 'Announcement', label: 'Announcement'}
 			];
-
-			$scope.cloudinarySignedParams;
 			$scope.content = '';
 
 			$scope.$watch('selectedPostType', function (newVal, oldVal) {
@@ -35,7 +35,7 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 
 				//save post input data
 				$scope.createPost = function (selectedPostType) {
-					console.log('front-end createPost is being called');
+					//console.log('front-end createPost is being called');
 					//console.log('chk selectedPostType param');
 					//console.log(selectedPostType);
 
@@ -78,8 +78,8 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 								}
 						);
 
-						console.log('chk post obj');
-						console.log(post);
+						//console.log('chk post obj');
+						//console.log(post);
 
 						post.$save().then(function () {
 							//replace by socket io operation.
@@ -100,7 +100,7 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 
 					} else if (selectedPostType === 'Event') {
 						postType = 'event';
-						console.log('postType of event condition is met');
+						//console.log('postType of event condition is met');
 
 						post = new PostApiSvc({postType: postType,
 								postUnderGroupType: 'fellowship',
@@ -116,8 +116,8 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 						);
 
 						post.$save().then(function () {
-							console.log('chk post obj within event func');
-							console.log(post);
+							//console.log('chk post obj within event func');
+							//console.log(post);
 							//replace by socket io operation.
 							//$scope.posts.unshift(post);
 
@@ -139,7 +139,7 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 						//console.log(post);
 
 					} else if (selectedPostType === 'Testimony') {
-						console.log('Testimony else if statement is met on ocfc-wall-input');
+						//console.log('Testimony else if statement is met on ocfc-wall-input');
 
 						postType = 'testimony';
 						post = new PostApiSvc({postType: postType,
@@ -168,7 +168,7 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 
 						//Default setting
 					} else if (selectedPostType === 'Question') {
-						console.log('Question else if statement is met on ocfc-wall-input');
+						//console.log('Question else if statement is met on ocfc-wall-input');
 
 						postType = 'question';
 						post = new PostApiSvc({postType: postType,
@@ -193,7 +193,7 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 
 						//Default setting
 					} else if (selectedPostType === 'Prayer') {
-						console.log('Prayer else if statement is met on ocfc-wall-input');
+						//console.log('Prayer else if statement is met on ocfc-wall-input');
 
 						postType = 'prayer';
 						post = new PostApiSvc({postType: postType,
@@ -249,9 +249,9 @@ angular.module('app').directive('ocfcWallInput', function ($rootScope,PostApiSvc
 
 			});
 
-			$http.get("/cloudinarySigned?type=fullSizeImg").success(function (data) {
-				$scope.cloudinarySignedParams = data;
-			});
+//			$http.get("/cloudinarySigned?type=fullSizeImg").success(function (data) {
+//				$scope.cloudinarySignedParams = data;
+//			});
 
 			$scope.files = [];
 
