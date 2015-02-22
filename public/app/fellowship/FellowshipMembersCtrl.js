@@ -61,8 +61,14 @@ angular.module('app').controller('FellowshipMembersCtrl', function ($http, $scop
 		return ((currDate.getTime())-(signupDate.getTime())<=2629743830)&&user.status==='approved';
 	};
 
-	//email invitation
+	$scope.filterAdmin = function(user){
+	    return user.role === 'admin' || user.role === 'subadmin';
+	};
 
+
+	/*
+	 * email invitation
+	*/
 	$scope.$watch('FellowshipDataSvc.fellowship',function(newVal){
 		if(newVal){
 			$scope.reloadInviteHistory();
@@ -122,10 +128,27 @@ angular.module('app').controller('FellowshipMembersCtrl', function ($http, $scop
 		$http.post("/api/inviteOtherToFellowships/batch",postData).success(function(data){
 			console.log("data");
 			console.log(data);
+			$scope.message = '';
+			$scope.nameEmails = [];
 			$scope.reloadInviteHistory();
 		}).error(function(data){
 			console.log("data");
 			console.log(data);
+		});
+	};
+	$scope.inviteAgain = function(invite){
+		$http.get('/api/inviteOtherToFellowships/'+ invite._id + '/inviteAgain').success(function(data){
+			console.log("invite again!!!");
+			console.log(data);
+		});
+	};
+	$scope.deleteInvite = function($index, invite){
+		$http.delete('/api/inviteOtherToFellowships/'+ invite._id).success(function(data){
+			console.log("invite deleted!!!");
+			console.log(data);
+			if(data.status = "success") {
+		 		$scope.savedInvites.splice($index, 1);
+			}
 		});
 	};
 });

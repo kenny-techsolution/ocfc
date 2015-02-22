@@ -127,21 +127,48 @@ exports.getInvite = function(req, res) {
 	});
 };
 
+exports.inviteAgain = function(req, res){
+		var inviteId = req.params.id;
+
+		async.waterfall([
+			function(callback) {
+				InviteOtherToFellowship.findOne({_id: inviteId}).exec(function(err, inviteUser){
+					if(err) callback(err);
+					callback(null, inviteUser);
+				});
+			},function (inviteUser, callback) {
+				var activateEmail = new sendgrid.Email({
+					to : inviteUser.email
+				});
+				activateEmail.subject = 'Invitation to use OCFC';
+				activateEmail.setFrom('support@onechurchforchrist.org');
+				activateEmail.setHtml(inviteUser.welcomeMessage);
+				sendgrid.send(activateEmail, function(err, json) {
+					if (err)
+						callback(err);
+					callback();
+				});
+			}
+		],function(err){
+			if(err) return res.json(err);
+			return res.json({status: "invite again successfully"});
+		});
+
+};
+
 //Delete - Round1
 exports.deleteInvite = function(req, res) {
 	//Delete if session user is the inviter
-	if (req.user._id == req.body.inviter) {
-		InviteOtherToFellowship.remove({
-			_id : req.params.id
-		}, function(err) {
-			if (err)
-				return res.json(err);
-			return res.json({
-				status : "successfully removed from InviteOtherToFellowship"
-			});
+	console.log(req.user._id);
+	console.log(req.params.id);
+	InviteOtherToFellowship.remove({
+		_id : req.params.id,
+		inviter: req.user._id
+	}, function(err) {
+		if (err)
+			return res.json(err);
+		return res.json({
+			status : "success"
 		});
-
-	}
-	;
-
+	});
 };

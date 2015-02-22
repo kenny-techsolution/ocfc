@@ -7,4 +7,6 @@
 	//button.btn.btn-danger.center-block(ng-if='user.status=="pending"', ng-click="approveFellowshipUser(user)") APPROVE
 	div.glyphicon.glyphicon-menu-down.dropdown-arrow(ng-if="isCurrentUserAdmin==true&&user.status==='approved'", data-animation='am-flip-x', data-placement='bottom', bs-dropdown='memberDropdown')
 	div.glyphicon.glyphicon-menu-down.dropdown-arrow(ng-if="isCurrentUserAdmin==true&&user.status==='pending'", data-animation='am-flip-x', data-placement='bottom', bs-dropdown='pendingDropdown')
+	div.glyphicon.glyphicon-menu-down.dropdown-arrow(ng-if="isCurrentUserAdmin==true&&user.role==='subadmin'&&user.status==='approved'", data-animation='am-flip-x', data-placement='bottom', bs-dropdown='subAdminDropdown')
 	div.admin(ng-if="user.role=='admin'") Admin
+	div.sub-admin(ng-if="user.role=='subadmin'") Sub Admin

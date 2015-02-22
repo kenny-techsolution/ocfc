@@ -66,13 +66,18 @@ module.exports = function (app, io) {
 	app.get('/api/fellowships/:fellowship_id/users', fellowships.getUsersFromFellowship);
 	app.put('/api/fellowships/:fellowship_id/users/:user_id', fellowships.updateUserToFellowship);
 	//TODO add approveUserToFellowship
-	app.put('/api/fellowships/:fellowship_id/users/:user_id/approve', fellowships.approveUserToFellowship);
+	app.put('/api/fellowships/:fellowship_id/users/:user_id/approveUserToFellowship', fellowships.approveUserToFellowship);
+	app.put('/api/fellowships/:fellowship_id/users/:user_id/denyUserToFellowship', fellowships.denyUserToFellowship);
+	app.put('/api/fellowships/:fellowship_id/users/:user_id/removeUserFromFellowship', fellowships.removeUserFromFellowship);
+	app.put('/api/fellowships/:fellowship_id/users/:user_id/makeSubAdmin', fellowships.makeSubAdmin);
+	app.put('/api/fellowships/:fellowship_id/users/:user_id/removeSubAdmin', fellowships.removeSubAdmin);
 	app.delete('/api/fellowships/:fellowship_id/users/:user_id', fellowships.removeUserFromFellowship);
 
 	/* ------ Invite Other To Fellowships related API -------- */
 	app.post('/api/inviteOtherToFellowships/batch', inviteOtherToFellowship.createInvites);
 	app.get('/api/inviteOtherToFellowships', inviteOtherToFellowship.queryInvites);
 	app.get('/api/inviteOtherToFellowships/:id', inviteOtherToFellowship.getInvite);
+	app.get('/api/inviteOtherToFellowships/:id/inviteAgain', inviteOtherToFellowship.inviteAgain);
 	app.delete('/api/inviteOtherToFellowships/:id', inviteOtherToFellowship.deleteInvite);
 
 	/* ------ Church related API -------- */

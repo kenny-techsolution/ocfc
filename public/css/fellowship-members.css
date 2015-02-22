@@ -172,6 +172,16 @@
   background-color: #d64951;
   box-shadow: 0 1px 5px rgba(0,0,0,0.25);
 }
+.member-card .sub-admin {
+  position: absolute;
+  top: 7px;
+  right: 126px;
+  width: 67px;
+  font-size: 10px;
+  padding: 2px 8px;
+  background-color: #d6a949;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.25);
+}
 .member-card__img-size {
   width: 130px;
   height: 130px;

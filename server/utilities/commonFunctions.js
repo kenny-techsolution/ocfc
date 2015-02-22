@@ -84,6 +84,18 @@ exports.isFellowshipAdmin = function(sessionUser, fellowshipId) {
 	var fellowships = sessionUser['fellowships'];
 	var permissions = [];
 	for(var i=0; i< fellowships.length; i++) {
+		if(String(fellowships[i].fellowshipId) === fellowshipId && (String(fellowships[i].role) === "admin" || String(fellowships[i].role) === "subAdmin")){
+			permissions.push(fellowships[i]);
+		}
+	}
+	var resultBoolean = (permissions.length == 0)? false: true;
+	return resultBoolean;
+};
+
+exports.isFellowshipSuperAdmin = function(sessionUser, fellowshipId) {
+	var fellowships = sessionUser['fellowships'];
+	var permissions = [];
+	for(var i=0; i< fellowships.length; i++) {
 		if(String(fellowships[i].fellowshipId) === fellowshipId && String(fellowships[i].role) === "admin"){
 			permissions.push(fellowships[i]);
 		}
