@@ -69,17 +69,43 @@
 			&:hover
 				background-color white
 				border 1px solid #337ab7
+	.alert
+		width 99%
+		margin-top 5px
+		margin-bottom 5px
+		padding 7px 15px
+		font-size 13px
+	.message
+		height 134px
+		padding-top 49px
+		color #9B9B9B
+		font-size 14px
+		text-align center
 	.email-lists
+		border 2px solid rgba(44,105,165,0.29)
+		max-height 132px
+		overflow-y auto
 		margin-top 10px
+		margin-right 4px
+		margin-bottom 0px
 		li
 			color black
-
+			padding-top 7px
+			padding-bottom 7px
+			font-size 13px
+			.glyphicon-remove
+				font-size 10px
+				color #d5d5d5
+				cursor pointer
+				top 4px
+				&:hover
+					color #818181
 .invite-widget__message
 	padding 10px
 	width 50%
 	float left
 	textarea
-		height 160px
+		height 177px
 
 .invite-widget__bottom
 	clear both
@@ -122,6 +148,15 @@
 		font-size 10px
 		padding 2px 8px
 		background-color #d64951
+		box-shadow 0 1px 5px rgba(0,0,0,0.25)
+	.sub-admin
+		position absolute
+		top 7px
+		right 126px
+		width 67px
+		font-size 10px
+		padding 2px 8px
+		background-color #D6A949
 		box-shadow 0 1px 5px rgba(0,0,0,0.25)
 .member-card__img-size
 	width 130px
@@ -166,6 +201,8 @@
 .invited-list
 	margin-top 10px
 	border 1px solid #ddd
+	tr:first-child
+		border-bottom 2px solid rgba(44, 105, 165, 0.29)
 	th
 		color #908e8e
 		&.action

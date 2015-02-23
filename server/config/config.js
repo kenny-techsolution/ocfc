@@ -6,6 +6,7 @@ var rootPath = path.normalize(__dirname + '/../../');
 module.exports={
 	development:{
 		db:  'mongodb://104.8.6.58/ocfc',//104.8.6.58
+		//db: 'mongodb://localhost/ocfc',
 		rootPath: rootPath,
 		port: process.env.PORT || 3030,
 		uploadPath: rootPath + '/uploads'

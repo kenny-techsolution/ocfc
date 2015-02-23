@@ -1,73 +1,174 @@
 var mongoose = require('mongoose'),
-	InviteOtherToFellowship = require('mongoose').model('InviteOtherToFellowship'),
-	FellowshipUser = require('mongoose').model('FellowshipUser'),
-	User = require('mongoose').model('User'),
-	commFunc = require('../utilities/commonFunctions'),
-	deleteKey = require('key-del'),
-	_ = require('lodash');//Library for Array
+    InviteOtherToFellowship = require('mongoose').model('InviteOtherToFellowship'),
+    FellowshipUser = require('mongoose').model('FellowshipUser'),
+    User = require('mongoose').model('User'),
+    commFunc = require('../utilities/commonFunctions'),
+    sendgrid = require('sendgrid')('yoyocicada', 'SendGrid1006'),
+    deleteKey = require('key-del'),
+    async = require('async'),
+    _ = require('lodash');
+//Library for Array
 
 /* ------ Invite Other To Fellowships related API -------- */
 //Post - Round1
-exports.createInvite = function (req, res) {
-	//user must be logged in & must belong to that specific fellowship in order to invite
-	FellowshipUser.count({userId: req.user._id, fellowshipId: req.params.fellowship_id, status: 'approved'}, function (err, count) {
-		if (err) return res.json(err);
-
-		if (count > 0) {
-			//check if invitee's email already exist
-			var inviteOtherToFellowship = new InviteOtherToFellowship();
-
-			inviteOtherToFellowship.fellowshipId = req.params.fellowship_id;
-			inviteOtherToFellowship.inviter = req.user._id;
-			inviteOtherToFellowship.invitee = req.body.invitee;
-			inviteOtherToFellowship.email = req.body.email;
-			inviteOtherToFellowship.welcomeMessage = req.body.welcomeMessage;
-
-			User.count({userName: req.body.email}, function (err, count) {
-				if (err) return res.json(err);
-
-				if (count == 0) {
-					inviteOtherToFellowship.save(function (err) {
-						if (err) return res.json(err);
-						return res.json({status: "success", inviteOtherToFellowship: inviteOtherToFellowship});
+exports.createInvites = function(req, res) {
+	//user must be the admin for that fellowship to invite.
+	//loop through the array
+	//1.if email already exist , put that in the email array with already exist key.
+	//2.if email doesn't exist, then send the email invite to user.
+	//create the invite user entry.
+	var fellowshipId = req.body.fellowshipId;
+	var message = req.body.message;
+	var sessionUser = req.user;
+	var existEmails = [];
+	var savedEmails = [];
+	if (commFunc.isFellowshipAdmin(sessionUser, fellowshipId)) {
+		async.forEachLimit(req.body.nameEmails, 3, function(nameEmail, callback) {
+			var forEachCallback = callback;
+			async.waterfall([
+			function(callback) {
+				InviteOtherToFellowship.count({
+					email : nameEmail.email
+				}, function(err, count) {
+					if (err)
+						return callback(err);
+					callback(null, count);
+				});
+			},
+			function(existCount, callback) {
+				if (existCount == 0) {
+					User.count({
+						userName : nameEmail.email
+					}, function(err, count) {
+						if (err)
+							return callback(err);
+						callback(null, count);
 					});
+				} else {
+					callback(null, existCount);
 				}
+			},
+			function(existCount, callback) {
+				if (existCount == 0) {
+					var activateEmail = new sendgrid.Email({
+						to : nameEmail.email
+					});
+					activateEmail.subject = 'Invitation to use OCFC';
+					activateEmail.setFrom('support@onechurchforchrist.org');
+					activateEmail.setHtml(message);
+					sendgrid.send(activateEmail, function(err, json) {
+						if (err)
+							callback(err);
+						callback(null, existCount);
+					});
+				} else {
+					callback(null, existCount);
+				}
+			},
+			function(existCount, callback) {
+				if (existCount == 0) {
+					var inviteOtherToFellowship = new InviteOtherToFellowship({
+						fellowshipId : fellowshipId,
+						inviter : sessionUser._id,
+						invitee : nameEmail.name,
+						email : nameEmail.email,
+						status : 'pending',
+						welcomeMessage : message
+					});
+					inviteOtherToFellowship.save(function(err) {
+						if (err)
+							callback(err);
+						savedEmails.push(nameEmail.email);
+						callback(null);
+					});
+				} else {
+					existEmails.push(nameEmail.email);
+					callback(null);
+				}
+
+			}], function(err) {
+				if (err)
+					forEachCallback(err);
+				forEachCallback(null);
 			});
-		}
-		;
-	});
+		}, function(err) {
+			if (err)
+				return res.json(err);
+			return res.json({
+				savedEmails : savedEmails,
+				existEmails : existEmails
+			});
+		});
+	}
 };
 //Get - Round1
-exports.queryInvites = function (req, res) {
+exports.queryInvites = function(req, res) {
 	//query from a particular fellowship
 	//user parameter passes as search criteria
 	//filter out any non-qualified parameter keys using lo-dash
-	var validKeys = commFunc.removeInvalidKeys(req.query, ["fellowshipId", "inviter", "invitee", "email", "welcomeMessage", "invitedOn"]);
-	InviteOtherToFellowship.find(validKeys).exec(function (err, invitedUsers) {
-		if (err) return res.json(err);
-		return res.json({status: "success", invitedUsers: invitedUsers});
+	InviteOtherToFellowship.find({fellowshipId:req.query.fellowshipId}).exec(function(err, invitedUsers) {
+		if (err)
+			return res.json(err);
+		return res.json(invitedUsers);
 	});
-
 };
 
 //Get - Round1
-exports.getInvite = function (req, res) {
-	InviteOtherToFellowship.find({_id: req.params.id}).exec(function (err, invitedUser) {
-		if (err) return res.json(err);
-		return res.json({status: "success", invitedUser: invitedUser});
+exports.getInvite = function(req, res) {
+	InviteOtherToFellowship.find({
+		_id : req.params.id
+	}).exec(function(err, invitedUser) {
+		if (err)
+			return res.json(err);
+		return res.json({
+			status : "success",
+			invitedUser : invitedUser
+		});
 	});
 };
 
-//Delete - Round1
-exports.deleteInvite = function (req, res) {
-	//Delete if session user is the inviter
-	if (req.user._id == req.body.inviter) {
-		InviteOtherToFellowship.remove({_id: req.params.id}, function (err) {
-			if (err) return res.json(err);
-			return res.json({status: "successfully removed from InviteOtherToFellowship"});
+exports.inviteAgain = function(req, res){
+		var inviteId = req.params.id;
+
+		async.waterfall([
+			function(callback) {
+				InviteOtherToFellowship.findOne({_id: inviteId}).exec(function(err, inviteUser){
+					if(err) callback(err);
+					callback(null, inviteUser);
+				});
+			},function (inviteUser, callback) {
+				var activateEmail = new sendgrid.Email({
+					to : inviteUser.email
+				});
+				activateEmail.subject = 'Invitation to use OCFC';
+				activateEmail.setFrom('support@onechurchforchrist.org');
+				activateEmail.setHtml(inviteUser.welcomeMessage);
+				sendgrid.send(activateEmail, function(err, json) {
+					if (err)
+						callback(err);
+					callback();
+				});
+			}
+		],function(err){
+			if(err) return res.json(err);
+			return res.json({status: "invite again successfully"});
 		});
 
-	}
-	;
+};
 
+//Delete - Round1
+exports.deleteInvite = function(req, res) {
+	//Delete if session user is the inviter
+	console.log(req.user._id);
+	console.log(req.params.id);
+	InviteOtherToFellowship.remove({
+		_id : req.params.id,
+		inviter: req.user._id
+	}, function(err) {
+		if (err)
+			return res.json(err);
+		return res.json({
+			status : "success"
+		});
+	});
 };

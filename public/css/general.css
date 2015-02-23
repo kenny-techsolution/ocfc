@@ -20,6 +20,13 @@ a {
 .ng-cloak {
   display: none !important;
 }
+.simplebox:focus {
+  outline: none;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
 .loading-spinner {
   background-image: url("./images/loading-spinner.gif");
   width: 32px;

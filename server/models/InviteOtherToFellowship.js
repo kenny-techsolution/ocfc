@@ -7,9 +7,11 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var inviteOtherToFellowshipSchema = mongoose.Schema({
 	fellowshipId: {type: ObjectId, ref:'Fellowship', Required:'(fellowshipId) is required!', index: false, unique: false,lowercase: true},
-	inviter: {type: ObjectId, ref:'User', Required:'(userId) is required!',index: true, unique: false,lowercase: true},
+	inviter: {type: ObjectId, ref:'User', Required:'(userId) is required!',index: false, unique: false,lowercase: true},
 	invitee: {type:String,index: false, unique: false,lowercase: true},
+	userId: {type: ObjectId, ref:'User',index: false, unique: false,lowercase: true},
 	email: {type:String,index: false, unique: false,lowercase: true},
+	status: {type:String,index: false, unique: false,lowercase: true},
 	welcomeMessage: {type:String,index: false, unique: false,lowercase: true},
 	invitedOn:	{type: Date, Required:'(date) is required!', index: true, unique: false,lowercase: true, default: Date.now}
 });
