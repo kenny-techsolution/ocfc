@@ -111,18 +111,54 @@ exports.queryAlbum=function(req, res){
 
 //Put - Round1
 exports.updateAlbum = function (req, res) {
-	var album = commFunc.removeInvalidKeys(req.body, ['name', 'description']);
+	console.log('server updateAlbum has been called');
+	console.log('chk req.params.id');
+	console.log(req.params.id);
+	console.log('chk req.body');
+	console.log(req.body);
+	var album = commFunc.removeInvalidKeys(req.body, ['name', 'description','location']);
 	Album.update({ _id: req.params.id }, album, { multi: true }, function (err, numberAffected, raw) {
 		if (err) return res.json(err);
+		console.log('updateAlbum has completed');
+		console.log('chk album');
+		console.log(album);
 		return res.json({status: "success", raw: raw});
 	});
 };
 
 //Delete - Round1
 exports.deleteAlbum = function (req, res) {
+	console.log('server deleteAlbum has been called');
 	Album.findOneAndRemove({createdBy: commFunc.reqSessionUserId(req), _id: req.params.id}, function (err) {
 		if (err) return res.json(err);
-		return res.json({status: "successfully removed from Album"});
+		console.log('chk req.params.id or album_id');
+		console.log(req.params.id);
+
+		//also delete album from Fellowship table
+		Fellowship.findOne({albumIds:req.params.id}).exec(function (err, fellowship) {
+			console.log('look to remove album id from Fellowship tbl');
+			console.log(fellowship);
+
+			for(var i=0;i<fellowship.albumIds.length;i++){
+				console.log('chk fellowship.albumIds[i]');
+				console.log(fellowship.albumIds[i]);
+				console.log('chk req.params.id');
+				console.log(req.params.id);
+
+				if (String(fellowship.albumIds[i])==req.params.id){
+					console.log('getting ready to splice');
+					fellowship.albumIds.splice(i,1);
+				}
+			}
+			fellowship.save(function (err) {
+				console.log('fellowship.save has been called');
+				if (err) return res.json(err);
+				console.log('chk fellowship after remove of albumId '+req.params.id);
+				console.log(fellowship);
+				return res.json(fellowship);
+			});
+		});
+
 	});
 };
 

@@ -205,6 +205,12 @@ div.album-img-section {
   background-color: #0d52cb;
   color: #fff;
 }
+.album-img-section__remove-img {
+  color: #473eeb;
+  position: relative;
+  top: -232px;
+  right: -231px;
+}
 .album-wall-img__caption {
   margin-top: -38px;
   width: 300px;
@@ -224,4 +230,7 @@ div.album-img-section {
   background-color: #8892d0;
   height: 8px;
   border-radius: 0px;
+}
+.album-img-section .title {
+  display: inline-block;
 }

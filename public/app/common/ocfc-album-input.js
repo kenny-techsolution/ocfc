@@ -32,11 +32,7 @@ angular.module('app').directive('ocfcAlbumInput', function (AlbumsApiSvc,Fellows
 
 			$scope.createAlbum=function(){
 				//Route:  app.post('/api/albums', albums.createAlbum);
-				//console.log('front-end $scope.createAlbum has been called')
-
-				//console.log('chk $scope.imageArray');
-				//console.log($scope.imageArray);
-
+				console.log('front-end $scope.createAlbum has been called')
 				//app.post('/api/albums', albums.createAlbum);
 				var album=new AlbumsApiSvc({name:$scope.albumObj.name,
 					description:$scope.albumObj.description,
