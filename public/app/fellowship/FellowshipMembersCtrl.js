@@ -151,6 +151,36 @@ angular.module('app').controller('FellowshipMembersCtrl', function ($http, $scop
 			}
 		});
 	};
+
+	//member modal
+	$scope.memberModal={
+		open: false,
+		actionFunc: null,
+		user: null
+	};
+	$scope.reason = '';
+	$scope.removeUser = function (user) {
+		var promise = $scope.memberModal.actionFunc($scope.FellowshipDataSvc.fellowship._id,user._id, $scope.reason);
+		promise.success(function(data){
+			console.log("removeUser result");
+			console.log(data);
+			if(data.status ==='success') {
+				console.log("success......");
+				for(var i=0;i<$scope.FellowshipDataSvc.users.length;i++) {
+					console.log($scope.FellowshipDataSvc.users[i].userId._id);
+					console.log(user._id);
+					if($scope.FellowshipDataSvc.users[i].userId._id == user._id) {
+						$scope.FellowshipDataSvc.users.splice(i,1);
+						$scope.memberModal.open = false;
+						$scope.reason = '';
+						return;
+					}
+				}
+			}
+		}).error(function(data){
+			console.log(data);
+		});
+	};
 });
 
 

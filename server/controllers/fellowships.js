@@ -389,11 +389,13 @@ exports.addUserToFellowship = function(req, res) {
 			var fellowshipUser = req.body;
 			fellowshipUser.userId = req.user._id;
 			fellowshipUser.fellowshipId = req.params.fellowship_id;
-
+			console.log(fellowshipUser.userId);
+			console.log(fellowshipUser.fellowshipId);
 			fellowshipUser.status = "Pending";
 			fellowshipUser.role = 'member';
 			fellowshipUser = new FellowshipUser(fellowshipUser);
 			fellowshipUser.save(function(err) {
+				console.log(err);
 				if (err)
 					return res.json(err);
 				console.log('fellowship user has been saved');
@@ -401,7 +403,7 @@ exports.addUserToFellowship = function(req, res) {
 					status : "success",
 					fellowshipUser : fellowshipUser
 				});
-			})
+			});
 		}
 	});
 };
@@ -833,12 +835,36 @@ exports.denyUserToFellowship = function(req, res) {
 		res.json({status: "success"});
 	});
 };
-
+exports.removemember = function(req, res){
+	console.log("test");
+	Membership.update({
+		'userId' : '54a0f90599b81bbbb99a00b9',
+		'fellowships.fellowshipId' : '54a0f90799b81bbbb99a00cf'
+	}, {
+		$pull : {
+			'fellowships':{ 'fellowshipId' : '54a0f90799b81bbbb99a00cf'}
+		}
+	}, function(err, numAffected) {
+		console.log("numAffected");
+		console.log(numAffected);
+		console.log(err);
+		if (err || numAffected === 0)
+			return res.json(error);
+		res.json({status:"success"});
+	});
+};
 exports.removeUserFromFellowship = function(req, res) {
 	var fellowshipId = req.params.fellowship_id;
 	var userId = req.params.user_id;
 	var reason = req.body.reason;
 	var sessionUser = req.user;
+	console.log("userID");
+	console.log(userId);
+		console.log("fellowshipID");
+	console.log(fellowshipId);
+		console.log("reason");
+	console.log(reason);
+	//return res.json({status:"success"});
 	if (!commFunc.isFellowshipSuperAdmin(sessionUser, fellowshipId)) {
 		return res.json({status:"no permission to perform action."});
 	}
@@ -854,14 +880,21 @@ exports.removeUserFromFellowship = function(req, res) {
 			});
 		},
 		function(fellowshipUserInstance, callback){
-			fellowshipUserInstance.status = 'removed';
-			fellowshipUserInstance.rejectReason = reason;
-			fellowshipUserInstance.updateDate = new Date();
-			fellowshipUserInstance.save(function(err){
-				if (err)
-					callback(err);
+			FellowshipUser.remove({
+				fellowshipId : req.params.fellowship_id,
+				userId : req.params.user_id
+			}, function(err) {
+				if (err) callback(err);
 				callback(null, fellowshipUserInstance);
 			});
+			// fellowshipUserInstance.status = 'removed';
+			// fellowshipUserInstance.rejectReason = reason;
+			// fellowshipUserInstance.updateDate = new Date();
+			// fellowshipUserInstance.save(function(err){
+				// if (err)
+					// callback(err);
+				// callback(null, fellowshipUserInstance);
+			// });
 		},
 		function(fellowshipUserInstance, callback){
 			Membership.update({
@@ -869,7 +902,7 @@ exports.removeUserFromFellowship = function(req, res) {
 				'fellowships.fellowshipId' : fellowshipId
 			}, {
 				$pull : {
-					'fellowships.$.fellowshipId' : fellowshipId
+					'fellowships':{ 'fellowshipId' : fellowshipId}
 				}
 			}, function(err, numAffected) {
 				console.log("numAffected");
@@ -883,7 +916,7 @@ exports.removeUserFromFellowship = function(req, res) {
 			var notification = new Notification({
 				recipient : userId,
 				url : '/fellowship/' + fellowshipId,
-				message : 'You have been removed from ' + fellowshipUserInstance.fellowshipId.name + ', because ' + fellowshipUserInstance.rejectReason
+				message : 'You have been removed from ' + fellowshipUserInstance.fellowshipId.name + ', because ' + reason
 			});
 			notification.save(function(err) {
 				if (err)
@@ -1027,46 +1060,46 @@ exports.makeSubAdmin = function	(req, res){
 };
 
 //Delete - Round 1
-exports.removeUserFromFellowship = function(req, res) {
-	// fellowship from Fellowship & FellowUser Models
-	FellowshipUser.findOne({
-		userId : req.params.user_id,
-		fellowshipId : req.params.fellowship_id,
-		status : 'approved'
-	}, function(err, fellowshipUser) {
-		if (err)
-			return res.json(err);
-		if (commFunc.isFellowshipMember(req.user, req.params.fellowship_id) || req.user._id === req.params.user_id) {
-			// send out email to notify user about delection.
-			FellowshipUser.remove({
-				fellowshipId : req.params.fellowship_id,
-				userId : req.params.user_id
-			}, function(err) {
-				if (err)
-					return res.json(err);
-				//remove this fellowship from all membership.
-				Membership.update({
-					userId : req.params.user_id,
-					'fellowships.fellowshipId' : req.params.fellowship_id
-				}, {
-					$pull : {
-						fellowships : {
-							fellowshipId : req.params.fellowship_id
-						}
-					}
-				}, function(err) {
-					if (err)
-						return res.json(err);
-					return res.json({
-						status : "successfully removed from FellowshipUser"
-					});
-				});
-			});
-		} else {
-			return res.json({
-				status : "success",
-				message : "you are not allowed to remove this user from fellowship."
-			});
-		}
-	});
-};
+// exports.removeUserFromFellowship = function(req, res) {
+	// // fellowship from Fellowship & FellowUser Models
+	// FellowshipUser.findOne({
+		// userId : req.params.user_id,
+		// fellowshipId : req.params.fellowship_id,
+		// status : 'approved'
+	// }, function(err, fellowshipUser) {
+		// if (err)
+			// return res.json(err);
+		// if (commFunc.isFellowshipMember(req.user, req.params.fellowship_id) || req.user._id === req.params.user_id) {
+			// // send out email to notify user about delection.
+			// FellowshipUser.remove({
+				// fellowshipId : req.params.fellowship_id,
+				// userId : req.params.user_id
+			// }, function(err) {
+				// if (err)
+					// return res.json(err);
+				// //remove this fellowship from all membership.
+				// Membership.update({
+					// userId : req.params.user_id,
+					// 'fellowships.fellowshipId' : req.params.fellowship_id
+				// }, {
+					// $pull : {
+						// fellowships : {
+							// fellowshipId : req.params.fellowship_id
+						// }
+					// }
+				// }, function(err) {
+					// if (err)
+						// return res.json(err);
+					// return res.json({
+						// status : "successfully removed from FellowshipUser"
+					// });
+				// });
+			// });
+		// } else {
+			// return res.json({
+				// status : "success",
+				// message : "you are not allowed to remove this user from fellowship."
+			// });
+		// }
+	// });
+// };

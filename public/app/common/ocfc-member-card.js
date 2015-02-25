@@ -4,7 +4,8 @@ angular.module('app').directive('ocfcMemberCard', function ($http, FellowshipDat
 		restrict: 'E',
 		scope: {
 			user:'=',
-			isCurrentUserAdmin:'='
+			isCurrentUserAdmin:'=',
+			memberModal: '='
 		},
 		replace: true,
 		templateUrl: '/partials/common/ocfc-member-card',
@@ -47,6 +48,9 @@ angular.module('app').directive('ocfcMemberCard', function ($http, FellowshipDat
 					});
 			};
 			$scope.denyJoin = function (user) {
+				$scope.memberModal.open = true;
+				$scope.memberModal.title = "Deny " + user.userId.fullName + " to join?";
+				return;
 				console.log("approveJoin");
 				console.log($scope.user);
 				$http.put('/api/fellowships/'+ $scope.FellowshipDataSvc.fellowship._id +'/users/' + $scope.user.userId._id + '/denyUserToFellowship', {}).
@@ -59,16 +63,20 @@ angular.module('app').directive('ocfcMemberCard', function ($http, FellowshipDat
 					});
 			};
 			$scope.removeMember = function (user) {
-				console.log("approveJoin");
-				console.log($scope.user);
-				$http.put('/api/fellowships/'+ $scope.FellowshipDataSvc.fellowship._id +'/users/' + $scope.user.userId._id + '/removeUserFromFellowship', {}).
-					success(function(data){
-						if(data.status ==='success') {
-							user.status = "removed";
-						}
-		 			}).error(function(data){
-						console.log(data);
-					});
+				$scope.memberModal.open = true;
+				$scope.memberModal.title = "Remove " + user.userId.fullName + " from fellowship?";
+				//return;
+				//console.log("approveJoin");
+				//console.log($scope.user);
+				$scope.memberModal.user = $scope.user.userId;
+				$scope.memberModal.actionFunc = function(fellowshipId, userId, reason){
+					console.log("fellowshipId");
+					console.log(fellowshipId);
+					console.log("userId");
+					console.log(userId);
+					console.log(reason);
+					return $http.put('/api/fellowships/'+ fellowshipId +'/users/' + userId + '/removeUserFromFellowship', {reason: reason});
+				};
 			};
 			//no restriction required since we're returning all members
 			$scope.memberDropdown = [
