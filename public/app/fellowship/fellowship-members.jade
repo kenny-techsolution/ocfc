@@ -32,13 +32,13 @@
 						span.badge {{pendingMembers.length}}
 					a(ng-click='selectedMemberType="invite"') Invite Others
 		.row(ng-show="selectedMemberType=='all'")
-			ocfc-member-card(user="user", is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.allMembers=(FellowshipDataSvc.users |filter:{'status':'approved'})")
+			ocfc-member-card.am-fade-and-slide-bottom(user="user", member-modal="memberModal", is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.allMembers=(FellowshipDataSvc.users |filter:{'status':'approved'})")
 		.row(ng-show="selectedMemberType=='admin'")
-			ocfc-member-card(user="user", is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.adminMembers=(FellowshipDataSvc.users |filter: filterAdmin)")
+			ocfc-member-card(user="user", member-modal="memberModal",is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.adminMembers=(FellowshipDataSvc.users |filter: filterAdmin)")
 		.row(ng-show="selectedMemberType=='pending'")
-			ocfc-member-card(user="user", is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.pendingMembers=(FellowshipDataSvc.users |filter:{'status':'pending'})")
+			ocfc-member-card(user="user", member-modal="memberModal",is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.pendingMembers=(FellowshipDataSvc.users |filter:{'status':'pending'})")
 		.row(ng-show="selectedMemberType=='new'")
-			ocfc-member-card(user="user", is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.newMembers=(FellowshipDataSvc.users |filter:newCondition)")			
+			ocfc-member-card(user="user", member-modal="memberModal",is-current-user-admin="FellowshipDataSvc.isAdmin", ng-repeat="user in $parent.newMembers=(FellowshipDataSvc.users |filter:newCondition)")			
 		.row.invite-friend(ng-show="selectedMemberType=='invite'")
 			.jumbotron
 				h3 Invite others to join!
@@ -80,4 +80,15 @@
 						.btn-group
 							button.btn.btn-default(type='button', ng-click='deleteInvite($index, invite)') CANCEL
 							button.btn.btn-default(type='button', ng-click='inviteAgain(invite)',ng-show='invite.status=="pending"') INVITE AGAIN				
-				
+.member-modal-wrapper.am-fade(ng-show="memberModal.open")
+	.member-modal.am-fade-and-slide-top(ng-show="memberModal.open")
+		.member-modal__header
+			.glyphicon.glyphicon-user.member-icon
+			span.glyphicon.glyphicon-remove.remove.pull-right(ng-click='memberModal.open=false')
+			| {{memberModal.title}}
+		.member-modal__body
+			textarea.textbox.ocfc(ng-model='reason', placeholder='Please provide a reason.',ng-cloak,class="ng-cloak")
+		.member-modal__footer
+			button.btn.btn-danger.pull-right(ng-click="removeUser(memberModal.user)") REMOVE
+			//button.btn.btn-default.pull-right CANCEL
+			a.pull-right.cancel(ng-click='memberModal.open=false') CANCEL

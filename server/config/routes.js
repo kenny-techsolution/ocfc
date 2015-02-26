@@ -72,6 +72,7 @@ module.exports = function (app, io) {
 	app.put('/api/fellowships/:fellowship_id/users/:user_id/makeSubAdmin', fellowships.makeSubAdmin);
 	app.put('/api/fellowships/:fellowship_id/users/:user_id/removeSubAdmin', fellowships.removeSubAdmin);
 	app.delete('/api/fellowships/:fellowship_id/users/:user_id', fellowships.removeUserFromFellowship);
+	app.get('/api/removemember',fellowships.removemember);
 
 	/* ------ Invite Other To Fellowships related API -------- */
 	app.post('/api/inviteOtherToFellowships/batch', inviteOtherToFellowship.createInvites);
