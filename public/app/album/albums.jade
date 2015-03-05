@@ -27,8 +27,23 @@
 						div.album-section__description.text-black Description: {{album.description}}
 						div.album-section__created-by.text-black Created By: {{album.createdBy.fullName}}
 						div.album-section__created-on.text-black Created On: {{album.createdOn | date}}
-				div.album-section__album-upload(ng-file-select='openAlbum($files)', data-multiple='false', title='profile', onclick='this.value = null')
+				div.album-section__album-upload(ng-file-select='addImageToAlbum($files)', data-multiple='false', title='profile', onclick='this.value = null')
 					div.album-section__plus.text-dark-grey +
 					div.album-section__add-album.text-dark-grey Create Album
 
-ocfc-album-input(ng-if="files.length>0",files='files',image-array='imageArray',image-objs='imageObjs',cloudinary-params='CloudinaryDataSvc.cloudinarySignedParams',albums='albums')
+	.album-input__media(ng-show='clickedPost')
+		.create-album-header
+			div.create-album-header__title.text-dark-grey Create Album
+			button.create-album-header__add.text-dark-grey.pull-right(ng-file-select='addImageToAlbum($files)', data-multiple='false', title='profile', onclick='this.value = null') + Add More Photos
+			div.create-album-header__close(ng-click='cancelAlbumUpload()',ng-show='clickedPost') X
+		.row
+			.album-section-left.col-md-4
+				div
+					textarea.album-section-left__title.text-black(placeholder='Untitled Album',ng-model='albumObj.name')
+					textarea.album-section-left__description.text-black(placeholder='Say something about this album',ng-model='albumObj.description')
+				textarea.album-section-left__location.text-black(placeholder='Where were these taken?',ng-model='albumObj.location')
+				button.album-section-left__post.text-dark-grey(ng-click='createAlbum()') Post
+			.album-inner-right.col-md-8
+				ocfc-upload-albums-image(file="file", files="files",image-array="imageArray", image-objs="imageObjs", cloudinary-params="cloudinaryParams", ng-repeat='file in files',name='name',description='description')
+				.album-inner-right__upload-image(ng-file-select='openAlbum($files)', data-multiple='false', title='profile', onclick='this.value = null')
+				div.glyphicon.glyphicon-plus.album-inner-right__more(ng-file-select='openAlbum($files)', data-multiple='false', title='profile', onclick='this.value = null')
