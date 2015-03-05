@@ -1,4 +1,8 @@
 .members-widget
-	a.members-widget__link(ng-repeat='user in users', href="/fellowship/{{user.fellowshipId}}/members")
-		img.members-widget__profile(ng-src='{{user.userId.profileImg}}')
+	a.members-card-container(ng-repeat='user in users', href="/fellowship/{{user.fellowshipId}}/members")
+		div.members-card-container__card
+			div.members-card-container__side
+				img.members-widget__profile(ng-src='{{user.userId.profileImg}}')
+			div.members-card-container__side.back {{user.userId.fullName}}
 	.all {{users.length}}+
+
