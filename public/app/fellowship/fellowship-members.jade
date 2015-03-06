@@ -89,6 +89,6 @@
 		.member-modal__body
 			textarea.textbox.ocfc(ng-model='reason', placeholder='Please provide a reason.',ng-cloak,class="ng-cloak")
 		.member-modal__footer
-			button.btn.btn-danger.pull-right(ng-click="removeUser(memberModal.user)") REMOVE
+			button.btn.btn-danger.pull-right(ng-click="removeUser(memberModal.user)") {{memberModal.buttonTxt}}
 			//button.btn.btn-default.pull-right CANCEL
 			a.pull-right.cancel(ng-click='memberModal.open=false') CANCEL

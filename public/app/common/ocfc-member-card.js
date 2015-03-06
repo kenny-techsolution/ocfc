@@ -50,17 +50,19 @@ angular.module('app').directive('ocfcMemberCard', function ($http, FellowshipDat
 			$scope.denyJoin = function (user) {
 				$scope.memberModal.open = true;
 				$scope.memberModal.title = "Deny " + user.userId.fullName + " to join?";
-				return;
+				//return;
 				console.log("approveJoin");
 				console.log($scope.user);
-				$http.put('/api/fellowships/'+ $scope.FellowshipDataSvc.fellowship._id +'/users/' + $scope.user.userId._id + '/denyUserToFellowship', {}).
-					success(function(data){
-						if(data.status ==='success') {
-							user.status = "denied";
-						}
-		 			}).error(function(data){
-						console.log(data);
-					});
+				$scope.memberModal.buttonTxt = "DENY";
+				$scope.memberModal.user = $scope.user.userId;
+				$scope.memberModal.actionFunc = function(fellowshipId, userId, reason){
+					console.log("fellowshipId");
+					console.log(fellowshipId);
+					console.log("userId");
+					console.log(userId);
+					console.log(reason);
+					return $http.put('/api/fellowships/'+ fellowshipId +'/users/' + userId + '/denyUserToFellowship', {reason: reason});
+				};
 			};
 			$scope.removeMember = function (user) {
 				$scope.memberModal.open = true;
@@ -68,6 +70,7 @@ angular.module('app').directive('ocfcMemberCard', function ($http, FellowshipDat
 				//return;
 				//console.log("approveJoin");
 				//console.log($scope.user);
+				$scope.memberModal.buttonTxt = "REMOVE";
 				$scope.memberModal.user = $scope.user.userId;
 				$scope.memberModal.actionFunc = function(fellowshipId, userId, reason){
 					console.log("fellowshipId");

@@ -381,11 +381,12 @@ exports.deleteFellowshipById = function(req, res) {
 exports.addUserToFellowship = function(req, res) {
 	console.log('server addUserToFellowship has been called');
 	//Populate data onto FellowshipUsers tbl
-	Fellowship.count({
-		_id : req.params.fellowship_id
+	FellowshipUser.count({
+		fellowshipId : req.params.fellowship_id,
+		userId : req.params.user_id
 	}, function(err, count) {
 		console.log('Chk count against Fellowship tbl, chk if fellowship exist');
-		if (count == 1) {
+		if (count == 0) {
 			var fellowshipUser = req.body;
 			fellowshipUser.userId = req.user._id;
 			fellowshipUser.fellowshipId = req.params.fellowship_id;
@@ -403,6 +404,11 @@ exports.addUserToFellowship = function(req, res) {
 					status : "success",
 					fellowshipUser : fellowshipUser
 				});
+			});
+		} else {
+			return res.json({
+				status : "success",
+				fellowshipUser : req.body
 			});
 		}
 	});
@@ -808,12 +814,11 @@ exports.denyUserToFellowship = function(req, res) {
 			});
 		},
 		function(fellowshipUserInstance, callback){
-			fellowshipUserInstance.status = 'denied';
-			fellowshipUserInstance.rejectReason = reason;
-			fellowshipUserInstance.updateDate = new Date();
-			fellowshipUserInstance.save(function(err){
-				if (err)
-					callback(err);
+			FellowshipUser.remove({
+				fellowshipId : req.params.fellowship_id,
+				userId : req.params.user_id
+			}, function(err) {
+				if (err) callback(err);
 				callback(null, fellowshipUserInstance);
 			});
 		},
@@ -821,7 +826,7 @@ exports.denyUserToFellowship = function(req, res) {
 			var notification = new Notification({
 				recipient : userId,
 				url : '/fellowship/' + fellowshipId,
-				message : 'Your request to join ' + fellowshipUserInstance.fellowshipId.name + 'has been denied, because ' + fellowshipUserInstance.rejectReason
+				message : 'Your request to join ' + fellowshipUserInstance.fellowshipId.name + 'has been denied, because ' + reason
 			});
 			notification.save(function(err) {
 				if (err)
