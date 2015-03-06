@@ -1,17 +1,9 @@
-#setting.jumbotron {
-  margin-top: 30px;
-  margin-bottom: 0px;
-  width: 100%;
-  height: 100%;
-}
-#setting.jumbotron .container {
+/****************************LAYOUT***************************************/
+#setting .container.basic-info-edit {
   width: 980px;
+  margin-top: 55px;
 }
-.basic-info-edit__bday-input .dropdown.select-box {
-  width: 63px;
-  display: inline-block;
-  margin-right: 10px;
-}
-.basic-info-edit__bday-input .dropdown.select-box.year {
-  width: 126px;
+/****************************COMPONENTS***********************************/
+.basic-info-edit__bday-input .bday-input {
+  width: 62px;
 }

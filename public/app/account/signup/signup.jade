@@ -2,43 +2,35 @@ form.form-horizontal.signup-section(name="signupForm" ng-controller='SignupCtrl'
 	fieldset.container
 		legend New User?
 			span Sign Up Here
-		.row
-			.col-md-12
-				input.form-control(name="email",type="email",placeholder="Email",ng-model="email",required)
-		.row
-			.col-md-12
-				input.form-control(name="fullName",type="fullName",placeholder="Full Name",ng-model="fullName",required)
-		.row
-			.col-md-12
-				input.form-control(name="password",type="password",placeholder="Password",ng-model="password",required)
-		.row.forth
-			.col-md-12
-				span.text-black Birthday.
-				a why we need it?
-		.row
-			.col-md-12
-				#birthday(data-type='selectors', data-name='birthday_wrapper')
-					div.dropdown.select-box.month.inline
-						button.btn(focus-when='focusStates["Campaign Dates"]', type='button', data-toggle='dropdown')
-							| Month
-							span.caret
-						ul.dropdown-menu.text-right
-							li(ng-repeat='choice in form.campaignLengthOptions')
-								a(ng-click='$parent.onChangeNumWeeks(choice)') {{choice}}
-					div.dropdown.select-box.date.inline
-						button.btn(focus-when='focusStates["Campaign Dates"]', type='button', data-toggle='dropdown')
-							| Date
-							span.caret
-						ul.dropdown-menu.text-right
-							li(ng-repeat='choice in form.campaignLengthOptions')
-								a(ng-click='$parent.onChangeNumWeeks(choice)') {{choice}}
-					div.dropdown.select-box.year.inline
-						button.btn(focus-when='focusStates["Campaign Dates"]', type='button', data-toggle='dropdown')
-							| Year
-							span.caret
-						ul.dropdown-menu.text-right
-							li(ng-repeat='choice in form.campaignLengthOptions')
-								a(ng-click='$parent.onChangeNumWeeks(choice)') {{choice}}
+			input.form-control(name="email",type="email",placeholder="Email",ng-model="email",required)
+			input.form-control(name="fullName",type="fullName",placeholder="Full Name",ng-model="fullName",required)
+			input.form-control(name="password",type="password",placeholder="Password",ng-model="password",required)
+	fieldset.signup-section__birthday
+			span.text-black Birthday
+			a  (why we need it?)
+	fieldset
+		#birthday(data-type='selectors', data-name='birthday_wrapper')
+			div.dropdown.select-box.month.inline
+				button.btn(focus-when='focusStates["Campaign Dates"]', type='button', data-toggle='dropdown')
+					| Month
+					span.caret
+				ul.dropdown-menu.text-right
+					li(ng-repeat='choice in form.campaignLengthOptions')
+						a(ng-click='$parent.onChangeNumWeeks(choice)') {{choice}}
+			div.dropdown.select-box.date.inline
+				button.btn(focus-when='focusStates["Campaign Dates"]', type='button', data-toggle='dropdown')
+					| Date
+					span.caret
+				ul.dropdown-menu.text-right
+					li(ng-repeat='choice in form.campaignLengthOptions')
+						a(ng-click='$parent.onChangeNumWeeks(choice)') {{choice}}
+			div.dropdown.select-box.year.inline
+				button.btn(focus-when='focusStates["Campaign Dates"]', type='button', data-toggle='dropdown')
+					| Year
+					span.caret
+				ul.dropdown-menu.text-right
+					li(ng-repeat='choice in form.campaignLengthOptions')
+						a(ng-click='$parent.onChangeNumWeeks(choice)') {{choice}}
 		.row(ng-show="false")
 			.col-md-12
 				select#month(name='birthday_month',ng-model='month')
@@ -200,13 +192,12 @@ form.form-horizontal.signup-section(name="signupForm" ng-controller='SignupCtrl'
 					option(value='1907') 1907
 					option(value='1906') 1906
 					option(value='1905') 1905
-		.row.last
-			.col-md-12
-				span.gender
-					input#female(type='radio', name='gender', value='female',ng-model='gender')
-					label.female Female
-				span.gender
-					input#male(type='radio', name='gender', value='male',ng-model='gender')
-					label.male Male
-				.pull-right
-					button.btn.btn-danger(ng-click="signup()",ng-disabled="signupForm.$invalid") SIGN UP
+		fieldset.signup-section__gender
+			span.gender
+				input#female(type='radio', name='gender', value='female',ng-model='gender')
+				label.female Female
+			span.gender
+				input#male(type='radio', name='gender', value='male',ng-model='gender')
+				label.male Male
+			.pull-right
+				button.btn.btn-danger(ng-click="signup()",ng-disabled="signupForm.$invalid") SIGN UP

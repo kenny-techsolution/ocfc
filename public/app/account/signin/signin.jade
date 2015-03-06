@@ -1,15 +1,10 @@
 form.form-horizontal.signin-section(name="signinForm" ng-controller='SignupCtrl')
-	.container
-		.row
-			.col-xs-12
-				input.form-control(name="email",type="email",placeholder="Email as username",ng-model="email",required)
-		.row.signin-section__second-row
-			.col-xs-12
-				input.form-control.password(name="password",type="password",placeholder="Password",ng-model="password",required)
-				button.btn.btn-primary.pull-right(ng-click="signin(email,password)") LOG IN
-		.row.signin-section__third-row
-			.col-xs-12
-				input(type='checkbox', name='rememberMe', value='Remember me',ng-model='rememberMe')
-				label Remember me
-				a Forget password?
-				
+	fieldset
+		input.form-control(name="email",type="email",placeholder="Email as username",ng-model="email",required)
+		input.form-control.password(name="password",type="password",placeholder="Password",ng-model="password",required)
+		button.btn.btn-primary.pull-right(ng-click="signin(email,password)") LOG IN
+	fieldset.signin-section__additional-setting
+		input(type='checkbox', name='rememberMe', value='Remember me',ng-model='rememberMe')
+		label Remember me
+	fieldset.signin-section__additional-setting
+		a(href='#') Forget password?

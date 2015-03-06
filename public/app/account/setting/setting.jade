@@ -1,42 +1,39 @@
 //--http://onechurchforchrist.org/setting--
 #setting
 	.container.basic-info-edit
-		.row
+		fieldset
 			h4.text-grey.full-width-widget-header-style1.col-md-12 Basic Information
-		.row
+		fieldset
 			.col-md-6
 				.form-label FULL NAME {{fullName}}
 				input.form-control(ng-model='fullName')
-			.basic-info-edit__bday-input.col-md-6
-				.form-label DATE OF BIRTH {{selectedMonth}}{{selectedDay}}{{selectedYear}}
-				input.month.text-black(ng-model='selectedMonth',placeholder='Month',type='number',min='01',max='12',ng-maxlength="2",ng-pattern="/^[0-9]{1,2}$/")
-				input.day.text-black(ng-model='selectedDay',placeholder='Day',type='number',min='01',max='31',ng-maxlength="2",ng-pattern="/^[0-9]{1,2}$/")
-				input.year.text-black(ng-model='selectedYear',placeholder='Year',type='number',min='1940',max='2015',ng-maxlength="2",ng-pattern="/^[0-9]{1,2}$/")
-			.row
-			.col-md-6
 				.form-label EMAIL {{email}}
 				input.form-control(ng-model='email')
 
-		.row
+			.basic-info-edit__bday-input.col-md-6
+				.form-label DATE OF BIRTH {{selectedMonth}}{{selectedDay}}{{selectedYear}}
+				input.bday-input.month.text-black(ng-model='selectedMonth',placeholder='Month',type='number',min='01',max='12',ng-maxlength="2",ng-pattern="/^[0-9]{1,2}$/")
+				input.bday-input.day.text-black(ng-model='selectedDay',placeholder='Day',type='number',min='01',max='31',ng-maxlength="2",ng-pattern="/^[0-9]{1,2}$/")
+				input.bday-input.year.text-black(ng-model='selectedYear',placeholder='Year',type='number',min='1940',max='2015',ng-maxlength="2",ng-pattern="/^[0-9]{1,2}$/")
+
+		fieldset
 			.setting--account-info.col-md-12
 				button.btn.btn-primary.pull-right(ng-click='updateUser()',ng-disabled='disableFullName&&disableFullName') UPDATE
 				button.btn.btn-default.pull-right.cancel-button CANCEL
 
 	.container.password-edit
-		.row
+		fieldset
 			h4.text-grey.full-width-widget-header-style1.col-md-12 Update Password
-		.row
+		fieldset
 			.col-md-6
 				.form-label OLD PASSWORD {{oldPassword}}
 				input.form-control(ng-model='oldPassword')
-		.row
-			.col-md-6
 				.form-label NEW PASSWORD {{newPassword}}
 				input.form-control(ng-model='newPassword')
-		.row
+		fieldset
 			.col-md-12
 				button.btn.btn-primary.pull-right(ng-click='updateUserPassword()') UPDATE
 
 	.container.preference-edit
-		.row
+		fieldset
 			h4.text-grey.full-width-widget-header-style1.col-md-12 Preferences
