@@ -20,6 +20,7 @@ var userSchema = mongoose.Schema({
 	salt: 		{type: String, required: '(salt) is required!',index: true, unique: true, select: false},
 	birthday:	{type: Date,index: true, unique: false},
 	gender: 	{type: String, index: false, unique: false,lowercase: true},
+	believer:   {type: Boolean, default: false},
 	profileImg: {type: String, index: false, unique: false},
 	phone: 	    {type: String, index: true, unique: false,lowercase: true},
 	signupDate: {type: Date,required:'(signupDate) is required!',index: true, unique: false,lowercase: true,default: Date.now},
