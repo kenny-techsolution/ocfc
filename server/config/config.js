@@ -5,16 +5,16 @@ var rootPath = path.normalize(__dirname + '/../../');
 //6.17.2014 updated port 3030 to 80
 module.exports={
 	development:{
-		db:  'mongodb://104.8.6.58/ocfc',//104.8.6.58
+		db:  'mongodb://54.249.38.89/ocfc',//104.8.6.58
 		//db: 'mongodb://localhost/ocfc',
 		rootPath: rootPath,
-		port: process.env.PORT || 3030,
+		port: process.env.PORT || 8080,
 		uploadPath: rootPath + '/uploads'
 	},
 	production:{
-		db:  'mongodb://192.168.1.71/ocfc',
+		db:  'mongodb://54.249.38.89/ocfc',
 		rootPath: rootPath,
-		port: process.env.PORT || 80,
+		port: process.env.PORT || 8000,
 		uploadPath: rootPath + '/uploads'
 	}
 };

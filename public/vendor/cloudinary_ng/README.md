@@ -11,6 +11,14 @@ Cloudinary provides URL and HTTP based APIs that can be easily integrated with a
 
 For AngularJS, Cloudinary provides a plugin for simplifying the integration even further. The plugin serves as a layer on top the [Cloudinary jQuery plugin](http://cloudinary.com/documentation/jquery_integration#installation)
 
+## Install ######################################################################
+
+You can get it on bower.
+
+```shell
+bower install cloudinary_ng --save
+```
+
 ## Setup ######################################################################
 
 Follow the setup procedure described in the [Cloudinary jQuery plugin](https://github.com/cloudinary/cloudinary_js#setup) setup procedure. The sample project contained in this repository can serve as an example.
@@ -39,7 +47,7 @@ For a complete list of image manipulation options see [this reference](http://cl
 
 These directives transform the given URI to a cloudinary URL. For example:
 
-    <link rel="shortcut icon" cl-href="{publicly_available_image}" type="fetch" effect="sepia" width="16" heigh="16" crop="fit"/>
+    <link rel="shortcut icon" cl-href="{publicly_available_image}" type="fetch" effect="sepia" width="16" height="16" crop="fit"/>
 
 Will be transformed to:
 
@@ -49,7 +57,7 @@ Will be transformed to:
 
 ### Uploading images
 
-You can upload images directly from the browser using Cloudinary's jQuery plugin from you AngularJS app. See the sample [photo album app](https://github.com/cloudinary/cloudinary_angular/tree/master/samples/photo_album) for a usage example.
+You can upload images directly from the browser using Cloudinary's jQuery plugin from your AngularJS app. See the sample [photo album app](https://github.com/cloudinary/cloudinary_angular/tree/master/samples/photo_album) for a usage example.
 
 
 ## Samples

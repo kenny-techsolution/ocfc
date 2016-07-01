@@ -5,7 +5,7 @@ angular.module('lr.upload.formdata', [])
   // Convert all data properties to FormData,
   // if they are a jqLite element, extract the files from the input
   .factory('formDataTransform', function () {
-    return function formDataTransform(data) {
+    return function formDataTransform (data) {
       var formData = new FormData();
 
       // Extract file elements from within config.data
@@ -19,6 +19,8 @@ angular.module('lr.upload.formdata', [])
             angular.forEach(el.files, function (file) {
               files.push(file);
             });
+            // Reset input value so that we don't upload the same files next time
+            el.value = '';
           });
 
           // Do we have any files?
@@ -48,6 +50,9 @@ angular.module('lr.upload.formdata', [])
     return function formDataUpload(config) {
       // Apply FormData transform to the request
       config.transformRequest = formDataTransform;
+
+      // Set method to POST if not defined
+      config.method = config.method || 'POST';
 
       // Extend the headers so that the browser will set the correct content type
       config.headers = angular.extend(config.headers || {}, {

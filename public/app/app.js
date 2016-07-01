@@ -1,7 +1,7 @@
 //This file references all module required for this project
 //Defining a model called 'app' which uses directives listed within []
 //'ui.bootstrap'
-angular.module('app',['ngResource','ngRoute','ngAnimate','ui.bootstrap','mgcrea.ngStrap','btford.socket-io','cloudinary','angularFileUpload','infinite-scroll']).
+angular.module('app',['ngResource','ngRoute','ngAnimate','ui.bootstrap','mgcrea.ngStrap','btford.socket-io','cloudinary','ngFileUpload','infinite-scroll']).
 factory('mySocket', function (socketFactory) {
 	return socketFactory();
 	}).factory('_', function() {
@@ -81,7 +81,10 @@ angular.module('app').config(function ($routeProvider, $locationProvider, $httpP
 	//routes.js will render the it to the correct template based on it's callback
 	//Hijacks, changes data w/o going to server, only change on the front end
 	//4.29.2014, updated code to include churchAdmin and worldAdmin
-	$locationProvider.html5Mode(true);
+	$locationProvider.html5Mode({
+enabled:true,
+requireBase:false
+});
 	$routeProvider
 		.when('/', {templateUrl: '/partials/account/access/landing-page', controller: 'SignupCtrl',resolve:{ forbidSignup: forbidSignup}})
 		.when('/activate/:activateCode/userId/:id/email/:email', {templateUrl: '/partials/account/activate', controller: 'ActivateCtrl'})
